@@ -1,10 +1,39 @@
 {
   "expo": {
-    "scheme": "acme",
+    "scheme": "myHadeethApp",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "web": {
-      "bundler": "metro"
+      "bundler": "metro",
+      "favicon": "./assets/favicon.png",
     },
     "name": "myHadeethApp",
-    "slug": "myHadeethApp"
+    "slug": "myHadeethApp",
+    "extra": {
+      "eas": {
+        "projectId": "c72af849-aeb0-435c-8334-7436e13db514"
+      }
+    },
+    "ios": {
+      "bundleIdentifier": "com.mdchad.myHadeethApp",
+      "supportsTablet": true,
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.aliy321.testapp"
+    }
   }
 }
