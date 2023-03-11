@@ -137,8 +137,7 @@ export default function Welcome() {
 
 const styles = StyleSheet.create({
   container: {
-    // backgroundColor: "#EDEEC0",
-    backgroundColor: "red",
+    backgroundColor: "#EDEEC0",
     margin: 0,
     padding: 0,
     flex: 1,
