@@ -5,19 +5,19 @@ import {useEffect} from "react";
 
 const hadeethContent = () => {
     const { chapter, data, category } = useSearchParams();
-    const parsedData = JSON.parse(data)
+    const parsedData = data ? JSON.parse(data) : {}
 
     return (
         <View className="flex items-center px-6">
             <Text className="text-3xl font-bold">{category}</Text>
             <Text className="text-lg font-bold">Chapter: {chapter}</Text>
-            <Text className="text-md mb-2">{parsedData.title.ar}</Text>
-            <Text className="text-md">{parsedData.title.ms}</Text>
+            <Text className="text-md mb-2">{parsedData?.title.ar}</Text>
+            <Text className="text-md">{parsedData?.title.ms}</Text>
 
             {/* create a next and prev chapter */}
           <View className="my-8">
             <FlatList
-              data={parsedData.hadeeth}
+              data={parsedData?.hadeeth}
               renderItem={({ item }) => (
                   <>
                     <Text className="mb-4">{item.content.ar}</Text>
