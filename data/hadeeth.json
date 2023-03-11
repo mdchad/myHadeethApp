@@ -1,6 +1,6 @@
 [
   {
-  "book": "sahih_muslim",
+  "name": "sahih_muslim",
   "title": "Sahih Muslim",
   "id":  1,
   "category": [
@@ -94,7 +94,7 @@
     }]
   },
   {
-    "book": "sunan_ad-darimi",
+    "name": "sunan_ad-darimi",
     "title": "Sunan Ad-Darimi",
     "id":  2,
     "category": [
@@ -132,9 +132,9 @@
     ]
   },
   {
-    "book": "muwatta_malik",
+    "name": "muwatta_malik",
     "title": "Muwatta’ Malik",
-    "id":  2,
+    "id":  3,
     "category": [
       {
         "id": 1,
@@ -170,9 +170,9 @@
     ]
   },
   {
-    "book": "sunan_abi-daud",
+    "name": "sunan_abi-daud",
     "title": "Sunan Abi Daud",
-    "id":  2,
+    "id":  4,
     "category": [
       {
         "id": 1,
@@ -208,9 +208,9 @@
     ]
   },
   {
-    "book": "jami_al_tirmidhi",
+    "name": "jami_al_tirmidhi",
     "title": "Jami’ Al-Tirmidhi",
-    "id":  2,
+    "id": 5,
     "category": [
       {
         "id": 1,
@@ -246,9 +246,9 @@
     ]
   },
   {
-    "book": "sunan_ibnu_majah",
+    "name": "sunan_ibnu_majah",
     "title": "Sunan Ibnu Majah",
-    "id":  2,
+    "id":  6,
     "category": [
       {
         "id": 1,
@@ -284,9 +284,9 @@
     ]
   },
   {
-    "book": "masnad_ahmad",
+    "name": "masnad_ahmad",
     "title": "Masnad Ahmad",
-    "id":  2,
+    "id":  7,
     "category": [
       {
         "id": 1,
@@ -322,9 +322,9 @@
     ]
   },
   {
-    "book": "sunan_an_nasai",
+    "name": "sunan_an_nasai",
     "title": "Sunan An-Nasa’i",
-    "id":  2,
+    "id":  8,
     "category": [
       {
         "id": 1,
@@ -360,9 +360,9 @@
     ]
   },
   {
-    "book": "sahih_bukhari",
+    "name": "sahih_bukhari",
     "title": "Sahih Bukhari",
-    "id":  2,
+    "id":  9,
     "category": [
       {
         "id": 1,
