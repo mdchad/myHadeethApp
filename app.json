@@ -1,6 +1,6 @@
 {
   "expo": {
-    "scheme": "myHadeethApp",
+    "scheme": "myhadeethapp",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -14,7 +14,7 @@
     ],
     "web": {
       "bundler": "metro",
-      "favicon": "./assets/favicon.png",
+      "favicon": "./assets/favicon.png"
     },
     "name": "myHadeethApp",
     "slug": "myHadeethApp",
@@ -34,6 +34,15 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.aliy321.testapp"
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/c72af849-aeb0-435c-8334-7436e13db514",
+      "enabled": true,
+      "fallbackToCacheTimeout": 0,
+      "checkAutomatically": "ON_ERROR_RECOVERY"
     }
   }
 }
