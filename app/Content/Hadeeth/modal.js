@@ -62,12 +62,14 @@ const Search = () => {
         <SafeAreaView className="flex-1 flex gap-5 bg-white">
             <View className="flex flex-row gap-3 items-center px-3">
                 <View className="flex-1 relative flex items-center justify-center">
+                  <View className="bg-white flex-1 rounded-lg shadow w-full">
                     <TextInput
-                        className="bg-white p-3 flex-1 rounded-lg shadow w-full"
+                        className="flex-1 px-3"
                         placeholder="Search..."
                         value={value}
                         onChangeText={(text) => setValue(text)}
                     />
+                  </View>
                     {value.length > 0 && (
                         <View className="absolute right-0 top-0 bottom-0 flex justify-center pr-2">
                             <Pressable onPress={() => { setValue('') }}>
