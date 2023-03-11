@@ -1,4 +1,5 @@
-[{
+[
+  {
   "book": "sahih_muslim",
   "title": "Sahih Muslim",
   "id":  1,
@@ -28,6 +29,33 @@
                 "en": "",
                 "ms": "1- (1614) Yahya bin Yahya, Abu Bakr bin Abu Shaibah dan Ishaq bin Ibrahim menyampaikan kepada kami dan lafaz tersebut adalah milik Yahya. Yahya berkata: Ibn ‘Uyainah telah mengkhabarkan kepada kami, manakala dua orang lagi berkata: Ibn ‘Uyainah menyampaikan kepada kami, daripada al-Zuhri, daripada ‘Ali bin Husain, daripada ‘Amr bin Uthman, daripada Usamah bin Zaid, bahawa Nabi ﷺ bersabda: “Muslim tidak mewarisi kafir dan kafir tidak mewarisi Muslim”.",
                 "ar": "1 - (1614) حَدَّثَنَا يَحْيَى بْنُ يَحْيَى، وَأَبُو بَكْرِ بْنُ أَبِي شَيْبَةَ، وَإِسْحَاقُ بْنُ إِبْرَاهِيمَ، وَاللَّفْظُ لِيَحْيَى، قَالَ يَحْيَى: أَخْبَرَنَا، وقَالَ الْآخَرَانِ: حَدَّثَنَا ابْنُ عُيَيْنَةَ، عَنِ الزُّهْرِيِّ، عَنْ عَلِيِّ بْنِ حُسَيْنٍ، عَنْ عَمْرِو بْنِ عُثْمَانَ، عَنْ أُسَامَةَ بْنِ زَيْدٍ، أَنَّ النَّبِيَّ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ، قَالَ: لَا يَرِثُ الْمُسْلِمُ الْكَافِرَ، وَلَا يَرِثُ الْكَافِرُ الْمُسْلِمَ."
+              }
+            },
+            {
+              "id": 2,
+              "name": "",
+              "content": {
+                "en": "",
+                "ms": "2- (1615) ‘Abd al-A’la bin Hammad dan dia adalah al-Narsi, menyampaikan kepada kami, dia berkata: Wuhaib menyampaikan kepada kami, daripada Ibn Tawus, daripada bapanya, daripada Ibn ‘Abbas, dia berkata: Rasulullah ﷺ bersabda: “Berikanlah faraid kepada ahlinya, lalu bakinya adalah untuk lelaki yang paling rapat”.",
+                "ar": "2- (1615) حَدَّثَنَا عَبْدُ الْأَعْلَى بْنُ حَمَّادٍ وَهُوَ النَّرْسِيُّ، حَدَّثَنَا وُهَيْبٌ، عَنِ ابْنِ طَاوُسٍ، عَنْ أَبِيهِ، عَنِ ابْنِ عَبَّاسٍ، قَالَ: قَالَ رَسُولُ اللهِ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ: أَلْحِقُوا الْفَرَائِضَ بِأَهْلِهَا، فَمَا بَقِيَ فَهُوَ لِأَوْلَى رَجُلٍ ذَكَرٍ."
+              }
+            },
+            {
+              "id": 3,
+              "name": "",
+              "content": {
+                "en": "",
+                "ms": "3- (…) Umayyah bin Bistam al-‘Aishi menyampaikan kepada kami, dia berkata: Yazid bin Zurai‘ menyampaikan kepada kami, dia berkata: Rauh bin al-Qasim menyampaikan kepada kami, daripada ‘Abdullah bin Tawus, daripada bapanya, daripada Ibn ‘Abbas, daripada Rasulullah ﷺ, Baginda bersabda: “Berikanlah faraid kepada ahlinya, lalu apa yang faraid tinggalkan adalah untuk lelaki yang paling rapat”.",
+                "ar": "3- (...) حَدَّثَنَا أُمَيَّةُ بْنُ بِسْطَامَ الْعَيْشِيُّ، حَدَّثَنَا يَزِيدُ بْنُ زُرَيْعٍ، حَدَّثَنَا رَوْحُ بْنُ الْقَاسِمِ، عَنْ عَبْدِ اللهِ بْنِ طَاوُسٍ، عَنْ أَبِيهِ، عَنِ ابْنِ عَبَّاسٍ، عَنْ رَسُولِ اللهِ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ قَالَ: «أَلْحِقُوا الْفَرَائِضَ بِأَهْلِهَا، فَمَا تَرَكَتِ الْفَرَائِضُ فَلِأَوْلَى رَجُلٍ ذَكَرٍ»"
+              }
+            },
+            {
+              "id": 4,
+              "name": "",
+              "content": {
+                "en": "",
+                "ms": "4- (…) Ishaq bin Ibrahim, Muhammad bin Rafi‘ dan ‘Abd bin Humaid menyampaikan kepada kami, dan lafaz tersebut adalah milik Ibn Rafi‘. Ishaq berkata: ‘Abd al-Razzaq telah menyampaikan kepada kami, manakala dua orang lagi berkata: ‘Abd al-Razzaq telah mengkhabarkan kepada kami, dia berkata: Ma‘mar mengkhabarkan kepada kami, daripada Ibn Tawus, daripada bapanya, daripada Ibn ‘Abbas, beliau berkata: Rasulullah ﷺ bersabda: “Bahagikanlah harta di antara ahli faraid mengikut Kitab Allah, lalu apa yang faraid tinggalkan adalah untuk lelaki yang paling rapat”.",
+                "ar": "4- (...) حَدَّثَنَا إِسْحَاقُ بْنُ إِبْرَاهِيمَ، وَمُحَمَّدُ بْنُ رَافِعٍ، وَعَبْدُ بْنُ حُمَيْدٍ، وَاللَّفْظُ لِابْنِ رَافِعٍ، قَالَ إِسْحَاقُ: حَدَّثَنَا، وَقَالَ الْآخَرَانِ: أَخْبَرَنَا عَبْدُ الرَّزَّاقِ، أَخْبَرَنَا مَعْمَرٌ، عَنِ ابْنِ طَاوُسٍ، عَنْ أَبِيهِ، عَنِ ابْنِ عَبَّاسٍ، قَالَ: قَالَ رَسُولُ اللهِ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ: اقْسِمُوا الْمَالَ بَيْنَ أَهْلِ الْفَرَائِضِ عَلَى كِتَابِ اللهِ، فَمَا تَرَكَتِ الْفَرَائِضُ فَلِأَوْلَى رَجُلٍ ذَكَرٍ"
               }
             }
           ]
@@ -63,9 +91,8 @@
           "hadeeth": []
         }
       ]
-    }
-  ]
-},
+    }]
+  },
   {
     "book": "sunan_ad-darimi",
     "title": "Sunan Ad-Darimi",
@@ -73,10 +100,10 @@
     "category": [
       {
         "id": 1,
-        "name": "faraid",
+        "name": "",
         "title": {
-          "en": "Faraid Book",
-          "ms": "Kitab Faraid",
+          "en": "",
+          "ms": "",
           "ar": ""
         },
         "chapter": [
@@ -85,8 +112,8 @@
             "name": "first_chapter",
             "title": {
               "en": "",
-              "ms": "BAB BERIKANLAH FARAID KEPADA AHLINYA, LALU BAKINYA ADALAH UNTUK LELAKI YANG PALING RAPAT",
-              "ar": "بَابُ أَلْحِقُوا الْفَرَائِضَ بِأَهْلِهَا، فَمَا بَقِيَ فَلِأَوْلَى رَجُلٍ ذَكَرٍ"
+              "ms": "",
+              "ar": ""
             },
             "hadeeth": [
               {
@@ -94,8 +121,8 @@
                 "name": "",
                 "content": {
                   "en": "",
-                  "ms": "1- (1614) Yahya bin Yahya, Abu Bakr bin Abu Shaibah dan Ishaq bin Ibrahim menyampaikan kepada kami dan lafaz tersebut adalah milik Yahya. Yahya berkata: Ibn ‘Uyainah telah mengkhabarkan kepada kami, manakala dua orang lagi berkata: Ibn ‘Uyainah menyampaikan kepada kami, daripada al-Zuhri, daripada ‘Ali bin Husain, daripada ‘Amr bin Uthman, daripada Usamah bin Zaid, bahawa Nabi ﷺ bersabda: “Muslim tidak mewarisi kafir dan kafir tidak mewarisi Muslim”.",
-                  "ar": "1 - (1614) حَدَّثَنَا يَحْيَى بْنُ يَحْيَى، وَأَبُو بَكْرِ بْنُ أَبِي شَيْبَةَ، وَإِسْحَاقُ بْنُ إِبْرَاهِيمَ، وَاللَّفْظُ لِيَحْيَى، قَالَ يَحْيَى: أَخْبَرَنَا، وقَالَ الْآخَرَانِ: حَدَّثَنَا ابْنُ عُيَيْنَةَ، عَنِ الزُّهْرِيِّ، عَنْ عَلِيِّ بْنِ حُسَيْنٍ، عَنْ عَمْرِو بْنِ عُثْمَانَ، عَنْ أُسَامَةَ بْنِ زَيْدٍ، أَنَّ النَّبِيَّ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ، قَالَ: لَا يَرِثُ الْمُسْلِمُ الْكَافِرَ، وَلَا يَرِثُ الْكَافِرُ الْمُسْلِمَ."
+                  "ms": "",
+                  "ar": ""
                 }
               }
             ]
@@ -103,4 +130,271 @@
         ]
       }
     ]
-  }]
+  },
+  {
+    "book": "muwatta_malik",
+    "title": "Muwatta’ Malik",
+    "id":  2,
+    "category": [
+      {
+        "id": 1,
+        "name": "",
+        "title": {
+          "en": "",
+          "ms": "",
+          "ar": ""
+        },
+        "chapter": [
+          {
+            "id": 1,
+            "name": "first_chapter",
+            "title": {
+              "en": "",
+              "ms": "",
+              "ar": ""
+            },
+            "hadeeth": [
+              {
+                "id": 1,
+                "name": "",
+                "content": {
+                  "en": "",
+                  "ms": "",
+                  "ar": ""
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "book": "sunan_abi-daud",
+    "title": "Sunan Abi Daud",
+    "id":  2,
+    "category": [
+      {
+        "id": 1,
+        "name": "",
+        "title": {
+          "en": "",
+          "ms": "",
+          "ar": ""
+        },
+        "chapter": [
+          {
+            "id": 1,
+            "name": "first_chapter",
+            "title": {
+              "en": "",
+              "ms": "",
+              "ar": ""
+            },
+            "hadeeth": [
+              {
+                "id": 1,
+                "name": "",
+                "content": {
+                  "en": "",
+                  "ms": "",
+                  "ar": ""
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "book": "jami_al_tirmidhi",
+    "title": "Jami’ Al-Tirmidhi",
+    "id":  2,
+    "category": [
+      {
+        "id": 1,
+        "name": "",
+        "title": {
+          "en": "",
+          "ms": "",
+          "ar": ""
+        },
+        "chapter": [
+          {
+            "id": 1,
+            "name": "first_chapter",
+            "title": {
+              "en": "",
+              "ms": "",
+              "ar": ""
+            },
+            "hadeeth": [
+              {
+                "id": 1,
+                "name": "",
+                "content": {
+                  "en": "",
+                  "ms": "",
+                  "ar": ""
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "book": "sunan_ibnu_majah",
+    "title": "Sunan Ibnu Majah",
+    "id":  2,
+    "category": [
+      {
+        "id": 1,
+        "name": "",
+        "title": {
+          "en": "",
+          "ms": "",
+          "ar": ""
+        },
+        "chapter": [
+          {
+            "id": 1,
+            "name": "first_chapter",
+            "title": {
+              "en": "",
+              "ms": "",
+              "ar": ""
+            },
+            "hadeeth": [
+              {
+                "id": 1,
+                "name": "",
+                "content": {
+                  "en": "",
+                  "ms": "",
+                  "ar": ""
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "book": "masnad_ahmad",
+    "title": "Masnad Ahmad",
+    "id":  2,
+    "category": [
+      {
+        "id": 1,
+        "name": "",
+        "title": {
+          "en": "",
+          "ms": "",
+          "ar": ""
+        },
+        "chapter": [
+          {
+            "id": 1,
+            "name": "first_chapter",
+            "title": {
+              "en": "",
+              "ms": "",
+              "ar": ""
+            },
+            "hadeeth": [
+              {
+                "id": 1,
+                "name": "",
+                "content": {
+                  "en": "",
+                  "ms": "",
+                  "ar": ""
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "book": "sunan_an_nasai",
+    "title": "Sunan An-Nasa’i",
+    "id":  2,
+    "category": [
+      {
+        "id": 1,
+        "name": "",
+        "title": {
+          "en": "",
+          "ms": "",
+          "ar": ""
+        },
+        "chapter": [
+          {
+            "id": 1,
+            "name": "first_chapter",
+            "title": {
+              "en": "",
+              "ms": "",
+              "ar": ""
+            },
+            "hadeeth": [
+              {
+                "id": 1,
+                "name": "",
+                "content": {
+                  "en": "",
+                  "ms": "",
+                  "ar": ""
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "book": "sahih_bukhari",
+    "title": "Sahih Bukhari",
+    "id":  2,
+    "category": [
+      {
+        "id": 1,
+        "name": "",
+        "title": {
+          "en": "",
+          "ms": "",
+          "ar": ""
+        },
+        "chapter": [
+          {
+            "id": 1,
+            "name": "first_chapter",
+            "title": {
+              "en": "",
+              "ms": "",
+              "ar": ""
+            },
+            "hadeeth": [
+              {
+                "id": 1,
+                "name": "",
+                "content": {
+                  "en": "",
+                  "ms": "",
+                  "ar": ""
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
