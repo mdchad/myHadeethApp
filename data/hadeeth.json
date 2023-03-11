@@ -1,0 +1,106 @@
+[{
+  "book": "sahih_muslim",
+  "title": "Sahih Muslim",
+  "id":  1,
+  "category": [
+    {
+      "id": 1,
+      "name": "faraid",
+      "title": {
+        "en": "Faraid Book",
+        "ms": "Kitab Faraid",
+        "ar": ""
+      },
+      "chapter": [
+        {
+          "id": 1,
+          "name": "chapter_1",
+          "title": {
+            "en": "",
+            "ms": "BAB BERIKANLAH FARAID KEPADA AHLINYA, LALU BAKINYA ADALAH UNTUK LELAKI YANG PALING RAPAT",
+            "ar": "بَابُ أَلْحِقُوا الْفَرَائِضَ بِأَهْلِهَا، فَمَا بَقِيَ فَلِأَوْلَى رَجُلٍ ذَكَرٍ"
+          },
+          "hadeeth": [
+            {
+              "id": 1,
+              "name": "",
+              "content": {
+                "en": "",
+                "ms": "1- (1614) Yahya bin Yahya, Abu Bakr bin Abu Shaibah dan Ishaq bin Ibrahim menyampaikan kepada kami dan lafaz tersebut adalah milik Yahya. Yahya berkata: Ibn ‘Uyainah telah mengkhabarkan kepada kami, manakala dua orang lagi berkata: Ibn ‘Uyainah menyampaikan kepada kami, daripada al-Zuhri, daripada ‘Ali bin Husain, daripada ‘Amr bin Uthman, daripada Usamah bin Zaid, bahawa Nabi ﷺ bersabda: “Muslim tidak mewarisi kafir dan kafir tidak mewarisi Muslim”.",
+                "ar": "1 - (1614) حَدَّثَنَا يَحْيَى بْنُ يَحْيَى، وَأَبُو بَكْرِ بْنُ أَبِي شَيْبَةَ، وَإِسْحَاقُ بْنُ إِبْرَاهِيمَ، وَاللَّفْظُ لِيَحْيَى، قَالَ يَحْيَى: أَخْبَرَنَا، وقَالَ الْآخَرَانِ: حَدَّثَنَا ابْنُ عُيَيْنَةَ، عَنِ الزُّهْرِيِّ، عَنْ عَلِيِّ بْنِ حُسَيْنٍ، عَنْ عَمْرِو بْنِ عُثْمَانَ، عَنْ أُسَامَةَ بْنِ زَيْدٍ، أَنَّ النَّبِيَّ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ، قَالَ: لَا يَرِثُ الْمُسْلِمُ الْكَافِرَ، وَلَا يَرِثُ الْكَافِرُ الْمُسْلِمَ."
+              }
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "chapter_2",
+          "title": {
+            "en": "",
+            "ms": "",
+            "ar": ""
+          },
+          "hadeeth": []
+        },
+        {
+          "id": 3,
+          "name": "chapter_3",
+          "title": {
+            "en": "",
+            "ms": "",
+            "ar": ""
+          },
+          "hadeeth": []
+        },
+        {
+          "id": 4,
+          "name": "chapter_4",
+          "title": {
+            "en": "",
+            "ms": "",
+            "ar": ""
+          },
+          "hadeeth": []
+        }
+      ]
+    }
+  ]
+},
+  {
+    "book": "sunan_ad-darimi",
+    "title": "Sunan Ad-Darimi",
+    "id":  2,
+    "category": [
+      {
+        "id": 1,
+        "name": "faraid",
+        "title": {
+          "en": "Faraid Book",
+          "ms": "Kitab Faraid",
+          "ar": ""
+        },
+        "chapter": [
+          {
+            "id": 1,
+            "name": "first_chapter",
+            "title": {
+              "en": "",
+              "ms": "BAB BERIKANLAH FARAID KEPADA AHLINYA, LALU BAKINYA ADALAH UNTUK LELAKI YANG PALING RAPAT",
+              "ar": "بَابُ أَلْحِقُوا الْفَرَائِضَ بِأَهْلِهَا، فَمَا بَقِيَ فَلِأَوْلَى رَجُلٍ ذَكَرٍ"
+            },
+            "hadeeth": [
+              {
+                "id": 1,
+                "name": "",
+                "content": {
+                  "en": "",
+                  "ms": "1- (1614) Yahya bin Yahya, Abu Bakr bin Abu Shaibah dan Ishaq bin Ibrahim menyampaikan kepada kami dan lafaz tersebut adalah milik Yahya. Yahya berkata: Ibn ‘Uyainah telah mengkhabarkan kepada kami, manakala dua orang lagi berkata: Ibn ‘Uyainah menyampaikan kepada kami, daripada al-Zuhri, daripada ‘Ali bin Husain, daripada ‘Amr bin Uthman, daripada Usamah bin Zaid, bahawa Nabi ﷺ bersabda: “Muslim tidak mewarisi kafir dan kafir tidak mewarisi Muslim”.",
+                  "ar": "1 - (1614) حَدَّثَنَا يَحْيَى بْنُ يَحْيَى، وَأَبُو بَكْرِ بْنُ أَبِي شَيْبَةَ، وَإِسْحَاقُ بْنُ إِبْرَاهِيمَ، وَاللَّفْظُ لِيَحْيَى، قَالَ يَحْيَى: أَخْبَرَنَا، وقَالَ الْآخَرَانِ: حَدَّثَنَا ابْنُ عُيَيْنَةَ، عَنِ الزُّهْرِيِّ، عَنْ عَلِيِّ بْنِ حُسَيْنٍ، عَنْ عَمْرِو بْنِ عُثْمَانَ، عَنْ أُسَامَةَ بْنِ زَيْدٍ، أَنَّ النَّبِيَّ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ، قَالَ: لَا يَرِثُ الْمُسْلِمُ الْكَافِرَ، وَلَا يَرِثُ الْكَافِرُ الْمُسْلِمَ."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }]
