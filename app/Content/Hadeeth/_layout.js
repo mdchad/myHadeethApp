@@ -9,7 +9,7 @@ export default function Layout() {
     
     return (
         <Page>
-            <Header user={user.full_name} />
+            <Header user={user?.full_name} />
             <Stack screenOptions={{ headerShown: false }}>
                 <Stack.Screen
                     name="index"

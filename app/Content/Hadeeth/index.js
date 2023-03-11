@@ -3,44 +3,43 @@ import React from 'react'
 import { Link } from 'expo-router'
 import { FontAwesome5, AntDesign } from '@expo/vector-icons';
 import { useAuth } from "@context/auth";
+import data from '../../../data/hadeeth.json'
 // import Header from '@components/header';
 
-const DATA = [
-    {
-        id: '1',
-        title: 'Sunan Ad-Darimi',
-    },
-    {
-        id: '2',
-        title: 'Sunan Abi Daud',
-    },
-    {
-        id: '3',
-        title: 'Muwatta’ Malik',
-    },
-    {
-        id: '4',
-        title: 'Sunan Al-Nasa’i',
-    },
-    {
-        id: '5',
-        title: 'Sunan Al-Bayhaqi',
-    },
-    {
-        id: '6',
-        title: 'Sunan Al-Tirmidzi',
-    },
-    {
-        id: '7',
-        title: 'Sunan Ibn Majah',
-    },
-    {
-        id: '8',
-        title: 'Sunan Al-Darimi',
-    },
-];
-
-
+// const DATA = [
+//     {
+//         id: '1',
+//         title: 'Sahih Muslim',
+//     },
+//     {
+//         id: '2',
+//         title: 'Sunan Abi Daud',
+//     },
+//     {
+//         id: '3',
+//         title: 'Muwatta’ Malik',
+//     },
+//     {
+//         id: '4',
+//         title: 'Sunan Al-Nasa’i',
+//     },
+//     {
+//         id: '5',
+//         title: 'Sunan Al-Bayhaqi',
+//     },
+//     {
+//         id: '6',
+//         title: 'Sunan Al-Tirmidzi',
+//     },
+//     {
+//         id: '7',
+//         title: 'Sunan Ibn Majah',
+//     },
+//     {
+//         id: '8',
+//         title: 'Sunan Al-Darimi',
+//     },
+// ];
 
 const Hadeeth = () => {
     const { height, width, scale, fontScale } = useWindowDimensions();
@@ -63,8 +62,8 @@ const Hadeeth = () => {
             {/* <ScrollView> */}
             <View className="flex-1">
                 <FlatList
-                    data={DATA}
-                    renderItem={({ item }) => <Item title={item.title} id={item.id} />}
+                    data={data}
+                    renderItem={({ item }) => <Item title={item.title} id={item.id} hello={item.id} />}
                     keyExtractor={item => item.id}
                     className="p-3 space-y-10"
                 />
