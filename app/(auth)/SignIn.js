@@ -22,9 +22,9 @@ export default function SignIn() {
     if (error) {
       Alert.alert(error.message);
     } else {
-      setLoading(false);
       signIn(data.user.user_metadata)
     }
+    setLoading(false);
   }
 
   return (
@@ -71,7 +71,7 @@ export default function SignIn() {
               autoCapitalize={"none"}
             />
             <View className="flex items-end mt-2">
-              <Link href={"/Reset"}>
+              <Link href={"ResetPassword"}>
                 <Text className="underline text-xs">Forgot Password ?</Text>
               </Link>
             </View>
@@ -92,25 +92,25 @@ export default function SignIn() {
               />
             </Pressable>
           </View>
-          <Text className="text-sm text-center mb-4">or continue with</Text>
-          <View>
-            <Pressable
-              className="flex flex-row items-center justify-center py-3 px-5 w-64 rounded-xl border border-[#1EAB53]"
-              disabled={loading}
-              onPress={() => signInWithEmail()}
-            >
-              <Text className="text-sm text-center mr-2">Google</Text>
-              <Image
-                source={require("../../assets/google.png")}
-                style={{ width: 17, height: 19 }}
-              />
-            </Pressable>
-          </View>
+          {/*<Text className="text-sm text-center mb-4">or continue with</Text>*/}
+          {/*<View>*/}
+          {/*  <Pressable*/}
+          {/*    className="flex flex-row items-center justify-center py-3 px-5 w-64 rounded-xl border border-[#1EAB53]"*/}
+          {/*    disabled={loading}*/}
+          {/*    onPress={() => signInWithEmail()}*/}
+          {/*  >*/}
+          {/*    <Text className="text-sm text-center mr-2">Google</Text>*/}
+          {/*    <Image*/}
+          {/*      source={require("../../assets/google.png")}*/}
+          {/*      style={{ width: 17, height: 19 }}*/}
+          {/*    />*/}
+          {/*  </Pressable>*/}
+          {/*</View>*/}
           <View className="mt-5">
             <Text>No account yet?</Text>
           </View>
           <View className="mt-3">
-            <Link href={"Signup"}>
+            <Link href={"SignUp"}>
               <Text className="underline font-bold">Sign Up</Text>
             </Link>
           </View>

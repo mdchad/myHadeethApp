@@ -124,7 +124,7 @@ export default function Welcome() {
             </Text>
           </Pressable>
 
-          <Link style={styles.button} href="/(auth)/sign-in" className="shadow-2xl overflow-hidden rounded-3xl flex items-center justify-center py-3 px-5 w-[160px] bg-[#1EAB53] border-transparent">
+          <Link style={styles.button} href="/(auth)/SignIn" className="shadow-2xl overflow-hidden rounded-3xl flex items-center justify-center py-3 px-5 w-[160px] bg-[#1EAB53] border-transparent">
             <Text className="text-sm font-bold text-center text-white uppercase">
               Get Started
             </Text>
