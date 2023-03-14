@@ -4,7 +4,6 @@ import { StyleSheet, Dimensions, Image, SafeAreaView, Text, View, ImageBackgroun
 import { useFonts } from "expo-font";
 import { Link } from "expo-router";
 import * as Location from 'expo-location';
-import * as Updates from 'expo-updates';
 
 const width = Dimensions.get("window").width;
 
@@ -74,20 +73,6 @@ export default function Welcome() {
 
   const image = require("@assets/welcome-bg.png");
 
-  const triggerUpdate = async () => {
-    try {
-      const update = await Updates.checkForUpdateAsync();
-      if (update.isAvailable) {
-        await Updates.fetchUpdateAsync();
-        alert('An update is available. Restart your app to apply the update.')
-        // Updates.reloadAsync();
-      }
-    } catch (e) {
-      // handle or log error
-      console.log(e.message)
-    }
-  }
-
   return (
     <SafeAreaView style={styles.container} >
       <ImageBackground source={image} style={styles.image} resizeMode="contain"
@@ -117,12 +102,6 @@ export default function Welcome() {
           <Text className="mt-5 text-[18px] text-center w-[200px]">
             Learn more about our collection of Hadeeth
           </Text>
-
-          <Pressable onPress={triggerUpdate}>
-            <Text className="mt-5 text-[18px] text-center w-[200px]">
-              Update
-            </Text>
-          </Pressable>
 
           <Link style={styles.button} href="/(auth)/SignIn" className="shadow-2xl overflow-hidden rounded-3xl flex items-center justify-center py-3 px-5 w-[160px] bg-[#1EAB53] border-transparent">
             <Text className="text-sm font-bold text-center text-white uppercase">
