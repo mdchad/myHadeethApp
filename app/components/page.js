@@ -5,11 +5,13 @@ import React from 'react'
 // with keyboard dismiss and to prevent code repetition
 
 const page = ({ children }) => {
-    return (
-        <SafeAreaView className="flex-1 bg-white">
-            {children}
-        </SafeAreaView>
-    )
+  return (
+    <SafeAreaView className="flex-1 bg-[#EDEEC0]">
+      <View className="bg-white flex-1">
+        {children}
+      </View>
+    </SafeAreaView>
+  )
 }
 
 export default page

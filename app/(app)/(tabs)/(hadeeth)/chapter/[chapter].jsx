@@ -35,7 +35,7 @@ const hadeethContent = () => {
         <Text>Prev Chapter</Text>
       </Link>
 
-      <Link href="Content/Hadeeth">Back</Link>
+      <Link href="../">Back</Link>
     </View>
   )
 }
