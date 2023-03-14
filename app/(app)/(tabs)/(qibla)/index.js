@@ -7,7 +7,7 @@ import Compass from '../../../components/compass';
 
 const Qiblat = () => {
     return (
-        <Page className="flex-1 bg-white flex w-full h-full">
+        <Page>
             {/* <Text>Qiblat</Text>÷ */}
 
             <View className="flex items-center justify-center">
