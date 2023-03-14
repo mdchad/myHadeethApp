@@ -8,13 +8,9 @@ import * as Location from 'expo-location';
 const width = Dimensions.get("window").width;
 
 export default function Welcome() {
-  const [locationServiceEnabled, setLocationServiceEnabled] = useState(false);
-  const [displayCurrentAddress, setDisplayCurrentAddress] = useState(
-    'loading...'
-  );
-
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+  const [place, setPlace] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -25,16 +21,32 @@ export default function Welcome() {
         return;
       }
 
-      let location = await Location.getCurrentPositionAsync({});
+      let location = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.High, timeInterval: 1000, distanceInterval: 0 });
       setLocation(location);
+
+      let place = await Location.reverseGeocodeAsync(location.coords);
+      setPlace(place);
     })();
   }, []);
 
   let text = 'Waiting..';
+
   if (errorMsg) {
     text = errorMsg;
-  } else if (location) {
-    text = JSON.stringify(location);
+  } else if (place) {
+    // text = JSON.stringify(location);
+
+    // form address string and also cater for missing data
+    let address = '';
+    if (place[0].name) address += place[0].name + ', ';
+    if (place[0].street) address += place[0].street + ', ';
+    if (place[0].city) address += place[0].city + ', ';
+    if (place[0].region) address += place[0].region + ', ';
+    if (place[0].country) address += place[0].country + ', ';
+    if (place[0].postalCode) address += place[0].postalCode + ', ';
+    if (place[0].isoCountryCode) address += place[0].isoCountryCode + ', ';
+
+    text = address;
   }
 
   const [fontsLoaded] = useFonts({
@@ -77,7 +89,7 @@ export default function Welcome() {
             Learn more about our collection of Hadeeth
           </Text>
 
-          <Text style={styles.paragraph}>{text}</Text>
+          <Text className="text-center">{text}</Text>
 
           <Link style={styles.button} href="/(auth)/SignIn" className="shadow-2xl overflow-hidden rounded-3xl flex items-center justify-center py-3 px-5 w-[160px] bg-[#1EAB53] border-transparent">
             <Text className="text-sm font-bold text-center text-white uppercase">
