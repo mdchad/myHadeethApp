@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'expo-router'
 import { FontAwesome5, AntDesign } from '@expo/vector-icons';
 import { useAuth } from "@context/auth";
-import data from '../../../data/hadeeth.json'
+import data from '@data/hadeeth.json'
 // import Header from '@components/header';
 
 // const DATA = [
@@ -47,7 +47,7 @@ const Hadeeth = () => {
     const { user } = useAuth()
 
     const Item = ({ title, id }) => (
-        <Link href={`Content/Hadeeth/${id}?title=${title}`}>
+        <Link href={`(hadeeth)/content/${id}?title=${title}`}>
             <View className="space-x-3 flex flex-row font-xl p-3 justify-center items-center">
                 <FontAwesome5 name="book" size={16} color="black" />
                 <Text style={styles.title}>{title}</Text>
@@ -57,9 +57,7 @@ const Hadeeth = () => {
 
     return (
         <View className="flex-1 flex space-y-3 bg-white">
-            {/* <Header user={user.full_name} /> */}
 
-            {/* <ScrollView> */}
             <View className="flex-1">
                 <FlatList
                     data={data}
@@ -68,7 +66,6 @@ const Hadeeth = () => {
                     className="p-3 space-y-10"
                 />
             </View>
-            {/* </ScrollView> */}
         </View>
     );
 };

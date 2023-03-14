@@ -20,8 +20,9 @@ module.exports = function (api) {
             "@components": "./app/components",
             "@pages": "./app/pages",
             "@assets": "./assets",
-            "@context": "./app/context",
             "@lib": "./lib",
+            "@context": "./context",
+            "@data": "./data",
           },
         }]
     ],
