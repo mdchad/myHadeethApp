@@ -7,7 +7,6 @@ import { useSegments } from 'expo-router'
 
 const page = ({ children }) => {
   const segment = useSegments();
-  console.log(segment)
 
   // check if segment includes (hadeeth)
   const isHadeeth = segment.includes('(hadeeth)')
