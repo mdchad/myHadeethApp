@@ -61,3 +61,5 @@ const hadeethContent = () => {
         </View>
     )
 }
+
+export default hadeethContent
