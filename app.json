@@ -23,6 +23,14 @@
         "projectId": "c72af849-aeb0-435c-8334-7436e13db514"
       }
     },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow myHadeeth to use your location."
+        }
+      ]
+    ],
     "ios": {
       "bundleIdentifier": "com.mdchad.myHadeethApp",
       "supportsTablet": true,
