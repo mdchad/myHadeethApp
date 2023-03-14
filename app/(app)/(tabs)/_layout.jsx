@@ -1,8 +1,10 @@
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import React from 'react'
 import { Tabs } from 'expo-router'
 import { FontAwesome5 } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
+
+const ImageLink = require('@assets/hadeeth-logo.png')
 
 const _layout = () => {
   return (
@@ -49,14 +51,21 @@ const _layout = () => {
           options={{
             tabBarLabel: '',
             tabBarShowLabelabel: false,
-            tabBarIcon: ({ focused }) => (
-              <FontAwesome5 name="home" size={30} color={focused ? 'tomato' : 'gray'} />
-            ),
-            // tabBarStyle: {
-            //     paddingVertical: 10,
-            //     width: 'auto',
-            //     height: 60,
-            // },
+            tabBarIcon: ({ focused }) => {
+              return (
+                <View
+                  style={{
+                    position: 'absolute',
+                    bottom: -10, // space from bottombar
+                    backgroundColor: '#fff',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                    <Image source={ImageLink} style={{ width: 30, height: 30 }} />
+                  {/* <FontAwesome5 name="home" size={30} color={focused ? 'tomato' : 'gray'} /> */}
+                </View>
+              )
+            }
           }}
         />
         <Tabs.Screen
