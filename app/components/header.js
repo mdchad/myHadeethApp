@@ -6,7 +6,7 @@ import { FontAwesome5, AntDesign } from '@expo/vector-icons';
 const header = ({ user }) => {
 
   return (
-    <View className="flex flex-row justify-between items-center px-8 py-4 shadow-lg rounded-b-2xl rounded-bl-2xl bg-[#EDEEC0] overflow-hidden">
+    <View className="flex flex-row justify-between items-center px-8 py-6 shadow-lg rounded-b-2xl rounded-bl-2xl bg-[#EDEEC0] overflow-hidden">
       <View className="">
         <Text className="mb-1">
           Assalamualaikum,
