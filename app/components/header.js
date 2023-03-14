@@ -15,7 +15,7 @@ const header = ({ user }) => {
           {user}
         </Text>
       </View>
-      <Link href="/Content/Hadeeth/modal">
+      <Link href="/(modal)">
         <View className="flex flex-row items-center">
           <AntDesign name="search1" size={16} color="black" />
           {/* <Image source={require("@assets/search.png")} style={{ width: 16, height: 20 }} /> */}

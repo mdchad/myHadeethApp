@@ -1,6 +1,6 @@
 import { useRouter, useSegments } from "expo-router";
 import React, {useEffect} from "react";
-import {supabase} from "../../lib/supabase";
+import {supabase} from "@lib/supabase";
 
 const AuthContext = React.createContext(null);
 
@@ -26,7 +26,7 @@ function useProtectedRoute(user) {
       router.replace("/Welcome");
     } else if (user && inAuthGroup) {
       // Redirect away from the sign-in page.
-      router.replace("/Content");
+      router.replace("/(hadeeth)");
     }
   }, [user, segments]);
 }

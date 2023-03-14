@@ -1,9 +1,9 @@
 import { View, Text, Image } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import Page from '../components/page'
+import Page from '../../../components/page'
 import * as Location from 'expo-location';
 import * as Sensors from 'expo-sensors';
-import Compass from '../components/compass';
+import Compass from '../../../components/compass';
 
 const Qiblat = () => {
     return (
