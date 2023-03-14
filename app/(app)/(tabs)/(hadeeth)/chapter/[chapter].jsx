@@ -33,7 +33,8 @@ const hadeethContent = () => {
         </Link>
 
       <Link href="../">Back</Link>
-    </View>
+       </View>
+    </ScrollView>
   )
 }
 
