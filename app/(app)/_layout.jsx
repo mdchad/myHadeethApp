@@ -16,11 +16,11 @@ export default function Layout() {
       />
 
       <Stack.Screen
-        name="(modal)"
+        name="modal/index"
         options={{
           // Hide the header for all other routes.
           headerShown: false,
-          presentation: "containedModal",
+          presentation: "fullScreenModal",
         }}
       />
     </Stack>

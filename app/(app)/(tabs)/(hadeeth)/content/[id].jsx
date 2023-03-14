@@ -44,7 +44,7 @@ const hadeethContent = () => {
                                 data: JSON.stringify(book?.category[0].chapter.find(chapter => chapter.id === parseInt(item.id)))
                             }
                         }}>
-                          <View>
+                          <View className="space-x-3 flex items-center">
                             <View className="rounded-2xl border border-[#433E0E] flex items-center justify-center mt-4 w-16 h-16">
                               <Image
                                 source={arabicNumeric[item.id -1]}
