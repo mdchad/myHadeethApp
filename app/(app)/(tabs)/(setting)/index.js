@@ -12,6 +12,7 @@ import {
 
 import { supabase } from "@lib/supabase";
 import Toast from "react-native-root-toast";
+import Page from "@components/page";
 
 export default function Settings() {
     const [loading, setLoading] = useState(false);
@@ -136,7 +137,7 @@ export default function Settings() {
     // );
 
     return (
-        <SafeAreaView>
+        <Page>
             <View className="w-full h-full">
                 <View className="mt-12 flex items-center justify-center sm:mx-auto sm:w-full sm:max-w-md w-full">
                     <Text className="font-bold text-[36px] w-52 text-center">
@@ -223,7 +224,7 @@ export default function Settings() {
                     </View>
                 </View>
             </View>
-        </SafeAreaView>
+        </Page>
     );
 }
 

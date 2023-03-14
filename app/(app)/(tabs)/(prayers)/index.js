@@ -5,7 +5,7 @@ import Audio from '../../../components/audio'
 
 const Prayers = () => {
   return (
-    <Page className="flex-1 bg-white p-5">
+    <Page>
       <Text>Prayers</Text>
 
         <Audio />
