@@ -5,10 +5,10 @@ import data from '@data/hadeeth.json'
 import {useEffect, useState} from "react";
 
 const arabicNumeric = [
-  require("../../../assets/one.png"),
-  require("../../../assets/two.png"),
-  require("../../../assets/three.png"),
-  require("../../../assets/four.png")
+  require("@assets/one.png"),
+  require("@assets/two.png"),
+  require("@assets/three.png"),
+  require("@assets/four.png")
 ]
 
 const hadeethContent = () => {
