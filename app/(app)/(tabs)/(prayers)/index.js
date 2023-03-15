@@ -102,7 +102,7 @@ export default function Prayer() {
   return (
     <SafeAreaView>
       <View className="h-full w-full pt-16 px-14 bg-[#EDEEC0]">
-        <View className="w-64 flex flex-row items-center justify-between mb-5">
+        <View className="w-full flex flex-row items-center justify-between mb-5">
           <Pressable onPress={() => previousDay()}>
             <ChevronLeftIcon height={20} width={20} color={"#000"} />
           </Pressable>
