@@ -33,6 +33,9 @@ function useProtectedRoute(user) {
 
 export function Provider(props) {
   const [user, setAuth] = React.useState(null);
+  const [userLocation, setUserLocation] = React.useState(null);
+  const [userPlace, setUserPlace] = React.useState(null);
+
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
@@ -55,6 +58,10 @@ export function Provider(props) {
         signIn: (user) => setAuth(user),
         signOut: () => setAuth(null),
         user,
+        setUserLocation: (location) => setUserLocation(location),
+        userLocation,
+        userPlace,
+        setUserPlace: (place) => setUserPlace(place)
       }}
     >
       {props.children}

@@ -4,6 +4,7 @@ import { StyleSheet, Dimensions, Image, SafeAreaView, Text, View, ImageBackgroun
 import { useFonts } from "expo-font";
 import { Link } from "expo-router";
 import * as Location from 'expo-location';
+import {useAuth} from "../../context/auth";
 
 const width = Dimensions.get("window").width;
 
@@ -11,6 +12,7 @@ export default function Welcome() {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [place, setPlace] = useState(null);
+  const { setUserPlace, setUserLocation } = useAuth()
 
   useEffect(() => {
     (async () => {
@@ -23,9 +25,11 @@ export default function Welcome() {
 
       let location = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.High, timeInterval: 1000, distanceInterval: 0 });
       setLocation(location);
+      setUserLocation(location)
 
       let place = await Location.reverseGeocodeAsync(location.coords);
       setPlace(place);
+      setUserPlace(place)
     })();
   }, []);
 
