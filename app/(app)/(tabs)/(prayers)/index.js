@@ -15,11 +15,10 @@
 //
 // export default Prayers
 
-import { isAfter, formatDistanceToNow } from "date-fns";
-import fromUnixTime from "date-fns/fromUnixTime";
-import { utcToZonedTime, format } from "date-fns-tz";
+import { formatDistanceToNow } from "date-fns";
+import { format } from "date-fns-tz";
 import React, { useEffect, useState } from "react";
-import { Image, SafeAreaView, Text, View } from "react-native";
+import {Image, Pressable, SafeAreaView, Text, View} from "react-native";
 import {
   ChevronRightIcon,
   ChevronLeftIcon,
@@ -46,24 +45,22 @@ const formatHijri = new Intl.DateTimeFormat(
 export default function Prayer() {
   const [prayerTimes, setPrayerTimes] = useState([]);
   const [nextPrayer, setNextPrayer] = useState(null);
+  const [date, setDate] = useState(new Date())
   const { userLocation, userPlace } = useAuth()
-  console.log(userPlace)
 
-  console.log('hoii', userLocation)
   useEffect(() => {
     if (userLocation) {
-      fetchPrayer();
+      fetchPrayer(date);
     }
   }, [userLocation]);
 
-  async function fetchPrayer() {
+  async function fetchPrayer(currentDate) {
     try {
       const coordinates = new Coordinates(userLocation.coords.latitude, userLocation.coords.longitude);
       const params = CalculationMethod.MoonsightingCommittee();
-      const date = new Date();
-      const prayerTimesResult = new PrayerTimes(coordinates, date, params);
+      const prayerTimesResult = new PrayerTimes(coordinates, currentDate, params);
 
-      const prayers = [...prayerTimes];
+      const prayers = [];
       ['fajr', 'sunrise', 'dhuhr', 'asr', 'maghrib', 'isha'].forEach((time, i) => {
         const formattedPrayer = format(new Date(prayerTimesResult[time]), "hh:mm a", { timeZone: "Asia/Kuala_Lumpur" });
 
@@ -77,31 +74,47 @@ export default function Prayer() {
         prayers.push(prayerMeta);
       });
 
-      if (!prayerTimes.length) {
-        const nextAvailablePrayer = prayers.find(
-          (prayer) => prayer.hasElapsed === false
-        );
+      // if (!prayerTimes.length) {
+      //   const nextAvailablePrayer = prayers.find(
+      //     (prayer) => prayer.hasElapsed === false
+      //   );
 
         setPrayerTimes(prayers);
-        setNextPrayer(nextAvailablePrayer);
-      }
+      //   setNextPrayer(nextAvailablePrayer);
+      // }
     } catch (error) {
       console.error(error);
     }
+  }
+
+  async function nextDay() {
+    let setNextDay = date.setDate(date.getDate() + 1 )
+    await fetchPrayer(new Date(setNextDay))
+    setDate(new Date(setNextDay))
+  }
+
+  async function previousDay() {
+    let setPreviousDay = date.setDate(date.getDate() - 1 )
+    await fetchPrayer(new Date(setPreviousDay))
+    setDate(new Date(setPreviousDay))
   }
 
   return (
     <SafeAreaView>
       <View className="h-full w-full pt-16 px-14 bg-[#EDEEC0]">
         <View className="w-64 flex flex-row items-center justify-between mb-5">
-          <ChevronLeftIcon height={20} width={20} color={"#000"} />
+          <Pressable onPress={() => previousDay()}>
+            <ChevronLeftIcon height={20} width={20} color={"#000"} />
+          </Pressable>
           <View className="flex items-center">
             <Text className="mb-1 text-md">
-              {format(new Date(), "cccc, d LLL")}
+              {format(date, "cccc, d LLL")}
             </Text>
-            <Text>{formatHijri.format(new Date())}</Text>
+            <Text>{formatHijri.format(date)}</Text>
           </View>
-          <ChevronRightIcon height={20} width={20} color={"#000"} />
+          <Pressable onPress={() => nextDay()}>
+            <ChevronRightIcon height={20} width={20} color={"#000"} />
+          </Pressable>
         </View>
         {/*<Text className="text-2xl font-bold mb-4">Prayer Times</Text>*/}
         <View className="mx-6 flex flex-row justify-between">
@@ -137,7 +150,7 @@ export default function Prayer() {
           )}
         </View>
         <View className="my-6 flex flex-row items-center justify-center">
-          <Text className="text-center mr-2">{userPlace[0].city}{userPlace[0].city && ','} {userPlace[0].country}</Text>
+          { userPlace && <Text className="text-center mr-2">{userPlace[0].city}{userPlace[0].city && ','} {userPlace[0].country}</Text> }
           <Image
             source={require("@assets/pin.png")}
             style={{ width: 14, height: 16 }}
