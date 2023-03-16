@@ -19,19 +19,14 @@ export default function App() {
 	const { userLocation } = useAuth()
 	const [loading, setLoading] = useState(true);
 	const segment = useSegments();
+	const [isQiblaPage, setIsQiblaPage] = useState(true);
+	let _degree;
 
 	useEffect(() => {
 		_getLocationAsync();
 		_watchHeading();
-
-		// if segment includes qibla, then run the code
-		if (segment.includes('qibla')) {
-			setLoading(true);
-		}else{
-			setLoading(false);
-		}
-
-	}, [userLocation, segment]);
+		setLoading(false);
+	}, [userLocation]);
 
 	const _getLocationAsync = async () => {
 		if (!userLocation) return
@@ -80,12 +75,14 @@ export default function App() {
 		return positiveDegree ? positiveDegree.toFixed(0) : null;
 	};
 
-	const _degree = _getDegreeToMecca(location, heading);
-	if (!_degree) return null
+	if (segment.includes('(qibla)')) {
+		_degree = _getDegreeToMecca(location, heading);
+		if (!_degree) return null
 
-	// if degree is near 0 and 360, then vibrate
-	if (_degree < 2 || _degree > 358) {
-		Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+		// if degree is near 0 and 360, then vibrate
+		if (_degree < 2 || _degree > 358) {
+			Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+		}
 	}
 
 	return (
