@@ -3,6 +3,7 @@ import { StyleSheet, Image, Text, View, Dimensions, ActivityIndicator } from 're
 import * as Location from 'expo-location';
 import * as Haptics from 'expo-haptics';
 import { useAuth } from "@context/auth";
+import { useSegments } from 'expo-router';
 
 const Mecca = {
 	latitude: 21.4225,
@@ -17,11 +18,13 @@ export default function App() {
 	const [heading, setHeading] = useState(0);
 	const { userLocation } = useAuth()
 	const [loading, setLoading] = useState(true);
+	const segment = useSegments();
+	const [isQiblaPage, setIsQiblaPage] = useState(true);
+	let _degree;
 
 	useEffect(() => {
 		_getLocationAsync();
 		_watchHeading();
-
 		setLoading(false);
 	}, [userLocation]);
 
@@ -72,12 +75,14 @@ export default function App() {
 		return positiveDegree ? positiveDegree.toFixed(0) : null;
 	};
 
-	const _degree = _getDegreeToMecca(location, heading);
-	if (!_degree) return null
+	if (segment.includes('(qibla)')) {
+		_degree = _getDegreeToMecca(location, heading);
+		if (!_degree) return null
 
-	// if degree is near 0 and 360, then vibrate
-	if (_degree < 2 || _degree > 358) {
-		Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+		// if degree is near 0 and 360, then vibrate
+		if (_degree < 2 || _degree > 358) {
+			Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+		}
 	}
 
 	return (
