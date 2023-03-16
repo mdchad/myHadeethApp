@@ -18,12 +18,12 @@
 import { formatDistanceToNow } from "date-fns";
 import { format } from "date-fns-tz";
 import React, { useEffect, useState } from "react";
-import {Image, Pressable, SafeAreaView, Text, View} from "react-native";
+import { Image, Pressable, SafeAreaView, Text, View } from "react-native";
 import {
   ChevronRightIcon,
   ChevronLeftIcon,
 } from "react-native-heroicons/solid";
-import {useAuth} from "../../../../context/auth";
+import { useAuth } from "../../../../context/auth";
 import { Coordinates, CalculationMethod, PrayerTimes } from 'adhan';
 
 const prayerNames = ["Subuh", "Syuruk", "Zohor", "Asar", "Maghrib", "Isyak"];
@@ -79,7 +79,7 @@ export default function Prayer() {
       //     (prayer) => prayer.hasElapsed === false
       //   );
 
-        setPrayerTimes(prayers);
+      setPrayerTimes(prayers);
       //   setNextPrayer(nextAvailablePrayer);
       // }
     } catch (error) {
@@ -88,13 +88,13 @@ export default function Prayer() {
   }
 
   async function nextDay() {
-    let setNextDay = date.setDate(date.getDate() + 1 )
+    let setNextDay = date.setDate(date.getDate() + 1)
     await fetchPrayer(new Date(setNextDay))
     setDate(new Date(setNextDay))
   }
 
   async function previousDay() {
-    let setPreviousDay = date.setDate(date.getDate() - 1 )
+    let setPreviousDay = date.setDate(date.getDate() - 1)
     await fetchPrayer(new Date(setPreviousDay))
     setDate(new Date(setPreviousDay))
   }
@@ -150,7 +150,7 @@ export default function Prayer() {
           )}
         </View>
         <View className="my-6 flex flex-row items-center justify-center">
-          { userPlace && <Text className="text-center mr-2">{userPlace[0].city}{userPlace[0].city && ','} {userPlace[0].country}</Text> }
+          {userPlace && <Text className="text-center mr-2">{userPlace[0].city}{userPlace[0].city && ','} {userPlace[0].country}</Text>}
           <Image
             source={require("@assets/pin.png")}
             style={{ width: 14, height: 16 }}
@@ -161,16 +161,21 @@ export default function Prayer() {
             ? prayerTimes.map((prayer, i) => (
               <View
                 key={i}
-                className={`flex flex-row justify-between pt-4 pb-4 border-0 border-b border-[#7C9082] ${
-                  i + 1 === prayerTimes.length && "border-b-0"
-                } ${i === 0 && "pt-0"}`}
+                className={`flex flex-row justify-between pt-4 pb-4 border-0 border-b border-[#7C9082] ${i + 1 === prayerTimes.length && "border-b-0"
+                  } ${i === 0 && "pt-0"}`}
               >
-                <Text className="text-sm">{prayer.name}</Text>
-                <Image
-                  source={prayer.icon}
-                  style={{ width: 22, height: 22 }}
-                />
-                <Text>{prayer.prayerTime}</Text>
+                <View className="w-1/3">
+                  <Text className="text-sm">{prayer.name}</Text>
+                </View>
+                <View className="w-1/3 flex items-center">
+                  <Image
+                    source={prayer.icon}
+                    style={{ width: 22, height: 22 }}
+                  />
+                </View>
+                <View className="w-1/3 flex items-end">
+                  <Text>{prayer.prayerTime}</Text>
+                </View>
               </View>
             ))
             : null}
