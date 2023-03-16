@@ -3,6 +3,7 @@ import { StyleSheet, Image, Text, View, Dimensions, ActivityIndicator } from 're
 import * as Location from 'expo-location';
 import * as Haptics from 'expo-haptics';
 import { useAuth } from "@context/auth";
+import { useSegments } from 'expo-router';
 
 const Mecca = {
 	latitude: 21.4225,
@@ -17,13 +18,20 @@ export default function App() {
 	const [heading, setHeading] = useState(0);
 	const { userLocation } = useAuth()
 	const [loading, setLoading] = useState(true);
+	const segment = useSegments();
 
 	useEffect(() => {
 		_getLocationAsync();
 		_watchHeading();
 
-		setLoading(false);
-	}, [userLocation]);
+		// if segment includes qibla, then run the code
+		if (segment.includes('qibla')) {
+			setLoading(true);
+		}else{
+			setLoading(false);
+		}
+
+	}, [userLocation, segment]);
 
 	const _getLocationAsync = async () => {
 		if (!userLocation) return
