@@ -5,6 +5,7 @@ import { useFonts } from "expo-font";
 import { Link } from "expo-router";
 import * as Location from 'expo-location';
 import { useAuth } from "@context/auth";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 const width = Dimensions.get("window").width;
 
@@ -37,7 +38,7 @@ export default function Welcome() {
 	}, []);
 
 
-	let text = 'Waiting..';
+	let text = 'Loading..';
 
 	if (errorMsg) {
 		text = errorMsg;
@@ -52,7 +53,7 @@ export default function Welcome() {
 		if (place[0].region) address += place[0].region + ', ';
 		if (place[0].country) address += place[0].country + ', ';
 		if (place[0].postalCode) address += place[0].postalCode + ', ';
-		if (place[0].isoCountryCode) address += place[0].isoCountryCode + ', ';
+		if (place[0].isoCountryCode) address += place[0].isoCountryCode;
 
 		text = address;
 	}
@@ -73,35 +74,37 @@ export default function Welcome() {
 				// align image to bottom
 				imageStyle={{ bottom: 0, position: "absolute" }}
 			>
-				<View className="flex gap-7 items-center justify-center h-full px-5">
+				<View className="flex-1 flex space-y-6 items-center justify-center px-10">
 					<Image
 						source={require("@assets/hadeeth-logo.png")}
-						style={{ width: width, height: 170, aspectRatio: 1, resizeMode: "contain" }}
+						style={{ height: width / 1.8, resizeMode: "contain" }}
 					/>
 
 					<View>
 						<Text
-							className="mt-5 text-3xl text-center"
-							style={{ fontFamily: "Langar" }}
+							style={styles.title}
+							className="mt-5 text-center"
 						>
 							Ahlan Wa Sahlan !
 						</Text>
 						<Text
 							className="mt-2 text-3xl text-center"
-							style={{ fontFamily: "Langar" }}
+							style={styles.subTitle}
 						>
 							Welcome !
 						</Text>
 					</View>
 
-					<Text className="mt-5 text-xl text-center">
+					<Text className="mt-5 text-center" style={styles.baseText}>
 						Learn more about our collection of Hadeeth
 					</Text>
 
-					<Text className="text-center text-md">{text}</Text>
+					<Text className="text-center" style={styles.locationText}>
+						{text}
+					</Text>
 
 					<Link style={styles.button} href="/(auth)/SignIn" className="shadow-2xl overflow-hidden rounded-3xl flex items-center justify-center py-3 px-5 w-[160px] bg-[#1EAB53] border-transparent">
-						<Text className="text-sm font-bold text-center text-white uppercase">
+						<Text className="font-bold text-center text-white uppercase">
 							Get Started
 						</Text>
 					</Link>
@@ -123,5 +126,21 @@ const styles = StyleSheet.create({
 	},
 	button: {
 		borderRadius: 10,
+		fontSize: RFPercentage(2),
 	},
+	title: {
+		fontSize: RFPercentage(5),
+		fontFamily: "Langar"
+	},
+	subTitle: {
+		fontSize: RFPercentage(4),
+		fontFamily: "Langar",
+	},
+	baseText: {
+		fontSize: RFPercentage(2.5),
+		fontWeight: "medium"
+	},
+	locationText: {
+		fontSize: RFPercentage(1.5),
+	}
 });
