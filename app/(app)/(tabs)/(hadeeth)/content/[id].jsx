@@ -1,8 +1,6 @@
 import { Link, useSearchParams } from "expo-router"
-import { FlatList, Image, Text, View } from "react-native"
-import { useAuth } from "@context/auth";
-import data from '@data/hadeeth.json'
-import {useEffect, useState} from "react";
+import { FlatList, Image, Text, View, ScrollView } from "react-native"
+import hadeeths from '@data/hadeeths.json'
 
 const arabicNumeric = [
   require("@assets/one.png"),
@@ -12,53 +10,31 @@ const arabicNumeric = [
 ]
 
 const hadeethContent = () => {
-    const { title, id } = useSearchParams();
-    const [book, setBook] = useState(null)
-    const { user } = useAuth()
-
-    useEffect(() => {
-        const getBook = data.find(b => {
-            return b.id === parseInt(id)
-        })
-        setBook(getBook)
-    }, [])
+    const { chapterTitle, chapterId } = useSearchParams();
 
     return (
-        <View className="flex-1 flex space-y-3 bg-white px-4">
-            {/* <Header user={user.full_name} /> */}
-            <View className="flex justify-center items-center p-3">
-                <Text className="text-lg">{title}</Text>
-                <Text className="text-3xl font-bold">{book?.category[0].title.ms}</Text>
-                <Link href="../">Back</Link>
-            </View>
+      <ScrollView>
+        <View className="flex items-center px-6 mt-6">
+           {/*<Header user={user.full_name} /> */}
+          <Text className="text-lg mb-2">{JSON.parse(chapterTitle).ar}</Text>
+          <Text className="text-lg">{JSON.parse(chapterTitle).ms}</Text>
 
-            <View className="text-center flex space-y-3">
-                <FlatList
-                    horizontal={true}
-                    data={book?.category[0].chapter}
-                    renderItem={({ item }) => (
-                        <Link href={{
-                            pathname: `/(hadeeth)/chapter/${item.id}`,
-                            params: {
-                                category: book?.category[0].title.ms,
-                                data: JSON.stringify(book?.category[0].chapter.find(chapter => chapter.id === parseInt(item.id)))
-                            }
-                        }}>
-                          <View className="space-x-3 flex items-center">
-                            <View className="rounded-2xl border border-[#433E0E] flex items-center justify-center mt-4 w-16 h-16">
-                              <Image
-                                source={arabicNumeric[item.id -1]}
-                                style={{ width: 30, height: 50 }}
-                              />
-                            </View>
-                            <Text className="text-center w-11/12 mt-1 uppercase text-xs">Chapter {item.id}</Text>
-                          </View>
-                        </Link>
-                    )}
-                    keyExtractor={item => item.id}
-                />
-            </View>
+          {/* create a next and prev chapter */}
+          <View className="my-8">
+            {hadeeths?.map(hadeeth => {
+              if (hadeeth.chapter_id === chapterId) {
+                return (
+                  <View key={hadeeth.id}>
+                    <Text className="mb-4">{hadeeth.content.ar}</Text>
+                    <Text className="mb-4">{hadeeth.content.ms}</Text>
+                  </View>
+                )
+              }
+              return null
+            })}
+          </View>
         </View>
+      </ScrollView>
     )
 }
 

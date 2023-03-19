@@ -1,0 +1,211 @@
+[
+	{
+		"id": "1cfedcd5-2108-4557-9661-90f8602435de",
+		"name": "first_chapter",
+		"title": {
+			"en": "How was the Divine Revelation initially revealed to AlLāh’s Messenger (peace and blessings be upon him) ",
+			"ms": "Bagaimana Permulaan Datangnya Wahyu Kepada Rasulullah SAW",
+			"ar": "باب كَيْفَ كَانَ بَدْءُ الْوَحْىِ إِلَى رسول الله"
+		},
+		"category_id": "7bae1d78-1524-4633-b12a-c713e6bcfd15",
+		"category_name": "",
+		"category_title": {
+			"en": "Book of the Beginning of Revelation ",
+			"ms": "Kitab Permulaan Wahyu",
+			"ar": "كتاب بدء الوحى"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "f439e744-9acf-4005-bf25-6ddac4439dc3",
+		"name": "faith_chapter",
+		"title": {
+			"en": "Faith and the saying of the Prophet (peace and blessings be upon him): “Islam is built on five principles",
+			"ms": "Bab Sabda Nabi \uF067, “Islam Dibina Di Atas Lima Asas.”",
+			"ar": "بَابُ قَوْلِ النَّبِيِّ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ: « بُنِيَ الإِسْلاَمُ عَلَى خَمْسٍ"
+		},
+		"category_id": "997978b2-59d1-48ea-9ca6-0b047aa24434",
+		"category_name": "",
+		"category_title": {
+			"en": "Book of Faith",
+			"ms": "Kitab Iman",
+			"ar": "كتاب الإيمان"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "47ae24f8-eb8b-45fc-a95d-a0a1e903ec90",
+		"name": "supplication_chapter",
+		"title": {
+			"en": "Your supplications is your faith",
+			"ms": "Bab Doa Kamu Adalah Iman Kamu",
+			"ar": "باب دُعَاؤُكُمْ إِيمَانُكُمْ"
+		},
+		"category_id": "997978b2-59d1-48ea-9ca6-0b047aa24434",
+		"category_name": "",
+		"category_title": {
+			"en": "Book of Faith",
+			"ms": "Kitab Iman",
+			"ar": "كتاب الإيمان"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "4fe986f5-8b39-490f-8ca5-8dc13c6d1842",
+		"name": "matters_faith_chapter",
+		"title": {
+			"en": "Matters of faith",
+			"ms": "Bab Perkara-Perkara Yang Berkaitan Dengan Iman",
+			"ar": "باب أُمُورِ الإِيمَانِْ"
+		},
+		"category_id": "997978b2-59d1-48ea-9ca6-0b047aa24434",
+		"category_name": "",
+		"category_title": {
+			"en": "Book of Faith",
+			"ms": "Kitab Iman",
+			"ar": "كتاب الإيمان"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "f7d8b150-11b0-4b4a-990c-0d2999707423",
+		"name": "matters_faith_chapter",
+		"title": {
+			"en": "A (true) Muslim is one whom other Muslims are safe from being verbally and physically hurt",
+			"ms": "Bab Seorang Muslim Yang Sejati Itu Adalah Orang Muslim Yang Lain Selamat Daripada Gangguan Lidah Dan Tangannya",
+			"ar": "باب الْمُسْلِمُ مَنْ سَلِمَ الْمُسْلِمُونَ مِنْ لِسَانِهِ وَيَدِهِ"
+		},
+		"category_id": "997978b2-59d1-48ea-9ca6-0b047aa24434",
+		"category_name": "",
+		"category_title": {
+			"en": "Book of Faith",
+			"ms": "Kitab Iman",
+			"ar": "كتاب الإيمان"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "2ff8d114-8e6c-4eba-8196-ac10099f856d",
+		"name": "faraid_chapter",
+		"title": {
+			"en": "",
+			"ms": "Bab berikanlah faraid kepada ahlinya, lalu bakinya adalah untuk lelaki yang paling rapat",
+			"ar": "بَابُ أَلْحِقُوا الْفَرَائِضَ بِأَهْلِهَا، فَمَا بَقِيَ فَلِأَوْلَى رَجُلٍ ذَكَرٍ"
+		},
+		"category_id": "e745872a-99ab-4e12-a649-3569b7b4986d",
+		"category_name": "",
+		"category_title": {
+			"en": "Faraid Book",
+			"ms": "Kitab Faraid",
+			"ar": "كتاب الإيمان"
+		},
+		"book_name": "sahih_muslim",
+		"book_title": "Sahih Muslim",
+		"book_id": "240360e4-50b4-47a9-9506-9850b0e3bfd7"
+	},
+	{
+		"id": "",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "Bab berikanlah faraid kepada ahlinya, lalu bakinya adalah untuk lelaki yang paling rapat",
+			"ar": "بَابُ أَلْحِقُوا الْفَرَائِضَ بِأَهْلِهَا، فَمَا بَقِيَ فَلِأَوْلَى رَجُلٍ ذَكَرٍ"
+		},
+		"category_id": "",
+		"category_name": "",
+		"category_title": {
+			"en": "",
+			"ms": "",
+			"ar": ""
+		},
+		"book_name": "sunan_ad-darimi",
+		"book_title": "Sunan Ad-Darimi",
+		"book_id": "eb0c99ee-ecfc-4a7e-a8dd-b577b9574fb7"
+	},
+	{
+		"id": "",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "",
+			"ar": ""
+		},
+		"category_id": "",
+		"category_name": "",
+		"category_title": {
+			"en": "",
+			"ms": "",
+			"ar": ""
+		},
+		"book_name": "sunan_abi-daud",
+		"book_title": "Sunan Abi Daud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB BERIKANLAH FARAID KEPADA AHLINYA, LALU BAKINYA ADALAH UNTUK LELAKI YANG PALING RAPAT",
+			"ar": "بَابُ أَلْحِقُوا الْفَرَائِضَ بِأَهْلِهَا، فَمَا بَقِيَ فَلِأَوْلَى رَجُلٍ ذَكَرٍ"
+		},
+		"category_id": "",
+		"category_name": "",
+		"category_title": {
+			"en": "",
+			"ms": "",
+			"ar": ""
+		},
+		"book_name": "jami_al_tirmidhi",
+		"book_title": "Jami’ Al-Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB BERIKANLAH FARAID KEPADA AHLINYA, LALU BAKINYA ADALAH UNTUK LELAKI YANG PALING RAPAT",
+			"ar": "بَابُ أَلْحِقُوا الْفَرَائِضَ بِأَهْلِهَا، فَمَا بَقِيَ فَلِأَوْلَى رَجُلٍ ذَكَرٍ"
+		},
+		"category_id": "",
+		"category_name": "",
+		"category_title": {
+			"en": "",
+			"ms": "",
+			"ar": ""
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB BERIKANLAH FARAID KEPADA AHLINYA, LALU BAKINYA ADALAH UNTUK LELAKI YANG PALING RAPAT",
+			"ar": "بَابُ أَلْحِقُوا الْفَرَائِضَ بِأَهْلِهَا، فَمَا بَقِيَ فَلِأَوْلَى رَجُلٍ ذَكَرٍ"
+		},
+		"category_id": "",
+		"category_name": "",
+		"category_title": {
+			"en": "",
+			"ms": "",
+			"ar": ""
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	}
+]

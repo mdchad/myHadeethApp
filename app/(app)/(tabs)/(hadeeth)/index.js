@@ -2,52 +2,14 @@ import { View, Text, TouchableWithoutFeedback, Keyboard, Image, ScrollView, useW
 import React from 'react'
 import { Link } from 'expo-router'
 import { FontAwesome5, AntDesign } from '@expo/vector-icons';
-import { useAuth } from "@context/auth";
-import data from '@data/hadeeth.json'
-// import Header from '@components/header';
-
-// const DATA = [
-//     {
-//         id: '1',
-//         title: 'Sahih Muslim',
-//     },
-//     {
-//         id: '2',
-//         title: 'Sunan Abi Daud',
-//     },
-//     {
-//         id: '3',
-//         title: 'Muwatta’ Malik',
-//     },
-//     {
-//         id: '4',
-//         title: 'Sunan Al-Nasa’i',
-//     },
-//     {
-//         id: '5',
-//         title: 'Sunan Al-Bayhaqi',
-//     },
-//     {
-//         id: '6',
-//         title: 'Sunan Al-Tirmidzi',
-//     },
-//     {
-//         id: '7',
-//         title: 'Sunan Ibn Majah',
-//     },
-//     {
-//         id: '8',
-//         title: 'Sunan Al-Darimi',
-//     },
-// ];
+import books from '@data/books.json'
 
 const Hadeeth = () => {
-    const { height, width, scale, fontScale } = useWindowDimensions();
+    const { fontScale } = useWindowDimensions();
     const styles = makeStyles(fontScale);
-    const { user } = useAuth()
 
     const Item = ({ title, id }) => (
-        <Link href={`(hadeeth)/content/${id}?title=${title}`}>
+        <Link href={`(hadeeth)/category/${id}?title=${title}`}>
             <View className="space-x-3 flex flex-row font-xl p-3 justify-center items-center">
                 <FontAwesome5 name="book" size={16} color="black" />
                 <Text style={styles.title}>{title}</Text>
@@ -60,8 +22,8 @@ const Hadeeth = () => {
 
             <View className="flex-1">
                 <FlatList
-                    data={data}
-                    renderItem={({ item }) => <Item title={item.title} id={item.id} hello={item.id} />}
+                    data={books}
+                    renderItem={({ item }) => <Item title={item.title} id={item.id} />}
                     keyExtractor={item => item.id}
                     className="p-3 space-y-10"
                 />

@@ -1,0 +1,98 @@
+[
+	{
+		"id": "7bae1d78-1524-4633-b12a-c713e6bcfd15",
+		"name": "",
+		"title": {
+			"en": "Book of the Beginning of Revelation ",
+			"ms": "Kitab Permulaan Wahyu",
+			"ar": "كتاب بدء الوحى"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "997978b2-59d1-48ea-9ca6-0b047aa24434",
+		"name": "",
+		"title": {
+			"en": "Book of Faith",
+			"ms": "Kitab Iman",
+			"ar": "كتاب الإيمان"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": 1,
+		"name": "faraid",
+		"title": {
+			"en": "Faraid Book",
+			"ms": "Kitab Faraid",
+			"ar": ""
+		},
+		"book_name": "sahih_muslim",
+		"book_title": "Sahih Muslim",
+		"book_id": "240360e4-50b4-47a9-9506-9850b0e3bfd7"
+	},
+	{
+		"id": 1,
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "",
+			"ar": ""
+		},
+		"book_name": "sunan_ad-darimi",
+		"book_title": "Sunan Ad-Darimi",
+		"book_id": "eb0c99ee-ecfc-4a7e-a8dd-b577b9574fb7"
+	},
+	{
+		"id": 1,
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "",
+			"ar": ""
+		},
+		"book_name": "sunan_abi-daud",
+		"book_title": "Sunan Abi Daud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": 1,
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "",
+			"ar": ""
+		},
+		"book_name": "jami_al_tirmidhi",
+		"book_title": "Jami’ Al-Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": 1,
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "",
+			"ar": ""
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": 1,
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "",
+			"ar": ""
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	}
+]
