@@ -14,12 +14,9 @@ const hadeethCategory = () => {
   const { title, id } = useSearchParams();
 
   return (
-    <View className="flex-1 flex space-y-3 bg-white px-4">
+    <View className="flex-1 flex space-y-3 bg-white px-6 pt-6">
       {/* <Header user={user.full_name} /> */}
-      <View className="flex justify-center items-center p-3">
-        <Text className="text-lg text-center">{title}</Text>
-        {/*<Link href="../">Back</Link>*/}
-      </View>
+      <Text className="text-3xl font-bold text-center">{title}</Text>
 
       <View className="text-center flex space-y-3">
         <FlatList
