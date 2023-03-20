@@ -3,6 +3,7 @@ import {FlatList, Image, ScrollView, Text, View} from "react-native"
 import chapters from '@data/chapters.json'
 
 const arabicNumeric = [
+  "",
   require("@assets/one.png"),
   require("@assets/two.png"),
   require("@assets/three.png"),
@@ -11,20 +12,21 @@ const arabicNumeric = [
 
 const hadeethChapter = () => {
   const { categoryId, categoryTitle } = useSearchParams();
+  let index = 0
 
   return (
     <ScrollView className="bg-white">
-      <View className="flex bg-white px-6 pt-6">
+      <View className="flex bg-white pt-6 px-6">
         <Text className="mb-6 text-3xl font-bold text-center">{categoryTitle}</Text>
         {/*<Text className="text-lg font-bold">Chapter: {chapter}</Text>*/}
         {/*<Text className="text-md mb-2">{parseData?.title?.ar}</Text>*/}
         {/*<Text className="text-md">{parseData?.title?.ms}</Text>*/}
 
         {/* create a next and prev chapter */}
-        <View className="flex space-y-3">
+        <View className="">
           {chapters.map((chapter, i) => {
-            const index = 0
             if (chapter.category_id === categoryId) {
+              index++
               return (
                 <Link
                   key={i}
@@ -36,9 +38,9 @@ const hadeethChapter = () => {
                     }
                 }}>
                   <View className="flex flex-row items-center block mb-4">
-                    <View className="rounded-2xl border border-[#433E0E] flex items-center justify-center mt-4 w-16 h-16">
+                    <View className="rounded-2xl border border-[#433E0E] flex items-center justify-center w-16 h-16">
                       <Image
-                        source={arabicNumeric[i]}
+                        source={arabicNumeric[index]}
                         style={{ width: 30, height: 50 }}
                       />
                     </View>

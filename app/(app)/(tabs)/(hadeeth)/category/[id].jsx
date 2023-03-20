@@ -1,7 +1,6 @@
 import { Link, useSearchParams } from "expo-router"
 import { FlatList, Image, Text, View } from "react-native"
 import categories from '@data/categories.json'
-import {useEffect, useState} from "react";
 
 const arabicNumeric = [
   require("@assets/one.png"),
