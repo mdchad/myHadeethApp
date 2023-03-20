@@ -30,14 +30,14 @@ const hadeethCategory = () => {
                 categoryId: item?.id
               }
             }}>
-              <View className="space-x-3 flex items-center">
+              <View className="flex">
                 <View className="rounded-2xl border border-[#433E0E] flex items-center justify-center mt-4 w-16 h-16">
                   <Image
                     source={arabicNumeric[index]}
                     style={{ width: 30, height: 50 }}
                   />
                 </View>
-                <Text className="text-center w-11/12 mt-1 uppercase text-xs">Book {item.title.ms}</Text>
+                <Text className="w-20 mt-2 uppercase text-xs">{item.title.ms}</Text>
               </View>
             </Link>
           )}
