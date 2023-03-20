@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { Link, useRouter } from "expo-router";
-import datas from '@data/hadeeth.json'
+import datas from '@data/hadeeths.json'
 
 const Search = () => {
   const router = useRouter();

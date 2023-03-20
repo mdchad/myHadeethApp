@@ -31,7 +31,7 @@ const _layout = () => {
         <Tabs.Screen
           name="(hadeeth)"
           options={{
-            tabBarLabel: 'hadeeth',
+            tabBarLabel: 'Hadeeth',
             tabBarIcon: ({ focused }) => (
               <FontAwesome5 name="book" size={16} color={focused ? 'tomato' : 'gray'} />
             ),
@@ -40,7 +40,7 @@ const _layout = () => {
         <Tabs.Screen
           name="(prayers)"
           options={{
-            tabBarLabel: 'prayers',
+            tabBarLabel: 'Prayers',
             tabBarIcon: ({ focused }) => (
               <FontAwesome5 name="mosque" size={16} color={focused ? 'tomato' : 'gray'} />
             ),
@@ -71,7 +71,7 @@ const _layout = () => {
         <Tabs.Screen
           name="(qibla)"
           options={{
-            tabBarLabel: 'qibla',
+            tabBarLabel: 'Qibla',
             tabBarIcon: ({ focused }) => (
               <FontAwesome5 name="compass" size={16} color={focused ? 'tomato' : 'gray'} />
             ),
@@ -80,7 +80,7 @@ const _layout = () => {
         <Tabs.Screen
           name="(setting)"
           options={{
-            tabBarLabel: 'setting',
+            tabBarLabel: 'Setting',
             tabBarIcon: ({ focused }) => (
               <FontAwesome5 name="cog" size={16} color={focused ? 'tomato' : 'gray'} />
             ),

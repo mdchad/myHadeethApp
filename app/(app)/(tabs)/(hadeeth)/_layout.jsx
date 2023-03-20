@@ -18,6 +18,13 @@ export default function Layout() {
             headerShown: false,
           }}
         />
+        <Stack.Screen
+          name="category"
+          options={{
+            // Hide the header for all other routes.
+            headerShown: false,
+          }}
+        />
 
         <Stack.Screen
           name="content"
@@ -34,6 +41,7 @@ export default function Layout() {
             headerShown: false,
           }}
         />
+
       </Stack>
     </Page>
   )

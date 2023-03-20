@@ -1,0 +1,32 @@
+[
+	{
+		"name": "sahih_bukhari",
+		"title": "Sahih Bukhari",
+		"id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"name": "sahih_muslim",
+		"title": "Sahih Muslim",
+		"id": "240360e4-50b4-47a9-9506-9850b0e3bfd7"
+	},
+	{
+		"name": "sunan_abi-daud",
+		"title": "Sunan Abi Daud",
+		"id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"name": "jami_al_tirmidhi",
+		"title": "Jami’ Al-Tirmidhi",
+		"id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"name": "sunan_ibnu_majah",
+		"title": "Sunan Ibnu Majah",
+		"id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"name": "sunan_an_nasai",
+		"title": "Sunan An-Nasa’i",
+		"id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	}
+]
