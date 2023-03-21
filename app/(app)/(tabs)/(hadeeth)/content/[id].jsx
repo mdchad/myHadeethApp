@@ -30,7 +30,6 @@ const hadeethContent = () => {
                   </View>
                 )
               }
-              return null
             })}
           </View>
         </View>
