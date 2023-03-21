@@ -1,5 +1,5 @@
-import { Link, useSearchParams } from "expo-router"
-import {FlatList, Image, ScrollView, Text, View} from "react-native"
+import {Link, useRouter, useSearchParams} from "expo-router"
+import {FlatList, Image, Pressable, ScrollView, Text, View} from "react-native"
 import chapters from '@data/chapters.json'
 
 const arabicNumeric = [
@@ -12,32 +12,30 @@ const arabicNumeric = [
 
 const hadeethChapter = () => {
   const { categoryId, categoryTitle } = useSearchParams();
+  const router = useRouter();
+
   let index = 0
 
   return (
-    <ScrollView className="bg-white">
-      <View className="flex bg-white pt-6 px-6">
+      <View className="h-full flex bg-white pt-6 px-6">
         <Text className="mb-6 text-3xl font-bold text-center">{categoryTitle}</Text>
         {/*<Text className="text-lg font-bold">Chapter: {chapter}</Text>*/}
         {/*<Text className="text-md mb-2">{parseData?.title?.ar}</Text>*/}
         {/*<Text className="text-md">{parseData?.title?.ms}</Text>*/}
 
-        {/* create a next and prev chapter */}
-        <View className="">
-          {chapters.map((chapter, i) => {
-            if (chapter.category_id === categoryId) {
-              index++
-              return (
-                <Link
-                  key={i}
-                  href={{
-                    pathname: `/(hadeeth)/content/${chapter.id}`,
-                    params: {
-                      chapterTitle: JSON.stringify(chapter.title),
-                      chapterId: chapter.id,
-                    }
-                }}>
-                  <View className="flex flex-row items-center block mb-4">
+        {chapters.map((chapter) => {
+          if (chapter.category_id === categoryId) {
+            index++
+            return (
+              <View key={chapter.id}>
+                <Pressable onPress={() => router.push({
+                  pathname: `/(hadeeth)/content/${chapter.id}`,
+                  params: {
+                    chapterTitle: JSON.stringify(chapter.title),
+                    chapterId: chapter.id,
+                  }
+                })} >
+                  <View className="flex flex-row items-center mb-4">
                     <View className="rounded-2xl border border-[#433E0E] flex items-center justify-center w-16 h-16">
                       <Image
                         source={arabicNumeric[index]}
@@ -46,13 +44,12 @@ const hadeethChapter = () => {
                     </View>
                     <Text className="w-48 uppercase ml-4 mt-2 text-xs">{chapter.title.ms}</Text>
                   </View>
-                </Link>
-              )
-            }
-            return null
-            })
+                </Pressable>
+              </View>
+            )
           }
-        </View>
+          })
+        }
         {/*<Link href={`Content/Hadeeth/chapter/${parseInt(chapter) + 1}`}>*/}
         {/*  <Text>Next Chapter</Text>*/}
         {/*</Link>*/}
@@ -62,7 +59,7 @@ const hadeethChapter = () => {
         {/*</Link>*/}
 
        </View>
-    </ScrollView>
+
   )
 }
 
