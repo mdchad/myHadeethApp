@@ -20,10 +20,6 @@ const hadeethChapter = () => {
     <ScrollView>
       <View className="flex-1 flex space-y-3 bg-white px-6 pt-6">
         <Text className="mb-6 text-3xl font-bold text-center">{categoryTitle}</Text>
-        {/*<Text className="text-lg font-bold">Chapter: {chapter}</Text>*/}
-        {/*<Text className="text-md mb-2">{parseData?.title?.ar}</Text>*/}
-        {/*<Text className="text-md">{parseData?.title?.ms}</Text>*/}
-
         {chapters.map((chapter) => {
           if (chapter.category_id === categoryId) {
             index++
@@ -51,14 +47,6 @@ const hadeethChapter = () => {
           }
         })
         }
-        {/*<Link href={`Content/Hadeeth/chapter/${parseInt(chapter) + 1}`}>*/}
-        {/*  <Text>Next Chapter</Text>*/}
-        {/*</Link>*/}
-
-        {/*<Link href={`Content/Hadeeth/chapter/${parseInt(chapter) - 1}`}>*/}
-        {/*  <Text>Prev Chapter</Text>*/}
-        {/*</Link>*/}
-
       </View>
     </ScrollView>
   )
