@@ -50,7 +50,7 @@ export function Provider(props) {
     });
   }, []);
 
-  useProtectedRoute(user);
+  // useProtectedRoute(user);
 
   return (
     <AuthContext.Provider
