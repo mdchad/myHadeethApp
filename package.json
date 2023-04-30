@@ -17,7 +17,7 @@
 		"date-fns": "^2.29.3",
 		"date-fns-tz": "^2.0.0",
 		"dotenv": "^16.0.3",
-		"expo": "^48.0.5",
+		"expo": "^48.0.15",
 		"expo-av": "~13.2.1",
 		"expo-constants": "~14.2.1",
 		"expo-haptics": "~12.2.1",

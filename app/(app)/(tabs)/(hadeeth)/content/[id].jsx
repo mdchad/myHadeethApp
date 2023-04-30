@@ -16,8 +16,8 @@ const hadeethContent = () => {
       <ScrollView>
         <View className="flex items-center px-6 pt-6">
            {/*<Header user={user.full_name} /> */}
-          <Text className="text-center text-lg mb-2">{JSON.parse(chapterTitle).ar}</Text>
-          <Text className="text-center text-lg">{JSON.parse(chapterTitle).ms}</Text>
+          <Text className="text-center text-lg mb-2">{chapterTitle ? JSON.parse(chapterTitle).ar : ''}</Text>
+          <Text className="text-center text-lg">{chapterTitle ? JSON.parse(chapterTitle).ms : ''}</Text>
 
           {/* create a next and prev chapter */}
           <View className="my-8">

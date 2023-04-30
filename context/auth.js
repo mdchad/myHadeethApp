@@ -51,27 +51,27 @@ export function Provider(props) {
     });
   }, []);
 
-  useEffect(() => {
-    (async () => {
+  // useEffect(() => {
+  //   (async () => {
+  //
+  //     let { status } = await Location.requestForegroundPermissionsAsync();
+  //     // if (status !== 'granted') {
+  //     //   setErrorMsg('Permission to access location was denied');
+  //     //   return;
+  //     // }
+  //
+  //     let location = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.High, timeInterval: 1000, distanceInterval: 0 });
+  //     setUserLocation(location)
+  //
+  //     let place = await Location.reverseGeocodeAsync({
+  //       latitude: location.coords.latitude,
+  //       longitude: location.coords.longitude
+  //     });
+  //     setUserPlace(place)
+  //   })();
+  // }, []);
 
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      // if (status !== 'granted') {
-      //   setErrorMsg('Permission to access location was denied');
-      //   return;
-      // }
-
-      let location = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.High, timeInterval: 1000, distanceInterval: 0 });
-      setUserLocation(location)
-
-      let place = await Location.reverseGeocodeAsync({
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude
-      });
-      setUserPlace(place)
-    })();
-  }, []);
-
-  // useProtectedRoute(user);
+  useProtectedRoute(user);
 
   return (
     <AuthContext.Provider

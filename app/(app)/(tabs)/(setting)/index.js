@@ -109,6 +109,7 @@ export default function Settings() {
       const update = await Updates.checkForUpdateAsync();
       if (update.isAvailable) {
         await Updates.fetchUpdateAsync();
+        await Updates.reloadAsync();
         alert('An update is available. Restart your app to apply the update.')
         // Updates.reloadAsync();
       }
