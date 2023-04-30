@@ -1,6 +1,7 @@
 import { useRouter, useSegments } from "expo-router";
 import React, {useEffect} from "react";
 import {supabase} from "@lib/supabase";
+import * as Location from "expo-location";
 
 const AuthContext = React.createContext(null);
 
@@ -48,6 +49,26 @@ export function Provider(props) {
         setAuth(session.user.user_metadata);
       }
     });
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      // if (status !== 'granted') {
+      //   setErrorMsg('Permission to access location was denied');
+      //   return;
+      // }
+
+      let location = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.High, timeInterval: 1000, distanceInterval: 0 });
+      setUserLocation(location)
+
+      let place = await Location.reverseGeocodeAsync({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude
+      });
+      setUserPlace(place)
+    })();
   }, []);
 
   // useProtectedRoute(user);
