@@ -10,31 +10,31 @@ const arabicNumeric = [
 ]
 
 const hadeethContent = () => {
-    const { chapterTitle, chapterId } = useSearchParams();
+  const { chapterTitle, chapterId } = useSearchParams();
 
-    return (
-      <ScrollView>
-        <View className="flex items-center px-6 pt-6">
-           {/*<Header user={user.full_name} /> */}
-          <Text className="text-center text-lg mb-2">{chapterTitle ? JSON.parse(chapterTitle).ar : ''}</Text>
-          <Text className="text-center text-lg">{chapterTitle ? JSON.parse(chapterTitle).ms : ''}</Text>
+  return (
+    <ScrollView>
+      <View className="flex items-center px-6 pt-6">
+        {/*<Header user={user.full_name} /> */}
+        <Text className="text-center text-lg mb-2">{chapterTitle ? JSON.parse(chapterTitle).ar : ''}</Text>
+        <Text className="text-center text-lg">{chapterTitle ? JSON.parse(chapterTitle).ms : ''}</Text>
 
-          {/* create a next and prev chapter */}
-          <View className="my-8">
-            {hadeeths?.map(hadeeth => {
-              if (hadeeth.chapter_id === chapterId) {
-                return (
-                  <View key={hadeeth.id}>
-                    <Text className="mb-4">{hadeeth.content.ar}</Text>
-                    <Text className="mb-4">{hadeeth.content.ms}</Text>
-                  </View>
-                )
-              }
-            })}
-          </View>
+        {/* create a next and prev chapter */}
+        <View className="my-8">
+          {hadeeths?.map(hadeeth => {
+            if (hadeeth.chapter_id === chapterId) {
+              return (
+                <View key={hadeeth.id}>
+                  <Text className="mb-4">{hadeeth.content.ar}</Text>
+                  <Text className="mb-4">{hadeeth.content.ms}</Text>
+                </View>
+              )
+            }
+          })}
         </View>
-      </ScrollView>
-    )
+      </View>
+    </ScrollView>
+  )
 }
 
 export default hadeethContent

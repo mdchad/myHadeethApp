@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { Link, useRouter } from "expo-router";
-import datas from '@data/hadeeths.json'
+import data from '@data/hadeeths.json'
 
 function truncateString(str, num) {
   if (str.length > num) {
@@ -48,7 +48,7 @@ const Search = () => {
     if (text) {
       // Inserted text is not blank
       // Filter the masterDataSource and update FilteredDataSource
-      const newData = datas.filter(function (item) {
+      const newData = data.filter(function (item) {
         // Applying filter for the inserted text in search bar
         const itemData = item.content.ms
           ? item.content.ms.toLowerCase()
@@ -98,7 +98,7 @@ const Search = () => {
       </Link>
     )
   }
-  
+
   return (
     <SafeAreaView className="flex-1 flex gap-5 bg-white">
       <View className="flex flex-row gap-3 items-center px-3">
@@ -114,7 +114,7 @@ const Search = () => {
           {search.length > 0 && (
             <View className="absolute right-0 top-0 bottom-0 flex justify-center pr-2">
               <Pressable onPress={() => { setSearch('') }}>
-                <MaterialIcons name="cancel" size={16} color="black" />
+                <MaterialIcons name="cancel" size={20} color="black" />
               </Pressable>
             </View>
           )}
@@ -139,7 +139,7 @@ const Search = () => {
                 <Text className="text-sm"> Try something else instead?</Text>
               </View>
             )
-          : (
+            : (
               <View></View>
             )
         }}

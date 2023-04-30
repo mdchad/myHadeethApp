@@ -125,100 +125,100 @@ export default function Settings() {
         {session && (
           <View className="flex items-center">
             <Text className="font-bold text-[36px] w-52 text-center">
-                Profile Settings
-              </Text>
-              <View className="mt-9">
-                <TextInput
-                  label="Username"
-                  style={{ color: "black" }}
-                  onChangeText={(text) => setUsername(text)}
-                  value={username}
-                  className="block w-64 appearance-none rounded-xl border border-gray-300 px-5 py-3 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                  autoCapitalize={"none"}
-                  autoComplete={"username"}
-                />
+              Profile Settings
+            </Text>
+            <View className="mt-9">
+              <TextInput
+                label="Username"
+                style={{ color: "black" }}
+                onChangeText={(text) => setUsername(text)}
+                value={username}
+                className="block w-64 appearance-none rounded-xl border border-gray-300 px-5 py-3 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                autoCapitalize={"none"}
+                autoComplete={"username"}
+              />
+            </View>
+            <View className="mt-4">
+              {/*<Image source={require("../assets/envelope.png")} style={{ width: 20, height: 20 }}/>*/}
+              <TextInput
+                label="Email"
+                onChangeText={(text) => setEmail(text)}
+                className="block w-64 appearance-none rounded-xl border border-gray-300 px-5 py-3 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                style={{ color: "black" }}
+                value={email}
+                placeholder="Email"
+                autoCapitalize={"none"}
+                autoComplete={"email"}
+              />
+            </View>
+            <View className="mt-4">
+              {/*<Image source={require("../assets/envelope.png")} style={{ width: 20, height: 20 }}/>*/}
+              <TextInput
+                label="Password"
+                onChangeText={(text) => setPassword(text)}
+                style={{ color: "black" }}
+                className="block w-64 appearance-none rounded-xl border border-gray-300 px-5 py-3 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                value={password}
+                secureTextEntry={true}
+                placeholder="Password"
+                autoCapitalize={"none"}
+              />
+            </View>
+            <View className="mt-8">
+              <Pressable
+                className="flex flex-row items-center justify-center py-3 px-5 w-64 rounded-xl bg-[#1EAB53] border-transparent"
+                disabled={loading}
+                onPress={() => updateProfile()}
+              >
+                <Text></Text>
+                <Text className="text-sm font-bold text-center text-white uppercase basis-11/12">
+                  Update
+                </Text>
+              </Pressable>
+            </View>
+            <View className="mt-5">
+              <Pressable
+                className="flex flex-row items-center justify-center py-3 px-5 w-64 rounded-xl border border-[#1EAB53]"
+                disabled={loading}
+                onPress={() => supabase.auth.signOut()}
+              >
+                <Text></Text>
+                <Text className="text-sm text-center uppercase basis-11/12">
+                  Sign Out
+                </Text>
+              </Pressable>
+            </View>
+            <View className="px-16 w-full flex flex-row justify-between items-center mt-8">
+              <Text className="text-[16px]">Help and Feedback</Text>
+              <Image
+                source={require("@assets/comment.png")}
+                style={{ height: 20, width: 20 }}
+              />
+            </View>
+            <View className="px-16 mt-5 w-full flex flex-row justify-between items-center">
+              <View>
+                <Text className="text-[16px]">About</Text>
               </View>
-              <View className="mt-4">
-                {/*<Image source={require("../assets/envelope.png")} style={{ width: 20, height: 20 }}/>*/}
-                <TextInput
-                  label="Email"
-                  onChangeText={(text) => setEmail(text)}
-                  className="block w-64 appearance-none rounded-xl border border-gray-300 px-5 py-3 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                  style={{ color: "black" }}
-                  value={email}
-                  placeholder="Email"
-                  autoCapitalize={"none"}
-                  autoComplete={"email"}
-                />
-              </View>
-              <View className="mt-4">
-                {/*<Image source={require("../assets/envelope.png")} style={{ width: 20, height: 20 }}/>*/}
-                <TextInput
-                  label="Password"
-                  onChangeText={(text) => setPassword(text)}
-                  style={{ color: "black" }}
-                  className="block w-64 appearance-none rounded-xl border border-gray-300 px-5 py-3 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                  value={password}
-                  secureTextEntry={true}
-                  placeholder="Password"
-                  autoCapitalize={"none"}
-                />
-              </View>
-              <View className="mt-8">
-                <Pressable
-                  className="flex flex-row items-center justify-center py-3 px-5 w-64 rounded-xl bg-[#1EAB53] border-transparent"
-                  disabled={loading}
-                  onPress={() => updateProfile()}
-                >
-                  <Text></Text>
-                  <Text className="text-sm font-bold text-center text-white uppercase basis-11/12">
-                    Update
-                  </Text>
-                </Pressable>
-              </View>
-              <View className="mt-5">
-                <Pressable
-                  className="flex flex-row items-center justify-center py-3 px-5 w-64 rounded-xl border border-[#1EAB53]"
-                  disabled={loading}
-                  onPress={() => supabase.auth.signOut()}
-                >
-                  <Text></Text>
-                  <Text className="text-sm text-center uppercase basis-11/12">
-                    Sign Out
-                  </Text>
-                </Pressable>
-              </View>
-              <View className="px-16 w-full flex flex-row justify-between items-center mt-8">
-                <Text className="text-[16px]">Help and Feedback</Text>
+
+              <View>
                 <Image
-                  source={require("@assets/comment.png")}
+                  source={require("@assets/info.png")}
                   style={{ height: 20, width: 20 }}
                 />
               </View>
-              <View className="px-16 mt-5 w-full flex flex-row justify-between items-center">
-                <View>
-                  <Text className="text-[16px]">About</Text>
-                </View>
+            </View>
 
-                <View>
-                  <Image
-                    source={require("@assets/info.png")}
-                    style={{ height: 20, width: 20 }}
-                  />
-                </View>
+            <View className="px-16 mt-5 w-full flex flex-row justify-between items-center">
+              <View>
+                <Pressable onPress={triggerUpdate}>
+                  <Text className="text-[16px]">Update App</Text>
+                </Pressable>
               </View>
 
-              <View className="px-16 mt-5 w-full flex flex-row justify-between items-center">
-                <View>
-                  <Pressable onPress={triggerUpdate}>
-                    <Text className="text-[16px]">Update App</Text>
-                  </Pressable>
-                </View>
-
-                <View>
-                  <Smartphone color={'black'} size={18} />
-                </View>
+              <View>
+                <Smartphone color={'black'} size={18} />
               </View>
+            </View>
           </View>
         )}
         {!session && (
@@ -269,18 +269,3 @@ export default function Settings() {
     </Page>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 40,
-    padding: 12,
-  },
-  verticallySpaced: {
-    paddingTop: 4,
-    paddingBottom: 4,
-    alignSelf: "stretch",
-  },
-  mt20: {
-    marginTop: 20,
-  },
-});
