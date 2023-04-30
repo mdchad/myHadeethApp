@@ -17,7 +17,7 @@ const Hadeeth = () => {
                 <LinearGradient
                   colors={['#dad873', '#efeeb4']}
                   locations={[0.6, 0.9]}
-                  className="rounded-full w-12 h-12 flex items-center justify-center"
+                  className="rounded-xl w-12 h-12 flex items-center justify-center"
                 >
                     <Text className="text-white">{initials(title, 2)}</Text>
                 </LinearGradient>
@@ -29,14 +29,13 @@ const Hadeeth = () => {
     );
 
     return (
-        <View className="flex-1 flex space-y-3 bg-gray-100">
-
-            <View className="flex-1">
+        <View className="flex-1 bg-gray-100">
+            <View className="">
                 <FlatList
                     data={books}
                     renderItem={({ item }) => <Item title={item.title} id={item.id} />}
                     keyExtractor={item => item.id}
-                    className="p-4 space-y-10 mt-4 mb-4"
+                    className="p-4"
                 />
             </View>
         </View>

@@ -5,9 +5,19 @@ import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { Link, useRouter } from "expo-router";
 import datas from '@data/hadeeths.json'
 
+function truncateString(str, num) {
+  if (str.length > num) {
+    return str.slice(0, num) + "...";
+  } else {
+    return str;
+  }
+}
+
 const Search = () => {
   const router = useRouter();
-  const [value, setValue] = useState('');
+  const [filteredDataSource, setFilteredDataSource] = useState([])
+  const [search, setSearch] = useState('');
+  const [index, setIndex] = useState(null);
 
   const highlightText = (text, query) => {
     if (!query.trim()) {
@@ -19,18 +29,75 @@ const Search = () => {
 
     return (
       <Text>
+
         {parts.map((part, i) =>
           regex.test(part) ? (
             <Text key={i} style={{ backgroundColor: 'yellow' }}>
               {part}
             </Text>
           ) : (
-            partm
+            part
           )
         )}
       </Text>
     );
   };
+
+  const searchFilterFunction = (text) => {
+    // Check if searched text is not blank
+    if (text) {
+      // Inserted text is not blank
+      // Filter the masterDataSource and update FilteredDataSource
+      const newData = datas.filter(function (item) {
+        // Applying filter for the inserted text in search bar
+        const itemData = item.content.ms
+          ? item.content.ms.toLowerCase()
+          : '';
+        const textData = text.toLowerCase();
+        setIndex(itemData.indexOf(textData))
+        return itemData.indexOf(textData) > -1;
+      });
+      setFilteredDataSource(newData);
+      setSearch(text);
+    } else {
+      // Inserted text is blank
+      // Update FilteredDataSource with masterDataSource
+      setFilteredDataSource([]);
+      setSearch(text);
+    }
+  };
+
+  const ItemSeparatorView = () => {
+    return (
+      // Flat List Item Separator
+      <View
+        style={{
+          height: 0.5,
+          width: '100%',
+          backgroundColor: '#C8C8C8',
+        }}
+      />
+    );
+  };
+
+  function renderedItems({ item }) {
+    return (
+      <Link href={{
+        pathname: `/(hadeeth)/content/${item.chapter_id}`,
+        params: {
+          chapterTitle: JSON.stringify(item?.title),
+          chapterId: item?.chapter_id
+        }
+      }}>
+        <View key={item.id} className="pb-4">
+          <View className="my-4">
+            <Text className="text-[#433E0E] font-bold">{item?.book_title}</Text>
+          </View>
+          <Text>{highlightText(item?.content?.ms, search)}</Text>
+        </View>
+      </Link>
+    )
+  }
   
   return (
     <SafeAreaView className="flex-1 flex gap-5 bg-white">
@@ -40,13 +107,13 @@ const Search = () => {
             <TextInput
               className="flex-1 px-3"
               placeholder="Search..."
-              value={value}
-              onChangeText={(text) => setValue(text)}
+              value={search}
+              onChangeText={(text) => searchFilterFunction(text)}
             />
           </View>
-          {value.length > 0 && (
+          {search.length > 0 && (
             <View className="absolute right-0 top-0 bottom-0 flex justify-center pr-2">
-              <Pressable onPress={() => { setValue('') }}>
+              <Pressable onPress={() => { setSearch('') }}>
                 <MaterialIcons name="cancel" size={16} color="black" />
               </Pressable>
             </View>
@@ -60,17 +127,22 @@ const Search = () => {
 
       <FlatList
         className="px-5"
-        renderItem={({ item }) => (
-          <Text>{item.category_title.en}</Text>
-        )}
-        keyExtractor={(item) => item.name}
+        data={filteredDataSource}
+        renderItem={renderedItems}
+        keyExtractor={(item) => item.id}
         scrollEnabled={true}
-        ListEmptyComponent={() => (
-          <View className="flex-1 flex items-center justify-center">
-            <Text className="text-lg">No results found.</Text>
-            <Text className="text-sm"> Try something else instead?</Text>
-          </View>
-        )}
+        ItemSeparatorComponent={ItemSeparatorView}
+        ListEmptyComponent={() => {
+          return search.length ? (
+              <View className="flex-1 flex items-center justify-center">
+                <Text className="text-lg">No results found.</Text>
+                <Text className="text-sm"> Try something else instead?</Text>
+              </View>
+            )
+          : (
+              <View></View>
+            )
+        }}
       />
 
       {/* )} */}
