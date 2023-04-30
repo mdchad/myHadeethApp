@@ -8,7 +8,7 @@ const header = ({ user }) => {
   return (
     <View className="flex flex-row justify-between items-center px-8 py-6 shadow-lg rounded-b-2xl rounded-bl-2xl bg-[#EDEEC0] overflow-hidden">
       <View className="">
-        <Text className="mb-1">
+        <Text className="mb-1 text-xl">
           Assalamualaikum,
         </Text>
         <Text className="font-bold uppercase">

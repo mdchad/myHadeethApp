@@ -25,7 +25,7 @@ const Search = () => {
               {part}
             </Text>
           ) : (
-            part
+            partm
           )
         )}
       </Text>
@@ -60,9 +60,8 @@ const Search = () => {
 
       <FlatList
         className="px-5"
-        data={datas}
         renderItem={({ item }) => (
-          console.log(item.category[0])
+          <Text>{item.category_title.en}</Text>
         )}
         keyExtractor={(item) => item.name}
         scrollEnabled={true}

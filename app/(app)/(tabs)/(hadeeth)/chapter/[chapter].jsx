@@ -17,9 +17,7 @@ const hadeethChapter = () => {
   let index = 0
 
   return (
-    <ScrollView>
-
-      <View className="h-full flex bg-white pt-6 px-6">
+      <View className="flex-1 flex space-y-3 bg-white px-6 pt-6">
         <Text className="mb-6 text-3xl font-bold text-center">{categoryTitle}</Text>
         {/*<Text className="text-lg font-bold">Chapter: {chapter}</Text>*/}
         {/*<Text className="text-md mb-2">{parseData?.title?.ar}</Text>*/}
@@ -61,7 +59,6 @@ const hadeethChapter = () => {
         {/*</Link>*/}
 
       </View>
-    </ScrollView>
   )
 }
 

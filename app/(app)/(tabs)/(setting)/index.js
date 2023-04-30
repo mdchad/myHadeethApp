@@ -15,6 +15,7 @@ import { supabase } from "@lib/supabase";
 import Toast from "react-native-root-toast";
 import * as Updates from 'expo-updates';
 import Page from "@components/page";
+import { Smartphone } from "lucide-react-native";
 
 export default function Settings() {
   const [loading, setLoading] = useState(false);
@@ -207,15 +208,12 @@ export default function Settings() {
           <View className="px-16 mt-5 w-full flex flex-row justify-between items-center">
             <View>
               <Pressable onPress={triggerUpdate}>
-                <Text className="text-[16px]">Update app</Text>
+                <Text className="text-[16px]">Update App</Text>
               </Pressable>
             </View>
 
             <View>
-              <Image
-                source={require("@assets/info.png")}
-                style={{ height: 20, width: 20 }}
-              />
+              <Smartphone color={'black'} size={18} />
             </View>
           </View>
 

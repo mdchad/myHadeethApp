@@ -3,29 +3,40 @@ import React from 'react'
 import { Link } from 'expo-router'
 import { FontAwesome5, AntDesign } from '@expo/vector-icons';
 import books from '@data/books.json'
+import initials from "initialism";
+import {LinearGradient} from "expo-linear-gradient";
 
 const Hadeeth = () => {
     const { fontScale } = useWindowDimensions();
     const styles = makeStyles(fontScale);
 
     const Item = ({ title, id }) => (
+      <View className="bg-white mb-4 rounded-xl py-2">
         <Link href={`(hadeeth)/category/${id}?title=${title}`}>
             <View className="space-x-3 flex flex-row font-xl p-3 justify-center items-center">
-                <FontAwesome5 name="book" size={16} color="black" />
+                <LinearGradient
+                  colors={['#dad873', '#efeeb4']}
+                  locations={[0.6, 0.9]}
+                  className="rounded-full w-12 h-12 flex items-center justify-center"
+                >
+                    <Text className="text-white">{initials(title, 2)}</Text>
+                </LinearGradient>
+                {/*<FontAwesome5 name="book" size={16} color="black" />*/}
                 <Text style={styles.title}>{title}</Text>
             </View>
         </Link >
+      </View>
     );
 
     return (
-        <View className="flex-1 flex space-y-3 bg-white">
+        <View className="flex-1 flex space-y-3 bg-gray-100">
 
             <View className="flex-1">
                 <FlatList
                     data={books}
                     renderItem={({ item }) => <Item title={item.title} id={item.id} />}
                     keyExtractor={item => item.id}
-                    className="p-3 space-y-10"
+                    className="p-4 space-y-10 mt-4 mb-4"
                 />
             </View>
         </View>
