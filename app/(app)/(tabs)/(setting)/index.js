@@ -204,13 +204,21 @@ export default function Settings() {
             </View>
           </View>
 
-          <View>
-            <Pressable onPress={triggerUpdate}>
-              <Text className="mt-5 text-[18px] text-center w-[200px]">
-                Update
-              </Text>
-            </Pressable>
+          <View className="px-16 mt-5 w-full flex flex-row justify-between items-center">
+            <View>
+              <Pressable onPress={triggerUpdate}>
+                <Text className="text-[16px]">Update app</Text>
+              </Pressable>
+            </View>
+
+            <View>
+              <Image
+                source={require("@assets/info.png")}
+                style={{ height: 20, width: 20 }}
+              />
+            </View>
           </View>
+
         </View>
       </ScrollView>
     </Page>
