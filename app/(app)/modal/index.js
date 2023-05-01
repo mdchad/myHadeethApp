@@ -119,7 +119,7 @@ const Search = () => {
             </View>
           )}
         </View>
-        <Link href="../" className="p-2">
+        <Link href="../" className="p-2 text-lg">
           Cancel
         </Link>
       </View>
@@ -151,26 +151,3 @@ const Search = () => {
 }
 
 export default Search
-
-const styles = StyleSheet.create({
-  container: {
-    // flex: 1,
-    // height: '100%',
-    // backgroundColor: 'red',
-  },
-  dataInfo: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: 4,
-  },
-  countryDescription: {
-    marginBottom: 8,
-  },
-  boldText: {
-    fontWeight: 'bold',
-  },
-});
-
-
-

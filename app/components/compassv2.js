@@ -118,9 +118,11 @@ export default function App() {
 			</View>
 			}
 
-			<Text style={styles.heading}>
-				{_degree}°
-			</Text>
+			<View className={`${_degree > 358 || _degree < 2 ? "bg-green-300" : "bg-red-400"} p-2 rounded-xl`}>
+				<Text className="text-white font-bold text-xl">
+					{_degree}°
+				</Text>
+			</View>
 		</View>
 	);
 }
