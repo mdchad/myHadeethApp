@@ -14,7 +14,7 @@ const header = ({ user }) => {
             <User color="black"/>
           </View>
           <View>
-            <Text className="mb-0.5 text-xl">
+            <Text className="text-xl">
               Assalamualaikum,
             </Text>
             <Text className="font-bold">
@@ -29,7 +29,7 @@ const header = ({ user }) => {
               <User color="black"/>
             </View>
             <View>
-              <Text className="mb-0.5 text-xl">
+              <Text className="text-xl">
                 Assalamualaikum,
               </Text>
               <Text className="font-bold">

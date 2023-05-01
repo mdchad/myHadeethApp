@@ -16,7 +16,7 @@ import Toast from "react-native-root-toast";
 import * as Updates from 'expo-updates';
 import Page from "@components/page";
 import {LogIn, Smartphone} from "lucide-react-native";
-import {Link} from "expo-router";
+import {Link, useRouter} from "expo-router";
 
 export default function Settings() {
   const [loading, setLoading] = useState(false);
@@ -24,6 +24,7 @@ export default function Settings() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [session, setSession] = useState(null);
+  const router = useRouter()
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -259,10 +260,12 @@ export default function Settings() {
 
         { !session && (
           <View className="px-8 flex justify-center items-end w-full mb-6">
-            <Link href={"SignIn"}>
+            <Pressable onPress={() => router.push('/SignIn')} style={{ display: "flex", flexDirection: "row", alignItems: "center"}}>
               <Text className="text-lg font-bold">Login</Text>
-              <LogIn color="black"/>
-            </Link>
+              <View className="ml-1">
+                <LogIn color="black"/>
+              </View>
+            </Pressable>
           </View>
         )}
       </View>
