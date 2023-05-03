@@ -7,7 +7,7 @@ import { User } from "lucide-react-native";
 const header = ({ user }) => {
 
   return (
-    <View className="bg-white">
+    <View className="bg-gray-100">
       <View className="flex flex-row justify-between items-center py-6 shadow-lg rounded-b-2xl rounded-bl-2xl bg-[#EDEEC0] overflow-hidden">
         {user ? (
           <View className="pl-6 flex flex-row">

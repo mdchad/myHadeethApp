@@ -110,7 +110,7 @@ export default function SignIn() {
             {/*  </Pressable>*/}
             {/*</View>*/}
             <Text>Or</Text>
-            <Link href={'/(hadeeth)'} className="px-4 py-2">Skip for now</Link>
+            <Link href={'/'} className="px-4 py-2">Skip for now</Link>
           </View>
           <View className="flex items-center">
             <View className="mt-5">

@@ -5,9 +5,8 @@ import { useAuth } from "@context/auth";
 import Header from '@components/header';
 
 export const unstable_settings = {
-    // Ensure any route can link back to `/`
-    initialRouteName: "index",
-};
+  initialRouteName: "index"
+}
 
 export default function Layout() {
     const { user } = useAuth()

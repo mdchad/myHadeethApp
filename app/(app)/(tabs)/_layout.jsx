@@ -3,6 +3,7 @@ import React from 'react'
 import { Tabs } from 'expo-router'
 import { FontAwesome5 } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
+import {BookMinus, Clock, Compass, Settings} from "lucide-react-native";
 
 const ImageLink = require('@assets/hadeeth-logo.png')
 
@@ -33,7 +34,7 @@ const _layout = () => {
           options={{
             tabBarLabel: 'Hadeeth',
             tabBarIcon: ({ focused }) => (
-              <FontAwesome5 name="book" size={16} color={focused ? 'tomato' : 'gray'} />
+              <BookMinus size={18} color={focused ? 'tomato' : 'gray'} />
             ),
           }}
         />
@@ -42,7 +43,7 @@ const _layout = () => {
           options={{
             tabBarLabel: 'Prayers',
             tabBarIcon: ({ focused }) => (
-              <FontAwesome5 name="mosque" size={16} color={focused ? 'tomato' : 'gray'} />
+              <Clock size={18} color={focused ? 'tomato' : 'gray'} />
             ),
           }}
         />
@@ -73,7 +74,7 @@ const _layout = () => {
           options={{
             tabBarLabel: 'Qibla',
             tabBarIcon: ({ focused }) => (
-              <FontAwesome5 name="compass" size={16} color={focused ? 'tomato' : 'gray'} />
+              <Compass size={18} color={focused ? 'tomato' : 'gray'} />
             ),
           }}
         />
@@ -87,7 +88,7 @@ const _layout = () => {
             headerShown: true,
             tabBarLabel: 'Settings',
             tabBarIcon: ({ focused }) => (
-              <FontAwesome5 name="cog" size={16} color={focused ? 'tomato' : 'gray'} />
+              <Settings size={18} color={focused ? 'tomato' : 'gray'} />
             ),
           }}
         />
