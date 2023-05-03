@@ -15,7 +15,7 @@ import { supabase } from "@lib/supabase";
 import Toast from "react-native-root-toast";
 import * as Updates from 'expo-updates';
 import Page from "@components/page";
-import {LogIn, Smartphone} from "lucide-react-native";
+import {LogIn, LogOut, Smartphone} from "lucide-react-native";
 import {Link, useRouter} from "expo-router";
 import {TouchableHighlight} from "react-native-gesture-handler";
 
@@ -147,7 +147,16 @@ export default function Settings() {
             </View>
           </TouchableHighlight>
         </View>
-        {!session && (
+        {session ? (
+          <View className="bg-white rounded-xl flex mt-4">
+            <TouchableHighlight onPress={() => supabase.auth.signOut()} className="w-full bg-white rounded-xl" underlayColor="#f9fafb">
+              <View className="space-x-3 px-8 py-5 flex flex-row items-center w-full">
+                <LogOut color="black" size={20}/>
+                <Text className="text-[16px]">Logout</Text>
+              </View>
+            </TouchableHighlight>
+          </View>
+        ): (
         <View className="bg-white rounded-xl flex mt-4">
           <TouchableHighlight onPress={() => router.push('/SignIn')} className="w-full bg-white rounded-xl" underlayColor="#f9fafb">
             <View className="space-x-3 px-8 py-5 flex flex-row items-center w-full">
