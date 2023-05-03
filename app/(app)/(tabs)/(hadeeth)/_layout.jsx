@@ -8,7 +8,7 @@ export default function Layout() {
   const { user } = useAuth()
 
   return (
-    <Page>
+    <Page class="bg-[#EDEEC0]">
       <Header user={user?.full_name} />
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen

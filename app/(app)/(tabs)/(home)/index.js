@@ -7,12 +7,11 @@ import Page from '@components/page'
 // import Header from '@components/header';
 
 const Home = () => {
-    const { height, width, scale, fontScale } = useWindowDimensions();
+    const { fontScale } = useWindowDimensions();
     const styles = makeStyles(fontScale);
-    const { user } = useAuth()
 
     return (
-        <Page>
+        <Page class="bg-white">
             {/* <Header user={user.full_name} /> */}
             <View className="flex-1 flex space-y-3 bg-white">
 

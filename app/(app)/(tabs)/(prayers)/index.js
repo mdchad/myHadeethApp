@@ -25,6 +25,7 @@ import {
 } from "react-native-heroicons/solid";
 import { useAuth } from "../../../../context/auth";
 import { Coordinates, CalculationMethod, PrayerTimes } from 'adhan';
+import Page from "@components/page";
 
 const prayerNames = ["Subuh", "Syuruk", "Zohor", "Asar", "Maghrib", "Isyak"];
 const prayerIcon = [
@@ -100,87 +101,89 @@ export default function Prayer() {
   }
 
   return (
-    <SafeAreaView>
-      <View className="h-full w-full pt-16 px-14 bg-[#EDEEC0]">
-        <View className="w-full flex flex-row items-center justify-between mb-5">
-          <Pressable onPress={() => previousDay()}>
-            <ChevronLeftIcon height={20} width={20} color={"#000"} />
-          </Pressable>
-          <View className="flex items-center">
-            <Text className="mb-1 text-md">
-              {format(date, "cccc, d LLL")}
-            </Text>
-            <Text>{formatHijri.format(date)}</Text>
-          </View>
-          <Pressable onPress={() => nextDay()}>
-            <ChevronRightIcon height={20} width={20} color={"#000"} />
-          </Pressable>
-        </View>
-        {/*<Text className="text-2xl font-bold mb-4">Prayer Times</Text>*/}
-        <View className="mx-6 flex flex-row justify-between">
-          <Image
-            source={require("@assets/muslim-prayer.png")}
-            style={{
-              resizeMode: "contain",
-              height: 78,
-              width: 77,
-              display: "flex",
-              alignItems: "center",
-              alignContent: "center",
-              justifyContent: "center",
-            }}
-          />
-          {!!nextPrayer && (
-            <View className="flex items-end">
-              <Text className="mb-3">{nextPrayer.name} Prayer</Text>
-              <View className="flex flex-row mb-3">
-                <Image
-                  source={nextPrayer.icon}
-                  style={{ width: 22, height: 22 }}
-                />
-                <Text className="text-sm ml-1">{nextPrayer.prayerTime}</Text>
-              </View>
-              <Text className="text-[10px]">
-                Countdown{" "}
-                {formatDistanceToNow(nextPrayer.timezoneDate, {
-                  addSuffix: true,
-                })}
+    <Page class="bg-[#EDEEC0]">
+      <SafeAreaView>
+        <View className="h-full w-full pt-16 px-14 bg-[#EDEEC0]">
+          <View className="w-full flex flex-row items-center justify-between mb-5">
+            <Pressable onPress={() => previousDay()}>
+              <ChevronLeftIcon height={20} width={20} color={"#000"} />
+            </Pressable>
+            <View className="flex items-center">
+              <Text className="mb-1 text-md">
+                {format(date, "cccc, d LLL")}
               </Text>
+              <Text>{formatHijri.format(date)}</Text>
             </View>
-          )}
-        </View>
-        <View className="my-6 flex flex-row items-center justify-center">
-          {userPlace && <Text className="text-center mr-2">{userPlace[0].city}{userPlace[0].city && ','} {userPlace[0].country}</Text>}
-          <Image
-            source={require("@assets/pin.png")}
-            style={{ width: 14, height: 16 }}
-          />
-        </View>
-        <View>
-          {prayerTimes.length
-            ? prayerTimes.map((prayer, i) => (
-              <View
-                key={i}
-                className={`flex flex-row justify-between pt-4 pb-4 border-0 border-b border-[#7C9082] ${i + 1 === prayerTimes.length && "border-b-0"
-                  } ${i === 0 && "pt-0"}`}
-              >
-                <View className="w-1/3">
-                  <Text className="text-sm">{prayer.name}</Text>
-                </View>
-                <View className="w-1/3 flex items-center">
+            <Pressable onPress={() => nextDay()}>
+              <ChevronRightIcon height={20} width={20} color={"#000"} />
+            </Pressable>
+          </View>
+          {/*<Text className="text-2xl font-bold mb-4">Prayer Times</Text>*/}
+          <View className="mx-6 flex flex-row justify-between">
+            <Image
+              source={require("@assets/muslim-prayer.png")}
+              style={{
+                resizeMode: "contain",
+                height: 78,
+                width: 77,
+                display: "flex",
+                alignItems: "center",
+                alignContent: "center",
+                justifyContent: "center",
+              }}
+            />
+            {!!nextPrayer && (
+              <View className="flex items-end">
+                <Text className="mb-3">{nextPrayer.name} Prayer</Text>
+                <View className="flex flex-row mb-3">
                   <Image
-                    source={prayer.icon}
+                    source={nextPrayer.icon}
                     style={{ width: 22, height: 22 }}
                   />
+                  <Text className="text-sm ml-1">{nextPrayer.prayerTime}</Text>
                 </View>
-                <View className="w-1/3 flex items-end">
-                  <Text>{prayer.prayerTime}</Text>
-                </View>
+                <Text className="text-[10px]">
+                  Countdown{" "}
+                  {formatDistanceToNow(nextPrayer.timezoneDate, {
+                    addSuffix: true,
+                  })}
+                </Text>
               </View>
-            ))
-            : null}
+            )}
+          </View>
+          <View className="my-6 flex flex-row items-center justify-center">
+            {userPlace && <Text className="text-center mr-2">{userPlace[0].city}{userPlace[0].city && ','} {userPlace[0].country}</Text>}
+            <Image
+              source={require("@assets/pin.png")}
+              style={{ width: 14, height: 16 }}
+            />
+          </View>
+          <View>
+            {prayerTimes.length
+              ? prayerTimes.map((prayer, i) => (
+                <View
+                  key={i}
+                  className={`flex flex-row justify-between pt-4 pb-4 border-0 border-b border-[#7C9082] ${i + 1 === prayerTimes.length && "border-b-0"
+                    } ${i === 0 && "pt-0"}`}
+                >
+                  <View className="w-1/3">
+                    <Text className="text-sm">{prayer.name}</Text>
+                  </View>
+                  <View className="w-1/3 flex items-center">
+                    <Image
+                      source={prayer.icon}
+                      style={{ width: 22, height: 22 }}
+                    />
+                  </View>
+                  <View className="w-1/3 flex items-end">
+                    <Text>{prayer.prayerTime}</Text>
+                  </View>
+                </View>
+              ))
+              : null}
+          </View>
         </View>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </Page>
   );
 }
