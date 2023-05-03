@@ -5,6 +5,7 @@ import {Link, useRouter} from "expo-router";
 import { supabase } from "@lib/supabase";
 import { useAuth } from "@context/auth";
 import Page from "@components/page";
+import {useOAuth} from "@clerk/clerk-expo";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -28,6 +29,24 @@ export default function SignIn() {
     }
     setLoading(false);
   }
+
+  const { startOAuthFlow } = useOAuth({ strategy: "oauth_google" });
+
+  const handleSignInWithGooglePress = React.useCallback(async () => {
+    try {
+      const { createdSessionId, signIn, signUp, setActive } = await startOAuthFlow();
+      if (createdSessionId) {
+        await setActive({ session: createdSessionId });
+      } else {
+        // Modify this code to use signIn or signUp to set this missing requirements you set in your dashboard.
+        throw new Error("There are unmet requirements, modifiy this else to handle them")
+
+      }
+    } catch (err) {
+      console.log(JSON.stringify(err, null, 2));
+      console.log("error signing in", err);
+    }
+  }, []);
 
   return (
     <Page>
@@ -89,27 +108,31 @@ export default function SignIn() {
                 <Text className="text-sm font-bold text-center text-white uppercase basis-11/12">
                   Login
                 </Text>
-                <Image
-                  source={require("../../assets/enter.png")}
-                  style={{ width: 22, height: 22 }}
-                />
+                {/*<Image*/}
+                {/*  source={require("../../assets/enter.png")}*/}
+                {/*  style={{ width: 22, height: 22 }}*/}
+                {/*/>*/}
               </Pressable>
             </View>
-            {/*<Text className="text-sm text-center mb-4">or continue with</Text>*/}
-            {/*<View>*/}
-            {/*  <Pressable*/}
-            {/*    className="flex flex-row items-center justify-center py-3 px-5 w-64 rounded-xl border border-[#1EAB53]"*/}
-            {/*    disabled={loading}*/}
-            {/*    onPress={() => signInWithEmail()}*/}
-            {/*  >*/}
-            {/*    <Text className="text-sm text-center mr-2">Google</Text>*/}
-            {/*    <Image*/}
-            {/*      source={require("../../assets/google.png")}*/}
-            {/*      style={{ width: 17, height: 19 }}*/}
-            {/*    />*/}
-            {/*  </Pressable>*/}
-            {/*</View>*/}
-            <Text>Or</Text>
+            <View className="flex flex-row items-center px-12">
+              <View className="flex-1 h-[1] bg-gray-200"/>
+              <View>
+                <Text style={{width: 50, textAlign: 'center'}}>or</Text>
+              </View>
+              <View className="flex-1 h-[1] bg-gray-200"/>
+            </View>
+            <View className="mt-6 mb-4">
+              <Pressable
+                className="space-x-2 flex flex-row items-center justify-center py-3 px-5 w-64 rounded-xl border border-gray-300"
+                disabled={loading}
+                onPress={handleSignInWithGooglePress}
+              >
+                <Image source={require("@assets/google.png")} style={{ width: 22, height: 22 }} />
+                <Text className="text-sm text-center text-black">
+                  Google
+                </Text>
+              </Pressable>
+            </View>
             <Link href={'/(hadeeth)'} className="px-4 py-2">Skip for now</Link>
           </View>
           <View className="flex items-center">

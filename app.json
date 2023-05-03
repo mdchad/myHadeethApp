@@ -21,7 +21,8 @@
     "extra": {
       "eas": {
         "projectId": "c72af849-aeb0-435c-8334-7436e13db514"
-      }
+      },
+      "CLERK_PUBLISHABLE_KEY": "pk_test_Y29uY3JldGUtY3ViLTk3LmNsZXJrLmFjY291bnRzLmRldiQ"
     },
     "plugins": [
       [
