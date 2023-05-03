@@ -56,7 +56,7 @@ export default function SignIn() {
                 leftIcon={{ type: "font-awesome", name: "envelope" }}
                 onChangeText={(text) => setEmail(text)}
                 value={email}
-                className="block w-64 appearance-none rounded-xl border border-gray-300 px-5 py-3 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                className="block w-64 appearance-none rounded-xl border border-gray-300 px-5 py-3 placeholder-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                 placeholder="Email"
                 autoCapitalize={"none"}
               />
@@ -67,7 +67,7 @@ export default function SignIn() {
                 label="Password"
                 leftIcon={{ type: "font-awesome", name: "lock" }}
                 onChangeText={(text) => setPassword(text)}
-                className="block w-64 appearance-none rounded-xl border border-gray-300 px-5 py-3 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                className="block w-64 appearance-none rounded-xl border border-gray-300 px-5 py-3 placeholder-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                 value={password}
                 secureTextEntry={true}
                 placeholder="Password"

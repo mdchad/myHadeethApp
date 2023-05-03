@@ -80,7 +80,9 @@ const _layout = () => {
         <Tabs.Screen
           name="(setting)"
           options={{
-            tabBarLabel: 'Setting',
+            headerTitle: 'Settings',
+            headerShown: true,
+            tabBarLabel: 'Settings',
             tabBarIcon: ({ focused }) => (
               <FontAwesome5 name="cog" size={16} color={focused ? 'tomato' : 'gray'} />
             ),
