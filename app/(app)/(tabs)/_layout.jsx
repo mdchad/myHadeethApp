@@ -81,6 +81,9 @@ const _layout = () => {
           name="(setting)"
           options={{
             headerTitle: 'Settings',
+            headerTitleStyle: {
+              fontSize: 24,
+            },
             headerShown: true,
             tabBarLabel: 'Settings',
             tabBarIcon: ({ focused }) => (
