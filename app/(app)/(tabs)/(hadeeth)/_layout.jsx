@@ -4,45 +4,50 @@ import Page from '@components/page'
 import { useAuth } from "@context/auth";
 import Header from '@components/header';
 
+export const unstable_settings = {
+    // Ensure any route can link back to `/`
+    initialRouteName: "index",
+};
+
 export default function Layout() {
-  const { user } = useAuth()
+    const { user } = useAuth()
 
-  return (
-    <Page class="bg-[#EDEEC0]">
-      <Header user={user?.full_name} />
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen
-          name="index"
-          options={{
-            // Hide the header for all other routes.
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="category"
-          options={{
-            // Hide the header for all other routes.
-            headerShown: false,
-          }}
-        />
+    return (
+        <Page class="bg-[#EDEEC0]">
+            <Header user={user?.full_name} />
+            <Stack screenOptions={{ headerShown: false }}>
+                <Stack.Screen
+                    name="index"
+                    options={{
+                        // Hide the header for all other routes.
+                        headerShown: false,
+                    }}
+                />
+                <Stack.Screen
+                    name="category"
+                    options={{
+                        // Hide the header for all other routes.
+                        headerShown: false,
+                    }}
+                />
 
-        <Stack.Screen
-          name="content"
-          options={{
-            // Hide the header for all other routes.
-            headerShown: false,
-          }}
-        />
+                <Stack.Screen
+                    name="content"
+                    options={{
+                        // Hide the header for all other routes.
+                        headerShown: false,
+                    }}
+                />
 
-        <Stack.Screen
-          name="chapter"
-          options={{
-            // Hide the header for all other routes.
-            headerShown: false,
-          }}
-        />
+                <Stack.Screen
+                    name="chapter"
+                    options={{
+                        // Hide the header for all other routes.
+                        headerShown: false,
+                    }}
+                />
 
-      </Stack>
-    </Page>
-  )
+            </Stack>
+        </Page>
+    )
 }
