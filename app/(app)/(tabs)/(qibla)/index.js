@@ -18,7 +18,7 @@ const Qiblat = () => {
   // }, [user])
 
   return (
-    <Page>
+    <Page class="bg-[#EDEEC0]">
       <View className="flex-1 bg-[#EDEEC0]">
         <Compass />
       </View>
