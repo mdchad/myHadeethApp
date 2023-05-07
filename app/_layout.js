@@ -1,10 +1,10 @@
-import { Slot, Stack } from "expo-router";
+import { CLERK_PUBLISHABLE_KEY } from "@env"
+import { Slot, Stack, useSegments } from "expo-router";
 import { Provider } from "@context/auth";
 import {useFonts} from "expo-font";
 import {ScheherazadeNew_400Regular, ScheherazadeNew_700Bold} from "@expo-google-fonts/scheherazade-new";
 import {useCallback} from "react";
 import * as SplashScreen from 'expo-splash-screen';
-import {View} from "react-native";
 
 export default function Root() {
   const [fontsLoaded] = useFonts({
@@ -23,10 +23,13 @@ export default function Root() {
     return null;
   }
 
-  return (
-    // Setup the auth context and render our layout inside of it.
-    <Provider>
-      <Slot />
-    </Provider>
-  );
+    return (
+        // Setup the auth context and render our layout inside of it.
+        // <ClerkProvider publishableKey={Constants.expoConfig?.extra?.CLERK_PUBLISHABLE_KEY} tokenCache={tokenCache}>
+        <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY_FROM_ENV} tokenCache={tokenCache}>
+            <Provider>
+                <Slot />
+            </Provider>
+        </ClerkProvider>
+    );
 }
