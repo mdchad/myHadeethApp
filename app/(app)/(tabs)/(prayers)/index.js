@@ -15,17 +15,23 @@
 //
 // export default Prayers
 
-import { formatDistanceToNow } from "date-fns";
+import {
+  addDays,
+  differenceInMilliseconds,
+  eachDayOfInterval,
+  endOfMonth,
+  formatDistanceToNow,
+  isBefore,
+  startOfMonth
+} from "date-fns";
+import parse from 'date-fns/parse'
 import { format } from "date-fns-tz";
 import React, { useEffect, useState } from "react";
 import { Image, Pressable, SafeAreaView, Text, View } from "react-native";
-import {
-  ChevronRightIcon,
-  ChevronLeftIcon,
-} from "react-native-heroicons/solid";
 import { useAuth } from "../../../../context/auth";
 import { Coordinates, CalculationMethod, PrayerTimes } from 'adhan';
 import Page from "@components/page";
+import {ChevronLeft, ChevronRight, MapPin, Pin, Volume} from "lucide-react-native";
 
 const prayerNames = ["Subuh", "Syuruk", "Zohor", "Asar", "Maghrib", "Isyak"];
 const prayerIcon = [
@@ -50,6 +56,11 @@ export default function Prayer() {
   const { userLocation, userPlace } = useAuth()
 
   useEffect(() => {
+    const currentDate = new Date()
+    const endDate = addDays(currentDate, 60)
+    const datesInRange = eachDayOfInterval({ start: currentDate, end: endDate })
+    console.log(datesInRange)
+
     if (userLocation) {
       fetchPrayer(date);
     }
@@ -63,6 +74,11 @@ export default function Prayer() {
 
       const prayers = [];
       ['fajr', 'sunrise', 'dhuhr', 'asr', 'maghrib', 'isha'].forEach((time, i) => {
+
+        const currentTime = new Date()
+        let elapsed = isBefore(new Date(prayerTimesResult[time]), currentTime);
+
+
         const formattedPrayer = format(new Date(prayerTimesResult[time]), "hh:mm a", { timeZone: "Asia/Kuala_Lumpur" });
 
         const prayerMeta = {
@@ -70,18 +86,15 @@ export default function Prayer() {
           timezoneDate: time,
           prayerTime: formattedPrayer,
           icon: prayerIcon[i],
+          hasElapsed: elapsed
         };
 
         prayers.push(prayerMeta);
       });
 
-      // if (!prayerTimes.length) {
-      //   const nextAvailablePrayer = prayers.find(
-      //     (prayer) => prayer.hasElapsed === false
-      //   );
-
+      const nextAvailablePrayer = prayers.find(prayer => prayer.hasElapsed === false)
       setPrayerTimes(prayers);
-      //   setNextPrayer(nextAvailablePrayer);
+      setNextPrayer(nextAvailablePrayer);
       // }
     } catch (error) {
       console.error(error);
@@ -101,89 +114,89 @@ export default function Prayer() {
   }
 
   return (
-    <Page class="bg-[#EDEEC0]">
-      <SafeAreaView>
-        <View className="h-full w-full pt-16 px-14 bg-[#EDEEC0]">
-          <View className="w-full flex flex-row items-center justify-between mb-5">
-            <Pressable onPress={() => previousDay()}>
-              <ChevronLeftIcon height={20} width={20} color={"#000"} />
-            </Pressable>
-            <View className="flex items-center">
-              <Text className="mb-1 text-md">
-                {format(date, "cccc, d LLL")}
-              </Text>
-              <Text>{formatHijri.format(date)}</Text>
-            </View>
-            <Pressable onPress={() => nextDay()}>
-              <ChevronRightIcon height={20} width={20} color={"#000"} />
-            </Pressable>
-          </View>
-          {/*<Text className="text-2xl font-bold mb-4">Prayer Times</Text>*/}
-          <View className="mx-6 flex flex-row justify-between">
-            <Image
-              source={require("@assets/muslim-prayer.png")}
-              style={{
-                resizeMode: "contain",
-                height: 78,
-                width: 77,
-                display: "flex",
-                alignItems: "center",
-                alignContent: "center",
-                justifyContent: "center",
-              }}
-            />
-            {!!nextPrayer && (
-              <View className="flex items-end">
-                <Text className="mb-3">{nextPrayer.name} Prayer</Text>
-                <View className="flex flex-row mb-3">
-                  <Image
-                    source={nextPrayer.icon}
-                    style={{ width: 22, height: 22 }}
-                  />
-                  <Text className="text-sm ml-1">{nextPrayer.prayerTime}</Text>
+    <Page class="bg-gray-100">
+      {!userLocation ?
+        (
+          <Text>Loading</Text>
+        ) :
+        (
+          <SafeAreaView>
+            <View className="h-full w-full pt-16 px-8 bg-gray-100">
+              {/*<View className="w-full flex flex-row items-center justify-between mb-5">*/}
+              {/*  <Pressable onPress={() => previousDay()}>*/}
+              {/*    <ChevronLeftIcon height={20} width={20} color={"#000"} />*/}
+              {/*  </Pressable>*/}
+              {/*  <View className="flex items-center">*/}
+              {/*    <Text className="mb-1 text-md">*/}
+              {/*      {format(date, "cccc, d LLL")}*/}
+              {/*    </Text>*/}
+              {/*    <Text>{formatHijri.format(date)}</Text>*/}
+              {/*  </View>*/}
+              {/*  <Pressable onPress={() => nextDay()}>*/}
+              {/*    <ChevronRightIcon height={20} width={20} color={"#000"} />*/}
+              {/*  </Pressable>*/}
+              {/*</View>*/}
+              <View className="bg-[#b59d4b] rounded-xl w-full p-6 mb-4">
+                <View className="flex flex-row justify-between mb-4">
+                  <Text className="font-bold text-white text-3xl">{nextPrayer?.name}</Text>
+                  <Text className="font-bold text-white text-3xl">{nextPrayer?.prayerTime}</Text>
                 </View>
-                <Text className="text-[10px]">
-                  Countdown{" "}
-                  {formatDistanceToNow(nextPrayer.timezoneDate, {
-                    addSuffix: true,
-                  })}
-                </Text>
+                <Text className="text-white text-md mb-1 font-bold">{formatHijri.format(date)}</Text>
+                <View className="flex flex-row">
+                  <MapPin color={'white'} size={16}/>
+                  {userPlace && <Text className="ml-1 font-bold text-white text-xs text-center mr-2">{userPlace[0].city}{userPlace[0].city && ','} {userPlace[0].country}</Text>}
+                </View>
               </View>
-            )}
-          </View>
-          <View className="my-6 flex flex-row items-center justify-center">
-            {userPlace && <Text className="text-center mr-2">{userPlace[0].city}{userPlace[0].city && ','} {userPlace[0].country}</Text>}
-            <Image
-              source={require("@assets/pin.png")}
-              style={{ width: 14, height: 16 }}
-            />
-          </View>
-          <View>
-            {prayerTimes.length
-              ? prayerTimes.map((prayer, i) => (
-                <View
-                  key={i}
-                  className={`flex flex-row justify-between pt-4 pb-4 border-0 border-b border-[#7C9082] ${i + 1 === prayerTimes.length && "border-b-0"
-                    } ${i === 0 && "pt-0"}`}
-                >
-                  <View className="w-1/3">
-                    <Text className="text-sm">{prayer.name}</Text>
+
+              <View className="bg-white rounded-xl p-6">
+                {prayerTimes.length
+                  ? prayerTimes.map((prayer, i) => (
+                    <View
+                      key={i}
+                      className={`flex flex-row justify-between pt-4 pb-4 ${i + 1 === prayerTimes.length && "border-b-0"
+                        } ${i === 0 && "pt-0"}`}
+                    >
+                      <View className="w-1/3 flex flex-row space-x-2">
+                        <Image
+                          source={prayer.icon}
+                          style={{ width: 22, height: 22 }}
+                        />
+                        <Text className="text-sm">{prayer.name}</Text>
+                      </View>
+                      <View className="space-x-2 w-2/3 flex flex-row justify-end items-center">
+                        <Text>{prayer.prayerTime}</Text>
+                        {/*<Volume color={'black'} strokeWidth={1}/>*/}
+                      </View>
+                    </View>
+                  ))
+                  : null}
+              </View>
+              <View className="mt-8 flex flex-col items-center">
+                <Text className="text-xl font-bold">{format(new Date(), 'LLL')}</Text>
+                <View className="space-x-2 flex flex-row mt-4">
+                  <View className="rounded-lg bg-white p-2">
+                    <Pressable onPress={() => previousDay()}>
+                      <ChevronLeft height={20} width={20} color={"#000"} />
+                    </Pressable>
                   </View>
-                  <View className="w-1/3 flex items-center">
-                    <Image
-                      source={prayer.icon}
-                      style={{ width: 22, height: 22 }}
-                    />
+                  <View className="rounded-lg bg-white p-2">
+
                   </View>
-                  <View className="w-1/3 flex items-end">
-                    <Text>{prayer.prayerTime}</Text>
+                  <View className="rounded-lg bg-white p-2"></View>
+                  <View className="rounded-lg bg-white p-2"></View>
+                  <View className="rounded-lg bg-white p-2"></View>
+                  <View className="rounded-lg bg-white p-2"></View>
+                  <View className="rounded-lg bg-white p-2">
+                    <Pressable onPress={() => nextDay()}>
+                      <ChevronRight height={20} width={20} color={"#000"} />
+                    </Pressable>
                   </View>
                 </View>
-              ))
-              : null}
-          </View>
-        </View>
-      </SafeAreaView>
+              </View>
+            </View>
+          </SafeAreaView>
+        )
+      }
     </Page>
   );
 }

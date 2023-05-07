@@ -75,6 +75,7 @@ export function Provider(props) {
 
   // useProtectedRoute(user);
 
+  console.log(user)
   return (
     <AuthContext.Provider
       value={{

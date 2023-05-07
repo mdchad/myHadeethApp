@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Link } from 'expo-router'
 import { AntDesign } from '@expo/vector-icons';
-import { User } from "lucide-react-native";
+import {SearchIcon, User} from "lucide-react-native";
 
 const header = ({ user }) => {
 
@@ -41,8 +41,8 @@ const header = ({ user }) => {
           </Link>
         )}
         <View className="flex flex-row items-center">
-          <Link href="/modal" className="py-2 px-8">
-              <AntDesign name="search1" size={20} color="black" />
+          <Link href="/modal" className="py-2 pr-6">
+              <SearchIcon size={20} color="black" />
               {/* <Image source={require("@assets/search.png")} style={{ width: 16, height: 20 }} /> */}
           </Link>
         </View>

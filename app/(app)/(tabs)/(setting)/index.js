@@ -18,6 +18,7 @@ import Page from "@components/page";
 import {Info, LogIn, LogOut, MessageSquare, Smartphone} from "lucide-react-native";
 import {Link, useRouter} from "expo-router";
 import {TouchableHighlight} from "react-native-gesture-handler";
+import {useAuth} from "../../../../context/auth";
 
 export default function Settings() {
   const [loading, setLoading] = useState(false);
@@ -26,6 +27,8 @@ export default function Settings() {
   const [password, setPassword] = useState("");
   const [session, setSession] = useState(null);
   const router = useRouter()
+  const { signOut } = useAuth()
+
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -121,6 +124,15 @@ export default function Settings() {
     }
   }
 
+  async function onSignOut() {
+    const { error } = await supabase.auth.signOut()
+    if (error) {
+      Alert.alert(error.message);
+    } else {
+      signOut()
+    }
+  }
+
   return (
     // use class instead of className because it will turn it into style property
     <Page class="bg-gray-100">
@@ -143,7 +155,7 @@ export default function Settings() {
         </View>
         {session ? (
           <View className="bg-white rounded-xl flex mt-4">
-            <TouchableHighlight onPress={() => supabase.auth.signOut()} className="w-full bg-white rounded-xl" underlayColor="#f9fafb">
+            <TouchableHighlight onPress={onSignOut} className="w-full bg-white rounded-xl" underlayColor="#f9fafb">
               <View className="space-x-3 px-8 py-5 flex flex-row items-center w-full">
                 <LogOut color="black" size={20}/>
                 <Text className="text-[16px]">Sign Out</Text>

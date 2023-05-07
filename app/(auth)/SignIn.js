@@ -5,6 +5,7 @@ import {Link, useRouter} from "expo-router";
 import { supabase } from "@lib/supabase";
 import { useAuth } from "@context/auth";
 import Page from "@components/page";
+import {Users} from "lucide-react-native";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -34,20 +35,8 @@ export default function SignIn() {
       <KeyboardAvoidingView>
         <View className="flex justify-between px-4 sm:mx-auto sm:w-full sm:max-w-md py-8 sm:rounded-lg sm:px-10 w-full h-full">
           <View className="flex items-center pt-16">
-            <View className="bg-[#F5EFD2] w-[115] h-[115] flex items-center justify-center rotate-[-43deg]">
-              <Image
-                source={require("../../assets/muslim.png")}
-                style={{
-                  resizeMode: "contain",
-                  height: 70,
-                  width: 70,
-                  display: "flex",
-                  alignItems: "center",
-                  alignContent: "center",
-                  justifyContent: "center",
-                  transform: [{ rotate: "43deg" }],
-                }}
-              />
+            <View className="bg-[#F5EFD2] flex items-center justify-center rounded-full w-32 h-32">
+              <Users color={'black'} size={36}/>
             </View>
 
             <View className="mt-16">
@@ -81,7 +70,7 @@ export default function SignIn() {
             </View>
             <View className="mt-6 mb-4">
               <Pressable
-                className="flex flex-row items-center justify-center py-3 px-5 w-64 rounded-xl bg-[#1EAB53] border-transparent"
+                className="flex flex-row items-center justify-center py-3 px-5 w-64 rounded-lg bg-[#1EAB53] border-transparent"
                 disabled={loading}
                 onPress={() => signInWithEmail()}
               >
@@ -89,10 +78,6 @@ export default function SignIn() {
                 <Text className="text-sm font-bold text-center text-white uppercase basis-11/12">
                   Login
                 </Text>
-                <Image
-                  source={require("../../assets/enter.png")}
-                  style={{ width: 22, height: 22 }}
-                />
               </Pressable>
             </View>
             {/*<Text className="text-sm text-center mb-4">or continue with</Text>*/}
