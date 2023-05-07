@@ -5,6 +5,9 @@ import {useFonts} from "expo-font";
 import {ScheherazadeNew_400Regular, ScheherazadeNew_700Bold} from "@expo-google-fonts/scheherazade-new";
 import {useCallback} from "react";
 import * as SplashScreen from 'expo-splash-screen';
+import { tokenCache } from "../utils/cache";
+
+const CLERK_PUBLISHABLE_KEY_FROM_ENV = CLERK_PUBLISHABLE_KEY;
 
 export default function Root() {
   const [fontsLoaded] = useFonts({
