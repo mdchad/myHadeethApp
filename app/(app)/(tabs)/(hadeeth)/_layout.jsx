@@ -1,7 +1,7 @@
 import { Slot, Stack, Tabs } from "expo-router";
 import { Keyboard, Text, TouchableWithoutFeedback, View } from "react-native";
 import Page from '@components/page'
-import { useUser } from "@clerk/clerk-expo";
+// import { useUser } from "@clerk/clerk-expo";
 import Header from '@components/header';
 
 export const unstable_settings = {
@@ -9,7 +9,8 @@ export const unstable_settings = {
 }
 
 export default function Layout() {
-    const { isLoaded, isSignedIn, user } = useUser();
+    // const { isLoaded, isSignedIn, user } = useUser();
+    const user = null;
 
     return (
         <Page class="bg-[#EDEEC0]">

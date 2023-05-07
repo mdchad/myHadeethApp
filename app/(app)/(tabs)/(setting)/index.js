@@ -46,11 +46,11 @@ export default function Settings() {
     const [session, setSession] = useState(null);
     const router = useRouter()
 
-    const { isLoaded, isSignedIn, signOut } = useAuth();
+    // const { isLoaded, isSignedIn, signOut } = useAuth();
 
-    if (!isLoaded) {
-        return null;
-    }
+    // if (!isLoaded) {
+    //     return null;
+    // }
 
     // useEffect(() => {
     //     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -146,11 +146,11 @@ export default function Settings() {
         }
     }
 
-    const handleSignOut = async () => {
-        await signOut();
+    // const handleSignOut = async () => {
+    //     await signOut();
 
-        router.push('/(hadeeth)')
-    }
+    //     router.push('/(hadeeth)')
+    // }
 
     return (
         // use class instead of className because it will turn it into style property
@@ -179,7 +179,7 @@ export default function Settings() {
                     </TouchableHighlight>
                 </View>
 
-                <SignedIn>
+                {/* <SignedIn>
                     <View className="bg-white rounded-xl flex mt-4">
                         <TouchableHighlight onPress={() => handleSignOut()} className="w-full bg-white rounded-xl" underlayColor="#f9fafb">
                             <View className="space-x-3 px-8 py-5 flex flex-row items-center w-full">
@@ -199,7 +199,7 @@ export default function Settings() {
                             </View>
                         </TouchableHighlight>
                     </View>
-                </SignedOut>
+                </SignedOut> */}
             </View>
         </Page>
     );

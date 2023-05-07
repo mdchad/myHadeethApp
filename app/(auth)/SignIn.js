@@ -11,50 +11,50 @@ import { useSignIn } from "@clerk/clerk-expo";
 
 export default function SignIn() {
     const router = useRouter();
-    const { signIn, setActive, isLoaded } = useSignIn();
+    // const { signIn, setActive, isLoaded } = useSignIn();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const onSignInPress = async () => {
-        if (!isLoaded) {
-            return;
-        }
+    // const onSignInPress = async () => {
+    //     if (!isLoaded) {
+    //         return;
+    //     }
 
-        try {
-            const completeSignIn = await signIn.create({
-                identifier: email,
-                password,
-            });
-            // This is an important step,
-            // This indicates the user is signed in
-            await setActive({ session: completeSignIn.createdSessionId });
+    //     try {
+    //         const completeSignIn = await signIn.create({
+    //             identifier: email,
+    //             password,
+    //         });
+    //         // This is an important step,
+    //         // This indicates the user is signed in
+    //         await setActive({ session: completeSignIn.createdSessionId });
 
-            router.push("/(hadeeth)")
-        } catch (err) {
-            console.error(JSON.stringify(err, null, 2));
-        }
-    };
+    //         router.push("/(hadeeth)")
+    //     } catch (err) {
+    //         console.error(JSON.stringify(err, null, 2));
+    //     }
+    // };
 
-    const { startOAuthFlow } = useOAuth({ strategy: "oauth_google" });
+    // const { startOAuthFlow } = useOAuth({ strategy: "oauth_google" });
 
-    const handleSignInWithGooglePress = React.useCallback(async () => {
-        try {
-            const { createdSessionId, signIn, signUp, setActive } = await startOAuthFlow();
-            if (createdSessionId) {
-                await setActive({ session: createdSessionId });
+    // const handleSignInWithGooglePress = React.useCallback(async () => {
+    //     try {
+    //         const { createdSessionId, signIn, signUp, setActive } = await startOAuthFlow();
+    //         if (createdSessionId) {
+    //             await setActive({ session: createdSessionId });
 
-                router.push("/(hadeeth)")
-            } else {
-                // Modify this code to use signIn or signUp to set this missing requirements you set in your dashboard.
-                throw new Error("There are unmet requirements, modifiy this else to handle them")
+    //             router.push("/(hadeeth)")
+    //         } else {
+    //             // Modify this code to use signIn or signUp to set this missing requirements you set in your dashboard.
+    //             throw new Error("There are unmet requirements, modifiy this else to handle them")
 
-            }
-        } catch (err) {
-            console.log(JSON.stringify(err, null, 2));
-            console.log("error signing in", err);
-        }
-    }, []);
+    //         }
+    //     } catch (err) {
+    //         console.log(JSON.stringify(err, null, 2));
+    //         console.log("error signing in", err);
+    //     }
+    // }, []);
 
     return (
         <Page>
@@ -99,7 +99,7 @@ export default function SignIn() {
                                 <Pressable
                                     className="flex flex-row items-center justify-center py-3 px-5 w-64 rounded-lg bg-[#1EAB53] border-transparent"
                                     // disabled={!isLoaded}
-                                    onPress={() => onSignInPress()}
+                                    // onPress={() => onSignInPress()}
                                 >
                                     <Text></Text>
                                     <Text className="text-sm font-bold text-center text-white uppercase basis-11/12">
@@ -114,7 +114,7 @@ export default function SignIn() {
                                 </View>
                                 <View className="flex-1 h-[1] bg-gray-200" />
                             </View>
-                            <View className="mt-6 mb-4">
+                            {/* <View className="mt-6 mb-4">
                                 <Pressable
                                     className="space-x-2 flex flex-row items-center justify-center py-3 px-5 w-64 rounded-xl border border-gray-300"
                                     disabled={!isLoaded}
@@ -125,7 +125,7 @@ export default function SignIn() {
                                         Google
                                     </Text>
                                 </Pressable>
-                            </View>
+                            </View> */}
                             <Link href={'/'} className="px-4 py-2">Skip for now</Link>
                         </View>
                         <View className="flex items-center">
