@@ -14,12 +14,6 @@ export default function Root() {
         // Setup the auth context and render our layout inside of it.
         // <ClerkProvider publishableKey={Constants.expoConfig?.extra?.CLERK_PUBLISHABLE_KEY} tokenCache={tokenCache}>
         <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY_FROM_ENV} tokenCache={tokenCache}>
-            <SignedIn>
-                <Text>You are Signed in</Text>
-            </SignedIn>
-            <SignedOut>
-                <Text>You are Signed out</Text>
-            </SignedOut>
             <Provider>
                 <Slot />
             </Provider>

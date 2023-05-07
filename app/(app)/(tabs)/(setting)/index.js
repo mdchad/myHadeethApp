@@ -15,34 +15,41 @@ import { supabase } from "@lib/supabase";
 import Toast from "react-native-root-toast";
 import * as Updates from 'expo-updates';
 import Page from "@components/page";
-import {Info, LogIn, LogOut, MessageSquare, Smartphone} from "lucide-react-native";
-import {Link, useRouter} from "expo-router";
-import {TouchableHighlight} from "react-native-gesture-handler";
-import {useAuth} from "../../../../context/auth";
+import { LogIn, Smartphone } from "lucide-react-native";
+import { Link, useRouter } from "expo-router";
+import { TouchableHighlight } from "react-native-gesture-handler";
+import { ClerkProvider, SignedIn, SignedOut, useAuth } from "@clerk/clerk-expo";
+import * as SecureStore from "expo-secure-store";
+
+const tokenCache = {
+    getToken(key) {
+        try {
+            return SecureStore.getItemAsync(key);
+        } catch (err) {
+            return null;
+        }
+    },
+    saveToken(key, value) {
+        try {
+            return SecureStore.setItemAsync(key, value);
+        } catch (err) {
+            return null;
+        }
+    },
+};
 
 export default function Settings() {
-  const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [session, setSession] = useState(null);
-  const router = useRouter()
-  const { signOut } = useAuth()
+    const [loading, setLoading] = useState(false);
+    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [session, setSession] = useState(null);
+    const router = useRouter()
 
+    const { isLoaded, isSignedIn, signOut } = useAuth();
 
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-  }, []);
-
-  useEffect(() => {
-    if (session) {
-      getProfile();
+    if (!isLoaded) {
+        return null;
     }
 
     // useEffect(() => {
@@ -124,70 +131,76 @@ export default function Settings() {
         }
     }
 
-  const triggerUpdate = async () => {
-    try {
-      const update = await Updates.checkForUpdateAsync();
-      if (update.isAvailable) {
-        await Updates.fetchUpdateAsync();
-        // await Updates.reloadAsync();
-        alert('An update is available. Restart your app to apply the update.')
-        // Updates.reloadAsync();
-      }
-    } catch (e) {
-      // handle or log error
-      console.log(e.message)
+    const triggerUpdate = async () => {
+        try {
+            const update = await Updates.checkForUpdateAsync();
+            if (update.isAvailable) {
+                await Updates.fetchUpdateAsync();
+                // await Updates.reloadAsync();
+                alert('An update is available. Restart your app to apply the update.')
+                // Updates.reloadAsync();
+            }
+        } catch (e) {
+            // handle or log error
+            console.log(e.message)
+        }
     }
-  }
 
-  async function onSignOut() {
-    const { error } = await supabase.auth.signOut()
-    if (error) {
-      Alert.alert(error.message);
-    } else {
-      signOut()
+    const handleSignOut = async () => {
+        await signOut();
+
+        router.push('/(hadeeth)')
     }
-  }
 
-  return (
-    // use class instead of className because it will turn it into style property
-    <Page class="bg-gray-100">
-      <View className="px-6 pt-12 bg-gray-100 flex sm:mx-auto sm:w-full sm:max-w-md w-full h-full">
-        <View className="bg-white py-2 px-8 rounded-xl flex">
-          <View className="space-x-3 py-5 w-full flex flex-row items-center border-b border-gray-300">
-            <MessageSquare color="black" size={20}/>
-            <Text className="text-[16px]">Help and Feedback</Text>
-          </View>
-          <View className="space-x-3 py-5 w-full flex flex-row items-center border-b border-gray-300">
-            <Info color="black" size={20}/>
-            <Text className="text-[16px]">About</Text>
-          </View>
-          <TouchableHighlight onPress={triggerUpdate} className="w-full bg-white py-5" underlayColor="#f9fafb">
-            <View className="space-x-3 w-full flex flex-row items-center">
-              <Smartphone color={'black'} size={20} />
-              <Text className="text-[16px]">Update App</Text>
+    return (
+        // use class instead of className because it will turn it into style property
+        <Page class="bg-gray-100">
+            <View className="px-6 pt-12 bg-gray-100 flex sm:mx-auto sm:w-full sm:max-w-md w-full h-full">
+                <View className="bg-white py-2 px-8 rounded-xl flex">
+                    <View className="space-x-3 py-5 w-full flex flex-row items-center border-b border-gray-300">
+                        <Image
+                            source={require("@assets/comment.png")}
+                            style={{ height: 20, width: 20 }}
+                        />
+                        <Text className="text-[16px]">Help and Feedback</Text>
+                    </View>
+                    <View className="space-x-3 py-5 w-full flex flex-row items-center border-b border-gray-300">
+                        <Image
+                            source={require("@assets/info.png")}
+                            style={{ height: 20, width: 20 }}
+                        />
+                        <Text className="text-[16px]">About</Text>
+                    </View>
+                    <TouchableHighlight onPress={triggerUpdate} className="w-full bg-white py-5" underlayColor="#f9fafb">
+                        <View className="space-x-3 w-full flex flex-row items-center">
+                            <Smartphone color={'black'} size={20} />
+                            <Text className="text-[16px]">Update App</Text>
+                        </View>
+                    </TouchableHighlight>
+                </View>
+
+                <SignedIn>
+                    <View className="bg-white rounded-xl flex mt-4">
+                        <TouchableHighlight onPress={() => handleSignOut()} className="w-full bg-white rounded-xl" underlayColor="#f9fafb">
+                            <View className="space-x-3 px-8 py-5 flex flex-row items-center w-full">
+                                <LogIn color="black" size={20} />
+                                <Text className="text-[16px]">Logout</Text>
+                            </View>
+                        </TouchableHighlight>
+                    </View>
+                </SignedIn>
+
+                <SignedOut>
+                    <View className="bg-white rounded-xl flex mt-4">
+                        <TouchableHighlight onPress={() => router.push('/SignIn')} className="w-full bg-white rounded-xl" underlayColor="#f9fafb">
+                            <View className="space-x-3 px-8 py-5 flex flex-row items-center w-full">
+                                <LogIn color="black" size={20} />
+                                <Text className="text-[16px]">Login</Text>
+                            </View>
+                        </TouchableHighlight>
+                    </View>
+                </SignedOut>
             </View>
-          </TouchableHighlight>
-        </View>
-        {session ? (
-          <View className="bg-white rounded-xl flex mt-4">
-            <TouchableHighlight onPress={onSignOut} className="w-full bg-white rounded-xl" underlayColor="#f9fafb">
-              <View className="space-x-3 px-8 py-5 flex flex-row items-center w-full">
-                <LogOut color="black" size={20}/>
-                <Text className="text-[16px]">Sign Out</Text>
-              </View>
-            </TouchableHighlight>
-          </View>
-        ): (
-        <View className="bg-white rounded-xl flex mt-4">
-          <TouchableHighlight onPress={() => router.push('/SignIn')} className="w-full bg-white rounded-xl" underlayColor="#f9fafb">
-            <View className="space-x-3 px-8 py-5 flex flex-row items-center w-full">
-              <LogIn color="black" size={20}/>
-              <Text className="text-[16px]">Login</Text>
-            </View>
-          </TouchableHighlight>
-        </View>
-        )}
-      </View>
-    </Page>
-  );
+        </Page>
+    );
 }
