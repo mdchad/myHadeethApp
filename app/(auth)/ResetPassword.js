@@ -8,6 +8,7 @@ import {
   TextInput,
 } from "react-native";
 import { Link } from "expo-router";
+import {ArrowLeftCircle} from "lucide-react-native";
 
 export default function ResetPassword() {
   const [email, setEmail] = useState("");
@@ -18,10 +19,7 @@ export default function ResetPassword() {
         <Link href={"SignIn"}
               className="m-6 w-64"
         >
-          <Image
-            source={require("../../assets/back-arrow.png")}
-            style={{ width: 30, height: 30 }}
-          />
+          <ArrowLeftCircle color={'black'}/>
         </Link>
         <View className="flex items-center justify-center sm:mx-auto sm:w-full sm:max-w-md w-full my-10">
           <Text className="font-bold text-[36px] w-52 text-center mb-8">
