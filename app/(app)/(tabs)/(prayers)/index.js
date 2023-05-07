@@ -30,6 +30,7 @@ import { Coordinates, CalculationMethod, PrayerTimes } from 'adhan';
 import Page from "@components/page";
 import {ChevronLeft, ChevronRight, MapPin, Pin, Volume} from "lucide-react-native";
 import {FlashList} from "@shopify/flash-list";
+import {ScrollView} from "react-native-web";
 
 const prayerNames = ["Subuh", "Syuruk", "Zohor", "Asar", "Maghrib", "Isyak"];
 const prayerIcon = [
@@ -109,7 +110,7 @@ export default function Prayer() {
   function RenderItem({ item }) {
     return (
       <Pressable onPress={() => setCalendarDate(item?.date)}>
-        <View className={`mx-2 flex items-center rounded-lg bg-white p-4 ${isSameDay(item?.date, calendarDate) ? 'bg-[#EDEEC0]' : 'bg-white'}`}>
+        <View className={`mx-2 flex items-center rounded-lg bg-white w-14 h-18 py-4 px-2 ${isSameDay(item?.date, calendarDate) ? 'bg-[#EDEEC0]' : 'bg-white'}`}>
           <Text className="text-md">{item?.dayName}</Text>
           <Text className="text-md font-semibold mt-1">{item?.day}</Text>
         </View>
