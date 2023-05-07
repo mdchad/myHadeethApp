@@ -6,6 +6,7 @@ import { Link } from "expo-router";
 import * as Location from 'expo-location';
 import { useAuth } from "@context/auth";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import {ScheherazadeNew_400Regular, ScheherazadeNew_700Bold} from "@expo-google-fonts/scheherazade-new";
 
 const width = Dimensions.get("window").width;
 
