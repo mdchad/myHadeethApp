@@ -122,8 +122,8 @@ export default function Prayer() {
         <Page class="bg-gray-100">
             <SafeAreaView>
                 <ScrollView>
-                    <View className="h-full w-full py-8 px-8 bg-gray-100">
-                        <View className="bg-[#b59d4b] rounded-xl w-full p-6 mb-4">
+                    <View className="h-full w-full bg-gray-100 p-4">
+                        <View className="bg-[#b59d4b] rounded-xl w-full p-4 py-6 mb-4">
                             <View className="flex flex-row justify-between mb-4">
                                 <Text className="font-bold text-white text-3xl">{nextPrayer?.name}</Text>
                                 <Text className="font-bold text-white text-3xl">{nextPrayer?.prayerTime}</Text>
@@ -135,22 +135,22 @@ export default function Prayer() {
                             </View>
                         </View>
 
-                        <View className="bg-white rounded-xl p-6">
+                        <View className="bg-white rounded-xl p-4 space-y-5">
                             {prayerTimes.length
                                 ? prayerTimes.map((prayer, i) => (
                                     <View
                                         key={i}
-                                        className={`flex flex-row justify-between pt-4 pb-4 ${i + 1 === prayerTimes.length && "border-b-0"
+                                        className={`flex flex-row justify-between ${i + 1 === prayerTimes.length && "border-b-0"
                                             } ${i === 0 && "pt-0"}`}
                                     >
-                                        <View className="w-1/3 flex flex-row space-x-2">
+                                        <View className="w-1/3 flex flex-row">
                                             <Image
                                                 source={prayer.icon}
                                                 style={{ width: 22, height: 22 }}
                                             />
                                             <Text className="text-sm">{prayer.name}</Text>
                                         </View>
-                                        <View className="space-x-2 w-2/3 flex flex-row justify-end items-center">
+                                        <View className="w-2/3 flex flex-row justify-end items-center">
                                             <Text>{prayer.prayerTime}</Text>
                                             {/*<Volume color={'black'} strokeWidth={1}/>*/}
                                         </View>
