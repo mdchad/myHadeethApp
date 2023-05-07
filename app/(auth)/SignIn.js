@@ -5,7 +5,7 @@ import { Link, useRouter } from "expo-router";
 import { supabase } from "@lib/supabase";
 import { useAuth } from "@context/auth";
 import Page from "@components/page";
-import { useOAuth } from "@clerk/clerk-expo";
+import { Users } from "lucide-react-native";
 
 export default function SignIn() {
     const [email, setEmail] = useState("");
@@ -30,45 +30,13 @@ export default function SignIn() {
         setLoading(false);
     }
 
-    const { startOAuthFlow } = useOAuth({ strategy: "oauth_google" });
-
-    const handleSignInWithGooglePress = React.useCallback(async () => {
-        try {
-            const { createdSessionId, signIn, signUp, setActive } = await startOAuthFlow();
-            if (createdSessionId) {
-                await setActive({ session: createdSessionId });
-
-                router.push("/(hadeeth)")
-            } else {
-                // Modify this code to use signIn or signUp to set this missing requirements you set in your dashboard.
-                throw new Error("There are unmet requirements, modifiy this else to handle them")
-
-            }
-        } catch (err) {
-            console.log(JSON.stringify(err, null, 2));
-            console.log("error signing in", err);
-        }
-    }, []);
-
     return (
         <Page>
             <KeyboardAvoidingView>
                 <View className="flex justify-between px-4 sm:mx-auto sm:w-full sm:max-w-md py-8 sm:rounded-lg sm:px-10 w-full h-full">
                     <View className="flex items-center pt-16">
-                        <View className="bg-[#F5EFD2] w-[115] h-[115] flex items-center justify-center rotate-[-43deg]">
-                            <Image
-                                source={require("../../assets/muslim.png")}
-                                style={{
-                                    resizeMode: "contain",
-                                    height: 70,
-                                    width: 70,
-                                    display: "flex",
-                                    alignItems: "center",
-                                    alignContent: "center",
-                                    justifyContent: "center",
-                                    transform: [{ rotate: "43deg" }],
-                                }}
-                            />
+                        <View className="bg-[#F5EFD2] flex items-center justify-center rounded-full w-32 h-32">
+                            <Users color={'black'} size={36} />
                         </View>
 
                         <View className="mt-16">
@@ -102,7 +70,7 @@ export default function SignIn() {
                         </View>
                         <View className="mt-6 mb-4">
                             <Pressable
-                                className="flex flex-row items-center justify-center py-3 px-5 w-64 rounded-xl bg-[#1EAB53] border-transparent"
+                                className="flex flex-row items-center justify-center py-3 px-5 w-64 rounded-lg bg-[#1EAB53] border-transparent"
                                 disabled={loading}
                                 onPress={() => signInWithEmail()}
                             >
@@ -110,32 +78,24 @@ export default function SignIn() {
                                 <Text className="text-sm font-bold text-center text-white uppercase basis-11/12">
                                     Login
                                 </Text>
-                                {/*<Image*/}
-                                {/*  source={require("../../assets/enter.png")}*/}
-                                {/*  style={{ width: 22, height: 22 }}*/}
-                                {/*/>*/}
                             </Pressable>
                         </View>
-                        <View className="flex flex-row items-center px-12">
-                            <View className="flex-1 h-[1] bg-gray-200" />
-                            <View>
-                                <Text style={{ width: 50, textAlign: 'center' }}>or</Text>
-                            </View>
-                            <View className="flex-1 h-[1] bg-gray-200" />
-                        </View>
-                        <View className="mt-6 mb-4">
-                            <Pressable
-                                className="space-x-2 flex flex-row items-center justify-center py-3 px-5 w-64 rounded-xl border border-gray-300"
-                                disabled={loading}
-                                onPress={handleSignInWithGooglePress}
-                            >
-                                <Image source={require("@assets/google.png")} style={{ width: 22, height: 22 }} />
-                                <Text className="text-sm text-center text-black">
-                                    Google
-                                </Text>
-                            </Pressable>
-                        </View>
-                        <Link href={'/(hadeeth)'} className="px-4 py-2">Skip for now</Link>
+                        {/*<Text className="text-sm text-center mb-4">or continue with</Text>*/}
+                        {/*<View>*/}
+                        {/*  <Pressable*/}
+                        {/*    className="flex flex-row items-center justify-center py-3 px-5 w-64 rounded-xl border border-[#1EAB53]"*/}
+                        {/*    disabled={loading}*/}
+                        {/*    onPress={() => signInWithEmail()}*/}
+                        {/*  >*/}
+                        {/*    <Text className="text-sm text-center mr-2">Google</Text>*/}
+                        {/*    <Image*/}
+                        {/*      source={require("../../assets/google.png")}*/}
+                        {/*      style={{ width: 17, height: 19 }}*/}
+                        {/*    />*/}
+                        {/*  </Pressable>*/}
+                        {/*</View>*/}
+                        <Text>Or</Text>
+                        <Link href={'/'} className="px-4 py-2">Skip for now</Link>
                     </View>
                     <View className="flex items-center">
                         <View className="mt-5">

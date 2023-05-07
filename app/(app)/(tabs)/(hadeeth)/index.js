@@ -1,6 +1,6 @@
 import { View, Text, TouchableWithoutFeedback, Keyboard, Image, ScrollView, useWindowDimensions, StyleSheet, FlatList } from 'react-native'
 import React from 'react'
-import {Link, useRouter} from 'expo-router'
+import {useRouter } from 'expo-router'
 import books from '@data/books.json'
 import initials from "initialism";
 import {TouchableHighlight} from "react-native-gesture-handler";
@@ -19,9 +19,8 @@ const Hadeeth = () => {
           <TouchableHighlight onPress={() => onTriggerPress(id, title)} underlayColor="#f9fafb" className="rounded-xl py-2 w-full">
               <View className="space-x-3 flex flex-row font-xl p-3 items-center">
                   <View className="bg-[#dad873] rounded-xl w-12 h-12 flex items-center justify-center">
-                      <Text className="text-white">{initials(title, 2)}</Text>
+                      <Text className="text-white font-bold">{initials(title, 2)}</Text>
                   </View>
-                  {/*<FontAwesome5 name="book" size={16} color="black" />*/}
                   <Text style={styles.title}>{title}</Text>
               </View>
           </TouchableHighlight >

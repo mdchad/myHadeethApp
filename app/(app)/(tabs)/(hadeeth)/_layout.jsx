@@ -5,17 +5,16 @@ import Page from '@components/page'
 import { useUser } from "@clerk/clerk-expo";
 import Header from '@components/header';
 
-export default function Layout() {
-    //   const { user } = useAuth()
-    const { isLoaded, isSignedIn, user } = useUser();
+export const unstable_settings = {
+  initialRouteName: "index"
+}
 
-    if (!isLoaded || !isSignedIn) {
-        return null;
-    }
+export default function Layout() {
+    const { user } = useAuth()
 
     return (
         <Page class="bg-[#EDEEC0]">
-            <Header user={user} />
+            <Header user={user?.full_name} />
             <Stack screenOptions={{ headerShown: false }}>
                 <Stack.Screen
                     name="index"
