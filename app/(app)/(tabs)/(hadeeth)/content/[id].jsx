@@ -1,13 +1,6 @@
-import { Link, useSearchParams } from "expo-router"
-import { FlatList, Image, Text, View, ScrollView } from "react-native"
+import { useSearchParams } from "expo-router"
+import { Text, View, ScrollView } from "react-native"
 import hadeeths from '@data/hadeeths.json'
-
-const arabicNumeric = [
-  require("@assets/one.png"),
-  require("@assets/two.png"),
-  require("@assets/three.png"),
-  require("@assets/four.png")
-]
 
 const hadeethContent = () => {
   const { chapterTitle, chapterId } = useSearchParams();
@@ -16,7 +9,7 @@ const hadeethContent = () => {
     <ScrollView>
       <View className="flex items-center px-6 pt-6">
         {/*<Header user={user.full_name} /> */}
-        <Text className="text-center text-lg mb-2">{chapterTitle ? JSON.parse(chapterTitle).ar : ''}</Text>
+        <Text className="text-center text-2xl mb-2 font-bold" style={{ fontFamily: 'Traditional_Arabic'}}>{chapterTitle ? JSON.parse(chapterTitle).ar : ''}</Text>
         <Text className="text-center text-lg">{chapterTitle ? JSON.parse(chapterTitle).ms : ''}</Text>
 
         {/* create a next and prev chapter */}
@@ -25,7 +18,7 @@ const hadeethContent = () => {
             if (hadeeth.chapter_id === chapterId) {
               return (
                 <View key={hadeeth.id}>
-                  <Text className="mb-4">{hadeeth.content.ar}</Text>
+                  <Text className="mb-4 text-right" style={{ fontFamily: 'ScheherazadeNew_400Regular'}}>{hadeeth.content.ar}</Text>
                   <Text className="mb-4">{hadeeth.content.ms}</Text>
                 </View>
               )
