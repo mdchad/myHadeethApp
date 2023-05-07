@@ -6,6 +6,7 @@ import {ScheherazadeNew_400Regular, ScheherazadeNew_700Bold} from "@expo-google-
 import {useCallback} from "react";
 import * as SplashScreen from 'expo-splash-screen';
 import { tokenCache } from "../utils/cache";
+import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
 
 const CLERK_PUBLISHABLE_KEY_FROM_ENV = CLERK_PUBLISHABLE_KEY;
 
