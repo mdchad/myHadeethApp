@@ -18,8 +18,8 @@ const hadeethContent = () => {
             if (hadeeth.chapter_id === chapterId) {
               return (
                 <View key={hadeeth.id}>
-                  <Text className="mb-4 text-right" style={{ fontFamily: 'ScheherazadeNew_400Regular'}}>{hadeeth.content.ar}</Text>
-                  <Text className="mb-4">{hadeeth.content.ms}</Text>
+                  <Text className="mb-4 text-right" selectable={true} style={{ fontFamily: 'ScheherazadeNew_400Regular'}}>{hadeeth.content.ar}</Text>
+                  <Text className="mb-4" selectable={true}>{hadeeth.content.ms}</Text>
                 </View>
               )
             }
