@@ -19,15 +19,12 @@ import {
   addDays,
   differenceInMilliseconds,
   eachDayOfInterval,
-  endOfMonth,
-  formatDistanceToNow,
   isBefore, isSameDay,
-  startOfMonth
 } from "date-fns";
 import parse from 'date-fns/parse'
 import { format } from "date-fns-tz";
 import React, { useEffect, useState } from "react";
-import { Image, Pressable, SafeAreaView, Text, View } from "react-native";
+import {FlatList, Image, Pressable, SafeAreaView, Text, View} from "react-native";
 import { useAuth } from "../../../../context/auth";
 import { Coordinates, CalculationMethod, PrayerTimes } from 'adhan';
 import Page from "@components/page";
@@ -58,9 +55,10 @@ export default function Prayer() {
   const endDate = addDays(currentDate, 60)
   const datesInRange = eachDayOfInterval({ start: currentDate, end: endDate })
   const [ calendarDate, setCalendarDate ] = useState(new Date())
-  const formattedDates = datesInRange.map(date => {
+  const formattedDates = datesInRange.map((date, i) => {
     return {
       date,
+      id: i,
       day: date.getDate(),
       month: format(date, 'MMM'),
       dayName: format(date, 'E')
@@ -110,10 +108,10 @@ export default function Prayer() {
 
   function RenderItem({ item }) {
     return (
-      <Pressable onPress={() => setCalendarDate(item.date)}>
-        <View className={`mx-2 flex items-center rounded-lg bg-white p-4 ${isSameDay(item.date, calendarDate) ? 'bg-[#EDEEC0]' : 'bg-white'}`}>
-          <Text className="text-md">{item.dayName}</Text>
-          <Text className="text-md font-semibold mt-1">{item.day}</Text>
+      <Pressable onPress={() => setCalendarDate(item?.date)}>
+        <View className={`mx-2 flex items-center rounded-lg bg-white p-4 ${isSameDay(item?.date, calendarDate) ? 'bg-[#EDEEC0]' : 'bg-white'}`}>
+          <Text className="text-md">{item?.dayName}</Text>
+          <Text className="text-md font-semibold mt-1">{item?.day}</Text>
         </View>
       </Pressable>
     )
@@ -121,77 +119,56 @@ export default function Prayer() {
 
   return (
     <Page class="bg-gray-100">
-      {!userLocation ?
-        (
-          <Text>Loading</Text>
-        ) :
-        (
-          <SafeAreaView>
-            <View className="h-full w-full pt-12 px-8 bg-gray-100">
-              {/*<View className="w-full flex flex-row items-center justify-between mb-5">*/}
-              {/*  <Pressable onPress={() => previousDay()}>*/}
-              {/*    <ChevronLeftIcon height={20} width={20} color={"#000"} />*/}
-              {/*  </Pressable>*/}
-              {/*  <View className="flex items-center">*/}
-              {/*    <Text className="mb-1 text-md">*/}
-              {/*      {format(date, "cccc, d LLL")}*/}
-              {/*    </Text>*/}
-              {/*    <Text>{formatHijri.format(date)}</Text>*/}
-              {/*  </View>*/}
-              {/*  <Pressable onPress={() => nextDay()}>*/}
-              {/*    <ChevronRightIcon height={20} width={20} color={"#000"} />*/}
-              {/*  </Pressable>*/}
-              {/*</View>*/}
-              <View className="bg-[#b59d4b] rounded-xl w-full p-6 mb-4">
-                <View className="flex flex-row justify-between mb-4">
-                  <Text className="font-bold text-white text-3xl">{nextPrayer?.name}</Text>
-                  <Text className="font-bold text-white text-3xl">{nextPrayer?.prayerTime}</Text>
-                </View>
-                <Text className="text-white text-md mb-1 font-bold">{formatHijri.format(calendarDate)}</Text>
-                <View className="flex flex-row">
-                  <MapPin color={'white'} size={16}/>
-                  {userPlace && <Text className="ml-1 font-bold text-white text-xs text-center mr-2">{userPlace[0].city}{userPlace[0].city && ','} {userPlace[0].country}</Text>}
-                </View>
-              </View>
-
-              <View className="bg-white rounded-xl p-6">
-                {prayerTimes.length
-                  ? prayerTimes.map((prayer, i) => (
-                    <View
-                      key={i}
-                      className={`flex flex-row justify-between pt-4 pb-4 ${i + 1 === prayerTimes.length && "border-b-0"
-                        } ${i === 0 && "pt-0"}`}
-                    >
-                      <View className="w-1/3 flex flex-row space-x-2">
-                        <Image
-                          source={prayer.icon}
-                          style={{ width: 22, height: 22 }}
-                        />
-                        <Text className="text-sm">{prayer.name}</Text>
-                      </View>
-                      <View className="space-x-2 w-2/3 flex flex-row justify-end items-center">
-                        <Text>{prayer.prayerTime}</Text>
-                        {/*<Volume color={'black'} strokeWidth={1}/>*/}
-                      </View>
-                    </View>
-                  ))
-                  : null}
-              </View>
-              <View className="mt-6 flex flex-col items-center">
-                <Text className="text-xl font-bold">{format(new Date(), 'LLL')}</Text>
-                <View className="mt-4">
-                  <FlashList
-                    data={formattedDates}
-                    renderItem={({ item }) => <RenderItem item={item}/>}
-                    estimatedItemSize={70}
-                    horizontal
-                  />
-                </View>
-              </View>
+      <SafeAreaView>
+        <View className="h-full w-full pt-12 px-8 bg-gray-100">
+          <View className="bg-[#b59d4b] rounded-xl w-full p-6 mb-4">
+            <View className="flex flex-row justify-between mb-4">
+              <Text className="font-bold text-white text-3xl">{nextPrayer?.name}</Text>
+              <Text className="font-bold text-white text-3xl">{nextPrayer?.prayerTime}</Text>
             </View>
-          </SafeAreaView>
-        )
-      }
+            <Text className="text-white text-md mb-1 font-bold">{formatHijri.format(calendarDate)}</Text>
+            <View className="flex flex-row">
+              <MapPin color={'white'} size={16}/>
+              {userPlace && <Text className="ml-1 font-bold text-white text-xs text-center mr-2">{userPlace[0].city}{userPlace[0].city && ','} {userPlace[0].country}</Text>}
+            </View>
+          </View>
+
+          <View className="bg-white rounded-xl p-6">
+            {prayerTimes.length
+              ? prayerTimes.map((prayer, i) => (
+                <View
+                  key={i}
+                  className={`flex flex-row justify-between pt-4 pb-4 ${i + 1 === prayerTimes.length && "border-b-0"
+                    } ${i === 0 && "pt-0"}`}
+                >
+                  <View className="w-1/3 flex flex-row space-x-2">
+                    <Image
+                      source={prayer.icon}
+                      style={{ width: 22, height: 22 }}
+                    />
+                    <Text className="text-sm">{prayer.name}</Text>
+                  </View>
+                  <View className="space-x-2 w-2/3 flex flex-row justify-end items-center">
+                    <Text>{prayer.prayerTime}</Text>
+                    {/*<Volume color={'black'} strokeWidth={1}/>*/}
+                  </View>
+                </View>
+              ))
+              : null}
+          </View>
+          <View className="mt-6 flex flex-col items-center">
+            <Text className="text-xl font-bold">{format(calendarDate, 'LLL')}</Text>
+            <View className="mt-4">
+              <FlatList
+                data={formattedDates}
+                keyExtractor={item => item.id}
+                renderItem={({ item }) => <RenderItem item={item}/>}
+                horizontal
+              />
+            </View>
+          </View>
+        </View>
+      </SafeAreaView>
     </Page>
   );
 }
