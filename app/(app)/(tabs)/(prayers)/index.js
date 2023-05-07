@@ -66,12 +66,14 @@ export default function Prayer() {
   })
 
   useEffect(() => {
+    console.log('hello1')
     if (userLocation) {
       fetchPrayer(calendarDate);
     }
-  }, [userLocation]);
+  }, [userLocation, calendarDate]);
 
   async function fetchPrayer(currentDate) {
+    console.log(currentDate)
     try {
       const coordinates = new Coordinates(userLocation.coords.latitude, userLocation.coords.longitude);
       const params = CalculationMethod.MoonsightingCommittee();
