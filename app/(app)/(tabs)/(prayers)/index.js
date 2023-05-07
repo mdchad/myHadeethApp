@@ -21,7 +21,7 @@ import {
   eachDayOfInterval,
   endOfMonth,
   formatDistanceToNow,
-  isBefore,
+  isBefore, isSameDay,
   startOfMonth
 } from "date-fns";
 import parse from 'date-fns/parse'
@@ -32,6 +32,7 @@ import { useAuth } from "../../../../context/auth";
 import { Coordinates, CalculationMethod, PrayerTimes } from 'adhan';
 import Page from "@components/page";
 import {ChevronLeft, ChevronRight, MapPin, Pin, Volume} from "lucide-react-native";
+import {FlashList} from "@shopify/flash-list";
 
 const prayerNames = ["Subuh", "Syuruk", "Zohor", "Asar", "Maghrib", "Isyak"];
 const prayerIcon = [
@@ -52,17 +53,23 @@ const formatHijri = new Intl.DateTimeFormat(
 export default function Prayer() {
   const [prayerTimes, setPrayerTimes] = useState([]);
   const [nextPrayer, setNextPrayer] = useState(null);
-  const [date, setDate] = useState(new Date())
   const { userLocation, userPlace } = useAuth()
+  const currentDate = new Date()
+  const endDate = addDays(currentDate, 60)
+  const datesInRange = eachDayOfInterval({ start: currentDate, end: endDate })
+  const [ calendarDate, setCalendarDate ] = useState(new Date())
+  const formattedDates = datesInRange.map(date => {
+    return {
+      date,
+      day: date.getDate(),
+      month: format(date, 'MMM'),
+      dayName: format(date, 'E')
+    }
+  })
 
   useEffect(() => {
-    const currentDate = new Date()
-    const endDate = addDays(currentDate, 60)
-    const datesInRange = eachDayOfInterval({ start: currentDate, end: endDate })
-    console.log(datesInRange)
-
     if (userLocation) {
-      fetchPrayer(date);
+      fetchPrayer(calendarDate);
     }
   }, [userLocation]);
 
@@ -101,16 +108,15 @@ export default function Prayer() {
     }
   }
 
-  async function nextDay() {
-    let setNextDay = date.setDate(date.getDate() + 1)
-    await fetchPrayer(new Date(setNextDay))
-    setDate(new Date(setNextDay))
-  }
-
-  async function previousDay() {
-    let setPreviousDay = date.setDate(date.getDate() - 1)
-    await fetchPrayer(new Date(setPreviousDay))
-    setDate(new Date(setPreviousDay))
+  function RenderItem({ item }) {
+    return (
+      <Pressable onPress={() => setCalendarDate(item.date)}>
+        <View className={`mx-2 flex items-center rounded-lg bg-white p-4 ${isSameDay(item.date, calendarDate) ? 'bg-[#EDEEC0]' : 'bg-white'}`}>
+          <Text className="text-md">{item.dayName}</Text>
+          <Text className="text-md font-semibold mt-1">{item.day}</Text>
+        </View>
+      </Pressable>
+    )
   }
 
   return (
@@ -121,7 +127,7 @@ export default function Prayer() {
         ) :
         (
           <SafeAreaView>
-            <View className="h-full w-full pt-16 px-8 bg-gray-100">
+            <View className="h-full w-full pt-12 px-8 bg-gray-100">
               {/*<View className="w-full flex flex-row items-center justify-between mb-5">*/}
               {/*  <Pressable onPress={() => previousDay()}>*/}
               {/*    <ChevronLeftIcon height={20} width={20} color={"#000"} />*/}
@@ -141,7 +147,7 @@ export default function Prayer() {
                   <Text className="font-bold text-white text-3xl">{nextPrayer?.name}</Text>
                   <Text className="font-bold text-white text-3xl">{nextPrayer?.prayerTime}</Text>
                 </View>
-                <Text className="text-white text-md mb-1 font-bold">{formatHijri.format(date)}</Text>
+                <Text className="text-white text-md mb-1 font-bold">{formatHijri.format(calendarDate)}</Text>
                 <View className="flex flex-row">
                   <MapPin color={'white'} size={16}/>
                   {userPlace && <Text className="ml-1 font-bold text-white text-xs text-center mr-2">{userPlace[0].city}{userPlace[0].city && ','} {userPlace[0].country}</Text>}
@@ -171,26 +177,15 @@ export default function Prayer() {
                   ))
                   : null}
               </View>
-              <View className="mt-8 flex flex-col items-center">
+              <View className="mt-6 flex flex-col items-center">
                 <Text className="text-xl font-bold">{format(new Date(), 'LLL')}</Text>
-                <View className="space-x-2 flex flex-row mt-4">
-                  <View className="rounded-lg bg-white p-2">
-                    <Pressable onPress={() => previousDay()}>
-                      <ChevronLeft height={20} width={20} color={"#000"} />
-                    </Pressable>
-                  </View>
-                  <View className="rounded-lg bg-white p-2">
-
-                  </View>
-                  <View className="rounded-lg bg-white p-2"></View>
-                  <View className="rounded-lg bg-white p-2"></View>
-                  <View className="rounded-lg bg-white p-2"></View>
-                  <View className="rounded-lg bg-white p-2"></View>
-                  <View className="rounded-lg bg-white p-2">
-                    <Pressable onPress={() => nextDay()}>
-                      <ChevronRight height={20} width={20} color={"#000"} />
-                    </Pressable>
-                  </View>
+                <View className="mt-4">
+                  <FlashList
+                    data={formattedDates}
+                    renderItem={({ item }) => <RenderItem item={item}/>}
+                    estimatedItemSize={70}
+                    horizontal
+                  />
                 </View>
               </View>
             </View>
