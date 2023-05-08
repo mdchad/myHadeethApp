@@ -121,7 +121,7 @@ export default function Prayer() {
   return (
     <Page class="bg-gray-100">
       <SafeAreaView>
-        <View className="h-full w-full pt-12 px-8 bg-gray-100">
+        <View className="h-full w-full pt-12 px-4 bg-gray-100">
           <View className="bg-[#b59d4b] rounded-xl w-full p-6 mb-4">
             <View className="flex flex-row justify-between mb-4">
               <Text className="font-bold text-white text-3xl">{nextPrayer?.name}</Text>
