@@ -1,11 +1,8 @@
-import { Link, useSearchParams } from "expo-router"
+import {Link, useRouter, useSearchParams} from "expo-router"
 import { FlatList, Image, Text, View } from "react-native"
 import chapters from '@data/chapters.json'
 import {ChevronRight} from "lucide-react-native";
-import {ScrollView} from "react-native";
-
-const arabicNumeric = [
-]
+import {TouchableHighlight} from "react-native-gesture-handler";
 
 const hadeethCategory = () => {
   let groupedArray = []
@@ -36,7 +33,19 @@ const hadeethCategory = () => {
       });
     }
   })
+
   const { title, id } = useSearchParams();
+  const router = useRouter();
+
+  function onPressHadith(chapter) {
+    return router.push({
+      pathname: `/(hadeeth)/content/${chapter.id}`,
+      params: {
+        chapterTitle: JSON.stringify(chapter.title),
+        chapterId: chapter.id,
+      }
+    })
+  }
 
   return (
     <View className="flex-1 flex space-y-12 bg-white px-6 pt-6">
@@ -48,26 +57,28 @@ const hadeethCategory = () => {
               return(
                   <View className="flex" key={item.category_id}>
                     <View className="">
-                      <Text className="my-2 text-gray-700 text-lg font-semibold">{item.category_title.ms}</Text>
+                      <Text className="my-4 text-gray-800 font-semibold">{item.category_title.ms}</Text>
                     </View>
                     {
                       item.chapters.map(chapter => {
                         return (
-                          <View key={chapter.id} className="px-2 py-3 border-t border-gray-200">
-                            <Link
-                              href={{
-                                pathname: `/(hadeeth)/content/${chapter.id}`,
-                                params: {
-                                  chapterTitle: JSON.stringify(chapter.title),
-                                  chapterId: chapter.id,
-                                }
-                            }}>
-                              <View className="flex flex-row justify-between items-center w-full">
-                                <Text className="basis-2/3">{chapter.title.ms}</Text>
-                                <ChevronRight color="black" size={16}/>
-                              </View>
-                            </Link>
-                          </View>
+                          <TouchableHighlight key={chapter.id} onPress={() => onPressHadith(chapter)} underlayColor="#f9fafb" className="rounded-xl w-full">
+                            <View key={chapter.id} className="px-2 py-3 border-t border-t-gray-200">
+                              {/*<Link*/}
+                              {/*  href={{*/}
+                              {/*    pathname: `/(hadeeth)/content/${chapter.id}`,*/}
+                              {/*    params: {*/}
+                              {/*      chapterTitle: JSON.stringify(chapter.title),*/}
+                              {/*      chapterId: chapter.id,*/}
+                              {/*    }*/}
+                              {/*}}>*/}
+                                <View className="flex flex-row justify-between items-center w-full">
+                                  <Text className="basis-2/3">{chapter.title.ms}</Text>
+                                  <ChevronRight color="black" size={16}/>
+                                </View>
+                              {/*</Link>*/}
+                            </View>
+                          </TouchableHighlight>
                         )
                       })
                     }
