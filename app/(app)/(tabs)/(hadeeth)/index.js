@@ -16,7 +16,7 @@ const Hadeeth = () => {
 
     const Item = ({ title, id }) => (
       <View className="bg-white mb-4 rounded-xl">
-          <TouchableHighlight onPress={() => onTriggerPress(id, title)} underlayColor="#f9fafb" className="rounded-xl py-2 w-full">
+          <TouchableHighlight onPress={() => onTriggerPress(id, title)} underlayColor="#f9fafb" className="rounded-xl w-full">
               <View className="space-x-3 flex flex-row font-xl p-3 items-center">
                   <View className="bg-[#dad873] rounded-xl w-12 h-12 flex items-center justify-center">
                       <Text className="text-white font-bold">{initials(title, 2)}</Text>
