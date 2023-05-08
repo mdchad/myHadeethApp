@@ -3,6 +3,7 @@ import { FlatList, Image, Text, View } from "react-native"
 import chapters from '@data/chapters.json'
 import {ChevronRight} from "lucide-react-native";
 import {TouchableHighlight} from "react-native-gesture-handler";
+let he = require('he');
 
 const hadeethCategory = () => {
   let groupedArray = []
@@ -64,19 +65,10 @@ const hadeethCategory = () => {
                         return (
                           <TouchableHighlight key={chapter.id} onPress={() => onPressHadith(chapter)} underlayColor="#f9fafb" className="rounded-xl w-full">
                             <View key={chapter.id} className="px-2 py-3 border-t border-t-gray-200">
-                              {/*<Link*/}
-                              {/*  href={{*/}
-                              {/*    pathname: `/(hadeeth)/content/${chapter.id}`,*/}
-                              {/*    params: {*/}
-                              {/*      chapterTitle: JSON.stringify(chapter.title),*/}
-                              {/*      chapterId: chapter.id,*/}
-                              {/*    }*/}
-                              {/*}}>*/}
-                                <View className="flex flex-row justify-between items-center w-full">
-                                  <Text className="basis-2/3">{chapter.title.ms}</Text>
-                                  <ChevronRight color="black" size={16}/>
-                                </View>
-                              {/*</Link>*/}
+                              <View className="flex flex-row justify-between items-center w-full">
+                                <Text className="basis-2/3">{he.decode(chapter.title.ms)}</Text>
+                                <ChevronRight color="black" size={16}/>
+                              </View>
                             </View>
                           </TouchableHighlight>
                         )
