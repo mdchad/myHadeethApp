@@ -17,7 +17,7 @@ import { useSignUp } from "@clerk/clerk-expo";
 import { useRouter } from "expo-router";
 
 export default function SignUp() {
-    // const { isLoaded, signUp, setActive } = useSignUp();
+    const { isLoaded, signUp, setActive } = useSignUp();
 
     const [firstName, setFirstName] = React.useState("");
     const [lastName, setLastName] = React.useState("");
@@ -28,55 +28,55 @@ export default function SignUp() {
     const [code, setCode] = React.useState("");
     const router = useRouter()
 
-    // // start the sign up process.
-    // const onSignUpPress = async () => {
-    //     if (!isLoaded) {
-    //         return;
-    //     }
+    // start the sign up process.
+    const onSignUpPress = async () => {
+        if (!isLoaded) {
+            return;
+        }
 
-    //     // check if passwords match.
-    //     if (password !== confirmPassword) {
-    //         Alert.alert("Passwords do not match.");
-    //         return;
-    //     }
+        // check if passwords match.
+        if (password !== confirmPassword) {
+            Alert.alert("Passwords do not match.");
+            return;
+        }
 
-    //     try {
-    //         await signUp.create({
-    //             firstName,
-    //             lastName,
-    //             emailAddress,
-    //             password,
-    //         });
+        try {
+            await signUp.create({
+                firstName,
+                lastName,
+                emailAddress,
+                password,
+            });
 
-    //         // send the email.
-    //         await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
+            // send the email.
+            await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
 
-    //         // change the UI to our pending section.
-    //         setPendingVerification(true);
-    //     } catch (err) {
-    //         Alert.alert(err.errors[0].message);
-    //         console.error(JSON.stringify(err, null, 2));
-    //     }
-    // };
+            // change the UI to our pending section.
+            setPendingVerification(true);
+        } catch (err) {
+            Alert.alert(err.errors[0].message);
+            console.error(JSON.stringify(err, null, 2));
+        }
+    };
 
-    // // This verifies the user using email code that is delivered.
-    // const onPressVerify = async () => {
-    //     if (!isLoaded) {
-    //         return;
-    //     }
+    // This verifies the user using email code that is delivered.
+    const onPressVerify = async () => {
+        if (!isLoaded) {
+            return;
+        }
 
-    //     try {
-    //         const completeSignUp = await signUp.attemptEmailAddressVerification({
-    //             code,
-    //         });
+        try {
+            const completeSignUp = await signUp.attemptEmailAddressVerification({
+                code,
+            });
 
-    //         await setActive({ session: completeSignUp.createdSessionId });
+            await setActive({ session: completeSignUp.createdSessionId });
 
-    //         router.push("/(hadeeth)")
-    //     } catch (err) {
-    //         console.error(JSON.stringify(err, null, 2));
-    //     }
-    // };
+            router.push("/(hadeeth)")
+        } catch (err) {
+            console.error(JSON.stringify(err, null, 2));
+        }
+    };
 
     return (
         <SafeAreaView>
@@ -165,7 +165,7 @@ export default function SignUp() {
                                         <Pressable
                                             className="flex flex-row items-center justify-center py-3 px-5 w-64 rounded-xl bg-[#1EAB53] border-transparent"
                                             disabled={!isLoaded}
-                                            // onPress={() => onSignUpPress()}
+                                            onPress={() => onSignUpPress()}
                                         >
                                             <Text></Text>
                                             <Text className="text-sm font-bold text-center text-white uppercase basis-11/12">
@@ -188,7 +188,7 @@ export default function SignUp() {
                                     <Pressable
                                         className="flex flex-row items-center justify-center py-3 px-5 w-64 rounded-xl bg-[#1EAB53] border-transparent mt-3"
                                         disabled={!isLoaded}
-                                        // onPress={() => onPressVerify()}
+                                        onPress={() => onPressVerify()}
                                     >
                                         <Text></Text>
                                         <Text className="text-sm font-bold text-center text-white uppercase basis-11/12">

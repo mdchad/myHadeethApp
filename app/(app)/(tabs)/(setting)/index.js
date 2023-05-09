@@ -46,90 +46,11 @@ export default function Settings() {
     const [session, setSession] = useState(null);
     const router = useRouter()
 
-    // const { isLoaded, isSignedIn, signOut } = useAuth();
+    const { isLoaded, isSignedIn, signOut } = useAuth();
 
     // if (!isLoaded) {
     //     return null;
     // }
-
-    // useEffect(() => {
-    //     supabase.auth.getSession().then(({ data: { session } }) => {
-    //         setSession(session);
-    //     });
-
-    //     supabase.auth.onAuthStateChange((_event, session) => {
-    //         setSession(session);
-    //     });
-    // }, []);
-
-    // useEffect(() => {
-    //     if (session) {
-    //         getProfile();
-    //     }
-    // }, [session]);
-
-    async function getProfile() {
-        try {
-            setLoading(true);
-            if (!session?.user) {
-                throw new Error("No user on the session!");
-            }
-
-            const { data, error, status } = await supabase
-                .from("users")
-                .select(`full_name`)
-                .eq("id", session?.user.id)
-                .single();
-
-            if (error && status !== 406) {
-                throw error;
-            }
-
-            if (data) {
-                setUsername(data.full_name);
-                setEmail(session.user.email);
-            }
-        } catch (error) {
-            if (error instanceof Error) {
-                Alert.alert(error.message);
-            }
-        } finally {
-            setLoading(false);
-        }
-    }
-
-    async function updateProfile() {
-        try {
-            setLoading(true);
-            if (!session?.user) {
-                throw new Error("No user on the session!");
-            }
-
-            const updates = {
-                id: session?.user.id,
-                ...(username && { full_name: username }),
-                ...(email && { email }),
-                ...(password && { password }),
-                updated_at: new Date(),
-            };
-
-            const { error, data } = await supabase.from("users").upsert(updates);
-
-            if (error) {
-                throw error;
-            } else {
-                Toast.show("Successfully updated", {
-                    duration: Toast.durations.LONG,
-                });
-            }
-        } catch (error) {
-            if (error instanceof Error) {
-                Alert.alert(error.message);
-            }
-        } finally {
-            setLoading(false);
-        }
-    }
 
     const triggerUpdate = async () => {
         try {
@@ -146,14 +67,13 @@ export default function Settings() {
         }
     }
 
-    // const handleSignOut = async () => {
-    //     await signOut();
+    const handleSignOut = async () => {
+        await signOut();
 
-    //     router.push('/(hadeeth)')
-    // }
+        router.push('/(hadeeth)')
+    }
 
     return (
-        // use class instead of className because it will turn it into style property
         <Page class="bg-gray-100">
             <View className="px-6 pt-12 bg-gray-100 flex sm:mx-auto sm:w-full sm:max-w-md w-full h-full">
                 <View className="bg-white py-2 px-8 rounded-xl flex">
@@ -179,7 +99,7 @@ export default function Settings() {
                     </TouchableHighlight>
                 </View>
 
-                {/* <SignedIn>
+                <SignedIn>
                     <View className="bg-white rounded-xl flex mt-4">
                         <TouchableHighlight onPress={() => handleSignOut()} className="w-full bg-white rounded-xl" underlayColor="#f9fafb">
                             <View className="space-x-3 px-8 py-5 flex flex-row items-center w-full">
@@ -199,7 +119,7 @@ export default function Settings() {
                             </View>
                         </TouchableHighlight>
                     </View>
-                </SignedOut> */}
+                </SignedOut>
             </View>
         </Page>
     );
