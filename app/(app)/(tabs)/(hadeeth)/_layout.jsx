@@ -9,7 +9,8 @@ export const unstable_settings = {
 }
 
 export default function Layout() {
-    const { user } = useAuth()
+    // const { user } = useAuth()
+    const user = null;
 
     return (
         <Page class="bg-[#EDEEC0]">

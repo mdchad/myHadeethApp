@@ -11,7 +11,7 @@ export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const { signIn } = useAuth()
+//   const { signIn } = useAuth()
   const router = useRouter();
 
   async function signInWithEmail() {

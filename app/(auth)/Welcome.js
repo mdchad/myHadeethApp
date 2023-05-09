@@ -14,29 +14,29 @@ export default function Welcome() {
 	const [location, setLocation] = useState(null);
 	const [errorMsg, setErrorMsg] = useState(null);
 	const [place, setPlace] = useState(null);
-	const { setUserPlace, setUserLocation } = useAuth()
+	// const { setUserPlace, setUserLocation } = useAuth()
 
-	useEffect(() => {
-		(async () => {
+	// useEffect(() => {
+	// 	(async () => {
 
-			let { status } = await Location.requestForegroundPermissionsAsync();
-			if (status !== 'granted') {
-				setErrorMsg('Permission to access location was denied');
-				return;
-			}
+	// 		let { status } = await Location.requestForegroundPermissionsAsync();
+	// 		if (status !== 'granted') {
+	// 			setErrorMsg('Permission to access location was denied');
+	// 			return;
+	// 		}
 
-			let location = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.High, timeInterval: 1000, distanceInterval: 0 });
-			setLocation(location);
-			setUserLocation(location)
+	// 		let location = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.High, timeInterval: 1000, distanceInterval: 0 });
+	// 		setLocation(location);
+	// 		setUserLocation(location)
 
-			let place = await Location.reverseGeocodeAsync({
-				latitude: location.coords.latitude,
-				longitude: location.coords.longitude
-			});
-			setPlace(place);
-			setUserPlace(place)
-		})();
-	}, []);
+	// 		let place = await Location.reverseGeocodeAsync({
+	// 			latitude: location.coords.latitude,
+	// 			longitude: location.coords.longitude
+	// 		});
+	// 		setPlace(place);
+	// 		setUserPlace(place)
+	// 	})();
+	// }, []);
 
 
 	let text = 'Loading..';

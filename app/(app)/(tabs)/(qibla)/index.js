@@ -20,7 +20,7 @@ const Qiblat = () => {
   return (
     <Page class="bg-[#EDEEC0]">
       <View className="flex-1 bg-[#EDEEC0]">
-        <Compass />
+        {/* <Compass /> */}
       </View>
     </Page >
   )
