@@ -36,11 +36,17 @@ import {
 } from "expo-router";
 
 
-import { ClerkProvider } from "@clerk/clerk-expo";
+import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
 
 export default function Layout() {
     // Render the children routes now that all the assets are loaded.
     return (<ClerkProvider publishableKey="pk_test_ZXhjaXRpbmctcmluZ3RhaWwtNjIuY2xlcmsuYWNjb3VudHMuZGV2JA">
+        <SignedIn>
+            <Text>You are Signed in</Text>
+        </SignedIn>
+        <SignedOut>
+            <Text>You are not Signed in</Text>
+        </SignedOut>
         <Slot />
     </ClerkProvider>);
 }
