@@ -9,7 +9,7 @@ import { tokenCache } from "../utils/cache";
 import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
 
 // const CLERK_PUBLISHABLE_KEY_FROM_ENV = CLERK_PUBLISHABLE_KEY;
-const CLERK_PUBLISHABLE_KEY_FROM_ENV = 'pk_test_ZXhjaXRpbmctcmluZ3RhaWwtNjIuY2xlcmsuYWNjb3VudHMuZGV2JA';
+const CLERK_PUBLISHABLE_KEY_FROM_ENV = 'pk_test_YWNjZXB0ZWQtbGVtdXItODcuY2xlcmsuYWNjb3VudHMuZGV2JA';
 
 export default function Root() {
     const [fontsLoaded] = useFonts({

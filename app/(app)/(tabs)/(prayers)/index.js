@@ -120,7 +120,7 @@ export default function Prayer() {
 
     return (
         <Page class="bg-gray-100">
-            <ScrollView>
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                 <View className="h-full w-full bg-gray-100 p-4">
                     <View className="bg-[#b59d4b] rounded-xl w-full p-4 py-6 mb-4">
                         <Text className="text-xs font-semibold text-white">Next Prayer</Text>
