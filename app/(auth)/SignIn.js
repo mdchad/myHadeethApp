@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { Alert, Image, Pressable, Text, TextInput, View, KeyboardAvoidingView, ScrollView } from "react-native";
 import { Link, useRouter } from "expo-router";
 
-import { supabase } from "@lib/supabase";
-import { useAuth } from "@context/auth";
 import Page from "@components/page";
 import { Users } from "lucide-react-native";
 import { useOAuth } from "@clerk/clerk-expo";
