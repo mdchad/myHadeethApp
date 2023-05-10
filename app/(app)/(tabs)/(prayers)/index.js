@@ -25,7 +25,7 @@ import parse from 'date-fns/parse'
 import { format } from "date-fns-tz";
 import React, { useEffect, useState } from "react";
 import { FlatList, Image, Pressable, SafeAreaView, Text, View } from "react-native";
-import { useAuth } from "../../../../context/auth";
+import { useAuth } from "@context/auth";
 import { Coordinates, CalculationMethod, PrayerTimes } from 'adhan';
 import Page from "@components/page";
 import { ChevronLeft, ChevronRight, MapPin, Pin, Volume } from "lucide-react-native";
@@ -101,7 +101,10 @@ export default function Prayer() {
             const nextAvailablePrayer = prayers.find(prayer => prayer.hasElapsed === false)
             setPrayerTimes(prayers);
             setNextPrayer(nextAvailablePrayer);
-            // }
+            if (!nextAvailablePrayer) {
+                // if isya, it will be undefined for next prayer. So check for the next day prayer
+                fetchPrayer(addDays(currentDate, 1))
+            }
         } catch (error) {
             console.error(error);
         }
@@ -120,60 +123,58 @@ export default function Prayer() {
 
     return (
         <Page class="bg-gray-100">
-            <SafeAreaView>
-                <ScrollView>
-                    <View className="h-full w-full bg-gray-100 p-4">
-                        <View className="bg-[#b59d4b] rounded-xl w-full p-4 py-6 mb-4">
-                            <Text className="text-xs font-semibold text-white">Next Prayer</Text>
-                            <View className="flex flex-row justify-between mb-4">
-                                <Text className="font-bold text-white text-3xl">{nextPrayer?.name}</Text>
-                                <Text className="font-bold text-white text-3xl">{nextPrayer?.prayerTime}</Text>
-                            </View>
-                            <Text className="text-white text-md mb-1 font-bold">{formatHijri.format(calendarDate)}</Text>
-                            <View className="flex flex-row">
-                                <MapPin color={'white'} size={16} />
-                                {userPlace && <Text className="ml-1 font-bold text-white text-xs text-center mr-2">{userPlace[0].city}{userPlace[0].city && ','} {userPlace[0].country}</Text>}
-                            </View>
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+                <View className="h-full w-full bg-gray-100 p-4">
+                    <View className="bg-[#b59d4b] rounded-xl w-full p-4 py-6 mb-4">
+                        <Text className="text-xs font-semibold text-white">Next Prayer</Text>
+                        <View className="flex flex-row justify-between mb-4">
+                            <Text className="font-bold text-white text-3xl">{nextPrayer?.name}</Text>
+                            <Text className="font-bold text-white text-3xl">{nextPrayer?.prayerTime}</Text>
                         </View>
-
-                        <View className="bg-white rounded-xl p-4 space-y-5">
-                            {prayerTimes.length
-                                ? prayerTimes.map((prayer, i) => (
-                                    <View
-                                        key={i}
-                                        className={`flex flex-row justify-between ${i + 1 === prayerTimes.length && "border-b-0"
-                                            } ${i === 0 && "pt-0"}`}
-                                    >
-                                        <View className="w-1/3 flex flex-row">
-                                            <Image
-                                                source={prayer.icon}
-                                                style={{ width: 22, height: 22 }}
-                                            />
-                                            <Text className="text-sm">{prayer.name}</Text>
-                                        </View>
-                                        <View className="w-2/3 flex flex-row justify-end items-center">
-                                            <Text>{prayer.prayerTime}</Text>
-                                            {/*<Volume color={'black'} strokeWidth={1}/>*/}
-                                        </View>
-                                    </View>
-                                ))
-                                : null}
-                        </View>
-                        <View className="mt-6 flex flex-col items-center">
-                            <Text className="text-xl font-bold">{format(calendarDate, 'LLL')}</Text>
-                            <View className="mt-4">
-
-                                <FlatList
-                                    data={formattedDates}
-                                    keyExtractor={item => item.id}
-                                    renderItem={({ item }) => <RenderItem item={item} />}
-                                    horizontal
-                                />
-                            </View>
+                        <Text className="text-white text-md mb-1 font-bold">{formatHijri.format(calendarDate)}</Text>
+                        <View className="flex flex-row">
+                            <MapPin color={'white'} size={16} />
+                            {userPlace && <Text className="ml-1 font-bold text-white text-xs text-center mr-2">{userPlace[0].city}{userPlace[0].city && ','} {userPlace[0].country}</Text>}
                         </View>
                     </View>
-                </ScrollView>
-            </SafeAreaView>
+
+                    <View className="bg-white rounded-xl p-4 space-y-6">
+                        {prayerTimes.length
+                            ? prayerTimes.map((prayer, i) => (
+                                <View
+                                    key={i}
+                                    className={`flex flex-row justify-between ${i + 1 === prayerTimes.length && "border-b-0"
+                                        } ${i === 0 && "pt-0"}`}
+                                >
+                                    <View className="w-1/3 flex flex-row">
+                                        <Image
+                                            source={prayer.icon}
+                                            style={{ width: 22, height: 22 }}
+                                        />
+                                        <Text className="text-sm">{prayer.name}</Text>
+                                    </View>
+                                    <View className="w-2/3 flex flex-row justify-end items-center">
+                                        <Text>{prayer.prayerTime}</Text>
+                                        {/*<Volume color={'black'} strokeWidth={1}/>*/}
+                                    </View>
+                                </View>
+                            ))
+                            : null}
+                    </View>
+                    <View className="mt-6 flex flex-col items-center">
+                        <Text className="text-xl font-bold">{format(calendarDate, 'LLL')}</Text>
+                        <View className="mt-4">
+
+                            <FlatList
+                                data={formattedDates}
+                                keyExtractor={item => item.id}
+                                renderItem={({ item }) => <RenderItem item={item} />}
+                                horizontal
+                            />
+                        </View>
+                    </View>
+                </View>
+            </ScrollView>
         </Page>
     );
 }
