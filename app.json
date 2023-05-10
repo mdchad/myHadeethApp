@@ -35,7 +35,7 @@
     "ios": {
       "bundleIdentifier": "com.mdchad.myHadeethApp",
       "supportsTablet": true,
-      "buildNumber": "1.0.0"
+      "buildNumber": "1.0.2"
     },
     "android": {
       "adaptiveIcon": {

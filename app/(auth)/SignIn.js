@@ -10,6 +10,7 @@ import { useOAuth } from "@clerk/clerk-expo";
 import { useSignIn } from "@clerk/clerk-expo";
 import * as WebBrowser from "expo-web-browser";
 import { useWarmUpBrowser } from "@context/useWarmUpBrowser";
+import SignInWithOAuth from "../components/SignInWithOAuth.tsx";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -47,6 +48,7 @@ export default function SignIn() {
     const handleSignInWithGooglePress = React.useCallback(async () => {
         try {
             const { createdSessionId, signIn, signUp, setActive } = await startOAuthFlow();
+
             if (createdSessionId) {
                 await setActive({ session: createdSessionId });
 
@@ -131,6 +133,7 @@ export default function SignIn() {
                                         Google
                                     </Text>
                                 </Pressable>
+                                <SignInWithOAuth />
                             </View>
                             <Link href={'/'} className="px-4 py-2">Skip for now</Link>
                         </View>
