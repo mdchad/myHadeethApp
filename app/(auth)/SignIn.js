@@ -11,6 +11,7 @@ import { useSignIn } from "@clerk/clerk-expo";
 import * as WebBrowser from "expo-web-browser";
 import { useWarmUpBrowser } from "@context/useWarmUpBrowser";
 import SignInWithOAuth from "../components/SignInWithOAuth.tsx";
+import {TouchableHighlight} from "react-native";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -69,7 +70,7 @@ export default function SignIn() {
             <ScrollView>
                 <KeyboardAvoidingView>
                     <View className="flex justify-between px-4 sm:mx-auto sm:w-full sm:max-w-md py-8 sm:rounded-lg sm:px-10 w-full h-full">
-                        <View className="flex items-center">
+                        <View className="flex items-center mb-50">
                             <View className="bg-[#F5EFD2] flex items-center justify-center rounded-full w-32 h-32">
                                 <Users color={'black'} size={36} />
                             </View>
@@ -123,17 +124,20 @@ export default function SignIn() {
                                 <View className="flex-1 h-[1] bg-gray-200" />
                             </View>
                             <View className="mt-6 mb-4">
-                                <Pressable
-                                    className="space-x-2 flex flex-row items-center justify-center py-3 px-5 w-64 rounded-xl border border-gray-300"
+                                <TouchableHighlight
+                                    className=""
                                     disabled={!isLoaded}
+                                    underlayColor="#f9fafb"
                                     onPress={handleSignInWithGooglePress}
                                 >
-                                    <Image source={require("@assets/google.png")} style={{ width: 22, height: 22 }} />
-                                    <Text className="text-sm text-center text-black">
-                                        Google
-                                    </Text>
-                                </Pressable>
-                                <SignInWithOAuth />
+                                    <View className="space-x-2 flex flex-row items-center justify-center py-3 px-5 w-64 rounded-xl border border-gray-300">
+                                        <Image source={require("@assets/google.png")} style={{ width: 22, height: 22 }} />
+                                        <Text className="text-sm text-center text-black">
+                                            Google
+                                        </Text>
+                                    </View>
+                                </TouchableHighlight>
+                                {/*<SignInWithOAuth />*/}
                             </View>
                             <Link href={'/'} className="px-4 py-2">Skip for now</Link>
                         </View>
