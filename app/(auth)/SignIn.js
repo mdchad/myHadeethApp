@@ -137,7 +137,7 @@ export default function SignIn() {
                                     <View className="space-x-2 flex flex-row items-center justify-center py-3 px-5 w-64 rounded-xl border border-gray-300">
                                         <Image source={require("@assets/google.png")} style={{ width: 22, height: 22 }} />
                                         <Text className="text-sm text-center text-black">
-                                            Google
+                                           Sign in with Google
                                         </Text>
                                     </View>
                                 </TouchableHighlight>

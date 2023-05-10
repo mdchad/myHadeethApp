@@ -101,7 +101,10 @@ export default function Prayer() {
             const nextAvailablePrayer = prayers.find(prayer => prayer.hasElapsed === false)
             setPrayerTimes(prayers);
             setNextPrayer(nextAvailablePrayer);
-            // }
+            if (!nextAvailablePrayer) {
+                // if isya, it will be undefined for next prayer. So check for the next day prayer
+                fetchPrayer(addDays(currentDate, 1))
+            }
         } catch (error) {
             console.error(error);
         }
