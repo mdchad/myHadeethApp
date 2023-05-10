@@ -75,52 +75,54 @@ export default function Settings() {
 
     return (
         <Page class="bg-gray-100">
-            <View className="px-6 pt-12 bg-gray-100 flex sm:mx-auto sm:w-full sm:max-w-md w-full h-full">
-                <View className="bg-white py-2 px-8 rounded-xl flex">
-                    <View className="space-x-3 py-5 w-full flex flex-row items-center border-b border-gray-300">
-                        <Image
-                            source={require("@assets/comment.png")}
-                            style={{ height: 20, width: 20 }}
-                        />
-                        <Text className="text-[16px]">Help and Feedback</Text>
-                    </View>
-                    <View className="space-x-3 py-5 w-full flex flex-row items-center border-b border-gray-300">
-                        <Image
-                            source={require("@assets/info.png")}
-                            style={{ height: 20, width: 20 }}
-                        />
-                        <Text className="text-[16px]">About</Text>
-                    </View>
-                    <TouchableHighlight onPress={triggerUpdate} className="w-full bg-white py-5" underlayColor="#f9fafb">
-                        <View className="space-x-3 w-full flex flex-row items-center">
-                            <Smartphone color={'black'} size={20} />
-                            <Text className="text-[16px]">Update App</Text>
+            <ScrollView className="py-4">
+                <View className="px-4 bg-gray-100 flex sm:mx-auto sm:w-full sm:max-w-md w-full h-full">
+                    <View className="bg-white py-2 px-4 rounded-xl flex">
+                        <View className="space-x-5 py-5 w-full flex flex-row items-center border-b border-gray-300">
+                            <Image
+                                source={require("@assets/comment.png")}
+                                style={{ height: 20, width: 20 }}
+                            />
+                            <Text className="text-[16px]">Help and Feedback</Text>
                         </View>
-                    </TouchableHighlight>
+                        <View className="space-x-5 py-4 w-full flex flex-row items-center border-b border-gray-300">
+                            <Image
+                                source={require("@assets/info.png")}
+                                style={{ height: 20, width: 20 }}
+                            />
+                            <Text className="text-[16px]">About</Text>
+                        </View>
+                        <TouchableHighlight onPress={triggerUpdate} className="w-full bg-white py-5" underlayColor="#f9fafb">
+                            <View className="space-x-5 w-full flex flex-row items-center">
+                                <Smartphone color={'black'} size={20} />
+                                <Text className="text-[16px]">Update App</Text>
+                            </View>
+                        </TouchableHighlight>
+                    </View>
+
+                    <SignedIn>
+                        <View className="bg-white rounded-xl flex mt-4">
+                            <TouchableHighlight onPress={() => handleSignOut()} className="w-full bg-white rounded-xl" underlayColor="#f9fafb">
+                                <View className="space-x-5 px-8 py-5 flex flex-row items-center w-full">
+                                    <LogIn color="black" size={20} />
+                                    <Text className="text-[16px]">Logout</Text>
+                                </View>
+                            </TouchableHighlight>
+                        </View>
+                    </SignedIn>
+
+                    <SignedOut>
+                        <View className="bg-white rounded-xl flex mt-4">
+                            <TouchableHighlight onPress={() => router.push('/SignIn')} className="w-full bg-white rounded-xl" underlayColor="#f9fafb">
+                                <View className="space-x-5 px-4 py-5 flex flex-row items-center w-full">
+                                    <LogIn color="black" size={20} />
+                                    <Text className="text-[16px]">Login</Text>
+                                </View>
+                            </TouchableHighlight>
+                        </View>
+                    </SignedOut>
                 </View>
-
-                <SignedIn>
-                    <View className="bg-white rounded-xl flex mt-4">
-                        <TouchableHighlight onPress={() => handleSignOut()} className="w-full bg-white rounded-xl" underlayColor="#f9fafb">
-                            <View className="space-x-3 px-8 py-5 flex flex-row items-center w-full">
-                                <LogIn color="black" size={20} />
-                                <Text className="text-[16px]">Logout</Text>
-                            </View>
-                        </TouchableHighlight>
-                    </View>
-                </SignedIn>
-
-                <SignedOut>
-                    <View className="bg-white rounded-xl flex mt-4">
-                        <TouchableHighlight onPress={() => router.push('/SignIn')} className="w-full bg-white rounded-xl" underlayColor="#f9fafb">
-                            <View className="space-x-3 px-8 py-5 flex flex-row items-center w-full">
-                                <LogIn color="black" size={20} />
-                                <Text className="text-[16px]">Login</Text>
-                            </View>
-                        </TouchableHighlight>
-                    </View>
-                </SignedOut>
-            </View>
+            </ScrollView>
         </Page>
     );
 }

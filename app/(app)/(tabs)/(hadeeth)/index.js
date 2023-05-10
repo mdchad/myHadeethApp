@@ -29,12 +29,12 @@ const Hadeeth = () => {
 
     return (
       <View className="flex-1 bg-gray-100">
-          <View className="">
+          <View className="mb-4">
               <FlatList
                 data={books}
                 renderItem={({ item }) => <Item title={item.title} id={item.id} />}
                 keyExtractor={item => item.id}
-                className="p-4"
+                className="p-4 h-full"
               />
           </View>
       </View>

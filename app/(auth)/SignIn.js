@@ -11,7 +11,7 @@ import { useSignIn } from "@clerk/clerk-expo";
 import * as WebBrowser from "expo-web-browser";
 import { useWarmUpBrowser } from "@context/useWarmUpBrowser";
 import SignInWithOAuth from "../components/SignInWithOAuth.tsx";
-import {TouchableHighlight} from "react-native";
+import { TouchableHighlight } from "react-native";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -21,7 +21,7 @@ export default function SignIn() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    
+
     useWarmUpBrowser();
 
     const onSignInPress = async () => {
@@ -67,10 +67,10 @@ export default function SignIn() {
 
     return (
         <Page>
-            <ScrollView>
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                 <KeyboardAvoidingView>
-                    <View className="flex justify-between px-4 sm:mx-auto sm:w-full sm:max-w-md py-8 sm:rounded-lg sm:px-10 w-full h-full">
-                        <View className="flex items-center mb-50">
+                    <View className="flex justify-between px-4 py-8 h-full">
+                        <View className="flex items-center mb-50 my-auto">
                             <View className="bg-[#F5EFD2] flex items-center justify-center rounded-full w-32 h-32">
                                 <Users color={'black'} size={36} />
                             </View>
@@ -98,13 +98,15 @@ export default function SignIn() {
                                     placeholder="Password"
                                     autoCapitalize={"none"}
                                 />
-                                <View className="flex items-end mt-2">
+
+                                <View className="flex items-end mt-2 hidden">
                                     <Link href={"ResetPassword"}>
                                         <Text className="underline text-xs">Forgot Password ?</Text>
                                     </Link>
                                 </View>
                             </View>
-                            <View className="mt-6 mb-4">
+
+                            <View className="mt-8">
                                 <Pressable
                                     className="flex flex-row items-center justify-center py-3 px-5 w-64 rounded-lg bg-[#1EAB53] border-transparent"
                                     disabled={!isLoaded}
@@ -116,14 +118,16 @@ export default function SignIn() {
                                     </Text>
                                 </Pressable>
                             </View>
-                            <View className="flex flex-row items-center px-12">
+
+                            <View className="flex flex-row items-center px-12 py-6">
                                 <View className="flex-1 h-[1] bg-gray-200" />
                                 <View>
                                     <Text style={{ width: 50, textAlign: 'center' }}>or</Text>
                                 </View>
                                 <View className="flex-1 h-[1] bg-gray-200" />
                             </View>
-                            <View className="mt-6 mb-4">
+
+                            <View className="mb-4">
                                 <TouchableHighlight
                                     className=""
                                     disabled={!isLoaded}
