@@ -1,6 +1,5 @@
 import { useRouter, useSegments } from "expo-router";
 import React, {useEffect} from "react";
-import {supabase} from "@lib/supabase";
 import * as Location from "expo-location";
 
 const AuthContext = React.createContext(null);
@@ -36,20 +35,6 @@ export function Provider(props) {
   const [user, setAuth] = React.useState(null);
   const [userLocation, setUserLocation] = React.useState(null);
   const [userPlace, setUserPlace] = React.useState(null);
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) {
-        setAuth(session.user.user_metadata);
-      }
-    });
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      if (session) {
-        setAuth(session.user.user_metadata);
-      }
-    });
-  }, []);
 
   useEffect(() => {
     (async () => {

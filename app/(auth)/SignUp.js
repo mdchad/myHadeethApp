@@ -10,12 +10,12 @@ import {
     TouchableOpacity,
     View,
 } from "react-native";
-import { supabase } from "../../lib/supabase";
 import Toast from 'react-native-root-toast'
 import { Link } from "expo-router";
 import { useSignUp } from "@clerk/clerk-expo";
 import { useRouter } from "expo-router";
 import Page from "@components/page";
+import {ArrowLeftCircle} from "lucide-react-native";
 
 export default function SignUp() {
     const { isLoaded, signUp, setActive } = useSignUp();
@@ -81,14 +81,10 @@ export default function SignUp() {
 
     return (
         <Page>
-
             <View className="flex justify-between px-4 py-8 h-full w-full">
                 <View className="flex flex-row items-center justify-start">
                     <Link href={"SignIn"} className="">
-                        <Image
-                            source={require("../../assets/back-arrow.png")}
-                            style={{ width: 30, height: 30 }}
-                        />
+                        <ArrowLeftCircle color="black" size={18} />
                     </Link>
                 </View>
                 <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -105,7 +101,7 @@ export default function SignUp() {
                                         label="First Name"
                                         leftIcon={{ type: "font-awesome", name: "lock" }}
                                         onChangeText={(text) => setFirstName(text)}
-                                        className="block w-64 appearance-none rounded-xl border border-gray-300 px-5 py-3 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                        className="block w-64 appearance-none rounded-xl border border-gray-300 px-5 py-3 placeholder-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                         value={firstName}
                                         placeholder="First Name"
                                         autoCapitalize={"words"}
@@ -117,7 +113,7 @@ export default function SignUp() {
                                         label="Last Name"
                                         leftIcon={{ type: "font-awesome", name: "lock" }}
                                         onChangeText={(text) => setLastName(text)}
-                                        className="block w-64 appearance-none rounded-xl border border-gray-300 px-5 py-3 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                        className="block w-64 appearance-none rounded-xl border border-gray-300 px-5 py-3 placeholder-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                         value={lastName}
                                         placeholder="Last Name"
                                         autoCapitalize={"words"}
@@ -129,7 +125,7 @@ export default function SignUp() {
                                         label="Email"
                                         leftIcon={{ type: "font-awesome", name: "lock" }}
                                         onChangeText={(text) => setEmailAddress(text)}
-                                        className="block w-64 appearance-none rounded-xl border border-gray-300 px-5 py-3 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                        className="block w-64 appearance-none rounded-xl border border-gray-300 px-5 py-3 placeholder-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                         value={emailAddress}
                                         placeholder="Email"
                                         autoCapitalize={"none"}
@@ -141,7 +137,7 @@ export default function SignUp() {
                                         label="Password"
                                         leftIcon={{ type: "font-awesome", name: "lock" }}
                                         onChangeText={(text) => setPassword(text)}
-                                        className="block w-64 appearance-none rounded-xl border border-gray-300 px-5 py-3 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                        className="block w-64 appearance-none rounded-xl border border-gray-300 px-5 py-3 placeholder-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                         value={password}
                                         secureTextEntry={true}
                                         placeholder="Password"
@@ -154,7 +150,7 @@ export default function SignUp() {
                                         label="Password"
                                         leftIcon={{ type: "font-awesome", name: "lock" }}
                                         onChangeText={(text) => setConfirmPassword(text)}
-                                        className="block w-64 appearance-none rounded-xl border border-gray-300 px-5 py-3 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                        className="block w-64 appearance-none rounded-xl border border-gray-300 px-5 py-3 placeholder-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                         value={confirmPassword}
                                         secureTextEntry={true}
                                         placeholder="Confirm Password"
@@ -182,7 +178,7 @@ export default function SignUp() {
                                     value={code}
                                     placeholder="Code..."
                                     onChangeText={(code) => setCode(code)}
-                                    className="block w-64 appearance-none rounded-xl border border-gray-300 px-5 py-3 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                    className="block w-64 appearance-none rounded-xl border border-gray-300 px-5 py-3 placeholder-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                 />
 
                                 <Pressable

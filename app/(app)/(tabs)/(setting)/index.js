@@ -11,7 +11,6 @@ import {
     ScrollView,
 } from "react-native";
 
-import { supabase } from "@lib/supabase";
 import Toast from "react-native-root-toast";
 import * as Updates from 'expo-updates';
 import Page from "@components/page";
