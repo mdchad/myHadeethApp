@@ -102,7 +102,7 @@ export default function Settings() {
                     <SignedIn>
                         <View className="bg-white rounded-xl flex mt-4">
                             <TouchableHighlight onPress={() => handleSignOut()} className="w-full bg-white rounded-xl" underlayColor="#f9fafb">
-                                <View className="space-x-5 px-8 py-5 flex flex-row items-center w-full">
+                                <View className="space-x-5 px-4 py-5 flex flex-row items-center w-full">
                                     <LogIn color="black" size={20} />
                                     <Text className="text-[16px]">Logout</Text>
                                 </View>

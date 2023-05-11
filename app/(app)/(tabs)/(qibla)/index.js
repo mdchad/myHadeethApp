@@ -1,25 +1,14 @@
-import { View, Text, Image } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { View } from 'react-native'
+import React from 'react'
 import Page from '@components/page'
-import * as Location from 'expo-location';
-import { Gyroscope } from 'expo-sensors';
-import Compass from '@components/compassv2';
-// import Compass from '@components/compass';
-import { useAuth } from "@context/auth";
+import Compass from '@components/compassV2';
+import {Skeleton} from "moti/skeleton";
+
 
 const Qiblat = () => {
-  // use userLocation for current user location
-  // const { userLocation } = useAuth()
-  // let user = { latitude: userLocation.coords.latitude, longitude: userLocation.coords.longitude }
-  // let _Mecca = { latitude: 21.42252, longitude: 39.82621 };
-
-  // useEffect(() => {
-  //   console.log(user)
-  // }, [user])
-
   return (
-    <Page class="bg-[#EDEEC0]">
-      <View className="flex-1 bg-[#EDEEC0]">
+    <Page class="bg-gray-100">
+      <View className="flex-1 bg-gray-100">
         <Compass />
       </View>
     </Page >

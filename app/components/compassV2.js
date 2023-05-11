@@ -4,6 +4,8 @@ import * as Location from 'expo-location';
 import * as Haptics from 'expo-haptics';
 import { useAuth } from "@context/auth";
 import { useSegments } from 'expo-router';
+import {Skeleton} from "moti/skeleton";
+import Spacer from "@components/Spacer";
 
 const Mecca = {
 	latitude: 21.4225,
@@ -12,32 +14,51 @@ const Mecca = {
 
 const width = Dimensions.get("window").width;
 
-export default function App() {
+export default function CompassV2() {
 	const [location, setLocation] = useState(null);
 	const [errorMsg, setErrorMsg] = useState(null);
 	const [heading, setHeading] = useState(0);
 	const { userLocation } = useAuth()
-	const [loading, setLoading] = useState(true);
+	// const [loading, setLoading] = useState(true);
 	const segment = useSegments();
 	const [isQiblaPage, setIsQiblaPage] = useState(true);
-	let _degree;
+	const [degree, setDegree] = useState('')
 
 	useEffect(() => {
 		_getLocationAsync();
 		_watchHeading();
-		setLoading(false);
+		// setLoading(false)
 	}, [userLocation]);
 
+	useEffect(() => {
+		(async function asynccall() {
+			if (segment.includes('(qibla)')) {
+				let _degree = _getDegreeToMecca(location, heading);
+				setDegree(_degree)
+				if (!_degree){
+					return <Text>oii</Text>
+				}
+
+				// if degree is near 0 and 360, then vibrate
+				if (_degree < 2 || _degree > 358) {
+					await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+				}
+			}
+		})()
+	}, [heading])
+
 	const _getLocationAsync = async () => {
-		if (!userLocation) return
+		if (!userLocation) {
+			return
+		}
 		setLocation(userLocation);
 	};
 
-	const _watchHeading = () => {
-		Location.watchHeadingAsync((heading) => {
+	async function  _watchHeading() {
+		await Location.watchHeadingAsync((heading) => {
 			setHeading(heading.trueHeading);
 		});
-	};
+	}
 
 	const _getDirection = (degree) => {
 		const directionArr = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N'];
@@ -75,24 +96,9 @@ export default function App() {
 		return positiveDegree ? positiveDegree.toFixed(0) : null;
 	};
 
-	if (segment.includes('(qibla)')) {
-		_degree = _getDegreeToMecca(location, heading);
-		if (!_degree) return null
-
-		// if degree is near 0 and 360, then vibrate
-		if (_degree < 2 || _degree > 358) {
-			Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
-		}
-	}
-
 	return (
-		<View style={styles.container}>
-			<Text style={styles.heading}>
-				{/* True compass : {heading.toFixed(0)}° {_getDirection(heading)} */}
-				Qibla Compass
-			</Text>
-
-			{loading ? <ActivityIndicator size="small" color="gray" /> : <View style={styles.compass}>
+		<View className="flex h-full justify-center items-center">
+			{degree ? <View className="relative mb-6 flex justify-center items-center">
 				<Image
 					source={require('@assets/kompas.png')}
 					style={{
@@ -113,42 +119,19 @@ export default function App() {
 					marginLeft: -20,
 					marginTop: 15,
 					resizeMode: 'contain',
-					transform: [{ rotate: `-${_degree}deg` }],
+					transform: [{ rotate: `-${degree}deg` }],
 				}} />
-			</View>
-			}
-
-			<View className={`${_degree > 358 || _degree < 2 ? "bg-green-300" : "bg-red-400"} p-2 rounded-xl`}>
-				<Text className="text-white font-bold text-xl">
-					{_degree}°
+			</View> : (
+				<>
+					<Skeleton width={200} height={200} colorMode="light" radius="round" />
+					<Spacer height={20} />
+				</>
+			)}
+			{ degree ? <View className={`${degree > 358 || degree < 2 ? "bg-green-300" : "bg-red-400"} p-3 rounded-xl w-1/3`}>
+				<Text className="text-white font-bold text-xl text-center">
+					{degree}°
 				</Text>
-			</View>
+			</View> : <Skeleton colorMode={'light'} width={'50%'} /> }
 		</View>
 	);
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-	heading: {
-		fontSize: 24,
-		textAlign: 'center',
-		margin: 10,
-		color: 'black'
-	},
-	text: {
-		textAlign: 'center',
-		color: 'black',
-		marginBottom: 5,
-	},
-	compass: {
-		// backgroundColor: 'red',
-		position: 'relative',
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center',
-	}
-});

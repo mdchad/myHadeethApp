@@ -72,6 +72,13 @@ const _layout = () => {
         <Tabs.Screen
           name="(qibla)"
           options={{
+            headerTitle: 'Qibla',
+            headerShown: true,
+            headerTitleStyle: {
+              fontSize: 24,
+            },
+            headerStatusBarHeight: 60,
+            headerTitleAllowFontScaling: true,
             tabBarLabel: 'Qibla',
             tabBarIcon: ({ focused }) => (
               <Compass size={18} color={focused ? 'tomato' : 'gray'} />
@@ -90,6 +97,8 @@ const _layout = () => {
             tabBarIcon: ({ focused }) => (
               <Settings size={18} color={focused ? 'tomato' : 'gray'} />
             ),
+            headerStatusBarHeight: 60,
+            headerTitleAllowFontScaling: true
           }}
         />
       </Tabs>
