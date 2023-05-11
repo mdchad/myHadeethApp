@@ -17,20 +17,17 @@
 
 import {
     addDays,
-    differenceInMilliseconds,
     eachDayOfInterval,
     isBefore, isSameDay,
 } from "date-fns";
-import parse from 'date-fns/parse'
 import { format } from "date-fns-tz";
 import React, { useEffect, useState } from "react";
 import { FlatList, Image, Pressable, SafeAreaView, Text, View } from "react-native";
 import { useAuth } from "@context/auth";
 import { Coordinates, CalculationMethod, PrayerTimes } from 'adhan';
 import Page from "@components/page";
-import { ChevronLeft, ChevronRight, MapPin, Pin, Volume } from "lucide-react-native";
+import { MapPin } from "lucide-react-native";
 import { ScrollView } from "react-native";
-import { MotiView } from 'moti'
 import {Skeleton } from "moti/skeleton";
 import Spacer from "@components/Spacer";
 
@@ -87,7 +84,7 @@ export default function Prayer() {
                 let elapsed = isBefore(new Date(prayerTimesResult[time]), currentTime);
 
 
-                const formattedPrayer = format(new Date(prayerTimesResult[time]), "hh:mm a", { timeZone: "Asia/Kuala_Lumpur" });
+                const formattedPrayer = format(new Date(prayerTimesResult[time]), "h:mm a", { timeZone: "Asia/Kuala_Lumpur" });
 
                 const prayerMeta = {
                     name: prayerNames[i],
@@ -163,7 +160,7 @@ export default function Prayer() {
                                       source={prayer.icon}
                                       style={{ width: 22, height: 22 }}
                                     />
-                                    <Text className="text-sm">{prayer.name}</Text>
+                                    <Text className="ml-1 text-sm">{prayer.name}</Text>
                                 </View>
                                 <View className="w-2/3 flex flex-row justify-end items-center">
                                     <Text>{prayer.prayerTime}</Text>

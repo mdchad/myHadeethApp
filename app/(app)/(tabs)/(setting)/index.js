@@ -38,18 +38,9 @@ const tokenCache = {
 };
 
 export default function Settings() {
-    const [loading, setLoading] = useState(false);
-    const [email, setEmail] = useState("");
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [session, setSession] = useState(null);
     const router = useRouter()
 
     const { isLoaded, isSignedIn, signOut } = useAuth();
-
-    // if (!isLoaded) {
-    //     return null;
-    // }
 
     const triggerUpdate = async () => {
         try {
