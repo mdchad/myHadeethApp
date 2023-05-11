@@ -17,20 +17,19 @@
 
 import {
     addDays,
-    differenceInMilliseconds,
     eachDayOfInterval,
     isBefore, isSameDay,
 } from "date-fns";
-import parse from 'date-fns/parse'
 import { format } from "date-fns-tz";
 import React, { useEffect, useState } from "react";
 import { FlatList, Image, Pressable, SafeAreaView, Text, View } from "react-native";
 import { useAuth } from "@context/auth";
 import { Coordinates, CalculationMethod, PrayerTimes } from 'adhan';
 import Page from "@components/page";
-import { ChevronLeft, ChevronRight, MapPin, Pin, Volume } from "lucide-react-native";
-import { FlashList } from "@shopify/flash-list";
+import { MapPin } from "lucide-react-native";
 import { ScrollView } from "react-native";
+import {Skeleton } from "moti/skeleton";
+import Spacer from "@components/Spacer";
 
 const prayerNames = ["Subuh", "Syuruk", "Zohor", "Asar", "Maghrib", "Isyak"];
 const prayerIcon = [
@@ -85,7 +84,7 @@ export default function Prayer() {
                 let elapsed = isBefore(new Date(prayerTimesResult[time]), currentTime);
 
 
-                const formattedPrayer = format(new Date(prayerTimesResult[time]), "hh:mm a", { timeZone: "Asia/Kuala_Lumpur" });
+                const formattedPrayer = format(new Date(prayerTimesResult[time]), "h:mm a", { timeZone: "Asia/Kuala_Lumpur" });
 
                 const prayerMeta = {
                     name: prayerNames[i],
@@ -128,8 +127,18 @@ export default function Prayer() {
                     <View className="bg-[#b59d4b] rounded-xl w-full p-4 py-6 mb-4">
                         <Text className="text-xs font-semibold text-white">Next Prayer</Text>
                         <View className="flex flex-row justify-between mb-4">
-                            <Text className="font-bold text-white text-3xl">{nextPrayer?.name}</Text>
-                            <Text className="font-bold text-white text-3xl">{nextPrayer?.prayerTime}</Text>
+                            {nextPrayer ? (
+                              <>
+                                <Text className="font-bold text-white text-3xl">{nextPrayer?.name}</Text>
+                                <Text className="font-bold text-white text-3xl">{nextPrayer?.prayerTime}</Text>
+                              </>
+                            ) : (
+                              <>
+                                  <Spacer height={8} />
+                                  <Skeleton colorMode={'light'} width={'100%'} backgroundColor={'#b59d4b'}/>
+                              </>
+                              )
+                            }
                         </View>
                         <Text className="text-white text-md mb-1 font-bold">{formatHijri.format(calendarDate)}</Text>
                         <View className="flex flex-row">
@@ -140,26 +149,35 @@ export default function Prayer() {
 
                     <View className="bg-white rounded-xl p-4 space-y-6">
                         {prayerTimes.length
-                            ? prayerTimes.map((prayer, i) => (
-                                <View
-                                    key={i}
-                                    className={`flex flex-row justify-between ${i + 1 === prayerTimes.length && "border-b-0"
-                                        } ${i === 0 && "pt-0"}`}
-                                >
-                                    <View className="w-1/3 flex flex-row">
-                                        <Image
-                                            source={prayer.icon}
-                                            style={{ width: 22, height: 22 }}
-                                        />
-                                        <Text className="text-sm">{prayer.name}</Text>
-                                    </View>
-                                    <View className="w-2/3 flex flex-row justify-end items-center">
-                                        <Text>{prayer.prayerTime}</Text>
-                                        {/*<Volume color={'black'} strokeWidth={1}/>*/}
-                                    </View>
+                          ? prayerTimes.map((prayer, i) => (
+                            <View
+                              key={i}
+                              className={`flex flex-row justify-between ${i + 1 === prayerTimes.length && "border-b-0"
+                              } ${i === 0 && "pt-0"}`}
+                            >
+                                <View className="w-1/3 flex flex-row">
+                                    <Image
+                                      source={prayer.icon}
+                                      style={{ width: 22, height: 22 }}
+                                    />
+                                    <Text className="ml-1 text-sm">{prayer.name}</Text>
                                 </View>
-                            ))
-                            : null}
+                                <View className="w-2/3 flex flex-row justify-end items-center">
+                                    <Text>{prayer.prayerTime}</Text>
+                                    {/*<Volume color={'black'} strokeWidth={1}/>*/}
+                                </View>
+                            </View>
+                          )) : (
+                              <>
+                                  <Skeleton colorMode={'light'} width={'100%'} />
+                                  <Spacer height={20}/>
+                                  <Skeleton colorMode={'light'} width={'100%'} />
+                                  <Spacer height={20}/>
+                                  <Skeleton colorMode={'light'} width={'100%'} />
+                                  <Spacer height={20}/>
+                                  <Skeleton colorMode={'light'} width={'100%'} />
+                            </>
+                          )}
                     </View>
                     <View className="mt-6 flex flex-col items-center">
                         <Text className="text-xl font-bold">{format(calendarDate, 'LLL')}</Text>

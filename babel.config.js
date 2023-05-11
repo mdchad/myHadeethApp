@@ -13,6 +13,7 @@ module.exports = function (api) {
         "allowUndefined": true
       }],
       "@babel/plugin-proposal-export-namespace-from",
+      'react-native-reanimated/plugin',
       require.resolve("expo-router/babel"),
       ["module-resolver",
         {

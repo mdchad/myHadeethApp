@@ -38,18 +38,9 @@ const tokenCache = {
 };
 
 export default function Settings() {
-    const [loading, setLoading] = useState(false);
-    const [email, setEmail] = useState("");
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [session, setSession] = useState(null);
     const router = useRouter()
 
     const { isLoaded, isSignedIn, signOut } = useAuth();
-
-    // if (!isLoaded) {
-    //     return null;
-    // }
 
     const triggerUpdate = async () => {
         try {
@@ -102,7 +93,7 @@ export default function Settings() {
                     <SignedIn>
                         <View className="bg-white rounded-xl flex mt-4">
                             <TouchableHighlight onPress={() => handleSignOut()} className="w-full bg-white rounded-xl" underlayColor="#f9fafb">
-                                <View className="space-x-5 px-8 py-5 flex flex-row items-center w-full">
+                                <View className="space-x-5 px-4 py-5 flex flex-row items-center w-full">
                                     <LogIn color="black" size={20} />
                                     <Text className="text-[16px]">Logout</Text>
                                 </View>
