@@ -1,6 +1,7 @@
 import { useSearchParams } from "expo-router"
 import { Text, View, ScrollView } from "react-native"
 import hadeeths from '@data/hadeeths.json'
+import {TextInput} from "react-native";
 let he = require('he');
 
 const hadeethContent = () => {
@@ -10,8 +11,8 @@ const hadeethContent = () => {
     <ScrollView>
       <View className="flex items-center px-6 pt-6">
         {/*<Header user={user.full_name} /> */}
-        <Text className="text-center text-2xl mb-2 font-bold" style={{ fontFamily: 'Traditional_Arabic'}}>{chapterTitle ? JSON.parse(chapterTitle).ar : ''}</Text>
-        <Text className="text-center text-lg">{chapterTitle ? JSON.parse(chapterTitle).ms : ''}</Text>
+        <Text className="text-center text-3xl mb-2 font-semibold" style={{ fontFamily: 'Traditional_ArabicBold'}}>{chapterTitle ? JSON.parse(chapterTitle).ar : ''}</Text>
+        <Text className="text-center text-lg font-semibold">{chapterTitle ? JSON.parse(chapterTitle).ms : ''}</Text>
 
         {/* create a next and prev chapter */}
         <View className="my-12">
@@ -19,8 +20,9 @@ const hadeethContent = () => {
             if (hadeeth.chapter_id === chapterId) {
               return (
                 <View key={hadeeth.id}>
-                  <Text className="mb-4 text-right" selectable={true} style={{ fontFamily: 'ScheherazadeNew_400Regular'}}>{hadeeth.content.ar}</Text>
-                  <Text className="mb-4" selectable={true}>{hadeeth.content.ms}</Text>
+                  {/*<Text className="mb-4 text-right text-2xl" selectable={true} style={{ fontFamily: 'Traditional_ArabicRegular'}}>{hadeeth.content.ar}</Text>*/}
+                  <TextInput className="mb-4 text-right text-2xl" style={{ fontFamily: 'Traditional_ArabicRegular'}} scrollEnabled={false} readOnly multiline value={hadeeth.content.ar} />
+                  <TextInput className="mb-16 text-md overflow-hidden" scrollEnabled={false} readOnly multiline value={hadeeth.content.ms} />
                 </View>
               )
             }
