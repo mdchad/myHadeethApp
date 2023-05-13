@@ -14,6 +14,8 @@ const CLERK_PUBLISHABLE_KEY_FROM_ENV = 'pk_test_YWNjZXB0ZWQtbGVtdXItODcuY2xlcmsu
 export default function Root() {
     const [fontsLoaded] = useFonts({
         Traditional_Arabic: require("@assets/fonts/Traditional-Arabic-Regular.ttf"),
+        Traditional_ArabicRegular: require("@assets/fonts/trado.ttf"),
+        Traditional_ArabicBold: require("@assets/fonts/tradbdo.ttf"),
         ScheherazadeNew_400Regular,
         ScheherazadeNew_700Bold
     });
