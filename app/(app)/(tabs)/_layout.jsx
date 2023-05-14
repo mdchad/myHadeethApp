@@ -1,7 +1,6 @@
 import { View, Text, Image } from 'react-native'
 import React from 'react'
 import { Tabs } from 'expo-router'
-import { FontAwesome5 } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import {BookMinus, Clock, Compass, Settings} from "lucide-react-native";
 

@@ -1,21 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Alert, Image, Pressable, Text, TextInput, View, KeyboardAvoidingView, ScrollView } from "react-native";
 import { Link, useRouter } from "expo-router";
 
 import Page from "@components/page";
 import { Users } from "lucide-react-native";
-import { useOAuth } from "@clerk/clerk-expo";
+import {useOAuth, useUser} from "@clerk/clerk-expo";
 import { useSignIn } from "@clerk/clerk-expo";
 import * as WebBrowser from "expo-web-browser";
 import { useWarmUpBrowser } from "@context/useWarmUpBrowser";
 import SignInWithOAuth from "../components/SignInWithOAuth.tsx";
 import { TouchableHighlight } from "react-native";
+import {trpc} from "../../utils/trpc";
 
 WebBrowser.maybeCompleteAuthSession();
 
 export default function SignIn() {
     const router = useRouter();
     const { signIn, setActive, isLoaded } = useSignIn();
+    const utils = trpc.useContext();
+    const { mutate } = trpc.users.create.useMutation({
+        async onSuccess(data) {
+            console.log('data', data)
+            // await utils.users.all.invalidate();
+        },
+    });
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -35,6 +43,7 @@ export default function SignIn() {
             // This is an important step,
             // This indicates the user is signed in
             await setActive({ session: completeSignIn.createdSessionId });
+            mutate({ email })
 
             router.push("/(hadeeth)")
         } catch (err) {
@@ -50,7 +59,9 @@ export default function SignIn() {
 
             if (createdSessionId) {
                 await setActive({ session: createdSessionId });
-
+                mutate({
+                    email: user.primaryEmailAddress.emailAddress
+                })
                 router.push("/(hadeeth)")
             } else {
                 // Modify this code to use signIn or signUp to set this missing requirements you set in your dashboard.

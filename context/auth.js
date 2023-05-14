@@ -1,6 +1,7 @@
 import { useRouter, useSegments } from "expo-router";
 import React, {useEffect} from "react";
 import * as Location from "expo-location";
+import {View} from "react-native";
 
 const AuthContext = React.createContext(null);
 
@@ -63,8 +64,6 @@ export function Provider(props) {
   return (
     <AuthContext.Provider
       value={{
-        signIn: (user) => setAuth(user),
-        signOut: () => setAuth(null),
         user,
         setUserLocation: (location) => setUserLocation(location),
         userLocation,
@@ -72,7 +71,7 @@ export function Provider(props) {
         setUserPlace: (place) => setUserPlace(place)
       }}
     >
-      {props.children}
+        {props.children}
     </AuthContext.Provider>
   );
 }
