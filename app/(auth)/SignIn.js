@@ -17,18 +17,32 @@ WebBrowser.maybeCompleteAuthSession();
 export default function SignIn() {
     const router = useRouter();
     const { signIn, setActive, isLoaded } = useSignIn();
-    const utils = trpc.useContext();
+    const { user } = useUser()
+
+
     const { mutate } = trpc.users.create.useMutation({
         async onSuccess(data) {
             console.log('data', data)
             // await utils.users.all.invalidate();
         },
+
+        async onError() {
+            console.log('error something wrong with TRPC')
+        }
     });
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     useWarmUpBrowser();
+
+    useEffect(() =>{
+        if (user) {
+            mutate({
+                email: user.primaryEmailAddress.emailAddress
+            })
+        }
+    }, [user])
 
     const onSignInPress = async () => {
         if (!isLoaded) {
@@ -59,9 +73,6 @@ export default function SignIn() {
 
             if (createdSessionId) {
                 await setActive({ session: createdSessionId });
-                mutate({
-                    email: user.primaryEmailAddress.emailAddress
-                })
                 router.push("/(hadeeth)")
             } else {
                 // Modify this code to use signIn or signUp to set this missing requirements you set in your dashboard.

@@ -20,6 +20,7 @@ import { useAuth } from "@clerk/clerk-expo";
 export const trpc = createTRPCReact();
 
 const getBaseUrl = () => {
+  console.log(process.env)
   /**
    * Gets the IP address of your host-machine. If it cannot automatically find it,
    * you'll have to manually set it. NOTE: Port 3000 should work for most but confirm
@@ -28,7 +29,7 @@ const getBaseUrl = () => {
   // const localhost = Constants.manifest?.debuggerHost?.split(":")[0];
   // if (!localhost)
   //   throw thrownew Error("failed to get localhost, configure it manually");
-  return `http://localhost:3000`;
+  return process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://myhadeeth-theta.vercel.app/';
 };
 
 export const TRPCProvider = ({ children }) => {
