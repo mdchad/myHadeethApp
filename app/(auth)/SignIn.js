@@ -57,7 +57,6 @@ export default function SignIn() {
             // This is an important step,
             // This indicates the user is signed in
             await setActive({ session: completeSignIn.createdSessionId });
-            mutate({ email })
 
             router.push("/(hadeeth)")
         } catch (err) {
