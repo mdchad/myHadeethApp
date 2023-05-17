@@ -8,9 +8,9 @@ import {useOAuth, useUser} from "@clerk/clerk-expo";
 import { useSignIn } from "@clerk/clerk-expo";
 import * as WebBrowser from "expo-web-browser";
 import { useWarmUpBrowser } from "@context/useWarmUpBrowser";
-import SignInWithOAuth from "../components/SignInWithOAuth.tsx";
+import SignInWithOAuth from "../../components/SignInWithOAuth.tsx.js";
 import { TouchableHighlight } from "react-native";
-import {trpc} from "../../utils/trpc";
+import {trpc} from "../../../utils/trpc";
 
 WebBrowser.maybeCompleteAuthSession();
 
