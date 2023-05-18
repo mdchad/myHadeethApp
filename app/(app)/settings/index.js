@@ -71,41 +71,41 @@ export default function Settings() {
         <Page class="bg-gray-100">
             <ScrollView className="py-4">
                 <View className="px-4 bg-gray-100 flex sm:mx-auto sm:w-full sm:max-w-md w-full h-full">
-                    <View className="bg-white py-2 px-4 rounded-xl flex">
-                        <SignedIn>
-                            <TouchableHighlight onPress={onPressProfile} className="w-full bg-white" underlayColor="#f9fafb">
-                                <View className="space-x-3 py-5 w-full flex flex-row items-center border-b border-gray-300">
-                                    <User color={'black'} size={20} />
-                                    <Text className="text-[16px]">Profile</Text>
-                                </View>
-                            </TouchableHighlight>
-                        </SignedIn>
-                        <View className="space-x-3 py-5 w-full flex flex-row items-center border-b border-gray-300">
+                    <View className="bg-white rounded-xl flex">
+                        {/*<SignedIn>*/}
+                        {/*    <TouchableHighlight onPress={onPressProfile} className="bg-white rounded-t-xl" underlayColor="#f9fafb">*/}
+                        {/*        <View className="mx-5 space-x-3 py-5 flex flex-row items-center border-b border-gray-300">*/}
+                        {/*            <User color={'black'} size={20} />*/}
+                        {/*            <Text className="text-[16px]">Profile</Text>*/}
+                        {/*        </View>*/}
+                        {/*    </TouchableHighlight>*/}
+                        {/*</SignedIn>*/}
+                        <View className="mx-5 space-x-3 py-5 flex flex-row items-center border-b border-gray-300">
                             <MessageSquare size={20} color={'black'} />
                             <Text className="text-[16px]">Help and Feedback</Text>
                         </View>
-                        <View className="space-x-3 py-5 w-full flex flex-row items-center border-b border-gray-300">
+                        <View className="mx-5 space-x-3 py-5 flex flex-row items-center border-b border-gray-300">
                             <Info size={20} color={'black'} />
                             <Text className="text-[16px]">About</Text>
                         </View>
-                        <TouchableHighlight onPress={triggerUpdate} className="w-full bg-white py-5" underlayColor="#f9fafb">
-                            <View className="space-x-3 w-full flex flex-row items-center">
+                        <TouchableHighlight onPress={triggerUpdate} className="rounded-b-xl bg-white" underlayColor="#f9fafb">
+                            <View className="mx-5 py-5 space-x-3 flex flex-row items-center">
                                 <Smartphone color={'black'} size={20} />
                                 <Text className="text-[16px]">Update App</Text>
                             </View>
                         </TouchableHighlight>
                     </View>
 
-                    <SignedIn>
-                        <View className="bg-white rounded-xl flex mt-4">
-                            <TouchableHighlight onPress={() => handleSignOut()} className="w-full bg-white rounded-xl" underlayColor="#f9fafb">
-                                <View className="space-x-3 px-4 py-5 flex flex-row items-center w-full">
-                                    <LogIn color="black" size={20} />
-                                    <Text className="text-[16px]">Logout</Text>
-                                </View>
-                            </TouchableHighlight>
-                        </View>
-                    </SignedIn>
+                    {/*<SignedIn>*/}
+                    {/*    <View className="bg-white rounded-xl flex mt-4">*/}
+                    {/*        <TouchableHighlight onPress={() => handleSignOut()} className="w-full bg-white rounded-xl" underlayColor="#f9fafb">*/}
+                    {/*            <View className="space-x-3 px-5 py-5 flex flex-row items-center w-full">*/}
+                    {/*                <LogIn color="black" size={20} />*/}
+                    {/*                <Text className="text-[16px]">Logout</Text>*/}
+                    {/*            </View>*/}
+                    {/*        </TouchableHighlight>*/}
+                    {/*    </View>*/}
+                    {/*</SignedIn>*/}
 
                     <SignedOut>
                         <View className="bg-white rounded-xl flex mt-4">

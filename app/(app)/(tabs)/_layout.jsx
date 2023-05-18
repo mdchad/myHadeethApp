@@ -2,7 +2,7 @@ import { View, Text, Image } from 'react-native'
 import React from 'react'
 import { Tabs } from 'expo-router'
 import { StatusBar } from 'expo-status-bar';
-import {BookMinus, Clock, Compass, Settings} from "lucide-react-native";
+import {BookMinus, Clock, Compass, User} from "lucide-react-native";
 
 const ImageLink = require('@assets/hadeeth-logo.png')
 
@@ -85,16 +85,12 @@ const _layout = () => {
           }}
         />
         <Tabs.Screen
-          name="(setting)"
+          name="(profile)"
           options={{
-            headerTitle: 'Settings',
-            headerTitleStyle: {
-              fontSize: 24,
-            },
-            headerShown: true,
-            tabBarLabel: 'Settings',
+            headerShown: false,
+            tabBarLabel: 'Profile',
             tabBarIcon: ({ focused }) => (
-              <Settings size={18} color={focused ? 'tomato' : 'gray'} />
+              <User size={18} color={focused ? 'tomato' : 'gray'} />
             ),
             headerStatusBarHeight: 60,
             headerTitleAllowFontScaling: true
