@@ -76,7 +76,6 @@ const _layout = () => {
             headerTitleStyle: {
               fontSize: 24,
             },
-            headerStatusBarHeight: 60,
             headerTitleAllowFontScaling: true,
             tabBarLabel: 'Qibla',
             tabBarIcon: ({ focused }) => (

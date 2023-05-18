@@ -16,7 +16,7 @@ const _layout = () => {
       screenOptions={{
         headerShown: true,
         headerTitle: 'Settings',
-        headerLeft: () => <Pressable onPress={() => router.back()}><ArrowLeft size={20}/></Pressable>,
+        headerLeft: () => <Pressable onPress={() => router.back()}><ArrowLeft size={25} color={'black'}/></Pressable>,
         headerTitleAllowFontScaling: true,
         headerTitleStyle: {
           fontSize: 24,

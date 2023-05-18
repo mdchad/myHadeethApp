@@ -5,7 +5,7 @@ import {
   ScrollView,
   Pressable,
   Image,
-  TouchableHighlight, Share
+  TouchableHighlight, Share, Alert
 } from "react-native";
 import { Link } from 'expo-router'
 
@@ -45,19 +45,19 @@ export default function Profile() {
           {/*    <ArrowLeft color="black" size={25}/>*/}
           {/*  </Pressable>*/}
           {/*</Link>*/}
-          <View className="px-6 py-6">
-            <View className="gap-6 items-center flex flex-row">
+          <View className="py-6">
+            <View className="px-6 gap-6 items-center flex flex-row">
               <Image class source={{ uri: user.profileImageUrl }} style={{ width: 80, height: 80, borderRadius: 100 }} />
               <View className="flex">
                 <Text className="font-semibold text-2xl mb-2 text-gray-800">{user.fullName}</Text>
                 <Text className="text-gray-500">{user.primaryEmailAddress.emailAddress}</Text>
               </View>
             </View>
-            <View className="border-b border-b-gray-300 mt-8"></View>
+            <View className="border-b border-b-gray-300 mx-6 mt-8"></View>
             <View className="mt-4">
               <Link href="/saved" asChild>
                 <TouchableHighlight underlayColor="#f9fafb">
-                  <View className="space-x-4 flex flex-row items-center py-2 my-1">
+                  <View className="px-6 space-x-4 flex flex-row items-center py-2 my-1">
                     <Bookmark color="black" size={20}/>
                     <Text className="text-lg">Saved</Text>
                   </View>
@@ -65,21 +65,21 @@ export default function Profile() {
               </Link>
               <Link href="/notes" asChild>
                 <TouchableHighlight underlayColor="#f9fafb">
-                  <View className="space-x-4 flex flex-row items-center py-2 my-1">
+                  <View className="px-6 space-x-4 flex flex-row items-center py-2 my-1">
                     <FileText color="black" size={20}/>
                     <Text className="text-lg">Notes</Text>
                   </View>
                 </TouchableHighlight>
               </Link>
               <TouchableHighlight underlayColor="#f9fafb" onPress={onShare}>
-                <View className="space-x-4 flex flex-row items-center py-2 my-1">
+                <View className="px-6 space-x-4 flex flex-row items-center py-2 my-1">
                   <Users color="black" size={20}/>
                   <Text className="text-lg">Tell your friend</Text>
                 </View>
               </TouchableHighlight>
               <Link href="/settings" asChild>
                 <TouchableHighlight underlayColor="#f9fafb">
-                  <View className="space-x-4 flex flex-row items-center py-2 my-1">
+                  <View className="px-6 space-x-4 flex flex-row items-center py-2 my-1">
                     <Settings color="black" size={20}/>
                     <Text className="text-lg">Settings</Text>
                   </View>
@@ -87,7 +87,7 @@ export default function Profile() {
               </Link>
               <Link href="/notes" asChild>
                 <TouchableHighlight underlayColor="#f9fafb">
-                  <View className="space-x-4 flex flex-row items-center py-2 my-1">
+                  <View className="px-6 space-x-4 flex flex-row items-center py-2 my-1">
                     <LogOut color="red" size={20}/>
                     <Text className="text-lg text-red-600">Logout</Text>
                   </View>
