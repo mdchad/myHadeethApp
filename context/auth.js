@@ -2,7 +2,7 @@ import { useRouter, useSegments } from "expo-router";
 import React, {useEffect} from "react";
 import * as Location from "expo-location";
 import {View} from "react-native";
-import {useUser} from "@clerk/clerk-expo";
+import {useUser, useAuth as userAuth } from "@clerk/clerk-expo";
 
 const AuthContext = React.createContext(null);
 
@@ -35,6 +35,7 @@ export function useAuth() {
 
 export function Provider(props) {
   const { user } = useUser()
+  const { signOut } = userAuth();
   const [userLocation, setUserLocation] = React.useState(null);
   const [userPlace, setUserPlace] = React.useState(null);
 
@@ -69,6 +70,7 @@ export function Provider(props) {
         setUserLocation: (location) => setUserLocation(location),
         userLocation,
         userPlace,
+        signOut,
         setUserPlace: (place) => setUserPlace(place)
       }}
     >

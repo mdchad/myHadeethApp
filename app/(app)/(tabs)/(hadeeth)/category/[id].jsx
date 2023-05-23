@@ -1,8 +1,10 @@
 import { Link, useRouter, useSearchParams } from "expo-router"
-import { FlatList, Image, Text, View } from "react-native"
+import { FlatList, ScrollView, Text, View } from "react-native"
 import chapters from '@data/chapters.json'
 import { ChevronRight } from "lucide-react-native";
 import { TouchableHighlight } from "react-native-gesture-handler";
+import Item from "../../../../components/accordion";
+import Accordion from "../../../../components/accordion";
 let he = require('he');
 
 const hadeethCategory = () => {
@@ -49,39 +51,65 @@ const hadeethCategory = () => {
     }
 
     return (
-        <View className="flex-1 flex bg-white px-6 pt-6">
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <View className="flex-1 space-y-6 flex bg-gray-100 px-6 pt-6">
             <Text className="text-3xl font-bold text-center">{title}</Text>
-            <View className="text-center flex space-y-3">
-                <FlatList
-                    className="h-full"
-                    data={groupedArray.filter(chapter => chapter.book_id === id)}
-                    renderItem={({ item, index }) => {
+            <View className="text-center flex">
+                {groupedArray.map((item, key) => {
+                    if (item.book_id === id) {
                         return (
-                            <View className="flex" key={item.category_id}>
-                                <View className="">
-                                    <Text className="my-4 text-gray-800 font-semibold">{item.category_title.ms}</Text>
-                                </View>
-                                {
-                                    item.chapters.map(chapter => {
-                                        return (
-                                            <TouchableHighlight key={chapter.id} onPress={() => onPressHadith(chapter)} underlayColor="#f9fafb" className="rounded-xl w-full">
-                                                <View key={chapter.id} className="px-4 py-4 border-t border-t-gray-200">
-                                                    <View className="flex flex-row justify-between items-center w-full">
-                                                        <Text className="w-[90%]">{he.decode(chapter.title.ms)}</Text>
-                                                        <ChevronRight color="black" size={16} />
-                                                    </View>
+                          <Accordion key={key} title={item.category_title.ms}>
+                              {item.chapters.map(chapter => {
+                                      return (
+                                        <TouchableHighlight key={chapter.id} onPress={() => onPressHadith(chapter)} underlayColor="#f9fafb" className="rounded-xl w-full">
+                                            <View key={chapter.id} className="px-4 py-4">
+                                                <View className="flex flex-row justify-between items-center w-full">
+                                                    <Text className="w-[90%]">{he.decode(chapter.title.ms)}</Text>
                                                 </View>
-                                            </TouchableHighlight>
-                                        )
-                                    })
-                                }
-                            </View>
+                                            </View>
+                                        </TouchableHighlight>
+                                      )
+                                  })
+                              }
+                          </Accordion>
                         )
-                    }}
-                    keyExtractor={item => item.category_id}
-                />
+                    }
+                })}
             </View>
+            {/*    <FlatList*/}
+            {/*        className="h-full"*/}
+            {/*        data={groupedArray.filter(chapter => chapter.book_id === id)}*/}
+            {/*        renderItem={({ item, index }) => {*/}
+            {/*            return (*/}
+            {/*              <Item index={index} title={item.category_title.ms}>*/}
+            {/*                  {*/}
+            {/*                      item.chapters.map(chapter => {*/}
+            {/*                          return (*/}
+            {/*                            <TouchableHighlight key={chapter.id} onPress={() => onPressHadith(chapter)} underlayColor="#f9fafb" className="rounded-xl w-full">*/}
+            {/*                                <View key={chapter.id} className="px-4 py-4 border-t border-t-gray-200">*/}
+            {/*                                    <View className="flex flex-row justify-between items-center w-full">*/}
+            {/*                                        <Text className="w-[90%]">{he.decode(chapter.title.ms)}</Text>*/}
+            {/*                                        <ChevronRight color="black" size={16} />*/}
+            {/*                                    </View>*/}
+            {/*                                </View>*/}
+            {/*                            </TouchableHighlight>*/}
+            {/*                          )*/}
+            {/*                      })*/}
+            {/*                  }*/}
+            {/*              </Item>*/}
+            {/*                // <View className="flex" key={item.category_id}>*/}
+            {/*                //     <View className="">*/}
+            {/*                //         <Text className="my-4 text-gray-800 font-semibold">{item.category_title.ms}</Text>*/}
+            {/*                //     </View>*/}
+
+            {/*                // </View>*/}
+            {/*            )*/}
+            {/*        }}*/}
+            {/*        keyExtractor={item => item.category_id}*/}
+            {/*    />*/}
+            {/*</View>*/}
         </View>
+      </ScrollView>
     )
 }
 
