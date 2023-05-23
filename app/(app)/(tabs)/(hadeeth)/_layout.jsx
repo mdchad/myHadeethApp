@@ -1,15 +1,14 @@
 import { Slot, Stack, Tabs } from "expo-router";
-import { Keyboard, Text, TouchableWithoutFeedback, View } from "react-native";
 import Page from '@components/page'
-import { useUser } from "@clerk/clerk-expo";
 import Header from '@components/header';
+import { useAuth } from '@context/auth';
 
 export const unstable_settings = {
     initialRouteName: "index"
 }
 
 export default function Layout() {
-    const { user } = useUser();
+    const { user } = useAuth();
 
     return (
         <Page class="bg-[#EDEEC0]">

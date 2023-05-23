@@ -9,20 +9,20 @@ const hadeethContent = () => {
 
   return (
     <ScrollView>
-      <View className="flex items-center px-6 pt-6">
+      <View className="bg-gray-100 flex items-center px-6 pt-6">
         {/*<Header user={user.full_name} /> */}
         <Text className="text-center text-3xl mb-2 font-semibold" style={{ fontFamily: 'Traditional_ArabicBold'}}>{chapterTitle ? JSON.parse(chapterTitle).ar : ''}</Text>
         <Text className="text-center text-lg font-semibold">{chapterTitle ? JSON.parse(chapterTitle).ms : ''}</Text>
 
         {/* create a next and prev chapter */}
-        <View className="my-12">
+        <View className="mt-4 space-y-6">
           {hadeeths?.map(hadeeth => {
             if (hadeeth.chapter_id === chapterId) {
               return (
-                <View key={hadeeth.id}>
+                <View className="p-4 rounded-xl bg-white" key={hadeeth.id}>
                   {/*<Text className="mb-4 text-right text-2xl" selectable={true} style={{ fontFamily: 'Traditional_ArabicRegular'}}>{hadeeth.content.ar}</Text>*/}
-                  <TextInput className="mb-4 text-right text-2xl" style={{ fontFamily: 'Traditional_ArabicRegular'}} scrollEnabled={false} readOnly multiline value={hadeeth.content.ar} />
-                  <TextInput className="mb-16 text-md overflow-hidden" scrollEnabled={false} readOnly multiline value={hadeeth.content.ms} />
+                  <TextInput className="mb-4 text-gray-800 text-right text-3xl" style={{ fontFamily: 'Traditional_ArabicRegular'}} scrollEnabled={false} readOnly multiline value={hadeeth.content.ar} />
+                  <TextInput className="mb-16 text-gray-800 text-xl overflow-hidden" scrollEnabled={false} readOnly multiline value={hadeeth.content.ms} />
                 </View>
               )
             }

@@ -1,5 +1,4 @@
 import { Slot, Stack, Tabs } from "expo-router";
-import { Keyboard, Text, TouchableWithoutFeedback, View } from "react-native";
 
 export default function Layout() {
   return (

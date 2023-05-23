@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Alert, Image, Pressable, Text, TextInput, View, KeyboardAvoidingView, ScrollView } from "react-native";
 import { Link, useRouter } from "expo-router";
 
@@ -8,19 +8,42 @@ import { useOAuth } from "@clerk/clerk-expo";
 import { useSignIn } from "@clerk/clerk-expo";
 import * as WebBrowser from "expo-web-browser";
 import { useWarmUpBrowser } from "@context/useWarmUpBrowser";
-import SignInWithOAuth from "../components/SignInWithOAuth.tsx";
+import SignInWithOAuth from "../../components/SignInWithOAuth.tsx.js";
 import { TouchableHighlight } from "react-native";
+import {trpc} from "../../../utils/trpc";
+import {useAuth} from "@context/auth";
 
 WebBrowser.maybeCompleteAuthSession();
 
 export default function SignIn() {
     const router = useRouter();
     const { signIn, setActive, isLoaded } = useSignIn();
+    const { user } = useAuth()
+
+
+    const { mutate } = trpc.users.create.useMutation({
+        async onSuccess(data) {
+            console.log('data', data)
+            // await utils.users.all.invalidate();
+        },
+
+        async onError() {
+            console.log('error something wrong with TRPC')
+        }
+    });
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     useWarmUpBrowser();
+
+    useEffect(() =>{
+        if (user) {
+            mutate({
+                email: user.primaryEmailAddress.emailAddress
+            })
+        }
+    }, [user])
 
     const onSignInPress = async () => {
         if (!isLoaded) {
@@ -50,7 +73,6 @@ export default function SignIn() {
 
             if (createdSessionId) {
                 await setActive({ session: createdSessionId });
-
                 router.push("/(hadeeth)")
             } else {
                 // Modify this code to use signIn or signUp to set this missing requirements you set in your dashboard.
