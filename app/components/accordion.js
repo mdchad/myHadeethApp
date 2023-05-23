@@ -31,28 +31,3 @@ export default function Accordion({ title, children, key }) {
     </View>
   );
 }
-
-const itemStyles = StyleSheet.create({
-  question: {
-    padding: 16,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  answer: {
-    padding: 16,
-    marginTop: -16
-  },
-  answerText: {
-    color: '#A09FA5',
-    lineHeight: 20
-  },
-  container: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#232326',
-  },
-  questionText: {
-    color: '#EDEDEE',
-    fontWeight: 'bold',
-  },
-});
