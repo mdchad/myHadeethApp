@@ -1,6 +1,5 @@
-import { Slot, Stack, Tabs } from "expo-router";
+import {Slot, Stack, Tabs, useSearchParams} from "expo-router";
 import Page from '@components/page'
-import Header from '@components/header';
 import { useAuth } from '@context/auth';
 
 export const unstable_settings = {
@@ -8,11 +7,10 @@ export const unstable_settings = {
 }
 
 export default function Layout() {
-    const { user } = useAuth();
+  const { title } = useSearchParams();
 
-    return (
+  return (
         <Page class="bg-[#EDEEC0]">
-            <Header user={user} />
             <Stack screenOptions={{ headerShown: false }}>
                 <Stack.Screen
                     name="index"
@@ -24,8 +22,12 @@ export default function Layout() {
                 <Stack.Screen
                     name="category"
                     options={{
+                        headerTitle: title ? title : '',
                         // Hide the header for all other routes.
-                        headerShown: false,
+                        headerShown: true,
+                      headerTitleStyle: {
+                          fontSize: 24
+                      }
                     }}
                 />
 
@@ -33,7 +35,8 @@ export default function Layout() {
                     name="content"
                     options={{
                         // Hide the header for all other routes.
-                        headerShown: false,
+                        headerTitle: '',
+                        headerShown: true,
                     }}
                 />
 
@@ -41,7 +44,7 @@ export default function Layout() {
                     name="chapter"
                     options={{
                         // Hide the header for all other routes.
-                        headerShown: false,
+                      headerShown: false,
                     }}
                 />
 

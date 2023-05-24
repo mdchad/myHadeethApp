@@ -1,15 +1,14 @@
-import React from 'react';
 import { View, Pressable, StyleSheet, Text } from 'react-native';
 import { AnimateHeight } from './animate-height';
 import { MotiView } from 'moti';
-import Constants from 'expo-constants';
 import {ChevronRight} from "lucide-react-native";
+import {useReducer} from "react";
 
-export default function Accordion({ title, children, key }) {
-  const [show, toggle] = React.useReducer((open) => !open, false);
+export default function Accordion({ title, children, itemKey }) {
+  const [show, toggle] = useReducer((open) => !open, false);
 
   return (
-    <View key={key} className="bg-white rounded-xl mb-2">
+    <View key={itemKey} className="bg-white rounded-xl mb-2">
       <Pressable onPress={toggle} className="flex flex-row p-4 items-center justify-between">
         <Text selectable={false} className="text-lg font-semibold text-gray-800">
           {title}

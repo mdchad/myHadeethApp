@@ -44,7 +44,6 @@ const hadeethCategory = () => {
         return router.push({
             pathname: `/(hadeeth)/content/${chapter.id}`,
             params: {
-                chapterTitle: JSON.stringify(chapter.title),
                 chapterId: chapter.id,
             }
         })
@@ -53,12 +52,12 @@ const hadeethCategory = () => {
     return (
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <View className="flex-1 space-y-6 flex bg-gray-100 px-6 pt-6">
-            <Text className="text-3xl font-bold text-center">{title}</Text>
+            {/*<Text className="text-3xl font-bold text-center">{title}</Text>*/}
             <View className="text-center flex">
                 {groupedArray.map((item, key) => {
                     if (item.book_id === id) {
                         return (
-                          <Accordion key={key} title={item.category_title.ms}>
+                          <Accordion key={key} itemKey={key} title={item.category_title.ms}>
                               {item.chapters.map(chapter => {
                                       return (
                                         <TouchableHighlight key={chapter.id} onPress={() => onPressHadith(chapter)} underlayColor="#f9fafb" className="rounded-xl w-full">

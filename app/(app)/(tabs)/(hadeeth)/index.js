@@ -4,8 +4,11 @@ import {useRouter } from 'expo-router'
 import books from '@data/books.json'
 import initials from "initialism";
 import {TouchableHighlight} from "react-native-gesture-handler";
+import Header from '@components/header';
+import {useAuth} from "../../../../context/auth";
 
 const Hadeeth = () => {
+    const { user } = useAuth();
     const router = useRouter()
     const { fontScale } = useWindowDimensions();
     const styles = makeStyles(fontScale);
@@ -15,20 +18,22 @@ const Hadeeth = () => {
     }
 
     const Item = ({ title, id }) => (
-      <View className="bg-white mb-4 rounded-xl">
-          <TouchableHighlight onPress={() => onTriggerPress(id, title)} underlayColor="#f9fafb" className="rounded-xl w-full">
-              <View className="space-x-3 flex flex-row font-xl p-3 items-center">
-                  <View className="bg-[#dad873] rounded-xl w-12 h-12 flex items-center justify-center">
-                      <Text className="text-white font-bold">{initials(title, 2)}</Text>
+          <View className="bg-white mb-4 rounded-xl">
+              <TouchableHighlight onPress={() => onTriggerPress(id, title)} underlayColor="#f9fafb" className="rounded-xl w-full">
+                  <View className="space-x-3 flex flex-row font-xl p-3 items-center">
+                      <View className="bg-[#dad873] rounded-xl w-12 h-12 flex items-center justify-center">
+                          <Text className="text-white font-bold">{initials(title, 2)}</Text>
+                      </View>
+                      <Text style={styles.title}>{title}</Text>
                   </View>
-                  <Text style={styles.title}>{title}</Text>
-              </View>
-          </TouchableHighlight >
-      </View>
+              </TouchableHighlight >
+          </View>
     );
 
     return (
-      <View className="flex-1 bg-gray-100">
+      <>
+        <Header user={user}></Header>
+        <View className="flex-1 bg-gray-100">
           <View className="mb-4">
               <FlatList
                 data={books}
@@ -37,7 +42,8 @@ const Hadeeth = () => {
                 className="p-4 h-full"
               />
           </View>
-      </View>
+        </View>
+      </>
     );
 };
 
