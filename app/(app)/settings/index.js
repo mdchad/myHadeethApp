@@ -107,16 +107,16 @@ export default function Settings() {
                     {/*    </View>*/}
                     {/*</SignedIn>*/}
 
-                    <SignedOut>
-                        <View className="bg-white rounded-xl flex mt-4">
-                            <TouchableHighlight onPress={() => router.push('/SignIn')} className="w-full bg-white rounded-xl" underlayColor="#f9fafb">
-                                <View className="space-x-3 px-4 py-5 flex flex-row items-center w-full">
-                                    <LogIn color="black" size={20} />
-                                    <Text className="text-[16px]">Login</Text>
-                                </View>
-                            </TouchableHighlight>
-                        </View>
-                    </SignedOut>
+                    {/*<SignedOut>*/}
+                    {/*    <View className="bg-white rounded-xl flex mt-4">*/}
+                    {/*        <TouchableHighlight onPress={() => router.push('/SignIn')} className="w-full bg-white rounded-xl" underlayColor="#f9fafb">*/}
+                    {/*            <View className="space-x-3 px-4 py-5 flex flex-row items-center w-full">*/}
+                    {/*                <LogIn color="black" size={20} />*/}
+                    {/*                <Text className="text-[16px]">Login</Text>*/}
+                    {/*            </View>*/}
+                    {/*        </TouchableHighlight>*/}
+                    {/*    </View>*/}
+                    {/*</SignedOut>*/}
                 </View>
             </ScrollView>
         </Page>

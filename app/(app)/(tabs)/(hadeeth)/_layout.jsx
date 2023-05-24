@@ -1,4 +1,4 @@
-import {Slot, Stack, Tabs, useSearchParams} from "expo-router";
+import {Slot, Stack, Tabs, useRouter, useSearchParams, useSegments} from "expo-router";
 import Page from '@components/page'
 import { useAuth } from '@context/auth';
 
@@ -8,9 +8,14 @@ export const unstable_settings = {
 
 export default function Layout() {
   const { title } = useSearchParams();
+  const segment = useSegments();
+
+  const notMainPage = segment.includes('content') || segment.includes('category')
+  const topBar = notMainPage ? 'bg-white' : 'bg-[#EDEEC0]'
+  const router = useRouter()
 
   return (
-        <Page class="bg-[#EDEEC0]">
+        <Page class={topBar}>
             <Stack screenOptions={{ headerShown: false }}>
                 <Stack.Screen
                     name="index"
