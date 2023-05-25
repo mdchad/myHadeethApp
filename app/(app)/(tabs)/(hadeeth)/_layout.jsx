@@ -1,6 +1,5 @@
-import { Slot, Stack, Tabs } from "expo-router";
+import {Slot, Stack, Tabs, useRouter, useSearchParams, useSegments} from "expo-router";
 import Page from '@components/page'
-import Header from '@components/header';
 import { useAuth } from '@context/auth';
 
 export const unstable_settings = {
@@ -8,11 +7,15 @@ export const unstable_settings = {
 }
 
 export default function Layout() {
-    const { user } = useAuth();
+  const { title } = useSearchParams();
+  const segment = useSegments();
 
-    return (
-        <Page class="bg-[#EDEEC0]">
-            <Header user={user} />
+  const notMainPage = segment.includes('content') || segment.includes('category')
+  const topBar = notMainPage ? 'bg-white' : 'bg-[#EDEEC0]'
+  const router = useRouter()
+
+  return (
+        <Page class={topBar}>
             <Stack screenOptions={{ headerShown: false }}>
                 <Stack.Screen
                     name="index"
@@ -24,8 +27,12 @@ export default function Layout() {
                 <Stack.Screen
                     name="category"
                     options={{
+                        headerTitle: title ? title : '',
                         // Hide the header for all other routes.
-                        headerShown: false,
+                        headerShown: true,
+                      headerTitleStyle: {
+                          fontSize: 24
+                      }
                     }}
                 />
 
@@ -33,7 +40,8 @@ export default function Layout() {
                     name="content"
                     options={{
                         // Hide the header for all other routes.
-                        headerShown: false,
+                        headerTitle: '',
+                        headerShown: true,
                     }}
                 />
 
@@ -41,7 +49,7 @@ export default function Layout() {
                     name="chapter"
                     options={{
                         // Hide the header for all other routes.
-                        headerShown: false,
+                      headerShown: false,
                     }}
                 />
 
