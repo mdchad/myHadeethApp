@@ -64,8 +64,6 @@ export default function Settings() {
         showMode('time');
     };
 
-    const { isLoaded, isSignedIn, signOut } = useAuth();
-
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
     const triggerUpdate = async () => {
@@ -81,12 +79,6 @@ export default function Settings() {
             // handle or log error
             console.log(e.message)
         }
-    }
-
-    const handleSignOut = async () => {
-        await signOut();
-
-        router.push('/(hadeeth)')
     }
 
     return (
@@ -107,47 +99,29 @@ export default function Settings() {
                               value={isEnabled}
                             />
                         </View>
-                        <AnimatePresence>
-                            {
-                                isEnabled && (
-                                    <MotiView
-                                      from={{
-                                          opacity: 0,
-                                          scale: 0.9,
-                                      }}
-                                      animate={{
-                                          opacity: 1,
-                                          scale: 1,
-                                      }}
-                                      exit={{
-                                          opacity: 0,
-                                          scale: 0.9,
-                                      }}
-                                      exitTransition={{
-                                          type: 'timing',
-                                          duration: 100,
-                                      }}
-                                      className="bg-white rounded-xl space-x-3 px-4 py-2 flex flex-row items-center justify-between w-full">
-                                        <View className="w-full space-x-3 justify-between items-center flex flex-row">
-                                            <View className="space-x-3 items-center flex flex-row">
-                                                <Hourglass color="black" size={20} />
-                                                <Text className="text-lg">Daily hadith time</Text>
-                                            </View>
-                                            <View>
-                                                <DateTimePicker
-                                                  testID="dateTimePicker"
-                                                  value={date}
-                                                  mode={mode}
-                                                  is24Hour={true}
-                                                />
-                                            </View>
+                        {
+                            isEnabled && (
+                                <View
+                                  className="bg-white rounded-xl space-x-3 px-4 py-2 flex flex-row items-center justify-between w-full">
+                                    <View className="w-full space-x-3 justify-between items-center flex flex-row">
+                                        <View className="space-x-3 items-center flex flex-row">
+                                            <Hourglass color="black" size={20} />
+                                            <Text className="text-lg">Daily hadith time</Text>
                                         </View>
-                                    </MotiView>
-                              )
-                            }
-                        </AnimatePresence>
+                                        {/*<View>*/}
+                                        {/*    <DateTimePicker*/}
+                                        {/*      testID="dateTimePicker"*/}
+                                        {/*      value={date}*/}
+                                        {/*      mode={mode}*/}
+                                        {/*      is24Hour={true}*/}
+                                        {/*    />*/}
+                                        {/*</View>*/}
+                                    </View>
+                                </View>
+                          )
+                        }
                     </View>
-                    <Text className="ml-5 mb-4 mt-2 text-gray-600">Show hadith in notification daily</Text>
+                    <Text className="ml-5 mb-4 mt-2 text-gray-600">Show hadith notification daily</Text>
                     <View className="bg-white rounded-xl flex">
 
                         <View className="mx-5 space-x-3 py-3 flex flex-row items-center border-b border-gray-300">
@@ -165,28 +139,6 @@ export default function Settings() {
                             </View>
                         </TouchableHighlight>
                     </View>
-
-                    {/*<SignedIn>*/}
-                    {/*    <View className="bg-white rounded-xl flex mt-4">*/}
-                    {/*        <TouchableHighlight onPress={() => handleSignOut()} className="w-full bg-white rounded-xl" underlayColor="#f9fafb">*/}
-                    {/*            <View className="space-x-3 px-5 py-5 flex flex-row items-center w-full">*/}
-                    {/*                <LogIn color="black" size={20} />*/}
-                    {/*                <Text className="text-[16px]">Logout</Text>*/}
-                    {/*            </View>*/}
-                    {/*        </TouchableHighlight>*/}
-                    {/*    </View>*/}
-                    {/*</SignedIn>*/}
-
-                    {/*<SignedOut>*/}
-                    {/*    <View className="bg-white rounded-xl flex mt-4">*/}
-                    {/*        <TouchableHighlight onPress={() => router.push('/SignIn')} className="w-full bg-white rounded-xl" underlayColor="#f9fafb">*/}
-                    {/*            <View className="space-x-3 px-4 py-5 flex flex-row items-center w-full">*/}
-                    {/*                <LogIn color="black" size={20} />*/}
-                    {/*                <Text className="text-[16px]">Login</Text>*/}
-                    {/*            </View>*/}
-                    {/*        </TouchableHighlight>*/}
-                    {/*    </View>*/}
-                    {/*</SignedOut>*/}
                 </View>
             </ScrollView>
         </Page>
