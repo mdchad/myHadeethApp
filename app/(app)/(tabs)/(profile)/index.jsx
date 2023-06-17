@@ -13,6 +13,14 @@ import Page from "@components/page";
 import {ArrowLeft, Bookmark, FileText, LogIn, LogOut, Settings, User, Users} from "lucide-react-native";
 import {useAuth} from "@context/auth";
 import {SignedIn, SignedOut} from "@clerk/clerk-expo";
+import Markdown from "react-native-markdown-display";
+
+const copy = `# h1 Heading 8-)
+
+**This is some bold text!**
+
+This is normal text
+`;
 
 export default function Profile() {
   const { isLoaded, user, signOut } = useAuth();
@@ -130,6 +138,9 @@ export default function Profile() {
                   </TouchableHighlight>
                 </View>
               </SignedOut>
+              <Markdown>
+                {copy}
+              </Markdown>
               {/*<Link href="/logout" asChild>*/}
               {/*  <TouchableHighlight underlayColor="#f9fafb">*/}
               {/*    <View className="px-6 space-x-4 flex flex-row items-center py-2 my-1">*/}
