@@ -53,6 +53,7 @@
 		"react-native": "0.71.7",
 		"react-native-easy-grid": "^0.2.2",
 		"react-native-gesture-handler": "^2.9.0",
+		"react-native-markdown-display": "^7.0.0-alpha.2",
 		"react-native-reanimated": "~2.14.4",
 		"react-native-responsive-fontsize": "^0.5.1",
 		"react-native-root-toast": "^3.4.1",

@@ -5,7 +5,6 @@ import {TextInput} from "react-native";
 import React, {useEffect, useState} from "react";
 import {Bookmark, Share as ShareIcon} from "lucide-react-native";
 import {TouchableHighlight} from "react-native";
-let he = require('he');
 
 const hadeethContent = () => {
   const { chapterTitle, chapterId } = useSearchParams();
