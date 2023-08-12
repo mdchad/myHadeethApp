@@ -20,7 +20,7 @@ const hadeethContent = () => {
     }, [categoriesId])
 
     function onShare(hadeeth) {
-        const message = `\n${hadeeth.content.ar}\n\n ${hadeeth.content.ms}\n\n\n${hadeeth.book_title}\n\n\nwww.myhadeeth.com.my`;
+        const message = `\n${hadeeth.content.ar}\n\n ${hadeeth.content.ms}\n\n\n${hadeeth.book_title.ms}\n\n\nwww.myhadeeth.com.my`;
 
         Share.share({
             message: message,
