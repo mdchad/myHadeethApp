@@ -300,48 +300,12 @@
 		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
 	},
 	{
-		"id": "ebe645f6-cf29-46a0-bf9c-d6cf09e8e0d4",
-		"name": "",
-		"title": {
-			"en": "",
-			"ms": "BAB ‘UMRAH",
-			"ar": "بَابُ الْعُمْرَةِ"
-		},
-		"book_name": "sahih_bukhari",
-		"book_title": "Sahih Bukhari",
-		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
-	},
-	{
-		"id": "daed7ffd-403e-457e-8417-779328c2bc74",
-		"name": "",
-		"title": {
-			"en": "",
-			"ms": "BAB ‘UMRAH",
-			"ar": "بَابُ الْعُمْرَةِ"
-		},
-		"book_name": "sahih_bukhari",
-		"book_title": "Sahih Bukhari",
-		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
-	},
-	{
 		"id": "b0a88b94-2e4d-4e37-9eb6-66e7423211b8",
 		"name": "",
 		"title": {
 			"en": "",
 			"ms": "KITAB PUASA",
 			"ar": "كِتَابُ الصَّوْمِ"
-		},
-		"book_name": "sahih_bukhari",
-		"book_title": "Sahih Bukhari",
-		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
-	},
-	{
-		"id": "6e0b791c-39e1-4a04-a0fc-995b562dd695",
-		"name": "",
-		"title": {
-			"en": "",
-			"ms": "KITAB PUASA",
-			"ar": "كِتَابُ الصَّوْم"
 		},
 		"book_name": "sahih_bukhari",
 		"book_title": "Sahih Bukhari",
@@ -576,18 +540,6 @@
 		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
 	},
 	{
-		"id": "28fc5f4a-df00-4e28-8907-61912811c6aa",
-		"name": "",
-		"title": {
-			"en": "",
-			"ms": "KITAB WASIAT",
-			"ar": "كِتَاب الْوَصَايَا"
-		},
-		"book_name": "sahih_bukhari",
-		"book_title": "Sahih Bukhari",
-		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
-	},
-	{
 		"id": "ce7d44c8-8ede-47d5-bba6-bd0be9e802df",
 		"name": "",
 		"title": {
@@ -630,18 +582,6 @@
 			"en": "",
 			"ms": "KITAB TAFSIR AL-QURAN",
 			"ar": "كِتَابُ تَفْسِيرِ القُرْآنِ"
-		},
-		"book_name": "sahih_bukhari",
-		"book_title": "Sahih Bukhari",
-		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
-	},
-	{
-		"id": "f70cd9ac-3669-4469-ae11-0db1b6ec57ab",
-		"name": "",
-		"title": {
-			"en": "",
-			"ms": "KITAB TAFSIR AL-QURAN",
-			"ar": "كِتَابُ تَفْسِيرِ القُرْآن"
 		},
 		"book_name": "sahih_bukhari",
 		"book_title": "Sahih Bukhari",
@@ -798,18 +738,6 @@
 			"en": "",
 			"ms": "KITAB ADAB",
 			"ar": "كِتَابُ الأَدَبِ"
-		},
-		"book_name": "sahih_bukhari",
-		"book_title": "Sahih Bukhari",
-		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
-	},
-	{
-		"id": "3b4c9c78-6fb5-43d0-b55b-0c29f4b00a83",
-		"name": "",
-		"title": {
-			"en": "",
-			"ms": "KITAB ADAB",
-			"ar": "كِتَابُ الأَدَب"
 		},
 		"book_name": "sahih_bukhari",
 		"book_title": "Sahih Bukhari",
@@ -1639,7 +1567,7 @@
 			"ms": "KITAB BERSUCI",
 			"ar": "أول كتاب الصلاة"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1651,7 +1579,7 @@
 			"ms": "PERMULAAN KITAB SOLAT",
 			"ar": "أول كتاب الصلاة"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1663,7 +1591,7 @@
 			"ms": "KITAB SOLAT ISTISQA’",
 			"ar": "الإستسقاء"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1675,7 +1603,7 @@
 			"ms": "KITAB SOLAT SAFAR",
 			"ar": "صلاة السفر"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1687,7 +1615,7 @@
 			"ms": "KITAB SOLAT SUNAH",
 			"ar": "التطوع"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1699,7 +1627,7 @@
 			"ms": "KITAB SOLAT BULAN RAMADHAN",
 			"ar": "شهر رمضان"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1711,7 +1639,7 @@
 			"ms": "KITAB SUJUD TILAWAH",
 			"ar": "باب تَفْرِيعِ أَبْوَابِ السُّجُودِ"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1723,7 +1651,7 @@
 			"ms": "KITAB WITIR",
 			"ar": "الوتر"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1735,7 +1663,7 @@
 			"ms": "KITAB ZAKAT",
 			"ar": "الزكاة"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1747,7 +1675,7 @@
 			"ms": "KITAB BARANG TEMUAN",
 			"ar": "اللقطة"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1759,7 +1687,7 @@
 			"ms": "KITAB MANASIK HAJI",
 			"ar": "المناسك"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1771,7 +1699,7 @@
 			"ms": "KITAB NIKAH",
 			"ar": "أَوَّلُ كِتَابِ النكاح"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1783,7 +1711,7 @@
 			"ms": "KITAB TALAK",
 			"ar": "أوَّلُ كِتَابِ الطَّلَاقِ"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1795,7 +1723,7 @@
 			"ms": "KITAB PUASA",
 			"ar": "أَوَّلُ كِتَابِ الصَّوْمِ"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1807,7 +1735,7 @@
 			"ms": "KITAB JIHAD",
 			"ar": "أوَّلُ كِنَابِ الجِهَادِ"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1819,7 +1747,7 @@
 			"ms": "KITAB KORBAN",
 			"ar": "أَوَّلُ كِتَابِ الضَحَايَا"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1831,7 +1759,7 @@
 			"ms": "KITAB BERBURU",
 			"ar": "أوَّلُ كِتَابِ الصَّيْدِ"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1843,7 +1771,7 @@
 			"ms": "KITAB WASIAT",
 			"ar": "أوَّلُ كِتَابِ الوصايا"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1855,7 +1783,7 @@
 			"ms": "KITAB FARAID",
 			"ar": "أوَّل كِنَابِ الفرائض"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1867,7 +1795,7 @@
 			"ms": "KITAB CUKAI",
 			"ar": "أوَّلُ كِتَابِ الخراج"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1879,7 +1807,7 @@
 			"ms": "KITAB JENAZAH",
 			"ar": "أوَّلُ كِتَابِ الجنائز"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1891,7 +1819,7 @@
 			"ms": "KITAB SUMPAH DAN NAZAR ",
 			"ar": "أوَّلُ كِتَابِ الأيمان والنذور"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1903,7 +1831,7 @@
 			"ms": "KITAB JUAL BELI",
 			"ar": "أوَّلُ كِتَابِ البيوع"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1915,7 +1843,7 @@
 			"ms": "KITAB SEWA-MENYEWA",
 			"ar": "كتَابُ الإجارة"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1927,7 +1855,7 @@
 			"ms": "KITAB PENGADILAN",
 			"ar": "أَوَّلُ كِتَابِ القَضَاءِ"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1939,7 +1867,7 @@
 			"ms": "KITAB ILMU",
 			"ar": "أَوَّلُ كِتَابِ العِلْمِ"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1951,7 +1879,7 @@
 			"ms": "KITAB MINUMAN",
 			"ar": "أَوَّلُ كِتَابِ الأَشْرِبَةِ"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1963,7 +1891,7 @@
 			"ms": "KITAB MAKANAN",
 			"ar": "أَوَّلُ كِتَابِ الأطْعِمَةِ"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1975,7 +1903,7 @@
 			"ms": "KITAB PERUBATAN",
 			"ar": "أَوَّلُ كِتَابِ الطِّبِّ"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1987,7 +1915,7 @@
 			"ms": "KITAB PEMBEBASAN HAMBA",
 			"ar": "أَوَّلُ كِتَابِ العِتْقِ"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -1999,7 +1927,7 @@
 			"ms": "KITAB HURUF DAN QIRAAT",
 			"ar": "أَوَّلُ كِتَابِ الْحُرُوفِ وَالْقِرَاءَاتِ"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -2011,7 +1939,7 @@
 			"ms": "KITAB TEMPAT MANDI UMUM",
 			"ar": "أَوَّلُ كِتَابِ الحَمَّامِ"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -2023,7 +1951,7 @@
 			"ms": "KITAB PAKAIAN",
 			"ar": "أوَّل كِتابِ اللِّبَاسِ"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -2035,7 +1963,7 @@
 			"ms": "KITAB SIKAT RAMBUT",
 			"ar": "كِتَابُ الترَجُّلِ"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -2047,7 +1975,7 @@
 			"ms": "KITAB CINCIN",
 			"ar": "كِتَابُ الخاتَم"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -2059,7 +1987,7 @@
 			"ms": "KITAB FITNAH AKHIR ZAMAN",
 			"ar": "أَوَلُ كِتَابِ الفِتَنِ"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -2071,7 +1999,7 @@
 			"ms": "KITAB IMAM MAHDI",
 			"ar": "أوَّلُ كِتَابِ المَهْدِيِّ"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -2083,7 +2011,7 @@
 			"ms": "KITAB PEPERANGAN AKHIR ZAMAN",
 			"ar": "أول كِتابِ المَلَاحِمِ"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -2095,7 +2023,7 @@
 			"ms": "KITAB HUDUD",
 			"ar": "أوَّلُ كِنَابِ الحدود"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -2107,7 +2035,7 @@
 			"ms": "KITAB DIAT",
 			"ar": "أوَّلُ كِنَابِ الديات"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -2119,7 +2047,7 @@
 			"ms": "KITAB AL-SUNNAH",
 			"ar": "أوَّل كِتَابِ السنة"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	},
@@ -2131,7 +2059,7 @@
 			"ms": "KITAB ADAB",
 			"ar": "أوَّلُ كِتَابِ الأدَبِ"
 		},
-		"book_name": "sahih_abiDawud",
+		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
 	}
