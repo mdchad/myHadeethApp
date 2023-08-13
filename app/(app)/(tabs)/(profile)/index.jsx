@@ -88,22 +88,22 @@ export default function Profile() {
             </View>
             <View className="border-b border-b-gray-300 mx-6 mt-8"></View>
             <View className="mt-4">
-              <Link href="/saved" asChild>
+              {/*<Link href="/saved" asChild>*/}
                 <TouchableHighlight underlayColor="#f9fafb">
                   <View className="px-6 space-x-4 flex flex-row items-center py-2 my-1">
                     <Bookmark color="black" size={20}/>
                     <Text className="text-lg">Saved</Text>
                   </View>
                 </TouchableHighlight>
-              </Link>
-              <Link href="/notes" asChild>
+              {/*</Link>*/}
+              {/*<Link href="/notes" asChild>*/}
                 <TouchableHighlight underlayColor="#f9fafb">
                   <View className="px-6 space-x-4 flex flex-row items-center py-2 my-1">
                     <FileText color="black" size={20}/>
                     <Text className="text-lg">Notes</Text>
                   </View>
                 </TouchableHighlight>
-              </Link>
+              {/*</Link>*/}
               <TouchableHighlight underlayColor="#f9fafb" onPress={onShare}>
                 <View className="px-6 space-x-4 flex flex-row items-center py-2 my-1">
                   <Users color="black" size={20}/>
