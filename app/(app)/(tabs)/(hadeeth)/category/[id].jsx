@@ -1,49 +1,95 @@
-import { Link, useRouter, useSearchParams } from "expo-router"
-import { FlatList, ScrollView, Text, View } from "react-native"
-import chapters from '@data/chapters.json'
-import categories from '@data/categories.json'
-import { ChevronRight } from "lucide-react-native";
-import { TouchableHighlight } from "react-native-gesture-handler";
-import Item from "../../../../components/accordion";
-import Accordion from "../../../../components/accordion";
+import React, { useEffect, useState } from 'react';
+import { View, Text, FlatList, TouchableHighlight, ActivityIndicator } from "react-native";
+import { useSearchParams, useRouter } from "expo-router";
+import categories from '@data/categories.json';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 let he = require('he');
-import { FlashList } from "@shopify/flash-list";
 
-const hadeethCategory = () => {
-    const { title, id } = useSearchParams();
+const CATEGORIES_STORAGE_KEY = "CategoriesStorage";
+
+const HadeethCategoryItem = ({ item, onPress }) => (
+    <TouchableHighlight onPress={() => onPress(item)} underlayColor="#f9fafb" style={{ marginVertical: 6, borderRadius: 10, overflow: 'hidden' }}>
+        <View style={{ padding: 16, backgroundColor: 'white' }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Text style={{ textTransform: 'capitalize', fontSize: 18, fontWeight: 'bold' }}>{he.decode(item.title.ms)}</Text>
+            </View>
+        </View>
+    </TouchableHighlight>
+);
+
+const storeData = async (key, value) => {
+    try {
+        await AsyncStorage.setItem(`${CATEGORIES_STORAGE_KEY}:${key}`, JSON.stringify(value));
+    } catch (error) {
+        console.error("Error saving data to AsyncStorage", error);
+    }
+}
+
+const retrieveData = async (key) => {
+    try {
+        const value = await AsyncStorage.getItem(`${CATEGORIES_STORAGE_KEY}:${key}`);
+        if (value !== null) {
+            return JSON.parse(value);
+        }
+    } catch (error) {
+        console.error("Error retrieving data from AsyncStorage", error);
+    }
+    return null;
+}
+
+const HadeethCategory = () => {
+    const { id } = useSearchParams();
     const router = useRouter();
+    const [filteredCategories, setFilteredCategories] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-    function onPressHadith(categories) {
-        return router.push({
+    const onPressHadith = (categories) => {
+        router.push({
             pathname: `/(hadeeth)/content/${categories.id}`,
             params: {
                 categoriesId: categories.id,
                 bookId: categories.book_id,
             }
-        })
+        });
+    };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            let cachedData = await retrieveData(id);
+            if (cachedData) {
+                // console.log('Data retrieved from cache.');
+                setFilteredCategories(cachedData);
+            } else {
+                // console.log('Data computed and cached.');
+                const data = categories.filter(category => category.book_id === id);
+                setFilteredCategories(data);
+                storeData(id, data);
+            }
+
+            setIsLoading(false);
+        };
+
+        fetchData();
+    }, [id]);
+
+    if (isLoading) {
+        return (
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <ActivityIndicator size="large" color="#0000ff" />
+            </View>
+        );
     }
 
-    // filter categories by book id
-    const filteredCategories = categories.filter(category => category.book_id === id)
-
     return (
-        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-            <View className="flex-1 space-y-6 flex bg-gray-100 px-6 pt-6">
-                <FlashList
-                    className="space-y-6"
-                    data={filteredCategories}
-                    renderItem={({ item }) => <TouchableHighlight key={item.id} onPress={() => onPressHadith(item)} underlayColor="#f9fafb" className="rounded-xl w-full mb-3 overflow-hidden">
-                        <View key={item.id} className="px-4 py-4 bg-white">
-                            <View className="flex flex-row justify-between items-center w-full">
-                                <Text className="capitalize text-lg font-semibold">{he.decode(item.title.ms)}</Text>
-                            </View>
-                        </View>
-                    </TouchableHighlight>}
-                    estimatedItemSize={100}
-                />
-            </View>
-        </ScrollView>
-    )
-}
+        <View style={{ flex: 1, backgroundColor: 'gray-100', paddingHorizontal: 16, paddingTop: 16 }}>
+            <FlatList
+                className="space-y-6"
+                data={filteredCategories}
+                renderItem={({ item }) => <HadeethCategoryItem item={item} onPress={onPressHadith} />}
+                keyExtractor={item => item.id.toString()}
+            />
+        </View>
+    );
+};
 
-export default hadeethCategory
+export default HadeethCategory;
