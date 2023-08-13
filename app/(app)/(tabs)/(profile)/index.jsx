@@ -138,9 +138,9 @@ export default function Profile() {
                   </TouchableHighlight>
                 </View>
               </SignedOut>
-              <Markdown>
+              {/* <Markdown>
                 {copy}
-              </Markdown>
+              </Markdown> */}
               {/*<Link href="/logout" asChild>*/}
               {/*  <TouchableHighlight underlayColor="#f9fafb">*/}
               {/*    <View className="px-6 space-x-4 flex flex-row items-center py-2 my-1">*/}

@@ -60,7 +60,7 @@ const hadeethContent = () => {
                             <View className="px-4 py-6 space-y-4 rounded-xl bg-white" key={hadeeth.id}>
                                 {/*<Text className="mb-4 text-right text-2xl" selectable={true} style={{ fontFamily: 'Traditional_ArabicRegular'}}>{hadeeth.content.ar}</Text>*/}
                                 <TextInput className="text-gray-800 text-right text-3xl" style={{ fontFamily: 'Traditional_ArabicRegular' }} scrollEnabled={false} readOnly multiline value={hadeeth.content.ar} />
-                                <TextInput className="text-gray-800 text-xl overflow-hidden leading-loose" scrollEnabled={false} readOnly multiline value={hadeeth.content.ms} />
+                                <TextInput className="text-gray-800 text-lg overflow-hidden leading-loose" scrollEnabled={false} readOnly multiline value={hadeeth.content.ms} />
                                 <View className="flex flex-row justify-end items-center">
                                     <TouchableHighlight
                                         className="p-2"

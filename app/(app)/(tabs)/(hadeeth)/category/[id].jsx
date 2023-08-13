@@ -23,16 +23,19 @@ const hadeethCategory = () => {
         })
     }
 
+    // filter categories by book id
+    const filteredCategories = categories.filter(category => category.book_id === id)
+
     return (
         <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
             <View className="flex-1 space-y-6 flex bg-gray-100 px-6 pt-6">
                 <FlashList
                     className="space-y-6"
-                    data={categories}
+                    data={filteredCategories}
                     renderItem={({ item }) => <TouchableHighlight key={item.id} onPress={() => onPressHadith(item)} underlayColor="#f9fafb" className="rounded-xl w-full mb-3 overflow-hidden">
                         <View key={item.id} className="px-4 py-4 bg-white">
                             <View className="flex flex-row justify-between items-center w-full">
-                                <Text className="capitalize text-md font-semibold">{he.decode(item.title.ms)}</Text>
+                                <Text className="capitalize text-lg font-semibold">{he.decode(item.title.ms)}</Text>
                             </View>
                         </View>
                     </TouchableHighlight>}
