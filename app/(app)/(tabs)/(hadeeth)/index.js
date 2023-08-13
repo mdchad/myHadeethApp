@@ -14,7 +14,7 @@ const Hadeeth = () => {
     const styles = makeStyles(fontScale);
 
     function onTriggerPress(id, title) {
-        console.log(id, title)
+        // console.log(id, title)
         router.push(`(hadeeth)/category/${id}?title=${title}`)
     }
 
