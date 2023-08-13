@@ -125,6 +125,7 @@ const HadeethContent = () => {
                     keyExtractor={item => item.id.toString()}
                     renderItem={({ item }) => <HadeethItem key={item.id} hadeeth={item} onShare={onShare} onSave={onSave} />}
                     contentContainerStyle={{ paddingHorizontal: 6 }}
+                    style={{ paddingRight: 10, marginRight: -10 }}
                 />
             </View>
         </View >

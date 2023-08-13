@@ -11,7 +11,7 @@ const HadeethCategoryItem = ({ item, onPress }) => (
     <TouchableHighlight onPress={() => onPress(item)} underlayColor="#f9fafb" style={{ marginVertical: 6, borderRadius: 10, overflow: 'hidden' }}>
         <View style={{ padding: 16, backgroundColor: 'white' }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Text style={{ textTransform: 'capitalize', fontSize: 18, fontWeight: 'bold' }}>{he.decode(item.title.ms)}</Text>
+                <Text className="capitalize text-lg font-semibold">{he.decode(item.title.ms)}</Text>
             </View>
         </View>
     </TouchableHighlight>
@@ -87,6 +87,7 @@ const HadeethCategory = () => {
                 data={filteredCategories}
                 renderItem={({ item }) => <HadeethCategoryItem item={item} onPress={onPressHadith} />}
                 keyExtractor={item => item.id.toString()}
+                style={{ paddingRight: 10, marginRight: -10 }}
             />
         </View>
     );
