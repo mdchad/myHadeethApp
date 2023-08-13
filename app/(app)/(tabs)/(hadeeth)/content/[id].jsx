@@ -110,7 +110,7 @@ const HadeethContent = () => {
         );
     }
 
-    console.log(hadeeth)
+    // console.log(hadeeth)
 
     return (
         // <ScrollView>
