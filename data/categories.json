@@ -2062,5 +2062,461 @@
 		"book_name": "sunan_abi_daud",
 		"book_title": "Sahih Abi Dawud",
 		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "21b36fc7-f787-4ebc-9907-67ef1b419462",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BERKAITAN AL-SUNNAH",
+			"ar": "أَبْوَابُ السُّنَّةِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "61abb031-b5d2-460d-99e1-ee070be0a3aa",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BERSUCI DAN SUNNAH-SUNNAHNYA",
+			"ar": "أَبْوَابُ الطَّهَارَةِ وَسُنَنِهَا"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "9e43ba82-5cd9-4617-ba3a-265477ac2785",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB WAKTU SOLAT",
+			"ar": "أَبْوَابُ مَوَاقِيتِ الصَّلاَةِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "0ccf07b7-043e-4c67-a606-cc59f821f648",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BERKAITAN AZAN DAN SUNNAH YANG TERDAPAT PADANYA",
+			"ar": "أَبْوابُ الأَذَانِ وَالسُّنَّةِ فِيهِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "5c39bfb2-3404-4988-951b-672bc2edb4c5",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB TENTANG MASJID DAN JEMAAH",
+			"ar": "أَبْوَابُ الْمَسَاجِدِ وَالْجَمَاعَاتِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "21572821-0f5c-4567-a0f4-1d902780e1e3",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB MENDIRIKAN SOLAT DAN SUNNAH-SUNNAH YANG BERKAITAN DENGANNYA",
+			"ar": "أَبْوَابُ إِقَامَةِ الصَّلَوَاتِ وَالسُّنَّةِ فِيهَا"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "0064afd2-5881-4e4f-a01c-76cd8ec386e6",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BERKENAAN JENAZAH",
+			"ar": "أَبْوَابُ الْجَنَائِزِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "1d73d7ff-1b74-43a7-b5a1-4b4d448a7d45",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB PUASA",
+			"ar": "أَبْوَابُ الصِّيَامِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "716f0d6f-a9ed-4ab9-b6d6-f59f9e8050df",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB ZAKAT",
+			"ar": "أَبْوَابُ الزَّكَاةِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "e752990b-7ffd-479a-95b5-e3c906b185b3",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB NIKAH",
+			"ar": "أَبْوَابُ النِّكَاحِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "bbd30da1-329c-4e4d-864f-f1cd7b411fe2",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BERKAITAN TALAK",
+			"ar": "أَبْوَابُ الطَّلاَقِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "f58f44ea-42b8-4cf0-8576-b5877bcdc703",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BERKAITAN KAFARAH",
+			"ar": "أَبْوَابُ الْكَفَّارَاتِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "8a3b76cb-5fdf-48d2-9e56-f2ba0d84cccd",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BERKENAAN URUSAN PERNIAGAAN",
+			"ar": "أَبْوَابُ التِّجَارَاتِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "c986027e-e6cd-4f9e-89ca-59284b6a83da",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB HUKUM HAKAM",
+			"ar": "أَبْوَابُ الأَحْكَامِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "792462b3-3369-42f0-8676-a5b3b5495445",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB HADIAH",
+			"ar": "أَبْوَابُ الْهِبَاتِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "8a865399-8968-46ea-a791-bf1163e3b3e2",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB SEDEKAH",
+			"ar": "أَبْوَابُ الصَّدَقَاتِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "e4ca1273-eef5-481c-94d8-8a84c3eab7c6",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PAJAK GADAI",
+			"ar": "كِتَابُ الرُّهُونِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "0d1404be-11ea-4ca2-93a6-7221a7fa2767",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB SHUF’AH",
+			"ar": "أَبْوَابُ الشُّفْعَةِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "a536bc7e-c612-48d9-9454-cdfefa6bc4c9",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BARANG YANG DIPUNGUT",
+			"ar": "أَبْوَابُ اللُّقَطَةِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "020980a8-cfe1-4407-80ff-f2cf5ddf1a52",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB PEMBEBASAN HAMBA",
+			"ar": "أَبْوَابُ الْعِتْقِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "6b85d8d0-94d4-498b-b53e-4d046bc2ad52",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB HUDUD",
+			"ar": "أَبْوَابُ الْحُدُودِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "c37f1035-ae59-433a-bf36-ebcb03bca7b0",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BERKAITAN DIAT",
+			"ar": "أَبْوابُ الدِّيَاتِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "b37bae78-af2a-43b7-bb09-076a36d63ab3",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB WASIAT",
+			"ar": "كِتَابُ الْوَصَايَا"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "9606d061-621e-4029-89d9-42855f57b340",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB FARAID",
+			"ar": "كِتَابُ الْفَرَائِضِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "d64ce731-7b9a-4147-bf74-d13704edcbb8",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB JIHAD",
+			"ar": "كِتَابُ الْجِهَادِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "18846ab0-f58d-45f9-92a4-ae653679e660",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB MANASIK HAJI",
+			"ar": "كِتَابُ الْمَنَاسِكِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "fc7178a7-67b6-47f0-a614-74c97ef76227",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB KORBAN",
+			"ar": "كِتَابُ الأَضَاحِيِّ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "25cf1791-4fa9-41c0-95b8-7c7efa0abea7",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB SEMBELIHAN",
+			"ar": "كِتَابُ الذَّبَائِحِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "329c4e93-dd81-4698-8ebd-ba10cc333b08",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PERBURUAN",
+			"ar": "كِتَابُ الصَّيْدِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "b1a3e952-4968-485d-af22-a2f5e7b6a85f",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB MAKANAN",
+			"ar": "كِتَابُ الأَطْعِمَةِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "b4aeeafe-161e-4eaf-afea-b7380fae10a0",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB MINUMAN",
+			"ar": "كِتَابُ الأَشْرِبَةِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "ece2dcdc-7b7a-486f-bad9-fe8eb6a824c3",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PERUBATAN",
+			"ar": "كِتَابُ الطِّبِّ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "a16e20f9-c025-479f-bd3b-3a4082a43abb",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PEMAKAIAN",
+			"ar": "كِتَابُ اللِّبَاسِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "a973fcf0-6e82-4948-8cf6-3c35ea5d395a",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB ADAB",
+			"ar": "كِتَابُ الأَدَبِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "c20fc8ce-f7db-48b8-bafa-275aaa55da6a",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB DOA",
+			"ar": "كِتَابُ الدُّعَاءِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "0337523e-0ed5-41bf-bd37-214393a4a9c9",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB MENTAFSIR MIMPI",
+			"ar": "كِتَابُ تَعْبِيرِ الرُّؤْيَا"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "e35c32ab-52a8-4f74-9aa6-a44afa154606",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB FITAN",
+			"ar": "كِتَابُ الْفِتَنِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "a5c47992-457e-4c79-b90f-87fcde281e4e",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB ZUHUD",
+			"ar": "كِتَابُ الزُّهْدِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
 	}
 ]
