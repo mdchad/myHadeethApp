@@ -1,0 +1,3146 @@
+[
+	{
+		"id": "e18ea9d8-6998-4eb0-b7d3-66fb05aaaaf0",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PERMULAAN WAHYU",
+			"ar": "ابُ بَدْءِ الوَحْيِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "dec7ed3c-ae2e-4a94-bf8b-5f4674a9a744",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB IMAN",
+			"ar": "كِتَابُ الإِيمَانِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "18329861-d319-4cd8-96a7-1f4cdde51a2e",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB ILMU",
+			"ar": "كِتَابُ العِلْمِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "5f137aa6-8770-48c6-8505-6c6ab559c7f9",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB WUDUK",
+			"ar": "كِتَابُ الوُضُوءِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "f8bc64ef-d0e3-4662-b7fb-a54246bdc4c6",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB MANDI",
+			"ar": "كِتَابُ الغُسْلِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "d0af082d-f788-4a63-84f3-c375a54aaa27",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB HAID",
+			"ar": "كِتَابُ الحَيْض"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "0dd9deac-2938-47ad-8eb6-36f27f9af877",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB TAYAMUM",
+			"ar": "كِتَابُ التَّيَمُّمِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "1ff38f4b-284e-4727-a6d5-f78aad9adf75",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB SOLAT",
+			"ar": "كِتَابُ الصَّلاَةِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "49cbfc68-eb28-4fdf-8082-947cd6605930",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB WAKTU-WAKTU SOLAT",
+			"ar": "كِتَابُ مَوَاقِيتِ الصَّلاَةِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "d28ae76f-f283-4ba2-a852-8a004bcd2f8f",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB AZAN",
+			"ar": "كِتَابُ الأَذَانِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "ed010b9e-4f3e-4b94-9dca-05076d56c425",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB SOLAT JUMAAT",
+			"ar": "كِتَابُ الجُمُعَةِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "6171019c-efd6-4b4b-93de-247775adf916",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BERKENAAN SOLAT KHAUF",
+			"ar": "أَبْوَابُ صَلاَةِ الخَوْفِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "e4314063-64c6-4ce7-8f68-8a125cb72317",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BERKENAAN SOLAT DUA HARI RAYA",
+			"ar": "أَبْوَابُ العِيدَيْنِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "7deb5c94-cca9-466f-aa40-43248604a82c",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BERKENAAN WITIR",
+			"ar": "أَبْوَابُ العِيدَيْنِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "64ecfda6-cf00-438b-9fe9-0bfb57c461af",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BERKENAAN SOLAT AL-ISTISQA’ (MEMINTA HUJAN)",
+			"ar": "أَبْوَابُ الِاسْتِسْقَاءِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "7eb56389-27f7-4554-a47a-e59a2a1a5d84",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BERKENAAN SOLAT GERHANA",
+			"ar": "أَبْوَابُ الكُسُوفِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "969c49c5-9df4-4841-b76e-57fa19bcfb47",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BERKENAAN SUJUD TILAWAH",
+			"ar": "أَبْوَابُ سُجُودِ القُرْآنِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "af1bb689-7501-4567-9d99-4421dc688365",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BERKENAAN MENGQASARKAN SOLAT",
+			"ar": "أَبْوَابُ تَقْصِيرِ الصَّلاَةِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "4ad5b42f-baa6-4e90-8269-694df8a20cd2",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB BERKENAAN SOLAT TAHAJUD",
+			"ar": "كتاب التهجد"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "793ee377-0990-4c81-a8f1-2889a0eb7ebb",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BERKENAAN PERBUATAN DI DALAM SOLAT",
+			"ar": "أَبْوَابُ العَمَلِ فِي الصَّلاَةِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "3d8dd213-df07-4dcd-9a08-226930895f39",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BERKENAAN HADIS BERKAITAN SUJUD SAHWI",
+			"ar": "أبواب ما جاء في السهو"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "f4952e2b-ce81-47a8-817b-6748fb5fcdb8",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB BERKAITAN JENAZAH",
+			"ar": "كِتَابُ الجَنَائِزِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "0f3c21d3-d6cf-4a14-933f-85c76904ec35",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB ZAKAT",
+			"ar": "كِتَابُ الزَّكَاةِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "bb00b4e7-ef1b-4f53-b4cc-50f4223c39a3",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB BERKENAAN HAJI",
+			"ar": "كِتَابُ الحَجِّ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "ef875de7-55ba-4939-ab0d-d5fa9ff8d8ba",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB ‘UMRAH",
+			"ar": "بَابُ الْعُمْرَةِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "b0a88b94-2e4d-4e37-9eb6-66e7423211b8",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PUASA",
+			"ar": "كِتَابُ الصَّوْمِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "7a51ecf9-8fae-4771-920a-01f9e8427316",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB JUAL BELI",
+			"ar": "كِتَاب الْبُيُوعِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "07c2b610-0304-4289-96e6-f12d3597eb7d",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB JUAL BELI SALAM",
+			"ar": "كِتَاب السَّلَمِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "3df6a617-475a-44da-8635-1c61f4f310b5",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB SEWAAN",
+			"ar": "كِتَابُ الإجَارَة"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "a56e137d-f67d-4606-a6ee-59f95d1cc90f",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PENGALIHAN HUTANG",
+			"ar": "الْحَوَالَاتِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "8a313bc4-31c7-4e5c-97c2-7c79ad49a66f",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PERWAKILAN",
+			"ar": "كِتَاب الْوَكَالَةِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "178220fd-c5c5-4e14-a525-087afeb394f0",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB KONTRAK AGRIKULTUR ",
+			"ar": "كِتَاب الْمُزَارَعَةِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "d5597171-aebe-4b07-9a7a-6a746771f951",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB KONTRAK PERAIRAN",
+			"ar": "كِتَاب الْمُسَاقَاةِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "07bfb4aa-3b2e-4469-af94-fa4b741b4a6b",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB MENUNTUT DAN MELUNASKAN HUTANG, SENARAI HITAM DAN PENGISYTIHARAN MUFLIS",
+			"ar": "كتابٌ فِي الِاسْتِقْرَاضِ وَأَدَاءِ الدُّيُونِ وَالْحَجْرِ وَالتَّفْلِيسِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "5f32b987-1ed4-4aae-a442-c4c165ed7bc5",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PERSELISIHAN",
+			"ar": "كَتَابٌ فِي الخُصُومَات"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "2c54fdfe-2046-4fb2-887b-f274af649531",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB BARANGAN TERCICIR",
+			"ar": "كِتَاب فِي اللُّقَطَةِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "0243b099-c360-45c5-9a16-13e0f3d36633",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB KEZALIMAN",
+			"ar": "كِتَابٌ في الْمَظَالِمِ وَالْغَصْبِ "
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "5c457b8e-d10c-46ac-a9c0-7ff8655409fb",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PERKONGSIAN (SYARIKAT)",
+			"ar": "كتابُ الشركة"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "c9b7fb8d-185d-46f4-a1d7-f4ce3e8b99c9",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PEMERDEKAAN",
+			"ar": "كتَاب العِتْق"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "17465631-6429-4829-aee0-bd894b204f33",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB HAMBA MUKATAB",
+			"ar": "كِتابُ المُكاتَب"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "5f56a5c9-aa6c-4e6d-94e0-624eedf5a607",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB HADIAH",
+			"ar": "كِتَاب الْهِبَةِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "cfa349c3-51fd-416c-81a0-2f036deab08b",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PERSAKSIAN",
+			"ar": "كِتَاب الشَّهَادَاتِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "efb3e9c1-d78d-4a8b-83c7-8eb9862d9d94",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PERDAMAIAN",
+			"ar": "كِتابُ الصُّلحِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "54dfa2b0-750e-49f4-aff2-634ab0414779",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PENSYARATAN",
+			"ar": "كِتَابُ الشُّروطِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "27a9c97e-25f8-40c1-aae4-fa3b6177c33c",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB WASIAT",
+			"ar": "كِتَاب الْوَصَايَا"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "ce7d44c8-8ede-47d5-bba6-bd0be9e802df",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB JIZYAH DAN PERJANJIAN DAMAI",
+			"ar": "كتَابُ الجزيةِ والمُوَادَعَةِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "a8ba0ff4-1fad-49c1-b6fc-8fd56fe94494",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB AWAL PENCIPTAAN",
+			"ar": "كِتَاب بَدْءِ الْخَلْقِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "012627a1-b227-4354-83eb-2e8743155fb3",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "Kemuliaan",
+			"ar": "المَنَاقِبُ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "be728413-131c-43a6-8481-d7c4704fa228",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB TAFSIR AL-QURAN",
+			"ar": "كِتَابُ تَفْسِيرِ القُرْآنِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "6bc8fec8-316e-4729-8ee2-9ab60a36131b",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB KELEBIHAN-KELEBIHAN AL-QURAN",
+			"ar": "كِتَابُ فَضَائِلِ القُرْآنِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "91a10fca-555c-45e3-b946-9492803abb2d",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB NIKAH",
+			"ar": "كِتَابُ النِّكَاحِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "0701e7e7-14bc-40d7-9969-bb09e821a59a",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB AL-THALAQ",
+			"ar": "كِتَابُ الطَّلاَقِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "5238f4aa-ec5b-4684-b218-59166fa5be27",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB NAFKAH-NAFKAH",
+			"ar": "كِتَابُ النَّفَقَاتِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "bb1c9cb5-54d8-4922-a9f7-34ff48f3146e",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB MAKANAN",
+			"ar": "كِتَابُ الأَطْعِمَةِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "3e9cdc22-e61f-4bf2-9f44-6d5a07bafcc6",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB ‘AKIKAH",
+			"ar": "كِتَابُ العَقِيقَةِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "c44e6c74-d59b-432f-be4b-402261bd221d",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB BINATANG-BINATANG YANG DISEMBELIH DAN BINATANG BURUAN",
+			"ar": "كِتَابُ الذَّبَائِحِ وَالصَّيْدِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "91984237-cab6-4f2d-8a41-9dbbdbb2ae54",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB KORBAN",
+			"ar": "كِتَابُ الأَضَاحِيِّ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "04092b7d-f216-4be3-a136-54a742d332c3",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB MINUMAN",
+			"ar": "كِتَابُ الأَشْرِبَةِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "22a840a9-a235-412c-9b86-cc16b81946d9",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB ORANG SAKIT",
+			"ar": "كِتَابُ المَرْضَى"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "c3ece739-2934-4873-ba70-1bdcb811c93c",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PERUBATAN",
+			"ar": "كِتَابُ الطِّبِّ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "8442daa1-9dfa-407e-a05d-349cb9a1cd11",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PAKAIAN",
+			"ar": "كِتَابُ اللِّبَاسِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "dc29867a-5b3c-491d-9fcc-675ff7c64129",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB ADAB",
+			"ar": "كِتَابُ الأَدَبِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "912fb121-91e8-418a-9373-6f3550f3c920",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB MEMINTA IZIN",
+			"ar": "كِتَابُ الِاسْتِئْذَانِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "f8c67e5e-54b7-431f-8e96-d61be0e6cf39",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB BERKAITAN PELBAGAI DOA",
+			"ar": "كِتَابُ الدَّعَوَاتِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "12d4aeab-ee79-41b0-9274-2a06690b17da",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PERKARA-PERKARA YANG MELUNAKKAN HATI",
+			"ar": "كِتَابُ الرِّقَاقِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "666bf7b0-ab99-47ba-ba0a-bd26297c9652",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB BERKAITAN AL-QADAR (TAKDIR)",
+			"ar": "كِتَابُ القَدَرِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "d598e7db-87e1-4d1e-8a8e-ed7644281e69",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB BERKENAAN SUMPAH DAN NAZAR",
+			"ar": "كِتَابُ الأَيْمَانِ وَالنُّذُورِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "8f28c39f-8b0a-4f2b-a280-f63c5b8f6200",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB BERKENAAN KIFARAT SUMPAH",
+			"ar": "كِتَابُ كَفَّارَاتِ الأَيْمَانِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "1052c8a7-e01c-4cf5-9816-39b9285f1ad7",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB BERKENAAN FARA'ID",
+			"ar": "كِتَابُ الفَرَائِضِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "d2fb9c86-ebac-4c4c-bb54-af9eac2758f3",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB BERKAITAN HUKUM HUDUD",
+			"ar": "كِتَابُ الحُدُودِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "ab7be840-5322-4a2e-af86-72a4f8529d47",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB BERKENAAN DIYAT",
+			"ar": "كِتَابُ الدِّيَاتِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "3235f64d-19ba-4cc5-b87b-66f29c8ecd27",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB MEMINTA ORAN-ORANG YANG MURTAD DAN PARA PEMBANGKANG BERTAUBAT BERTAUBAT SERTA MEMERANGI MEREKA",
+			"ar": "كِتَابُ اسْتِتَابَةِ المُرْتَدِّينَ وَالمُعَانِدِينَ وَقِتَالِهِمْ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "1d62216d-29de-4bf1-b6ce-2447b5ea232e",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB BERKAITAN KETERPAKSAAN",
+			"ar": "كِتَابُ الإِكْرَاهِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "23bad7e1-4c9b-4736-b81c-8e2f8a6374b3",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB MENGENAI HELAH",
+			"ar": "كِتَابُ الحِيَلِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "aebe5a19-6fee-49bc-b15e-0d1c62e46571",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB TA'BIR",
+			"ar": "كِتَابُ التَّعْبِيرِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "ee506fcc-3302-4e49-ab98-b60ac646c4f6",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB FITNAH",
+			"ar": "كِتَابُ الفِتَنِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "c64ca82d-9b80-4973-8ec7-7c2091c18154",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB HUKUM-HAKAM",
+			"ar": "كِتَابُ الأَحْكَامِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "775ac195-52cf-4340-99fe-844c29e471bb",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB IMPIAN ATAU CITA-CITA",
+			"ar": "كِتَابُ التَّمَنِّي"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "19f4b443-51e1-4d5a-83e1-c1fa20e53540",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB KHABAR AHAD",
+			"ar": "كِتَابُ أَخْبَارِ الآحَادِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "f2a4274c-b404-4c26-a897-b2f12916b624",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB BERKENAAN BERPEGANG TEGUH TERHADAP KITAB DAN SUNNAH",
+			"ar": "كِتَابُ الِاعْتِصَامِ بِالكِتَابِ وَالسُّنَّةِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "70ea6f83-0bc0-4881-a9a6-ac21ca95b6f5",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB TAUHID",
+			"ar": "كِتَابُ التَّوْحِيدِ"
+		},
+		"book_name": "sahih_bukhari",
+		"book_title": "Sahih Bukhari",
+		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+	},
+	{
+		"id": "f75f02ba-f334-4ab6-ac28-50d8740ff0a9",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BERSUCI DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ الطَّهَارَةِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "f05db908-1f12-45fc-a9ff-afb005968ff1",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB SEMBAHYANG RASULULLAH",
+			"ar": "أَبْوَابُ الصَّلَاةِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "f713919d-6464-4889-b69b-6dbe4f2ee948",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB SEMBAHYANG WITIR",
+			"ar": "أَبْوَابُ الوِتْرِ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "603b7a6f-f1a3-4d35-8bbc-85134c9d1720",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB SOLAT JUMAAT",
+			"ar": "أَبْوَابُ الْجُمُعَةِ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "023b2d71-3e6e-4931-ab83-dc405fce40f0",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB DUA HARI RAYA",
+			"ar": "أَبْوَابُ العِيدَيْنِ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "d74e030f-f3b8-489d-b6f8-62d63ec739ab",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB MUSAFIR",
+			"ar": "أَبْوَابُ السَّفَرِ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "eca05fa3-5401-4e50-98b4-fcf70e29c871",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB ZAKAT DARIPADA RASULULLAH ",
+			"ar": "كتاب الزكاة عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "f136d3e1-9b8e-40c6-9a64-0ca0a5f77e5a",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB PUASA DARIPADA RASULULLAH ",
+			"ar": "أَبْوَابُ الصَّوْمِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "8c99aef0-0e76-45ea-93a4-01cdb82260a4",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB HAJI DARIPADA RASULULLAH ﷺ",
+			"ar": "أَبْوَابُ الحَجِّ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "8c1a41d7-3862-4647-954d-f51d4fb35e3a",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB JENAZAH DARIPADA RASULULLAH ﷺ",
+			"ar": "أَبْوَابُ الْجَنَائِزِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "d551653c-4bfd-4b2d-93ae-11276938393b",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB NIKAH DARIPADA RASULULLAH ﷺ",
+			"ar": "أَبْوَابُ النِّكَاحِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "64e6db2a-a026-46d8-aa89-e9c50b97a93e",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB PENYUSUAN DARIPADA RASULULLAH ﷺ",
+			"ar": "أَبْوَابُ الرَّضَاعِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "66ee5952-8837-4da5-b2fc-ffae619a98e5",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "Bab-Bab Talaq Dan Li'an Daripada Rasulullah ﷺ",
+			"ar": "َبْوَابُ الطَّلَاقِ وَاللِّعَانِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "57d37fa6-a295-420e-89bd-8ac3e72f7bfd",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB JUAL BELI DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ الْبُيُوعِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "6f333878-f6a4-45ee-b777-aebbed9b36bb",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB HUKUM DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ الأَحْكَامِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "b1f3c3b4-f6c3-491a-8770-01637d9c2be6",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB DIAT DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ الدِّيَاتِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "3624d9ef-27df-419f-90c2-bfba2d3e24dd",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB HUDUD DARIPADA RASULULLAH ",
+			"ar": "أَبْوَابُ الْحُدُودِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "b83d9053-b671-4819-907b-a08d8ae4ee52",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BURUAN DARIPADA RASULULLAH ",
+			"ar": "أَبْوَابُ الصَّيْدِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "27a4591b-9960-4aba-8387-9b617977a1e2",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB SEMBELIHAN KORBAN DARIPADA RASULULLAH ",
+			"ar": "أَبْوَابُ الأَضَاحِيِّ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "3a5c81c1-336d-4c99-9895-a36de8b5a0fb",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB NAZAR DAN SUMPAH DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ النُّذُورِ وَالأَيْمَانِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "912bf592-dfd6-4b69-9b52-4a94987e431c",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB PERJALANAN JIHAD DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ السِّيَرِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "19416e37-8bba-4cc0-9eb3-9742e75211d1",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB KELEBIHAN JIHAD DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ فَضَائِلِ الْجِهَادِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "20b0cfba-e700-47e6-a70c-f1ab16182874",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB JIHAD DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ الْجِهَادِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "147d8644-8137-4cc2-81f8-54f148ca9b08",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB PAKAIAN DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ اللِّبَاسِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "b67b4a99-91ed-4eb0-94cf-8551155cd540",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB MAKANAN RASULULLAH ",
+			"ar": "أَبْوَابُ الأَطْعِمَةِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "3557a6aa-ac65-4baf-97ad-d00dc7e4e9fb",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB MINUMAN DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ الأَشْرِبَةِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "a8dcf257-1e82-4794-a8c6-791d12068e1d",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BERBAKTI DAN MENGHUBUNGKAN SILATURRAHIM DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ البِرِّ وَالصِّلَةِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "82378c79-c178-47c1-8b30-fde49ee62cea",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "Bab-Bab Perubatan Daripada Rasulullah",
+			"ar": "أَبْوَابُ الطِّبِّ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "b3ce41a7-ed15-4444-bd97-c15784d5c8ca",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB FARAID DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ الْفَرَائِضِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "b99cda83-7560-4ed2-bbcc-022b77f08584",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB WASIAT DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ الْوَصَايَا عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "6a4554b5-fecd-443e-9abf-9c40f8ef0330",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB WALA' DAN HIBAH DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ الْوَلَاءِ وَالْهِبَةِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "afd22a7f-38cc-4ae6-9310-88748c225800",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB QADAR  DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ الْقَدَرِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "e063fd5e-a08f-4d57-8be2-e0dfe48c79f5",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB MIMPI DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ الْرُّؤْيَا عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "012fc3ff-6981-48d1-ba52-f0eeba6798da",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB MIMPI DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ الْرُّؤْيَا عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "aba3875a-f123-410a-afb6-1d6f2b2b11a6",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB KESAKSIAN DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ الشَّهَادَاتِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "43d8852c-84c4-4e2d-bd23-99f9e9cf8a3e",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB ZUHUD DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ الزُّهْدِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "c52eb962-0d43-45dc-81c5-f7b0d5e46f3c",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB SIFAT HARI KIAMAT, PELEMBUT HATI DAN SIFAT WARAK DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ صِفَةِ الْقِيَامَةِ وَالرَّقَائِقِ وَالْوَرَعِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "d9037361-2dbb-496d-a531-cbf940a95e04",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB GAMBARAN NERAKA DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ صِفَةِ جَهَنَّمَ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "275964ad-9a7d-4fd5-9384-6b8d45080e31",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB GAMBARAN NERAKA DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ صِفَةِ جَهَنَّمَ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "7b2d83d8-037f-42a4-a407-4fbd14cee89c",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB IMAN DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ الْإِيمَانِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "b166c538-c793-4a1a-b4dd-de07305bc90a",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB ILMU DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ الْعِلْمِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "37e08d53-2ccd-4cee-8762-7e6aee49db89",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB MEMINTA IZIN DAN ADAB-ADAB DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ الاِسْتِئْذَانِ وَالآدَابِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "aef0c225-9809-4ae6-b6fa-aecc62706ba9",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB ADAB DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ الأَدَبِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "b04a5632-654b-422f-ae7c-4c13a37a99ba",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB PERUMPAMAAN DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ الأَمْثَالِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "7fb3b99d-884c-43dc-8e1e-516d19deb022",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB KELEBIHAN AL-QURAN DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ فَضَائِلِ الْقُرْآنِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "f8dee1f4-ebd6-4f05-b532-8a8148b327fb",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB QIRAAT DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ الْقِرَاءَاتِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "2ce79b6f-4efe-4a3e-a169-9a86c973973c",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB TAFSIR AL-QURAN DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ تَفْسِيرِ الْقُرْآنِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "ed0a246f-1e93-43dc-9d17-48478c76c3d0",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB DOA DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ الدَّعَوَاتِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "90e5ed42-d832-45e6-bf61-0c4d741b1604",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB KELEBIHAN-KELEBIHAN DARIPADA RASULULLAH",
+			"ar": "أَبْوَابُ الْمَنَاقِبِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+		},
+		"book_name": "sahih_tirmidhi",
+		"book_title": "Sahih Tirmidhi",
+		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+	},
+	{
+		"id": "2aa3d25a-f389-4030-9c22-0cc06c04cae2",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB BERSUCI",
+			"ar": "أول كتاب الصلاة"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "50ad9f74-322b-4333-9a87-5a9bbd3fda17",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "PERMULAAN KITAB SOLAT",
+			"ar": "أول كتاب الصلاة"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "15ebb0b5-4aea-4190-80bc-5db64aa1ded5",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB SOLAT ISTISQA’",
+			"ar": "الإستسقاء"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "b54eddee-e837-4da4-9b78-ce883129bd05",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB SOLAT SAFAR",
+			"ar": "صلاة السفر"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "02e4ef17-2b9a-466a-8074-0fab3878a67d",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB SOLAT SUNAH",
+			"ar": "التطوع"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "30dcc7a9-3f96-4e1f-8688-af1e736242a9",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB SOLAT BULAN RAMADHAN",
+			"ar": "شهر رمضان"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "6027a334-9ee6-45c9-aad9-691be8e7f108",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB SUJUD TILAWAH",
+			"ar": "باب تَفْرِيعِ أَبْوَابِ السُّجُودِ"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "2daf0cb0-5c2b-4806-acb3-dfed90e3cfbd",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB WITIR",
+			"ar": "الوتر"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "d43c09b9-1a08-4e27-b175-ab1a738e267d",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB ZAKAT",
+			"ar": "الزكاة"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "987ba0ac-c226-4707-9401-0a91f28d79f6",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB BARANG TEMUAN",
+			"ar": "اللقطة"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "39869d99-1ee7-4417-8160-f32ecf2a579d",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB MANASIK HAJI",
+			"ar": "المناسك"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "fa78e9bf-7761-45ae-b584-2dbd056571e7",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB NIKAH",
+			"ar": "أَوَّلُ كِتَابِ النكاح"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "a2191837-7e2c-4b31-90b7-18c2b554a6da",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB TALAK",
+			"ar": "أوَّلُ كِتَابِ الطَّلَاقِ"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "74a4b268-b79b-4b65-81ca-505f9bc2bf82",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PUASA",
+			"ar": "أَوَّلُ كِتَابِ الصَّوْمِ"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "61c8d671-c59c-4381-9dc7-3501b1e97fa0",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB JIHAD",
+			"ar": "أوَّلُ كِنَابِ الجِهَادِ"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "cf552dd0-d475-4947-948a-be8057a43a87",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB KORBAN",
+			"ar": "أَوَّلُ كِتَابِ الضَحَايَا"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "f87474cf-4e6d-4446-82c9-677044d1d223",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB BERBURU",
+			"ar": "أوَّلُ كِتَابِ الصَّيْدِ"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "6b844db1-8d45-4f5b-837d-1c77707a04d0",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB WASIAT",
+			"ar": "أوَّلُ كِتَابِ الوصايا"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "076d1ab3-65fe-4ff2-af1f-e148f5d9d0d6",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB FARAID",
+			"ar": "أوَّل كِنَابِ الفرائض"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "644c48f3-11b6-4d8a-881a-205cc344734c",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB CUKAI",
+			"ar": "أوَّلُ كِتَابِ الخراج"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "9fbf8430-86b7-4ed7-be3a-8e5d7243004f",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB JENAZAH",
+			"ar": "أوَّلُ كِتَابِ الجنائز"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "4b4cd864-2a52-4aa8-aa02-8ac437c618da",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB SUMPAH DAN NAZAR ",
+			"ar": "أوَّلُ كِتَابِ الأيمان والنذور"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "c2721958-6cfa-48bf-a840-776274844c5c",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB JUAL BELI",
+			"ar": "أوَّلُ كِتَابِ البيوع"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "c9f2a8d1-4ea1-47f2-b667-ef27d937b6c4",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB SEWA-MENYEWA",
+			"ar": "كتَابُ الإجارة"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "dde03986-abb6-47a0-8ffd-848c145c57c2",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PENGADILAN",
+			"ar": "أَوَّلُ كِتَابِ القَضَاءِ"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "74a686d0-02ba-4d85-bc68-1fd2e8ee7be4",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB ILMU",
+			"ar": "أَوَّلُ كِتَابِ العِلْمِ"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "292f01d3-4a42-450e-9527-0e13f0762ded",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB MINUMAN",
+			"ar": "أَوَّلُ كِتَابِ الأَشْرِبَةِ"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "0b6c372a-6999-456d-bfed-773a2d91819d",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB MAKANAN",
+			"ar": "أَوَّلُ كِتَابِ الأطْعِمَةِ"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "c2d3722e-a81f-4005-b669-4ba0d4869bc8",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PERUBATAN",
+			"ar": "أَوَّلُ كِتَابِ الطِّبِّ"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "edc189a8-128b-4855-bdc8-7305371a299a",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PEMBEBASAN HAMBA",
+			"ar": "أَوَّلُ كِتَابِ العِتْقِ"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "fc11946c-3f35-45f7-b6af-c5d2b746d9f0",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB HURUF DAN QIRAAT",
+			"ar": "أَوَّلُ كِتَابِ الْحُرُوفِ وَالْقِرَاءَاتِ"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "70a1f8cb-1063-4dce-9d42-4357e8f7f348",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB TEMPAT MANDI UMUM",
+			"ar": "أَوَّلُ كِتَابِ الحَمَّامِ"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "4240204d-dbd6-4353-bcaa-e4f535533b94",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PAKAIAN",
+			"ar": "أوَّل كِتابِ اللِّبَاسِ"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "8ce753d9-57c9-49dd-846b-51b1456bd034",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB SIKAT RAMBUT",
+			"ar": "كِتَابُ الترَجُّلِ"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "f389edd3-3155-4dad-a6e5-bbb698364c58",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB CINCIN",
+			"ar": "كِتَابُ الخاتَم"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "0f6605b1-9071-4832-b50e-e9e35a720349",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB FITNAH AKHIR ZAMAN",
+			"ar": "أَوَلُ كِتَابِ الفِتَنِ"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "fc8035f4-7191-4bcc-b5ff-be3b19104d71",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB IMAM MAHDI",
+			"ar": "أوَّلُ كِتَابِ المَهْدِيِّ"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "3c3b13ab-52de-4ee6-8634-69e447b46cdc",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PEPERANGAN AKHIR ZAMAN",
+			"ar": "أول كِتابِ المَلَاحِمِ"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "c2dab044-5936-4b5a-9b66-7a17a7c8da81",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB HUDUD",
+			"ar": "أوَّلُ كِنَابِ الحدود"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "e75616c5-772b-4f92-9460-4cd03c062f64",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB DIAT",
+			"ar": "أوَّلُ كِنَابِ الديات"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "e902a1a9-38b9-4510-83fe-13902bfb4718",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB AL-SUNNAH",
+			"ar": "أوَّل كِتَابِ السنة"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "92b9ffdb-71a0-47e9-a83b-f6553b5b0102",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB ADAB",
+			"ar": "أوَّلُ كِتَابِ الأدَبِ"
+		},
+		"book_name": "sunan_abi_daud",
+		"book_title": "Sahih Abi Dawud",
+		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+	},
+	{
+		"id": "21b36fc7-f787-4ebc-9907-67ef1b419462",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BERKAITAN AL-SUNNAH",
+			"ar": "أَبْوَابُ السُّنَّةِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "61abb031-b5d2-460d-99e1-ee070be0a3aa",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BERSUCI DAN SUNNAH-SUNNAHNYA",
+			"ar": "أَبْوَابُ الطَّهَارَةِ وَسُنَنِهَا"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "9e43ba82-5cd9-4617-ba3a-265477ac2785",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB WAKTU SOLAT",
+			"ar": "أَبْوَابُ مَوَاقِيتِ الصَّلاَةِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "0ccf07b7-043e-4c67-a606-cc59f821f648",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BERKAITAN AZAN DAN SUNNAH YANG TERDAPAT PADANYA",
+			"ar": "أَبْوابُ الأَذَانِ وَالسُّنَّةِ فِيهِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "5c39bfb2-3404-4988-951b-672bc2edb4c5",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB TENTANG MASJID DAN JEMAAH",
+			"ar": "أَبْوَابُ الْمَسَاجِدِ وَالْجَمَاعَاتِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "21572821-0f5c-4567-a0f4-1d902780e1e3",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB MENDIRIKAN SOLAT DAN SUNNAH-SUNNAH YANG BERKAITAN DENGANNYA",
+			"ar": "أَبْوَابُ إِقَامَةِ الصَّلَوَاتِ وَالسُّنَّةِ فِيهَا"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "0064afd2-5881-4e4f-a01c-76cd8ec386e6",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BERKENAAN JENAZAH",
+			"ar": "أَبْوَابُ الْجَنَائِزِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "1d73d7ff-1b74-43a7-b5a1-4b4d448a7d45",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB PUASA",
+			"ar": "أَبْوَابُ الصِّيَامِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "716f0d6f-a9ed-4ab9-b6d6-f59f9e8050df",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB ZAKAT",
+			"ar": "أَبْوَابُ الزَّكَاةِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "e752990b-7ffd-479a-95b5-e3c906b185b3",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB NIKAH",
+			"ar": "أَبْوَابُ النِّكَاحِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "bbd30da1-329c-4e4d-864f-f1cd7b411fe2",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BERKAITAN TALAK",
+			"ar": "أَبْوَابُ الطَّلاَقِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "f58f44ea-42b8-4cf0-8576-b5877bcdc703",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BERKAITAN KAFARAH",
+			"ar": "أَبْوَابُ الْكَفَّارَاتِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "8a3b76cb-5fdf-48d2-9e56-f2ba0d84cccd",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BERKENAAN URUSAN PERNIAGAAN",
+			"ar": "أَبْوَابُ التِّجَارَاتِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "c986027e-e6cd-4f9e-89ca-59284b6a83da",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB HUKUM HAKAM",
+			"ar": "أَبْوَابُ الأَحْكَامِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "792462b3-3369-42f0-8676-a5b3b5495445",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB HADIAH",
+			"ar": "أَبْوَابُ الْهِبَاتِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "8a865399-8968-46ea-a791-bf1163e3b3e2",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB SEDEKAH",
+			"ar": "أَبْوَابُ الصَّدَقَاتِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "e4ca1273-eef5-481c-94d8-8a84c3eab7c6",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PAJAK GADAI",
+			"ar": "كِتَابُ الرُّهُونِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "0d1404be-11ea-4ca2-93a6-7221a7fa2767",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB SHUF’AH",
+			"ar": "أَبْوَابُ الشُّفْعَةِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "a536bc7e-c612-48d9-9454-cdfefa6bc4c9",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BARANG YANG DIPUNGUT",
+			"ar": "أَبْوَابُ اللُّقَطَةِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "020980a8-cfe1-4407-80ff-f2cf5ddf1a52",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB PEMBEBASAN HAMBA",
+			"ar": "أَبْوَابُ الْعِتْقِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "6b85d8d0-94d4-498b-b53e-4d046bc2ad52",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB HUDUD",
+			"ar": "أَبْوَابُ الْحُدُودِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "c37f1035-ae59-433a-bf36-ebcb03bca7b0",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "BAB-BAB BERKAITAN DIAT",
+			"ar": "أَبْوابُ الدِّيَاتِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "b37bae78-af2a-43b7-bb09-076a36d63ab3",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB WASIAT",
+			"ar": "كِتَابُ الْوَصَايَا"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "9606d061-621e-4029-89d9-42855f57b340",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB FARAID",
+			"ar": "كِتَابُ الْفَرَائِضِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "d64ce731-7b9a-4147-bf74-d13704edcbb8",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB JIHAD",
+			"ar": "كِتَابُ الْجِهَادِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "18846ab0-f58d-45f9-92a4-ae653679e660",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB MANASIK HAJI",
+			"ar": "كِتَابُ الْمَنَاسِكِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "fc7178a7-67b6-47f0-a614-74c97ef76227",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB KORBAN",
+			"ar": "كِتَابُ الأَضَاحِيِّ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "25cf1791-4fa9-41c0-95b8-7c7efa0abea7",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB SEMBELIHAN",
+			"ar": "كِتَابُ الذَّبَائِحِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "329c4e93-dd81-4698-8ebd-ba10cc333b08",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PERBURUAN",
+			"ar": "كِتَابُ الصَّيْدِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "b1a3e952-4968-485d-af22-a2f5e7b6a85f",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB MAKANAN",
+			"ar": "كِتَابُ الأَطْعِمَةِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "b4aeeafe-161e-4eaf-afea-b7380fae10a0",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB MINUMAN",
+			"ar": "كِتَابُ الأَشْرِبَةِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "ece2dcdc-7b7a-486f-bad9-fe8eb6a824c3",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PERUBATAN",
+			"ar": "كِتَابُ الطِّبِّ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "a16e20f9-c025-479f-bd3b-3a4082a43abb",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PEMAKAIAN",
+			"ar": "كِتَابُ اللِّبَاسِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "a973fcf0-6e82-4948-8cf6-3c35ea5d395a",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB ADAB",
+			"ar": "كِتَابُ الأَدَبِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "c20fc8ce-f7db-48b8-bafa-275aaa55da6a",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB DOA",
+			"ar": "كِتَابُ الدُّعَاءِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "0337523e-0ed5-41bf-bd37-214393a4a9c9",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB MENTAFSIR MIMPI",
+			"ar": "كِتَابُ تَعْبِيرِ الرُّؤْيَا"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "e35c32ab-52a8-4f74-9aa6-a44afa154606",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB FITAN",
+			"ar": "كِتَابُ الْفِتَنِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "a5c47992-457e-4c79-b90f-87fcde281e4e",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB ZUHUD",
+			"ar": "كِتَابُ الزُّهْدِ"
+		},
+		"book_name": "sunan_ibnu_majah",
+		"book_title": "Sunan Ibnu Majah",
+		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+	},
+	{
+		"id": "3a5f1629-a573-49a4-987b-844f8e12c67f",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB BERSUCI",
+			"ar": "كِتَابُ الطَّهَارَةِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "2ff41a9f-d14e-473c-892d-fd65681126cb",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB TENTANG AIR",
+			"ar": "كِتَابُ الْمِيَاهِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "066582cd-8f5c-464a-9f27-d60efe570e64",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB HAID DAN ISTIHADHAH",
+			"ar": "كِتَابُ الْحَيْضِ وَالِاسْتِحَاضَةِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "f61a105b-c841-47e0-b8e7-85b9b00fc38f",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB MANDI DAN TAYAMUM",
+			"ar": "كِتَابُ الْغُسْلِ وَالتَّيَمُّمِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "408e9a97-c62f-4e3e-bc23-7a341ab91e29",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB SOLAT",
+			"ar": "كِتَابُ الصَّلَاةِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "e0bfff9d-b54b-450b-b09f-ce794eac51ea",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB WAKTU-WAKTU SOLAT",
+			"ar": "كِتَابُ الْمَوَاقِيتِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "ac22a9ec-abec-4ab5-8671-2e6902cc3da6",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB AZAN",
+			"ar": "كِتَابُ الْأَذَانِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "8d580bc2-1cfb-4b20-ae3b-7a914d6fc64e",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB MASJID",
+			"ar": "كِتَابُ الْمَسَاجِدِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "02502259-92c4-452d-a9c8-779937b9727c",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB KIBLAT",
+			"ar": "كِتَابُ الْقِبْلَةِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "49f1e7ac-99b1-4656-b0c8-12fb4a4eaeea",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB IMAM",
+			"ar": "كِتَابُ الْإِمَامَةِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "311cc6dd-283f-43fb-9916-f3e09e3a99a9",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PEMBUKA SOLAT",
+			"ar": "كِتَابُ الِافْتِتَاحِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "524b5515-0e8a-4094-9238-cb768fdbf529",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB MENJALIN JEMARI SAAT RUKUK",
+			"ar": "كِتَابُ التَّطْبِيقِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "07cd0960-680d-48a5-8ebc-35c85e226b66",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB (SUJUD) SAHWI",
+			"ar": "كِتَابُ السَّهْوِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "99093de4-ab1c-4e8a-a086-d9c4be7533ef",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB SOLAT JUMAAT",
+			"ar": "كِتَابُ الْجُمْعَةِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "ddb6abc0-b057-43ef-872a-2a0a240dc1bb",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB MENGQASAR SOLAT DALAM PERJALANAN",
+			"ar": "كِتَابُ تَقْصِيرِ الصَّلَاةِ فِي السَّفَرِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "02d9cdf9-ee5b-42d8-9424-80251ff4bbb3",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": " KITAB SOLAT KUSUF",
+			"ar": "ِتَابُ الْكُسُوفِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "0dc721df-14f6-4469-8555-635051b2404b",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB ISTISQA’ (MINTA HUJAN)",
+			"ar": "كِتَابُ الِاسْتِسْقَاءِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "e75c57a9-c5f8-459d-8ca9-d7fe6c413725",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB SOLAT KHAWF",
+			"ar": "كِتَابُ صَلَاةِ الْخَوْفِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "477a0305-cf25-4555-8e0b-1b480840c18a",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB SOLAT DUA HARI RAYA",
+			"ar": "كِتَابُ صَلَاةِ الْعِيدَيْنِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "d74cd961-6a12-4e8a-aab5-0cd5ce25752b",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB QIAMULLAIL DAN IBADAH SUNAT PADA SIANG HARI",
+			"ar": "كِتَابُ قِيَامِ اللَّيْلِ وَتَطَوُّعِ النَّهَارِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "b37b2520-84bb-4f37-af87-d446bc44f1a6",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB JENAZAH",
+			"ar": "كِتَابُ الْجَنَائِزِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "6f0dd533-a9c4-4494-8e5b-5ac92ae1ceed",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PUASA",
+			"ar": "كتاب الصِّيَامِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "4affb9af-1bfa-40c0-b71f-6c8d16b3c70a",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB ZAKAT",
+			"ar": "كِتَابُ الزَّكَاةِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "72055b85-0f67-481e-b345-6e07d3ca3e20",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB IBADAH HAJI",
+			"ar": "كِتَابُ مَنَاسِكِ الْحَجِّ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "9246bc7e-6e42-4ed4-b45f-cf49478d6924",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB JIHAD",
+			"ar": "كِتَابُ الْجِهَادِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "006d4641-13c1-4bd8-87e1-003ebb5563b4",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB NIKAH",
+			"ar": "كِتَاب النِّكَاحِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "b674823e-bd0c-451b-963f-6d959a19a4ae",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB TALAK",
+			"ar": "كِتَاب الطَّلَاقِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "af390226-dde9-4539-8cf0-e1a06ed902d4",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB KUDA",
+			"ar": "كِتَابُ الْخَيْلِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "d752fe1b-2467-43c5-9855-1fff58bb2dae",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB WAKAF",
+			"ar": "كِتَابُ الْأَحْبَاسِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "5fc4bb2b-2fe5-4859-b650-c474c45cf6b4",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB WASIAT",
+			"ar": "كِتَابُ الْوَصَايَا"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "1061c460-115f-43af-83e9-6d1130774501",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PEMBERIAN",
+			"ar": "كِتَابُ النُّحْلِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "a72d5c46-fa15-48c4-878c-81f8000a6647",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB HIBAH",
+			"ar": "كِتَابُ الْهِبَةِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "778d2ea4-9168-45f5-8e02-298c03865c27",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB AL-RUQBA",
+			"ar": "كِتَابُ الرُّقْبَى"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "59b95b35-ab8a-4325-8478-babf17c6851e",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": " KITAB ‘UMRA",
+			"ar": "كِتَابُ الْعُمْرَى"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "532ba62d-1c3c-4919-bcda-e57275593f45",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB SUMPAH DAN NAZAR",
+			"ar": "كِتَابُ الْأَيْمَانِ وَالنُّذُورِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "8d35411f-9051-48b2-8b17-8612c6eb26c8",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB MUZARA‘AH",
+			"ar": "كِتَابُ الْمُزَارَعَةِ "
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "ee0a77ae-8c5e-4e0a-9b7c-3b3dc5123ca8",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB MEMPERLAKUKAN PARA WANITA DENGAN BAIK",
+			"ar": "كِتَابُ عِشْرَةِ النِّسَاءِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "e29a5e38-3190-419d-b27e-a86810db58c7",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PEPERANGAN",
+			"ar": "كِتَابُ تَحْرِيمِ الدَّمِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "975eecfe-3f73-4059-80f2-1a7f599dbc0f",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PEMBAHAGIAN FAY’",
+			"ar": "كِتَابُ قَسْمِ الْفَيْءِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "1b7349bd-0f16-448d-b0d2-ccac58f0b7a7",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB BAIAT",
+			"ar": "كِتَابُ الْبَيْعَةِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "776db12b-76a0-4082-8051-7116fdccdb22",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB AKIKAH",
+			"ar": "كِتَابُ الْعَقِيقَةِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "234f3093-3fb8-40d2-ac78-dcbc574cb67d",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB FARA‘  DAN ‘ATIRAH",
+			"ar": "كِتَابُ الْفَرَعِ وَالْعَتِيرَةِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "82ef26a8-7ab3-43f7-8b96-ff18f949a0f4",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB BURUAN DAN SEMBELIHAN",
+			"ar": "كِتَابُ الصَّيْدِ وَالذَّبَائِحِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "f00e5117-43fd-433c-a4bc-b7cd7b5dd445",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB HAIWAN KORBAN",
+			"ar": "كِتَابُ الضَّحَايَا"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "991704c8-58f4-4369-abd1-dfa171d0628f",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB JUAL BELI",
+			"ar": "كِتَابُ الْبُيُوعِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "f5ece036-fe35-48e8-b753-220884708bad",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB QASAMAH",
+			"ar": "كِتَابُ الْقَسَامَةِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "0600b329-debb-4829-8688-04dd83024c85",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB POTONG TANGAN PENCURI",
+			"ar": "كِتَابُ قَطْعِ السَّارِقِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "1fef9378-7dcb-41ba-bb1b-02121e36ec58",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB IMAN DAN KETENTUAN-KETENTUANNYA",
+			"ar": "كِتَابُ الْإِيمَانِ وَشَرَائِعِهِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "4a9bc54c-6bb2-4398-9725-b531fdca64f4",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB BERHIAS",
+			"ar": "كِتَابُ الزِّينَةِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "6ae42666-6948-44a0-92ac-bc2da669b218",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB ADAB-ADAB HAKIM",
+			"ar": "كِتَاب آدَابِ الْقُضَاةِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "8fbfafa6-f522-478e-a4c8-3d2e29b50d12",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB MINTA PERLINDUNGAN",
+			"ar": "كِتَابُ الِاسْتِعَاذَةِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	},
+	{
+		"id": "e4b3e347-5643-49ae-b8d0-b914cae865ad",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB MINUMAN",
+			"ar": "كِتَابُ الْأَشْرِبَةِ"
+		},
+		"book_name": "sunan_an_nasai",
+		"book_title": "Sunan An-Nasa’i",
+		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+	}
+]

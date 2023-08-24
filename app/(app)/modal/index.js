@@ -1,9 +1,10 @@
 import { View, Text, StyleSheet, TextInput, FlatList, TouchableWithoutFeedback, Keyboard, ScrollView, VirtualizedList, Button, KeyboardAvoidingView, Pressable, SectionList } from 'react-native'
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { Link, useRouter } from "expo-router";
-import data from '@data/hadeeths.json'
+import data from '@data/hadeethsV2.json'
+import { useDebounce } from "@uidotdev/usehooks";
 
 function truncateString(str, num) {
   if (str.length > num) {
@@ -17,7 +18,8 @@ const Search = () => {
   const router = useRouter();
   const [filteredDataSource, setFilteredDataSource] = useState([])
   const [search, setSearch] = useState('');
-  const [index, setIndex] = useState(null);
+  const [isSearching, setIsSearching] = React.useState(false);
+  const debouncedSearchTerm = useDebounce(search, 300);
 
   const highlightText = (text, query) => {
     if (!query.trim()) {
@@ -43,28 +45,26 @@ const Search = () => {
     );
   };
 
-  const searchFilterFunction = (text) => {
-    // Check if searched text is not blank
-    if (text) {
-      // Inserted text is not blank
-      // Filter the masterDataSource and update FilteredDataSource
+  useEffect(() => {
+    setIsSearching(true);
+    if (search) {
+        // Inserted text is not blank
+        // Filter the masterDataSource and update FilteredDataSource
       const newData = data.filter(function (item) {
         // Applying filter for the inserted text in search bar
         const itemData = item.content.ms
           ? item.content.ms.toLowerCase()
           : '';
-        const textData = text.toLowerCase();
-        setIndex(itemData.indexOf(textData))
+        const textData = search.toLowerCase();
         return itemData.indexOf(textData) > -1;
       });
+      setIsSearching(false);
       setFilteredDataSource(newData);
-      setSearch(text);
-    } else {
-      // Inserted text is blank
-      // Update FilteredDataSource with masterDataSource
-      setFilteredDataSource([]);
-      setSearch(text);
-    }
+      }
+  }, [debouncedSearchTerm]);
+
+  const searchFilterFunction = (text) => {
+    setSearch(text)
   };
 
   const ItemSeparatorView = () => {
@@ -83,15 +83,15 @@ const Search = () => {
   function renderedItems({ item }) {
     return (
       <Link href={{
-        pathname: `/(hadeeth)/content/${item.chapter_id}`,
+        pathname: `/(hadeeth)/content/${item.volume_id}`,
         params: {
-          chapterTitle: JSON.stringify(item?.title),
-          chapterId: item?.chapter_id
+          volumeId: item.volume_id,
+          bookId: item.book_id,
         }
       }}>
         <View key={item.id} className="pb-4">
           <View className="my-4">
-            <Text className="text-[#433E0E] font-bold">{item?.book_title}</Text>
+            <Text className="text-[#433E0E] font-bold">{item?.book_title.ms}</Text>
           </View>
           <Text>{highlightText(item?.content?.ms, search)}</Text>
         </View>
@@ -108,6 +108,7 @@ const Search = () => {
               className="flex-1 px-3"
               placeholder="Search..."
               value={search}
+              autoFocus={true}
               onChangeText={(text) => searchFilterFunction(text)}
             />
           </View>
@@ -133,7 +134,7 @@ const Search = () => {
         scrollEnabled={true}
         ItemSeparatorComponent={ItemSeparatorView}
         ListEmptyComponent={() => {
-          return search.length ? (
+          return !isSearching && search.length ? (
               <View className="flex-1 flex items-center justify-center">
                 <Text className="text-lg">No results found.</Text>
                 <Text className="text-sm"> Try something else instead?</Text>

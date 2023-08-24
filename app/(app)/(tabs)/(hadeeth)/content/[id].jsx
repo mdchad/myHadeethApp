@@ -3,7 +3,7 @@ import { ScrollView, Text, View, Share, TextInput, TouchableHighlight, ActivityI
 import { Link, useSearchParams } from "expo-router";
 import { Bookmark, Share as ShareIcon } from "lucide-react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import hadeethsBukhari from "@data/hadeethsBukhari";
+import hadeeths from "@data/hadeethsV2";
 import { Button } from "react-native-web";
 
 const HADEETH_STORAGE_KEY = "HadeethStorage";
@@ -65,27 +65,27 @@ const retrieveData = async (key) => {
 }
 
 const HadeethContent = () => {
-    const { categoriesId } = useSearchParams();
+    const { volumeId } = useSearchParams();
     const [hadeeth, setHadeeth] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchHadeeth = async () => {
-            let cachedData = await retrieveData(categoriesId);
+            let cachedData = await retrieveData(volumeId);
 
             if (cachedData) {
                 setHadeeth(cachedData);
             } else {
-                const filteredData = hadeethsBukhari.filter(h => h.volume_id === categoriesId);
+                const filteredData = hadeeths.filter(h => h.volume_id === volumeId);
                 setHadeeth(filteredData);
-                storeData(categoriesId, filteredData);
+                storeData(volumeId, filteredData);
             }
 
             setIsLoading(false);  // Set loading state to false once data is fetched
         };
 
         fetchHadeeth();
-    }, [categoriesId]);
+    }, [volumeId]);
 
     const onShare = (hadeeth) => {
         const message = `\n${hadeeth.content.ar}\n\n ${hadeeth.content.ms}\n\n\n${hadeeth.book_title.ms}\n\n\nwww.myhadeeth.com.my`;

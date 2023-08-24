@@ -10,7 +10,7 @@ export default function Layout() {
   const { title } = useSearchParams();
   const segment = useSegments();
 
-  const notMainPage = segment.includes('content') || segment.includes('category')
+  const notMainPage = segment.includes('content') || segment.includes('volume')
   const topBar = notMainPage ? 'bg-white' : 'bg-[#EDEEC0]'
   const router = useRouter()
 
@@ -25,7 +25,7 @@ export default function Layout() {
                     }}
                 />
                 <Stack.Screen
-                    name="category"
+                    name="volume"
                     options={{
                         headerTitle: title ? title : '',
                         // Hide the header for all other routes.

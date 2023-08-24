@@ -15,7 +15,7 @@ const Hadeeth = () => {
 
     function onTriggerPress(id, title) {
         // console.log(id, title)
-        router.push(`(hadeeth)/category/${id}?title=${title}`)
+        router.push(`(hadeeth)/volume/${id}?title=${title}`)
     }
 
     const Item = ({ title, id }) => (

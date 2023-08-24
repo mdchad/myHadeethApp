@@ -22,6 +22,7 @@
 		"@trpc/client": "^10.26.0",
 		"@trpc/react-query": "^10.26.0",
 		"@trpc/server": "^10.26.0",
+		"@uidotdev/usehooks": "^2.1.1",
 		"adhan": "^4.4.3",
 		"date-fns": "^2.29.3",
 		"date-fns-tz": "^2.0.0",
