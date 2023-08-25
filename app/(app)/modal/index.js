@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput, FlatList, TouchableWithoutFeedback, Keyboard, ScrollView, VirtualizedList, Button, KeyboardAvoidingView, Pressable, SectionList } from 'react-native'
+import { View, Text, TextInput, FlatList, Pressable } from 'react-native'
 import React, {useEffect, useState} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
@@ -6,44 +6,52 @@ import { Link, useRouter } from "expo-router";
 import data from '@data/hadeethsV2.json'
 import { useDebounce } from "@uidotdev/usehooks";
 
-function truncateString(str, num) {
-  if (str.length > num) {
-    return str.slice(0, num) + "...";
-  } else {
-    return str;
-  }
-}
-
-const Search = () => {
-  const router = useRouter();
+function Search() {
   const [filteredDataSource, setFilteredDataSource] = useState([])
   const [search, setSearch] = useState('');
   const [isSearching, setIsSearching] = React.useState(false);
   const debouncedSearchTerm = useDebounce(search, 300);
 
-  const highlightText = (text, query) => {
-    if (!query.trim()) {
-      return text;
+  function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // Escape special characters for regex
+  }
+
+  function truncateAndHighlight(text, keyword, bufferLength = 10) {
+    const regex = new RegExp(escapeRegExp(keyword), 'gi');
+    const parts = [];
+    let match;
+
+    let previousEnd = 0;
+
+    while ((match = regex.exec(text)) !== null) {
+      // Insert a break if this isn't the first keyword match
+      if (previousEnd !== 0) {
+        parts.push('\n');
+        parts.push('\n');
+      }
+
+      // Add the text before the keyword to the parts
+      const start = Math.max(0, match.index - bufferLength);
+      const prefix = start > 0 && match.index !== 0 ? "..." : "";
+      parts.push(prefix + text.substring(start, match.index));
+
+      // Add the keyword (match) to the parts
+      parts.push(
+        <Text key={match.index} style={{ backgroundColor: 'yellow' }}>
+          {match[0]}
+        </Text>
+      );
+
+      // Add the text immediately after the keyword
+      const end = Math.min(text.length, match.index + keyword.length + bufferLength);
+      const suffix = end < text.length ? "..." : "";
+      parts.push(text.substring(match.index + keyword.length, end) + suffix);
+
+      previousEnd = end;
     }
 
-    const regex = new RegExp(`(${query})`, 'gi');
-    const parts = text.split(regex);
-
-    return (
-      <Text>
-
-        {parts.map((part, i) =>
-          regex.test(part) ? (
-            <Text key={i} style={{ backgroundColor: 'yellow' }}>
-              {part}
-            </Text>
-          ) : (
-            part
-          )
-        )}
-      </Text>
-    );
-  };
+    return <Text>{parts}</Text>;
+  }
 
   useEffect(() => {
     if (search) {
@@ -95,9 +103,9 @@ const Search = () => {
       }}>
         <View key={item.id} className="pb-4">
           <View className="my-4">
-            <Text className="text-[#433E0E] font-bold">{item?.book_title.ms}</Text>
+            <Text className="text-[#433E0E] font-bold">{item?.book_title.ms}, {item.number}</Text>
           </View>
-          <Text>{highlightText(item?.content?.ms, search)}</Text>
+          <Text>{truncateAndHighlight(item?.content?.ms, search, 100)}</Text>
         </View>
       </Link>
     )
@@ -128,8 +136,6 @@ const Search = () => {
           Cancel
         </Link>
       </View>
-      {/* {value.length > 0 && ( */}
-
       <FlatList
         className="px-5"
         data={filteredDataSource}
