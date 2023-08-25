@@ -16,6 +16,7 @@ import { ClerkProvider, SignedIn, SignedOut, useAuth } from "@clerk/clerk-expo";
 import * as SecureStore from "expo-secure-store";
 import { View as MotiView, AnimatePresence } from 'moti';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 const tokenCache = {
@@ -70,6 +71,7 @@ export default function Settings() {
         try {
             const update = await Updates.checkForUpdateAsync();
             if (update.isAvailable) {
+                await AsyncStorage.clear();
                 await Updates.fetchUpdateAsync();
                 // await Updates.reloadAsync();
                 alert('An update is available. Restart your app to apply the update.')

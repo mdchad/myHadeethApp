@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { ScrollView, Text, View, Share, TextInput, TouchableHighlight, ActivityIndicator, FlatList } from "react-native";
-import { Link, useSearchParams } from "expo-router";
+import { Text, View, Share, TextInput, TouchableHighlight, ActivityIndicator, FlatList } from "react-native";
+import { useSearchParams } from "expo-router";
 import { Bookmark, Share as ShareIcon } from "lucide-react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import hadeeths from "@data/hadeethsV2";
-import { Button } from "react-native-web";
 
 const HADEETH_STORAGE_KEY = "HadeethStorage";
 
@@ -23,6 +22,7 @@ const HadeethItem = React.memo(({ hadeeth, onShare, onSave }) => (
             scrollEnabled={false}
             readOnly
             multiline
+            style={{ fontFamily: 'KFGQPC_Regular' }}
             value={hadeeth.content.ms}
         />
         <View className="flex flex-row justify-end items-center">
@@ -65,20 +65,25 @@ const retrieveData = async (key) => {
 }
 
 const HadeethContent = () => {
-    const { volumeId } = useSearchParams();
+    const { volumeId, hadeethId } = useSearchParams();
     const [hadeeth, setHadeeth] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchHadeeth = async () => {
-            let cachedData = await retrieveData(volumeId);
-
-            if (cachedData) {
-                setHadeeth(cachedData);
-            } else {
-                const filteredData = hadeeths.filter(h => h.volume_id === volumeId);
+            if (hadeethId) { // search function to find a specific hadith
+                const filteredData = hadeeths.filter(h => h.id === hadeethId);
                 setHadeeth(filteredData);
-                storeData(volumeId, filteredData);
+            } else {
+                let cachedData = await retrieveData(volumeId);
+
+                if (cachedData) {
+                    setHadeeth(cachedData);
+                } else {
+                    const filteredData = hadeeths.filter(h => h.volume_id === volumeId);
+                    setHadeeth(filteredData);
+                    storeData(volumeId, filteredData);
+                }
             }
 
             setIsLoading(false);  // Set loading state to false once data is fetched
@@ -109,8 +114,6 @@ const HadeethContent = () => {
             </View>
         );
     }
-
-    // console.log(hadeeth)
 
     return (
         // <ScrollView>

@@ -88,6 +88,7 @@ const Search = () => {
       <Link href={{
         pathname: `/(hadeeth)/content/${item.volume_id}`,
         params: {
+          hadeethId: item.id,
           volumeId: item.volume_id,
           bookId: item.book_id,
         }
