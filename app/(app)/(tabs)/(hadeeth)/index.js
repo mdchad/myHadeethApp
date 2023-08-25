@@ -1,4 +1,4 @@
-import { View, Text, TouchableWithoutFeedback, Keyboard, Image, ScrollView, useWindowDimensions, StyleSheet, FlatList } from 'react-native'
+import { View, Text, useWindowDimensions, StyleSheet, FlatList } from 'react-native'
 import React from 'react'
 import {useRouter } from 'expo-router'
 import books from '@data/books.json'
@@ -7,7 +7,7 @@ import {TouchableHighlight} from "react-native-gesture-handler";
 import Header from '@components/header';
 import {useAuth} from "../../../../context/auth";
 
-const Hadeeth = () => {
+function Hadeeth() {
     const { user } = useAuth();
     const router = useRouter()
     const { fontScale } = useWindowDimensions();

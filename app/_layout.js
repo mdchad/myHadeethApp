@@ -14,7 +14,7 @@ export default function Root() {
         Traditional_Arabic: require("@assets/fonts/Traditional-Arabic-Regular.ttf"),
         Traditional_ArabicRegular: require("@assets/fonts/trado.ttf"),
         Traditional_ArabicBold: require("@assets/fonts/tradbdo.ttf"),
-        KFGQPC_Regular: require("@assets/fonts/KFGQPC-Regular.ttf"),
+        KFGQPC_Regular: require("@assets/fonts/kfgqpc-arabic-symbols.ttf"),
         ScheherazadeNew_400Regular,
         ScheherazadeNew_700Bold
     });
