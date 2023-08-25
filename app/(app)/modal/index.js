@@ -46,11 +46,10 @@ const Search = () => {
   };
 
   useEffect(() => {
-    setIsSearching(true);
     if (search) {
         // Inserted text is not blank
         // Filter the masterDataSource and update FilteredDataSource
-      const newData = data.filter(function (item) {
+      const newData = data.filter((item) => {
         // Applying filter for the inserted text in search bar
         const itemData = item.content.ms
           ? item.content.ms.toLowerCase()
@@ -60,10 +59,14 @@ const Search = () => {
       });
       setIsSearching(false);
       setFilteredDataSource(newData);
-      }
+    } else {
+      setFilteredDataSource([])
+    }
+
   }, [debouncedSearchTerm]);
 
   const searchFilterFunction = (text) => {
+    setIsSearching(true);
     setSearch(text)
   };
 
