@@ -70,8 +70,11 @@ export default function Settings() {
     const triggerUpdate = async () => {
         try {
             const update = await Updates.checkForUpdateAsync();
+            await AsyncStorage.clear();
+            AsyncStorage.getAllKeys()
+              .then(keys => AsyncStorage.multiRemove(keys))
+              .then(() => console.log('success'));
             if (update.isAvailable) {
-                await AsyncStorage.clear();
                 await Updates.fetchUpdateAsync();
                 // await Updates.reloadAsync();
                 alert('An update is available. Restart your app to apply the update.')
