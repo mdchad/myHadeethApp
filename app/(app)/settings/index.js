@@ -6,13 +6,11 @@ import {
     Switch
 } from "react-native";
 
-import Toast from "react-native-root-toast";
 import * as Updates from 'expo-updates';
 import Page from "@components/page";
 import {BellRing, Hourglass, Info, LogIn, MessageSquare, Smartphone, User} from "lucide-react-native";
 import { Link, useRouter } from "expo-router";
 import { TouchableHighlight } from "react-native-gesture-handler";
-import { ClerkProvider, SignedIn, SignedOut, useAuth } from "@clerk/clerk-expo";
 import * as SecureStore from "expo-secure-store";
 import { View as MotiView, AnimatePresence } from 'moti';
 import DateTimePicker from '@react-native-community/datetimepicker';

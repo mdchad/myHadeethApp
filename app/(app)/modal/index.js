@@ -65,11 +65,11 @@ function Search() {
         const textData = search.toLowerCase();
         return itemData.indexOf(textData) > -1;
       });
-      setIsSearching(false);
       setFilteredDataSource(newData);
     } else {
       setFilteredDataSource([])
     }
+    setIsSearching(false);
 
   }, [debouncedSearchTerm]);
 
@@ -111,6 +111,12 @@ function Search() {
     )
   }
 
+  function removeSearch() {
+    console.log('onPress')
+    setSearch('')
+    setFilteredDataSource([])
+  }
+
   return (
     <SafeAreaView className="flex-1 flex gap-5 bg-white">
       <View className="flex flex-row gap-3 items-center px-3">
@@ -126,7 +132,7 @@ function Search() {
           </View>
           {search.length > 0 && (
             <View className="absolute right-0 top-0 bottom-0 flex justify-center pr-2">
-              <Pressable onPress={() => { setSearch('') }}>
+              <Pressable onPress={removeSearch}>
                 <MaterialIcons name="cancel" size={20} color="black" />
               </Pressable>
             </View>
