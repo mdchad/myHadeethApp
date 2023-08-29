@@ -2,7 +2,7 @@ import { View, Text, Image } from 'react-native'
 import React from 'react'
 import { Tabs } from 'expo-router'
 import { StatusBar } from 'expo-status-bar';
-import {BookMinus, Clock, Compass, User} from "lucide-react-native";
+import {BookMinus, Clock, Compass, LucideSearch, User} from "lucide-react-native";
 
 const ImageLink = require('@assets/hadeeth-logo.png')
 
@@ -34,6 +34,15 @@ const _layout = () => {
             tabBarLabel: 'Hadeeth',
             tabBarIcon: ({ focused }) => (
               <BookMinus size={18} color={focused ? 'tomato' : 'gray'} />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="(search)"
+          options={{
+            tabBarLabel: 'Search',
+            tabBarIcon: ({ focused }) => (
+              <LucideSearch size={18} color={focused ? 'tomato' : 'gray'} />
             ),
           }}
         />
