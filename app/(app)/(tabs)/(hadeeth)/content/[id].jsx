@@ -7,8 +7,37 @@ import hadeeths from "@data/hadeethsV2";
 
 const HADEETH_STORAGE_KEY = "HadeethStorage";
 
+function toSuperscript(str, type) {
+    const superscripts = {
+        '0': '⁰',
+        '1': '¹',
+        '2': '²',
+        '3': '³',
+        '4': '⁴',
+        '5': '⁵',
+        '6': '⁶',
+        '7': '⁷',
+        '8': '⁸',
+        '9': '⁹',
+    };
+
+    if (type === 'text') {
+        str = str.replace(/\[(\d+)\]/g, (match, p1) => {
+            return p1.split('').map(char => superscripts[char] || char).join('');
+        });
+
+        return str;
+    }
+
+    if (type === 'reference') {
+        return str.toLowerCase().split('').map(char => superscripts[char] || char).join('');
+    }
+}
+
 const HadeethItem = React.memo(({ hadeeth, onShare, onSave }) => (
-    <View className="px-4 py-6 space-y-4 rounded-xl bg-white mb-4">
+  <View key={hadeeth.id}>
+    {hadeeth?.chapter_title?.ms && <Text className="text-gray-800 mb-4 mt-6 ml-2">{toSuperscript(hadeeth?.chapter_title?.ms, 'text')}</Text> }
+    <View className="px-4 py-6 space-y-8 rounded-xl bg-white mb-4">
         <TextInput
             className="text-gray-800 text-right text-3xl"
             style={{ fontFamily: 'Traditional_ArabicRegular' }}
@@ -23,8 +52,20 @@ const HadeethItem = React.memo(({ hadeeth, onShare, onSave }) => (
             readOnly
             multiline
             style={{ fontFamily: 'KFGQPC_Regular' }}
-            value={hadeeth.content.ms}
+            value={toSuperscript(hadeeth.content.ms, 'text')}
         />
+        {!!hadeeth.footnotes.length && (
+            <View className="flex space-y-2 pt-2 border-t border-t-gray-500">
+                {hadeeth.footnotes.map(footnote => {
+                    return (
+                        <Text key={footnote.number}>
+                            <Text className="text-xs">{toSuperscript(footnote.number, 'reference')}&nbsp;</Text>
+                            <Text className="text-xs text-gray-800">{footnote.text}</Text>
+                        </Text>
+                    )
+                })}
+            </View>
+        )}
         <View className="flex flex-row justify-end items-center">
             <TouchableHighlight
                 className="p-2"
@@ -42,6 +83,7 @@ const HadeethItem = React.memo(({ hadeeth, onShare, onSave }) => (
             </TouchableHighlight>
         </View>
     </View>
+  </View>
 ));
 
 const storeData = async (key, value) => {
@@ -116,7 +158,6 @@ const HadeethContent = () => {
     }
 
     return (
-        // <ScrollView>
         <View className="flex-1 p-4 pb-0">
             <Text className="text-center text-lg font-semibold py-4">{hadeeth ? hadeeth[0]?.volume_title.ms : ''}</Text>
             
@@ -132,7 +173,6 @@ const HadeethContent = () => {
                 />
             </View>
         </View >
-        // </ScrollView>
     );
 };
 

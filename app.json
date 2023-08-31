@@ -42,7 +42,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.aliy321.testapp"
+      "package": "com.mdchad.myHadeethApp"
     },
     "runtimeVersion": {
       "policy": "sdkVersion"

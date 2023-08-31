@@ -67,11 +67,11 @@ export default function Settings() {
 
     const triggerUpdate = async () => {
         try {
-            const update = await Updates.checkForUpdateAsync();
             await AsyncStorage.clear();
             AsyncStorage.getAllKeys()
               .then(keys => AsyncStorage.multiRemove(keys))
               .then(() => console.log('success'));
+            const update = await Updates.checkForUpdateAsync();
             if (update.isAvailable) {
                 await Updates.fetchUpdateAsync();
                 // await Updates.reloadAsync();
