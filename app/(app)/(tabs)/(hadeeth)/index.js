@@ -1,4 +1,4 @@
-import { View, Text, useWindowDimensions, StyleSheet, FlatList } from 'react-native'
+import { View, Text, useWindowDimensions, StyleSheet, FlatList, ImageBackground } from 'react-native'
 import React from 'react'
 import {useRouter } from 'expo-router'
 import books from '@data/books.json'
@@ -6,6 +6,7 @@ import initials from "initialism";
 import {TouchableHighlight} from "react-native-gesture-handler";
 import Header from '@components/header';
 import {useAuth} from "../../../../context/auth";
+import {ArrowRight, Bookmark, Heart, Share2} from "lucide-react-native";
 
 function Hadeeth() {
     const { user } = useAuth();
@@ -14,39 +15,64 @@ function Hadeeth() {
     const styles = makeStyles(fontScale);
 
     function onTriggerPress(id, title) {
-        // console.log(id, title)
         router.push(`(hadeeth)/volume/${id}?title=${title}`)
     }
 
-    const Item = ({ title, id }) => (
-          <View className="bg-white mb-4 rounded-xl">
-              <TouchableHighlight onPress={() => onTriggerPress(id, title)} underlayColor="#f9fafb" className="rounded-xl w-full">
-                  <View className="space-x-3 flex flex-row font-xl p-3 items-center">
-                      <View className="bg-[#dad873] rounded-xl w-12 h-12 flex items-center justify-center">
-                          <Text className="text-white font-bold">{initials(title, 2)}</Text>
-                      </View>
-                      <Text style={styles.title}>{title}</Text>
-                  </View>
-              </TouchableHighlight >
-          </View>
-    );
+    function Item({ title, id }) {
+        const words = title.split(' ');
+
+        const firstWord = words[0];
+        const remainingWords = words.slice(1).join(' ');
+
+        return (
+            <View className="w-[48%] mr-4 bg-white">
+                <TouchableHighlight onPress={() => onTriggerPress(id, title)} underlayColor="#f9fafb" className="rounded-xl w-full">
+                    <View>
+                        <View className="flex items-center p-6">
+                          <Text className="text-lg text-royal-blue">{firstWord}</Text>
+                          <Text className="text-lg text-royal-blue">{remainingWords}</Text>
+                        </View>
+                        <View className="bg-royal-blue w-full p-1 flex flex-row justify-between">
+                            <View className="flex flex-row">
+                                <Share2 color="white" size={15} absoluteStrokeWidth={2} className="mr-1" />
+                                <Heart color="white" size={15} absoluteStrokeWidth={2} className="mr-1" />
+                                <Bookmark color="white" size={15} absoluteStrokeWidth={2} className="mr-1" />
+                            </View>
+                            <View className="flex flex-row items-center">
+                                <Text className="text-white text-xs mr-1">View More</Text>
+                                <ArrowRight color="white" size={12} />
+                            </View>
+                        </View>
+                    </View>
+                </TouchableHighlight>
+            </View>
+        )
+    }
 
     return (
       <>
-        <Header user={user}></Header>
+        <Header user={user} title={'Books of hadith'}></Header>
         <View className="flex-1 bg-gray-100">
-          <View className="mb-4">
-              <FlatList
-                data={books}
-                renderItem={({ item }) => <Item title={item.title} id={item.id} />}
-                keyExtractor={item => item.id}
-                className="p-4 h-full"
-              />
-          </View>
+            <ImageBackground source={require("@assets/book-background.png")} resizeMode="contain" style={{ flex: 1, justifyContent: 'end', alignItems: 'end' }}>
+              <View className="mb-4 mt-4">
+                <FlatList
+                    data={books}
+                    renderItem={({ item }) => <Item title={item.title} id={item.id} />}
+                    keyExtractor={item => item.id}
+                    className="h-full"
+                    numColumns={2}
+                    columnWrapperStyle={{
+                        flex: 1,
+                        width: '100%',
+                        padding: 14
+                    }}
+                />
+              </View>
+            </ImageBackground>
         </View>
       </>
     );
-};
+}
 
 const makeStyles = fontScale => StyleSheet.create({
     safeAreaViewContainer: {
@@ -92,10 +118,7 @@ const makeStyles = fontScale => StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-    },
-    title: {
-        fontSize: 20,
-    },
+    }
 });
 
 export default Hadeeth

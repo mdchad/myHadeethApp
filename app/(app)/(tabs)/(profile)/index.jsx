@@ -68,7 +68,7 @@ export default function Profile() {
           <View className="py-6">
             <View className="px-6 gap-6 items-center flex flex-row">
               { user ? (
-                <Image class source={{ uri: user.profileImageUrl }} style={{ width: 80, height: 80, borderRadius: 100 }} />
+                <Image source={{ uri: user.profileImageUrl }} style={{ width: 80, height: 80, borderRadius: 100 }} />
               ) : (
                 <View className="rounded-full flex items-center justify-center h-20 w-20 bg-gray-200">
                   <User color="black" />

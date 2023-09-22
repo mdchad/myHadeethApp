@@ -6,6 +6,7 @@ import { useAuth } from "@context/auth";
 import { useSegments } from 'expo-router';
 import {Skeleton} from "moti/skeleton";
 import Spacer from "@components/Spacer";
+import Header from "./header";
 
 const Mecca = {
 	latitude: 21.4225,
@@ -18,7 +19,7 @@ export default function CompassV2() {
 	const [location, setLocation] = useState(null);
 	const [errorMsg, setErrorMsg] = useState(null);
 	const [heading, setHeading] = useState(0);
-	const { userLocation } = useAuth()
+	const { userLocation, userPlace } = useAuth()
 	// const [loading, setLoading] = useState(true);
 	const segment = useSegments();
 	const [isQiblaPage, setIsQiblaPage] = useState(true);
@@ -36,7 +37,7 @@ export default function CompassV2() {
 				let _degree = _getDegreeToMecca(location, heading);
 				setDegree(_degree)
 				if (!_degree){
-					return <Text>oii</Text>
+					return null
 				}
 
 				// if degree is near 0 and 360, then vibrate
@@ -97,40 +98,52 @@ export default function CompassV2() {
 	};
 
 	return (
-		<View className="flex h-full justify-center items-center">
-			{degree ? <View className="relative mb-6 flex justify-center items-center">
-				<Image
-					source={require('@assets/kompas.png')}
-					style={{
-						height: width,
-						justifyContent: 'center',
-						alignItems: 'center',
-						resizeMode: 'contain',
-						transform: [{ rotate: `-${heading.toFixed(0)}deg` }],
-						position: 'relative',
-					}}
-				/>
+		<View className="h-full">
+			<Header title={'Qibla'}/>
+			<View className="mt-4 flex justify-center items-center">
+				{degree ? <View className="relative mb-6 flex justify-center items-center">
+					<Image
+						source={require('@assets/kompas.png')}
+						style={{
+							height: width,
+							justifyContent: 'center',
+							alignItems: 'center',
+							resizeMode: 'contain',
+							transform: [{ rotate: `-${heading.toFixed(0)}deg` }],
+							position: 'relative',
+						}}
+					/>
 
-				<Image source={require("@assets/qibla_needle.png")} style={{
-					height: width / 1.1,
-					position: 'absolute',
-					top: 0,
-					// left: 0,
-					marginLeft: -20,
-					marginTop: 15,
-					resizeMode: 'contain',
-					transform: [{ rotate: `-${degree}deg` }],
-				}} />
-			</View> : (
-				<>
-					<Skeleton width={200} height={200} colorMode="light" radius="round" />
-					<Spacer height={20} />
-				</>
-			)}
-			{ degree ? <View className={`${degree > 358 || degree < 2 ? "bg-green-300" : "bg-red-400"} p-3 rounded-xl w-1/3`}>
-				<Text className="text-white font-bold text-xl text-center">
-					{degree}°
-				</Text>
+					<Image source={require("@assets/qibla_needle.png")} style={{
+						height: width / 1.1,
+						position: 'absolute',
+						top: 0,
+						// left: 0,
+						marginLeft: -20,
+						marginTop: 15,
+						resizeMode: 'contain',
+						transform: [{ rotate: `-${degree}deg` }],
+					}} />
+				</View> : (
+					<>
+						<Skeleton width={200} height={200} colorMode="light" radius="round" />
+						<Spacer height={20} />
+					</>
+				)}
+				{/*{ degree ? <View className={`${degree > 358 || degree < 2 ? "bg-green-300" : "bg-red-400"} p-3 rounded-xl w-1/3`}>*/}
+				{/*	<Text className="text-white font-bold text-xl text-center">*/}
+				{/*		{degree}°*/}
+				{/*	</Text>*/}
+				{/*</View>  : <Skeleton colorMode={'light'} width={'50%'} /> }*/}
+				<View className="bg-royal-blue p-1 rounded-xl w-1/3">
+					<Text className="text-white font-bold text-2xl text-center">
+						{degree}°
+					</Text>
+				</View>
+			</View>
+			{ degree && userPlace ? <View className="px-8 py-4">
+				<Text className="text-xl font-semibold text-royal-blue">Location:</Text>
+				<Text className="text-sm text-royal-blue">{userPlace[0].city}{userPlace[0].city && ','} {userPlace[0].country}</Text>
 			</View> : <Skeleton colorMode={'light'} width={'50%'} /> }
 		</View>
 	);

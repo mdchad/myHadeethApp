@@ -8,7 +8,6 @@ import { useOAuth } from "@clerk/clerk-expo";
 import { useSignIn } from "@clerk/clerk-expo";
 import * as WebBrowser from "expo-web-browser";
 import { useWarmUpBrowser } from "@context/useWarmUpBrowser";
-import SignInWithOAuth from "../../components/SignInWithOAuth.tsx.js";
 import { TouchableHighlight } from "react-native";
 import {trpc} from "../../../utils/trpc";
 import {useAuth} from "@context/auth";
@@ -89,62 +88,58 @@ export default function SignIn() {
         <Page>
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                 <KeyboardAvoidingView>
-                    <View className="flex justify-between px-4 py-8 h-full">
+                    <View className="bg-royal-blue flex justify-between px-6 py-8 h-full">
                         <View className="flex items-center mb-50 my-auto">
-                            <View className="bg-[#F5EFD2] flex items-center justify-center rounded-full w-32 h-32">
-                                <Users color={'black'} size={36} />
+                            <View className="flex items-center justify-center rounded-full w-32 h-32 mb-10">
+                                <Image source={require("@assets/splash-3.png")} style={{ width: 250, height: 250 }} />
+                                {/*<Users color={'black'} size={36} />*/}
                             </View>
 
-                            <View className="mt-10">
+                            <View className="mt-10 w-full">
+                                <Text className="font-bold text-md pb-2 text-white">Email</Text>
                                 <TextInput
                                     label="Email"
                                     leftIcon={{ type: "font-awesome", name: "envelope" }}
                                     onChangeText={(text) => setEmail(text)}
                                     value={email}
-                                    className="block w-64 appearance-none rounded-xl border border-gray-300 px-5 py-3 placeholder-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                    className="bg-white block w-full appearance-none rounded-md border border-gray-300 px-5 py-3 placeholder-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                     placeholder="Email"
                                     autoCapitalize={"none"}
                                 />
                             </View>
-                            <View className="mt-4">
-                                {/*<Image source={require("../assets/envelope.png")} style={{ width: 20, height: 20 }}/>*/}
+                            <View className="mt-4 w-full">
+                                <Text className="font-bold text-md pb-2 text-white">Password</Text>
                                 <TextInput
                                     label="Password"
                                     leftIcon={{ type: "font-awesome", name: "lock" }}
                                     onChangeText={(text) => setPassword(text)}
-                                    className="block w-64 appearance-none rounded-xl border border-gray-300 px-5 py-3 placeholder-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                    className="bg-white block w-full appearance-none rounded-md border border-gray-300 px-5 py-3 placeholder-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                     value={password}
                                     secureTextEntry={true}
                                     placeholder="Password"
                                     autoCapitalize={"none"}
                                 />
-
-                                <View className="flex items-end mt-2 hidden">
-                                    <Link href={"ResetPassword"}>
-                                        <Text className="underline text-xs">Forgot Password ?</Text>
-                                    </Link>
-                                </View>
                             </View>
 
                             <View className="mt-8">
                                 <Pressable
-                                    className="flex flex-row items-center justify-center py-3 px-5 w-64 rounded-lg bg-[#1EAB53] border-transparent"
+                                    className="bg-white flex flex-row items-center justify-center py-3 px-5 w-56 rounded-lg border-transparent"
                                     disabled={!isLoaded}
                                     onPress={() => onSignInPress()}
                                 >
                                     <Text></Text>
-                                    <Text className="text-sm font-bold text-center text-white uppercase basis-11/12">
+                                    <Text className="text-sm font-bold text-center uppercase basis-11/12">
                                         Login
                                     </Text>
                                 </Pressable>
                             </View>
 
-                            <View className="flex flex-row items-center px-12 py-6">
-                                <View className="flex-1 h-[1] bg-gray-200" />
+                            <View className="flex flex-row items-center px-16 py-6">
+                                <View className="flex-1 h-[1] bg-white" />
                                 <View>
-                                    <Text style={{ width: 50, textAlign: 'center' }}>or</Text>
+                                    <Text className="text-white" style={{ width: 50, textAlign: 'center' }}>or</Text>
                                 </View>
-                                <View className="flex-1 h-[1] bg-gray-200" />
+                                <View className="flex-1 h-[1] bg-white" />
                             </View>
 
                             <View className="mb-4">
@@ -154,24 +149,26 @@ export default function SignIn() {
                                     underlayColor="#f9fafb"
                                     onPress={handleSignInWithGooglePress}
                                 >
-                                    <View className="space-x-2 flex flex-row items-center justify-center py-3 px-5 w-64 rounded-xl border border-gray-300">
+                                    <View className="bg-white space-x-2 flex flex-row items-center justify-center py-3 px-5 w-56 rounded-xl border border-gray-300">
                                         <Image source={require("@assets/google.png")} style={{ width: 22, height: 22 }} />
-                                        <Text className="text-sm text-center text-black">
+                                        <Text className="text-sm text-center">
                                            Sign in with Google
                                         </Text>
                                     </View>
                                 </TouchableHighlight>
                                 {/*<SignInWithOAuth />*/}
                             </View>
-                            <Link href={'/'} className="px-4 py-2">Skip for now</Link>
+                            <Link href={'/'} className="px-4 py-2 text-white">Skip for now</Link>
                         </View>
-                        <View className="flex items-center">
-                            <View className="mt-5">
-                                <Text>No account yet?</Text>
-                            </View>
+                        <View className="flex flex-row justify-between">
                             <View className="mt-2">
                                 <Link href={"SignUp"}>
-                                    <Text className="underline font-bold">Sign Up</Text>
+                                    <Text className="text-white">Sign Up</Text>
+                                </Link>
+                            </View>
+                            <View className="mt-2">
+                                <Link href={"ResetPassword"}>
+                                    <Text className="text-white">Forgot Password</Text>
                                 </Link>
                             </View>
                         </View>
