@@ -36,7 +36,6 @@ function Header({ user, title, onPressButton, rounded = true}) {
                         <TextInput
                           className="px-4 py-2"
                           placeholder="Search for Hadith, Books, Etc"
-                          autoFocus={true}
                         />
                     </View>
                 </View>

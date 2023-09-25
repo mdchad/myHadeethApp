@@ -28,7 +28,7 @@ function Hadeeth() {
             <View className="w-[48%] mr-4 bg-white">
                 <TouchableHighlight onPress={() => onTriggerPress(id, title)} underlayColor="#f9fafb" className="rounded-xl w-full">
                     <View>
-                        <View className="flex items-center p-6">
+                        <View className="flex items-center p-8">
                           <Text className="text-lg text-royal-blue">{firstWord}</Text>
                           <Text className="text-lg text-royal-blue">{remainingWords}</Text>
                         </View>
@@ -53,7 +53,7 @@ function Hadeeth() {
       <>
         <Header user={user} title={'Books of hadith'}></Header>
         <View className="flex-1 bg-gray-100">
-            <ImageBackground source={require("@assets/book-background.png")} resizeMode="contain" style={{ flex: 1, justifyContent: 'end', alignItems: 'end' }}>
+            <ImageBackground source={require("@assets/book-background.png")} resizeMode="cover" style={{ flex: 1, justifyContent: 'end', alignItems: 'end' }}>
               <View className="mb-4 mt-4">
                 <FlatList
                     data={books}

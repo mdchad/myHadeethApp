@@ -2,7 +2,7 @@
   "expo": {
     "scheme": "myhadeethapp",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon-2.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash-3.png",

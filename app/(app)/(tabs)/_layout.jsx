@@ -36,6 +36,7 @@ const _layout = () => {
         <Tabs.Screen
           name="(home)"
           options={{
+            href: null,
             tabBarLabel: 'Home',
             tabBarIcon: ({ focused }) => {
               return (

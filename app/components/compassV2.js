@@ -103,7 +103,7 @@ export default function CompassV2() {
 			<View className="mt-4 flex justify-center items-center">
 				{degree ? <View className="relative mb-6 flex justify-center items-center">
 					<Image
-						source={require('@assets/kompas.png')}
+						source={require('@assets/compass-v2.png')}
 						style={{
 							height: width,
 							justifyContent: 'center',
@@ -114,7 +114,7 @@ export default function CompassV2() {
 						}}
 					/>
 
-					<Image source={require("@assets/qibla_needle.png")} style={{
+					<Image source={require("@assets/compass-needle.png")} style={{
 						height: width / 1.1,
 						position: 'absolute',
 						top: 0,
@@ -144,7 +144,8 @@ export default function CompassV2() {
 			{ degree && userPlace ? <View className="px-8 py-4">
 				<Text className="text-xl font-semibold text-royal-blue">Location:</Text>
 				<Text className="text-sm text-royal-blue">{userPlace[0].city}{userPlace[0].city && ','} {userPlace[0].country}</Text>
-			</View> : <Skeleton colorMode={'light'} width={'50%'} /> }
+			</View> : (
+				<View className="px-8 py-4"><Skeleton colorMode={'light'} width={'50%'} /></View> )}
 		</View>
 	);
 }
