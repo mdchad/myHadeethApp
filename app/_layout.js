@@ -5,6 +5,8 @@ import { ScheherazadeNew_400Regular, ScheherazadeNew_700Bold } from "@expo-googl
 import { tokenCache } from "../utils/cache";
 import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
 import {TRPCProvider} from "../utils/trpc";
+import {useEffect} from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // const CLERK_PUBLISHABLE_KEY_FROM_ENV = CLERK_PUBLISHABLE_KEY;
 const CLERK_PUBLISHABLE_KEY_FROM_ENV = 'pk_test_YWNjZXB0ZWQtbGVtdXItODcuY2xlcmsuYWNjb3VudHMuZGV2JA';
@@ -18,6 +20,13 @@ export default function Root() {
         ScheherazadeNew_400Regular,
         ScheherazadeNew_700Bold
     });
+
+    useEffect(() => {
+        // await AsyncStorage.clear();
+        AsyncStorage.getAllKeys()
+          .then(keys => AsyncStorage.multiRemove(keys))
+          .then(() => console.log('success'));
+    }, [])
 
     // const onLayoutRootView = useCallback(async () => {
     //     if (fontsLoaded) {

@@ -972,6 +972,66 @@
 		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
 	},
 	{
+		"id": "2b1bc287-cdea-4e51-b5d3-f6fa0ce31235",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "Pengantar",
+			"ar": "كِتَابُ التَّوْحِيدِ"
+		},
+		"book_name": "sahih_muslim",
+		"book_title": "Sahih Muslim",
+		"book_id": "240360e4-50b4-47a9-9506-9850b0e3bfd7"
+	},
+	{
+		"id": "2ac64e58-56c5-4012-a0f2-5d619bbb637b",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "Kitab al-Iman",
+			"ar": "كِتَابُ الْإِيمَانَ"
+		},
+		"transliteration": {
+			"en": "",
+			"ms": "Kitāb al-Īmān"
+		},
+		"book_name": "sahih_muslim",
+		"book_title": "Sahih Muslim",
+		"book_id": "240360e4-50b4-47a9-9506-9850b0e3bfd7"
+	},
+	{
+		"id": "aea05500-85ea-423e-b18c-fbbc5473b1d2",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB HAIWAN KORBAN",
+			"ar": "كتاب الْأَضَاحِيِّ"
+		},
+		"transliteration": {
+			"en": "",
+			"ms": "KITĀB AL-AḌĀḤĪ"
+		},
+		"book_name": "sahih_muslim",
+		"book_title": "Sahih Muslim",
+		"book_id": "240360e4-50b4-47a9-9506-9850b0e3bfd7"
+	},
+	{
+		"id": "38e6e1bc-4366-4699-8a31-734dad119ffc",
+		"name": "",
+		"title": {
+			"en": "",
+			"ms": "KITAB PAKAIAN DAN PERHIASAN",
+			"ar": "كتاب اللِّبَاسِ وَالزِّينَةِ"
+		},
+		"transliteration": {
+			"en": "",
+			"ms": "KITĀB AL-LIBĀS WA AL-ZĪNAH"
+		},
+		"book_name": "sahih_muslim",
+		"book_title": "Sahih Muslim",
+		"book_id": "240360e4-50b4-47a9-9506-9850b0e3bfd7"
+	},
+	{
 		"id": "f75f02ba-f334-4ab6-ac28-50d8740ff0a9",
 		"name": "",
 		"title": {

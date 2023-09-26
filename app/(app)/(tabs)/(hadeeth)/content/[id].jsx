@@ -175,7 +175,7 @@ const HadeethContent = () => {
           onPressButton={() => router.push(`(hadeeth)/volume/${hadeeth[0].book_id}?title=${hadeeth[0].book_title.ms}`)}
         />
         <View className="flex-1 p-4 pb-0 bg-white">
-            <View className="flex items-end border-b-0.5 border-b-royal-blue mb-3">
+            <View className="flex items-end border-b border-b-royal-blue mb-3">
                 <Text className="text-lg font-semibold text-royal-blue">{hadeeth ? hadeeth[0]?.volume_title.ms : ''}</Text>
             </View>
             <View className="flex-1">

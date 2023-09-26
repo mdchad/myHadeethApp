@@ -3,24 +3,16 @@ import {
   View,
   Text,
   ScrollView,
-  Pressable,
   Image,
   TouchableHighlight, Share, Alert
 } from "react-native";
 import {Link, useRouter} from 'expo-router'
 
 import Page from "@components/page";
-import {ArrowLeft, Bookmark, FileText, LogIn, LogOut, Settings, User, Users} from "lucide-react-native";
+import {Bookmark, FileText, LogIn, LogOut, Settings, User, Users} from "lucide-react-native";
 import {useAuth} from "@context/auth";
 import {SignedIn, SignedOut} from "@clerk/clerk-expo";
-import Markdown from "react-native-markdown-display";
-
-const copy = `# h1 Heading 8-)
-
-**This is some bold text!**
-
-This is normal text
-`;
+import Header from "../../../components/header";
 
 export default function Profile() {
   const { isLoaded, user, signOut } = useAuth();
@@ -57,35 +49,56 @@ export default function Profile() {
   }
 
   return (
-    <Page class="bg-white">
-      <ScrollView className="py-4">
-        <View className="flex sm:mx-auto sm:w-full sm:max-w-md w-full h-full">
-          {/*<Link href={'/(setting)'} asChild>*/}
-          {/*  <Pressable className="px-6 py-2">*/}
-          {/*    <ArrowLeft color="black" size={25}/>*/}
-          {/*  </Pressable>*/}
-          {/*</Link>*/}
-          <View className="py-6">
-            <View className="px-6 gap-6 items-center flex flex-row">
-              { user ? (
-                <Image source={{ uri: user.profileImageUrl }} style={{ width: 80, height: 80, borderRadius: 100 }} />
-              ) : (
-                <View className="rounded-full flex items-center justify-center h-20 w-20 bg-gray-200">
-                  <User color="black" />
-                </View>
-              )}
-              <View className="flex">
-                { user ? (
-                  <>
-                    <Text className="font-semibold text-2xl mb-2 text-gray-800">{user.fullName}</Text>
-                    <Text className="text-gray-500">{user.primaryEmailAddress.emailAddress}</Text>
-                  </>
-                ) : (
-                  <Text className="font-semibold text-2xl mb-2 text-gray-800">Guest</Text>
-                  // <Text className="text-gray-500">{user.primaryEmailAddress.emailAddress}</Text>
-                )}
+    <Page class="bg-white w-full">
+      <ScrollView>
+        <Header title="Settings" rounded={false}/>
+        <View className={`w-full flex items-center h-10 rounded-b-2xl bg-royal-blue`}>
+          <View className="">
+            { user ? (
+              <Image source={{ uri: user.profileImageUrl }} style={{ width: 80, height: 80, borderRadius: 100 }} />
+            ) : (
+              <View className="rounded-full flex items-center justify-center h-20 w-20 bg-gray-200">
+                <User color="black" />
               </View>
-            </View>
+            )}
+          </View>
+          <View className="flex items-center mt-2">
+            { user ? (
+              <>
+                <Text className="mb-1 text-royal-blue">{user.fullName}</Text>
+                <Text className="text-royal-blue">{user.primaryEmailAddress.emailAddress}</Text>
+              </>
+            ) : (
+              <>
+                <Text className="mb-1 text-royal-blue">Guest</Text>
+              </>
+              // <Text className="font-semibold text-2xl mb-2 text-gray-800">Guest</Text>
+              // <Text className="text-gray-500">{user.primaryEmailAddress.emailAddress}</Text>
+            )}
+          </View>
+        </View>
+        <View className="mt-12 flex sm:mx-auto sm:w-full sm:max-w-md w-full h-full">
+          <View className="py-6">
+            {/*<View className="px-6 gap-6 items-center flex flex-row">*/}
+            {/*  { user ? (*/}
+            {/*    <Image source={{ uri: user.profileImageUrl }} style={{ width: 80, height: 80, borderRadius: 100 }} />*/}
+            {/*  ) : (*/}
+            {/*    <View className="rounded-full flex items-center justify-center h-20 w-20 bg-gray-200">*/}
+            {/*      <User color="black" />*/}
+            {/*    </View>*/}
+            {/*  )}*/}
+            {/*  <View className="flex">*/}
+            {/*    { user ? (*/}
+            {/*      <>*/}
+            {/*        <Text className="font-semibold text-2xl mb-2 text-gray-800">{user.fullName}</Text>*/}
+            {/*        <Text className="text-gray-500">{user.primaryEmailAddress.emailAddress}</Text>*/}
+            {/*      </>*/}
+            {/*    ) : (*/}
+            {/*      <Text className="font-semibold text-2xl mb-2 text-gray-800">Guest</Text>*/}
+            {/*      // <Text className="text-gray-500">{user.primaryEmailAddress.emailAddress}</Text>*/}
+            {/*    )}*/}
+            {/*  </View>*/}
+            {/*</View>*/}
             <View className="border-b border-b-gray-300 mx-6 mt-8"></View>
             <View className="mt-4">
               {/*<Link href="/saved" asChild>*/}

@@ -20,14 +20,14 @@ const HadeethCategoryItem = ({ item, onPress, index }) => (
             </View>
             <View className="p-4 flex flex-col w-0 flex-grow justify-between">
                 <View className="flex flex-row justify-between items-end">
-                    <Text className="text-royal-blue text-[14px] capitalize">{item.title.ms}</Text>
-                    <View className="flex flex-row items-end">
+                    <Text className="text-royal-blue text-[14px] flex-shrink capitalize ">{item.title.ms}</Text>
+                    <View className="flex flex-row items-end ml-1">
                         <Text className="text-royal-blue text-xs mr-1">View more</Text>
                         <ArrowRight color="black" size={14} />
                     </View>
                 </View>
                 <View className="pt-1 flex flex-row justify-between items-center border-t-0.5 border-t-black mt-1">
-                    <Text className="text-xs">Hadith</Text>
+                    <Text className="text-xs capitalize">{item?.transliteration?.ms}</Text>
                     <View className="flex flex-row">
                         <Share2 color="black" size={15} className="mr-1" />
                         <Heart color="black" size={15} className="mr-1" />

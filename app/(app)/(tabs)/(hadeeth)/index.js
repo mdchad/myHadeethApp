@@ -29,8 +29,8 @@ function Hadeeth() {
                 <TouchableHighlight onPress={() => onTriggerPress(id, title)} underlayColor="#f9fafb" className="rounded-xl w-full">
                     <View>
                         <View className="flex items-center p-8">
-                          <Text className="text-lg text-royal-blue">{firstWord}</Text>
-                          <Text className="text-lg text-royal-blue">{remainingWords}</Text>
+                          <Text className="text-lg text-royal-blue font-semibold">{firstWord}</Text>
+                          <Text className="text-lg text-royal-blue font-semibold">{remainingWords}</Text>
                         </View>
                         <View className="bg-royal-blue w-full p-1 flex flex-row justify-between">
                             <View className="flex flex-row">

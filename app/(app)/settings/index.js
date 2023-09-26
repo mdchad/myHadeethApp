@@ -15,6 +15,7 @@ import * as SecureStore from "expo-secure-store";
 import { View as MotiView, AnimatePresence } from 'moti';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Header from "../../components/header";
 
 
 const tokenCache = {
