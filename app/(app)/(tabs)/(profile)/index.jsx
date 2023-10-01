@@ -120,7 +120,7 @@ export default function Profile() {
               <TouchableHighlight underlayColor="#f9fafb" onPress={onShare}>
                 <View className="px-6 space-x-4 flex flex-row items-center py-2 my-1">
                   <Users color="black" size={20}/>
-                  <Text className="text-lg">Tell your friend</Text>
+                  <Text className="text-lg">Share this app</Text>
                 </View>
               </TouchableHighlight>
               <Link href="/settings" asChild>
