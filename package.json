@@ -6,7 +6,7 @@
 		"web": "expo start --web",
 		"build:ios": "eas build -p ios",
 		"submit:ios": "eas build -p ios --auto-submit",
-		"build:android": "eas build -p android"
+		"build:android": "eas build -p android --profile development"
 	},
 	"dependencies": {
 		"@babel/preset-env": "^7.20.2",
@@ -72,7 +72,7 @@
 		"@babel/plugin-proposal-export-namespace-from": "^7.18.9",
 		"babel-plugin-transform-inline-environment-variables": "^0.4.4",
 		"react-native-dotenv": "^3.4.8",
-		"tailwindcss": "^3.2.7"
+		"tailwindcss": "3.3.2"
 	},
 	"resolutions": {
 		"metro": "^0.73.7",
