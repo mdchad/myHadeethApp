@@ -15,7 +15,7 @@ import * as SecureStore from "expo-secure-store";
 import { View as MotiView, AnimatePresence } from 'moti';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Header from "../../components/header";
+import * as WebBrowser from 'expo-web-browser';
 
 
 const tokenCache = {
@@ -132,10 +132,12 @@ export default function Settings() {
                             <MessageSquare size={20} color={'black'} />
                             <Text className="text-lg">Help and Feedback</Text>
                         </View>
-                        <View className="mx-5 space-x-3 py-3 flex flex-row items-center border-b border-gray-300">
-                            <Info size={20} color={'black'} />
-                            <Text className="text-lg">About</Text>
-                        </View>
+                        <TouchableHighlight onPress={() => WebBrowser.openBrowserAsync('https://expo.dev')} className="rounded-b-xl bg-white border-b border-gray-300" underlayColor="#f9fafb">
+                            <View className="mx-5 py-3 space-x-3 flex flex-row items-center">
+                                <Smartphone color={'black'} size={20} />
+                                <Text className="text-lg">About</Text>
+                            </View>
+                        </TouchableHighlight>
                         <TouchableHighlight onPress={triggerUpdate} className="rounded-b-xl bg-white" underlayColor="#f9fafb">
                             <View className="mx-5 py-3 space-x-3 flex flex-row items-center">
                                 <Smartphone color={'black'} size={20} />

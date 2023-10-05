@@ -2,7 +2,7 @@ import { View, Text, Image } from 'react-native'
 import React from 'react'
 import { Tabs } from 'expo-router'
 import { StatusBar } from 'expo-status-bar';
-import {BookMinus, Clock, Compass, User} from "lucide-react-native";
+import {BookMinus, Clock, Compass, SearchIcon, User} from "lucide-react-native";
 
 const homeLogo = require('@assets/home.png')
 const prayerLogo = require('@assets/prayer.png')
@@ -64,6 +64,24 @@ const _layout = () => {
                     alignItems: 'center',
                   }}>
                   <Image source={hadithLogo} style={{ width: 20, height: 20 }} />
+                  {/* <FontAwesome5 name="home" size={30} color={focused ? 'tomato' : 'gray'} /> */}
+                </View>
+              )
+            }
+          }}
+        />
+        <Tabs.Screen
+          name="(search)"
+          options={{
+            tabBarLabel: 'Search',
+            tabBarIcon: ({ focused }) => {
+              return (
+                <View
+                  style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <SearchIcon size={22} color={'white'} />
                   {/* <FontAwesome5 name="home" size={30} color={focused ? 'tomato' : 'gray'} /> */}
                 </View>
               )

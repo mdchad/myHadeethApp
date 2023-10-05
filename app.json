@@ -30,7 +30,8 @@
         {
           "locationAlwaysAndWhenInUsePermission": "Allow myHadeeth to use your location."
         }
-      ]
+      ],
+      "expo-router"
     ],
     "ios": {
       "bundleIdentifier": "com.mdchad.myHadeethApp",
