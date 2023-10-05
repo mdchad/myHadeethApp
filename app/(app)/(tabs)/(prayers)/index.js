@@ -53,9 +53,12 @@ export default function Prayer() {
     const [nextPrayer, setNextPrayer] = useState(null);
     const { userLocation, userPlace } = useAuth()
     const currentDate = new Date()
+    const month = format(currentDate, "L", { timeZone: "Asia/Kuala_Lumpur" });
+    const year = format(currentDate, "y", { timeZone: "Asia/Kuala_Lumpur" });
     const endDate = addDays(currentDate, 6)
     const datesInRange = eachDayOfInterval({ start: currentDate, end: endDate })
     const [calendarDate, setCalendarDate] = useState(new Date())
+    const [monthlyPrayerTimes, setMonthlyPrayerTimes] = useState(null)
     const formattedDates = datesInRange.map((date, i) => {
         return {
             date,
@@ -68,51 +71,67 @@ export default function Prayer() {
 
     useEffect(() => {
         if (userLocation) {
-            fetchPrayer(calendarDate);
+            fetchPrayer();
         }
-    }, [userLocation, calendarDate]);
+    }, [userLocation]);
 
-    async function fetchPrayer(currentDate) {
+    const fetchPrayer = async () => {
         try {
-            const coordinates = new Coordinates(userLocation.coords.latitude, userLocation.coords.longitude);
-            const params = CalculationMethod.MoonsightingCommittee();
-            const prayerTimesResult = new PrayerTimes(coordinates, currentDate, params);
-
-            const prayers = [];
-            ['fajr', 'sunrise', 'dhuhr', 'asr', 'maghrib', 'isha'].forEach((time, i) => {
-
-                const currentTime = new Date()
-                let elapsed = isBefore(new Date(prayerTimesResult[time]), currentTime);
+            const response = await fetch(
+              `https://mpt-server.vercel.app/api/zones/gps?lat=${userLocation.coords.latitude}&long=${userLocation.coords.longitude}`,
+            );
+            const json = await response.json();
 
 
-                const formattedPrayer = format(new Date(prayerTimesResult[time]), "h:mm a", { timeZone: "Asia/Kuala_Lumpur" });
-
-                const prayerMeta = {
-                    name: prayerNames[i],
-                    timezoneDate: time,
-                    prayerTime: formattedPrayer,
-                    icon: prayerIcon[i],
-                    hasElapsed: elapsed
-                };
-
-                prayers.push(prayerMeta);
-            });
-
-            const nextAvailablePrayer = prayers.find(prayer => prayer.hasElapsed === false)
-            setPrayerTimes(prayers);
-            setNextPrayer(nextAvailablePrayer);
-            if (!nextAvailablePrayer) {
-                // if isya, it will be undefined for next prayer. So check for the next day prayer
-                fetchPrayer(addDays(currentDate, 1))
-            }
+            const prayerMonthly = await fetch(
+              `https://mpt-server.vercel.app/api/v2/solat/${json.zone}?year=${year}&month=${month}`,
+            );
+            const result = await prayerMonthly.json();
+            setMonthlyPrayerTimes(result)
+            await calculatePrayer(format(currentDate, "d", { timeZone: "Asia/Kuala_Lumpur" }), result)
         } catch (error) {
             console.error(error);
         }
+    };
+
+    async function calculatePrayer(day, monthlyPrayerTimes) {
+        const prayers = [];
+        ['fajr', 'syuruk', 'dhuhr', 'asr', 'maghrib', 'isha'].forEach((time, i) => {
+            const currentTime = new Date()
+            const getPrayerDate = monthlyPrayerTimes.prayers.find(prayer => prayer.day === parseInt(day))
+            const getWaktu = getPrayerDate[time]
+
+            let elapsed = isBefore(new Date(getPrayerDate[time] * 1000), currentTime);
+
+            const formattedPrayer = format(new Date(getWaktu * 1000), "h:mm a", { timeZone: "Asia/Kuala_Lumpur" });
+
+            const prayerMeta = {
+                name: prayerNames[i],
+                timezoneDate: time,
+                prayerTime: formattedPrayer,
+                icon: prayerIcon[i],
+                hasElapsed: elapsed
+            };
+
+            prayers.push(prayerMeta);
+        });
+        const nextAvailablePrayer = prayers.find(prayer => prayer.hasElapsed === false)
+        setPrayerTimes(prayers);
+        setNextPrayer(nextAvailablePrayer);
+        if (!nextAvailablePrayer) {
+            // if isya, it will be undefined for next prayer. So check for the next day prayer
+            calculatePrayer(format(addDays(currentDate, 1), "d", { timeZone: "Asia/Kuala_Lumpur" }), monthlyPrayerTimes)
+        }
+    }
+
+    function onClickIndividualDay(item) {
+        setCalendarDate(item?.date)
+        calculatePrayer(format(item?.date, "d", { timeZone: "Asia/Kuala_Lumpur" }), monthlyPrayerTimes)
     }
 
     function RenderItem({ item }) {
         return (
-            <Pressable onPress={() => setCalendarDate(item?.date)}>
+            <Pressable onPress={() => onClickIndividualDay(item)}>
                 {/*<View className={`mx-2 flex items-center py-4 px-2 ${isSameDay(item?.date, calendarDate) ? 'bg-[#EDEEC0]' : 'bg-white'}`}>*/}
                 <View className={`mx-2 flex items-center py-4`}>
                     <Text className={`${isSameDay(item?.date, calendarDate) ? 'text-royal-blue' : 'text-[#008080]'}`}>{item?.dayName.toUpperCase()}</Text>
@@ -167,19 +186,26 @@ export default function Prayer() {
                         <View className="px-2">
                             <View className="flex flex-col items-center mb-4">
                                 <View className="flex flex-row items-center space-x-2">
-                                    <ChevronLeftCircle color={"#1C2A4F"} />
+                                    {/*<ChevronLeftCircle color={"#1C2A4F"} />*/}
                                     <Text className="text-xl font-bold">{format(calendarDate, 'LLL yyyy')}</Text>
-                                    <ChevronRightCircle color={"#1C2A4F"}/>
+                                    {/*<ChevronRightCircle color={"#1C2A4F"}/>*/}
                                 </View>
-                                <View className="flex flex-row items-center justify-center mb-4 mt-4 border-y-2 border-y-black">
-                                    <ChevronLeft color={"#1C2A4F"}/>
-                                    <FlatList
-                                      data={formattedDates}
-                                      keyExtractor={item => item.id}
-                                      renderItem={({ item }) => <RenderItem item={item} />}
-                                      horizontal
-                                    />
-                                    <ChevronRight color={"#1C2A4F"}/>
+                                <View className="flex flex-row items-center justify-between mb-4 mt-4 border-y-2 border-y-black">
+                                    {/*<ChevronLeft color={"#1C2A4F"}/>*/}
+                                    {
+                                        formattedDates.map((date, i) => {
+                                            return (
+                                              <RenderItem key={i} item={date} />
+                                            )
+                                        })
+                                    }
+                                    {/*<FlatList*/}
+                                    {/*  data={formattedDates}*/}
+                                    {/*  keyExtractor={item => item.id}*/}
+                                    {/*  renderItem={({ item }) => <RenderItem item={item} />}*/}
+                                    {/*  horizontal*/}
+                                    {/*/>*/}
+                                    {/*<ChevronRight color={"#1C2A4F"}/>*/}
                                 </View>
                             </View>
 
