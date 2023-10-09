@@ -2,12 +2,12 @@
   "expo": {
     "scheme": "myhadeethapp",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon-2.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash-3.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#1C2A4F"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -16,7 +16,7 @@
       "bundler": "metro",
       "favicon": "./assets/favicon.png"
     },
-    "name": "myHadeethApp",
+    "name": "My Way",
     "slug": "myHadeethApp",
     "extra": {
       "eas": {
@@ -30,16 +30,17 @@
         {
           "locationAlwaysAndWhenInUsePermission": "Allow myHadeeth to use your location."
         }
-      ]
+      ],
+      "expo-router"
     ],
     "ios": {
       "bundleIdentifier": "com.mdchad.myHadeethApp",
       "supportsTablet": true,
-      "buildNumber": "1.0.4"
+      "buildNumber": "1.0.7"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/android-logo.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.mdchad.myHadeethApp"

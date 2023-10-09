@@ -1,0 +1,57 @@
+{
+  "expo": {
+    "scheme": "myhadeethapp",
+    "orientation": "portrait",
+    "icon": "./assets/icon-2.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash-3.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1C2A4F"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "web": {
+      "bundler": "metro",
+      "favicon": "./assets/favicon.png"
+    },
+    "name": "myHadeethApp",
+    "slug": "myHadeethApp",
+    "extra": {
+      "eas": {
+        "projectId": "c72af849-aeb0-435c-8334-7436e13db514"
+      },
+      "CLERK_PUBLISHABLE_KEY": "pk_test_YWNjZXB0ZWQtbGVtdXItODcuY2xlcmsuYWNjb3VudHMuZGV2JA"
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow myHadeeth to use your location."
+        }
+      ]
+    ],
+    "ios": {
+      "bundleIdentifier": "com.mdchad.myHadeethApp",
+      "supportsTablet": true,
+      "buildNumber": "1.0.5"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.mdchad.myHadeethApp"
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/c72af849-aeb0-435c-8334-7436e13db514",
+      "enabled": true,
+      "fallbackToCacheTimeout": 0,
+      "checkAutomatically": "ON_ERROR_RECOVERY"
+    }
+  }
+}

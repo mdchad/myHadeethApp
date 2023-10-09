@@ -15,7 +15,7 @@ export default function Layout() {
   const router = useRouter()
 
   return (
-        <Page class={topBar}>
+        <Page>
             <Stack screenOptions={{ headerShown: false }}>
                 <Stack.Screen
                     name="index"
@@ -29,8 +29,8 @@ export default function Layout() {
                     options={{
                         headerTitle: title ? title : '',
                         // Hide the header for all other routes.
-                        headerShown: true,
-                      headerTitleStyle: {
+                        headerShown: false,
+                        headerTitleStyle: {
                           fontSize: 24
                       }
                     }}
@@ -41,15 +41,7 @@ export default function Layout() {
                     options={{
                         // Hide the header for all other routes.
                         headerTitle: '',
-                        headerShown: true,
-                    }}
-                />
-
-                <Stack.Screen
-                    name="chapter"
-                    options={{
-                        // Hide the header for all other routes.
-                      headerShown: false,
+                        headerShown: false,
                     }}
                 />
 

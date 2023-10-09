@@ -2,9 +2,13 @@ import { View, Text, Image } from 'react-native'
 import React from 'react'
 import { Tabs } from 'expo-router'
 import { StatusBar } from 'expo-status-bar';
-import {BookMinus, Clock, Compass, User} from "lucide-react-native";
+import {BookMinus, Clock, Compass, SearchIcon, User} from "lucide-react-native";
 
-const ImageLink = require('@assets/hadeeth-logo.png')
+const homeLogo = require('@assets/home.png')
+const prayerLogo = require('@assets/prayer.png')
+const qiblaLogo = require('@assets/qibla.png')
+const settingsLogo = require('@assets/settings.png')
+const hadithLogo = require('@assets/hadith.png')
 
 const _layout = () => {
   return (
@@ -13,11 +17,12 @@ const _layout = () => {
         // initialRouteName="(tabs)"
         screenOptions={{
           headerShown: false,
-          tabBarActiveTintColor: 'tomato',
-          tabBarInactiveTintColor: 'gray',
+          tabBarActiveTintColor: 'white',
+          tabBarInactiveTintColor: 'rgb(209,213,219)',
           tabBarStyle: {
             paddingVertical: 10,
             width: 'auto',
+            backgroundColor: '#1C2A4F'
           },
           tabBarLabelStyle: {
             // fontSize: 12,
@@ -29,40 +34,72 @@ const _layout = () => {
         }}
       >
         <Tabs.Screen
+          name="(home)"
+          options={{
+            href: null,
+            tabBarLabel: 'Home',
+            tabBarIcon: ({ focused }) => {
+              return (
+                <View
+                  style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <Image source={homeLogo} style={{ width: 20, height: 20 }} />
+                  {/* <FontAwesome5 name="home" size={30} color={focused ? 'tomato' : 'gray'} /> */}
+                </View>
+              )
+            }
+          }}
+        />
+        <Tabs.Screen
           name="(hadeeth)"
           options={{
-            tabBarLabel: 'Hadeeth',
-            tabBarIcon: ({ focused }) => (
-              <BookMinus size={18} color={focused ? 'tomato' : 'gray'} />
-            ),
+            tabBarLabel: 'Hadith',
+            tabBarIcon: ({ focused }) => {
+              return (
+                <View
+                  style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <Image source={hadithLogo} style={{ width: 20, height: 20 }} />
+                  {/* <FontAwesome5 name="home" size={30} color={focused ? 'tomato' : 'gray'} /> */}
+                </View>
+              )
+            }
+          }}
+        />
+        <Tabs.Screen
+          name="(search)"
+          options={{
+            tabBarLabel: 'Search',
+            tabBarIcon: ({ focused }) => {
+              return (
+                <View
+                  style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <SearchIcon size={22} color={'white'} />
+                  {/* <FontAwesome5 name="home" size={30} color={focused ? 'tomato' : 'gray'} /> */}
+                </View>
+              )
+            }
           }}
         />
         <Tabs.Screen
           name="(prayers)"
           options={{
-            tabBarLabel: 'Prayers',
-            tabBarIcon: ({ focused }) => (
-              <Clock size={18} color={focused ? 'tomato' : 'gray'} />
-            ),
-          }}
-        />
-        <Tabs.Screen
-          name="(home)"
-          options={{
-            href: null,
-            tabBarLabel: '',
-            tabBarShowLabelabel: false,
+            tabBarLabel: 'Prayer',
             tabBarIcon: ({ focused }) => {
               return (
                 <View
                   style={{
-                    position: 'absolute',
-                    bottom: -10, // space from bottombar
-                    backgroundColor: '#fff',
                     justifyContent: 'center',
                     alignItems: 'center',
                   }}>
-                    <Image source={ImageLink} style={{ width: 30, height: 30 }} />
+                  <Image source={prayerLogo} style={{ width: 20, height: 20 }} />
                   {/* <FontAwesome5 name="home" size={30} color={focused ? 'tomato' : 'gray'} /> */}
                 </View>
               )
@@ -72,28 +109,40 @@ const _layout = () => {
         <Tabs.Screen
           name="(qibla)"
           options={{
-            headerTitle: 'Qibla',
-            headerShown: true,
-            headerTitleStyle: {
-              fontSize: 24,
-            },
-            headerTitleAllowFontScaling: true,
             tabBarLabel: 'Qibla',
-            tabBarIcon: ({ focused }) => (
-              <Compass size={18} color={focused ? 'tomato' : 'gray'} />
-            ),
+            tabBarIcon: ({ focused }) => {
+              return (
+                <View
+                  style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <Image source={qiblaLogo} style={{ width: 20, height: 20 }} />
+                  {/* <FontAwesome5 name="home" size={30} color={focused ? 'tomato' : 'gray'} /> */}
+                </View>
+              )
+            }
           }}
         />
         <Tabs.Screen
           name="(profile)"
           options={{
             headerShown: false,
-            tabBarLabel: 'Profile',
-            tabBarIcon: ({ focused }) => (
-              <User size={18} color={focused ? 'tomato' : 'gray'} />
-            ),
+            tabBarLabel: 'Settings',
             headerStatusBarHeight: 60,
-            headerTitleAllowFontScaling: true
+            headerTitleAllowFontScaling: true,
+            tabBarIcon: ({ focused }) => {
+              return (
+                <View
+                  style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <Image source={settingsLogo} style={{ width: 20, height: 20 }} />
+                  {/* <FontAwesome5 name="home" size={30} color={focused ? 'tomato' : 'gray'} /> */}
+                </View>
+              )
+            },
           }}
         />
       </Tabs>
