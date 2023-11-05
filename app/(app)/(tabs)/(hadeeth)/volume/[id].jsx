@@ -27,7 +27,7 @@ const HadeethCategoryItem = ({ item, onPress, index }) => (
                     </View>
                 </View>
                 <View className="pt-1 flex flex-row justify-between items-center border-t-0.5 border-t-black mt-1">
-                    <Text className="text-xs capitalize">{item?.transliteration?.ms}</Text>
+                    <Text className="text-xs flex-shrink capitalize">{item?.transliteration?.ms}</Text>
                     <View className="flex flex-row">
                         <Share2 color="black" size={15} className="mr-1" />
                         <Heart color="black" size={15} className="mr-1" />

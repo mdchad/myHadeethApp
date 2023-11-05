@@ -22,11 +22,10 @@ import {
 } from "date-fns";
 import { format } from "date-fns-tz";
 import React, { useEffect, useState } from "react";
-import { FlatList, Image, Pressable, SafeAreaView, Text, View, ImageBackground } from "react-native";
+import {FlatList, Image, Pressable, SafeAreaView, Text, View, ImageBackground, Linking, Button} from "react-native";
 import { useAuth } from "@context/auth";
-import { Coordinates, CalculationMethod, PrayerTimes } from 'adhan';
 import Page from "@components/page";
-import {ChevronLeft, ChevronLeftCircle, ChevronRight, ChevronRightCircle, MapPin} from "lucide-react-native";
+import { MapPin} from "lucide-react-native";
 import { ScrollView } from "react-native";
 import {Skeleton } from "moti/skeleton";
 import Spacer from "@components/Spacer";
@@ -51,7 +50,8 @@ const formatHijri = new Intl.DateTimeFormat(
 export default function Prayer() {
     const [prayerTimes, setPrayerTimes] = useState([]);
     const [nextPrayer, setNextPrayer] = useState(null);
-    const { userLocation, userPlace } = useAuth()
+    const [error, setError] = useState(false);
+    const { userLocation, userPlace, permissionStatus } = useAuth()
     const currentDate = new Date()
     const month = format(currentDate, "L", { timeZone: "Asia/Kuala_Lumpur" });
     const year = format(currentDate, "y", { timeZone: "Asia/Kuala_Lumpur" });
@@ -76,12 +76,16 @@ export default function Prayer() {
     }, [userLocation]);
 
     const fetchPrayer = async () => {
+        if (userPlace[0].country !== 'Malaysia') {
+            setError(true)
+            return
+        }
+
         try {
             const response = await fetch(
               `https://mpt-server.vercel.app/api/zones/gps?lat=${userLocation.coords.latitude}&long=${userLocation.coords.longitude}`,
             );
             const json = await response.json();
-
 
             const prayerMonthly = await fetch(
               `https://mpt-server.vercel.app/api/v2/solat/${json.zone}?year=${year}&month=${month}`,
@@ -129,6 +133,10 @@ export default function Prayer() {
         calculatePrayer(format(item?.date, "d", { timeZone: "Asia/Kuala_Lumpur" }), monthlyPrayerTimes)
     }
 
+    async function openSettings() {
+        await Linking.openSettings();
+    }
+
     function RenderItem({ item }) {
         return (
             <Pressable onPress={() => onClickIndividualDay(item)}>
@@ -159,91 +167,79 @@ export default function Prayer() {
                         </View>
                     </View>
                 </View>
-                <View className="w-full h-full mt-4">
-                    <ImageBackground source={require("@assets/book-background.png")} resizeMode="cover" style={{ flex: 1, justifyContent: 'end', alignItems: 'end' }}>
-                        {/*<View className="bg-[#b59d4b] rounded-xl w-full p-4 py-6 mb-4">*/}
-                        {/*    <Text className="text-xs font-semibold text-white">Next Prayer</Text>*/}
-                        {/*    <View className="flex flex-row justify-between mb-4">*/}
-                        {/*        {nextPrayer ? (*/}
-                        {/*          <>*/}
-                        {/*            <Text className="font-bold text-white text-3xl">{nextPrayer?.name}</Text>*/}
-                        {/*            <Text className="font-bold text-white text-3xl">{nextPrayer?.prayerTime}</Text>*/}
-                        {/*          </>*/}
-                        {/*        ) : (*/}
-                        {/*          <>*/}
-                        {/*              <Spacer height={8} />*/}
-                        {/*              <Skeleton colorMode={'light'} width={'100%'} backgroundColor={'#b59d4b'}/>*/}
-                        {/*          </>*/}
-                        {/*          )*/}
-                        {/*        }*/}
-                        {/*    </View>*/}
-                        {/*    <Text className="text-white text-md mb-1 font-bold">{formatHijri.format(calendarDate)}</Text>*/}
-                        {/*    <View className="flex flex-row">*/}
-                        {/*        <MapPin color={'white'} size={16} />*/}
-                        {/*        {userPlace && <Text className="ml-1 font-bold text-white text-xs text-center mr-2">{userPlace[0].city}{userPlace[0].city && ','} {userPlace[0].country}</Text>}*/}
-                        {/*    </View>*/}
-                        {/*</View>*/}
-                        <View className="px-2">
-                            <View className="flex flex-col items-center mb-4">
-                                <View className="flex flex-row items-center space-x-2">
-                                    {/*<ChevronLeftCircle color={"#1C2A4F"} />*/}
-                                    <Text className="text-xl font-bold">{format(calendarDate, 'LLL yyyy')}</Text>
-                                    {/*<ChevronRightCircle color={"#1C2A4F"}/>*/}
-                                </View>
-                                <View className="flex flex-row items-center justify-between mb-4 mt-4 border-y-2 border-y-black">
-                                    {/*<ChevronLeft color={"#1C2A4F"}/>*/}
-                                    {
-                                        formattedDates.map((date, i) => {
-                                            return (
-                                              <RenderItem key={i} item={date} />
-                                            )
-                                        })
-                                    }
-                                    {/*<FlatList*/}
-                                    {/*  data={formattedDates}*/}
-                                    {/*  keyExtractor={item => item.id}*/}
-                                    {/*  renderItem={({ item }) => <RenderItem item={item} />}*/}
-                                    {/*  horizontal*/}
-                                    {/*/>*/}
-                                    {/*<ChevronRight color={"#1C2A4F"}/>*/}
-                                </View>
+                    <View className="w-full h-full mt-4">
+                        {permissionStatus === 'denied' ? (
+                            <View className="mt-4 w-full">
+                              <Button title="Enable Location" onPress={openSettings} />
                             </View>
-
-                            <View className="mx-12 bg-white border border-b-royal-blue rounded-xl p-4 space-y-6">
-                                {prayerTimes.length
-                                  ? prayerTimes.map((prayer, i) => (
-                                    <View
-                                      key={i}
-                                      className={`flex flex-row justify-between ${i + 1 === prayerTimes.length && "border-b-0"
-                                      } ${i === 0 && "pt-0"}`}
-                                    >
-                                        <View className="w-1/3 flex flex-row items-center">
-                                            <Image
-                                              source={prayer.icon}
-                                              style={{ width: 35, height: 36 }}
-                                            />
-                                            <Text className="ml-2 text-sm text-royal-blue">{prayer.name}</Text>
-                                        </View>
-                                        <View className="w-2/3 flex flex-row justify-end items-center">
-                                            <Text className="text-royal-blue">{prayer.prayerTime}</Text>
-                                            {/*<Volume color={'black'} strokeWidth={1}/>*/}
-                                        </View>
+                        ) : error ? (
+                              <View className="w-full h-full mt-4 p-8">
+                                  <Text className="text-xl font-bold text-center">You need to be in Malaysia to access the prayer times</Text>
+                              </View>
+                          ) : (
+                            <ImageBackground source={require("@assets/book-background.png")} resizeMode="cover" style={{ flex: 1, justifyContent: 'end', alignItems: 'end' }}>
+                                <View className="px-2">
+                                    <View className="flex flex-col items-center mb-4">
+                                      <View className="flex flex-row items-center space-x-2">
+                                          {/*<ChevronLeftCircle color={"#1C2A4F"} />*/}
+                                          <Text className="text-xl font-bold">{format(calendarDate, 'LLL yyyy')}</Text>
+                                          {/*<ChevronRightCircle color={"#1C2A4F"}/>*/}
+                                      </View>
+                                      <View className="flex flex-row items-center justify-between mb-4 mt-4 border-y-2 border-y-black">
+                                          {/*<ChevronLeft color={"#1C2A4F"}/>*/}
+                                          {
+                                              formattedDates.map((date, i) => {
+                                                  return (
+                                                    <RenderItem key={i} item={date} />
+                                                  )
+                                              })
+                                          }
+                                          {/*<FlatList*/}
+                                          {/*  data={formattedDates}*/}
+                                          {/*  keyExtractor={item => item.id}*/}
+                                          {/*  renderItem={({ item }) => <RenderItem item={item} />}*/}
+                                          {/*  horizontal*/}
+                                          {/*/>*/}
+                                          {/*<ChevronRight color={"#1C2A4F"}/>*/}
+                                      </View>
                                     </View>
-                                  )) : (
-                                      <>
-                                          <Skeleton colorMode={'light'} width={'100%'} />
-                                          <Spacer height={20}/>
-                                          <Skeleton colorMode={'light'} width={'100%'} />
-                                          <Spacer height={20}/>
-                                          <Skeleton colorMode={'light'} width={'100%'} />
-                                          <Spacer height={20}/>
-                                          <Skeleton colorMode={'light'} width={'100%'} />
-                                    </>
-                                  )}
-                            </View>
-                        </View>
-                    </ImageBackground>
-                </View>
+
+                                    <View className="mx-12 bg-white border border-b-royal-blue rounded-xl p-4 space-y-6">
+                                      {prayerTimes.length
+                                        ? prayerTimes.map((prayer, i) => (
+                                          <View
+                                            key={i}
+                                            className={`flex flex-row justify-between ${i + 1 === prayerTimes.length && "border-b-0"
+                                            } ${i === 0 && "pt-0"}`}
+                                          >
+                                              <View className="w-1/3 flex flex-row items-center">
+                                                  <Image
+                                                    source={prayer.icon}
+                                                    style={{ width: 35, height: 36 }}
+                                                  />
+                                                  <Text className="ml-2 text-sm text-royal-blue">{prayer.name}</Text>
+                                              </View>
+                                              <View className="w-2/3 flex flex-row justify-end items-center">
+                                                  <Text className="text-royal-blue">{prayer.prayerTime}</Text>
+                                                  {/*<Volume color={'black'} strokeWidth={1}/>*/}
+                                              </View>
+                                          </View>
+                                        )) : (
+                                          <>
+                                              <Skeleton colorMode={'light'} width={'100%'} />
+                                              <Spacer height={20}/>
+                                              <Skeleton colorMode={'light'} width={'100%'} />
+                                              <Spacer height={20}/>
+                                              <Skeleton colorMode={'light'} width={'100%'} />
+                                              <Spacer height={20}/>
+                                              <Skeleton colorMode={'light'} width={'100%'} />
+                                          </>
+                                        )}
+                                    </View>
+                                </View>
+                            </ImageBackground>
+                        )}
+                    </View>
             </ScrollView>
         </Page>
     );

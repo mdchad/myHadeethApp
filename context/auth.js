@@ -1,8 +1,8 @@
 import { useRouter, useSegments } from "expo-router";
-import React, {useEffect} from "react";
+import React, {useEffect, useRef, useState} from "react";
+import { AppState } from "react-native";
 import * as Location from "expo-location";
 import {View} from "react-native";
-import {useUser, useAuth as userAuth } from "@clerk/clerk-expo";
 
 const AuthContext = React.createContext(null);
 
@@ -34,43 +34,80 @@ export function useAuth() {
 // }
 
 export function Provider(props) {
-  const { user } = useUser()
-  const { signOut } = userAuth();
   const [userLocation, setUserLocation] = React.useState(null);
   const [userPlace, setUserPlace] = React.useState(null);
+  const [permissionStatus, setPermissionStatus] = React.useState(null);
+  const appState = useRef(AppState.currentState);
+  const [appStateVisible, setAppStateVisible] = useState(appState.current);
 
   useEffect(() => {
-    (async () => {
+      const subscription = AppState.addEventListener('change', nextAppState => {
+        if (
+          appState.current.match(/inactive|background/) &&
+          nextAppState === 'active'
+        ) {
+          console.log('App has come to the foreground!');
+        }
 
+
+        appState.current = nextAppState;
+        setAppStateVisible(appState.current);
+
+        if (appState.current === 'active') {
+          (async () => {
+            let { status } = await Location.requestForegroundPermissionsAsync();
+            if (status !== 'granted') {
+              setPermissionStatus(status);
+              return;
+            } else {
+              setPermissionStatus(status)
+            }
+
+            let location = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.High, timeInterval: 1000, distanceInterval: 0 });
+
+            let place = await Location.reverseGeocodeAsync({
+              latitude: location.coords.latitude,
+              longitude: location.coords.longitude
+            });
+
+            setUserPlace(place)
+            setUserLocation(location)
+          })();
+        }
+      });
+
+
+    (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
-      // if (status !== 'granted') {
-      //   setErrorMsg('Permission to access location was denied');
-      //   return;
-      // }
+      if (status !== 'granted') {
+        setPermissionStatus(status);
+        return;
+      }
 
       let location = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.High, timeInterval: 1000, distanceInterval: 0 });
-      // setLocation(location);
-      setUserLocation(location)
 
       let place = await Location.reverseGeocodeAsync({
         latitude: location.coords.latitude,
         longitude: location.coords.longitude
       });
-      // setPlace(place);
+
       setUserPlace(place)
+      setUserLocation(location)
     })();
+
+    return () => {
+      subscription.remove();
+    };
   }, []);
 
-  // useProtectedRoute(user);
 
   return (
     <AuthContext.Provider
       value={{
-        user,
         setUserLocation: (location) => setUserLocation(location),
         userLocation,
         userPlace,
-        signOut,
+        permissionStatus,
         setUserPlace: (place) => setUserPlace(place)
       }}
     >

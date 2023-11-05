@@ -6,7 +6,8 @@
 		"web": "expo start --web",
 		"build:ios": "eas build -p ios",
 		"submit:ios": "eas build -p ios --auto-submit",
-		"build:android": "eas build -p android --profile development"
+		"submit:android": "eas submit -p android",
+		"build:android": "eas build -p android --profile production"
 	},
 	"dependencies": {
 		"@babel/preset-env": "^7.20.2",

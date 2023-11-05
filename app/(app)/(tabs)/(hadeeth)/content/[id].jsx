@@ -49,7 +49,7 @@ const HadeethItem = React.memo(({ hadeeth, onShare, onSave }) => (
                 value={hadeeth.content.ar}
             />
             <TextInput
-                className="text-gray-800 text-lg overflow-hidden leading-loose"
+                className="text-gray-800 pb-4 text-lg overflow-hidden leading-loose"
                 scrollEnabled={false}
                 readOnly
                 multiline

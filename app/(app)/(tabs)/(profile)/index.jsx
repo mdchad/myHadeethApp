@@ -9,15 +9,12 @@ import {
 import {Link, useRouter} from 'expo-router'
 
 import Page from "@components/page";
-import {Bookmark, FileText, LogIn, LogOut, Settings, User, Users} from "lucide-react-native";
+import {Bookmark, FileText, LogIn, LogOut, MessageSquare, Settings, Smartphone, User, Users} from "lucide-react-native";
 import {useAuth} from "@context/auth";
-import {SignedIn, SignedOut} from "@clerk/clerk-expo";
 import Header from "../../../components/header";
+import * as WebBrowser from "expo-web-browser";
 
 export default function Profile() {
-  const { isLoaded, user, signOut } = useAuth();
-  const router = useRouter()
-
   const onShare = async () => {
     try {
       const result = await Share.share({
@@ -38,122 +35,62 @@ export default function Profile() {
     }
   };
 
-  const handleSignOut = async () => {
-    try {
-      await signOut();
-    } catch (e) {
-      console.log(e)
-    }
-
-    router.push('/(hadeeth)')
-  }
-
   return (
     <Page class="bg-white w-full">
       <ScrollView>
         <Header title="Settings" rounded={false}/>
         <View className={`w-full flex items-center h-10 rounded-b-2xl bg-royal-blue`}>
           <View className="">
-            { user ? (
-              <Image source={{ uri: user.profileImageUrl }} style={{ width: 80, height: 80, borderRadius: 100 }} />
-            ) : (
+            {/*{ user ? (*/}
+            {/*  <Image source={{ uri: user.profileImageUrl }} style={{ width: 80, height: 80, borderRadius: 100 }} />*/}
+            {/*) : (*/}
               <View className="rounded-full flex items-center justify-center h-20 w-20 bg-gray-200">
                 <User color="black" />
               </View>
-            )}
+            {/*)}*/}
           </View>
           <View className="flex items-center mt-2">
-            { user ? (
-              <>
-                <Text className="mb-1 text-royal-blue">{user.fullName}</Text>
-                <Text className="text-royal-blue">{user.primaryEmailAddress.emailAddress}</Text>
-              </>
-            ) : (
+            {/*{ user ? (*/}
+            {/*  <>*/}
+            {/*    <Text className="mb-1 text-royal-blue">{user.fullName}</Text>*/}
+            {/*    <Text className="text-royal-blue">{user.primaryEmailAddress.emailAddress}</Text>*/}
+            {/*  </>*/}
+            {/*) : (*/}
               <>
                 <Text className="mb-1 text-royal-blue">Guest</Text>
               </>
-              // <Text className="font-semibold text-2xl mb-2 text-gray-800">Guest</Text>
-              // <Text className="text-gray-500">{user.primaryEmailAddress.emailAddress}</Text>
-            )}
+            {/*)}*/}
           </View>
         </View>
         <View className="mt-12 flex sm:mx-auto sm:w-full sm:max-w-md w-full h-full">
           <View className="py-6">
-            {/*<View className="px-6 gap-6 items-center flex flex-row">*/}
-            {/*  { user ? (*/}
-            {/*    <Image source={{ uri: user.profileImageUrl }} style={{ width: 80, height: 80, borderRadius: 100 }} />*/}
-            {/*  ) : (*/}
-            {/*    <View className="rounded-full flex items-center justify-center h-20 w-20 bg-gray-200">*/}
-            {/*      <User color="black" />*/}
-            {/*    </View>*/}
-            {/*  )}*/}
-            {/*  <View className="flex">*/}
-            {/*    { user ? (*/}
-            {/*      <>*/}
-            {/*        <Text className="font-semibold text-2xl mb-2 text-gray-800">{user.fullName}</Text>*/}
-            {/*        <Text className="text-gray-500">{user.primaryEmailAddress.emailAddress}</Text>*/}
-            {/*      </>*/}
-            {/*    ) : (*/}
-            {/*      <Text className="font-semibold text-2xl mb-2 text-gray-800">Guest</Text>*/}
-            {/*      // <Text className="text-gray-500">{user.primaryEmailAddress.emailAddress}</Text>*/}
-            {/*    )}*/}
-            {/*  </View>*/}
-            {/*</View>*/}
             <View className="border-b border-b-gray-300 mx-6 mt-8"></View>
-            <View className="mt-4">
-              {/*<Link href="/saved" asChild>*/}
-                <TouchableHighlight underlayColor="#f9fafb">
-                  <View className="px-6 space-x-4 flex flex-row items-center py-2 my-1">
-                    <Bookmark color="black" size={20}/>
-                    <Text className="text-lg">Saved</Text>
-                  </View>
-                </TouchableHighlight>
-              {/*</Link>*/}
-              {/*<Link href="/notes" asChild>*/}
-                <TouchableHighlight underlayColor="#f9fafb">
-                  <View className="px-6 space-x-4 flex flex-row items-center py-2 my-1">
-                    <FileText color="black" size={20}/>
-                    <Text className="text-lg">Notes</Text>
-                  </View>
-                </TouchableHighlight>
-              {/*</Link>*/}
               <TouchableHighlight underlayColor="#f9fafb" onPress={onShare}>
                 <View className="px-6 space-x-4 flex flex-row items-center py-2 my-1">
                   <Users color="black" size={20}/>
                   <Text className="text-lg">Share this app</Text>
                 </View>
               </TouchableHighlight>
-              <Link href="/settings" asChild>
-                <TouchableHighlight underlayColor="#f9fafb">
-                  <View className="px-6 space-x-4 flex flex-row items-center py-2 my-1">
-                    <Settings color="black" size={20}/>
-                    <Text className="text-lg">Settings</Text>
-                  </View>
-                </TouchableHighlight>
-              </Link>
-              <SignedIn>
-                <View className="bg-white rounded-xl flex">
-                  <TouchableHighlight onPress={() => handleSignOut()} className="w-full bg-white rounded-xl" underlayColor="#f9fafb">
-                    <View className="space-x-4 px-6 py-2 flex flex-row items-center w-full">
-                      <LogOut color="red" size={20} />
-                      <Text className="text-lg text-red-600">Logout</Text>
-                    </View>
-                  </TouchableHighlight>
+              <TouchableHighlight underlayColor="#f9fafb" onPress={() => WebBrowser.openBrowserAsync('https://my-way-web.vercel.app/#faqs')}>
+                <View className="px-6 space-x-4 flex flex-row items-center py-2 my-1">
+                  <MessageSquare size={20} color={'black'} />
+                  <Text className="text-lg">Help and Feedback</Text>
                 </View>
-              </SignedIn>
-              <SignedOut>
-                <View className="bg-white rounded-xl flex">
-                  <TouchableHighlight onPress={() => router.push('/SignIn')} className="w-full bg-white rounded-xl" underlayColor="#f9fafb">
-                    <View className="space-x-4 px-6 py-2 flex flex-row items-center w-full">
-                      <LogIn color="black" size={20} />
-                      <Text className="text-lg">Login</Text>
-                    </View>
-                  </TouchableHighlight>
+              </TouchableHighlight>
+              <TouchableHighlight onPress={() => WebBrowser.openBrowserAsync('https://my-way-web.vercel.app')} className="rounded-b-xl" underlayColor="#f9fafb">
+                <View className="mx-5 py-3 space-x-3 flex flex-row items-center">
+                  <Smartphone color={'black'} size={20} />
+                  <Text className="text-lg">About</Text>
                 </View>
-              </SignedOut>
-              {/* <Markdown>
-                {copy}
-              </Markdown> */}
+              </TouchableHighlight>
+              {/*<Link href="/settings" asChild>*/}
+              {/*  <TouchableHighlight underlayColor="#f9fafb">*/}
+              {/*    <View className="px-6 space-x-4 flex flex-row items-center py-2 my-1">*/}
+              {/*      <Settings color="black" size={20}/>*/}
+              {/*      <Text className="text-lg">Settings</Text>*/}
+              {/*    </View>*/}
+              {/*  </TouchableHighlight>*/}
+              {/*</Link>*/}
               {/*<Link href="/logout" asChild>*/}
               {/*  <TouchableHighlight underlayColor="#f9fafb">*/}
               {/*    <View className="px-6 space-x-4 flex flex-row items-center py-2 my-1">*/}
@@ -162,7 +99,6 @@ export default function Profile() {
               {/*    </View>*/}
               {/*  </TouchableHighlight>*/}
               {/*</Link>*/}
-            </View>
           </View>
         </View>
       </ScrollView>

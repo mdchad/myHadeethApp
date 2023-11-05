@@ -12,9 +12,7 @@ const Home = () => {
 
     return (
         <Page class="bg-white">
-            {/* <Header user={user.full_name} /> */}
             <View className="flex-1 flex space-y-3 bg-white">
-
                 <ScrollView>
                     <View className="p-3 flex items-center space-y-10">
                         <View className="mx-5 space-y-5">
