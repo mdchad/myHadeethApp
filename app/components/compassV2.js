@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Image, Text, View, Dimensions, ImageBackground, ScrollView } from 'react-native';
+import {StyleSheet, Image, Text, View, Dimensions, ImageBackground, ScrollView, Button, Linking} from 'react-native';
 import * as Location from 'expo-location';
 import * as Haptics from 'expo-haptics';
 import { useAuth } from "@context/auth";
@@ -19,7 +19,7 @@ export default function CompassV2() {
 	const [location, setLocation] = useState(null);
 	const [errorMsg, setErrorMsg] = useState(null);
 	const [heading, setHeading] = useState(0);
-	const { userLocation, userPlace } = useAuth()
+	const { userLocation, userPlace, permissionStatus } = useAuth()
 	// const [loading, setLoading] = useState(true);
 	const segment = useSegments();
 	const [isQiblaPage, setIsQiblaPage] = useState(true);
@@ -97,62 +97,74 @@ export default function CompassV2() {
 		return positiveDegree ? positiveDegree.toFixed(0) : null;
 	};
 
+	async function openSettings() {
+		await Linking.openSettings();
+	}
+
 	return (
 		<View className="h-full">
 			<Header title={'Qibla'}/>
 			<ScrollView>
-				<ImageBackground source={require("@assets/qibla-bg.png")} resizeMode="contain" style={{ width, height: width }}>
-					<View className="mt-4 flex justify-center items-center">
-							{degree ? <View className="mt-28 relative mb-6 flex justify-center items-center">
-								<Image
-									source={require('@assets/compass-v2.png')}
-									style={{
-										height: width,
-										justifyContent: 'center',
-										alignItems: 'center',
-										resizeMode: 'contain',
-										transform: [{ rotate: `-${heading.toFixed(0)}deg` }],
-										position: 'relative',
-									}}
-								/>
+				{permissionStatus === 'denied' ? (
+						<View className="mt-4 w-full">
+							<Button title="Enable Location" onPress={openSettings} />
+						</View>
+					) : (
+						<>
+							<ImageBackground source={require("@assets/qibla-bg.png")} resizeMode="contain" style={{ width, height: width }}>
+								<View className="mt-4 flex justify-center items-center">
+										{degree ? <View className="mt-28 relative mb-6 flex justify-center items-center">
+											<Image
+												source={require('@assets/compass-v2.png')}
+												style={{
+													height: width,
+													justifyContent: 'center',
+													alignItems: 'center',
+													resizeMode: 'contain',
+													transform: [{ rotate: `-${heading.toFixed(0)}deg` }],
+													position: 'relative',
+												}}
+											/>
 
-								<Image source={require("@assets/compass-needle.png")} style={{
-									height: width / 1.1,
-									position: 'absolute',
-									top: -30,
-									// left: 0,
-									marginLeft: -20,
-									marginTop: 15,
-									resizeMode: 'contain',
-									transform: [{ rotate: `-${degree}deg` }],
-								}} />
-							</View> : (
-								<>
-									<Skeleton width={200} height={200} colorMode="light" radius="round" />
-									<Spacer height={20} />
-								</>
-							)}
-							{/*{ degree ? <View className={`${degree > 358 || degree < 2 ? "bg-green-300" : "bg-red-400"} p-3 rounded-xl w-1/3`}>*/}
-							{/*	<Text className="text-white font-bold text-xl text-center">*/}
-							{/*		{degree}°*/}
-							{/*	</Text>*/}
-							{/*</View>  : <Skeleton colorMode={'light'} width={'50%'} /> }*/}
-							<View className="bg-royal-blue p-1 rounded-xl w-1/3">
-								<Text className="text-white font-bold text-2xl text-center">
-									{degree}°
-								</Text>
+											<Image source={require("@assets/compass-needle.png")} style={{
+												height: width / 1.1,
+												position: 'absolute',
+												top: -30,
+												// left: 0,
+												marginLeft: -20,
+												marginTop: 15,
+												resizeMode: 'contain',
+												transform: [{ rotate: `-${degree}deg` }],
+											}} />
+										</View> : (
+											<>
+												<Skeleton width={200} height={200} colorMode="light" radius="round" />
+												<Spacer height={20} />
+											</>
+										)}
+										{/*{ degree ? <View className={`${degree > 358 || degree < 2 ? "bg-green-300" : "bg-red-400"} p-3 rounded-xl w-1/3`}>*/}
+										{/*	<Text className="text-white font-bold text-xl text-center">*/}
+										{/*		{degree}°*/}
+										{/*	</Text>*/}
+										{/*</View>  : <Skeleton colorMode={'light'} width={'50%'} /> }*/}
+										<View className="bg-royal-blue p-1 rounded-xl w-1/3">
+											<Text className="text-white font-bold text-2xl text-center">
+												{degree}°
+											</Text>
+										</View>
+								</View>
+							</ImageBackground>
+							<View className="mt-24">
+								{ degree && userPlace ? (
+									<View className="px-8 py-4">
+										<Text className="text-xl font-semibold text-royal-blue">Location:</Text>
+										<Text className="text-sm text-royal-blue">{userPlace[0].city}{userPlace[0].city && ','} {userPlace[0].country}</Text>
+									</View> ) : (
+										<View className="px-8 py-4"><Skeleton colorMode={'light'} width={'50%'} /></View>
+								)}
 							</View>
-					</View>
-				</ImageBackground>
-					<View className="mt-24">
-						{ degree && userPlace ? (
-							<View className="px-8 py-4">
-								<Text className="text-xl font-semibold text-royal-blue">Location:</Text>
-								<Text className="text-sm text-royal-blue">{userPlace[0].city}{userPlace[0].city && ','} {userPlace[0].country}</Text>
-							</View> ) : (
-								<View className="px-8 py-4"><Skeleton colorMode={'light'} width={'50%'} /></View>
-						)}
-					</View>
+						</>
+					)}
 			</ScrollView>
 		</View>
 	);

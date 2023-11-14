@@ -11,29 +11,8 @@ import Page from "@components/page";
 import {BellRing, Hourglass, Info, LogIn, MessageSquare, Smartphone, User} from "lucide-react-native";
 import { Link, useRouter } from "expo-router";
 import { TouchableHighlight } from "react-native-gesture-handler";
-import * as SecureStore from "expo-secure-store";
-import { View as MotiView, AnimatePresence } from 'moti';
-import DateTimePicker from '@react-native-community/datetimepicker';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as WebBrowser from 'expo-web-browser';
-
-
-const tokenCache = {
-    getToken(key) {
-        try {
-            return SecureStore.getItemAsync(key);
-        } catch (err) {
-            return null;
-        }
-    },
-    saveToken(key, value) {
-        try {
-            return SecureStore.setItemAsync(key, value);
-        } catch (err) {
-            return null;
-        }
-    },
-};
 
 export default function Settings() {
     const router = useRouter()
@@ -127,7 +106,6 @@ export default function Settings() {
                     </View>
                     <Text className="ml-5 mb-4 mt-2 text-gray-600">Show hadith notification daily</Text>
                     <View className="bg-white rounded-xl flex">
-
                         <View className="mx-5 space-x-3 py-3 flex flex-row items-center border-b border-gray-300">
                             <MessageSquare size={20} color={'black'} />
                             <Text className="text-lg">Help and Feedback</Text>

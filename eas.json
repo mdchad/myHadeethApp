@@ -1,7 +1,8 @@
 {
   "cli": {
     "version": ">= 3.7.2",
-    "promptToConfigurePushNotifications": false
+    "promptToConfigurePushNotifications": false,
+    "appVersionSource": "remote"
   },
   "build": {
     "development": {
@@ -10,21 +11,23 @@
       },
       "distribution": "internal",
       "ios": {
-        "resourceClass": "m1-medium"
+        "resourceClass": "m-medium"
       },
       "channel": "development"
     },
     "preview": {
       "distribution": "internal",
       "ios": {
-        "resourceClass": "m1-medium"
+        "simulator": true,
+        "resourceClass": "m-medium"
       },
       "channel": "preview"
     },
     "production": {
       "ios": {
-        "resourceClass": "m1-medium"
+        "resourceClass": "m-medium"
       },
+      "autoIncrement": true,
       "channel": "production"
     }
   },

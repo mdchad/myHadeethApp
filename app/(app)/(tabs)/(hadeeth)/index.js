@@ -1,15 +1,12 @@
 import { View, Text, useWindowDimensions, StyleSheet, FlatList, ImageBackground } from 'react-native'
 import React from 'react'
-import {useRouter } from 'expo-router'
+import { useRouter } from 'expo-router'
 import books from '@data/books.json'
-import initials from "initialism";
-import {TouchableHighlight} from "react-native-gesture-handler";
+import { TouchableHighlight } from "react-native-gesture-handler";
 import Header from '@components/header';
-import {useAuth} from "../../../../context/auth";
-import {ArrowRight, Bookmark, Heart, Share2} from "lucide-react-native";
+import { ArrowRight, Bookmark, Heart, Share2 } from "lucide-react-native";
 
 function Hadeeth() {
-    const { user } = useAuth();
     const router = useRouter()
     const { fontScale } = useWindowDimensions();
     const styles = makeStyles(fontScale);
@@ -28,11 +25,11 @@ function Hadeeth() {
             <View className="w-[48%] mr-4 bg-white">
                 <TouchableHighlight onPress={() => onTriggerPress(id, title)} underlayColor="#f9fafb" className="rounded-xl w-full">
                     <View>
-                        <View className="flex items-center p-8">
+                        <View className="flex items-center py-8 px-2">
                           <Text className="text-lg text-royal-blue font-semibold">{firstWord}</Text>
                           <Text className="text-lg text-royal-blue font-semibold">{remainingWords}</Text>
                         </View>
-                        <View className="bg-royal-blue w-full p-1 flex flex-row justify-between">
+                        <View className="bg-royal-blue w-full p-1 flex flex-row justify-between items-center">
                             <View className="flex flex-row">
                                 <Share2 color="white" size={15} absoluteStrokeWidth={2} className="mr-1" />
                                 <Heart color="white" size={15} absoluteStrokeWidth={2} className="mr-1" />
@@ -51,7 +48,7 @@ function Hadeeth() {
 
     return (
       <>
-        <Header user={user} title={'Books of hadith'}></Header>
+        <Header title={'Books of hadith'}></Header>
         <View className="flex-1 bg-gray-100">
             <ImageBackground source={require("@assets/book-background.png")} resizeMode="cover" style={{ flex: 1, justifyContent: 'end', alignItems: 'end' }}>
               <View className="mb-4 mt-4">
