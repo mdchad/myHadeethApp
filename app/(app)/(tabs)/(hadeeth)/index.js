@@ -1,19 +1,31 @@
 import { View, Text, useWindowDimensions, StyleSheet, FlatList, ImageBackground } from 'react-native'
 import React from 'react'
 import { useRouter } from 'expo-router'
-import books from '@data/books.json'
 import { TouchableHighlight } from "react-native-gesture-handler";
 import Header from '@components/header';
 import { ArrowRight, Bookmark, Heart, Share2 } from "lucide-react-native";
+import { useQuery } from "@tanstack/react-query";
 
 function Hadeeth() {
     const router = useRouter()
+
     const { fontScale } = useWindowDimensions();
     const styles = makeStyles(fontScale);
 
     function onTriggerPress(id, title) {
         router.push(`(hadeeth)/volume/${id}?title=${title}`)
     }
+
+    const { isLoading, isError, data, error } = useQuery({
+        queryKey: ['books'],
+        queryFn: async () => {
+            const res = await fetch('https://my-way-web.vercel.app/api/books', {
+                method: 'GET',
+            });
+            const result = await res.json()
+            return result.data
+        }
+    });
 
     function Item({ title, id }) {
         const words = title.split(' ');
@@ -53,7 +65,7 @@ function Hadeeth() {
             <ImageBackground source={require("@assets/book-background.png")} resizeMode="cover" style={{ flex: 1, justifyContent: 'end', alignItems: 'end' }}>
               <View className="mb-4 mt-4">
                 <FlatList
-                    data={books}
+                    data={data}
                     renderItem={({ item }) => <Item title={item.title} id={item.id} />}
                     keyExtractor={item => item.id}
                     className="h-full"

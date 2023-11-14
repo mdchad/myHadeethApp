@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Text, View, Share, TextInput, TouchableHighlight, ActivityIndicator, FlatList } from "react-native";
-import {useRouter, useSearchParams} from "expo-router";
+import {useRouter, useLocalSearchParams } from "expo-router";
 import {Bookmark, Heart, Share as ShareIcon, Share2} from "lucide-react-native";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import hadeeths from "@data/hadeethsV2";
 import Header from "../../../../components/header";
+import {useQuery} from "@tanstack/react-query";
 
-const HADEETH_STORAGE_KEY = "HadeethStorage";
 
 function toSuperscript(str, type) {
     const superscripts = {
@@ -35,9 +33,9 @@ function toSuperscript(str, type) {
     }
 }
 
-const HadeethItem = React.memo(({ hadeeth, onShare, onSave }) => (
-  <View key={hadeeth.id}>
-    {/*{hadeeth?.chapter_title?.ms && <Text className="text-gray-800 mb-4 mt-6 ml-2">{toSuperscript(hadeeth?.chapter_title?.ms, 'text')}</Text> }*/}
+const HadithItem = React.memo(({ hadith, onShare, onSave }) => (
+  <View key={hadith.id}>
+    {/*{hadith?.chapter_title?.ms && <Text className="text-gray-800 mb-4 mt-6 ml-2">{toSuperscript(hadith?.chapter_title?.ms, 'text')}</Text> }*/}
     <View className="space-y-8 bg-white mb-4 border border-royal-blue">
         <View className="px-4 py-6">
             <TextInput
@@ -46,7 +44,7 @@ const HadeethItem = React.memo(({ hadeeth, onShare, onSave }) => (
                 scrollEnabled={false}
                 readOnly
                 multiline
-                value={hadeeth.content.ar}
+                value={hadith.content.ar}
             />
             <TextInput
                 className="text-gray-800 pb-4 text-lg overflow-hidden leading-loose"
@@ -54,11 +52,11 @@ const HadeethItem = React.memo(({ hadeeth, onShare, onSave }) => (
                 readOnly
                 multiline
                 style={{ fontFamily: 'KFGQPC_Regular' }}
-                value={toSuperscript(hadeeth.content.ms, 'text')}
+                value={toSuperscript(hadith.content.ms, 'text')}
             />
-            {!!hadeeth.footnotes.length && (
+            {!!hadith.footnotes.length && (
                 <View className="flex space-y-2 pt-2 border-t border-t-gray-500">
-                    {hadeeth.footnotes.map(footnote => {
+                    {hadith.footnotes.map(footnote => {
                         return (
                             <Text key={footnote.number}>
                                 <Text className="text-xs">{toSuperscript(footnote.number, 'reference')}&nbsp;</Text>
@@ -73,21 +71,21 @@ const HadeethItem = React.memo(({ hadeeth, onShare, onSave }) => (
             <TouchableHighlight
                 className="p-1"
                 underlayColor="#333"
-                onPress={() => onShare(hadeeth)}
+                onPress={() => onShare(hadith)}
             >
                 <Share2 color="white" absoluteStrokeWidth={2} size={16} />
             </TouchableHighlight>
             <TouchableHighlight
               className="p-1"
               underlayColor="#333"
-              onPress={() => onSave(hadeeth)}
+              onPress={() => onSave(hadith)}
             >
                 <Heart color="white" absoluteStrokeWidth={2} size={16} />
             </TouchableHighlight>
             <TouchableHighlight
                 className="p-1"
                 underlayColor="#333"
-                onPress={() => onSave(hadeeth)}
+                onPress={() => onSave(hadith)}
             >
                 <Bookmark color="white" absoluteStrokeWidth={2} size={16} />
             </TouchableHighlight>
@@ -96,57 +94,24 @@ const HadeethItem = React.memo(({ hadeeth, onShare, onSave }) => (
   </View>
 ));
 
-const storeData = async (key, value) => {
-    try {
-        await AsyncStorage.setItem(`${HADEETH_STORAGE_KEY}:${key}`, JSON.stringify(value));
-    } catch (error) {
-        console.error("Error saving data to AsyncStorage", error);
-    }
-}
-
-const retrieveData = async (key) => {
-    try {
-        const value = await AsyncStorage.getItem(`${HADEETH_STORAGE_KEY}:${key}`);
-        if (value !== null) {
-            return JSON.parse(value);
-        }
-    } catch (error) {
-        console.error("Error retrieving data from AsyncStorage", error);
-    }
-    return null;
-}
-
-const HadeethContent = () => {
-    const { volumeId, hadeethId } = useSearchParams();
-    const [hadeeth, setHadeeth] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+function HadithContent() {
+    const { volumeId, bookId } = useLocalSearchParams();
     const router = useRouter()
 
-    useEffect(() => {
-        const fetchHadeeth = async () => {
-            if (hadeethId) { // search function to find a specific hadith
-                const filteredData = hadeeths.filter(h => h.id === hadeethId);
-                setHadeeth(filteredData);
-            } else {
-                let cachedData = await retrieveData(volumeId);
+    const { isLoading, isError, data, error } = useQuery({
+        queryKey: ['volumes', id],
+        queryFn: async () => {
+            const res = await fetch(`https://my-way-web.vercel.app/api/books/${bookId}/${volumeId}` , {
+                method: 'GET',
+            });
+            const result = await res.json()
+            console.log('bihhh', result)
+            return result.data
+        }
+    });
 
-                if (cachedData) {
-                    setHadeeth(cachedData);
-                } else {
-                    const filteredData = hadeeths.filter(h => h.volume_id === volumeId);
-                    setHadeeth(filteredData);
-                    storeData(volumeId, filteredData);
-                }
-            }
-
-            setIsLoading(false);  // Set loading state to false once data is fetched
-        };
-
-        fetchHadeeth();
-    }, [volumeId]);
-
-    const onShare = (hadeeth) => {
-        const message = `\n${hadeeth.content.ar}\n\n ${hadeeth.content.ms}\n\n\n${hadeeth.book_title.ms}\n\n\nwww.myhadeeth.com.my`;
+    const onShare = (hadith) => {
+        const message = `\n${hadith.content.ar}\n\n ${hadith.content.ms}\n\n\n${hadith.book_title.ms}\n\n\nwww.myhadeeth.com.my`;
         Share.share({ message })
             .then(result => {
                 // ... existing logic
@@ -171,18 +136,18 @@ const HadeethContent = () => {
     return (
       <>
         <Header
-          title={hadeeth[0]?.book_title?.ms}
-          onPressButton={() => router.push(`(hadeeth)/volume/${hadeeth[0].book_id}?title=${hadeeth[0].book_title.ms}`)}
+          title={data[0]?.book_title?.ms}
+          onPressButton={() => router.push(`(hadeeth)/volume/${data[0].book_id}?title=${data[0].book_title.ms}`)}
         />
         <View className="flex-1 p-4 pb-0 bg-white">
             <View className="flex items-end border-b border-b-royal-blue mb-3">
-                <Text className="text-lg font-semibold text-royal-blue">{hadeeth ? hadeeth[0]?.volume_title.ms : ''}</Text>
+                <Text className="text-lg font-semibold text-royal-blue">{data ? data[0]?.volume_title.ms : ''}</Text>
             </View>
             <View className="flex-1">
                 <FlatList
-                    data={hadeeth}
+                    data={data}
                     keyExtractor={item => item.id.toString()}
-                    renderItem={({ item }) => <HadeethItem key={item.id} hadeeth={item} onShare={onShare} onSave={onSave} />}
+                    renderItem={({ item }) => <HadithItem key={item.id} hadith={item} onShare={onShare} onSave={onSave} />}
                     contentContainerStyle={{ paddingHorizontal: 6 }}
                     style={{ paddingRight: 5, marginRight: -10 }}
                 />
@@ -192,4 +157,4 @@ const HadeethContent = () => {
     );
 };
 
-export default HadeethContent;
+export default HadithContent;

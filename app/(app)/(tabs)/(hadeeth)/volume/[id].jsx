@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, TouchableHighlight, ActivityIndicator, ImageBackground } from "react-native";
-import { useSearchParams, useRouter } from "expo-router";
-import volumes from '@data/volumes.json';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useLocalSearchParams, useRouter } from "expo-router";
 import Header from "../../../../components/header";
 import {ArrowRight, Bookmark, Heart, Share2} from "lucide-react-native";
+import {useQuery} from "@tanstack/react-query";
 
-const VOLUMES_STORAGE_KEY = "CategoriesStorage";
 
-const HadeethCategoryItem = ({ item, onPress, index }) => (
+const HadithVolumeItem = ({ item, onPress, index }) => (
     <TouchableHighlight onPress={() => onPress(item)} underlayColor="#f9fafb" style={{ marginVertical: 6, borderRadius: 10, overflow: 'hidden' }}>
         <View className="bg-white flex flex-row w-full">
             <View className="bg-black p-2 flex justify-center">
@@ -39,60 +37,31 @@ const HadeethCategoryItem = ({ item, onPress, index }) => (
     </TouchableHighlight>
 );
 
-const storeData = async (key, value) => {
-    try {
-        await AsyncStorage.setItem(`${VOLUMES_STORAGE_KEY}:${key}`, JSON.stringify(value));
-    } catch (error) {
-        console.error("Error saving data to AsyncStorage", error);
-    }
-}
-
-const retrieveData = async (key) => {
-    try {
-        const value = await AsyncStorage.getItem(`${VOLUMES_STORAGE_KEY}:${key}`);
-        if (value !== null) {
-            return JSON.parse(value);
-        }
-    } catch (error) {
-        console.error("Error retrieving data from AsyncStorage", error);
-    }
-    return null;
-}
-
-const HadeethCategory = () => {
-    const { id, title } = useSearchParams();
+function HadithVolume() {
+    const { id, title } = useLocalSearchParams();
     const router = useRouter();
-    const [filteredVolumes, setFilteredVolumes] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+
+    const { isLoading, isError, data, error } = useQuery({
+        queryKey: ['volumes', id],
+        queryFn: async () => {
+            const res = await fetch(`https://my-way-web.vercel.app/api/books/${id}` , {
+                method: 'GET',
+            });
+            const result = await res.json()
+            console.log('bihhh', result)
+            return result.data
+        }
+    });
 
     const onPressHadith = (volume) => {
         router.push({
-            pathname: `/(hadeeth)/content/${volume.id}`,
+            pathname: `/(hadeeth)/content`,
             params: {
                 volumeId: volume.id,
                 bookId: volume.book_id,
             }
         });
     };
-
-    useEffect(() => {
-        const fetchData = async () => {
-            let cachedData = await retrieveData(id);
-            if (cachedData) {
-                // console.log('Data retrieved from cache.');
-                setFilteredVolumes(cachedData);
-            } else {
-                // console.log('Data computed and cached.');
-                const data = volumes.filter(volume => volume.book_id === id);
-                setFilteredVolumes(data);
-                storeData(id, data);
-            }
-
-            setIsLoading(false);
-        };
-
-        fetchData();
-    }, [id]);
 
     if (isLoading) {
         return (
@@ -108,8 +77,8 @@ const HadeethCategory = () => {
         <View style={{ flex: 1, backgroundColor: 'gray-100', paddingHorizontal: 16, paddingTop: 16 }}>
             <FlatList
                 className="space-y-6"
-                data={filteredVolumes}
-                renderItem={({ item, index }) => <HadeethCategoryItem item={item} index={index + 1} onPress={onPressHadith} />}
+                data={data}
+                renderItem={({ item, index }) => <HadithVolumeItem item={item} index={index + 1} onPress={onPressHadith} />}
                 keyExtractor={item => item.id.toString()}
                 style={{ paddingRight: 10, marginRight: -10 }}
             />
@@ -118,4 +87,4 @@ const HadeethCategory = () => {
     );
 };
 
-export default HadeethCategory;
+export default HadithVolume;
