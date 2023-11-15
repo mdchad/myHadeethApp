@@ -17,12 +17,9 @@ const width = Dimensions.get("window").width;
 
 export default function CompassV2() {
 	const [location, setLocation] = useState(null);
-	const [errorMsg, setErrorMsg] = useState(null);
 	const [heading, setHeading] = useState(0);
 	const { userLocation, userPlace, permissionStatus } = useAuth()
-	// const [loading, setLoading] = useState(true);
 	const segment = useSegments();
-	const [isQiblaPage, setIsQiblaPage] = useState(true);
 	const [degree, setDegree] = useState('')
 
 	useEffect(() => {
