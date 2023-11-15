@@ -1,18 +1,14 @@
-import {Slot, Stack, Tabs, useRouter, useSearchParams, useSegments} from "expo-router";
+import {Stack, useLocalSearchParams, useSegments} from "expo-router";
 import Page from '@components/page'
-import { useAuth } from '@context/auth';
+import {Platform} from "react-native";
 
 export const unstable_settings = {
     initialRouteName: "index"
 }
 
 export default function Layout() {
-  const { title } = useSearchParams();
+  const { title } = useLocalSearchParams();
   const segment = useSegments();
-
-  const notMainPage = segment.includes('content') || segment.includes('volume')
-  const topBar = notMainPage ? 'bg-white' : 'bg-[#EDEEC0]'
-  const router = useRouter()
 
   return (
         <Page>
@@ -22,6 +18,7 @@ export default function Layout() {
                     options={{
                         // Hide the header for all other routes.
                         headerShown: false,
+                        ...(Platform.OS === 'android' && { animation: 'none' })
                     }}
                 />
                 <Stack.Screen

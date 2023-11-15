@@ -2384,21 +2384,6 @@
   dependencies:
     "@tanstack/query-core" "5.8.3"
 
-"@trpc/client@^10.26.0":
-  version "10.38.5"
-  resolved "https://registry.yarnpkg.com/@trpc/client/-/client-10.38.5.tgz#f689e76e20bd88ecd231b2fe36b65a022438bb3e"
-  integrity sha512-tpGUsoAP+3CD/1KRqMdWZ+zebvB68/86SaVPAYHaEDozTFLQdNqTe98DS/T0S4hfh7WCKbMSObj40SCzE8amKQ==
-
-"@trpc/react-query@^10.26.0":
-  version "10.38.5"
-  resolved "https://registry.yarnpkg.com/@trpc/react-query/-/react-query-10.38.5.tgz#0a36138d2a2221cfb68339c172addbd57ec4914b"
-  integrity sha512-cGpKfiQen3ba3lTII3+Y6Hm3KnC60AS9n2AYt07I7LZx/GknsGHq4h570imdIxr6Qb5LtYe3DFV13kzbm+yGeA==
-
-"@trpc/server@^10.26.0":
-  version "10.38.5"
-  resolved "https://registry.yarnpkg.com/@trpc/server/-/server-10.38.5.tgz#bb42d43e5cc6eec33069dcfce1974872ab547734"
-  integrity sha512-J0d2Y3Gpt2bMohOshPBfuzDqVrPaE3OKEDtJYgTmLk5t1pZy3kXHQep4rP2LEIr+ELbmkelhcrSvvFLA+4/w/Q==
-
 "@types/hammerjs@^2.0.36":
   version "2.0.42"
   resolved "https://registry.yarnpkg.com/@types/hammerjs/-/hammerjs-2.0.42.tgz#d7a53edbc51b2c13a9a759c45d7b5e61243d7dba"
@@ -2544,11 +2529,6 @@ acorn@^8.8.2:
   version "8.10.0"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.10.0.tgz#8be5b3907a67221a81ab23c7889c4c5526b62ec5"
   integrity sha512-F0SAmZ8iUtS//m8DmCTA0jlh6TDKkHQyK6xc6V4KDTyZKA9dnvX9/3sRTVQrWm79glUAZbnmmNcdYwUIHWVybw==
-
-adhan@^4.4.3:
-  version "4.4.3"
-  resolved "https://registry.yarnpkg.com/adhan/-/adhan-4.4.3.tgz#a8bccaeadd0669b609657d4069118562dba4763f"
-  integrity sha512-568KkQd8OMLUj7o7+d2FDcm6vZHWQrE7vsm/Evssh8sfUDpPyaboj3PVsScZAr7L7sNRgPrtLMmDZZfM7VeAYw==
 
 agent-base@6:
   version "6.0.2"
@@ -4600,11 +4580,6 @@ has@^1.0.3:
   integrity sha512-f2dvO0VU6Oej7RkWJGrehjbzMAjFp5/VKPp5tTpWIV4JHHZK1/BxbFRtf/siA2SWTe09caDmVtYYzWEIbBS4zw==
   dependencies:
     function-bind "^1.1.1"
-
-he@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/he/-/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
-  integrity sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
 
 hermes-estree@0.12.0:
   version "0.12.0"

@@ -1,6 +1,6 @@
 import { View, Text, useWindowDimensions, StyleSheet, FlatList, ImageBackground } from 'react-native'
 import React from 'react'
-import { useRouter } from 'expo-router'
+import {Link, useRouter} from 'expo-router'
 import { TouchableHighlight } from "react-native-gesture-handler";
 import Header from '@components/header';
 import { ArrowRight, Bookmark, Heart, Share2 } from "lucide-react-native";
@@ -11,10 +11,6 @@ function Hadeeth() {
 
     const { fontScale } = useWindowDimensions();
     const styles = makeStyles(fontScale);
-
-    function onTriggerPress(id, title) {
-        router.push(`(hadeeth)/volume/${id}?title=${title}`)
-    }
 
     const { isLoading, isError, data, error } = useQuery({
         queryKey: ['books'],
@@ -35,7 +31,7 @@ function Hadeeth() {
 
         return (
             <View className="w-[48%] mr-4 bg-white">
-                <TouchableHighlight onPress={() => onTriggerPress(id, title)} underlayColor="#f9fafb" className="rounded-xl w-full">
+                <Link href={`(hadeeth)/volume/${id}?title=${title}`} underlayColor="#f9fafb" className="w-full">
                     <View>
                         <View className="flex items-center py-8 px-2">
                           <Text className="text-lg text-royal-blue font-semibold">{firstWord}</Text>
@@ -53,7 +49,7 @@ function Hadeeth() {
                             </View>
                         </View>
                     </View>
-                </TouchableHighlight>
+                </Link>
             </View>
         )
     }

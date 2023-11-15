@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { View, Text, FlatList, TouchableHighlight, ActivityIndicator, ImageBackground } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import Header from "../../../../components/header";
@@ -16,21 +16,19 @@ const HadithVolumeItem = ({ item, onPress, index }) => (
                     </ImageBackground>
                 </View>
             </View>
-            <View className="p-4 flex flex-col w-0 flex-grow justify-between">
-                <View className="flex flex-row justify-between items-end">
-                    <Text className="text-royal-blue text-[14px] flex-shrink capitalize ">{item.title.ms}</Text>
-                    <View className="flex flex-row items-end ml-1">
-                        <Text className="text-royal-blue text-xs mr-1">View more</Text>
-                        <ArrowRight color="black" size={14} />
+            <View className="p-4 flex flex-col w-0 flex-grow justify-between space-y-4">
+                <View className="flex flex-row justify-between">
+                    <View className="flex-1 mr-1">
+                        <Text className="text-royal-blue text-[14px] flex-shrink capitalize mb-1">{item.title.ms}</Text>
+                        <Text className="text-xs text-gray-500 flex-shrink capitalize">{item?.transliteration?.ms}</Text>
+                    </View>
+                    <View className="flex-1 items-end ml-1">
+                        <Text className="text-royal-blue text-[24px] text-right flex-shrink capitalize" style={{ fontFamily: 'Traditional_ArabicRegular' }}>{item.title.ar}</Text>
                     </View>
                 </View>
-                <View className="pt-1 flex flex-row justify-between items-center border-t-0.5 border-t-black mt-1">
-                    <Text className="text-xs flex-shrink capitalize">{item?.transliteration?.ms}</Text>
-                    <View className="flex flex-row">
-                        <Share2 color="black" size={15} className="mr-1" />
-                        <Heart color="black" size={15} className="mr-1" />
-                        <Bookmark color="black" size={15} className="mr-1" />
-                    </View>
+                <View className="flex flex-row justify-end items-center">
+                    <Text className="text-royal-blue text-xs mr-1">View more</Text>
+                    <ArrowRight color="black" size={14} />
                 </View>
             </View>
         </View>
@@ -48,14 +46,13 @@ function HadithVolume() {
                 method: 'GET',
             });
             const result = await res.json()
-            console.log('bihhh', result)
             return result.data
         }
     });
 
     const onPressHadith = (volume) => {
         router.push({
-            pathname: `/(hadeeth)/content`,
+            pathname: `/(hadeeth)/content/${volume.book_id}`,
             params: {
                 volumeId: volume.id,
                 bookId: volume.book_id,
