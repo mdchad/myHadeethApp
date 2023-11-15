@@ -1,8 +1,8 @@
-import { View, Text, Image } from 'react-native'
+import { View, Image } from 'react-native'
 import React from 'react'
 import { Tabs } from 'expo-router'
 import { StatusBar } from 'expo-status-bar';
-import {BookMinus, Clock, Compass, SearchIcon, User} from "lucide-react-native";
+import { SearchIcon } from "lucide-react-native";
 
 const homeLogo = require('@assets/home.png')
 const prayerLogo = require('@assets/prayer.png')

@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Text, View, Share, TextInput, TouchableHighlight, ActivityIndicator, FlatList } from "react-native";
-import {useRouter, useSearchParams} from "expo-router";
+import {useRouter, useLocalSearchParams } from "expo-router";
 import {Bookmark, Heart, Share as ShareIcon, Share2} from "lucide-react-native";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import hadeeths from "@data/hadeethsV2";
 import Header from "../../../../components/header";
+import {useQuery} from "@tanstack/react-query";
 
-const HADEETH_STORAGE_KEY = "HadeethStorage";
 
 function toSuperscript(str, type) {
     const superscripts = {
@@ -35,118 +33,72 @@ function toSuperscript(str, type) {
     }
 }
 
-const HadeethItem = React.memo(({ hadeeth, onShare, onSave }) => (
-  <View key={hadeeth.id}>
-    {/*{hadeeth?.chapter_title?.ms && <Text className="text-gray-800 mb-4 mt-6 ml-2">{toSuperscript(hadeeth?.chapter_title?.ms, 'text')}</Text> }*/}
-    <View className="space-y-8 bg-white mb-4 border border-royal-blue">
-        <View className="px-4 py-6">
-            <TextInput
-                className="text-gray-800 text-right text-3xl"
-                style={{ fontFamily: 'Traditional_ArabicRegular' }}
-                scrollEnabled={false}
-                readOnly
-                multiline
-                value={hadeeth.content.ar}
-            />
-            <TextInput
-                className="text-gray-800 pb-4 text-lg overflow-hidden leading-loose"
-                scrollEnabled={false}
-                readOnly
-                multiline
-                style={{ fontFamily: 'KFGQPC_Regular' }}
-                value={toSuperscript(hadeeth.content.ms, 'text')}
-            />
-            {!!hadeeth.footnotes.length && (
-                <View className="flex space-y-2 pt-2 border-t border-t-gray-500">
-                    {hadeeth.footnotes.map(footnote => {
-                        return (
-                            <Text key={footnote.number}>
-                                <Text className="text-xs">{toSuperscript(footnote.number, 'reference')}&nbsp;</Text>
-                                <Text className="text-xs text-gray-800">{footnote.text}</Text>
-                            </Text>
-                        )
-                    })}
+const HadithItem = React.memo(({ hadith }) => (
+  <View key={hadith.id}>
+    {
+        hadith.content.map((content, i) => {
+            if (!content.ar) {
+                return null
+            }
+            return (
+            <View key={i}>
+                <View className="px-4 py-6">
+                  <View >
+                    <TextInput
+                        className="text-gray-800 text-right text-3xl"
+                        style={{ fontFamily: 'Traditional_ArabicRegular' }}
+                        scrollEnabled={false}
+                        readOnly
+                        multiline
+                        value={content.ar}
+                    />
+                    <TextInput
+                        className="text-gray-800 pb-4 text-lg overflow-hidden leading-loose"
+                        scrollEnabled={false}
+                        readOnly
+                        multiline
+                        style={{ fontFamily: 'KFGQPC_Regular' }}
+                        value={content.ms}
+                    />
+                  </View>
+                {/*{!!hadith.footnotes.length && (*/}
+                {/*    <View className="flex space-y-2 pt-2 border-t border-t-gray-500">*/}
+                {/*        {hadith.footnotes.map(footnote => {*/}
+                {/*            return (*/}
+                {/*                <Text key={footnote.number}>*/}
+                {/*                    <Text className="text-xs">{toSuperscript(footnote.number, 'reference')}&nbsp;</Text>*/}
+                {/*                    <Text className="text-xs text-gray-800">{footnote.text}</Text>*/}
+                {/*                </Text>*/}
+                {/*            )*/}
+                {/*        })}*/}
+                {/*    </View>*/}
+                {/*)}*/}
                 </View>
-            )}
-        </View>
-        <View className="flex flex-row justify-end items-center bg-royal-blue">
-            <TouchableHighlight
-                className="p-1"
-                underlayColor="#333"
-                onPress={() => onShare(hadeeth)}
-            >
-                <Share2 color="white" absoluteStrokeWidth={2} size={16} />
-            </TouchableHighlight>
-            <TouchableHighlight
-              className="p-1"
-              underlayColor="#333"
-              onPress={() => onSave(hadeeth)}
-            >
-                <Heart color="white" absoluteStrokeWidth={2} size={16} />
-            </TouchableHighlight>
-            <TouchableHighlight
-                className="p-1"
-                underlayColor="#333"
-                onPress={() => onSave(hadeeth)}
-            >
-                <Bookmark color="white" absoluteStrokeWidth={2} size={16} />
-            </TouchableHighlight>
-        </View>
-    </View>
+            </View>
+            )
+        })
+    }
   </View>
 ));
 
-const storeData = async (key, value) => {
-    try {
-        await AsyncStorage.setItem(`${HADEETH_STORAGE_KEY}:${key}`, JSON.stringify(value));
-    } catch (error) {
-        console.error("Error saving data to AsyncStorage", error);
-    }
-}
-
-const retrieveData = async (key) => {
-    try {
-        const value = await AsyncStorage.getItem(`${HADEETH_STORAGE_KEY}:${key}`);
-        if (value !== null) {
-            return JSON.parse(value);
-        }
-    } catch (error) {
-        console.error("Error retrieving data from AsyncStorage", error);
-    }
-    return null;
-}
-
-const HadeethContent = () => {
-    const { volumeId, hadeethId } = useSearchParams();
-    const [hadeeth, setHadeeth] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+function HadithContent() {
+    const { volumeId, bookId } = useLocalSearchParams();
     const router = useRouter()
+    let chapterId = ""
 
-    useEffect(() => {
-        const fetchHadeeth = async () => {
-            if (hadeethId) { // search function to find a specific hadith
-                const filteredData = hadeeths.filter(h => h.id === hadeethId);
-                setHadeeth(filteredData);
-            } else {
-                let cachedData = await retrieveData(volumeId);
+    const { isLoading, isError, data, error } = useQuery({
+        queryKey: ['hadiths', volumeId],
+        queryFn: async () => {
+            const res = await fetch(`https://my-way-web.vercel.app/api/books/${bookId}/${volumeId}` , {
+                method: 'GET',
+            });
+            const result = await res.json()
+            return result.data
+        }
+    });
 
-                if (cachedData) {
-                    setHadeeth(cachedData);
-                } else {
-                    const filteredData = hadeeths.filter(h => h.volume_id === volumeId);
-                    setHadeeth(filteredData);
-                    storeData(volumeId, filteredData);
-                }
-            }
-
-            setIsLoading(false);  // Set loading state to false once data is fetched
-        };
-
-        fetchHadeeth();
-    }, [volumeId]);
-
-    const onShare = (hadeeth) => {
-        const message = `\n${hadeeth.content.ar}\n\n ${hadeeth.content.ms}\n\n\n${hadeeth.book_title.ms}\n\n\nwww.myhadeeth.com.my`;
+    const onShare = (hadith) => {
+        const message = `\n${hadith.content.ar}\n\n ${hadith.content.ms}\n\n\n${hadith.book_title.ms}\n\n\nwww.myhadeeth.com.my`;
         Share.share({ message })
             .then(result => {
                 // ... existing logic
@@ -171,18 +123,114 @@ const HadeethContent = () => {
     return (
       <>
         <Header
-          title={hadeeth[0]?.book_title?.ms}
-          onPressButton={() => router.push(`(hadeeth)/volume/${hadeeth[0].book_id}?title=${hadeeth[0].book_title.ms}`)}
+          title={data[0]?.book_title?.ms}
+          onPressButton={() => router.push(`(hadeeth)/volume/${data[0].book_id}?title=${data[0].book_title.ms}`)}
         />
         <View className="flex-1 p-4 pb-0 bg-white">
-            <View className="flex items-end border-b border-b-royal-blue mb-3">
-                <Text className="text-lg font-semibold text-royal-blue">{hadeeth ? hadeeth[0]?.volume_title.ms : ''}</Text>
+            <View className="flex flex-row items-center border-b border-b-royal-blue mb-3">
+                <View className="flex-1">
+                    <Text className="text-xl font-semibold text-royal-blue">{data ? data[0]?.volume_title.ms : ''}</Text>
+                </View>
+                <View className="flex-1 items-end">
+                    <Text className="text-[26px] text-right font-semibold text-royal-blue" style={{ fontFamily: 'Traditional_ArabicRegular' }}>{data ? data[0]?.volume_title.ar : ''}</Text>
+                </View>
             </View>
             <View className="flex-1">
                 <FlatList
-                    data={hadeeth}
-                    keyExtractor={item => item.id.toString()}
-                    renderItem={({ item }) => <HadeethItem key={item.id} hadeeth={item} onShare={onShare} onSave={onSave} />}
+                    data={data}
+                    keyExtractor={item => item._id.toString()}
+                    renderItem={({ item }) => {
+                        if (chapterId !== item.chapter_id) {
+                            chapterId = item.chapter_id
+                            return (
+                              <>
+                                  {item?.chapter_title?.ms && (
+                                    <View className="bg-gray-100 rounded-xl mb-4 p-4">
+                                        <View className="flex flex-row justify-between">
+                                            <View className="flex-1 mr-1">
+                                                <Text className="text-royal-blue">{toSuperscript(item?.chapter_title?.ms, 'text')}</Text>
+                                                <Text className="text-gray-600 mt-1">{item?.chapter_transliteration?.ms}</Text>
+                                            </View>
+                                            <View className="flex-1 items-end ml-1">
+                                                <Text className="text-[22px] text-right text-royal-blue" style={{ fontFamily: 'Traditional_ArabicRegular' }}>{item?.chapter_title?.ar}</Text>
+                                            </View>
+                                        </View>
+                                        {item?.chapter_metadata?.ms && (
+                                          <View className="flex flex-row justify-between mt-4 pt-4 border-t-0.5 border-t-gray-500">
+                                              <View className="flex-1 mr-1">
+                                                  <Text className="text-gray-800">{toSuperscript(item?.chapter_metadata?.ms, 'text')}</Text>
+                                              </View>
+                                              <View className="flex-1 items-end ml-1">
+                                                  <Text className="text-[22px] text-right text-gray-800" style={{ fontFamily: 'Traditional_ArabicRegular' }}>{item?.chapter_metadata?.ar}</Text>
+                                              </View>
+                                          </View>
+                                        )}
+                                    </View>
+                                  )}
+                                  { item.content[0].ar && (
+                                      <View className="space-y-8 bg-white mb-4 border border-royal-blue">
+                                        <HadithItem key={item._id} hadith={item} onShare={onShare} onSave={onSave} />
+                                        <View className="flex flex-row justify-end items-center bg-royal-blue">
+                                          <TouchableHighlight
+                                            className="p-1"
+                                            underlayColor="#333"
+                                            onPress={() => onShare(item)}
+                                          >
+                                              <Share2 color="white" absoluteStrokeWidth={2} size={16} />
+                                          </TouchableHighlight>
+                                          <TouchableHighlight
+                                            className="p-1"
+                                            underlayColor="#333"
+                                            onPress={() => onSave(item)}
+                                          >
+                                              <Heart color="white" absoluteStrokeWidth={2} size={16} />
+                                          </TouchableHighlight>
+                                          <TouchableHighlight
+                                            className="p-1"
+                                            underlayColor="#333"
+                                            onPress={() => onSave(item)}
+                                          >
+                                              <Bookmark color="white" absoluteStrokeWidth={2} size={16} />
+                                          </TouchableHighlight>
+                                        </View>
+                                      </View>
+                                  )}
+                              </>
+                            )
+                        }
+
+                        if (item.content[0].ar) {
+                            return (
+                              <View className="space-y-8 bg-white mb-4 border border-royal-blue">
+                                 <HadithItem key={item._id} hadith={item} onShare={onShare} onSave={onSave} />
+                                  <View className="flex flex-row justify-end items-center bg-royal-blue">
+                                      <TouchableHighlight
+                                        className="p-1"
+                                        underlayColor="#333"
+                                        onPress={() => onShare(item)}
+                                      >
+                                          <Share2 color="white" absoluteStrokeWidth={2} size={16} />
+                                      </TouchableHighlight>
+                                      <TouchableHighlight
+                                        className="p-1"
+                                        underlayColor="#333"
+                                        onPress={() => onSave(item)}
+                                      >
+                                          <Heart color="white" absoluteStrokeWidth={2} size={16} />
+                                      </TouchableHighlight>
+                                      <TouchableHighlight
+                                        className="p-1"
+                                        underlayColor="#333"
+                                        onPress={() => onSave(item)}
+                                      >
+                                          <Bookmark color="white" absoluteStrokeWidth={2} size={16} />
+                                      </TouchableHighlight>
+                                  </View>
+                              </View>
+                        )} else {
+                            return null
+                        }
+                    }}
                     contentContainerStyle={{ paddingHorizontal: 6 }}
                     style={{ paddingRight: 5, marginRight: -10 }}
                 />
@@ -192,4 +240,4 @@ const HadeethContent = () => {
     );
 };
 
-export default HadeethContent;
+export default HadithContent;
