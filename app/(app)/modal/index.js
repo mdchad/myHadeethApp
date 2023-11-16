@@ -1,82 +1,82 @@
 import { View, Text, TextInput, FlatList, Pressable } from 'react-native'
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
-import { Link, useRouter } from "expo-router";
+import { Ionicons, MaterialIcons } from '@expo/vector-icons'
+import { Link, useRouter } from 'expo-router'
 import data from '@data/hadeethsV2.json'
-import { useDebounce } from "@uidotdev/usehooks";
+import { useDebounce } from '@uidotdev/usehooks'
 
 function Search() {
   const [filteredDataSource, setFilteredDataSource] = useState([])
-  const [search, setSearch] = useState('');
-  const [isSearching, setIsSearching] = React.useState(false);
-  const debouncedSearchTerm = useDebounce(search, 300);
+  const [search, setSearch] = useState('')
+  const [isSearching, setIsSearching] = React.useState(false)
+  const debouncedSearchTerm = useDebounce(search, 300)
 
   function escapeRegExp(string) {
-    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // Escape special characters for regex
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') // Escape special characters for regex
   }
 
   function truncateAndHighlight(text, keyword, bufferLength = 10) {
-    const regex = new RegExp(escapeRegExp(keyword), 'gi');
-    const parts = [];
-    let match;
+    const regex = new RegExp(escapeRegExp(keyword), 'gi')
+    const parts = []
+    let match
 
-    let previousEnd = 0;
+    let previousEnd = 0
 
     while ((match = regex.exec(text)) !== null) {
       // Insert a break if this isn't the first keyword match
       if (previousEnd !== 0) {
-        parts.push('\n');
-        parts.push('\n');
+        parts.push('\n')
+        parts.push('\n')
       }
 
       // Add the text before the keyword to the parts
-      const start = Math.max(0, match.index - bufferLength);
-      const prefix = start > 0 && match.index !== 0 ? "..." : "";
-      parts.push(prefix + text.substring(start, match.index));
+      const start = Math.max(0, match.index - bufferLength)
+      const prefix = start > 0 && match.index !== 0 ? '...' : ''
+      parts.push(prefix + text.substring(start, match.index))
 
       // Add the keyword (match) to the parts
       parts.push(
         <Text key={match.index} style={{ backgroundColor: 'yellow' }}>
           {match[0]}
         </Text>
-      );
+      )
 
       // Add the text immediately after the keyword
-      const end = Math.min(text.length, match.index + keyword.length + bufferLength);
-      const suffix = end < text.length ? "..." : "";
-      parts.push(text.substring(match.index + keyword.length, end) + suffix);
+      const end = Math.min(
+        text.length,
+        match.index + keyword.length + bufferLength
+      )
+      const suffix = end < text.length ? '...' : ''
+      parts.push(text.substring(match.index + keyword.length, end) + suffix)
 
-      previousEnd = end;
+      previousEnd = end
     }
 
-    return <Text>{parts}</Text>;
+    return <Text>{parts}</Text>
   }
 
   useEffect(() => {
     if (search) {
-        // Inserted text is not blank
-        // Filter the masterDataSource and update FilteredDataSource
+      // Inserted text is not blank
+      // Filter the masterDataSource and update FilteredDataSource
       const newData = data.filter((item) => {
         // Applying filter for the inserted text in search bar
-        const itemData = item.content.ms
-          ? item.content.ms.toLowerCase()
-          : '';
-        const textData = search.toLowerCase();
-        return itemData.indexOf(textData) > -1;
-      });
-      setFilteredDataSource(newData);
+        const itemData = item.content.ms ? item.content.ms.toLowerCase() : ''
+        const textData = search.toLowerCase()
+        return itemData.indexOf(textData) > -1
+      })
+      setFilteredDataSource(newData)
     } else {
       setFilteredDataSource([])
     }
-    setIsSearching(false);
-
-  }, [debouncedSearchTerm]);
+    setIsSearching(false)
+  }, [debouncedSearchTerm])
 
   const searchFilterFunction = (text) => {
-    setIsSearching(true);
+    setIsSearching(true)
     setSearch(text)
-  };
+  }
 
   const ItemSeparatorView = () => {
     return (
@@ -85,25 +85,29 @@ function Search() {
         style={{
           height: 0.5,
           width: '100%',
-          backgroundColor: '#C8C8C8',
+          backgroundColor: '#C8C8C8'
         }}
       />
-    );
-  };
+    )
+  }
 
   function renderedItems({ item }) {
     return (
-      <Link href={{
-        pathname: `/(hadeeth)/content/${item.volume_id}`,
-        params: {
-          hadeethId: item.id,
-          volumeId: item.volume_id,
-          bookId: item.book_id,
-        }
-      }}>
+      <Link
+        href={{
+          pathname: `/(hadeeth)/content/${item.volume_id}`,
+          params: {
+            hadeethId: item.id,
+            volumeId: item.volume_id,
+            bookId: item.book_id
+          }
+        }}
+      >
         <View key={item.id} className="pb-4">
           <View className="my-4">
-            <Text className="text-[#433E0E] font-bold">{item?.book_title.ms}, {item.number}</Text>
+            <Text className="text-[#433E0E] font-bold">
+              {item?.book_title.ms}, {item.number}
+            </Text>
           </View>
           <Text>{truncateAndHighlight(item?.content?.ms, search, 100)}</Text>
         </View>
@@ -151,14 +155,13 @@ function Search() {
         ItemSeparatorComponent={ItemSeparatorView}
         ListEmptyComponent={() => {
           return !isSearching && search.length ? (
-              <View className="flex-1 flex items-center justify-center">
-                <Text className="text-lg">No results found.</Text>
-                <Text className="text-sm"> Try something else instead?</Text>
-              </View>
-            )
-            : (
-              <View></View>
-            )
+            <View className="flex-1 flex items-center justify-center">
+              <Text className="text-lg">No results found.</Text>
+              <Text className="text-sm"> Try something else instead?</Text>
+            </View>
+          ) : (
+            <View></View>
+          )
         }}
       />
 

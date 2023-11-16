@@ -1,8 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import Page from '@components/page'
-import Compass from '@components/compassV2';
-
+import Compass from '@components/compassV2'
 
 const Notes = () => {
   return (
@@ -10,7 +9,7 @@ const Notes = () => {
       <View className="flex-1 bg-gray-100">
         <Text>Hello</Text>
       </View>
-    </Page >
+    </Page>
   )
 }
 

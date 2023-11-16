@@ -1,572 +1,572 @@
 [
-	{
-		"id": "1cfedcd5-2108-4557-9661-90f8602435de",
-		"name": "first_chapter",
-		"title": {
-			"en": "How was the Divine Revelation initially revealed to AlLāh’s Messenger (peace and blessings be upon him) ",
-			"ms": "Bagaimana Permulaan Datangnya Wahyu Kepada Rasulullah SAW",
-			"ar": "باب كَيْفَ كَانَ بَدْءُ الْوَحْىِ إِلَى رسول الله"
-		},
-		"category_id": "7bae1d78-1524-4633-b12a-c713e6bcfd15",
-		"category_name": "",
-		"category_title": {
-			"en": "Book of the Beginning of Revelation ",
-			"ms": "Kitab Permulaan Wahyu",
-			"ar": "كتاب بدء الوحى"
-		},
-		"book_name": "sahih_bukhari",
-		"book_title": "Sahih Bukhari",
-		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
-	},
-	{
-		"id": "f439e744-9acf-4005-bf25-6ddac4439dc3",
-		"name": "faith_chapter",
-		"title": {
-			"en": "Faith and the saying of the Prophet (peace and blessings be upon him): “Islam is built on five principles",
-			"ms": "Bab Sabda Nabi \uF067, “Islam Dibina Di Atas Lima Asas.”",
-			"ar": "بَابُ قَوْلِ النَّبِيِّ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ: « بُنِيَ الإِسْلاَمُ عَلَى خَمْسٍ"
-		},
-		"category_id": "997978b2-59d1-48ea-9ca6-0b047aa24434",
-		"category_name": "",
-		"category_title": {
-			"en": "Book of Faith",
-			"ms": "Kitab Iman",
-			"ar": "كتاب الإيمان"
-		},
-		"book_name": "sahih_bukhari",
-		"book_title": "Sahih Bukhari",
-		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
-	},
-	{
-		"id": "47ae24f8-eb8b-45fc-a95d-a0a1e903ec90",
-		"name": "supplication_chapter",
-		"title": {
-			"en": "Your supplications is your faith",
-			"ms": "Bab Doa Kamu Adalah Iman Kamu",
-			"ar": "باب دُعَاؤُكُمْ إِيمَانُكُمْ"
-		},
-		"category_id": "997978b2-59d1-48ea-9ca6-0b047aa24434",
-		"category_name": "",
-		"category_title": {
-			"en": "Book of Faith",
-			"ms": "Kitab Iman",
-			"ar": "كتاب الإيمان"
-		},
-		"book_name": "sahih_bukhari",
-		"book_title": "Sahih Bukhari",
-		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
-	},
-	{
-		"id": "4fe986f5-8b39-490f-8ca5-8dc13c6d1842",
-		"name": "matters_faith_chapter",
-		"title": {
-			"en": "Matters of faith",
-			"ms": "Bab Perkara-Perkara Yang Berkaitan Dengan Iman",
-			"ar": "باب أُمُورِ الإِيمَانِْ"
-		},
-		"category_id": "997978b2-59d1-48ea-9ca6-0b047aa24434",
-		"category_name": "",
-		"category_title": {
-			"en": "Book of Faith",
-			"ms": "Kitab Iman",
-			"ar": "كتاب الإيمان"
-		},
-		"book_name": "sahih_bukhari",
-		"book_title": "Sahih Bukhari",
-		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
-	},
-	{
-		"id": "f7d8b150-11b0-4b4a-990c-0d2999707423",
-		"name": "true_muslim_chapter",
-		"title": {
-			"en": "A (true) Muslim is one whom other Muslims are safe from being verbally and physically hurt",
-			"ms": "Bab Seorang Muslim Yang Sejati Itu Adalah Orang Muslim Yang Lain Selamat Daripada Gangguan Lidah Dan Tangannya",
-			"ar": "باب الْمُسْلِمُ مَنْ سَلِمَ الْمُسْلِمُونَ مِنْ لِسَانِهِ وَيَدِهِ"
-		},
-		"category_id": "997978b2-59d1-48ea-9ca6-0b047aa24434",
-		"category_name": "",
-		"category_title": {
-			"en": "Book of Faith",
-			"ms": "Kitab Iman",
-			"ar": "كتاب الإيمان"
-		},
-		"book_name": "sahih_bukhari",
-		"book_title": "Sahih Bukhari",
-		"book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
-	},
-	{
-		"id": "2ff8d114-8e6c-4eba-8196-ac10099f856d",
-		"name": "faraid_chapter",
-		"title": {
-			"en": "",
-			"ms": "Bab berikanlah faraid kepada ahlinya, lalu bakinya adalah untuk lelaki yang paling rapat",
-			"ar": "بَابُ أَلْحِقُوا الْفَرَائِضَ بِأَهْلِهَا، فَمَا بَقِيَ فَلِأَوْلَى رَجُلٍ ذَكَرٍ"
-		},
-		"category_id": "e745872a-99ab-4e12-a649-3569b7b4986d",
-		"category_name": "",
-		"category_title": {
-			"en": "Faraid Book",
-			"ms": "Kitab Faraid",
-			"ar": "كتاب الإيمان"
-		},
-		"book_name": "sahih_muslim",
-		"book_title": "Sahih Muslim",
-		"book_id": "240360e4-50b4-47a9-9506-9850b0e3bfd7"
-	},
-	{
-		"id": "03b05631-d969-4223-bfff-ec0d346d98ed",
-		"name": "",
-		"title": {
-			"en": "",
-			"ms": "Bab pewarisan al-kalalah",
-			"ar": "بَابُ مِيرَاثِ الْكَلَالَةِ"
-		},
-		"category_id": "e745872a-99ab-4e12-a649-3569b7b4986d",
-		"category_name": "",
-		"category_title": {
-			"en": "Faraid Book",
-			"ms": "Kitab Faraid",
-			"ar": "كتاب الإيمان"
-		},
-		"book_name": "sahih_muslim",
-		"book_title": "Sahih Muslim",
-		"book_id": "240360e4-50b4-47a9-9506-9850b0e3bfd7"
-	},
-	{
-		"id": "b9e45fc9-1d85-4b82-8a9c-b1fdaf1f764c",
-		"name": "",
-		"title": {
-			"en": "",
-			"ms": "Bab ayat terakhir diturunkan adalah ayat al-kalalah",
-			"ar": "بَابُ آخِرُ آيَةٍ أُنْزِلَتْ آيَةُ الْكَلَالَةِ"
-		},
-		"category_id": "e745872a-99ab-4e12-a649-3569b7b4986d",
-		"category_name": "",
-		"category_title": {
-			"en": "Faraid Book",
-			"ms": "Kitab Faraid",
-			"ar": "كتاب الإيمان"
-		},
-		"book_name": "sahih_muslim",
-		"book_title": "Sahih Muslim",
-		"book_id": "240360e4-50b4-47a9-9506-9850b0e3bfd7"
-	},
-	{
-		"id": "80eef8fe-6129-4b60-a787-eba032e0e37b",
-		"name": "",
-		"title": {
-			"en": "",
-			"ms": "Bab sesiapa yang meninggalkan harta maka ia adalah untuk ahli warisnya",
-			"ar": "بَابُ مَنْ تَرَكَ مَالًا فَلِوَرَثَتِهِ"
-		},
-		"category_id": "e745872a-99ab-4e12-a649-3569b7b4986d",
-		"category_name": "",
-		"category_title": {
-			"en": "Faraid Book",
-			"ms": "Kitab Faraid",
-			"ar": "كتاب الإيمان"
-		},
-		"book_name": "sahih_muslim",
-		"book_title": "Sahih Muslim",
-		"book_id": "240360e4-50b4-47a9-9506-9850b0e3bfd7"
-	},
-	{
-		"id": "ff8a4422-be5f-43aa-84d5-320a134ac859",
-		"name": "hajat_Chapter",
-		"title": {
-			"en": "",
-			"ms": "Bab Menjauhi Orang Lain Ketika Menunaikan Hajat ",
-			"ar": "باب التَّخَلِّي عِنْدَ قَضَاءِ الْحَاجَةِ"
-		},
-		"category_id": "0343a0c8-40a1-403f-b96b-dfeaed56985c",
-		"category_name": "taharah",
-		"category_title": {
-			"en": "",
-			"ms": "Kitab taharah",
-			"ar": "أوَّلُ كِتَابِ الطهارة"
-		},
-		"book_name": "sunan_abi-daud",
-		"book_title": "Sunan Abi Daud",
-		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
-	},
-	{
-		"id": "b3a6f4d3-5359-4c9a-b42a-9c99c9867150",
-		"name": "place_chapter",
-		"title": {
-			"en": "",
-			"ms": "Bab Seseorang Memilih Tempat Buang Air Kecil",
-			"ar": "باب الرَّجُلِ يَتَبَوَّأُ لِبَوْلِهِ.ٍ"
-		},
-		"category_id": "0343a0c8-40a1-403f-b96b-dfeaed56985c",
-		"category_name": "taharah",
-		"category_title": {
-			"en": "",
-			"ms": "Kitab taharah",
-			"ar": "أوَّلُ كِتَابِ الطهارة"
-		},
-		"book_name": "sunan_abi-daud",
-		"book_title": "Sunan Abi Daud",
-		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
-	},
-	{
-		"id": "e7c234cc-fc12-45c3-802d-b7bbedd583c5",
-		"name": "supplication_chapter",
-		"title": {
-			"en": "",
-			"ms": "Bab Doa Yang Dibaca Seseorang Ketika Masuk Jamban ",
-			"ar": "باب مَا يَقُولُ الرَّجُلُ إِذَا دَخَلَ الْخَلاَءَ.ٍ"
-		},
-		"category_id": "0343a0c8-40a1-403f-b96b-dfeaed56985c",
-		"category_name": "taharah",
-		"category_title": {
-			"en": "",
-			"ms": "Kitab taharah",
-			"ar": "أوَّلُ كِتَابِ الطهارة"
-		},
-		"book_name": "sunan_abi-daud",
-		"book_title": "Sunan Abi Daud",
-		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
-	},
-	{
-		"id": "d88a8b24-2a65-482b-b1ad-b3242db521ba",
-		"name": "forbidden_chapter",
-		"title": {
-			"en": "",
-			"ms": "Bab Larangan Menghadap Kiblat Ketika Buang Hajat",
-			"ar": "باب كَرَاهِيَةِ اسْتِقْبَالِ الْقِبْلَةِ عِنْدَ قَضَاءِ الْحَاجَةِ.ٍ"
-		},
-		"category_id": "0343a0c8-40a1-403f-b96b-dfeaed56985c",
-		"category_name": "taharah",
-		"category_title": {
-			"en": "",
-			"ms": "Kitab taharah",
-			"ar": "أوَّلُ كِتَابِ الطهارة"
-		},
-		"book_name": "sunan_abi-daud",
-		"book_title": "Sunan Abi Daud",
-		"book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
-	},
-	{
-		"id": "c061998e-5ed2-4a3d-af38-aab5c2f2ee5b",
-		"name": "",
-		"title": {
-			"en": "",
-			"ms": "Bab Bersugi Ketika Bangun Malam",
-			"ar": "بَابُ السِّوَاكِ إِذَا قَامَ مِنَ اللَّيْلِ"
-		},
-		"category_id": "2cdae5e5-58d7-4815-af4d-f3c7e9f29fc3",
-		"category_name": "taharah",
-		"category_title": {
-			"en": "",
-			"ms": "Kitab bersuci",
-			"ar": "كِتَابُ الطَّهَارَةِ"
-		},
-		"book_name": "sunan_an_nasai",
-		"book_title": "Sunan An-Nasa’i",
-		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
-	},
-	{
-		"id": "873dd3e4-5961-448c-9305-a6ffaf3e82f7",
-		"name": "",
-		"title": {
-			"en": "",
-			"ms": "Bab Tatacara Bersugi",
-			"ar": "بَابُ كَيْفَ يَسْتَاكُِ"
-		},
-		"category_id": "2cdae5e5-58d7-4815-af4d-f3c7e9f29fc3",
-		"category_name": "taharah",
-		"category_title": {
-			"en": "",
-			"ms": "Kitab bersuci",
-			"ar": "كِتَابُ الطَّهَارَةِ"
-		},
-		"book_name": "sunan_an_nasai",
-		"book_title": "Sunan An-Nasa’i",
-		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
-	},
-	{
-		"id": "42221e53-40e0-491d-9ec4-3eb292432eb3",
-		"name": "",
-		"title": {
-			"en": "",
-			"ms": "Bab Pemimpin Bersugi Di Hadapan Rakyatnya",
-			"ar": "بَابُ هَلْ يَسْتَاكُ الْإِمَامُ بِحَضْرَةِ رَعِيَّتِهِ؟"
-		},
-		"category_id": "2cdae5e5-58d7-4815-af4d-f3c7e9f29fc3",
-		"category_name": "taharah",
-		"category_title": {
-			"en": "",
-			"ms": "Kitab bersuci",
-			"ar": "كِتَابُ الطَّهَارَةِ"
-		},
-		"book_name": "sunan_an_nasai",
-		"book_title": "Sunan An-Nasa’i",
-		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
-	},
-	{
-		"id": "2f1b573f-59cd-4e58-bea8-13c5a574f26b",
-		"name": "",
-		"title": {
-			"en": "",
-			"ms": "Bab Anjuran Bersugi",
-			"ar": "بَابُ التَّرْغِيبِ فِي السِّوَاكِ"
-		},
-		"category_id": "2cdae5e5-58d7-4815-af4d-f3c7e9f29fc3",
-		"category_name": "taharah",
-		"category_title": {
-			"en": "",
-			"ms": "Kitab bersuci",
-			"ar": "كِتَابُ الطَّهَارَةِ"
-		},
-		"book_name": "sunan_an_nasai",
-		"book_title": "Sunan An-Nasa’i",
-		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
-	},
-	{
-		"id": "6ea9c545-a5f5-4bae-bfba-c10d1119ac16",
-		"name": "",
-		"title": {
-			"en": "",
-			"ms": "Bab Anjuran Memperbanyakkan Bersugi",
-			"ar": "الْإِكْثَارُ فِي السِّوَاكِِ"
-		},
-		"category_id": "2cdae5e5-58d7-4815-af4d-f3c7e9f29fc3",
-		"category_name": "taharah",
-		"category_title": {
-			"en": "",
-			"ms": "Kitab bersuci",
-			"ar": "كِتَابُ الطَّهَارَةِ"
-		},
-		"book_name": "sunan_an_nasai",
-		"book_title": "Sunan An-Nasa’i",
-		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
-	},
-	{
-		"id": "bb608b80-69b2-438b-9d5e-8042055bae72",
-		"name": "",
-		"title": {
-			"en": "",
-			"ms": "Kelonggaran Bersugi Pada Waktu Petang Bagi Orang Yang Berpuasa",
-			"ar": "الرُّخْصَةُ فِي السِّوَاكِ بِالْعَشِيِّ لِلصَّائِمِ"
-		},
-		"category_id": "2cdae5e5-58d7-4815-af4d-f3c7e9f29fc3",
-		"category_name": "taharah",
-		"category_title": {
-			"en": "",
-			"ms": "Kitab bersuci",
-			"ar": "كِتَابُ الطَّهَارَةِ"
-		},
-		"book_name": "sunan_an_nasai",
-		"book_title": "Sunan An-Nasa’i",
-		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
-	},
-	{
-		"id": "7c4cb579-ddcb-4296-8b85-2e319c1a2f34",
-		"name": "",
-		"title": {
-			"en": "",
-			"ms": "Bab Bersugi Pada Setiap Waktu",
-			"ar": "السِّوَاكُ فِي كُلِّ حِينٍِ"
-		},
-		"category_id": "2cdae5e5-58d7-4815-af4d-f3c7e9f29fc3",
-		"category_name": "taharah",
-		"category_title": {
-			"en": "",
-			"ms": "Kitab bersuci",
-			"ar": "كِتَابُ الطَّهَارَةِ"
-		},
-		"book_name": "sunan_an_nasai",
-		"book_title": "Sunan An-Nasa’i",
-		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
-	},
-	{
-		"id": "19f5618a-02cc-4333-afc4-8e464a1d809a",
-		"name": "",
-		"title": {
-			"en": "",
-			"ms": "Berkhatan",
-			"ar": "الِاخْتِتَانُ"
-		},
-		"category_id": "2cdae5e5-58d7-4815-af4d-f3c7e9f29fc3",
-		"category_name": "taharah",
-		"category_title": {
-			"en": "",
-			"ms": "Kitab bersuci",
-			"ar": "كِتَابُ الطَّهَارَةِ"
-		},
-		"book_name": "sunan_an_nasai",
-		"book_title": "Sunan An-Nasa’i",
-		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
-	},
-	{
-		"id": "a6079475-efba-474c-a20f-8530ffd4a5dc",
-		"name": "",
-		"title": {
-			"en": "",
-			"ms": "Bab Memotong Kuku",
-			"ar": "تَقْلِيمُ الْأَظْفَارِ"
-		},
-		"category_id": "2cdae5e5-58d7-4815-af4d-f3c7e9f29fc3",
-		"category_name": "taharah",
-		"category_title": {
-			"en": "",
-			"ms": "Kitab bersuci",
-			"ar": "كِتَابُ الطَّهَارَةِ"
-		},
-		"book_name": "sunan_an_nasai",
-		"book_title": "Sunan An-Nasa’i",
-		"book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
-	},
-	{
-		"id": "4750419c-436d-4a9c-8e4e-9d0cf53661a4",
-		"name": "",
-		"title": {
-			"en": "",
-			"ms": "Bab Mengikuti Sunnah Rasulullah",
-			"ar": "بَابُ اتباع سُنَّةِ رَسُولِ اللهِ صَلَّى الله عَليْهِ وسَلَّمَ"
-		},
-		"category_id": "983ef3cd-b1ff-436b-be68-828761e124fe",
-		"category_name": "kitab",
-		"category_title": {
-			"en": "",
-			"ms": "Kitab 1",
-			"ar": "كِتَابُ"
-		},
-		"book_name": "sunan_ibnu_majah",
-		"book_title": "Sunan Ibnu Majah",
-		"book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
-	},
-	{
-		"id": "2a92f2f3-af16-4705-89b2-06d7e722f0e4",
-		"name": "",
-		"title": {
-			"en": "",
-			"ms": "Bab Sembahyang Tidak Diterima Dengan Tidak Bersuci",
-			"ar": "بَابُ مَا جَاءَ لاَ تُقْبَلُ صَلاَةٌ بِغَيْرِ طُهُورٍٍ"
-		},
-		"category_id": "cd2d21ff-22f6-451a-bc57-1e0d5ba4fcb1",
-		"category_name": "",
-		"category_title": {
-			"en": "",
-			"ms": "Bab-bab bersuci daripada Rasulullah",
-			"ar": "أَبْوَابُ الطَّهَارَةِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
-		},
-		"book_name": "jami_al_tirmidhi",
-		"book_title": "Jami’ Al-Tirmidhi",
-		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
-	},
-	{
-		"id": "f4578ff3-6a4e-4851-b7a1-e2aae27902b1",
-		"name": "",
-		"title": {
-			"en": "",
-			"ms": "Bab Kelebihan Bersuci",
-			"ar": "بَابُ مَا جَاءَ فِي فَضْلِ الطُّهُورٍٍِ"
-		},
-		"category_id": "cd2d21ff-22f6-451a-bc57-1e0d5ba4fcb1",
-		"category_name": "",
-		"category_title": {
-			"en": "",
-			"ms": "Bab-bab bersuci daripada Rasulullah",
-			"ar": "أَبْوَابُ الطَّهَارَةِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
-		},
-		"book_name": "jami_al_tirmidhi",
-		"book_title": "Jami’ Al-Tirmidhi",
-		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
-	},
-	{
-		"id": "1be1a04f-834f-4ee6-a8cf-9070a2436d0c",
-		"name": "",
-		"title": {
-			"en": "",
-			"ms": "Bab Kunci Sembahyang Adalah Bersuci",
-			"ar": "بَابُ مَا جَاءَ أَنَّ مِفْتَاحَ الصَّلاَةِ الطُّهُورُ"
-		},
-		"category_id": "cd2d21ff-22f6-451a-bc57-1e0d5ba4fcb1",
-		"category_name": "",
-		"category_title": {
-			"en": "",
-			"ms": "Bab-bab bersuci daripada Rasulullah",
-			"ar": "أَبْوَابُ الطَّهَارَةِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
-		},
-		"book_name": "jami_al_tirmidhi",
-		"book_title": "Jami’ Al-Tirmidhi",
-		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
-	},
-	{
-		"id": "5e2b3db7-c8ef-4725-995f-7daef23d863b",
-		"name": "",
-		"title": {
-			"en": "",
-			"ms": "Bab Doa Yang Diucapkan Apabila Masuk Ke Bilik Air",
-			"ar": "بَابُ مَا يَقُولُ إِذَا دَخَلَ الْخَلاَءَ"
-		},
-		"category_id": "cd2d21ff-22f6-451a-bc57-1e0d5ba4fcb1",
-		"category_name": "",
-		"category_title": {
-			"en": "",
-			"ms": "Bab-bab bersuci daripada Rasulullah",
-			"ar": "أَبْوَابُ الطَّهَارَةِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
-		},
-		"book_name": "jami_al_tirmidhi",
-		"book_title": "Jami’ Al-Tirmidhi",
-		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
-	},
-	{
-		"id": "2c05c214-c83a-4e54-b62a-0d6ddbe7b1f0",
-		"name": "",
-		"title": {
-			"en": "",
-			"ms": "Bab Doa Yang Diucapkan Apabila Keluar Daripada Bilik Air",
-			"ar": "بَابُ مَا يَقُولُ إِذَا خَرَجَ مِنَ الْخَلاَءَِ"
-		},
-		"category_id": "cd2d21ff-22f6-451a-bc57-1e0d5ba4fcb1",
-		"category_name": "",
-		"category_title": {
-			"en": "",
-			"ms": "Bab-bab bersuci daripada Rasulullah",
-			"ar": "أَبْوَابُ الطَّهَارَةِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
-		},
-		"book_name": "jami_al_tirmidhi",
-		"book_title": "Jami’ Al-Tirmidhi",
-		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
-	},
-	{
-		"id": "62d3b0f4-2c75-4f3a-b676-2b12d5854d6f",
-		"name": "",
-		"title": {
-			"en": "",
-			"ms": "Bab Larangan Daripada Mengadap Kiblat Ketika Berak Dan Kencing",
-			"ar": "بَابٌ فِي النَّهْيِ عَنِ اسْتِقْبَالِ الْقِبْلَةِ بِغَائِطٍ أَوْ بَوْلٍ"
-		},
-		"category_id": "cd2d21ff-22f6-451a-bc57-1e0d5ba4fcb1",
-		"category_name": "",
-		"category_title": {
-			"en": "",
-			"ms": "Bab-bab bersuci daripada Rasulullah",
-			"ar": "أَبْوَابُ الطَّهَارَةِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
-		},
-		"book_name": "jami_al_tirmidhi",
-		"book_title": "Jami’ Al-Tirmidhi",
-		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
-	},
-	{
-		"id": "f9dce7a9-2f65-460e-ae5a-da207f990aa7",
-		"name": "",
-		"title": {
-			"en": "",
-			"ms": "Bab Keharusan Mengadap Kiblat (Ketika Membuang Air)",
-			"ar": "بَابُ مَا جَاءَ مِنَ الرُّخْصَةِ فِي ذَلِكَ"
-		},
-		"category_id": "cd2d21ff-22f6-451a-bc57-1e0d5ba4fcb1",
-		"category_name": "",
-		"category_title": {
-			"en": "",
-			"ms": "Bab-bab bersuci daripada Rasulullah",
-			"ar": "أَبْوَابُ الطَّهَارَةِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
-		},
-		"book_name": "jami_al_tirmidhi",
-		"book_title": "Jami’ Al-Tirmidhi",
-		"book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
-	}
+  {
+    "id": "1cfedcd5-2108-4557-9661-90f8602435de",
+    "name": "first_chapter",
+    "title": {
+      "en": "How was the Divine Revelation initially revealed to AlLāh’s Messenger (peace and blessings be upon him) ",
+      "ms": "Bagaimana Permulaan Datangnya Wahyu Kepada Rasulullah SAW",
+      "ar": "باب كَيْفَ كَانَ بَدْءُ الْوَحْىِ إِلَى رسول الله"
+    },
+    "category_id": "7bae1d78-1524-4633-b12a-c713e6bcfd15",
+    "category_name": "",
+    "category_title": {
+      "en": "Book of the Beginning of Revelation ",
+      "ms": "Kitab Permulaan Wahyu",
+      "ar": "كتاب بدء الوحى"
+    },
+    "book_name": "sahih_bukhari",
+    "book_title": "Sahih Bukhari",
+    "book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+  },
+  {
+    "id": "f439e744-9acf-4005-bf25-6ddac4439dc3",
+    "name": "faith_chapter",
+    "title": {
+      "en": "Faith and the saying of the Prophet (peace and blessings be upon him): “Islam is built on five principles",
+      "ms": "Bab Sabda Nabi \uF067, “Islam Dibina Di Atas Lima Asas.”",
+      "ar": "بَابُ قَوْلِ النَّبِيِّ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ: « بُنِيَ الإِسْلاَمُ عَلَى خَمْسٍ"
+    },
+    "category_id": "997978b2-59d1-48ea-9ca6-0b047aa24434",
+    "category_name": "",
+    "category_title": {
+      "en": "Book of Faith",
+      "ms": "Kitab Iman",
+      "ar": "كتاب الإيمان"
+    },
+    "book_name": "sahih_bukhari",
+    "book_title": "Sahih Bukhari",
+    "book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+  },
+  {
+    "id": "47ae24f8-eb8b-45fc-a95d-a0a1e903ec90",
+    "name": "supplication_chapter",
+    "title": {
+      "en": "Your supplications is your faith",
+      "ms": "Bab Doa Kamu Adalah Iman Kamu",
+      "ar": "باب دُعَاؤُكُمْ إِيمَانُكُمْ"
+    },
+    "category_id": "997978b2-59d1-48ea-9ca6-0b047aa24434",
+    "category_name": "",
+    "category_title": {
+      "en": "Book of Faith",
+      "ms": "Kitab Iman",
+      "ar": "كتاب الإيمان"
+    },
+    "book_name": "sahih_bukhari",
+    "book_title": "Sahih Bukhari",
+    "book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+  },
+  {
+    "id": "4fe986f5-8b39-490f-8ca5-8dc13c6d1842",
+    "name": "matters_faith_chapter",
+    "title": {
+      "en": "Matters of faith",
+      "ms": "Bab Perkara-Perkara Yang Berkaitan Dengan Iman",
+      "ar": "باب أُمُورِ الإِيمَانِْ"
+    },
+    "category_id": "997978b2-59d1-48ea-9ca6-0b047aa24434",
+    "category_name": "",
+    "category_title": {
+      "en": "Book of Faith",
+      "ms": "Kitab Iman",
+      "ar": "كتاب الإيمان"
+    },
+    "book_name": "sahih_bukhari",
+    "book_title": "Sahih Bukhari",
+    "book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+  },
+  {
+    "id": "f7d8b150-11b0-4b4a-990c-0d2999707423",
+    "name": "true_muslim_chapter",
+    "title": {
+      "en": "A (true) Muslim is one whom other Muslims are safe from being verbally and physically hurt",
+      "ms": "Bab Seorang Muslim Yang Sejati Itu Adalah Orang Muslim Yang Lain Selamat Daripada Gangguan Lidah Dan Tangannya",
+      "ar": "باب الْمُسْلِمُ مَنْ سَلِمَ الْمُسْلِمُونَ مِنْ لِسَانِهِ وَيَدِهِ"
+    },
+    "category_id": "997978b2-59d1-48ea-9ca6-0b047aa24434",
+    "category_name": "",
+    "category_title": {
+      "en": "Book of Faith",
+      "ms": "Kitab Iman",
+      "ar": "كتاب الإيمان"
+    },
+    "book_name": "sahih_bukhari",
+    "book_title": "Sahih Bukhari",
+    "book_id": "ad6a2cc8-f34b-476b-9b7e-6756a3b7d43e"
+  },
+  {
+    "id": "2ff8d114-8e6c-4eba-8196-ac10099f856d",
+    "name": "faraid_chapter",
+    "title": {
+      "en": "",
+      "ms": "Bab berikanlah faraid kepada ahlinya, lalu bakinya adalah untuk lelaki yang paling rapat",
+      "ar": "بَابُ أَلْحِقُوا الْفَرَائِضَ بِأَهْلِهَا، فَمَا بَقِيَ فَلِأَوْلَى رَجُلٍ ذَكَرٍ"
+    },
+    "category_id": "e745872a-99ab-4e12-a649-3569b7b4986d",
+    "category_name": "",
+    "category_title": {
+      "en": "Faraid Book",
+      "ms": "Kitab Faraid",
+      "ar": "كتاب الإيمان"
+    },
+    "book_name": "sahih_muslim",
+    "book_title": "Sahih Muslim",
+    "book_id": "240360e4-50b4-47a9-9506-9850b0e3bfd7"
+  },
+  {
+    "id": "03b05631-d969-4223-bfff-ec0d346d98ed",
+    "name": "",
+    "title": {
+      "en": "",
+      "ms": "Bab pewarisan al-kalalah",
+      "ar": "بَابُ مِيرَاثِ الْكَلَالَةِ"
+    },
+    "category_id": "e745872a-99ab-4e12-a649-3569b7b4986d",
+    "category_name": "",
+    "category_title": {
+      "en": "Faraid Book",
+      "ms": "Kitab Faraid",
+      "ar": "كتاب الإيمان"
+    },
+    "book_name": "sahih_muslim",
+    "book_title": "Sahih Muslim",
+    "book_id": "240360e4-50b4-47a9-9506-9850b0e3bfd7"
+  },
+  {
+    "id": "b9e45fc9-1d85-4b82-8a9c-b1fdaf1f764c",
+    "name": "",
+    "title": {
+      "en": "",
+      "ms": "Bab ayat terakhir diturunkan adalah ayat al-kalalah",
+      "ar": "بَابُ آخِرُ آيَةٍ أُنْزِلَتْ آيَةُ الْكَلَالَةِ"
+    },
+    "category_id": "e745872a-99ab-4e12-a649-3569b7b4986d",
+    "category_name": "",
+    "category_title": {
+      "en": "Faraid Book",
+      "ms": "Kitab Faraid",
+      "ar": "كتاب الإيمان"
+    },
+    "book_name": "sahih_muslim",
+    "book_title": "Sahih Muslim",
+    "book_id": "240360e4-50b4-47a9-9506-9850b0e3bfd7"
+  },
+  {
+    "id": "80eef8fe-6129-4b60-a787-eba032e0e37b",
+    "name": "",
+    "title": {
+      "en": "",
+      "ms": "Bab sesiapa yang meninggalkan harta maka ia adalah untuk ahli warisnya",
+      "ar": "بَابُ مَنْ تَرَكَ مَالًا فَلِوَرَثَتِهِ"
+    },
+    "category_id": "e745872a-99ab-4e12-a649-3569b7b4986d",
+    "category_name": "",
+    "category_title": {
+      "en": "Faraid Book",
+      "ms": "Kitab Faraid",
+      "ar": "كتاب الإيمان"
+    },
+    "book_name": "sahih_muslim",
+    "book_title": "Sahih Muslim",
+    "book_id": "240360e4-50b4-47a9-9506-9850b0e3bfd7"
+  },
+  {
+    "id": "ff8a4422-be5f-43aa-84d5-320a134ac859",
+    "name": "hajat_Chapter",
+    "title": {
+      "en": "",
+      "ms": "Bab Menjauhi Orang Lain Ketika Menunaikan Hajat ",
+      "ar": "باب التَّخَلِّي عِنْدَ قَضَاءِ الْحَاجَةِ"
+    },
+    "category_id": "0343a0c8-40a1-403f-b96b-dfeaed56985c",
+    "category_name": "taharah",
+    "category_title": {
+      "en": "",
+      "ms": "Kitab taharah",
+      "ar": "أوَّلُ كِتَابِ الطهارة"
+    },
+    "book_name": "sunan_abi-daud",
+    "book_title": "Sunan Abi Daud",
+    "book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+  },
+  {
+    "id": "b3a6f4d3-5359-4c9a-b42a-9c99c9867150",
+    "name": "place_chapter",
+    "title": {
+      "en": "",
+      "ms": "Bab Seseorang Memilih Tempat Buang Air Kecil",
+      "ar": "باب الرَّجُلِ يَتَبَوَّأُ لِبَوْلِهِ.ٍ"
+    },
+    "category_id": "0343a0c8-40a1-403f-b96b-dfeaed56985c",
+    "category_name": "taharah",
+    "category_title": {
+      "en": "",
+      "ms": "Kitab taharah",
+      "ar": "أوَّلُ كِتَابِ الطهارة"
+    },
+    "book_name": "sunan_abi-daud",
+    "book_title": "Sunan Abi Daud",
+    "book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+  },
+  {
+    "id": "e7c234cc-fc12-45c3-802d-b7bbedd583c5",
+    "name": "supplication_chapter",
+    "title": {
+      "en": "",
+      "ms": "Bab Doa Yang Dibaca Seseorang Ketika Masuk Jamban ",
+      "ar": "باب مَا يَقُولُ الرَّجُلُ إِذَا دَخَلَ الْخَلاَءَ.ٍ"
+    },
+    "category_id": "0343a0c8-40a1-403f-b96b-dfeaed56985c",
+    "category_name": "taharah",
+    "category_title": {
+      "en": "",
+      "ms": "Kitab taharah",
+      "ar": "أوَّلُ كِتَابِ الطهارة"
+    },
+    "book_name": "sunan_abi-daud",
+    "book_title": "Sunan Abi Daud",
+    "book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+  },
+  {
+    "id": "d88a8b24-2a65-482b-b1ad-b3242db521ba",
+    "name": "forbidden_chapter",
+    "title": {
+      "en": "",
+      "ms": "Bab Larangan Menghadap Kiblat Ketika Buang Hajat",
+      "ar": "باب كَرَاهِيَةِ اسْتِقْبَالِ الْقِبْلَةِ عِنْدَ قَضَاءِ الْحَاجَةِ.ٍ"
+    },
+    "category_id": "0343a0c8-40a1-403f-b96b-dfeaed56985c",
+    "category_name": "taharah",
+    "category_title": {
+      "en": "",
+      "ms": "Kitab taharah",
+      "ar": "أوَّلُ كِتَابِ الطهارة"
+    },
+    "book_name": "sunan_abi-daud",
+    "book_title": "Sunan Abi Daud",
+    "book_id": "52bc6caf-d46c-47e8-bdbb-a1452b721de9"
+  },
+  {
+    "id": "c061998e-5ed2-4a3d-af38-aab5c2f2ee5b",
+    "name": "",
+    "title": {
+      "en": "",
+      "ms": "Bab Bersugi Ketika Bangun Malam",
+      "ar": "بَابُ السِّوَاكِ إِذَا قَامَ مِنَ اللَّيْلِ"
+    },
+    "category_id": "2cdae5e5-58d7-4815-af4d-f3c7e9f29fc3",
+    "category_name": "taharah",
+    "category_title": {
+      "en": "",
+      "ms": "Kitab bersuci",
+      "ar": "كِتَابُ الطَّهَارَةِ"
+    },
+    "book_name": "sunan_an_nasai",
+    "book_title": "Sunan An-Nasa’i",
+    "book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+  },
+  {
+    "id": "873dd3e4-5961-448c-9305-a6ffaf3e82f7",
+    "name": "",
+    "title": {
+      "en": "",
+      "ms": "Bab Tatacara Bersugi",
+      "ar": "بَابُ كَيْفَ يَسْتَاكُِ"
+    },
+    "category_id": "2cdae5e5-58d7-4815-af4d-f3c7e9f29fc3",
+    "category_name": "taharah",
+    "category_title": {
+      "en": "",
+      "ms": "Kitab bersuci",
+      "ar": "كِتَابُ الطَّهَارَةِ"
+    },
+    "book_name": "sunan_an_nasai",
+    "book_title": "Sunan An-Nasa’i",
+    "book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+  },
+  {
+    "id": "42221e53-40e0-491d-9ec4-3eb292432eb3",
+    "name": "",
+    "title": {
+      "en": "",
+      "ms": "Bab Pemimpin Bersugi Di Hadapan Rakyatnya",
+      "ar": "بَابُ هَلْ يَسْتَاكُ الْإِمَامُ بِحَضْرَةِ رَعِيَّتِهِ؟"
+    },
+    "category_id": "2cdae5e5-58d7-4815-af4d-f3c7e9f29fc3",
+    "category_name": "taharah",
+    "category_title": {
+      "en": "",
+      "ms": "Kitab bersuci",
+      "ar": "كِتَابُ الطَّهَارَةِ"
+    },
+    "book_name": "sunan_an_nasai",
+    "book_title": "Sunan An-Nasa’i",
+    "book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+  },
+  {
+    "id": "2f1b573f-59cd-4e58-bea8-13c5a574f26b",
+    "name": "",
+    "title": {
+      "en": "",
+      "ms": "Bab Anjuran Bersugi",
+      "ar": "بَابُ التَّرْغِيبِ فِي السِّوَاكِ"
+    },
+    "category_id": "2cdae5e5-58d7-4815-af4d-f3c7e9f29fc3",
+    "category_name": "taharah",
+    "category_title": {
+      "en": "",
+      "ms": "Kitab bersuci",
+      "ar": "كِتَابُ الطَّهَارَةِ"
+    },
+    "book_name": "sunan_an_nasai",
+    "book_title": "Sunan An-Nasa’i",
+    "book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+  },
+  {
+    "id": "6ea9c545-a5f5-4bae-bfba-c10d1119ac16",
+    "name": "",
+    "title": {
+      "en": "",
+      "ms": "Bab Anjuran Memperbanyakkan Bersugi",
+      "ar": "الْإِكْثَارُ فِي السِّوَاكِِ"
+    },
+    "category_id": "2cdae5e5-58d7-4815-af4d-f3c7e9f29fc3",
+    "category_name": "taharah",
+    "category_title": {
+      "en": "",
+      "ms": "Kitab bersuci",
+      "ar": "كِتَابُ الطَّهَارَةِ"
+    },
+    "book_name": "sunan_an_nasai",
+    "book_title": "Sunan An-Nasa’i",
+    "book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+  },
+  {
+    "id": "bb608b80-69b2-438b-9d5e-8042055bae72",
+    "name": "",
+    "title": {
+      "en": "",
+      "ms": "Kelonggaran Bersugi Pada Waktu Petang Bagi Orang Yang Berpuasa",
+      "ar": "الرُّخْصَةُ فِي السِّوَاكِ بِالْعَشِيِّ لِلصَّائِمِ"
+    },
+    "category_id": "2cdae5e5-58d7-4815-af4d-f3c7e9f29fc3",
+    "category_name": "taharah",
+    "category_title": {
+      "en": "",
+      "ms": "Kitab bersuci",
+      "ar": "كِتَابُ الطَّهَارَةِ"
+    },
+    "book_name": "sunan_an_nasai",
+    "book_title": "Sunan An-Nasa’i",
+    "book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+  },
+  {
+    "id": "7c4cb579-ddcb-4296-8b85-2e319c1a2f34",
+    "name": "",
+    "title": {
+      "en": "",
+      "ms": "Bab Bersugi Pada Setiap Waktu",
+      "ar": "السِّوَاكُ فِي كُلِّ حِينٍِ"
+    },
+    "category_id": "2cdae5e5-58d7-4815-af4d-f3c7e9f29fc3",
+    "category_name": "taharah",
+    "category_title": {
+      "en": "",
+      "ms": "Kitab bersuci",
+      "ar": "كِتَابُ الطَّهَارَةِ"
+    },
+    "book_name": "sunan_an_nasai",
+    "book_title": "Sunan An-Nasa’i",
+    "book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+  },
+  {
+    "id": "19f5618a-02cc-4333-afc4-8e464a1d809a",
+    "name": "",
+    "title": {
+      "en": "",
+      "ms": "Berkhatan",
+      "ar": "الِاخْتِتَانُ"
+    },
+    "category_id": "2cdae5e5-58d7-4815-af4d-f3c7e9f29fc3",
+    "category_name": "taharah",
+    "category_title": {
+      "en": "",
+      "ms": "Kitab bersuci",
+      "ar": "كِتَابُ الطَّهَارَةِ"
+    },
+    "book_name": "sunan_an_nasai",
+    "book_title": "Sunan An-Nasa’i",
+    "book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+  },
+  {
+    "id": "a6079475-efba-474c-a20f-8530ffd4a5dc",
+    "name": "",
+    "title": {
+      "en": "",
+      "ms": "Bab Memotong Kuku",
+      "ar": "تَقْلِيمُ الْأَظْفَارِ"
+    },
+    "category_id": "2cdae5e5-58d7-4815-af4d-f3c7e9f29fc3",
+    "category_name": "taharah",
+    "category_title": {
+      "en": "",
+      "ms": "Kitab bersuci",
+      "ar": "كِتَابُ الطَّهَارَةِ"
+    },
+    "book_name": "sunan_an_nasai",
+    "book_title": "Sunan An-Nasa’i",
+    "book_id": "6dc30e76-a364-46ba-80a1-ba9713c80938"
+  },
+  {
+    "id": "4750419c-436d-4a9c-8e4e-9d0cf53661a4",
+    "name": "",
+    "title": {
+      "en": "",
+      "ms": "Bab Mengikuti Sunnah Rasulullah",
+      "ar": "بَابُ اتباع سُنَّةِ رَسُولِ اللهِ صَلَّى الله عَليْهِ وسَلَّمَ"
+    },
+    "category_id": "983ef3cd-b1ff-436b-be68-828761e124fe",
+    "category_name": "kitab",
+    "category_title": {
+      "en": "",
+      "ms": "Kitab 1",
+      "ar": "كِتَابُ"
+    },
+    "book_name": "sunan_ibnu_majah",
+    "book_title": "Sunan Ibnu Majah",
+    "book_id": "3b91daa1-acf3-4841-a38a-b1d576396e6c"
+  },
+  {
+    "id": "2a92f2f3-af16-4705-89b2-06d7e722f0e4",
+    "name": "",
+    "title": {
+      "en": "",
+      "ms": "Bab Sembahyang Tidak Diterima Dengan Tidak Bersuci",
+      "ar": "بَابُ مَا جَاءَ لاَ تُقْبَلُ صَلاَةٌ بِغَيْرِ طُهُورٍٍ"
+    },
+    "category_id": "cd2d21ff-22f6-451a-bc57-1e0d5ba4fcb1",
+    "category_name": "",
+    "category_title": {
+      "en": "",
+      "ms": "Bab-bab bersuci daripada Rasulullah",
+      "ar": "أَبْوَابُ الطَّهَارَةِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+    },
+    "book_name": "jami_al_tirmidhi",
+    "book_title": "Jami’ Al-Tirmidhi",
+    "book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+  },
+  {
+    "id": "f4578ff3-6a4e-4851-b7a1-e2aae27902b1",
+    "name": "",
+    "title": {
+      "en": "",
+      "ms": "Bab Kelebihan Bersuci",
+      "ar": "بَابُ مَا جَاءَ فِي فَضْلِ الطُّهُورٍٍِ"
+    },
+    "category_id": "cd2d21ff-22f6-451a-bc57-1e0d5ba4fcb1",
+    "category_name": "",
+    "category_title": {
+      "en": "",
+      "ms": "Bab-bab bersuci daripada Rasulullah",
+      "ar": "أَبْوَابُ الطَّهَارَةِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+    },
+    "book_name": "jami_al_tirmidhi",
+    "book_title": "Jami’ Al-Tirmidhi",
+    "book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+  },
+  {
+    "id": "1be1a04f-834f-4ee6-a8cf-9070a2436d0c",
+    "name": "",
+    "title": {
+      "en": "",
+      "ms": "Bab Kunci Sembahyang Adalah Bersuci",
+      "ar": "بَابُ مَا جَاءَ أَنَّ مِفْتَاحَ الصَّلاَةِ الطُّهُورُ"
+    },
+    "category_id": "cd2d21ff-22f6-451a-bc57-1e0d5ba4fcb1",
+    "category_name": "",
+    "category_title": {
+      "en": "",
+      "ms": "Bab-bab bersuci daripada Rasulullah",
+      "ar": "أَبْوَابُ الطَّهَارَةِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+    },
+    "book_name": "jami_al_tirmidhi",
+    "book_title": "Jami’ Al-Tirmidhi",
+    "book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+  },
+  {
+    "id": "5e2b3db7-c8ef-4725-995f-7daef23d863b",
+    "name": "",
+    "title": {
+      "en": "",
+      "ms": "Bab Doa Yang Diucapkan Apabila Masuk Ke Bilik Air",
+      "ar": "بَابُ مَا يَقُولُ إِذَا دَخَلَ الْخَلاَءَ"
+    },
+    "category_id": "cd2d21ff-22f6-451a-bc57-1e0d5ba4fcb1",
+    "category_name": "",
+    "category_title": {
+      "en": "",
+      "ms": "Bab-bab bersuci daripada Rasulullah",
+      "ar": "أَبْوَابُ الطَّهَارَةِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+    },
+    "book_name": "jami_al_tirmidhi",
+    "book_title": "Jami’ Al-Tirmidhi",
+    "book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+  },
+  {
+    "id": "2c05c214-c83a-4e54-b62a-0d6ddbe7b1f0",
+    "name": "",
+    "title": {
+      "en": "",
+      "ms": "Bab Doa Yang Diucapkan Apabila Keluar Daripada Bilik Air",
+      "ar": "بَابُ مَا يَقُولُ إِذَا خَرَجَ مِنَ الْخَلاَءَِ"
+    },
+    "category_id": "cd2d21ff-22f6-451a-bc57-1e0d5ba4fcb1",
+    "category_name": "",
+    "category_title": {
+      "en": "",
+      "ms": "Bab-bab bersuci daripada Rasulullah",
+      "ar": "أَبْوَابُ الطَّهَارَةِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+    },
+    "book_name": "jami_al_tirmidhi",
+    "book_title": "Jami’ Al-Tirmidhi",
+    "book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+  },
+  {
+    "id": "62d3b0f4-2c75-4f3a-b676-2b12d5854d6f",
+    "name": "",
+    "title": {
+      "en": "",
+      "ms": "Bab Larangan Daripada Mengadap Kiblat Ketika Berak Dan Kencing",
+      "ar": "بَابٌ فِي النَّهْيِ عَنِ اسْتِقْبَالِ الْقِبْلَةِ بِغَائِطٍ أَوْ بَوْلٍ"
+    },
+    "category_id": "cd2d21ff-22f6-451a-bc57-1e0d5ba4fcb1",
+    "category_name": "",
+    "category_title": {
+      "en": "",
+      "ms": "Bab-bab bersuci daripada Rasulullah",
+      "ar": "أَبْوَابُ الطَّهَارَةِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+    },
+    "book_name": "jami_al_tirmidhi",
+    "book_title": "Jami’ Al-Tirmidhi",
+    "book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+  },
+  {
+    "id": "f9dce7a9-2f65-460e-ae5a-da207f990aa7",
+    "name": "",
+    "title": {
+      "en": "",
+      "ms": "Bab Keharusan Mengadap Kiblat (Ketika Membuang Air)",
+      "ar": "بَابُ مَا جَاءَ مِنَ الرُّخْصَةِ فِي ذَلِكَ"
+    },
+    "category_id": "cd2d21ff-22f6-451a-bc57-1e0d5ba4fcb1",
+    "category_name": "",
+    "category_title": {
+      "en": "",
+      "ms": "Bab-bab bersuci daripada Rasulullah",
+      "ar": "أَبْوَابُ الطَّهَارَةِ عَنْ رَسُولِ اللهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ"
+    },
+    "book_name": "jami_al_tirmidhi",
+    "book_title": "Jami’ Al-Tirmidhi",
+    "book_id": "c4d5ea38-2090-4f28-8ca3-40bb2639d502"
+  }
 ]

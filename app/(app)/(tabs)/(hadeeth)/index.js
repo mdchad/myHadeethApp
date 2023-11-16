@@ -1,60 +1,81 @@
-import { View, Text, useWindowDimensions, StyleSheet, FlatList, ImageBackground } from 'react-native'
+import {
+  View,
+  Text,
+  useWindowDimensions,
+  StyleSheet,
+  FlatList,
+  ImageBackground
+} from 'react-native'
 import React from 'react'
-import {Link, useRouter} from 'expo-router'
-import Header from '@components/header';
-import { ArrowRight, Bookmark, Heart, Share2 } from "lucide-react-native";
-import {useGetBooks} from "../../../shared/fetcher/useBooks";
+import { Link, useRouter } from 'expo-router'
+import Header from '@components/header'
+import { ArrowRight, Bookmark, Heart, Share2 } from 'lucide-react-native'
+import { useGetBooks } from '../../../shared/fetcher/useBooks'
 
 function Books() {
-    const { isLoading, isError, data, error } = useGetBooks()
+  const { isLoading, isError, data, error } = useGetBooks()
 
-    function Item({ title, id }) {
-        const words = title.split(' ');
+  function Item({ title, id }) {
+    const words = title.split(' ')
 
-        const firstWord = words[0];
-        const remainingWords = words.slice(1).join(' ');
-
-        return (
-            <View className="w-[48%] mr-4 bg-white">
-                <Link href={`(hadeeth)/volume/${id}?title=${title}`} underlayColor="#f9fafb" className="w-full">
-                    <View className="w-full">
-                        <View className="flex items-center py-8 px-2">
-                          <Text className="text-lg text-royal-blue font-semibold">{firstWord}</Text>
-                          <Text className="text-lg text-royal-blue font-semibold">{remainingWords}</Text>
-                        </View>
-                        <View className="bg-royal-blue w-full p-1 flex flex-row justify-between items-center">
-                            <Text className="text-white text-xs mr-1">View More</Text>
-                            <ArrowRight color="white" size={12} />
-                        </View>
-                    </View>
-                </Link>
-            </View>
-        )
-    }
+    const firstWord = words[0]
+    const remainingWords = words.slice(1).join(' ')
 
     return (
-      <>
-        <Header title={'Books of hadith'}></Header>
-        <View className="flex-1 bg-gray-100">
-            <ImageBackground source={require("@assets/book-background.png")} resizeMode="cover" style={{ flex: 1, justifyContent: 'end', alignItems: 'end' }}>
-              <View className="mb-4 mt-4">
-                <FlatList
-                    data={data}
-                    renderItem={({ item }) => <Item title={item.title} id={item.id} />}
-                    keyExtractor={item => item.id}
-                    className="h-full"
-                    numColumns={2}
-                    columnWrapperStyle={{
-                        flex: 1,
-                        width: '100%',
-                        padding: 14
-                    }}
-                />
-              </View>
-            </ImageBackground>
-        </View>
-      </>
-    );
+      <View className="w-[48%] mr-4 bg-white">
+        <Link
+          href={`(hadeeth)/volume/${id}?title=${title}`}
+          underlayColor="#f9fafb"
+          className="w-full"
+        >
+          <View className="w-full">
+            <View className="flex items-center py-8 px-2">
+              <Text className="text-lg text-royal-blue font-semibold">
+                {firstWord}
+              </Text>
+              <Text className="text-lg text-royal-blue font-semibold">
+                {remainingWords}
+              </Text>
+            </View>
+            <View className="bg-royal-blue w-full p-1 flex flex-row justify-between items-center">
+              <Text className="text-white text-xs mr-1">View More</Text>
+              <ArrowRight color="white" size={12} />
+            </View>
+          </View>
+        </Link>
+      </View>
+    )
+  }
+
+  return (
+    <>
+      <Header title={'Books of hadith'}></Header>
+      <View className="flex-1 bg-gray-100">
+        <ImageBackground
+          source={require('@assets/book-background.png')}
+          resizeMode="cover"
+          style={{ flex: 1, justifyContent: 'end', alignItems: 'end' }}
+        >
+          <View className="mb-4 mt-4">
+            <FlatList
+              data={data}
+              renderItem={({ item }) => (
+                <Item title={item.title} id={item.id} />
+              )}
+              keyExtractor={(item) => item.id}
+              className="h-full"
+              numColumns={2}
+              columnWrapperStyle={{
+                flex: 1,
+                width: '100%',
+                padding: 14
+              }}
+            />
+          </View>
+        </ImageBackground>
+      </View>
+    </>
+  )
 }
 
 export default Books

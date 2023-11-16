@@ -1,24 +1,24 @@
-import '@motify/core';
-import '@motify/components';
+import '@motify/core'
+import '@motify/components'
 
-import React from 'react';
-import { MotiView, TransitionConfig, useDynamicAnimation } from 'moti';
-import { StyleSheet, Platform } from 'react-native';
-import { useDerivedValue, useSharedValue } from 'react-native-reanimated';
-import { View } from 'react-native';
+import React from 'react'
+import { MotiView, TransitionConfig, useDynamicAnimation } from 'moti'
+import { StyleSheet, Platform } from 'react-native'
+import { useDerivedValue, useSharedValue } from 'react-native-reanimated'
+import { View } from 'react-native'
 
 function AnimateHeight({
-                         children,
-                         hide = false,
-                         style,
-                         delay = Platform.select({ web: 250, default: 0 }),
-                         transition = { type: 'timing', delay },
-                         enterFrom = 'top',
-                         onHeightDidAnimate,
-                         initialHeight = 0,
-                         ...motiViewProps
-                       }) {
-  const measuredHeight = useSharedValue(initialHeight);
+  children,
+  hide = false,
+  style,
+  delay = Platform.select({ web: 250, default: 0 }),
+  transition = { type: 'timing', delay },
+  enterFrom = 'top',
+  onHeightDidAnimate,
+  initialHeight = 0,
+  ...motiViewProps
+}) {
+  const measuredHeight = useSharedValue(initialHeight)
   const state = useDynamicAnimation(() => {
     return {
       height: initialHeight,
@@ -30,19 +30,18 @@ function AnimateHeight({
   }
 
   const animation = useDerivedValue(() => {
-    let height = Math.ceil(measuredHeight.value);
+    let height = Math.ceil(measuredHeight.value)
     if (hide) {
-      height = 0;
+      height = 0
     }
 
-    const notVisible = !height || hide;
+    const notVisible = !height || hide
 
     state.animateTo({
       height,
       opacity: !height || hide ? 0 : 1
-    });
-  }, [hide, measuredHeight]);
-
+    })
+  }, [hide, measuredHeight])
 
   return (
     <MotiView
@@ -54,7 +53,8 @@ function AnimateHeight({
         ((key, finished, _, { attemptedValue }) =>
           key == 'height' && onHeightDidAnimate(attemptedValue))
       }
-      style={[styles.hidden, style]}>
+      style={[styles.hidden, style]}
+    >
       <View
         style={[
           StyleSheet.absoluteFill,
@@ -64,24 +64,25 @@ function AnimateHeight({
           // enterFrom === 'top' ? styles.autoBottom : styles.autoTop,
         ]}
         onLayout={({ nativeEvent }) => {
-          measuredHeight.value = nativeEvent.layout.height;
-        }}>
+          measuredHeight.value = nativeEvent.layout.height
+        }}
+      >
         {children}
       </View>
     </MotiView>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   autoBottom: {
-    bottom: 'auto',
+    bottom: 'auto'
   },
   autoTop: {
-    top: 'auto',
+    top: 'auto'
   },
   hidden: {
-    overflow: 'hidden',
-  },
-});
+    overflow: 'hidden'
+  }
+})
 
-export { AnimateHeight };
+export { AnimateHeight }

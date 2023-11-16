@@ -10,7 +10,7 @@ const _layout = () => {
         options={{
           // Hide the header for all other routes.
           headerShown: false,
-          presentation: "modal",
+          presentation: 'modal'
         }}
       />
     </Stack>

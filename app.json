@@ -9,9 +9,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#1C2A4F"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "web": {
       "bundler": "metro",
       "favicon": "./assets/favicon.png"
