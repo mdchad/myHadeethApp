@@ -2,17 +2,12 @@ import { Stack, useLocalSearchParams, useSegments } from 'expo-router'
 import Page from '@components/page'
 import { Platform } from 'react-native'
 
-export const unstable_settings = {
-  initialRouteName: 'index'
-}
-
 export default function Layout() {
   const { title } = useLocalSearchParams()
-  const segment = useSegments()
 
   return (
     <Page>
-      <Stack screenOptions={{ headerShown: false }}>
+      <Stack screenOptions={{ headerShown: false }} initialRouteName="index">
         <Stack.Screen
           name="index"
           options={{

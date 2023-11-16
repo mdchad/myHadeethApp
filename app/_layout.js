@@ -23,11 +23,6 @@ function onAppStateChange(status) {
 
 const queryClient = new QueryClient({
   defaultOptions: {
-    mutations: {
-      staleTime: Infinity,
-      cacheTime: Infinity,
-      retry: 0
-    },
     queries: {
       retry: 2,
       cacheTime: 10000 * 10

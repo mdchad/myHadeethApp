@@ -166,7 +166,6 @@ export default function Prayer() {
   function RenderItem({ item }) {
     return (
       <Pressable onPress={() => onClickIndividualDay(item)}>
-        {/*<View className={`mx-2 flex items-center py-4 px-2 ${isSameDay(item?.date, calendarDate) ? 'bg-[#EDEEC0]' : 'bg-white'}`}>*/}
         <View className={`mx-2 flex items-center py-4`}>
           <Text
             className={`${
@@ -231,7 +230,7 @@ export default function Prayer() {
               resizeMode="cover"
               style={{ flex: 1, justifyContent: 'end', alignItems: 'end' }}
             >
-              <View className="px-2">
+              <View className="px-2 mb-10">
                 <View className="flex flex-col items-center mb-4">
                   <View className="flex flex-row items-center space-x-2">
                     {/*<ChevronLeftCircle color={"#1C2A4F"} />*/}
@@ -245,13 +244,6 @@ export default function Prayer() {
                     {formattedDates.map((date, i) => {
                       return <RenderItem key={i} item={date} />
                     })}
-                    {/*<FlatList*/}
-                    {/*  data={formattedDates}*/}
-                    {/*  keyExtractor={item => item.id}*/}
-                    {/*  renderItem={({ item }) => <RenderItem item={item} />}*/}
-                    {/*  horizontal*/}
-                    {/*/>*/}
-                    {/*<ChevronRight color={"#1C2A4F"}/>*/}
                   </View>
                 </View>
 
@@ -277,7 +269,6 @@ export default function Prayer() {
                           <Text className="text-royal-blue">
                             {prayer.prayerTime}
                           </Text>
-                          {/*<Volume color={'black'} strokeWidth={1}/>*/}
                         </View>
                       </View>
                     ))

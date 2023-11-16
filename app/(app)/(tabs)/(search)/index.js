@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react'
 import Page from '@components/page'
 import Header from '../../../components/header'
 import { Link } from 'expo-router'
-import data from '@data/hadeethsV2.json'
 import { MaterialIcons } from '@expo/vector-icons'
 
 const Search = () => {
@@ -111,13 +110,13 @@ const Search = () => {
     if (search) {
       // Inserted text is not blank
       // Filter the masterDataSource and update FilteredDataSource
-      const newData = data.filter((item) => {
-        // Applying filter for the inserted text in search bar
-        const itemData = item.content.ms ? item.content.ms.toLowerCase() : ''
-        const textData = search.toLowerCase()
-        return itemData.indexOf(textData) > -1
-      })
-      setFilteredDataSource(newData)
+      // const newData = data.filter((item) => {
+      //   // Applying filter for the inserted text in search bar
+      //   const itemData = item.content.ms ? item.content.ms.toLowerCase() : ''
+      //   const textData = search.toLowerCase()
+      //   return itemData.indexOf(textData) > -1
+      // })
+      // setFilteredDataSource(newData)
     } else {
       setFilteredDataSource([])
     }

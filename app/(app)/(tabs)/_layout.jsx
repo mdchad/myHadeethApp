@@ -14,7 +14,7 @@ const _layout = () => {
   return (
     <View className="flex-1">
       <Tabs
-        // initialRouteName="(tabs)"
+        initialRouteName="(home)"
         screenOptions={{
           headerShown: false,
           tabBarActiveTintColor: 'white',
@@ -35,6 +35,7 @@ const _layout = () => {
         <Tabs.Screen
           name="(home)"
           options={{
+            href: null,
             tabBarLabel: 'Home',
             tabBarIcon: ({ focused }) => {
               return (

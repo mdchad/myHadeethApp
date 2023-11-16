@@ -3,12 +3,10 @@ import {
   View,
   Text,
   ScrollView,
-  Image,
   TouchableHighlight,
   Share,
   Alert
 } from 'react-native'
-import { Link, useRouter } from 'expo-router'
 
 import Page from '@components/page'
 import {

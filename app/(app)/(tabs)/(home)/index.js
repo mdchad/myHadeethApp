@@ -1,9 +1,6 @@
 import {
   View,
   Text,
-  TouchableWithoutFeedback,
-  Keyboard,
-  Image,
   ScrollView,
   useWindowDimensions,
   StyleSheet
