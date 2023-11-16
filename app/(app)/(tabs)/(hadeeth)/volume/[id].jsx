@@ -1,13 +1,14 @@
 import React from 'react';
 import { View, Text, FlatList, TouchableHighlight, ActivityIndicator, ImageBackground } from "react-native";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import {Link, useLocalSearchParams, useRouter} from "expo-router";
 import Header from "../../../../components/header";
-import {ArrowRight, Bookmark, Heart, Share2} from "lucide-react-native";
-import {useQuery} from "@tanstack/react-query";
+import {ArrowRight} from "lucide-react-native";
+import {useGetVolumes} from "../../../../shared/fetcher/useVolumes";
 
 
-const HadithVolumeItem = ({ item, onPress, index }) => (
-    <TouchableHighlight onPress={() => onPress(item)} underlayColor="#f9fafb" style={{ marginVertical: 6, borderRadius: 10, overflow: 'hidden' }}>
+const HadithVolumeItem = ({ item, index }) => (
+  <Link asChild href={{pathname: `/(hadeeth)/content/${item.book_id}`, params: { volumeId: item.id, bookId: item.book_id }}}>
+    <TouchableHighlight underlayColor="#f9fafb" style={{ marginVertical: 6, borderRadius: 10, overflow: 'hidden' }}>
         <View className="bg-white flex flex-row w-full">
             <View className="bg-black p-2 flex justify-center">
                 <View className="bg-white">
@@ -33,32 +34,14 @@ const HadithVolumeItem = ({ item, onPress, index }) => (
             </View>
         </View>
     </TouchableHighlight>
+  </Link>
 );
 
 function HadithVolume() {
     const { id, title } = useLocalSearchParams();
     const router = useRouter();
 
-    const { isLoading, isError, data, error } = useQuery({
-        queryKey: ['volumes', id],
-        queryFn: async () => {
-            const res = await fetch(`https://my-way-web.vercel.app/api/books/${id}` , {
-                method: 'GET',
-            });
-            const result = await res.json()
-            return result.data
-        }
-    });
-
-    const onPressHadith = (volume) => {
-        router.push({
-            pathname: `/(hadeeth)/content/${volume.book_id}`,
-            params: {
-                volumeId: volume.id,
-                bookId: volume.book_id,
-            }
-        });
-    };
+    const { isLoading, isError, data, error } = useGetVolumes(id)
 
     if (isLoading) {
         return (
@@ -70,12 +53,12 @@ function HadithVolume() {
 
     return (
       <>
-        <Header title={title} onPressButton={() => router.push("/(hadeeth)")}/>
+        <Header title={title} onPressButton={() => router.back()}/>
         <View style={{ flex: 1, backgroundColor: 'gray-100', paddingHorizontal: 16, paddingTop: 16 }}>
             <FlatList
                 className="space-y-6"
                 data={data}
-                renderItem={({ item, index }) => <HadithVolumeItem item={item} index={index + 1} onPress={onPressHadith} />}
+                renderItem={({ item, index }) => <HadithVolumeItem item={item} index={index + 1} />}
                 keyExtractor={item => item.id.toString()}
                 style={{ paddingRight: 10, marginRight: -10 }}
             />

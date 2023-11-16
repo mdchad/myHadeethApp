@@ -1,27 +1,12 @@
 import { View, Text, useWindowDimensions, StyleSheet, FlatList, ImageBackground } from 'react-native'
 import React from 'react'
 import {Link, useRouter} from 'expo-router'
-import { TouchableHighlight } from "react-native-gesture-handler";
 import Header from '@components/header';
 import { ArrowRight, Bookmark, Heart, Share2 } from "lucide-react-native";
-import { useQuery } from "@tanstack/react-query";
+import {useGetBooks} from "../../../shared/fetcher/useBooks";
 
-function Hadeeth() {
-    const router = useRouter()
-
-    const { fontScale } = useWindowDimensions();
-    const styles = makeStyles(fontScale);
-
-    const { isLoading, isError, data, error } = useQuery({
-        queryKey: ['books'],
-        queryFn: async () => {
-            const res = await fetch('https://my-way-web.vercel.app/api/books', {
-                method: 'GET',
-            });
-            const result = await res.json()
-            return result.data
-        }
-    });
+function Books() {
+    const { isLoading, isError, data, error } = useGetBooks()
 
     function Item({ title, id }) {
         const words = title.split(' ');
@@ -32,21 +17,14 @@ function Hadeeth() {
         return (
             <View className="w-[48%] mr-4 bg-white">
                 <Link href={`(hadeeth)/volume/${id}?title=${title}`} underlayColor="#f9fafb" className="w-full">
-                    <View>
+                    <View className="w-full">
                         <View className="flex items-center py-8 px-2">
                           <Text className="text-lg text-royal-blue font-semibold">{firstWord}</Text>
                           <Text className="text-lg text-royal-blue font-semibold">{remainingWords}</Text>
                         </View>
                         <View className="bg-royal-blue w-full p-1 flex flex-row justify-between items-center">
-                            <View className="flex flex-row">
-                                <Share2 color="white" size={15} absoluteStrokeWidth={2} className="mr-1" />
-                                <Heart color="white" size={15} absoluteStrokeWidth={2} className="mr-1" />
-                                <Bookmark color="white" size={15} absoluteStrokeWidth={2} className="mr-1" />
-                            </View>
-                            <View className="flex flex-row items-center">
-                                <Text className="text-white text-xs mr-1">View More</Text>
-                                <ArrowRight color="white" size={12} />
-                            </View>
+                            <Text className="text-white text-xs mr-1">View More</Text>
+                            <ArrowRight color="white" size={12} />
                         </View>
                     </View>
                 </Link>
@@ -79,51 +57,4 @@ function Hadeeth() {
     );
 }
 
-const makeStyles = fontScale => StyleSheet.create({
-    safeAreaViewContainer: {
-        minWidth: '100%',
-        minHeight: '100%',
-        backgroundColor: 'red',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    screenContainer: {
-        height: '100%',
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingHorizontal: 20,
-        paddingVertical: 20,
-    },
-    boxContainer: {
-        paddingHorizontal: 36,
-        paddingVertical: 36,
-        alignItems: 'center',
-        backgroundColor: '#D0D0D0',
-        width: '100%',
-        height: '100%',
-    },
-    sectionTitle: {
-        fontSize: 50 / fontScale, // divide the font size by the font scale
-        fontWeight: '600',
-    },
-    imageTop: {
-        height: 200,
-        width: 300,
-    },
-    imageBot: {
-        height: 200,
-        width: 300,
-        marginTop: 20,
-    },
-    item: {
-        padding: 3,
-        marginVertical: 8,
-        marginHorizontal: 16,
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-    }
-});
-
-export default Hadeeth
+export default Books

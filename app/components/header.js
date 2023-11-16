@@ -4,6 +4,7 @@ import { Link } from 'expo-router'
 import {ChevronLeftCircle, SearchIcon, User} from "lucide-react-native";
 
 function Header({ title, onPressButton, search, rounded = true}) {
+    console.log(onPressButton)
     return (
         <View className="bg-gray-100">
             <View className={`flex ${rounded && 'rounded-b-2xl'} py-6 shadow-lg bg-royal-blue overflow-hidden`}>

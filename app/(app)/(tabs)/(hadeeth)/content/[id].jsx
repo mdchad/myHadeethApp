@@ -3,7 +3,7 @@ import { Text, View, Share, TextInput, TouchableHighlight, ActivityIndicator, Fl
 import {useRouter, useLocalSearchParams } from "expo-router";
 import {Bookmark, Heart, Share as ShareIcon, Share2} from "lucide-react-native";
 import Header from "../../../../components/header";
-import {useQuery} from "@tanstack/react-query";
+import {useGetHadiths} from "../../../../shared/fetcher/useHadiths";
 
 
 function toSuperscript(str, type) {
@@ -86,16 +86,7 @@ function HadithContent() {
     const router = useRouter()
     let chapterId = ""
 
-    const { isLoading, isError, data, error } = useQuery({
-        queryKey: ['hadiths', volumeId],
-        queryFn: async () => {
-            const res = await fetch(`https://my-way-web.vercel.app/api/books/${bookId}/${volumeId}` , {
-                method: 'GET',
-            });
-            const result = await res.json()
-            return result.data
-        }
-    });
+    const { isLoading, isError, data, error } = useGetHadiths(bookId, volumeId)
 
     const onShare = (hadith) => {
         const message = `\n${hadith.content.ar}\n\n ${hadith.content.ms}\n\n\n${hadith.book_title.ms}\n\n\nwww.myhadeeth.com.my`;
@@ -124,12 +115,12 @@ function HadithContent() {
       <>
         <Header
           title={data[0]?.book_title?.ms}
-          onPressButton={() => router.push(`(hadeeth)/volume/${data[0].book_id}?title=${data[0].book_title.ms}`)}
+          onPressButton={() => router.back()}
         />
         <View className="flex-1 p-4 pb-0 bg-white">
-            <View className="flex flex-row items-center border-b border-b-royal-blue mb-3">
+            <View className="flex flex-row pb-2 items-center border-b border-b-royal-blue mb-3">
                 <View className="flex-1">
-                    <Text className="text-xl font-semibold text-royal-blue">{data ? data[0]?.volume_title.ms : ''}</Text>
+                    <Text className="text-lg font-semibold text-royal-blue">{data ? data[0]?.volume_title.ms : ''}</Text>
                 </View>
                 <View className="flex-1 items-end">
                     <Text className="text-[26px] text-right font-semibold text-royal-blue" style={{ fontFamily: 'Traditional_ArabicRegular' }}>{data ? data[0]?.volume_title.ar : ''}</Text>
