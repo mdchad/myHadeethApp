@@ -89,8 +89,15 @@ function HadithContent() {
     const { isLoading, isError, data, error } = useGetHadiths(bookId, volumeId)
 
     const onShare = (hadith) => {
-        const message = `\n${hadith.content.ar}\n\n ${hadith.content.ms}\n\n\n${hadith.book_title.ms}\n\n\nwww.myhadeeth.com.my`;
-        Share.share({ message })
+        let formattedMessage = '';
+
+        hadith.content.forEach((item, index) => {
+            formattedMessage += `\n${item.ar}\n\n ${item.ms}\n\n\n`;
+        });
+
+        // Add the book title and website line only once at the end
+        formattedMessage += `${hadith.book_title.ms}\n\nwww.myhadeeth.com.my`;
+        Share.share({ message: formattedMessage })
             .then(result => {
                 // ... existing logic
             })
