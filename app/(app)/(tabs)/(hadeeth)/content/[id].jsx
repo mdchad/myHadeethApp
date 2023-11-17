@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import {
   Text,
   View,
@@ -99,7 +99,7 @@ const HadithItem = React.memo(({ hadith }) => (
 ))
 
 function HadithContent() {
-  const { volumeId, bookId } = useLocalSearchParams()
+  const { volumeId, bookId, hadithId } = useLocalSearchParams()
   const router = useRouter()
   let chapterId = ''
 

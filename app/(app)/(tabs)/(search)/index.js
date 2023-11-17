@@ -4,55 +4,61 @@ import Page from '@components/page'
 import Header from '../../../components/header'
 import { Link } from 'expo-router'
 import { MaterialIcons } from '@expo/vector-icons'
+import {useMutation} from "@tanstack/react-query";
 
-const Search = () => {
+function Search() {
   const [filteredDataSource, setFilteredDataSource] = useState([])
   const [search, setSearch] = useState('')
   const [searchTerm, setSearchTerm] = useState('')
   const [isSearching, setIsSearching] = React.useState(false)
+  const res = useMutation({
+    mutationFn: async (query, page = 1, limit = 10) => {
+      const res = await fetch(
+        `https://my-way-web.vercel.app/api/search?page=${page}&limit=${limit}&query=${query}`,
+        {
+          method: 'GET'
+        }
+      )
+      const result = await res.json()
+      return result.data
+    },
+    onSuccess: (data) => {
+      console.log(data)
+      if (data) {
+        setFilteredDataSource(data[0].documents)
+      }
+    }
+  })
 
   function escapeRegExp(string) {
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') // Escape special characters for regex
   }
 
-  function truncateAndHighlight(text, keyword, bufferLength = 10) {
-    const regex = new RegExp(escapeRegExp(keyword), 'gi')
-    const parts = []
-    let match
-
-    let previousEnd = 0
+  function highlightKeywords(text, keyword) {
+    const regex = new RegExp(escapeRegExp(keyword), 'gi');
+    const parts = [];
+    let match;
 
     while ((match = regex.exec(text)) !== null) {
-      // Insert a break if this isn't the first keyword match
-      if (previousEnd !== 0) {
-        parts.push('\n')
-        parts.push('\n')
-      }
-
       // Add the text before the keyword to the parts
-      const start = Math.max(0, match.index - bufferLength)
-      const prefix = start > 0 && match.index !== 0 ? '...' : ''
-      parts.push(prefix + text.substring(start, match.index))
+      parts.push(text.substring(0, match.index));
 
       // Add the keyword (match) to the parts
       parts.push(
         <Text key={match.index} style={{ backgroundColor: 'yellow' }}>
           {match[0]}
         </Text>
-      )
+      );
 
-      // Add the text immediately after the keyword
-      const end = Math.min(
-        text.length,
-        match.index + keyword.length + bufferLength
-      )
-      const suffix = end < text.length ? '...' : ''
-      parts.push(text.substring(match.index + keyword.length, end) + suffix)
-
-      previousEnd = end
+      // Update the text to be the part after the keyword
+      text = text.substring(match.index + match[0].length);
+      regex.lastIndex = 0; // Reset the regex index
     }
 
-    return <Text>{parts}</Text>
+    // Add any remaining text after the last match
+    parts.push(text);
+
+    return <Text>{parts}</Text>;
   }
 
   const searchFilterFunction = (text) => {
@@ -79,7 +85,7 @@ const Search = () => {
         href={{
           pathname: `/(hadeeth)/content/${item.volume_id}`,
           params: {
-            hadeethId: item.id,
+            hadithId: item.number,
             volumeId: item.volume_id,
             bookId: item.book_id
           }
@@ -92,7 +98,8 @@ const Search = () => {
             </Text>
           </View>
           <Text>
-            {truncateAndHighlight(item?.content?.ms, searchTerm, 100)}
+            {/*{item.content[0].ms}*/}
+            {highlightKeywords(item?.content[0].ms, searchTerm)}
           </Text>
         </View>
       </Link>
@@ -108,19 +115,12 @@ const Search = () => {
   function onSubmit() {
     setSearchTerm(search)
     if (search) {
-      // Inserted text is not blank
-      // Filter the masterDataSource and update FilteredDataSource
-      // const newData = data.filter((item) => {
-      //   // Applying filter for the inserted text in search bar
-      //   const itemData = item.content.ms ? item.content.ms.toLowerCase() : ''
-      //   const textData = search.toLowerCase()
-      //   return itemData.indexOf(textData) > -1
-      // })
-      // setFilteredDataSource(newData)
-    } else {
-      setFilteredDataSource([])
+      res.mutate(search)
     }
-    setIsSearching(false)
+    // } else {
+    //   setFilteredDataSource([])
+    // }
+    // setIsSearching(false)
   }
 
   return (
