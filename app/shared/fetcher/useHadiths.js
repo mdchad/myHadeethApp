@@ -15,3 +15,19 @@ export function useGetHadiths(bookId, volumeId) {
     }
   })
 }
+
+export function useGetHadith(hadithId) {
+  return useQuery({
+    queryKey: ['hadith', hadithId],
+    queryFn: async () => {
+      const res = await fetch(
+        `https://my-way-web.vercel.app/api/hadiths/${hadithId}`,
+        {
+          method: 'GET'
+        }
+      )
+      const result = await res.json()
+      return result.data
+    }
+  })
+}
