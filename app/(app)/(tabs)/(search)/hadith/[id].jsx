@@ -12,7 +12,6 @@ import { useRouter, useLocalSearchParams } from 'expo-router'
 import {
   Bookmark,
   Heart,
-  Share as ShareIcon,
   Share2
 } from 'lucide-react-native'
 import { useGetHadith } from '../../../../shared/fetcher/useHadiths'
@@ -55,7 +54,6 @@ function toSuperscript(str, type) {
 function HadithContent() {
   const { id } = useLocalSearchParams()
   const router = useRouter()
-  console.log('hadithid', id)
 
   const { isLoading, isError, data, error } = useGetHadith(id)
 
