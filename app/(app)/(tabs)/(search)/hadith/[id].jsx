@@ -9,11 +9,7 @@ import {
   ScrollView
 } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
-import {
-  Bookmark,
-  Heart,
-  Share2
-} from 'lucide-react-native'
+import { Bookmark, Heart, Share2 } from 'lucide-react-native'
 import { useGetHadith } from '../../../../shared/fetcher/useHadiths'
 import Header from '../../../../components/header'
 

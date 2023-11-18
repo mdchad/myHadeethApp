@@ -4,7 +4,7 @@ import Page from '@components/page'
 import Header from '../../../components/header'
 import { Link } from 'expo-router'
 import { useMutation } from '@tanstack/react-query'
-import {ChevronRightSquare} from "lucide-react-native";
+import { ChevronRightSquare } from 'lucide-react-native'
 
 function Search() {
   const [filteredDataSource, setFilteredDataSource] = useState([])
@@ -113,10 +113,14 @@ function Search() {
       <Link href={{ pathname: `/(search)/hadith/${item._id}` }}>
         <View key={item._id} className="pb-4">
           <View className="my-4 flex flex-row flex-wrap space-x-2">
-            <Text className="font-bold text-royal-blue">{item?.book_title.ms}</Text>
-              <ChevronRightSquare color="black" size={18} />
-            <Text className="font-bold text-royal-blue">{item.volume_title.ms}</Text>
-              <ChevronRightSquare color="black" size={18} />
+            <Text className="font-bold text-royal-blue">
+              {item?.book_title.ms}
+            </Text>
+            <ChevronRightSquare color="black" size={18} />
+            <Text className="font-bold text-royal-blue">
+              {item.volume_title.ms}
+            </Text>
+            <ChevronRightSquare color="black" size={18} />
             <Text className="font-bold text-royal-blue">{item.number}</Text>
           </View>
           <Text>{highlightKeywords(item?.content[0], submittedKeyword)}</Text>
