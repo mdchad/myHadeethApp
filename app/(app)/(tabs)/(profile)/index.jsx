@@ -20,7 +20,6 @@ import {
   User,
   Users
 } from 'lucide-react-native'
-import { useAuth } from '@context/auth'
 import Header from '../../../components/header'
 import * as WebBrowser from 'expo-web-browser'
 

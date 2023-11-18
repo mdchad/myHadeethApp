@@ -99,7 +99,7 @@ const HadithItem = React.memo(({ hadith }) => (
 ))
 
 function HadithContent() {
-  const { volumeId, bookId } = useLocalSearchParams()
+  const { volumeId, bookId, hadithId } = useLocalSearchParams()
   const router = useRouter()
   let chapterId = ''
 

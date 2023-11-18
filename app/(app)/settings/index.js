@@ -6,11 +6,8 @@ import Page from '@components/page'
 import {
   BellRing,
   Hourglass,
-  Info,
-  LogIn,
   MessageSquare,
-  Smartphone,
-  User
+  Smartphone
 } from 'lucide-react-native'
 import { Link, useRouter } from 'expo-router'
 import { TouchableHighlight } from 'react-native-gesture-handler'

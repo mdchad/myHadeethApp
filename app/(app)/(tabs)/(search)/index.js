@@ -1,38 +1,60 @@
-import { FlatList, Pressable, Text, TextInput, View } from 'react-native'
-import React, { useState, useEffect } from 'react'
+import { FlatList, Text, TextInput, View } from 'react-native'
+import React, { useState } from 'react'
 import Page from '@components/page'
 import Header from '../../../components/header'
 import { Link } from 'expo-router'
-import { MaterialIcons } from '@expo/vector-icons'
+import { useMutation } from '@tanstack/react-query'
+import { ChevronRightSquare } from 'lucide-react-native'
 
-const Search = () => {
+function Search() {
   const [filteredDataSource, setFilteredDataSource] = useState([])
-  const [search, setSearch] = useState('')
-  const [searchTerm, setSearchTerm] = useState('')
-  const [isSearching, setIsSearching] = React.useState(false)
+  const [searchKeyword, setSearchKeyword] = useState('')
+  const [submittedKeyword, setSubmittedKeyword] = useState('')
+  const { status, mutate } = useMutation({
+    mutationFn: async (query, page = 1, limit = 10) => {
+      const res = await fetch(
+        `https://my-way-web.vercel.app/api/search?page=${page}&limit=${limit}&query=${query}`,
+        {
+          method: 'GET'
+        }
+      )
+      const result = await res.json()
+      return result.data
+    },
+    onSuccess: (data) => {
+      if (data) {
+        setFilteredDataSource(data[0].documents)
+      }
+    }
+  })
 
   function escapeRegExp(string) {
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') // Escape special characters for regex
   }
 
-  function truncateAndHighlight(text, keyword, bufferLength = 10) {
+  function highlightKeywords(text, keyword) {
+    const arabicRegex =
+      /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/
+    // Regex for detecting Latin script (common in Malay)
+    const latinRegex = /[A-Za-z]/
+
+    // Determine the language of the keyword
+    let language = ''
+    if (arabicRegex.test(keyword)) {
+      language = 'ar'
+    } else if (latinRegex.test(keyword)) {
+      language = 'ms'
+    }
+
+    let textWithLanguage = text[language]
+
     const regex = new RegExp(escapeRegExp(keyword), 'gi')
     const parts = []
     let match
 
-    let previousEnd = 0
-
-    while ((match = regex.exec(text)) !== null) {
-      // Insert a break if this isn't the first keyword match
-      if (previousEnd !== 0) {
-        parts.push('\n')
-        parts.push('\n')
-      }
-
+    while ((match = regex.exec(textWithLanguage)) !== null) {
       // Add the text before the keyword to the parts
-      const start = Math.max(0, match.index - bufferLength)
-      const prefix = start > 0 && match.index !== 0 ? '...' : ''
-      parts.push(prefix + text.substring(start, match.index))
+      parts.push(textWithLanguage.substring(0, match.index))
 
       // Add the keyword (match) to the parts
       parts.push(
@@ -41,23 +63,36 @@ const Search = () => {
         </Text>
       )
 
-      // Add the text immediately after the keyword
-      const end = Math.min(
-        text.length,
-        match.index + keyword.length + bufferLength
+      // Update the text to be the part after the keyword
+      textWithLanguage = textWithLanguage.substring(
+        match.index + match[0].length
       )
-      const suffix = end < text.length ? '...' : ''
-      parts.push(text.substring(match.index + keyword.length, end) + suffix)
-
-      previousEnd = end
+      regex.lastIndex = 0 // Reset the regex index
     }
 
-    return <Text>{parts}</Text>
+    // Add any remaining text after the last match
+    parts.push(textWithLanguage)
+
+    if (language === 'ar') {
+      return (
+        <Text
+          style={{ fontFamily: 'Traditional_ArabicRegular' }}
+          className="text-2xl text-right"
+        >
+          {parts}
+        </Text>
+      )
+    }
+
+    return (
+      <Text style={{ fontFamily: 'KFGQPC_Regular' }} className="text-md">
+        {parts}
+      </Text>
+    )
   }
 
   const searchFilterFunction = (text) => {
-    setIsSearching(true)
-    setSearch(text)
+    setSearchKeyword(text)
   }
 
   const ItemSeparatorView = () => {
@@ -75,52 +110,32 @@ const Search = () => {
 
   function renderedItems({ item }) {
     return (
-      <Link
-        href={{
-          pathname: `/(hadeeth)/content/${item.volume_id}`,
-          params: {
-            hadeethId: item.id,
-            volumeId: item.volume_id,
-            bookId: item.book_id
-          }
-        }}
-      >
-        <View key={item.id} className="pb-4">
-          <View className="my-4">
-            <Text className="text-[#433E0E] font-bold">
-              {item?.book_title.ms}, {item.number}
+      <Link href={{ pathname: `/(search)/hadith/${item._id}` }}>
+        <View key={item._id} className="pb-4">
+          <View className="my-4 flex flex-row flex-wrap space-x-2">
+            <Text className="font-bold text-royal-blue">
+              {item?.book_title.ms}
             </Text>
+            <ChevronRightSquare color="black" size={18} />
+            <Text className="font-bold text-royal-blue">
+              {item.volume_title.ms}
+            </Text>
+            <ChevronRightSquare color="black" size={18} />
+            <Text className="font-bold text-royal-blue">{item.number}</Text>
           </View>
-          <Text>
-            {truncateAndHighlight(item?.content?.ms, searchTerm, 100)}
-          </Text>
+          <Text>{highlightKeywords(item?.content[0], submittedKeyword)}</Text>
         </View>
       </Link>
     )
   }
 
-  function removeSearch() {
-    setSearch('')
-    setSearchTerm('')
-    setFilteredDataSource([])
-  }
-
   function onSubmit() {
-    setSearchTerm(search)
-    if (search) {
-      // Inserted text is not blank
-      // Filter the masterDataSource and update FilteredDataSource
-      // const newData = data.filter((item) => {
-      //   // Applying filter for the inserted text in search bar
-      //   const itemData = item.content.ms ? item.content.ms.toLowerCase() : ''
-      //   const textData = search.toLowerCase()
-      //   return itemData.indexOf(textData) > -1
-      // })
-      // setFilteredDataSource(newData)
+    setSubmittedKeyword(searchKeyword)
+    if (searchKeyword) {
+      mutate(searchKeyword)
     } else {
       setFilteredDataSource([])
     }
-    setIsSearching(false)
   }
 
   return (
@@ -134,20 +149,14 @@ const Search = () => {
             <TextInput
               className="px-4 py-2"
               placeholder="Search for Hadith, Books, Etc"
-              value={search}
+              value={searchKeyword}
               autoFocus={true}
               returnKeyType={'done'}
               onSubmitEditing={onSubmit}
+              clearButtonMode={'while-editing'}
               onChangeText={(text) => searchFilterFunction(text)}
             />
           </View>
-          {search.length > 0 && (
-            <View className="absolute right-0 top-0 bottom-0 flex justify-center pr-2">
-              <Pressable onPress={removeSearch}>
-                <MaterialIcons name="cancel" size={20} color="black" />
-              </Pressable>
-            </View>
-          )}
         </View>
       </View>
       <FlatList
@@ -158,7 +167,7 @@ const Search = () => {
         scrollEnabled={true}
         ItemSeparatorComponent={ItemSeparatorView}
         ListEmptyComponent={() => {
-          return !isSearching && searchTerm.length ? (
+          return status === 'success' && submittedKeyword ? (
             <View className="flex-1 flex items-center justify-center">
               <Text className="text-lg">No results found.</Text>
               <Text className="text-sm"> Try something else instead?</Text>
