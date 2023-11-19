@@ -34,7 +34,16 @@ const asyncPersist = createAsyncStoragePersister({
   storage: AsyncStorage,
   dehydrateOptions: {
     dehydrateMutations: true,
-    dehydrateQueries: false
+    dehydrateQueries: false,
+    shouldDehydrateQuery: (query) => {
+      const queryIsReadyForPersistance = query.state.status === 'success';
+      if (queryIsReadyForPersistance) {
+        const { queryKey } = query;
+        const excludeFromPersisting = queryKey.includes('search1');
+        return !excludeFromPersisting;
+      }
+      return queryIsReadyForPersistance;
+    }
   },
   throttleTime: 1000
 })
