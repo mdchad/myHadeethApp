@@ -6,7 +6,8 @@ Use [`expo-router`](https://expo.github.io/router) to build native navigation us
 
 ```sh
 npx create-react-native-app -t with-router
-eas build -p ios --auto-submit
+
+yarn submit:ios
 eas update --branch production --message "Updating the app"
 ```
 
