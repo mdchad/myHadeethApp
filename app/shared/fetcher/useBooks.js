@@ -9,6 +9,7 @@ export function useGetBooks() {
       })
       const result = await res.json()
       return result.data
-    }
+    },
+    networkMode: "offlineFirst"
   })
 }

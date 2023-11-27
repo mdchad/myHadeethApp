@@ -35,7 +35,6 @@ const _layout = () => {
         <Tabs.Screen
           name="(default)"
           options={{
-            href: null,
             tabBarLabel: 'Home',
             tabBarIcon: ({ focused }) => {
               return (
@@ -135,6 +134,7 @@ const _layout = () => {
         <Tabs.Screen
           name="(profile)"
           options={{
+            href: null,
             headerShown: false,
             tabBarLabel: 'Settings',
             headerStatusBarHeight: 60,

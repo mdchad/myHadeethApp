@@ -9,6 +9,7 @@ export function useGetVolumes(id) {
       })
       const result = await res.json()
       return result.data
-    }
+    },
+    networkMode: 'offlineFirst'
   })
 }

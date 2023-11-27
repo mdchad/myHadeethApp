@@ -12,7 +12,8 @@ export function useGetHadiths(bookId, volumeId) {
       )
       const result = await res.json()
       return result.data
-    }
+    },
+    networkMode: "offlineFirst"
   })
 }
 
