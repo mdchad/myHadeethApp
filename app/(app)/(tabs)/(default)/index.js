@@ -9,11 +9,12 @@ import React from 'react'
 import { FontAwesome5 } from '@expo/vector-icons'
 import Page from '@components/page'
 import {ArrowRight, Bookmark, Heart, Share2} from "lucide-react-native";
+import {useGetVolumes} from "../../../shared/fetcher/useVolumes";
+import {useGetTodayHadith} from "../../../shared/fetcher/useTodayHadith";
 // import Header from '@components/header';
 
-const Home = () => {
-  const { fontScale } = useWindowDimensions()
-  const styles = makeStyles(fontScale)
+function Home() {
+  const { isLoading, isError, data, error } = useGetTodayHadith()
 
   return (
     <Page class="bg-white">
@@ -30,7 +31,8 @@ const Home = () => {
               <View className="bg-white border border-1 border-royal-blue space-y-3 rounded-md">
                 <View className="p-3">
                   <Text className="font-bold">Sahih Muslim - Kitab Faraid</Text>
-                  <Text></Text>
+                  <Text>{data.content[0].ar}</Text>
+                  <Text>{data.content[0].ms}</Text>
                 </View>
                 <View className="flex flex-row justify-between items-center bg-royal-blue">
                   <View className="flex flex-row items-center">
