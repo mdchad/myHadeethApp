@@ -102,10 +102,6 @@ function Search() {
     )
   }
 
-  const searchFilterFunction = (text) => {
-    setSearchKeyword(text)
-  }
-
   const ItemSeparatorView = () => {
     return (
       // Flat List Item Separator
@@ -174,7 +170,6 @@ function Search() {
               onSubmitEditing={onSubmit}
               clearButtonMode={'while-editing'}
               onChangeText={handleChangeText}
-              onChangeText={(text) => searchFilterFunction(text)}
             />
           </View>
         </View>
