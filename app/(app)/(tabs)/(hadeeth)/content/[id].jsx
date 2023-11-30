@@ -135,6 +135,158 @@ function HadithContent() {
     )
   }
 
+
+  function Items({ item }) {
+    if (chapterId !== item.chapter_id) {
+      chapterId = item.chapter_id
+      return (
+        <>
+          {item?.chapter_title?.ms && (
+            <View className="bg-gray-100 rounded-xl mb-4 p-4">
+              <View className="flex flex-row justify-between">
+                <View className="flex-1 mr-1">
+                  <Text className="text-royal-blue">
+                    {toSuperscript(item?.chapter_title?.ms, 'text')}
+                  </Text>
+                  <Text className="text-gray-600 mt-1">
+                    {item?.chapter_transliteration?.ms}
+                  </Text>
+                </View>
+                <View className="flex-1 items-end ml-1">
+                  <Text
+                    className="text-[22px] text-right text-royal-blue"
+                    style={{
+                      fontFamily: 'Traditional_ArabicRegular'
+                    }}
+                  >
+                    {item?.chapter_title?.ar}
+                  </Text>
+                </View>
+              </View>
+              {item?.chapter_metadata?.ms && (
+                <View className="flex flex-row justify-between mt-4 pt-4 border-t-0.5 border-t-gray-500">
+                  <View className="flex-1 mr-1">
+                    <Text className="text-gray-800">
+                      {toSuperscript(
+                        item?.chapter_metadata?.ms,
+                        'text'
+                      )}
+                    </Text>
+                  </View>
+                  <View className="flex-1 items-end ml-1">
+                    <Text
+                      className="text-[22px] text-right text-gray-800"
+                      style={{
+                        fontFamily: 'Traditional_ArabicRegular'
+                      }}
+                    >
+                      {item?.chapter_metadata?.ar}
+                    </Text>
+                  </View>
+                </View>
+              )}
+            </View>
+          )}
+          {item.content[0].ar && (
+            <View className="space-y-8 bg-white mb-4 border border-royal-blue">
+              <HadithItem
+                key={item._id}
+                hadith={item}
+                onShare={onShare}
+                onSave={onSave}
+              />
+              <View className="flex flex-row justify-end items-center bg-royal-blue">
+                <TouchableHighlight
+                  className="p-1"
+                  underlayColor="#333"
+                  onPress={() => onShare(item)}
+                >
+                  <Share2
+                    color="white"
+                    absoluteStrokeWidth={2}
+                    size={16}
+                  />
+                </TouchableHighlight>
+                <TouchableHighlight
+                  className="p-1"
+                  underlayColor="#333"
+                  onPress={() => onSave(item)}
+                >
+                  <Heart
+                    color="white"
+                    absoluteStrokeWidth={2}
+                    size={16}
+                  />
+                </TouchableHighlight>
+                <TouchableHighlight
+                  className="p-1"
+                  underlayColor="#333"
+                  onPress={() => onSave(item)}
+                >
+                  <Bookmark
+                    color="white"
+                    absoluteStrokeWidth={2}
+                    size={16}
+                  />
+                </TouchableHighlight>
+              </View>
+            </View>
+          )}
+        </>
+      )
+    }
+
+    if (item.content[0].ar) {
+      return (
+        <View className="space-y-8 bg-white mb-4 border border-royal-blue">
+          <HadithItem
+            key={item._id}
+            hadith={item}
+            onShare={onShare}
+            onSave={onSave}
+          />
+          <View className="flex flex-row justify-end items-center bg-royal-blue">
+            <TouchableHighlight
+              className="p-1"
+              underlayColor="#333"
+              onPress={() => onShare(item)}
+            >
+              <Share2
+                color="white"
+                absoluteStrokeWidth={2}
+                size={16}
+              />
+            </TouchableHighlight>
+            <TouchableHighlight
+              className="p-1"
+              underlayColor="#333"
+              onPress={() => onSave(item)}
+            >
+              <Heart
+                color="white"
+                absoluteStrokeWidth={2}
+                size={16}
+              />
+            </TouchableHighlight>
+            <TouchableHighlight
+              className="p-1"
+              underlayColor="#333"
+              onPress={() => onSave(item)}
+            >
+              <Bookmark
+                color="white"
+                absoluteStrokeWidth={2}
+                size={16}
+              />
+            </TouchableHighlight>
+          </View>
+        </View>
+      )
+    } else {
+      return null
+    }
+  }
+
   return (
     <>
       <Header
@@ -157,164 +309,20 @@ function HadithContent() {
             </Text>
           </View>
         </View>
-        <View className="flex-1">
-          <FlatList
-            data={data}
-            keyExtractor={(item) => item._id.toString()}
-            renderItem={({ item }) => {
-              if (chapterId !== item.chapter_id) {
-                chapterId = item.chapter_id
-                return (
-                  <>
-                    {item?.chapter_title?.ms && (
-                      <View className="bg-gray-100 rounded-xl mb-4 p-4">
-                        <View className="flex flex-row justify-between">
-                          <View className="flex-1 mr-1">
-                            <Text className="text-royal-blue">
-                              {toSuperscript(item?.chapter_title?.ms, 'text')}
-                            </Text>
-                            <Text className="text-gray-600 mt-1">
-                              {item?.chapter_transliteration?.ms}
-                            </Text>
-                          </View>
-                          <View className="flex-1 items-end ml-1">
-                            <Text
-                              className="text-[22px] text-right text-royal-blue"
-                              style={{
-                                fontFamily: 'Traditional_ArabicRegular'
-                              }}
-                            >
-                              {item?.chapter_title?.ar}
-                            </Text>
-                          </View>
-                        </View>
-                        {item?.chapter_metadata?.ms && (
-                          <View className="flex flex-row justify-between mt-4 pt-4 border-t-0.5 border-t-gray-500">
-                            <View className="flex-1 mr-1">
-                              <Text className="text-gray-800">
-                                {toSuperscript(
-                                  item?.chapter_metadata?.ms,
-                                  'text'
-                                )}
-                              </Text>
-                            </View>
-                            <View className="flex-1 items-end ml-1">
-                              <Text
-                                className="text-[22px] text-right text-gray-800"
-                                style={{
-                                  fontFamily: 'Traditional_ArabicRegular'
-                                }}
-                              >
-                                {item?.chapter_metadata?.ar}
-                              </Text>
-                            </View>
-                          </View>
-                        )}
-                      </View>
-                    )}
-                    {item.content[0].ar && (
-                      <View className="space-y-8 bg-white mb-4 border border-royal-blue">
-                        <HadithItem
-                          key={item._id}
-                          hadith={item}
-                          onShare={onShare}
-                          onSave={onSave}
-                        />
-                        <View className="flex flex-row justify-end items-center bg-royal-blue">
-                          <TouchableHighlight
-                            className="p-1"
-                            underlayColor="#333"
-                            onPress={() => onShare(item)}
-                          >
-                            <Share2
-                              color="white"
-                              absoluteStrokeWidth={2}
-                              size={16}
-                            />
-                          </TouchableHighlight>
-                          <TouchableHighlight
-                            className="p-1"
-                            underlayColor="#333"
-                            onPress={() => onSave(item)}
-                          >
-                            <Heart
-                              color="white"
-                              absoluteStrokeWidth={2}
-                              size={16}
-                            />
-                          </TouchableHighlight>
-                          <TouchableHighlight
-                            className="p-1"
-                            underlayColor="#333"
-                            onPress={() => onSave(item)}
-                          >
-                            <Bookmark
-                              color="white"
-                              absoluteStrokeWidth={2}
-                              size={16}
-                            />
-                          </TouchableHighlight>
-                        </View>
-                      </View>
-                    )}
-                  </>
-                )
-              }
-
-              if (item.content[0].ar) {
-                return (
-                  <View className="space-y-8 bg-white mb-4 border border-royal-blue">
-                    <HadithItem
-                      key={item._id}
-                      hadith={item}
-                      onShare={onShare}
-                      onSave={onSave}
-                    />
-                    <View className="flex flex-row justify-end items-center bg-royal-blue">
-                      <TouchableHighlight
-                        className="p-1"
-                        underlayColor="#333"
-                        onPress={() => onShare(item)}
-                      >
-                        <Share2
-                          color="white"
-                          absoluteStrokeWidth={2}
-                          size={16}
-                        />
-                      </TouchableHighlight>
-                      <TouchableHighlight
-                        className="p-1"
-                        underlayColor="#333"
-                        onPress={() => onSave(item)}
-                      >
-                        <Heart
-                          color="white"
-                          absoluteStrokeWidth={2}
-                          size={16}
-                        />
-                      </TouchableHighlight>
-                      <TouchableHighlight
-                        className="p-1"
-                        underlayColor="#333"
-                        onPress={() => onSave(item)}
-                      >
-                        <Bookmark
-                          color="white"
-                          absoluteStrokeWidth={2}
-                          size={16}
-                        />
-                      </TouchableHighlight>
-                    </View>
-                  </View>
-                )
-              } else {
-                return null
-              }
-            }}
-            contentContainerStyle={{ paddingHorizontal: 6 }}
-            style={{ paddingRight: 5, marginRight: -10 }}
-          />
-        </View>
+        {
+          data.length && (
+            <View className="flex-1">
+              <FlatList
+                data={data}
+                keyExtractor={(item) => item._id}
+                initialNumToRender={5}
+                renderItem={Items}
+                contentContainerStyle={{ paddingHorizontal: 6 }}
+                style={{ paddingRight: 5, marginRight: -10 }}
+              />
+            </View>
+          )
+        }
       </View>
     </>
   )

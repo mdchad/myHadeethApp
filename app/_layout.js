@@ -14,6 +14,8 @@ import { useAppState } from './shared/useAppState'
 import { useOnlineManager } from './shared/useOnlineManager'
 import { useEffect } from 'react'
 import * as SplashScreen from 'expo-splash-screen'
+import {zonedTimeToUtc} from "date-fns-tz";
+import {format} from "date-fns";
 
 function onAppStateChange(status) {
   if (Platform.OS !== 'web') {
@@ -25,7 +27,9 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: 2,
-      cacheTime: 10000 * 10
+      cacheTime: 24 * 60 * 60 * 1000, // 24 hours
+      refetchInterval: false,
+      staleTime: 12 * 60 * 60 * 1000, // 12 hours
     }
   }
 })
@@ -64,17 +68,34 @@ export default function Root() {
   })
 
   const prefetchTodos = async () => {
+    const timeZone = 'Asia/Kuala_Lumpur';
+    const nowInKualaLumpur = zonedTimeToUtc(new Date(), timeZone);
+    const formattedDate = format(nowInKualaLumpur, 'yyyy-MM-dd', { timeZone });
     // The results of this query will be cached like a normal query
-    await queryClient.prefetchQuery({
-      queryKey: ['books'],
-      queryFn: async () => {
-        const res = await fetch('https://my-way-web.vercel.app/api/books', {
-          method: 'GET'
-        })
-        const result = await res.json()
-        return result.data
-      }
-    })
+
+    await Promise.all([
+      queryClient.prefetchQuery({
+        queryKey: ['books'],
+        queryFn: async () => {
+          const res = await fetch('https://my-way-web.vercel.app/api/books', {
+            method: 'GET'
+          })
+          const result = await res.json()
+          return result.data
+        }
+      }),
+      queryClient.prefetchQuery({
+        queryKey: ['todayHadith', formattedDate],
+        queryFn: async () => {
+          const res = await fetch('https://my-way-web.vercel.app/api/today', {
+            cache: 'no-store',
+            method: 'GET'
+          })
+          const result = await res.json()
+          return result
+        }
+      })
+    ])
   }
 
   useEffect(() => {

@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react'
 import Page from '@components/page'
 import Header from '../../../components/header'
 import { Link } from 'expo-router'
-import {useInfiniteQuery, useQuery, useQueryClient} from '@tanstack/react-query'
+import { useQuery, useQueryClient} from '@tanstack/react-query'
 import { ChevronRightSquare } from 'lucide-react-native'
 
 function Search() {
@@ -28,15 +28,6 @@ function Search() {
     enabled: submitted, // Only run query if search term is not empty
     // If you want to clear the data when the search is disabled, you can use:
     initialData: submitted ? undefined : [],
-    // getNextPageParam: (lastPage, allPages) => {
-    //   console.log('last', lastPage)
-    //   console.log('all', allPages[0][0].totalCount)
-    //   const morePagesExist = lastPage[0]?.currentPage * 10 < lastPage[0]?.totalCount[0]?.count;
-    //   if (morePagesExist) {
-    //     return lastPage[0]?.currentPage + 1;
-    //   }
-    //   return lastPage[0]?.currentPage
-    // }
   })
 
   useEffect(() => {
@@ -111,10 +102,6 @@ function Search() {
     )
   }
 
-  const searchFilterFunction = (text) => {
-    setSearchKeyword(text)
-  }
-
   const ItemSeparatorView = () => {
     return (
       // Flat List Item Separator
@@ -159,11 +146,11 @@ function Search() {
   }
 
   const handleChangeText = (newText) => {
-    if (newText === '') {
+    // if (newText === '') {
       setSearchKeyword(newText);
-      setSubmitted(false);
+      // setSubmitted(false);
       // Handle the clear action here
-    }
+    // }
   };
 
   return (
@@ -183,7 +170,6 @@ function Search() {
               onSubmitEditing={onSubmit}
               clearButtonMode={'while-editing'}
               onChangeText={handleChangeText}
-              onChangeText={(text) => searchFilterFunction(text)}
             />
           </View>
         </View>
