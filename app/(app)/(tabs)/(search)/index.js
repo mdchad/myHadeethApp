@@ -1,4 +1,4 @@
-import { FlatList, Text, TextInput, View } from 'react-native'
+import {FlatList, Pressable, Text, TextInput, View} from 'react-native'
 import React, {useEffect, useState} from 'react'
 import Page from '@components/page'
 import Header from '../../../components/header'
@@ -43,9 +43,9 @@ function Search() {
 
   function highlightKeywords(text, keyword) {
     const arabicRegex =
-      /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/
+      /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF\u0660-\u0669]/
     // Regex for detecting Latin script (common in Malay)
-    const latinRegex = /[A-Za-z]/
+    const latinRegex = /[A-Za-z\d]/
 
     // Determine the language of the keyword
     let language = ''
@@ -118,21 +118,21 @@ function Search() {
 
   function renderedItems({ item }) {
     return (
-      <Link key={item._id} href={{ pathname: `/(search)/hadith/${item._id}` }}>
-        <View key={item._id} className="pb-4">
-          <View className="my-4 flex flex-row flex-wrap space-x-2">
-            <Text className="font-bold text-royal-blue">
+      <Link key={item._id} href={{ pathname: `/(search)/hadith/${item._id}` }} asChild>
+        <Pressable key={item._id} className="pb-4">
+          <View className="my-4 flex flex-row flex-wrap">
+            <Text className="font-bold text-royal-blue mr-2">
               {item?.book_title.ms}
             </Text>
-            <ChevronRightSquare color="black" size={18} />
-            <Text className="font-bold text-royal-blue">
+            <ChevronRightSquare color="black" size={18} className="mr-2"/>
+            <Text className="font-bold text-royal-blue mr-2">
               {item.volume_title.ms}
             </Text>
-            <ChevronRightSquare color="black" size={18} />
+            <ChevronRightSquare color="black" size={18} className="mr-2"/>
             <Text className="font-bold text-royal-blue">{item.number}</Text>
           </View>
           <Text>{highlightKeywords(item?.content[0], searchKeyword)}</Text>
-        </View>
+        </Pressable>
       </Link>
     )
   }
@@ -146,11 +146,8 @@ function Search() {
   }
 
   const handleChangeText = (newText) => {
-    // if (newText === '') {
-      setSearchKeyword(newText);
-      // setSubmitted(false);
-      // Handle the clear action here
-    // }
+    setSearchKeyword(newText);
+    setSubmitted(false);
   };
 
   return (
@@ -182,7 +179,7 @@ function Search() {
         scrollEnabled={true}
         ItemSeparatorComponent={ItemSeparatorView}
         ListEmptyComponent={() => {
-          return status === 'success' && searchKeyword ? (
+          return status === 'success' && searchKeyword && submitted ? (
             <View className="flex-1 flex items-center justify-center">
               <Text className="text-lg">No results found.</Text>
               <Text className="text-sm"> Try something else instead?</Text>

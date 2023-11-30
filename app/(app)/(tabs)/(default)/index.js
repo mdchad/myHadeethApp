@@ -78,15 +78,17 @@ function Home() {
             </View>
 
             <View className="flex flex-row space-x-2">
-              <View className="border border-royal-blue flex flex-1 justify-between items-center rounded-md">
-                <View className="p-2 w-full">
-                  <Text className="text-lg text-royal-blue">Forty Hadiths</Text>
-                  <Text className="text-xs text-royal-blue break-words">
-                    Forty known famous hadith
-                  </Text>
-                </View>
-                <View className="h-[16px] bg-royal-blue w-full"></View>
-              </View>
+              <Link href="/hadith40" asChild>
+                <Pressable className="border border-royal-blue flex flex-1 justify-between items-center rounded-md">
+                  <View className="p-2 w-full">
+                    <Text className="text-lg text-royal-blue">Forty Hadiths</Text>
+                    <Text className="text-xs text-royal-blue break-words">
+                      Forty known famous hadith
+                    </Text>
+                  </View>
+                  <View className="h-[16px] bg-royal-blue w-full"></View>
+                </Pressable>
+              </Link>
               <Link href={'(tabs)/(hadeeth)'} asChild>
                 <Pressable className="border border-royal-blue flex flex-1 justify-between items-center rounded-md">
                   <LinearGradient
