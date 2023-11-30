@@ -1,10 +1,8 @@
 import {
   View,
   Text,
-  useWindowDimensions,
-  StyleSheet,
   FlatList,
-  ImageBackground
+  ImageBackground, Pressable
 } from 'react-native'
 import React from 'react'
 import { Link, useRouter } from 'expo-router'
@@ -12,40 +10,39 @@ import Header from '@components/header'
 import { ArrowRight, Bookmark, Heart, Share2 } from 'lucide-react-native'
 import { useGetBooks } from '../../../shared/fetcher/useBooks'
 
+function Item({ title, id }) {
+  const words = title.split(' ')
+
+  const firstWord = words[0]
+  const remainingWords = words.slice(1).join(' ')
+
+  return (
+    <Link
+      href={`(hadeeth)/volume/${id}?title=${title}`}
+      asChild
+    >
+      <Pressable className="w-[48%] mr-4 bg-white">
+        <View className="w-full">
+          <View className="flex items-center py-8 px-2">
+            <Text className="text-lg text-royal-blue font-semibold">
+              {firstWord}
+            </Text>
+            <Text className="text-lg text-royal-blue font-semibold">
+              {remainingWords}
+            </Text>
+          </View>
+          <View className="bg-royal-blue w-full p-1 flex flex-row justify-between items-center">
+            <Text className="text-white text-xs mr-1">View More</Text>
+            <ArrowRight color="white" size={12} />
+          </View>
+        </View>
+      </Pressable>
+    </Link>
+  )
+}
+
 function Books() {
   const { isLoading, isError, data, error } = useGetBooks()
-
-  function Item({ title, id }) {
-    const words = title.split(' ')
-
-    const firstWord = words[0]
-    const remainingWords = words.slice(1).join(' ')
-
-    return (
-      <View className="w-[48%] mr-4 bg-white">
-        <Link
-          href={`(hadeeth)/volume/${id}?title=${title}`}
-          underlayColor="#f9fafb"
-          className="w-full"
-        >
-          <View className="w-full">
-            <View className="flex items-center py-8 px-2">
-              <Text className="text-lg text-royal-blue font-semibold">
-                {firstWord}
-              </Text>
-              <Text className="text-lg text-royal-blue font-semibold">
-                {remainingWords}
-              </Text>
-            </View>
-            <View className="bg-royal-blue w-full p-1 flex flex-row justify-between items-center">
-              <Text className="text-white text-xs mr-1">View More</Text>
-              <ArrowRight color="white" size={12} />
-            </View>
-          </View>
-        </Link>
-      </View>
-    )
-  }
 
   return (
     <>

@@ -146,11 +146,11 @@ function Search() {
   }
 
   const handleChangeText = (newText) => {
-    if (newText === '') {
+    // if (newText === '') {
       setSearchKeyword(newText);
-      setSubmitted(false);
+      // setSubmitted(false);
       // Handle the clear action here
-    }
+    // }
   };
 
   return (

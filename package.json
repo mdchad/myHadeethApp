@@ -7,7 +7,8 @@
     "build:ios": "eas build -p ios",
     "submit:ios": "eas build -p ios --auto-submit",
     "submit:android": "eas submit -p android",
-    "build:android": "eas build -p android --profile production"
+    "build:android": "eas build -p android --profile production",
+    "build:android:development": "eas build -p android --profile development"
   },
   "dependencies": {
     "@babel/preset-env": "^7.20.2",
