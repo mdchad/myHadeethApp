@@ -106,41 +106,43 @@ function Home() {
               </Link>
             </View>
 
-            <View className="bg-white border border-1 border-royal-blue space-y-3 rounded-md">
-              <View className="p-3">
-                <Text className="font-semibold text-lg text-royal-blue underline mb-2">
-                  Introduction to MyWay Mobile App
-                </Text>
-                <Text className="text-royal-blue">
-                  Allāh the Almighty says: "Verily We: It is We Who have sent
-                  down the Dhikr (i.e. the Quran) and surely, We will guard it
-                  (from corruption)." [Sūrah al-Hijr: 15:9] Hence, Allah ﷻ
-                  guaranteed the preservation of the Quran. He entrusted, His
-                  Messenger, Prophet Muhammad ﷺ with the task of explaining the
-                  Quran as He ﷻ says: "And We have also sent down unto you (O
-                  Muhammad ﷺ) the reminder and the advice (the Quran), that you
-                  may explain clearly to men what is sent down to them, and that
-                  they may give thought." [Sūrah an-Nahl: 16:44]
-                </Text>
-              </View>
-              <View className="flex flex-row justify-between items-center bg-royal-blue">
-                <View className="flex flex-row items-center">
-                  <TouchableHighlight className="p-1" underlayColor="#333">
-                    <Share2 color="white" absoluteStrokeWidth={2} size={16} />
-                  </TouchableHighlight>
-                  <TouchableHighlight className="p-1" underlayColor="#333">
-                    <Heart color="white" absoluteStrokeWidth={2} size={16} />
-                  </TouchableHighlight>
-                  <TouchableHighlight className="p-1" underlayColor="#333">
-                    <Bookmark color="white" absoluteStrokeWidth={2} size={16} />
-                  </TouchableHighlight>
+            <Link href="/introduction" asChild>
+              <Pressable className="bg-white border border-1 border-royal-blue space-y-3 rounded-md">
+                <View className="p-3">
+                  <Text className="font-semibold text-lg text-royal-blue underline mb-2">
+                    Introduction to MyWay Mobile App
+                  </Text>
+                  <Text className="text-royal-blue">
+                    Allāh the Almighty says: "Verily We: It is We Who have sent
+                    down the Dhikr (i.e. the Quran) and surely, We will guard it
+                    (from corruption)." [Sūrah al-Hijr: 15:9] Hence, Allah ﷻ
+                    guaranteed the preservation of the Quran. He entrusted, His
+                    Messenger, Prophet Muhammad ﷺ with the task of explaining the
+                    Quran as He ﷻ says: "And We have also sent down unto you (O
+                    Muhammad ﷺ) the reminder and the advice (the Quran), that you
+                    may explain clearly to men what is sent down to them, and that
+                    they may give thought." [Sūrah an-Nahl: 16:44]
+                  </Text>
                 </View>
-                <View className="flex flex-row items-center space-x-2">
-                  <Text className="text-white">View More</Text>
-                  <ArrowRight size={18} color={'white'} />
+                <View className="flex flex-row justify-between items-center bg-royal-blue">
+                  <View className="flex flex-row items-center">
+                    <TouchableHighlight className="p-1" underlayColor="#333">
+                      <Share2 color="white" absoluteStrokeWidth={2} size={16} />
+                    </TouchableHighlight>
+                    <TouchableHighlight className="p-1" underlayColor="#333">
+                      <Heart color="white" absoluteStrokeWidth={2} size={16} />
+                    </TouchableHighlight>
+                    <TouchableHighlight className="p-1" underlayColor="#333">
+                      <Bookmark color="white" absoluteStrokeWidth={2} size={16} />
+                    </TouchableHighlight>
+                  </View>
+                  <View className="flex flex-row items-center space-x-2">
+                    <Text className="text-white">View More</Text>
+                    <ArrowRight size={18} color={'white'} />
+                  </View>
                 </View>
-              </View>
-            </View>
+              </Pressable>
+            </Link>
           </View>
         </ScrollView>
       </View>
