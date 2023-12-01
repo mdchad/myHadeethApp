@@ -186,7 +186,7 @@ export default function CompassV2() {
               {degree && userPlace ? (
                 <View className="px-8 py-4">
                   <Text className="text-xl font-semibold text-royal-blue">
-                    Location:
+                    {SHARED_TEXT.QIBLA_LOCATION_LABEL}
                   </Text>
                   <Text className="text-sm text-royal-blue">
                     {userPlace[0].city}
