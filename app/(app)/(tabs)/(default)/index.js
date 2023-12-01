@@ -3,7 +3,7 @@ import {
   Text,
   ScrollView,
   TouchableHighlight,
-  Pressable
+  Pressable, Image
 } from 'react-native'
 import React, { useEffect } from 'react'
 import Page from '@components/page'
@@ -11,7 +11,7 @@ import {
   ArrowRight,
   Bookmark,
   ChevronRightSquare,
-  Heart,
+  Heart, SettingsIcon,
   Share2
 } from 'lucide-react-native'
 import { useGetTodayHadith } from '../../../shared/fetcher/useTodayHadith'
@@ -20,6 +20,8 @@ import { Link } from 'expo-router'
 import {Skeleton} from "moti/skeleton";
 import Spacer from "../../../components/Spacer";
 import SHARED_TEXT from "../../../i18n";
+
+const settingsLogo = require('@assets/settings.png')
 
 function Home() {
   const { isLoading, isError, data, error } = useGetTodayHadith()
@@ -30,9 +32,22 @@ function Home() {
         <ScrollView>
           <View className="mx-2 p-3 flex space-y-6">
             <View className="space-y-5">
-              <Text className="text-3xl text-royal-blue font-bold leading-none tracking-tight">
-                {SHARED_TEXT.HOME_HEADER}
-              </Text>
+              <View className="flex flex-row justify-between">
+                <Text className="text-3xl text-royal-blue font-bold leading-none tracking-tight">
+                  {SHARED_TEXT.HOME_HEADER}
+                </Text>
+                <Link href="/user" asChild>
+                  <Pressable
+                    style={{
+                      justifyContent: 'center',
+                      alignItems: 'center'
+                    }}
+                  >
+                    <SettingsIcon size={20} color={'#1C2A4F'}/>
+                    {/* <FontAwesome5 name="home" size={30} color={focused ? 'tomato' : 'gray'} /> */}
+                  </Pressable>
+                </Link>
+              </View>
               <Link
                 href={{ pathname: `/(search)/hadith/${data?._id}` }}
                 asChild
@@ -120,7 +135,7 @@ function Home() {
             <View className="flex flex-row space-x-2">
               <Link href="/hadith40" asChild>
                 <Pressable className="border border-royal-blue flex flex-1 justify-between items-center rounded-md">
-                  <View className="p-2 w-full">
+                  <View className="flex-grow p-2 w-full">
                     <Text className="text-lg text-royal-blue">
                       {SHARED_TEXT.HOME_FORTY_HADITHS_TITLE}
                     </Text>
@@ -136,9 +151,9 @@ function Home() {
                   <LinearGradient
                     // Background Linear Gradient
                     colors={['#22276E', '#008080']}
-                    className="w-full "
+                    className="w-full flex-grow justify-between"
                   >
-                    <View className="p-2 w-full">
+                    <View className="p-2">
                       <Text className="text-white text-lg">{SHARED_TEXT.HOME_SIX_BOOKS_TITLE}</Text>
                       <Text className="text-white text-xs break-words">
                         {SHARED_TEXT.HOME_SIX_BOOKS_DESC}

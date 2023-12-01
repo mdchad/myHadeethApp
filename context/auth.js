@@ -1,6 +1,6 @@
 import { useRouter, useSegments } from 'expo-router'
 import React, { useEffect, useRef, useState } from 'react'
-import { AppState } from 'react-native'
+import { AppState, Platform } from 'react-native'
 import * as Location from 'expo-location'
 import { View } from 'react-native'
 
@@ -39,45 +39,54 @@ export function Provider(props) {
   const [permissionStatus, setPermissionStatus] = React.useState(null)
   const appState = useRef(AppState.currentState)
   const [appStateVisible, setAppStateVisible] = useState(appState.current)
+  const focusEvent = Platform.OS === 'android' ? 'focus' : 'change'
 
   useEffect(() => {
-    const subscription = AppState.addEventListener('change', (nextAppState) => {
-      if (
-        appState.current.match(/inactive|background/) &&
-        nextAppState === 'active'
-      ) {
-        console.log('App has come to the foreground!')
+    const subscription = AppState.addEventListener(
+      focusEvent,
+      (nextAppState) => {
+        if (
+          Platform.OS === 'ios' &&
+          appState?.current.match(/inactive|background/) &&
+          nextAppState === 'active'
+        ) {
+          console.log('App has come to the foreground!')
+        }
+
+        appState.current = nextAppState
+        setAppStateVisible(appState.current)
+
+        if (Platform.OS === 'android' || appState.current === 'active') {
+          ;(async () => {
+            try {
+              let { status } = await Location.requestForegroundPermissionsAsync()
+              if (status !== 'granted') {
+                setPermissionStatus(status)
+                return
+              } else {
+                setPermissionStatus(status)
+              }
+
+              let location = await Location.getCurrentPositionAsync({
+                accuracy: Location.Accuracy.High,
+                timeInterval: 1000,
+                distanceInterval: 0
+              })
+
+              let place = await Location.reverseGeocodeAsync({
+                latitude: location.coords.latitude,
+                longitude: location.coords.longitude
+              })
+
+              setUserPlace(place)
+              setUserLocation(location)
+            } catch (e) {
+              console.error(e)
+            }
+          })()
+        }
       }
-
-      appState.current = nextAppState
-      setAppStateVisible(appState.current)
-
-      if (appState.current === 'active') {
-        ;(async () => {
-          let { status } = await Location.requestForegroundPermissionsAsync()
-          if (status !== 'granted') {
-            setPermissionStatus(status)
-            return
-          } else {
-            setPermissionStatus(status)
-          }
-
-          let location = await Location.getCurrentPositionAsync({
-            accuracy: Location.Accuracy.High,
-            timeInterval: 1000,
-            distanceInterval: 0
-          })
-
-          let place = await Location.reverseGeocodeAsync({
-            latitude: location.coords.latitude,
-            longitude: location.coords.longitude
-          })
-
-          setUserPlace(place)
-          setUserLocation(location)
-        })()
-      }
-    })
+    )
 
     ;(async () => {
       let { status } = await Location.requestForegroundPermissionsAsync()

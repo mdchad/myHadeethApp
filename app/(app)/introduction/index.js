@@ -4,18 +4,23 @@ import Page from '@components/page'
 import { WebView } from 'react-native-webview';
 import Header from "../../components/header";
 import {useRouter} from "expo-router";
+import Pdf from "react-native-pdf";
+import SHARED_TEXT from "../../i18n";
 
 export default function Introduction() {
-  const yourPdfURL="https://my-way-web.vercel.app/intro.pdf"
-  const pdfUri = `https://docs.google.com/gview?embedded=true&url=${yourPdfURL}`
+  const pdfURL="https://my-way-web.vercel.app/intro.pdf"
   const router = useRouter()
 
   return (
     <Page>
-      <Header title="Introduction" onPressButton={() => router.back()}/>
-      <WebView
-        style={styles.container}
-        source={{ uri: pdfUri }}
+      <Header title={SHARED_TEXT.INTRO_TITLE} onPressButton={() => router.back()}/>
+      <Pdf
+        trustAllCerts={false}
+        source={{ uri: pdfURL, cache: true }}
+        style={{ flex: 1 }}
+        onLoadComplete={(numberOfPages, filePath) => {
+          console.log(`number of pages: ${numberOfPages}`);
+        }}
       />
     </Page>
   )
