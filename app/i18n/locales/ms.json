@@ -1,6 +1,7 @@
 {
   "HOME_HEADER": "Hadis Harian",
   "VIEW_MORE_LABEL": "Lihat lagi",
+  "HADITHS_FORTY_TITLE": "Hadis 40",
   "HOME_FORTY_HADITHS_TITLE": "Hadis Empat Puluh",
   "HOME_FORTY_HADITHS_DESC": "Hadis Empat Puluh yang terkenal",
   "HOME_SIX_BOOKS_TITLE": "Kutub Sittah",
@@ -28,5 +29,8 @@
   "USER_SHARE_APP_LABEL": "Kongsi aplikasi ini",
   "USER_HELP_FEEDBACK_LABEL": "Bantuan dan Maklum Balas",
   "USER_TERMS_LABEL": "Terma",
-  "USER_ABOUT_LABEL": "Mengenai"
+  "USER_ABOUT_LABEL": "Mengenai",
+  "INTRO_TITLE": "Pengenalan",
+  "SETTINGS_TITLE": "Tetapan",
+  "ENABLE_LOCATION_LABEL": "Aktifkan lokasi"
 }

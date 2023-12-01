@@ -16,7 +16,7 @@ import { useSegments } from 'expo-router'
 import { Skeleton } from 'moti/skeleton'
 import Spacer from '@components/Spacer'
 import Header from './header'
-import SHARED_TEXT from "../i18n";
+import SHARED_TEXT from '../i18n'
 
 const Mecca = {
   latitude: 21.4225,
@@ -118,7 +118,10 @@ export default function CompassV2() {
       <ScrollView>
         {permissionStatus === 'denied' ? (
           <View className="mt-4 w-full">
-            <Button title="Enable Location" onPress={openSettings} />
+            <Button
+              title={SHARED_TEXT.ENABLE_LOCATION_LABEL}
+              onPress={openSettings}
+            />
           </View>
         ) : (
           <>

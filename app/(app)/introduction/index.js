@@ -5,6 +5,7 @@ import { WebView } from 'react-native-webview';
 import Header from "../../components/header";
 import {useRouter} from "expo-router";
 import Pdf from "react-native-pdf";
+import SHARED_TEXT from "../../i18n";
 
 export default function Introduction() {
   const pdfURL="https://my-way-web.vercel.app/intro.pdf"
@@ -12,7 +13,7 @@ export default function Introduction() {
 
   return (
     <Page>
-      <Header title="Introduction" onPressButton={() => router.back()}/>
+      <Header title={SHARED_TEXT.INTRO_TITLE} onPressButton={() => router.back()}/>
       <Pdf
         trustAllCerts={false}
         source={{ uri: pdfURL, cache: true }}

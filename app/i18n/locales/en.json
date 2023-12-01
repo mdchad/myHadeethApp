@@ -1,6 +1,7 @@
 {
   "HOME_HEADER": "Daily Hadith",
   "VIEW_MORE_LABEL": "View more",
+  "HADITHS_FORTY_TITLE": "40 Hadiths",
   "HOME_FORTY_HADITHS_TITLE": "Forty Hadiths",
   "HOME_FORTY_HADITHS_DESC": "Forty known famous hadith",
   "HOME_SIX_BOOKS_TITLE": "Kutub Sittah",
@@ -28,5 +29,8 @@
   "USER_SHARE_APP_LABEL": "Share this app",
   "USER_HELP_FEEDBACK_LABEL": "Help and Feedback",
   "USER_TERMS_LABEL": "Terms",
-  "USER_ABOUT_LABEL": "About"
+  "USER_ABOUT_LABEL": "About",
+  "INTRO_TITLE": "Introduction",
+  "SETTINGS_TITLE": "Settings",
+  "ENABLE_LOCATION_LABEL": "Enable location"
 }

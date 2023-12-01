@@ -218,7 +218,7 @@ export default function Prayer() {
         <View className="w-full h-full mt-4">
           {permissionStatus === 'denied' ? (
             <View className="mt-4 w-full">
-              <Button title="Enable Location" onPress={openSettings} />
+              <Button title={SHARED_TEXT.ENABLE_LOCATION_LABEL} onPress={openSettings} />
             </View>
           ) : error ? (
             <View className="w-full h-full mt-4 p-8">
