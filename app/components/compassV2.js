@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import {
-  StyleSheet,
   Image,
   Text,
   View,
@@ -17,6 +16,7 @@ import { useSegments } from 'expo-router'
 import { Skeleton } from 'moti/skeleton'
 import Spacer from '@components/Spacer'
 import Header from './header'
+import SHARED_TEXT from "../i18n";
 
 const Mecca = {
   latitude: 21.4225,
@@ -114,7 +114,7 @@ export default function CompassV2() {
 
   return (
     <View className="h-full">
-      <Header title={'Qibla'} />
+      <Header title={SHARED_TEXT.QIBLA_HEADER} />
       <ScrollView>
         {permissionStatus === 'denied' ? (
           <View className="mt-4 w-full">

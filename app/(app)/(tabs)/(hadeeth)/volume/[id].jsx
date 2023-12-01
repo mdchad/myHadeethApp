@@ -11,6 +11,7 @@ import { Link, useLocalSearchParams, useRouter } from 'expo-router'
 import Header from '../../../../components/header'
 import { ArrowRight } from 'lucide-react-native'
 import { useGetVolumes } from '../../../../shared/fetcher/useVolumes'
+import SHARED_TEXT from "../../../../i18n";
 
 const HadithVolumeItem = ({ item, index }) => (
   <Link
@@ -62,7 +63,7 @@ const HadithVolumeItem = ({ item, index }) => (
             </View>
           </View>
           <View className="flex flex-row justify-end items-center">
-            <Text className="text-royal-blue text-xs mr-1">View more</Text>
+            <Text className="text-royal-blue text-xs mr-1">{SHARED_TEXT.VIEW_MORE_LABEL}</Text>
             <ArrowRight color="black" size={14} />
           </View>
         </View>

@@ -3,6 +3,7 @@ import React from 'react'
 import { Tabs } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 import { SearchIcon } from 'lucide-react-native'
+import SHARED_TEXT from "../../i18n";
 
 const homeLogo = require('@assets/home.png')
 const prayerLogo = require('@assets/prayer.png')
@@ -35,7 +36,7 @@ const _layout = () => {
         <Tabs.Screen
           name="(default)"
           options={{
-            tabBarLabel: 'Home',
+            tabBarLabel: SHARED_TEXT.TAB_HOME_LABEL,
             tabBarIcon: ({ focused }) => {
               return (
                 <View
@@ -53,7 +54,7 @@ const _layout = () => {
         <Tabs.Screen
           name="(hadeeth)"
           options={{
-            tabBarLabel: 'Hadith',
+            tabBarLabel: SHARED_TEXT.TAB_HADITH_LABEL,
             tabBarIcon: ({ focused }) => {
               return (
                 <View
@@ -74,7 +75,7 @@ const _layout = () => {
         <Tabs.Screen
           name="(search)"
           options={{
-            tabBarLabel: 'Search',
+            tabBarLabel: SHARED_TEXT.TAB_SEARCH_LABEL,
             tabBarIcon: ({ focused }) => {
               return (
                 <View
@@ -93,7 +94,7 @@ const _layout = () => {
         <Tabs.Screen
           name="(prayers)"
           options={{
-            tabBarLabel: 'Prayer',
+            tabBarLabel: SHARED_TEXT.TAB_PRAYER_LABEL,
             tabBarIcon: ({ focused }) => {
               return (
                 <View
@@ -115,7 +116,7 @@ const _layout = () => {
         <Tabs.Screen
           name="(qibla)"
           options={{
-            tabBarLabel: 'Qibla',
+            tabBarLabel: SHARED_TEXT.TAB_QIBLA_LABEL,
             tabBarIcon: ({ focused }) => {
               return (
                 <View
@@ -136,7 +137,7 @@ const _layout = () => {
           options={{
             href: null,
             headerShown: false,
-            tabBarLabel: 'Settings',
+            tabBarLabel: SHARED_TEXT.TAB_SETTINGS_LABEL,
             headerStatusBarHeight: 60,
             headerTitleAllowFontScaling: true,
             tabBarIcon: ({ focused }) => {

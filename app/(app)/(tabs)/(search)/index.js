@@ -5,6 +5,7 @@ import Header from '../../../components/header'
 import { Link } from 'expo-router'
 import { useQuery, useQueryClient} from '@tanstack/react-query'
 import { ChevronRightSquare } from 'lucide-react-native'
+import SHARED_TEXT from "../../../i18n";
 
 function Search() {
   const [searchKeyword, setSearchKeyword] = useState('')
@@ -152,7 +153,7 @@ function Search() {
 
   return (
     <Page class="bg-gray-100">
-      <Header title={'Search'} rounded={false} />
+      <Header title={SHARED_TEXT.SEARCH_HEADER} rounded={false} />
       <View
         className={`px-6 lex flex-row justify-between items-end rounded-b-2xl pb-6 shadow-lg bg-royal-blue overflow-hidden`}
       >
@@ -160,7 +161,7 @@ function Search() {
           <View className="bg-white rounded-2xl shadow w-full">
             <TextInput
               className="px-4 py-2"
-              placeholder="Search for Hadith, Books, Etc"
+              placeholder={SHARED_TEXT.SEARCH_SEARCHBAR_PLACEHOLDER}
               value={searchKeyword}
               autoFocus={true}
               returnKeyType={'done'}
@@ -181,8 +182,8 @@ function Search() {
         ListEmptyComponent={() => {
           return status === 'success' && searchKeyword && submitted ? (
             <View className="flex-1 flex items-center justify-center">
-              <Text className="text-lg">No results found.</Text>
-              <Text className="text-sm"> Try something else instead?</Text>
+              <Text className="text-lg">{SHARED_TEXT.SEARCH_NO_RESULT_LABEL}</Text>
+              <Text className="text-sm">{SHARED_TEXT.SEARCH_NO_RESULT_DESC}</Text>
             </View>
           ) : (
             <View></View>

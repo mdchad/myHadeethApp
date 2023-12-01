@@ -36,6 +36,8 @@ import { ScrollView } from 'react-native'
 import { Skeleton } from 'moti/skeleton'
 import Spacer from '@components/Spacer'
 import Header from '../../../components/header'
+import SHARED_TEXT from "../../../i18n";
+import { ms, enGB } from 'date-fns/locale';
 
 const prayerNames = ['Subuh', 'Syuruk', 'Zohor', 'Asar', 'Maghrib', 'Isyak']
 const prayerIcon = [
@@ -71,7 +73,7 @@ export default function Prayer() {
       id: i,
       day: date.getDate(),
       month: format(date, 'MMM'),
-      dayName: format(date, 'E')
+      dayName: format(date, 'E', { locale: ms }) // hardcoded for now
     }
   })
 
@@ -185,12 +187,12 @@ export default function Prayer() {
   return (
     <Page class="bg-gray-100">
       <ScrollView>
-        <Header rounded={false} title={'Prayer Times'} />
+        <Header rounded={false} title={SHARED_TEXT.PRAYERS_HEADER} />
         <View
           className={`px-6 flex flex-row justify-between items-end rounded-b-2xl py-6 shadow-lg bg-royal-blue overflow-hidden`}
         >
           <View>
-            <Text className="text-white mb-1">Next Prayer</Text>
+            <Text className="text-white mb-1">{SHARED_TEXT.PRAYERS_NEXT_PRAYER_HEADER}</Text>
             <Text className="text-white font-semibold text-2xl">
               {nextPrayer?.name}
             </Text>
@@ -221,7 +223,7 @@ export default function Prayer() {
           ) : error ? (
             <View className="w-full h-full mt-4 p-8">
               <Text className="text-xl font-bold text-center">
-                You need to be in Malaysia to access the prayer times
+                {SHARED_TEXT.PRAYERS_NETWORK_ERROR_LABEL}
               </Text>
             </View>
           ) : (

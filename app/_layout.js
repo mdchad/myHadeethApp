@@ -16,6 +16,7 @@ import { useEffect } from 'react'
 import * as SplashScreen from 'expo-splash-screen'
 import {zonedTimeToUtc} from "date-fns-tz";
 import {format} from "date-fns";
+import {setRootText} from "./i18n";
 
 function onAppStateChange(status) {
   if (Platform.OS !== 'web') {
@@ -43,7 +44,7 @@ const asyncPersist = createAsyncStoragePersister({
       const queryIsReadyForPersistance = query.state.status === 'success';
       if (queryIsReadyForPersistance) {
         const { queryKey } = query;
-        const excludeFromPersisting = queryKey.includes('search1');
+        const excludeFromPersisting = queryKey.includes('search');
         return !excludeFromPersisting;
       }
       return queryIsReadyForPersistance;
@@ -74,6 +75,7 @@ export default function Root() {
     // The results of this query will be cached like a normal query
 
     await Promise.all([
+      await queryClient.invalidateQueries(['todayHadith', formattedDate]),
       queryClient.prefetchQuery({
         queryKey: ['books'],
         queryFn: async () => {
@@ -93,7 +95,9 @@ export default function Root() {
           })
           const result = await res.json()
           return result
-        }
+        },
+        staleTime: 5 * 60 * 1000,
+        cacheTime: 24 * 60 * 60 * 1000
       })
     ])
   }
@@ -101,6 +105,8 @@ export default function Root() {
   useEffect(() => {
     prefetchTodos().then((t) => {
       if (fontsLoaded || fontError) {
+        // Remove the hardcoded
+        setRootText('ms')
         // Hide the splash screen after the fonts have loaded (or an error was returned) and the UI is ready.
         SplashScreen.hideAsync()
       }
