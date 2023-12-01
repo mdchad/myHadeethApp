@@ -4,18 +4,22 @@ import Page from '@components/page'
 import { WebView } from 'react-native-webview';
 import Header from "../../components/header";
 import {useRouter} from "expo-router";
+import Pdf from "react-native-pdf";
 
-export default function Hadth40() {
+export default function Hadith40() {
   const yourPdfURL="https://my-way-web.vercel.app/hadis40.pdf"
-  const pdfUri = `https://docs.google.com/gview?embedded=true&url=${yourPdfURL}`
   const router = useRouter()
 
   return (
     <Page>
       <Header title="Hadis 40" onPressButton={() => router.back()}/>
-      <WebView
-        style={styles.container}
-        source={{ uri: pdfUri }}
+      <Pdf
+        trustAllCerts={false}
+        source={{ uri: yourPdfURL, cache: true }}
+        style={{ flex: 1 }}
+        onLoadComplete={(numberOfPages, filePath) => {
+          console.log(`number of pages: ${numberOfPages}`);
+        }}
       />
     </Page>
   )

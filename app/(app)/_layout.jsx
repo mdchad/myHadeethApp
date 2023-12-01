@@ -24,6 +24,13 @@ export default function Layout() {
           headerShown: false
         }}
       />
+      <Stack.Screen
+        name="user"
+        options={{
+          // Hide the header for all other routes.
+          headerShown: false
+        }}
+      />
     </Stack>
   )
 }
