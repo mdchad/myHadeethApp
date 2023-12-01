@@ -43,7 +43,7 @@ const asyncPersist = createAsyncStoragePersister({
       const queryIsReadyForPersistance = query.state.status === 'success';
       if (queryIsReadyForPersistance) {
         const { queryKey } = query;
-        const excludeFromPersisting = queryKey.includes('search1');
+        const excludeFromPersisting = queryKey.includes('search');
         return !excludeFromPersisting;
       }
       return queryIsReadyForPersistance;
@@ -74,6 +74,7 @@ export default function Root() {
     // The results of this query will be cached like a normal query
 
     await Promise.all([
+      await queryClient.invalidateQueries(['todayHadith', formattedDate]),
       queryClient.prefetchQuery({
         queryKey: ['books'],
         queryFn: async () => {
@@ -93,7 +94,9 @@ export default function Root() {
           })
           const result = await res.json()
           return result
-        }
+        },
+        staleTime: 5 * 60 * 1000,
+        cacheTime: 24 * 60 * 60 * 1000
       })
     ])
   }
