@@ -99,9 +99,12 @@ const HadithItem = React.memo(({ hadith }) => (
 ))
 
 function HadithContent() {
-  const { volumeId, bookId, hadithId } = useLocalSearchParams()
+  const { volumeId, bookId } = useLocalSearchParams()
   const router = useRouter()
-  let chapterId = ''
+  let ids = {
+    chapterId: '',
+    firstHadithId: ''
+  }
 
   const { isLoading, isError, data, error } = useGetHadiths(bookId, volumeId)
 
@@ -137,8 +140,9 @@ function HadithContent() {
 
 
   function Items({ item }) {
-    if (chapterId !== item.chapter_id) {
-      chapterId = item.chapter_id
+    if (ids.chapterId !== item.chapter_id || ids.firstHadithId === item._id) {
+      ids.chapterId = item.chapter_id
+      ids.firstHadithId = item._id
       return (
         <>
           {item?.chapter_title?.ms && (
