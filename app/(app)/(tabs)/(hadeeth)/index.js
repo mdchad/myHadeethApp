@@ -9,6 +9,7 @@ import { Link, useRouter } from 'expo-router'
 import Header from '@components/header'
 import { ArrowRight, Bookmark, Heart, Share2 } from 'lucide-react-native'
 import { useGetBooks } from '../../../shared/fetcher/useBooks'
+import SHARED_TEXT from "../../../i18n";
 
 function Item({ title, id }) {
   const words = title.split(' ')
@@ -32,7 +33,7 @@ function Item({ title, id }) {
             </Text>
           </View>
           <View className="bg-royal-blue w-full p-1 flex flex-row justify-between items-center">
-            <Text className="text-white text-xs mr-1">View More</Text>
+            <Text className="text-white text-xs mr-1">{SHARED_TEXT.VIEW_MORE_LABEL}</Text>
             <ArrowRight color="white" size={12} />
           </View>
         </View>
@@ -46,7 +47,7 @@ function Books() {
 
   return (
     <>
-      <Header title={'Books of hadith'}></Header>
+      <Header title={SHARED_TEXT.BOOKS_HEADER}></Header>
       <View className="flex-1 bg-gray-100">
         <ImageBackground
           source={require('@assets/book-background.png')}

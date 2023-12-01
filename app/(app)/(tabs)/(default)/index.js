@@ -2,8 +2,6 @@ import {
   View,
   Text,
   ScrollView,
-  useWindowDimensions,
-  StyleSheet,
   TouchableHighlight,
   Pressable
 } from 'react-native'
@@ -16,12 +14,12 @@ import {
   Heart,
   Share2
 } from 'lucide-react-native'
-import { useGetVolumes } from '../../../shared/fetcher/useVolumes'
 import { useGetTodayHadith } from '../../../shared/fetcher/useTodayHadith'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Link } from 'expo-router'
 import {Skeleton} from "moti/skeleton";
 import Spacer from "../../../components/Spacer";
+import SHARED_TEXT from "../../../i18n";
 
 function Home() {
   const { isLoading, isError, data, error } = useGetTodayHadith()
@@ -33,7 +31,7 @@ function Home() {
           <View className="mx-2 p-3 flex space-y-6">
             <View className="space-y-5">
               <Text className="text-3xl text-royal-blue font-bold leading-none tracking-tight">
-                Daily hadith
+                {SHARED_TEXT.HOME_HEADER}
               </Text>
               <Link
                 href={{ pathname: `/(search)/hadith/${data?._id}` }}
@@ -111,7 +109,7 @@ function Home() {
                       </TouchableHighlight>
                     </View>
                     <View className="flex flex-row items-center space-x-2">
-                      <Text className="text-white">View More</Text>
+                      <Text className="text-white">{SHARED_TEXT.VIEW_MORE_LABEL}</Text>
                       <ArrowRight size={18} color={'white'} />
                     </View>
                   </View>
@@ -124,10 +122,10 @@ function Home() {
                 <Pressable className="border border-royal-blue flex flex-1 justify-between items-center rounded-md">
                   <View className="p-2 w-full">
                     <Text className="text-lg text-royal-blue">
-                      Forty Hadiths
+                      {SHARED_TEXT.HOME_FORTY_HADITHS_TITLE}
                     </Text>
                     <Text className="text-xs text-royal-blue break-words">
-                      Forty known famous hadith
+                      {SHARED_TEXT.HOME_FORTY_HADITHS_DESC}
                     </Text>
                   </View>
                   <View className="h-[16px] bg-royal-blue w-full"></View>
@@ -141,9 +139,9 @@ function Home() {
                     className="w-full "
                   >
                     <View className="p-2 w-full">
-                      <Text className="text-white text-lg">Kutub Sittah</Text>
+                      <Text className="text-white text-lg">{SHARED_TEXT.HOME_SIX_BOOKS_TITLE}</Text>
                       <Text className="text-white text-xs break-words">
-                        The six most reliable hadith books
+                        {SHARED_TEXT.HOME_SIX_BOOKS_DESC}
                       </Text>
                     </View>
                     <View className="h-[16px] bg-royal-blue w-full"></View>
@@ -156,18 +154,10 @@ function Home() {
               <Pressable className="bg-white border border-1 border-royal-blue space-y-3 rounded-md">
                 <View className="p-3">
                   <Text className="font-semibold text-lg text-royal-blue underline mb-2">
-                    Introduction to MyWay Mobile App
+                    {SHARED_TEXT.HOME_INTRO_TITLE}
                   </Text>
                   <Text className="text-royal-blue">
-                    Allāh the Almighty says: "Verily We: It is We Who have sent
-                    down the Dhikr (i.e. the Quran) and surely, We will guard it
-                    (from corruption)." [Sūrah al-Hijr: 15:9] Hence, Allah ﷻ
-                    guaranteed the preservation of the Quran. He entrusted, His
-                    Messenger, Prophet Muhammad ﷺ with the task of explaining
-                    the Quran as He ﷻ says: "And We have also sent down unto you
-                    (O Muhammad ﷺ) the reminder and the advice (the Quran), that
-                    you may explain clearly to men what is sent down to them,
-                    and that they may give thought." [Sūrah an-Nahl: 16:44]
+                    {SHARED_TEXT.HOME_INTRO_DESC}
                   </Text>
                 </View>
                 <View className="flex flex-row justify-between items-center bg-royal-blue">
@@ -187,7 +177,7 @@ function Home() {
                     </TouchableHighlight>
                   </View>
                   <View className="flex flex-row items-center space-x-2">
-                    <Text className="text-white">View More</Text>
+                    <Text className="text-white">{SHARED_TEXT.VIEW_MORE_LABEL}</Text>
                     <ArrowRight size={18} color={'white'} />
                   </View>
                 </View>
@@ -199,41 +189,5 @@ function Home() {
     </Page>
   )
 }
-
-const makeStyles = (fontScale) =>
-  StyleSheet.create({
-    safeAreaViewContainer: {
-      minWidth: '100%',
-      minHeight: '100%',
-      backgroundColor: 'red',
-      justifyContent: 'center',
-      alignItems: 'center'
-    },
-    screenContainer: {
-      height: '100%',
-      width: '100%',
-      justifyContent: 'center',
-      alignItems: 'center',
-      paddingHorizontal: 20,
-      paddingVertical: 20
-    },
-    boxContainer: {
-      paddingHorizontal: 36,
-      paddingVertical: 36,
-      alignItems: 'center',
-      backgroundColor: '#D0D0D0',
-      width: '100%',
-      height: '100%'
-    },
-    imageTop: {
-      height: 200,
-      width: 300
-    },
-    imageBot: {
-      height: 200,
-      width: 300,
-      marginTop: 20
-    }
-  })
 
 export default Home

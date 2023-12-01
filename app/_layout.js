@@ -16,6 +16,7 @@ import { useEffect } from 'react'
 import * as SplashScreen from 'expo-splash-screen'
 import {zonedTimeToUtc} from "date-fns-tz";
 import {format} from "date-fns";
+import {setRootText} from "./i18n";
 
 function onAppStateChange(status) {
   if (Platform.OS !== 'web') {
@@ -104,6 +105,8 @@ export default function Root() {
   useEffect(() => {
     prefetchTodos().then((t) => {
       if (fontsLoaded || fontError) {
+        // Remove the hardcoded
+        setRootText('ms')
         // Hide the splash screen after the fonts have loaded (or an error was returned) and the UI is ready.
         SplashScreen.hideAsync()
       }
