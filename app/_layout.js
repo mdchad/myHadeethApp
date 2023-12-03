@@ -75,7 +75,6 @@ export default function Root() {
     // The results of this query will be cached like a normal query
 
     await Promise.all([
-      await queryClient.invalidateQueries(['todayHadith', formattedDate]),
       queryClient.prefetchQuery({
         queryKey: ['books'],
         queryFn: async () => {

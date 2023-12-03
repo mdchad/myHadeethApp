@@ -21,8 +21,6 @@ import {Skeleton} from "moti/skeleton";
 import Spacer from "../../../components/Spacer";
 import SHARED_TEXT from "../../../i18n";
 
-const settingsLogo = require('@assets/settings.png')
-
 function Home() {
   const { isLoading, isError, data, error } = useGetTodayHadith()
 
@@ -59,7 +57,7 @@ function Home() {
                       <Text className="font-bold text-royal-blue mr-2">
                         {data?.book_title.ms}
                       </Text>
-                      <ChevronRightSquare color="black" size={16} />
+                      <ChevronRightSquare color="black" size={16} className={'mr-2'} />
                       <Text className="font-bold text-royal-blue">
                         {data?.volume_title.ms}
                       </Text>

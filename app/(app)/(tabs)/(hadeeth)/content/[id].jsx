@@ -17,6 +17,7 @@ import {
 } from 'lucide-react-native'
 import Header from '../../../../components/header'
 import { useGetHadiths } from '../../../../shared/fetcher/useHadiths'
+import {FlashList} from "@shopify/flash-list";
 
 function toSuperscript(str, type) {
   const superscripts = {
@@ -316,13 +317,12 @@ function HadithContent() {
         {
           data.length && (
             <View className="flex-1">
-              <FlatList
+              <FlashList
                 data={data}
-                keyExtractor={(item) => item._id}
-                initialNumToRender={5}
                 renderItem={Items}
                 contentContainerStyle={{ paddingHorizontal: 6 }}
-                style={{ paddingRight: 5, marginRight: -10 }}
+                // style={{ paddingRight: 5, marginRight: -10 }}
+                estimatedItemSize={200}
               />
             </View>
           )
