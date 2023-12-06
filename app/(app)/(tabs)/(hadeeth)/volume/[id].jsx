@@ -12,6 +12,7 @@ import Header from '../../../../components/header'
 import { ArrowRight } from 'lucide-react-native'
 import { useGetVolumes } from '../../../../shared/fetcher/useVolumes'
 import SHARED_TEXT from "../../../../i18n";
+import {t} from "i18next";
 
 const HadithVolumeItem = ({ item, index }) => (
   <Link

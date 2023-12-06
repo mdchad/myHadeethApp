@@ -60,13 +60,12 @@ function Home() {
                   <Link href="/user" asChild>
                     <Pressable className="ml-2">
                       <SettingsIcon size={20} color={'#1C2A4F'}/>
-                      {/* <FontAwesome5 name="home" size={30} color={focused ? 'tomato' : 'gray'} /> */}
                     </Pressable>
                   </Link>
                 </View>
               </View>
               <Link
-                href={{ pathname: `/(search)/hadith/${data?._id}` }}
+                href={{ pathname: `/(default)/hadith/${data?._id}` }}
                 asChild
               >
                 <Pressable className="bg-white border border-1 border-royal-blue space-y-3 rounded-md">
