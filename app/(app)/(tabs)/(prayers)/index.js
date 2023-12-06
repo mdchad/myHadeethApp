@@ -29,7 +29,7 @@ import {
   Linking,
   Button
 } from 'react-native'
-import { useAuth } from '@context/auth'
+import { useProvider } from '../../../../context/provider'
 import Page from '@components/page'
 import { MapPin } from 'lucide-react-native'
 import { ScrollView } from 'react-native'
@@ -59,7 +59,7 @@ export default function Prayer() {
   const [prayerTimes, setPrayerTimes] = useState([])
   const [nextPrayer, setNextPrayer] = useState(null)
   const [error, setError] = useState(false)
-  const { userLocation, userPlace, permissionStatus } = useAuth()
+  const { userLocation, userPlace, permissionStatus } = useProvider()
   const currentDate = new Date()
   const month = format(currentDate, 'L', { timeZone: 'Asia/Kuala_Lumpur' })
   const year = format(currentDate, 'y', { timeZone: 'Asia/Kuala_Lumpur' })

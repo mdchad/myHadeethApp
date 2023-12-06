@@ -8,7 +8,7 @@ import Pdf from "react-native-pdf";
 import SHARED_TEXT from "../../i18n";
 
 export default function Introduction() {
-  const pdfURL="https://my-way-web.vercel.app/intro.pdf"
+  const pdfURL="https://my-way-web.vercel.app/intro-malay.pdf"
   const router = useRouter()
 
   return (
@@ -25,10 +25,3 @@ export default function Introduction() {
     </Page>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    height: 500,
-    marginBottom: 50
-  },
-});

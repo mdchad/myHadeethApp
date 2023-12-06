@@ -11,7 +11,7 @@ import {
 } from 'react-native'
 import * as Location from 'expo-location'
 import * as Haptics from 'expo-haptics'
-import { useAuth } from '@context/auth'
+import { useProvider } from '../../context/provider'
 import { useSegments } from 'expo-router'
 import { Skeleton } from 'moti/skeleton'
 import Spacer from '@components/Spacer'
@@ -28,7 +28,7 @@ const width = Dimensions.get('window').width
 export default function CompassV2() {
   const [location, setLocation] = useState(null)
   const [heading, setHeading] = useState(0)
-  const { userLocation, userPlace, permissionStatus } = useAuth()
+  const { userLocation, userPlace, permissionStatus } = useProvider()
   const segment = useSegments()
   const [degree, setDegree] = useState('')
 

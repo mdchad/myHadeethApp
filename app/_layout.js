@@ -1,5 +1,5 @@
 import { Slot } from 'expo-router'
-import { Provider } from '@context/auth'
+import { Provider } from '../context/provider'
 import { useFonts } from 'expo-font'
 import {
   ScheherazadeNew_400Regular,

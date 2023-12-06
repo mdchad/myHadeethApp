@@ -1,4 +1,3 @@
-import { useRouter, useSegments } from 'expo-router'
 import React, { useEffect, useRef, useState } from 'react'
 import { AppState, Platform } from 'react-native'
 import * as Location from 'expo-location'
@@ -7,7 +6,7 @@ import { View } from 'react-native'
 const AuthContext = React.createContext(null)
 
 // This hook can be used to access the user info.
-export function useAuth() {
+export function useProvider() {
   return React.useContext(AuthContext)
 }
 
