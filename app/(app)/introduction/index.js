@@ -6,10 +6,14 @@ import Header from "../../components/header";
 import {useRouter} from "expo-router";
 import Pdf from "react-native-pdf";
 import SHARED_TEXT from "../../i18n";
-import {t} from "i18next";
+import {useTranslation} from "react-i18next";
 
 export default function Introduction() {
-  const pdfURL="https://my-way-web.vercel.app/intro-malay.pdf"
+  const { t, i18n } = useTranslation();
+  const pdfURL= {
+    ms: "https://my-way-web.vercel.app/intro-malay.pdf",
+    en: "https://my-way-web.vercel.app/intro.pdf"
+  }[i18n.language]
   const router = useRouter()
 
   return (
