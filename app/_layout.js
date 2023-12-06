@@ -16,7 +16,69 @@ import { useEffect } from 'react'
 import * as SplashScreen from 'expo-splash-screen'
 import {zonedTimeToUtc} from "date-fns-tz";
 import {format} from "date-fns";
-import {getLocales, setRootText} from "./i18n";
+
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+
+// Import all the languages you want here
+import en from "./i18n/locales/en.json";
+import ms from "./i18n/locales/ms.json";
+
+const isAndroid = Platform.OS === "android";
+const isHermes = !!global.HermesInternal;
+
+if (isAndroid || isHermes) {
+  require("@formatjs/intl-locale/polyfill");
+
+  require("@formatjs/intl-pluralrules/polyfill");
+  require("@formatjs/intl-pluralrules/locale-data/en");
+  require("@formatjs/intl-pluralrules/locale-data/es");
+
+  require("@formatjs/intl-displaynames/polyfill");
+  require("@formatjs/intl-displaynames/locale-data/en");
+  require("@formatjs/intl-displaynames/locale-data/es");
+}
+
+i18n
+  .use(initReactI18next)
+  .use({
+    type: 'languageDetector',
+    name: 'customDetector',
+    async: true, // If this is set to true, your detect function receives a callback function that you should call with your language, useful to retrieve your language stored in AsyncStorage for example
+    init: function () {
+      /* use services and options */
+    },
+    detect: function (callback) {
+      console.log('[LANG] detecting language');
+      AsyncStorage.getItem('user-language').then((val) => {
+        const detected = val || 'ms'; //default language
+        console.log('[LANG] detected:', detected);
+        callback(detected);
+      });
+    },
+    cacheUserLanguage: function (lng) {
+      return lng;
+    },
+  })
+  .init({
+  // Add any imported languages here
+  resources: {
+    en: {
+      translation: en,
+    },
+    ms: {
+      translation: ms,
+    }
+  },
+  fallbackLng: "ms",  // This is the default language if none of the users preffered languages are available
+  interpolation: {
+    escapeValue: false, // https://www.i18next.com/translation-function/interpolation#unescape
+  },
+  returnNull: false,
+  detection: {
+    order: ['customDetector']
+  },
+});
 
 function onAppStateChange(status) {
   if (Platform.OS !== 'web') {
@@ -104,10 +166,6 @@ export default function Root() {
   useEffect(() => {
     prefetchTodos().then((t) => {
       if (fontsLoaded || fontError) {
-        // Remove the hardcoded
-        getLocales('ms').then((translation) => {
-          setRootText({ ...translation })
-        })
         // Hide the splash screen after the fonts have loaded (or an error was returned) and the UI is ready.
         SplashScreen.hideAsync()
       }

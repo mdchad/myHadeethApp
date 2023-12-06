@@ -24,13 +24,14 @@ import * as WebBrowser from 'expo-web-browser'
 import Header from "../../components/header";
 import {useRouter} from "expo-router";
 import SHARED_TEXT from "../../i18n";
+import {t} from "i18next";
 
 export default function Profile() {
   const router = useRouter()
   const onShare = async () => {
     try {
       const result = await Share.share({
-        message: `${SHARED_TEXT.USER_SHARE_TEXT} https://myhadeeth.com`
+        message: `${t(SHARED_TEXT.USER_SHARE_TEXT)} https://myhadeeth.com`
       })
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
@@ -70,7 +71,7 @@ export default function Profile() {
             {/*  </>*/}
             {/*) : (*/}
             <>
-              <Text className="mb-1 text-royal-blue">{SHARED_TEXT.USER_GUEST_LABEL}</Text>
+              <Text className="mb-1 text-royal-blue">{t(SHARED_TEXT.USER_GUEST_LABEL)}</Text>
             </>
             {/*)}*/}
           </View>
@@ -81,7 +82,7 @@ export default function Profile() {
             <TouchableHighlight underlayColor="#f9fafb" onPress={onShare}>
               <View className="px-6 space-x-4 flex flex-row items-center py-2 my-1">
                 <Users color="black" size={20} />
-                <Text className="text-lg">{SHARED_TEXT.USER_SHARE_APP_LABEL}</Text>
+                <Text className="text-lg">{t(SHARED_TEXT.USER_SHARE_APP_LABEL)}</Text>
               </View>
             </TouchableHighlight>
             <TouchableHighlight
@@ -94,7 +95,7 @@ export default function Profile() {
             >
               <View className="px-6 space-x-4 flex flex-row items-center py-2 my-1">
                 <MessageSquare size={20} color={'black'} />
-                <Text className="text-lg">{SHARED_TEXT.USER_HELP_FEEDBACK_LABEL}</Text>
+                <Text className="text-lg">{t(SHARED_TEXT.USER_HELP_FEEDBACK_LABEL)}</Text>
               </View>
             </TouchableHighlight>
             <TouchableHighlight
@@ -106,7 +107,7 @@ export default function Profile() {
             >
               <View className="px-6 space-x-4 flex flex-row items-center py-2 my-1">
                 <LibraryIcon color={'black'} size={20} />
-                <Text className="text-lg">{SHARED_TEXT.USER_TERMS_LABEL}</Text>
+                <Text className="text-lg">{t(SHARED_TEXT.USER_TERMS_LABEL)}</Text>
               </View>
             </TouchableHighlight>
             <TouchableHighlight
@@ -118,7 +119,7 @@ export default function Profile() {
             >
               <View className="px-6 space-x-4 flex flex-row items-center py-2 my-1">
                 <Smartphone color={'black'} size={20} />
-                <Text className="text-lg">{SHARED_TEXT.USER_ABOUT_LABEL}</Text>
+                <Text className="text-lg">{t(SHARED_TEXT.USER_ABOUT_LABEL)}</Text>
               </View>
             </TouchableHighlight>
             {/*<Link href="/settings" asChild>*/}

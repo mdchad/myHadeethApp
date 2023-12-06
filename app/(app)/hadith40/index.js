@@ -5,6 +5,7 @@ import Header from '../../components/header'
 import { useRouter } from 'expo-router'
 import Pdf from 'react-native-pdf'
 import SHARED_TEXT from '../../i18n'
+import {t} from "i18next";
 
 export default function Hadith40() {
   const yourPdfURL = 'https://my-way-web.vercel.app/hadis40.pdf'
@@ -13,7 +14,7 @@ export default function Hadith40() {
   return (
     <Page>
       <Header
-        title={SHARED_TEXT.HADITHS_FORTY_TITLE}
+        title={t(SHARED_TEXT.HADITHS_FORTY_TITLE)}
         onPressButton={() => router.back()}
       />
       <Pdf
@@ -27,10 +28,3 @@ export default function Hadith40() {
     </Page>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    height: 500,
-    marginBottom: 20
-  }
-})

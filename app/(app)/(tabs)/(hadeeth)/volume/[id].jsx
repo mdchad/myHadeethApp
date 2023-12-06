@@ -63,7 +63,7 @@ const HadithVolumeItem = ({ item, index }) => (
             </View>
           </View>
           <View className="flex flex-row justify-end items-center">
-            <Text className="text-royal-blue text-xs mr-1">{SHARED_TEXT.VIEW_MORE_LABEL}</Text>
+            <Text className="text-royal-blue text-xs mr-1">{t(SHARED_TEXT.VIEW_MORE_LABEL)}</Text>
             <ArrowRight color="black" size={14} />
           </View>
         </View>

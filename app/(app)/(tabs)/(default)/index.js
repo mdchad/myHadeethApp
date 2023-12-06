@@ -22,12 +22,13 @@ import {Skeleton} from "moti/skeleton";
 import Spacer from "../../../components/Spacer";
 import SHARED_TEXT from "../../../i18n";
 import RNPickerSelect from 'react-native-picker-select';
-import {useProvider} from "../../../../context/provider";
+import {useTranslation} from "react-i18next";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function Home() {
   const { isLoading, isError, data, error } = useGetTodayHadith()
-  const { setLanguage } = useProvider()
-  const [lang, setLang] = useState('ms')
+  const { t, i18n } = useTranslation();
+  const [lang, setLang] = useState(i18n.language)
 
   return (
     <Page class="bg-white">
@@ -37,14 +38,15 @@ function Home() {
             <View className="space-y-5">
               <View className="flex flex-row justify-between items-center">
                 <Text className="text-3xl text-royal-blue font-bold leading-none tracking-tight">
-                  {SHARED_TEXT.HOME_HEADER}
+                  {t(SHARED_TEXT.HOME_HEADER)}
                 </Text>
                 <View className="flex flex-row items-center">
                   <RNPickerSelect
-                    onValueChange={(value) => {
+                    onValueChange={async (value) => {
                       if (value !== null) {
                         setLang(value)
-                        setLanguage(value)
+                        await AsyncStorage.setItem('user-language', value);
+                        i18n.changeLanguage(value)
                       }
                     }}
                     value={lang}
@@ -139,7 +141,7 @@ function Home() {
                       </TouchableHighlight>
                     </View>
                     <View className="flex flex-row items-center space-x-2">
-                      <Text className="text-white">{SHARED_TEXT.VIEW_MORE_LABEL}</Text>
+                      <Text className="text-white">{t(SHARED_TEXT.VIEW_MORE_LABEL)}</Text>
                       <ArrowRight size={18} color={'white'} />
                     </View>
                   </View>
@@ -152,10 +154,10 @@ function Home() {
                 <Pressable className="border border-royal-blue flex flex-1 justify-between items-center rounded-md">
                   <View className="flex-grow p-2 w-full">
                     <Text className="text-lg text-royal-blue">
-                      {SHARED_TEXT.HOME_FORTY_HADITHS_TITLE}
+                      {t(SHARED_TEXT.HOME_FORTY_HADITHS_TITLE)}
                     </Text>
                     <Text className="text-xs text-royal-blue break-words">
-                      {SHARED_TEXT.HOME_FORTY_HADITHS_DESC}
+                      {t(SHARED_TEXT.HOME_FORTY_HADITHS_DESC)}
                     </Text>
                   </View>
                   <View className="h-[16px] bg-royal-blue w-full"></View>
@@ -169,9 +171,9 @@ function Home() {
                     className="w-full flex-grow justify-between"
                   >
                     <View className="p-2">
-                      <Text className="text-white text-lg">{SHARED_TEXT.HOME_SIX_BOOKS_TITLE}</Text>
+                      <Text className="text-white text-lg">{t(SHARED_TEXT.HOME_SIX_BOOKS_TITLE)}</Text>
                       <Text className="text-white text-xs break-words">
-                        {SHARED_TEXT.HOME_SIX_BOOKS_DESC}
+                        {t(SHARED_TEXT.HOME_SIX_BOOKS_DESC)}
                       </Text>
                     </View>
                     <View className="h-[16px] bg-royal-blue w-full"></View>
@@ -184,10 +186,10 @@ function Home() {
               <Pressable className="bg-white border border-1 border-royal-blue space-y-3 rounded-md">
                 <View className="p-3">
                   <Text className="font-semibold text-lg text-royal-blue underline mb-2">
-                    {SHARED_TEXT.HOME_INTRO_TITLE}
+                    {t(SHARED_TEXT.HOME_INTRO_TITLE)}
                   </Text>
                   <Text className="text-royal-blue">
-                    {SHARED_TEXT.HOME_INTRO_DESC}
+                    {t(SHARED_TEXT.HOME_INTRO_DESC)}
                   </Text>
                 </View>
                 <View className="flex flex-row justify-between items-center bg-royal-blue">
@@ -207,7 +209,7 @@ function Home() {
                     </TouchableHighlight>
                   </View>
                   <View className="flex flex-row items-center space-x-2">
-                    <Text className="text-white">{SHARED_TEXT.VIEW_MORE_LABEL}</Text>
+                    <Text className="text-white">{t(SHARED_TEXT.VIEW_MORE_LABEL)}</Text>
                     <ArrowRight size={18} color={'white'} />
                   </View>
                 </View>

@@ -17,6 +17,7 @@ import { Skeleton } from 'moti/skeleton'
 import Spacer from '@components/Spacer'
 import Header from './header'
 import SHARED_TEXT from '../i18n'
+import {t} from "i18next";
 
 const Mecca = {
   latitude: 21.4225,
@@ -114,12 +115,12 @@ export default function CompassV2() {
 
   return (
     <View className="h-full">
-      <Header title={SHARED_TEXT.QIBLA_HEADER} />
+      <Header title={t(SHARED_TEXT.QIBLA_HEADER)} />
       <ScrollView>
         {permissionStatus === 'denied' ? (
           <View className="mt-4 w-full">
             <Button
-              title={SHARED_TEXT.ENABLE_LOCATION_LABEL}
+              title={t(SHARED_TEXT.ENABLE_LOCATION_LABEL)}
               onPress={openSettings}
             />
           </View>
@@ -186,7 +187,7 @@ export default function CompassV2() {
               {degree && userPlace ? (
                 <View className="px-8 py-4">
                   <Text className="text-xl font-semibold text-royal-blue">
-                    {SHARED_TEXT.QIBLA_LOCATION_LABEL}
+                    {t(SHARED_TEXT.QIBLA_LOCATION_LABEL)}
                   </Text>
                   <Text className="text-sm text-royal-blue">
                     {userPlace[0].city}

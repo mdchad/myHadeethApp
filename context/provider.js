@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { AppState, Platform } from 'react-native'
 import * as Location from 'expo-location'
-import {getLocales, setRootText} from "../app/i18n";
 
 const AuthContext = React.createContext(null)
 
@@ -35,7 +34,6 @@ export function useProvider() {
 export function Provider(props) {
   const [userLocation, setUserLocation] = React.useState(null)
   const [userPlace, setUserPlace] = React.useState(null)
-  const [language, setLanguage] = useState('ms')
   const [permissionStatus, setPermissionStatus] = React.useState(null)
   const appState = useRef(AppState.currentState)
   const [appStateVisible, setAppStateVisible] = useState(appState.current)
@@ -122,14 +120,7 @@ export function Provider(props) {
         userLocation,
         userPlace,
         permissionStatus,
-        setUserPlace: (place) => setUserPlace(place),
-        language,
-        setLanguage: (lang) => {
-          getLocales(lang).then((translation) => {
-            setRootText({ ...translation })
-          })
-          setLanguage(lang)
-        }
+        setUserPlace: (place) => setUserPlace(place)
       }}
     >
       {props.children}
