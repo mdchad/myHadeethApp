@@ -3,9 +3,10 @@ import {
   Text,
   ScrollView,
   TouchableHighlight,
-  Pressable, Image
+  Pressable,
+  StyleSheet
 } from 'react-native'
-import React, { useEffect } from 'react'
+import React, {useEffect, useState} from 'react'
 import Page from '@components/page'
 import {
   ArrowRight,
@@ -20,9 +21,13 @@ import { Link } from 'expo-router'
 import {Skeleton} from "moti/skeleton";
 import Spacer from "../../../components/Spacer";
 import SHARED_TEXT from "../../../i18n";
+import RNPickerSelect from 'react-native-picker-select';
+import {useProvider} from "../../../../context/provider";
 
 function Home() {
   const { isLoading, isError, data, error } = useGetTodayHadith()
+  const { setLanguage } = useProvider()
+  const [lang, setLang] = useState('ms')
 
   return (
     <Page class="bg-white">
@@ -30,21 +35,33 @@ function Home() {
         <ScrollView>
           <View className="mx-2 p-3 flex space-y-6">
             <View className="space-y-5">
-              <View className="flex flex-row justify-between">
+              <View className="flex flex-row justify-between items-center">
                 <Text className="text-3xl text-royal-blue font-bold leading-none tracking-tight">
                   {SHARED_TEXT.HOME_HEADER}
                 </Text>
-                <Link href="/user" asChild>
-                  <Pressable
-                    style={{
-                      justifyContent: 'center',
-                      alignItems: 'center'
+                <View className="flex flex-row items-center">
+                  <RNPickerSelect
+                    onValueChange={(value) => {
+                      if (value !== null) {
+                        setLang(value)
+                        setLanguage(value)
+                      }
                     }}
-                  >
-                    <SettingsIcon size={20} color={'#1C2A4F'}/>
-                    {/* <FontAwesome5 name="home" size={30} color={focused ? 'tomato' : 'gray'} /> */}
-                  </Pressable>
-                </Link>
+                    value={lang}
+                    placeholder={{}}
+                    style={pickerSelectStyles}
+                    items={[
+                      { label: '🇲🇾 Bahasa Malaysia', value: 'ms', inputLabel: '🇲🇾' },
+                      { label: '🇬🇧 English', value: 'en', inputLabel: '🇬🇧' }
+                    ]}
+                  />
+                  <Link href="/user" asChild>
+                    <Pressable className="ml-2">
+                      <SettingsIcon size={20} color={'#1C2A4F'}/>
+                      {/* <FontAwesome5 name="home" size={30} color={focused ? 'tomato' : 'gray'} /> */}
+                    </Pressable>
+                  </Link>
+                </View>
               </View>
               <Link
                 href={{ pathname: `/(search)/hadith/${data?._id}` }}
@@ -202,5 +219,28 @@ function Home() {
     </Page>
   )
 }
+
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 16,
+    paddingVertical: 6,
+    paddingHorizontal: 6,
+    borderWidth: 1,
+    borderColor: 'rgb(243, 244, 246)',
+    borderRadius: 5,
+    color: 'black',
+    backgroundColor: 'rgb(243, 244, 246)'
+  },
+  inputAndroid: {
+    fontSize: 16,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderWidth: 0.5,
+    borderColor: 'purple',
+    borderRadius: 8,
+    color: 'black',
+    paddingRight: 30, // to ensure the text is never behind the icon
+  },
+});
 
 export default Home

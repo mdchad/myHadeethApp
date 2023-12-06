@@ -1,18 +1,14 @@
 import defaultLocale from './locales/ms.json'
 
-export async function getLocales(locale, appTheme) {
-  const baseTranslationUrl = `./locales/${locale}.json`
+export async function getLocales(locale) {
+  const getBasedTranslations = (lang) => {
+    return {
+      en: require('./locales/en.json'),
+      ms: require('./locales/ms.json')
+    }[lang]
+  }
 
-  const getBasedTranslations = () =>
-    locale === 'ms'
-      ? Promise.resolve(defaultLocale)
-      : fetch(baseTranslationUrl)
-        .then((r) => r.json())
-        .catch(() => defaultLocale)
-
-  const baseTranslations = await Promise.all([
-    getBasedTranslations()
-  ])
+  const baseTranslations = getBasedTranslations(locale)
 
   return {
     ...baseTranslations,

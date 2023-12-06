@@ -8,7 +8,8 @@
     "submit:ios": "eas build -p ios --auto-submit",
     "submit:android": "eas submit -p android",
     "build:android": "eas build -p android --profile production",
-    "build:android:development": "eas build -p android --profile development"
+    "build:android:development": "eas build -p android --profile development",
+    "build:ios:development": "eas build -p ios --profile development"
   },
   "dependencies": {
     "@babel/preset-env": "^7.20.2",
@@ -23,6 +24,7 @@
     "@react-native-async-storage/async-storage": "1.18.2",
     "@react-native-community/datetimepicker": "7.2.0",
     "@react-native-community/netinfo": "^11.1.0",
+    "@react-native-picker/picker": "2.4.10",
     "@shopify/flash-list": "1.4.3",
     "@tanstack/query-async-storage-persister": "^5.8.3",
     "@tanstack/react-query": "^5.8.3",
@@ -62,6 +64,7 @@
     "react-native-gesture-handler": "~2.12.0",
     "react-native-markdown-display": "^7.0.0-alpha.2",
     "react-native-pdf": "^6.7.3",
+    "react-native-picker-select": "^9.0.0",
     "react-native-reanimated": "~3.3.0",
     "react-native-responsive-fontsize": "^0.5.1",
     "react-native-root-toast": "^3.4.1",
