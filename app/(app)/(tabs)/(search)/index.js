@@ -45,63 +45,63 @@ function Search() {
 
   function highlightKeywords(text, keyword) {
     const arabicRegex =
-      /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF\u0660-\u0669]/
-    // Regex for detecting Latin script (common in Malay)
-    const latinRegex = /[A-Za-z\d]/
+      /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF\u0660-\u0669]/;
+    const latinRegex = /[A-Za-z\d]/;
 
-    // Determine the language of the keyword
-    let language = ''
+    let language = '';
     if (arabicRegex.test(keyword)) {
-      language = 'ar'
+      language = 'ar';
     } else if (latinRegex.test(keyword)) {
-      language = 'ms'
+      language = 'ms';
     }
 
-    let textWithLanguage = text[language]
+    let textWithLanguage = text[language];
 
-    const parts = []
-    let match
-    if (keyword) {
-      const regex = new RegExp(escapeRegExp(keyword), 'gi')
+    // Define Arabic diacritics characters
+    const diacritics = "\u064B-\u065F\u06D6-\u06DC\u06DF-\u06E8\u06EA-\u06ED";
 
-      while ((match = regex.exec(textWithLanguage)) !== null) {
-        // Add the text before the keyword to the parts
-        parts.push(textWithLanguage.substring(0, match.index))
+    // Escape RegExp special characters in keyword and allow for diacritics after each character
+    const regexPattern = keyword.split('').map(char => {
+      return escapeRegExp(char) + "[" + diacritics + "]*";
+    }).join('');
 
-        // Add the keyword (match) to the parts
-        parts.push(
-          <Text key={Math.random()} style={{ backgroundColor: 'yellow' }}>
-            {match[0]}
-          </Text>
-        )
+    const regex = new RegExp(regexPattern, 'gi');
 
-        // Update the text to be the part after the keyword
-        textWithLanguage = textWithLanguage.substring(
-          match.index + match[0].length
-        )
-        regex.lastIndex = 0 // Reset the regex index
-      }
+    const parts = [];
+    let match;
+
+    while ((match = regex.exec(textWithLanguage)) !== null) {
+      // Add the text before the keyword
+      parts.push(textWithLanguage.substring(0, match.index));
+
+      // Add the highlighted keyword
+      parts.push(
+        <Text key={Math.random()} style={{ backgroundColor: 'yellow' }}>
+          {match[0]}
+        </Text>
+      );
+
+      // Update the text to be the part after the keyword
+      textWithLanguage = textWithLanguage.substring(match.index + match[0].length);
+      regex.lastIndex = 0;
     }
 
     // Add any remaining text after the last match
-    parts.push(textWithLanguage)
+    parts.push(textWithLanguage);
 
     if (language === 'ar') {
       return (
-        <Text
-          style={{ fontFamily: 'Traditional_ArabicRegular' }}
-          className="text-2xl text-right"
-        >
+        <Text style={{ fontFamily: 'Traditional_ArabicRegular' }} className="text-2xl text-right">
           {parts}
         </Text>
-      )
+      );
     }
 
     return (
       <Text style={{ fontFamily: 'KFGQPC_Regular' }} className="text-md">
         {parts}
       </Text>
-    )
+    );
   }
 
   const ItemSeparatorView = () => {

@@ -58,7 +58,7 @@ function Home() {
                       {
                         label: '🇲🇾 Bahasa Malaysia',
                         value: 'ms',
-                        inputLabel: '🇲ms'
+                        inputLabel: '🇲🇾'
                       },
                       { label: '🇬🇧 English', value: 'en', inputLabel: '🇬🇧' }
                     ]}

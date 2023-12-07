@@ -1,6 +1,6 @@
 {
   "expo": {
-    "scheme": "myWay",
+    "scheme": "myway",
     "orientation": "portrait",
     "icon": "./assets/icon-2.png",
     "userInterfaceStyle": "light",
@@ -10,7 +10,9 @@
       "backgroundColor": "#1C2A4F"
     },
     "version": "1.0.3",
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "web": {
       "bundler": "metro",
       "favicon": "./assets/favicon.png"
@@ -53,14 +55,18 @@
       "permissions": [
         "android.permission.ACCESS_COARSE_LOCATION",
         "android.permission.ACCESS_FINE_LOCATION",
-        "android.permission.FOREGROUND_SERVICE"
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.DOWNLOAD_WITHOUT_NOTIFICATION",
+        "android.permission.ACCESS_NETWORK_STATE"
       ]
     },
     "runtimeVersion": {
       "policy": "sdkVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/c72af849-aeb0-435c-8334-7436e13db514",
+      "url": "https://u.expo.dev/06765aee-13df-4192-8675-90bab00f9e6c",
       "enabled": true,
       "fallbackToCacheTimeout": 0,
       "checkAutomatically": "ON_ERROR_RECOVERY"
