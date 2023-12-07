@@ -13,6 +13,7 @@ import { Bookmark, Heart, Share2 } from 'lucide-react-native'
 import { useGetHadith } from '../../../../shared/fetcher/useHadiths'
 import Header from '../../../../components/header'
 import Page from "../../../../components/page";
+import {useGetTodayHadith} from "../../../../shared/fetcher/useTodayHadith";
 
 function toSuperscript(str, type) {
   const superscripts = {
@@ -52,7 +53,7 @@ function HadithContent() {
   const { id } = useLocalSearchParams()
   const router = useRouter()
 
-  const { isLoading, isError, data, error } = useGetHadith(id)
+  const { isLoading, isError, data, error } = useGetTodayHadith()
 
   const onShare = (hadith) => {
     let formattedMessage = ''

@@ -136,7 +136,7 @@ export default function Root() {
     const formattedDate = format(nowInKualaLumpur, 'yyyy-MM-dd', { timeZone });
     // The results of this query will be cached like a normal query
 
-    await Promise.all([
+    return Promise.all([
       queryClient.prefetchQuery({
         queryKey: ['books'],
         queryFn: async () => {
