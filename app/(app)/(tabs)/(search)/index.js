@@ -70,20 +70,22 @@ function Search() {
     const parts = [];
     let match;
 
-    while ((match = regex.exec(textWithLanguage)) !== null) {
-      // Add the text before the keyword
-      parts.push(textWithLanguage.substring(0, match.index));
+    if (keyword) {
+      while ((match = regex.exec(textWithLanguage)) !== null) {
+        // Add the text before the keyword
+        parts.push(textWithLanguage.substring(0, match.index));
 
-      // Add the highlighted keyword
-      parts.push(
-        <Text key={Math.random()} style={{ backgroundColor: 'yellow' }}>
-          {match[0]}
-        </Text>
-      );
+        // Add the highlighted keyword
+        parts.push(
+          <Text key={Math.random()} style={{backgroundColor: 'yellow'}}>
+            {match[0]}
+          </Text>
+        );
 
-      // Update the text to be the part after the keyword
-      textWithLanguage = textWithLanguage.substring(match.index + match[0].length);
-      regex.lastIndex = 0;
+        // Update the text to be the part after the keyword
+        textWithLanguage = textWithLanguage.substring(match.index + match[0].length);
+        regex.lastIndex = 0;
+      }
     }
 
     // Add any remaining text after the last match
