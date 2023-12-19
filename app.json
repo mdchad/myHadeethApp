@@ -9,7 +9,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#1C2A4F"
     },
-    "version": "1.0.4",
+    "version": "1.0.5",
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -69,7 +69,7 @@
       "url": "https://u.expo.dev/06765aee-13df-4192-8675-90bab00f9e6c",
       "enabled": true,
       "fallbackToCacheTimeout": 0,
-      "checkAutomatically": "ON_ERROR_RECOVERY"
+      "checkAutomatically": "ON_LOAD"
     }
   }
 }
