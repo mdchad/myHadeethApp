@@ -14,7 +14,7 @@ function Search() {
 
   const [submitted, setSubmitted] = useState(false)
   const [queryKeyword, setQueryKeyword] = useState('')
-  const { status, refetch, data } = useQuery({
+  const { status, refetch, data, fetchStatus } = useQuery({
     queryKey: ['search'],
     cacheTime: 0,
     queryFn: async () => {
@@ -177,13 +177,13 @@ function Search() {
       </View>
       <FlatList
         className="px-5"
-        data={data || []}
+        data={data}
         renderItem={renderedItems}
         keyExtractor={(item) => item?._id}
         scrollEnabled={true}
         ItemSeparatorComponent={ItemSeparatorView}
         ListEmptyComponent={() => {
-          return status === 'success' && searchKeyword && submitted ? (
+          return fetchStatus === 'idle' && searchKeyword && submitted ? (
             <View className="flex-1 flex items-center justify-center">
               <Text className="text-lg">{t(SHARED_TEXT.SEARCH_NO_RESULT_LABEL)}</Text>
               <Text className="text-sm">{t(SHARED_TEXT.SEARCH_NO_RESULT_DESC)}</Text>
