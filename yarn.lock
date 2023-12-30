@@ -2088,6 +2088,11 @@
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-compose-refs" "1.0.0"
 
+"@react-native-assets/slider@^7.0.6":
+  version "7.0.6"
+  resolved "https://registry.yarnpkg.com/@react-native-assets/slider/-/slider-7.0.6.tgz#88d1895b6f5c98a2418abaf7e10722bd481335a6"
+  integrity sha512-Lny8rT5NvrNRCscW4CEXnEj1A9KlyFNQEM4xOA/5XtYNDVCFyD5Luzn7+oTXG2/RjJVkQd/UwJi1fGSLs3cekg==
+
 "@react-native-async-storage/async-storage@1.18.2":
   version "1.18.2"
   resolved "https://registry.yarnpkg.com/@react-native-async-storage/async-storage/-/async-storage-1.18.2.tgz#ec8fd487a0b6c9500b43ece4b8779d1561f12e91"
