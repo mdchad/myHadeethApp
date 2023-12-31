@@ -11,7 +11,6 @@ import {FlashList} from "@shopify/flash-list";
 import Audio from "../../components/audio";
 
 export default function Hadith40() {
-  // const yourPdfURL = 'https://my-way-web.vercel.app/hadis40.pdf'
   const router = useRouter()
 
   function Items({ item }) {
@@ -27,20 +26,21 @@ export default function Hadith40() {
           </View>
         </View>
         {
-          item.content.map((cnt, index) => {
-            // console.log(index)
-            // console.log(item.narrators[index])
+          item.content.map((cnt, index, arr) => {
+            const uriAr = arr.length > 1 ? `${item.number}_content_ar_${index + 1}` : `${item.number}_content_ar`
+            const uriMs = arr.length > 1 ? `${item.number}_content_ms_${index + 1}` : `${item.number}_content_ms`
             return (
               <View key={index} className="mb-4">
                 <Text className="mb-4">{item.narrators[index].ms}</Text>
                 <View className="bg-gray-200 rounded-md px-2 py-4">
                   <Text className="font-bold text-3xl text-right" style={{ fontFamily: 'Traditional_ArabicRegular' }}>{cnt.ar}</Text>
                   <Text className="font-bold text-lg" style={{ fontFamily: 'Traditional_ArabicRegular' }}>{item.narratedBy[index].ar}</Text>
+                  <Audio url={item.number === 5 && index === 1 ?  `${item.number}_content_ar`: uriAr } />
                 </View>
                 <View className="mt-4">
-                  <Text className="text-md mb-2">{cnt.ms}</Text>
+                  <Text className="text-lg mb-2">{cnt.ms}</Text>
                   <Text className="text-xs text-right">{item.narratedBy[index].ms}</Text>
-                  <Audio />
+                  <Audio url={item.number === 5 && index === 1 ?  `${item.number}_content_ms`: uriMs } />
                 </View>
               </View>
             )
@@ -57,6 +57,7 @@ export default function Hadith40() {
               )
             })
           }
+          <Audio url={`${item.number}_lesson`} />
         </View>
       </View>
     )

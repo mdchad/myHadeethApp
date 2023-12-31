@@ -28,6 +28,7 @@
     "@react-native-async-storage/async-storage": "1.18.2",
     "@react-native-community/datetimepicker": "7.2.0",
     "@react-native-community/netinfo": "^11.1.0",
+    "@react-native-community/slider": "4.4.2",
     "@react-native-picker/picker": "2.4.10",
     "@shopify/flash-list": "1.4.3",
     "@tanstack/query-async-storage-persister": "^5.8.3",

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Button, View, Text, StyleSheet } from 'react-native'
+import { View, TouchableOpacity } from 'react-native'
 import { Audio } from 'expo-av'
 import { Slider } from '@react-native-assets/slider'
+import {PauseIcon, PlayIcon, StopCircle} from "lucide-react-native";
 
-const SoundPlayer = () => {
+const SoundPlayer = ({url}) => {
   const [sound, setSound] = useState()
   const [isPlaying, setIsPlaying] = useState(false);
   const [playbackStatus, setPlaybackStatus] = useState({});
@@ -20,21 +21,25 @@ const SoundPlayer = () => {
   }, []);
 
   const loadAudio = async () => {
-    console.log('Loading Sound');
+    const uri = `https://my-way-web.vercel.app/audio/${url}.mp3`
+    console.log('Loading Sound', uri);
     const { sound } = await Audio.Sound.createAsync(
-      require('./../../assets/audio/hadis-2-malay.mp3'),
+      { uri },
       {
         shouldPlay: isPlaying,
       },
       onPlaybackStatusUpdate
     );
     setSound(sound);
+
   };
 
   const onPlaybackStatusUpdate = status => {
+    console.log(status)
     setPlaybackStatus(status);
     if (status.isLoaded) {
       setPosition(status.positionMillis);
+      setIsPlaying(status.isPlaying)
     }
   };
 
@@ -45,7 +50,7 @@ const SoundPlayer = () => {
       if (playbackStatus.isPlaying) {
         await sound.pauseAsync();
       } else {
-        await sound.playAsync();
+        await sound.replayAsync();
       }
     }
     setIsPlaying(!playbackStatus.isPlaying);
@@ -58,33 +63,41 @@ const SoundPlayer = () => {
   };
 
   return (
-    <View>
-      <Button
-        title={isPlaying ? 'Stop Sound' : 'Play Sound'}
-        onPress={handlePlayPause}
-      />
-      <Slider
-        value={position}
-        onValueChange={handleSeek}
-        maximumValue={playbackStatus.durationMillis || 0}
-        minimumValue={0}
-        disable={!playbackStatus.isLoaded}
-      />
-      <Text>{`Position: ${position}ms`}</Text>
+    <View className="rounded-md mt-4 flex flex-row bg-gray-800/90 w-full flex-shrink space-x-4 items-center py-1 px-2">
+      <View>
+        {
+          isPlaying ? (
+            <TouchableOpacity onPress={handlePlayPause}>
+              <PauseIcon size={16} color="white" fill="#fff"/>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity onPress={handlePlayPause}>
+              <PlayIcon size={16} color="white" fill="#fff"/>
+            </TouchableOpacity>
+          )
+        }
+      </View>
+      <View className="w-full">
+        <Slider
+          value={position}
+          style={{
+            width: 240
+          }}
+          trackStyle={{
+            width: 40,
+            backgroundColor: 'rgb(156, 163, 175)'
+          }}
+          onValueChange={handleSeek}
+          maximumValue={playbackStatus.durationMillis || 0}
+          minimumValue={0}
+          thumbSize={14}
+          disable={!playbackStatus.isLoaded}
+          thumbTintColor="white"
+          trackHeight={3}
+        />
+      </View>
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  slider: {
-    width: 200,
-    height: 40,
-  },
-});
 
 export default SoundPlayer
