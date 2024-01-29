@@ -31,7 +31,7 @@ export default function Profile() {
   const onShare = async () => {
     try {
       const result = await Share.share({
-        message: `${t(SHARED_TEXT.USER_SHARE_TEXT)} https://myhadeeth.com`
+        message: `${t(SHARED_TEXT.USER_SHARE_TEXT)} https://my-way-web.vercel.app`
       })
       if (result.action === Share.sharedAction) {
         if (result.activityType) {

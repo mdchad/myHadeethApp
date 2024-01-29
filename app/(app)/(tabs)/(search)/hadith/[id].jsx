@@ -61,7 +61,7 @@ function HadithContent() {
     })
 
     // Add the book title and website line only once at the end
-    formattedMessage += `${hadith.book_title.ms}\n\nwww.myhadeeth.com.my`
+    formattedMessage += `${hadith.book_title.ms}\n\nhttps://my-way-web.vercel.app`
     Share.share({ message: formattedMessage })
       .then((result) => {
         // ... existing logic

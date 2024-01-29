@@ -125,7 +125,7 @@ function HadithContent() {
                     <Text
                       className="text-[22px] text-right text-royal-blue"
                       style={{
-                        fontFamily: 'Traditional_ArabicRegular'
+                        fontFamily: 'Traditional_ArabicBold'
                       }}
                     >
                       {data?.chapter_title?.ar}

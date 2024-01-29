@@ -150,7 +150,7 @@ function HadithContent() {
             <View className="bg-gray-100 rounded-xl mb-4 p-4">
               <View className="flex flex-row justify-between">
                 <View className="flex-1 mr-1">
-                  <Text className="text-royal-blue">
+                  <Text className="text-royal-blue font-bold">
                     {toSuperscript(item?.chapter_title?.ms, 'text')}
                   </Text>
                   <Text className="text-gray-600 mt-1">
@@ -161,7 +161,9 @@ function HadithContent() {
                   <Text
                     className="text-[22px] text-right text-royal-blue"
                     style={{
-                      fontFamily: 'Traditional_ArabicRegular'
+                      fontFamily: 'Traditional_ArabicBold',
+                      fontWeight: 700,
+                      fontSize: 18
                     }}
                   >
                     {item?.chapter_title?.ar}
@@ -171,7 +173,7 @@ function HadithContent() {
               {item?.chapter_metadata?.ms && (
                 <View className="flex flex-row justify-between mt-4 pt-4 border-t-0.5 border-t-gray-500">
                   <View className="flex-1 mr-1">
-                    <Text className="text-gray-800">
+                    <Text className="text-gray-800" style={{ fontFamily: 'KFGQPC_Regular' }}>
                       {toSuperscript(
                         item?.chapter_metadata?.ms,
                         'text'

@@ -125,7 +125,7 @@ export default function Root() {
   const [fontsLoaded, fontError] = useFonts({
     Traditional_Arabic: require('@assets/fonts/Traditional-Arabic-Regular.ttf'),
     Traditional_ArabicRegular: require('@assets/fonts/trado.ttf'),
-    Traditional_ArabicBold: require('@assets/fonts/tradbdo.ttf'),
+    Traditional_ArabicBold: require('@assets/fonts/KFGQPC-Bold.ttf'),
     KFGQPC_Regular: require('@assets/fonts/kfgqpc-arabic-symbols.ttf'),
     ScheherazadeNew_400Regular,
     ScheherazadeNew_700Bold
