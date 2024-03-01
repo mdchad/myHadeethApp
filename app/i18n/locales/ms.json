@@ -33,5 +33,7 @@
   "USER_ABOUT_LABEL": "Tentang Kami",
   "INTRO_TITLE": "Pengenalan",
   "SETTINGS_TITLE": "Tetapan",
-  "ENABLE_LOCATION_LABEL": "Aktifkan lokasi"
+  "ENABLE_LOCATION_LABEL": "Aktifkan lokasi",
+  "SEARCH_SHOWING_RESULTS": "Hasil",
+  "SEARCH_OF": "dari"
 }

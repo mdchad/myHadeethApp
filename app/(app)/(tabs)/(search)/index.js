@@ -7,25 +7,28 @@ import { useQuery, useQueryClient} from '@tanstack/react-query'
 import { ChevronRightSquare } from 'lucide-react-native'
 import SHARED_TEXT from "../../../i18n";
 import {t} from "i18next";
+import Pagination from "../../../components/pagination";
 
 function Search() {
   const [searchKeyword, setSearchKeyword] = useState('')
+  const [page, setPage] = React.useState(1)
+
   const queryClient = useQueryClient();
 
   const [submitted, setSubmitted] = useState(false)
   const [queryKeyword, setQueryKeyword] = useState('')
   const { status, refetch, data, fetchStatus } = useQuery({
-    queryKey: ['search'],
+    queryKey: ['search', page],
     cacheTime: 0,
     queryFn: async () => {
       const res = await fetch(
-        `https://my-way-web.vercel.app/api/search?page=${1}&limit=${20}&query=${encodeURIComponent(searchKeyword)}`,
+        `https://my-way-web.vercel.app/api/search?page=${page}&limit=${20}&query=${encodeURIComponent(searchKeyword)}`,
         {
           method: 'GET'
         }
       )
       const result = await res.json()
-      return result.data[0].documents
+      return result.data[0]
     },
     enabled: submitted, // Only run query if search term is not empty
     // If you want to clear the data when the search is disabled, you can use:
@@ -35,7 +38,7 @@ function Search() {
   useEffect(() => {
     if (searchKeyword.trim() === '') {
       // When the search term is cleared, reset the query data
-      queryClient.setQueryData(['search'], []);
+      queryClient.setQueryData(['search', page], []);
     }
   }, [searchKeyword, queryClient]);
 
@@ -175,9 +178,10 @@ function Search() {
           </View>
         </View>
       </View>
+      { submitted && data && data.totalCount && !!data.totalCount.length && <Pagination count={data?.totalCount[0]?.count} term={searchKeyword} currentPage={page} setPage={setPage}/> }
       <FlatList
         className="px-5"
-        data={data}
+        data={data?.documents}
         renderItem={renderedItems}
         keyExtractor={(item) => item?._id}
         scrollEnabled={true}

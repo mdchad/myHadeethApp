@@ -92,9 +92,9 @@ function Home() {
                       </View>
                       <Text
                         numberOfLines={7}
-                        ellipsizeMode="tail"
-                        className="mb-1 text-xl"
-                        style={{ fontFamily: 'arabic_regular' }}
+                        className="text-xl mb-1 pb-4 text-justify"
+                        lang="ar"
+                        style={{ fontFamily: 'arabic_regular', writingDirection: 'rtl' }}
                       >
                         {data?.content[0].ar}
                       </Text>
