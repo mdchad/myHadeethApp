@@ -3,7 +3,6 @@ import { View, Text } from 'react-native'
 import Page from '@components/page'
 import Header from '../../components/header'
 import { useRouter } from 'expo-router'
-import Pdf from 'react-native-pdf'
 import SHARED_TEXT from '../../i18n'
 import {t} from "i18next";
 import hadiths from '../../../data/hadith40.json'
@@ -33,12 +32,12 @@ export default function Hadith40() {
               <View key={index} className="mb-4">
                 <Text className="mb-4">{item.narrators[index].ms}</Text>
                 <View className="bg-gray-200 rounded-md px-2 py-4">
-                  <Text className="font-bold text-3xl text-right" style={{ fontFamily: 'Traditional_ArabicRegular' }}>{cnt.ar}</Text>
-                  <Text className="font-bold text-lg" style={{ fontFamily: 'Traditional_ArabicRegular' }}>{item.narratedBy[index].ar}</Text>
+                  <Text className="font-bold text-gray-700 text-2xl text-justify leading-10 mb-2" style={{ fontFamily: 'arabic_bold', writingDirection: 'rtl' }}>{cnt.ar}</Text>
+                  <Text className="font-bold text-lg" style={{ fontFamily: 'arabic_regular' }}>{item.narratedBy[index].ar}</Text>
                   <Audio url={item.number === 5 && index === 1 ?  `${item.number}_content_ar`: uriAr } />
                 </View>
                 <View className="mt-4">
-                  <Text className="text-lg mb-2">{cnt.ms}</Text>
+                  <Text className="text-lg mb-2 text-justify mb-2">{cnt.ms}</Text>
                   <Text className="text-xs text-right">{item.narratedBy[index].ms}</Text>
                   <Audio url={item.number === 5 && index === 1 ?  `${item.number}_content_ms`: uriMs } />
                 </View>

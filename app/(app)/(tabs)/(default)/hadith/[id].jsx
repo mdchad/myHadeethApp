@@ -103,7 +103,7 @@ function HadithContent() {
             <View className="flex-1 items-end">
               <Text
                 className="text-[26px] text-right font-semibold text-royal-blue"
-                style={{ fontFamily: 'Traditional_ArabicRegular' }}
+                style={{ fontFamily: 'arabic_regular' }}
               >
                 {data ? data?.volume_title.ar : ''}
               </Text>
@@ -125,7 +125,7 @@ function HadithContent() {
                     <Text
                       className="text-[22px] text-right text-royal-blue"
                       style={{
-                        fontFamily: 'Traditional_ArabicBold'
+                        fontFamily: 'arabic-bold'
                       }}
                     >
                       {data?.chapter_title?.ar}
@@ -143,7 +143,7 @@ function HadithContent() {
                       <Text
                         className="text-[22px] text-right text-gray-800"
                         style={{
-                          fontFamily: 'Traditional_ArabicRegular'
+                          fontFamily: 'arabic_regular'
                         }}
                       >
                         {data?.chapter_metadata?.ar}
@@ -165,7 +165,7 @@ function HadithContent() {
                         <View>
                           <TextInput
                             className="text-gray-800 text-right text-3xl"
-                            style={{ fontFamily: 'Traditional_ArabicRegular' }}
+                            style={{ fontFamily: 'arabic_regular' }}
                             scrollEnabled={false}
                             readOnly
                             multiline
@@ -176,7 +176,7 @@ function HadithContent() {
                             scrollEnabled={false}
                             readOnly
                             multiline
-                            style={{ fontFamily: 'KFGQPC_Regular' }}
+                            style={{ fontFamily: 'arabic_symbols' }}
                             value={content.ms}
                           />
                         </View>

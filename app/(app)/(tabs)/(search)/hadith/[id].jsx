@@ -99,7 +99,7 @@ function HadithContent() {
           <View className="flex-1 items-end">
             <Text
               className="text-[26px] text-right font-semibold text-royal-blue"
-              style={{ fontFamily: 'Traditional_ArabicRegular' }}
+              style={{ fontFamily: 'arabic_regular' }}
             >
               {data ? data?.volume_title.ar : ''}
             </Text>
@@ -108,9 +108,9 @@ function HadithContent() {
         <View className="flex-1">
           {data?.chapter_title?.ms && (
             <View className="bg-gray-100 rounded-xl mb-4 p-4">
-              <View className="flex flex-row justify-between">
+              <View className="flex flex-row space-x-6 justify-between">
                 <View className="flex-1 mr-1">
-                  <Text className="text-royal-blue">
+                  <Text className="text-royal-blue font-semibold text-justify">
                     {toSuperscript(data?.chapter_title?.ms, 'text')}
                   </Text>
                   <Text className="text-gray-600 mt-1">
@@ -119,9 +119,11 @@ function HadithContent() {
                 </View>
                 <View className="flex-1 items-end ml-1">
                   <Text
-                    className="text-[22px] text-right text-royal-blue"
+                    className="text-lg text-justify text-royal-blue"
                     style={{
-                      fontFamily: 'Traditional_ArabicRegular'
+                      fontFamily: 'arabic_bold',
+                      writingDirection: 'rtl',
+                      fontWeight: 700,
                     }}
                   >
                     {data?.chapter_title?.ar}
@@ -129,17 +131,18 @@ function HadithContent() {
                 </View>
               </View>
               {data?.chapter_metadata?.ms && (
-                <View className="flex flex-row justify-between mt-4 pt-4 border-t-0.5 border-t-gray-500">
+                <View className="flex flex-row space-x-6 justify-between mt-4 pt-4 border-t-0.5 border-t-gray-500">
                   <View className="flex-1 mr-1">
-                    <Text className="text-gray-800">
+                    <Text className="text-gray-800 leading-6" style={{ fontFamily: 'arabic_symbols' }}>
                       {toSuperscript(data?.chapter_metadata?.ms, 'text')}
                     </Text>
                   </View>
                   <View className="flex-1 items-end ml-1">
                     <Text
-                      className="text-[22px] text-right text-gray-800"
+                      className="text-lg text-justify text-gray-800 leading-8"
                       style={{
-                        fontFamily: 'Traditional_ArabicRegular'
+                        writingDirection: 'rtl',
+                        fontFamily: 'arabic_regular'
                       }}
                     >
                       {data?.chapter_metadata?.ar}
@@ -157,25 +160,17 @@ function HadithContent() {
                 }
                 return (
                   <View key={i}>
-                    <View className="px-4 py-6">
-                      <View>
-                        <TextInput
-                          className="text-gray-800 text-right text-3xl"
-                          style={{ fontFamily: 'Traditional_ArabicRegular' }}
-                          scrollEnabled={false}
-                          readOnly
-                          multiline
-                          value={content.ar}
-                        />
-                        <TextInput
-                          className="text-gray-800 pb-4 text-lg overflow-hidden leading-loose"
-                          scrollEnabled={false}
-                          readOnly
-                          multiline
-                          style={{ fontFamily: 'KFGQPC_Regular' }}
-                          value={content.ms}
-                        />
-                      </View>
+                    <View className="px-4 py-6 gap-6">
+                      <Text
+                        className="text-gray-800 text-justify text-2xl"
+                        style={{ fontFamily: 'arabic_regular', writingDirection: 'rtl' }}
+                      >
+                        {content.ar}
+                      </Text>
+                      <Text
+                        className="text-gray-800 pb-4 text-justify text-lg overflow-hidden leading-loose"
+                        style={{ fontFamily: 'arabic_symbols' }}
+                      >{content.ms}</Text>
                       {/*{!!hadith.footnotes.length && (*/}
                       {/*    <View className="flex space-y-2 pt-2 border-t border-t-gray-500">*/}
                       {/*        {hadith.footnotes.map(footnote => {*/}

@@ -61,25 +61,15 @@ const HadithItem = React.memo(({ hadith }) => (
       }
       return (
         <View key={i}>
-          <View className="px-4 py-6">
-            <View>
-              <TextInput
-                className="text-gray-800 text-right text-3xl"
-                style={{ fontFamily: 'Traditional_ArabicRegular' }}
-                scrollEnabled={false}
-                readOnly
-                multiline
-                value={content.ar}
-              />
-              <TextInput
-                className="text-gray-800 pb-4 text-lg overflow-hidden leading-loose"
-                scrollEnabled={false}
-                readOnly
-                multiline
-                style={{ fontFamily: 'KFGQPC_Regular' }}
-                value={content.ms}
-              />
-            </View>
+          <View className="px-4 py-6 gap-6">
+              <Text
+                className="text-gray-800 text-justify text-2xl leading-10"
+                style={{ fontFamily: 'arabic_regular', writingDirection: 'rtl' }}
+              >{content.ar}</Text>
+              <Text
+                className="text-gray-800 pb-4 text-lg overflow-hidden leading-loose text-justify"
+                style={{ fontFamily: 'arabic_symbols' }}
+              >{content.ms}</Text>
             {/*{!!hadith.footnotes.length && (*/}
             {/*    <View className="flex space-y-2 pt-2 border-t border-t-gray-500">*/}
             {/*        {hadith.footnotes.map(footnote => {*/}
@@ -148,22 +138,22 @@ function HadithContent() {
         <>
           {item?.chapter_title?.ms && (
             <View className="bg-gray-100 rounded-xl mb-4 p-4">
-              <View className="flex flex-row justify-between">
+              <View className="flex flex-row justify-between space-x-6">
                 <View className="flex-1 mr-1">
-                  <Text className="text-royal-blue font-bold">
+                  <Text className="text-royal-blue font-semibold text-justify">
                     {toSuperscript(item?.chapter_title?.ms, 'text')}
                   </Text>
-                  <Text className="text-gray-600 mt-1">
+                  <Text className="text-gray-600 mt-1 text-justify">
                     {item?.chapter_transliteration?.ms}
                   </Text>
                 </View>
                 <View className="flex-1 items-end ml-1">
                   <Text
-                    className="text-[22px] text-right text-royal-blue"
+                    className="text-lg text-justify text-royal-blue"
                     style={{
-                      fontFamily: 'Traditional_ArabicBold',
+                      fontFamily: 'arabic_bold',
+                      writingDirection: 'rtl',
                       fontWeight: 700,
-                      fontSize: 18
                     }}
                   >
                     {item?.chapter_title?.ar}
@@ -171,9 +161,9 @@ function HadithContent() {
                 </View>
               </View>
               {item?.chapter_metadata?.ms && (
-                <View className="flex flex-row justify-between mt-4 pt-4 border-t-0.5 border-t-gray-500">
+                <View className="flex flex-row justify-between space-x-6 mt-4 pt-4 border-t-0.5 border-t-gray-500">
                   <View className="flex-1 mr-1">
-                    <Text className="text-gray-800" style={{ fontFamily: 'KFGQPC_Regular' }}>
+                    <Text className="text-gray-800 leading-6" style={{ fontFamily: 'arabic_symbols'}}>
                       {toSuperscript(
                         item?.chapter_metadata?.ms,
                         'text'
@@ -182,9 +172,10 @@ function HadithContent() {
                   </View>
                   <View className="flex-1 items-end ml-1">
                     <Text
-                      className="text-[22px] text-right text-gray-800"
+                      className="text-lg text-justify text-gray-800 leading-8"
                       style={{
-                        fontFamily: 'Traditional_ArabicRegular'
+                        writingDirection: 'rtl',
+                        fontFamily: 'arabic_regular'
                       }}
                     >
                       {item?.chapter_metadata?.ar}
@@ -310,7 +301,7 @@ function HadithContent() {
           <View className="flex-1 items-end">
             <Text
               className="text-[26px] text-right font-semibold text-royal-blue"
-              style={{ fontFamily: 'Traditional_ArabicRegular' }}
+              style={{ fontFamily: 'arabic_regular' }}
             >
               {data ? data[0]?.volume_title.ar : ''}
             </Text>
@@ -322,9 +313,9 @@ function HadithContent() {
               <FlashList
                 data={data}
                 renderItem={Items}
+                showsVerticalScrollIndicator={false}
                 contentContainerStyle={{ paddingHorizontal: 6 }}
-                // style={{ paddingRight: 5, marginRight: -10 }}
-                estimatedItemSize={200}
+                estimatedItemSize={300}
               />
             </View>
           )

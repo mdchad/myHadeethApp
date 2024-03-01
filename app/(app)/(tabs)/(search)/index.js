@@ -93,14 +93,14 @@ function Search() {
 
     if (language === 'ar') {
       return (
-        <Text style={{ fontFamily: 'Traditional_ArabicRegular' }} className="text-2xl text-right">
+        <Text style={{ fontFamily: 'arabic_regular' }} className="text-2xl text-right">
           {parts}
         </Text>
       );
     }
 
     return (
-      <Text style={{ fontFamily: 'KFGQPC_Regular' }} className="text-md">
+      <Text style={{ fontFamily: 'arabic_symbols' }} className="text-md">
         {parts}
       </Text>
     );

@@ -94,14 +94,14 @@ function Home() {
                         numberOfLines={7}
                         ellipsizeMode="tail"
                         className="mb-1 text-xl"
-                        style={{ fontFamily: 'Traditional_ArabicRegular' }}
+                        style={{ fontFamily: 'arabic_regular' }}
                       >
                         {data?.content[0].ar}
                       </Text>
                       <Text
                         numberOfLines={7}
                         ellipsizeMode="tail"
-                        style={{ fontFamily: 'KFGQPC_Regular' }}
+                        style={{ fontFamily: 'arabic_symbols' }}
                       >
                         {data?.content[0].ms}
                       </Text>
