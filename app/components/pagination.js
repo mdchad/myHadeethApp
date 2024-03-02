@@ -3,15 +3,11 @@ import {Text, View, TouchableHighlight} from 'react-native'
 import {t} from "i18next";
 import SHARED_TEXT from "../i18n";
 
-const Pagination = ({ count, term, currentPage = 1, setPage, books = '' }) => {
-  // const term = searchParams.get('term');
-  // const currentPage = parseInt(searchParams.get("page"), 10) || 1;
-  // const books = searchParams.get("books") || "";
-
+const Pagination = ({ count, currentPage = 1, setPage, books = '' }) => {
   const totalCount = count; // Replace with the actual total count of collections
   const itemsPerPage = 10;
   const totalPages = Math.ceil(totalCount / itemsPerPage);
-  const maxPageNumberWindow = 5;
+  const maxPageNumberWindow = 3;
   const startIndex = (currentPage - 1) * itemsPerPage + 1;
   const endIndex = Math.min(startIndex + itemsPerPage - 1, totalCount);
 
@@ -37,7 +33,7 @@ const Pagination = ({ count, term, currentPage = 1, setPage, books = '' }) => {
   }
 
   return (
-    <View className="flex px-5">
+    <View className="flex px-5 pb-2">
       <Text className="text-right my-2 font-sans text-sm">{t(SHARED_TEXT.SEARCH_SHOWING_RESULTS)} {startIndex} - {endIndex} {t(SHARED_TEXT.SEARCH_OF)} {totalCount}</Text>
       <View className='flex flex-row list-none justify-end'>
         {pageNumbers.map((number, i) => (

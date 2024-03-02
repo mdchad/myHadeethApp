@@ -92,7 +92,7 @@ function Home() {
                       </View>
                       <Text
                         numberOfLines={7}
-                        className="text-xl mb-1 pb-4 text-justify"
+                        className="text-xl mb-1 pb-4 leading-8"
                         lang="ar"
                         style={{ fontFamily: 'arabic_regular', writingDirection: 'rtl' }}
                       >

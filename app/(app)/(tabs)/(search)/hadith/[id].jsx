@@ -110,7 +110,7 @@ function HadithContent() {
             <View className="bg-gray-100 rounded-xl mb-4 p-4">
               <View className="flex flex-row space-x-6 justify-between">
                 <View className="flex-1 mr-1">
-                  <Text className="text-royal-blue font-semibold text-justify">
+                  <Text className="text-royal-blue font-semibold">
                     {toSuperscript(data?.chapter_title?.ms, 'text')}
                   </Text>
                   <Text className="text-gray-600 mt-1">
@@ -119,7 +119,7 @@ function HadithContent() {
                 </View>
                 <View className="flex-1 items-end ml-1">
                   <Text
-                    className="text-lg text-justify text-royal-blue"
+                    className="text-lg text-royal-blue"
                     style={{
                       fontFamily: 'arabic_bold',
                       writingDirection: 'rtl',
@@ -139,7 +139,7 @@ function HadithContent() {
                   </View>
                   <View className="flex-1 items-end ml-1">
                     <Text
-                      className="text-lg text-justify text-gray-800 leading-8"
+                      className="text-lg text-gray-800 leading-8"
                       style={{
                         writingDirection: 'rtl',
                         fontFamily: 'arabic_regular'
@@ -162,7 +162,7 @@ function HadithContent() {
                   <View key={i}>
                     <View className="px-4 py-6 gap-6">
                       <Text
-                        className="text-gray-800 text-justify text-2xl"
+                        className="text-gray-800 text-2xl"
                         style={{ fontFamily: 'arabic_regular', writingDirection: 'rtl' }}
                       >
                         {content.ar}

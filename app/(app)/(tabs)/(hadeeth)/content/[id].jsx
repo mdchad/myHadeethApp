@@ -63,7 +63,7 @@ const HadithItem = React.memo(({ hadith }) => (
         <View key={i}>
           <View className="px-4 py-6 gap-6">
               <Text
-                className="text-gray-800 text-justify text-2xl leading-10"
+                className="text-gray-800 text-2xl leading-10"
                 style={{ fontFamily: 'arabic_regular', writingDirection: 'rtl' }}
               >{content.ar}</Text>
               <Text
@@ -140,16 +140,16 @@ function HadithContent() {
             <View className="bg-gray-100 rounded-xl mb-4 p-4">
               <View className="flex flex-row justify-between space-x-6">
                 <View className="flex-1 mr-1">
-                  <Text className="text-royal-blue font-semibold text-justify">
+                  <Text className="text-royal-blue font-semibold">
                     {toSuperscript(item?.chapter_title?.ms, 'text')}
                   </Text>
-                  <Text className="text-gray-600 mt-1 text-justify">
+                  <Text className="text-gray-600 mt-1">
                     {item?.chapter_transliteration?.ms}
                   </Text>
                 </View>
                 <View className="flex-1 items-end ml-1">
                   <Text
-                    className="text-lg text-justify text-royal-blue"
+                    className="text-lg text-royal-blue"
                     style={{
                       fontFamily: 'arabic_bold',
                       writingDirection: 'rtl',
@@ -172,7 +172,7 @@ function HadithContent() {
                   </View>
                   <View className="flex-1 items-end ml-1">
                     <Text
-                      className="text-lg text-justify text-gray-800 leading-8"
+                      className="text-lg text-gray-800 leading-8"
                       style={{
                         writingDirection: 'rtl',
                         fontFamily: 'arabic_regular'
