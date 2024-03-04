@@ -162,7 +162,7 @@ function HadithContent() {
                   <View key={i}>
                     <View className="px-4 py-6 gap-6">
                       <Text
-                        className="text-gray-800 text-2xl"
+                        className="text-gray-800 text-2xl mb-2"
                         style={{ fontFamily: 'arabic_regular', writingDirection: 'rtl' }}
                       >
                         {content.ar}

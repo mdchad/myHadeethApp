@@ -63,7 +63,7 @@ const HadithItem = React.memo(({ hadith }) => (
         <View key={i}>
           <View className="px-4 py-6 gap-6">
               <Text
-                className="text-gray-800 text-2xl leading-10"
+                className="text-gray-800 text-2xl leading-10 mb-2"
                 style={{ fontFamily: 'arabic_regular', writingDirection: 'rtl' }}
               >{content.ar}</Text>
               <Text

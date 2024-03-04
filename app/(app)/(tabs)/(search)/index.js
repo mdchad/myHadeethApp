@@ -19,25 +19,23 @@ function Search() {
 
   const queryClient = useQueryClient();
 
-  const [submitted, setSubmitted] = useState(false)
-  const [queryKeyword, setQueryKeyword] = useState('')
-  const { status, refetch, data, fetchStatus } = useQuery({
-    queryKey: ['search', page, searchKeyword],
-    cacheTime: 0,
+  const [submittedKeyword, setSubmittedKeyword] = useState('')
+  const { data, fetchStatus } = useQuery({
+    queryKey: ['search', page, submittedKeyword],
     queryFn: async () => {
       const res = await fetch(
-        `https://my-way-web.vercel.app/api/search?page=${page}&limit=${10}&query=${encodeURIComponent(searchKeyword)}`,
+        `https://my-way-web.vercel.app/api/search?page=${page}&limit=${10}&query=${encodeURIComponent(submittedKeyword)}`,
         {
           method: 'GET'
         }
       )
       const result = await res.json()
-      return result.data[0]
+      return result.data
     },
     keepPreviousData: true,
-    enabled: submitted, // Only run query if search term is not empty
+    enabled: !!submittedKeyword, // Only run query if search term is not empty
     // If you want to clear the data when the search is disabled, you can use:
-    initialData: submitted ? undefined : [],
+    // initialData: queryKeyword ? undefined : [],
   })
 
   useEffect(() => {
@@ -52,7 +50,7 @@ function Search() {
   useEffect(() => {
     if (searchKeyword.trim() === '') {
       // When the search term is cleared, reset the query data
-      queryClient.setQueryData(['search', 1, searchKeyword], []);
+      queryClient.setQueryData(['search', 1, ''], []);
       setPage(1)
     }
   }, [searchKeyword, queryClient]);
@@ -164,11 +162,9 @@ function Search() {
 
   async function onSubmit() {
     Keyboard.dismiss()
-    setQueryKeyword(searchKeyword)
     let history = []
     if (searchKeyword) {
-      await refetch()
-      setSubmitted(true)
+      setSubmittedKeyword(searchKeyword)
       const filteredArray = searchHistory.filter(item => item !== searchKeyword);
       if (searchHistory.length < 15) {
         history = [searchKeyword, ...filteredArray]
@@ -184,8 +180,7 @@ function Search() {
 
   async function onSubmitFromHistory(item) {
     setSearchKeyword(item)
-    setSubmitted(true)
-    await refetch()
+    setSubmittedKeyword(item)
   }
 
   async function onRemoveFromHistory(item) {
@@ -196,13 +191,12 @@ function Search() {
 
   const handleChangeText = (newText) => {
     setSearchKeyword(newText);
-    setSubmitted(false);
+    setSubmittedKeyword('')
   };
 
-  console.log("==================")
-  console.log('status', fetchStatus)
-  console.log('keyword', searchKeyword)
-  console.log('submitted', submitted)
+  // console.log("==================")
+  // console.log('status', fetchStatus)
+  // console.log('data', data)
   // console.log('data', data?.documents)
   return (
     <Page class="bg-gray-100">
@@ -225,7 +219,7 @@ function Search() {
           </View>
         </View>
       </View>
-      { submitted && data && data.totalCount && !!data.totalCount.length && <Pagination count={data?.totalCount[0]?.count} term={searchKeyword} currentPage={page} setPage={setPage}/> }
+      { data && data.totalCount && !!data.totalCount.length && <Pagination count={data?.totalCount[0]?.count} term={searchKeyword} currentPage={page} setPage={setPage}/> }
       <FlatList
         data={data?.documents}
         renderItem={renderedItems}
@@ -233,7 +227,7 @@ function Search() {
         scrollEnabled={true}
         ItemSeparatorComponent={ItemSeparatorView}
         ListEmptyComponent={() => {
-          return fetchStatus === 'idle' && searchKeyword && submitted ? (
+          return fetchStatus === 'idle' && searchKeyword && !!submittedKeyword ? (
             <View className="flex-1 flex items-center justify-center">
               <Text className="text-lg">{t(SHARED_TEXT.SEARCH_NO_RESULT_LABEL)}</Text>
               <Text className="text-sm">{t(SHARED_TEXT.SEARCH_NO_RESULT_DESC)}</Text>
