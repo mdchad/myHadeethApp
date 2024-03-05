@@ -43,7 +43,8 @@
       "supportsTablet": false,
       "infoPlist": {
         "NSLocationAlwaysUsageDescription": "Location access is required to determine the Qibla direction from your current position",
-        "NSLocationWhenInUseUsageDescription": "Location access is required to determine the Qibla direction from your current position"
+        "NSLocationWhenInUseUsageDescription": "Location access is required to determine the Qibla direction from your current position",
+        "NSMicrophoneUsageDescription": "Need microphone access for uploading audio"
       }
     },
     "android": {
