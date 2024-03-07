@@ -22,6 +22,7 @@
     "@formatjs/intl-locale": "^3.4.3",
     "@formatjs/intl-pluralrules": "^5.2.10",
     "@freakycoder/react-native-helpers": ">= 0.0.21",
+    "@gorhom/bottom-sheet": "^4",
     "@motify/components": "^0.18.0",
     "@motify/core": "^0.18.0",
     "@react-native-assets/slider": "^7.0.6",

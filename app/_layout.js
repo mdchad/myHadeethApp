@@ -24,6 +24,7 @@ import { initReactI18next } from "react-i18next";
 // Import all the languages you want here
 import en from "./i18n/locales/en.json";
 import ms from "./i18n/locales/ms.json";
+import {GestureHandlerRootView} from "react-native-gesture-handler";
 
 const isAndroid = Platform.OS === "android";
 const isHermes = !!global.HermesInternal;
@@ -196,9 +197,11 @@ export default function Root() {
           .then(() => queryClient.invalidateQueries())
       }
     >
-      <Provider>
-        <Slot />
-      </Provider>
+      <GestureHandlerRootView style={{ flex: 1}}>
+        <Provider>
+          <Slot />
+        </Provider>
+      </GestureHandlerRootView>
     </PersistQueryClientProvider>
   )
 }
