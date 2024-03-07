@@ -37,13 +37,10 @@ function Search() {
   const [searchHistory, setSearchHistory] = useState([])
   const [books, setBooks] = useState([])
   const [selectedBooks, setSelectedBooks] = useState('')
+  const [submittedKeyword, setSubmittedKeyword] = useState('')
 
   const queryClient = useQueryClient()
 
-  const [submittedKeyword, setSubmittedKeyword] = useState('')
-  useEffect(() => {
-    console.log(selectedBooks)
-  }, [selectedBooks])
   const { data, fetchStatus } = useQuery({
     queryKey: ['search', page, submittedKeyword, selectedBooks],
     queryFn: async () => {
@@ -253,15 +250,6 @@ function Search() {
   const handlePresentModalPress = useCallback(() => {
     bottomSheetRef.current?.snapToIndex(1)
   }, [])
-  const handleSheetChanges = useCallback((index) => {
-    // const getSelectedBooks = selectedBooks.split(',')
-    // console.log('select', getSelectedBooks)
-    // console.log('books', books)
-    // const commonElements = books.filter(value => getSelectedBooks.includes(value));
-
-    // setBooks(commonElements)
-
-  }, [])
   const renderBackdrop = useCallback(
     (props) => (
       <BottomSheetBackdrop {...props} pressBehavior={'close'} opacity={0.5} />
@@ -359,7 +347,6 @@ function Search() {
       />
       <BottomSheet
         ref={bottomSheetRef}
-        onChange={handleSheetChanges}
         snapPoints={snapPoints}
         enablePanDownToClose={true}
         index={-1}
