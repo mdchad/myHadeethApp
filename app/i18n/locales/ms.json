@@ -35,5 +35,7 @@
   "SETTINGS_TITLE": "Tetapan",
   "ENABLE_LOCATION_LABEL": "Aktifkan lokasi",
   "SEARCH_SHOWING_RESULTS": "Hasil",
-  "SEARCH_OF": "dari"
+  "SEARCH_OF": "dari",
+  "SEARCH_SELECTED": "Dipilih",
+  "SEARCH_APPLY": "Pilih"
 }

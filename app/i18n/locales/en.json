@@ -35,5 +35,7 @@
   "SETTINGS_TITLE": "Settings",
   "ENABLE_LOCATION_LABEL": "Enable location",
   "SEARCH_SHOWING_RESULTS": "Showing",
-  "SEARCH_OF": "of"
+  "SEARCH_OF": "of",
+  "SEARCH_SELECTED": "Selected",
+  "SEARCH_APPLY": "Apply"
 }
