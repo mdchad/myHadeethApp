@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import {
   Text,
   View,
@@ -6,16 +6,15 @@ import {
   TextInput,
   TouchableHighlight,
   ActivityIndicator,
-  FlatList
+  FlatList,
+  TouchableOpacity
 } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
-import {
-  Bookmark,
-  Share2
-} from 'lucide-react-native'
+import {ArrowBigUp, Bookmark, Share2} from 'lucide-react-native'
 import Header from '../../../../components/header'
 import { useGetHadiths } from '../../../../shared/fetcher/useHadiths'
-import {FlashList} from "@shopify/flash-list";
+import { FlashList } from '@shopify/flash-list'
+import SpecialText from '../../../../components/SpecialText'
 
 function toSuperscript(str, type) {
   const superscripts = {
@@ -60,14 +59,18 @@ const HadithItem = React.memo(({ hadith }) => (
       return (
         <View key={i}>
           <View className="px-4 py-6 gap-6">
-              <Text
-                className="text-gray-800 text-2xl leading-10 mb-2"
-                style={{ fontFamily: 'arabic_regular', writingDirection: 'rtl' }}
-              >{content.ar}</Text>
-              <Text
-                className="text-gray-800 pb-4 text-lg overflow-hidden leading-loose text-justify"
-                style={{ fontFamily: 'arabic_symbols' }}
-              >{content.ms}</Text>
+            <Text
+              className="text-gray-800 text-2xl leading-10 mb-2"
+              style={{ fontFamily: 'arabic_regular', writingDirection: 'rtl' }}
+            >
+              {content.ar}
+            </Text>
+            <Text
+              className="text-gray-800 pb-4 text-lg overflow-hidden leading-loose text-justify"
+              style={{ fontFamily: 'arabic_symbols' }}
+            >
+              {content.ms}
+            </Text>
             {/*{!!hadith.footnotes.length && (*/}
             {/*    <View className="flex space-y-2 pt-2 border-t border-t-gray-500">*/}
             {/*        {hadith.footnotes.map(footnote => {*/}
@@ -131,7 +134,7 @@ function HadithContent() {
 
   function checkForBookmark(id) {
     console.log('checkkkk', savedBookmark)
-    return savedBookmark.some(savedHadith => savedHadith === id)
+    return savedBookmark.some((savedHadith) => savedHadith === id)
   }
 
   if (isLoading) {
@@ -141,7 +144,6 @@ function HadithContent() {
       </View>
     )
   }
-
 
   function Items({ item }) {
     if (ids.chapterId !== item.chapter_id || ids.firstHadithId === item._id) {
@@ -153,9 +155,10 @@ function HadithContent() {
             <View className="bg-gray-100 rounded-xl mb-4 p-4">
               <View className="flex flex-row justify-between space-x-6">
                 <View className="flex-1 mr-1">
-                  <Text className="text-royal-blue font-semibold">
-                    {toSuperscript(item?.chapter_title?.ms, 'text')}
-                  </Text>
+                  <SpecialText
+                    className="text-royal-blue font-semibold"
+                    text={toSuperscript(item?.chapter_title?.ms, 'text')}
+                  />
                   <Text className="text-gray-600 mt-1">
                     {item?.chapter_transliteration?.ms}
                   </Text>
@@ -166,7 +169,7 @@ function HadithContent() {
                     style={{
                       fontFamily: 'arabic_bold',
                       writingDirection: 'rtl',
-                      fontWeight: 700,
+                      fontWeight: 700
                     }}
                   >
                     {item?.chapter_title?.ar}
@@ -176,11 +179,11 @@ function HadithContent() {
               {item?.chapter_metadata?.ms && (
                 <View className="flex flex-row justify-between space-x-6 mt-4 pt-4 border-t-0.5 border-t-gray-500">
                   <View className="flex-1 mr-1">
-                    <Text className="text-gray-800 leading-6" style={{ fontFamily: 'arabic_symbols'}}>
-                      {toSuperscript(
-                        item?.chapter_metadata?.ms,
-                        'text'
-                      )}
+                    <Text
+                      className="text-gray-800 leading-6"
+                      style={{ fontFamily: 'arabic_symbols' }}
+                    >
+                      {toSuperscript(item?.chapter_metadata?.ms, 'text')}
                     </Text>
                   </View>
                   <View className="flex-1 items-end ml-1">
@@ -200,21 +203,14 @@ function HadithContent() {
           )}
           {item.content[0].ar && (
             <View className="space-y-8 bg-white mb-4 border border-royal-blue">
-              <HadithItem
-                key={item._id}
-                hadith={item}
-              />
+              <HadithItem key={item._id} hadith={item} />
               <View className="flex flex-row justify-end items-center bg-royal-blue">
                 <TouchableHighlight
                   className="p-1"
                   underlayColor="#333"
                   onPress={() => onShare(item)}
                 >
-                  <Share2
-                    color="white"
-                    absoluteStrokeWidth={2}
-                    size={16}
-                  />
+                  <Share2 color="white" absoluteStrokeWidth={2} size={16} />
                 </TouchableHighlight>
                 <TouchableHighlight
                   className="p-1"
@@ -238,21 +234,14 @@ function HadithContent() {
     if (item.content[0].ar) {
       return (
         <View className="space-y-8 bg-white mb-4 border border-royal-blue">
-          <HadithItem
-            key={item._id}
-            hadith={item}
-          />
+          <HadithItem key={item._id} hadith={item} />
           <View className="flex flex-row justify-end items-center bg-royal-blue">
             <TouchableHighlight
               className="p-1"
               underlayColor="#333"
               onPress={() => onShare(item)}
             >
-              <Share2
-                color="white"
-                absoluteStrokeWidth={2}
-                size={16}
-              />
+              <Share2 color="white" absoluteStrokeWidth={2} size={16} />
             </TouchableHighlight>
             <TouchableHighlight
               className="p-1"
@@ -273,6 +262,8 @@ function HadithContent() {
       return null
     }
   }
+
+  const listRef = useRef(null);
 
   return (
     <>
@@ -296,19 +287,22 @@ function HadithContent() {
             </Text>
           </View>
         </View>
-        {
-          data.length && (
-            <View className="flex-1">
-              <FlashList
-                data={data}
-                renderItem={Items}
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={{ paddingHorizontal: 6 }}
-                estimatedItemSize={300}
-              />
-            </View>
-          )
-        }
+        {data.length && (
+          <View className="flex-1">
+            <FlashList
+              ref={listRef}
+              data={data}
+              renderItem={Items}
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{ paddingHorizontal: 6 }}
+              estimatedItemSize={500}
+            />
+          </View>
+        )}
+        <TouchableOpacity className="items-center absolute bottom-2 right-4 sticky bg-royal-blue rounded-xl p-2" onPress={() => {
+          listRef.current?.scrollToOffset({ offset: 0, animated: true });
+        }}><ArrowBigUp size={24} color={'white'}/>
+        </TouchableOpacity>
       </View>
     </>
   )
