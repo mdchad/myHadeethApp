@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {
   Text,
   View,
@@ -10,7 +10,7 @@ import {
   TouchableOpacity
 } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
-import {ArrowBigUp, Bookmark, Share2} from 'lucide-react-native'
+import { ArrowBigUp, Bookmark, Share2 } from 'lucide-react-native'
 import Header from '../../../../components/header'
 import { useGetHadiths } from '../../../../shared/fetcher/useHadiths'
 import { FlashList } from '@shopify/flash-list'
@@ -92,6 +92,8 @@ const HadithItem = React.memo(({ hadith }) => (
 
 function HadithContent() {
   const { volumeId, bookId } = useLocalSearchParams()
+  const listRef = useRef(null)
+
   const [savedBookmark, setSavedBookmark] = useState([])
   const router = useRouter()
   let ids = {
@@ -133,7 +135,6 @@ function HadithContent() {
   }
 
   function checkForBookmark(id) {
-    console.log('checkkkk', savedBookmark)
     return savedBookmark.some((savedHadith) => savedHadith === id)
   }
 
@@ -263,8 +264,6 @@ function HadithContent() {
     }
   }
 
-  const listRef = useRef(null);
-
   return (
     <>
       <Header
@@ -299,10 +298,16 @@ function HadithContent() {
             />
           </View>
         )}
-        <TouchableOpacity className="items-center absolute bottom-2 right-4 sticky bg-royal-blue rounded-xl p-2" onPress={() => {
-          listRef.current?.scrollToOffset({ offset: 0, animated: true });
-        }}><ArrowBigUp size={24} color={'white'}/>
-        </TouchableOpacity>
+        {listRef.current && (
+          <TouchableOpacity
+            className="items-center absolute bottom-2 right-4 sticky bg-royal-blue rounded-xl p-2"
+            onPress={() => {
+              listRef.current?.scrollToOffset({ offset: 0, animated: true })
+            }}
+          >
+            <ArrowBigUp size={24} color={'white'} />
+          </TouchableOpacity>
+        )}
       </View>
     </>
   )
