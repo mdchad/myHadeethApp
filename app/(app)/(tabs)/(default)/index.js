@@ -239,19 +239,6 @@ function Home() {
                 </View>
                 <View className="flex flex-row justify-between items-center bg-royal-blue">
                   <View className="flex flex-row items-center">
-                    <TouchableHighlight className="p-1" underlayColor="#333">
-                      <Share2 color="white" absoluteStrokeWidth={2} size={16} />
-                    </TouchableHighlight>
-                    <TouchableHighlight className="p-1" underlayColor="#333">
-                      <Heart color="white" absoluteStrokeWidth={2} size={16} />
-                    </TouchableHighlight>
-                    <TouchableHighlight className="p-1" underlayColor="#333">
-                      <Bookmark
-                        color="white"
-                        absoluteStrokeWidth={2}
-                        size={16}
-                      />
-                    </TouchableHighlight>
                   </View>
                   <View className="flex flex-row items-center space-x-2">
                     <Text className="text-white">

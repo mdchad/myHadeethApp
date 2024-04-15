@@ -29,7 +29,6 @@ import BottomSheet, {
   BottomSheetBackdrop,
   BottomSheetView
 } from '@gorhom/bottom-sheet'
-import {flex} from "nativewind/dist/postcss/to-react-native/properties/flex";
 
 function Search() {
   const [searchKeyword, setSearchKeyword] = useState('')
@@ -139,7 +138,7 @@ function Search() {
       return (
         <Text
           style={{ fontFamily: 'arabic_regular' }}
-          className="text-2xl text-right"
+          className="text-xl text-right"
         >
           {parts}
         </Text>
@@ -237,10 +236,6 @@ function Search() {
     setSubmittedKeyword('')
   }
 
-  // console.log("==================")
-  // console.log('status', fetchStatus)
-  // console.log('data', data)
-  // console.log('data', data?.documents)
   const bottomSheetRef = useRef(null)
 
   // variables
@@ -256,6 +251,11 @@ function Search() {
     ),
     []
   )
+
+  function selectBooks() {
+    setSelectedBooks(books.join(','))
+    bottomSheetRef.current.close()
+  }
 
   function onClickBook(book) {
     if (books.some(val => val === book)) {
@@ -397,7 +397,7 @@ function Search() {
               <Text>Sunan Al-Nasai</Text>
             </TouchableHighlight>
           </View>
-          <TouchableHighlight underlayColor="#333" className="bg-royal-blue mb-4 rounded-3xl p-2" onPress={() => setSelectedBooks(books.join(','))}>
+          <TouchableHighlight underlayColor="#333" className="bg-royal-blue mb-4 rounded-3xl p-2" onPress={selectBooks}>
             <Text className="text-white text-lg text-center">{t(SHARED_TEXT.SEARCH_APPLY)} ({(books.length)})</Text>
           </TouchableHighlight>
         </BottomSheetView>

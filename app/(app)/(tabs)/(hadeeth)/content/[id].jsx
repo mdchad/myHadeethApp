@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {
   Text,
   View,
@@ -11,8 +11,6 @@ import {
 import { useRouter, useLocalSearchParams } from 'expo-router'
 import {
   Bookmark,
-  Heart,
-  Share as ShareIcon,
   Share2
 } from 'lucide-react-native'
 import Header from '../../../../components/header'
@@ -91,6 +89,7 @@ const HadithItem = React.memo(({ hadith }) => (
 
 function HadithContent() {
   const { volumeId, bookId } = useLocalSearchParams()
+  const [savedBookmark, setSavedBookmark] = useState([])
   const router = useRouter()
   let ids = {
     chapterId: '',
@@ -117,8 +116,22 @@ function HadithContent() {
       })
   }
 
-  const onSave = () => {
+  const onSave = (id) => {
     // Implement save logic if needed
+    // if (savedBookmark) {
+    //   console.log('yeahh111', savedBookmark)
+    //   const updateBookmark = savedBookmark.concat([id])
+    //   console.log('yeahh', updateBookmark)
+    //   storage.set('bookmarks', JSON.stringify(updateBookmark))
+    // } else {
+    //   console.log('yooo', [id])
+    //   storage.set('bookmarks', JSON.stringify([id]))
+    // }
+  }
+
+  function checkForBookmark(id) {
+    console.log('checkkkk', savedBookmark)
+    return savedBookmark.some(savedHadith => savedHadith === id)
   }
 
   if (isLoading) {
@@ -190,8 +203,6 @@ function HadithContent() {
               <HadithItem
                 key={item._id}
                 hadith={item}
-                onShare={onShare}
-                onSave={onSave}
               />
               <View className="flex flex-row justify-end items-center bg-royal-blue">
                 <TouchableHighlight
@@ -208,23 +219,13 @@ function HadithContent() {
                 <TouchableHighlight
                   className="p-1"
                   underlayColor="#333"
-                  onPress={() => onSave(item)}
-                >
-                  <Heart
-                    color="white"
-                    absoluteStrokeWidth={2}
-                    size={16}
-                  />
-                </TouchableHighlight>
-                <TouchableHighlight
-                  className="p-1"
-                  underlayColor="#333"
-                  onPress={() => onSave(item)}
+                  onPress={() => onSave(item._id)}
                 >
                   <Bookmark
                     color="white"
                     absoluteStrokeWidth={2}
                     size={16}
+                    fill={checkForBookmark(item._id) && '#FFF'}
                   />
                 </TouchableHighlight>
               </View>
@@ -240,8 +241,6 @@ function HadithContent() {
           <HadithItem
             key={item._id}
             hadith={item}
-            onShare={onShare}
-            onSave={onSave}
           />
           <View className="flex flex-row justify-end items-center bg-royal-blue">
             <TouchableHighlight
@@ -258,23 +257,13 @@ function HadithContent() {
             <TouchableHighlight
               className="p-1"
               underlayColor="#333"
-              onPress={() => onSave(item)}
-            >
-              <Heart
-                color="white"
-                absoluteStrokeWidth={2}
-                size={16}
-              />
-            </TouchableHighlight>
-            <TouchableHighlight
-              className="p-1"
-              underlayColor="#333"
-              onPress={() => onSave(item)}
+              onPress={() => onSave(item._id)}
             >
               <Bookmark
                 color="white"
                 absoluteStrokeWidth={2}
                 size={16}
+                fill={checkForBookmark(item._id) && '#FFF'}
               />
             </TouchableHighlight>
           </View>
