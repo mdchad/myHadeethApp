@@ -124,14 +124,10 @@ export default function Root() {
   useOnlineManager()
 
   const [fontsLoaded, fontError] = useFonts({
-    Traditional_Arabic: require('@assets/fonts/Traditional-Arabic-Regular.ttf'),
-    Traditional_ArabicRegular: require('@assets/fonts/trado.ttf'),
-    Traditional_ArabicBold: require('@assets/fonts/KFGQPC-Bold.ttf'),
     arabic_symbols: require('@assets/fonts/kfgqpc-arabic-symbols.ttf'),
     arabic_regular: require('@assets/fonts/KFGQPC-Regular.ttf'),
     arabic_bold: require('@assets/fonts/KFGQPC-Bold.ttf'),
-    ScheherazadeNew_400Regular,
-    ScheherazadeNew_700Bold
+    uthmanic_hafs: require('@assets/fonts/uthmanic-hafs.ttf'),
   })
 
   const prefetchTodos = async () => {

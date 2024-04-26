@@ -12,6 +12,7 @@ import { useRouter, useLocalSearchParams } from 'expo-router'
 import { Bookmark, Heart, Share2 } from 'lucide-react-native'
 import { useGetHadith } from '../../../../shared/fetcher/useHadiths'
 import Header from '../../../../components/header'
+import QuranText from "../../../../components/QuranText";
 
 function toSuperscript(str, type) {
   const superscripts = {
@@ -126,7 +127,7 @@ function HadithContent() {
                       fontWeight: 700,
                     }}
                   >
-                    {data?.chapter_title?.ar}
+                    <QuranText text={data?.chapter_title?.ar} />
                   </Text>
                 </View>
               </View>
@@ -145,7 +146,7 @@ function HadithContent() {
                         fontFamily: 'arabic_regular'
                       }}
                     >
-                      {data?.chapter_metadata?.ar}
+                      <QuranText text={data?.chapter_metadata?.ar} />
                     </Text>
                   </View>
                 </View>
@@ -162,10 +163,10 @@ function HadithContent() {
                   <View key={i}>
                     <View className="px-4 py-6 gap-6">
                       <Text
-                        className="text-gray-800 text-2xl mb-2"
+                        className="text-gray-800 text-2xl mb-2 leading-10"
                         style={{ fontFamily: 'arabic_regular', writingDirection: 'rtl' }}
                       >
-                        {content.ar}
+                        <QuranText text={content.ar} />
                       </Text>
                       <Text
                         className="text-gray-800 pb-4 text-justify text-lg overflow-hidden leading-loose"

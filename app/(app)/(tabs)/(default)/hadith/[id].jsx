@@ -14,6 +14,7 @@ import { useGetHadith } from '../../../../shared/fetcher/useHadiths'
 import Header from '../../../../components/header'
 import Page from "../../../../components/page";
 import {useGetTodayHadith} from "../../../../shared/fetcher/useTodayHadith";
+import QuranText from "../../../../components/QuranText";
 
 function toSuperscript(str, type) {
   const superscripts = {
@@ -114,7 +115,7 @@ function HadithContent() {
               <View className="bg-gray-100 rounded-xl mb-4 p-4">
                 <View className="flex flex-row justify-between space-x-6">
                   <View className="flex-1 mr-1">
-                    <Text className="text-royal-blue">
+                    <Text className="text-royal-blue font-semibold">
                       {toSuperscript(data?.chapter_title?.ms, 'text')}
                     </Text>
                     <Text className="text-gray-600 mt-1">
@@ -130,7 +131,7 @@ function HadithContent() {
                         fontWeight: 700,
                       }}
                     >
-                      {data?.chapter_title?.ar}
+                      <QuranText text={data?.chapter_title?.ar} />
                     </Text>
                   </View>
                 </View>
@@ -149,7 +150,7 @@ function HadithContent() {
                           fontFamily: 'arabic_regular'
                         }}
                       >
-                        {data?.chapter_metadata?.ar}
+                        <QuranText text={data?.chapter_metadata?.ar} />
                       </Text>
                     </View>
                   </View>
@@ -169,7 +170,9 @@ function HadithContent() {
                           <Text
                             className="text-gray-800 text-2xl leading-10 mb-2"
                             style={{ fontFamily: 'arabic_regular', writingDirection: 'rtl' }}
-                          >{content.ar}</Text>
+                          >
+                            <QuranText text={content.ar} />
+                          </Text>
                           <Text
                             className="text-gray-800 pb-4 text-lg overflow-hidden leading-loose text-justify"
                             style={{ fontFamily: 'arabic_symbols' }}

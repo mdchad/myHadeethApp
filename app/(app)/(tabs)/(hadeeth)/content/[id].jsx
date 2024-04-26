@@ -3,10 +3,8 @@ import {
   Text,
   View,
   Share,
-  TextInput,
   TouchableHighlight,
   ActivityIndicator,
-  FlatList,
   TouchableOpacity
 } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
@@ -15,6 +13,7 @@ import Header from '../../../../components/header'
 import { useGetHadiths } from '../../../../shared/fetcher/useHadiths'
 import { FlashList } from '@shopify/flash-list'
 import SpecialText from '../../../../components/SpecialText'
+import QuranText from "../../../../components/QuranText";
 
 function toSuperscript(str, type) {
   const superscripts = {
@@ -63,7 +62,7 @@ const HadithItem = React.memo(({ hadith }) => (
               className="text-gray-800 text-2xl leading-10 mb-2"
               style={{ fontFamily: 'arabic_regular', writingDirection: 'rtl' }}
             >
-              {content.ar}
+              <QuranText text={content.ar} />
             </Text>
             <Text
               className="text-gray-800 pb-4 text-lg overflow-hidden leading-loose text-justify"
@@ -173,7 +172,7 @@ function HadithContent() {
                       fontWeight: 700
                     }}
                   >
-                    {item?.chapter_title?.ar}
+                    <QuranText text={item?.chapter_title?.ar} />
                   </Text>
                 </View>
               </View>
@@ -195,7 +194,7 @@ function HadithContent() {
                         fontFamily: 'arabic_regular'
                       }}
                     >
-                      {item?.chapter_metadata?.ar}
+                      <QuranText text={item?.chapter_metadata?.ar} />
                     </Text>
                   </View>
                 </View>
@@ -298,16 +297,14 @@ function HadithContent() {
             />
           </View>
         )}
-        {listRef.current && (
           <TouchableOpacity
             className="items-center absolute bottom-2 right-4 sticky bg-royal-blue rounded-xl p-2"
             onPress={() => {
-              listRef.current?.scrollToOffset({ offset: 0, animated: true })
+              listRef?.current?.scrollToOffset({ offset: 0, animated: true })
             }}
           >
             <ArrowBigUp size={24} color={'white'} />
           </TouchableOpacity>
-        )}
       </View>
     </>
   )
