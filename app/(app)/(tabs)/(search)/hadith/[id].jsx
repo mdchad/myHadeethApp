@@ -195,21 +195,21 @@ function HadithContent() {
                 underlayColor="#333"
                 onPress={() => onShare(data)}
               >
-                <Share2 color="white" absoluteStrokeWidth={2} size={16} />
+                <Share2 color="white" absoluteStrokeWidth={2} size={18} />
               </TouchableHighlight>
+              {/*<TouchableHighlight*/}
+              {/*  className="p-1"*/}
+              {/*  underlayColor="#333"*/}
+              {/*  onPress={() => onSave(data)}*/}
+              {/*>*/}
+              {/*  <Heart color="white" absoluteStrokeWidth={2} size={18} />*/}
+              {/*</TouchableHighlight>*/}
               <TouchableHighlight
                 className="p-1"
                 underlayColor="#333"
                 onPress={() => onSave(data)}
               >
-                <Heart color="white" absoluteStrokeWidth={2} size={16} />
-              </TouchableHighlight>
-              <TouchableHighlight
-                className="p-1"
-                underlayColor="#333"
-                onPress={() => onSave(data)}
-              >
-                <Bookmark color="white" absoluteStrokeWidth={2} size={16} />
+                <Bookmark color="white" absoluteStrokeWidth={2} size={18} />
               </TouchableHighlight>
             </View>
           </View>

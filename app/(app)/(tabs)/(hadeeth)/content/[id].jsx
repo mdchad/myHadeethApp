@@ -133,9 +133,9 @@ function HadithContent() {
     // }
   }
 
-  function checkForBookmark(id) {
-    return savedBookmark.some((savedHadith) => savedHadith === id)
-  }
+  // function checkForBookmark(id) {
+  //   return savedBookmark.some((savedHadith) => savedHadith === id)
+  // }
 
   if (isLoading) {
     return (
@@ -210,7 +210,7 @@ function HadithContent() {
                   underlayColor="#333"
                   onPress={() => onShare(item)}
                 >
-                  <Share2 color="white" absoluteStrokeWidth={2} size={16} />
+                  <Share2 color="white" absoluteStrokeWidth={2} size={18} />
                 </TouchableHighlight>
                 <TouchableHighlight
                   className="p-1"
@@ -220,8 +220,8 @@ function HadithContent() {
                   <Bookmark
                     color="white"
                     absoluteStrokeWidth={2}
-                    size={16}
-                    fill={checkForBookmark(item._id) && '#FFF'}
+                    size={18}
+                    // fill={checkForBookmark(item._id) && '#FFF'}
                   />
                 </TouchableHighlight>
               </View>
@@ -241,7 +241,7 @@ function HadithContent() {
               underlayColor="#333"
               onPress={() => onShare(item)}
             >
-              <Share2 color="white" absoluteStrokeWidth={2} size={16} />
+              <Share2 color="white" absoluteStrokeWidth={2} size={18} />
             </TouchableHighlight>
             <TouchableHighlight
               className="p-1"
@@ -251,8 +251,8 @@ function HadithContent() {
               <Bookmark
                 color="white"
                 absoluteStrokeWidth={2}
-                size={16}
-                fill={checkForBookmark(item._id) && '#FFF'}
+                size={18}
+                // fill={checkForBookmark(item._id) && '#FFF'}
               />
             </TouchableHighlight>
           </View>
@@ -291,6 +291,7 @@ function HadithContent() {
               ref={listRef}
               data={data}
               renderItem={Items}
+              keyExtractor={(item) => item._id}
               showsVerticalScrollIndicator={false}
               contentContainerStyle={{ paddingHorizontal: 6 }}
               estimatedItemSize={500}

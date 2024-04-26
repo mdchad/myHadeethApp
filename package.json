@@ -14,7 +14,6 @@
   "dependencies": {
     "@babel/preset-env": "^7.20.2",
     "@babel/runtime": "^7.21.0",
-    "@clerk/clerk-expo": "^0.16.4",
     "@config-plugins/react-native-blob-util": "^6.0.0",
     "@config-plugins/react-native-pdf": "^6.0.0",
     "@expo-google-fonts/scheherazade-new": "^0.2.3",

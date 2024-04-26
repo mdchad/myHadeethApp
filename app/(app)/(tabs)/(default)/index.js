@@ -163,21 +163,21 @@ function Home() {
                         <Share2
                           color="white"
                           absoluteStrokeWidth={2}
-                          size={16}
+                          size={18}
                         />
                       </TouchableHighlight>
-                      <TouchableHighlight className="p-1" underlayColor="#333">
-                        <Heart
-                          color="white"
-                          absoluteStrokeWidth={2}
-                          size={16}
-                        />
-                      </TouchableHighlight>
+                      {/*<TouchableHighlight className="p-1" underlayColor="#333">*/}
+                      {/*  <Heart*/}
+                      {/*    color="white"*/}
+                      {/*    absoluteStrokeWidth={2}*/}
+                      {/*    size={16}*/}
+                      {/*  />*/}
+                      {/*</TouchableHighlight>*/}
                       <TouchableHighlight className="p-1" underlayColor="#333">
                         <Bookmark
                           color="white"
                           absoluteStrokeWidth={2}
-                          size={16}
+                          size={18}
                         />
                       </TouchableHighlight>
                     </View>
