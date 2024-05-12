@@ -29,6 +29,7 @@ import BottomSheet, {
   BottomSheetBackdrop,
   BottomSheetView
 } from '@gorhom/bottom-sheet'
+import QuranText from "../../../components/QuranText";
 
 function Search() {
   const [searchKeyword, setSearchKeyword] = useState('')
@@ -132,6 +133,11 @@ function Search() {
     }
 
     // Add any remaining text after the last match
+    if (language === 'ar') {
+      textWithLanguage = <QuranText text={textWithLanguage} font={'arabic_regular'} />
+    } else {
+      textWithLanguage = <QuranText text={textWithLanguage} font={'arabic_symbols'} special={true} />
+    }
     parts.push(textWithLanguage)
 
     if (language === 'ar') {
@@ -146,7 +152,7 @@ function Search() {
     }
 
     return (
-      <Text style={{ fontFamily: 'arabic_symbols' }} className="text-md">
+      <Text style={{ fontFamily: 'arabic_symbols', writingDirection: 'ltr' }} className="text-md">
         {parts}
       </Text>
     )
@@ -290,8 +296,8 @@ function Search() {
         <View className="pl-4 flex flex-row justify-between items-center">
           <TouchableOpacity onPress={handlePresentModalPress} className="bg-white flex flex-row items-center rounded-lg p-2 border border-royal-blue">
             <SlidersHorizontal size={16} color={'black'}/>
-            <Text className="ml-2">Tapis</Text>
-            { !!books.length && <View className="ml-1 rounded-full border-0 px-1.5 py-0.5 bg-red-500 ">
+            <Text className="ml-2 text-md">{t(SHARED_TEXT.SEARCH_FILTER)}</Text>
+            { !!books.length && <View className="ml-0.5 rounded-full border-0 px-1.5 py-0.5 bg-red-500 ">
               <Text className="text-xs font-mono text-white">{books.length}</Text>
             </View>}
           </TouchableOpacity>
