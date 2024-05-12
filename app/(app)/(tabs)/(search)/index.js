@@ -297,8 +297,8 @@ function Search() {
           <TouchableOpacity onPress={handlePresentModalPress} className="bg-white flex flex-row items-center rounded-lg p-2 border border-royal-blue">
             <SlidersHorizontal size={16} color={'black'}/>
             <Text className="ml-2 text-md">{t(SHARED_TEXT.SEARCH_FILTER)}</Text>
-            { !!books.length && <View className="ml-0.5 rounded-full border-0 px-1.5 py-0.5 bg-red-500 ">
-              <Text className="text-xs font-mono text-white">{books.length}</Text>
+            { !!books.length && <View className="ml-0.5 rounded-full border-0 w-4 bg-red-500 ">
+              <Text className="text-xs font-mono text-white text-center">{books.length}</Text>
             </View>}
           </TouchableOpacity>
           <Pagination
