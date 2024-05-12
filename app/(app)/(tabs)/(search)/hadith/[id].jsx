@@ -13,6 +13,7 @@ import { Bookmark, Heart, Share2 } from 'lucide-react-native'
 import { useGetHadith } from '../../../../shared/fetcher/useHadiths'
 import Header from '../../../../components/header'
 import QuranText from "../../../../components/QuranText";
+import SpecialText from "../../../../components/SpecialText";
 
 function toSuperscript(str, type) {
   const superscripts = {
@@ -112,7 +113,7 @@ function HadithContent() {
               <View className="flex flex-row space-x-6 justify-between">
                 <View className="flex-1 mr-1">
                   <Text className="text-royal-blue font-semibold">
-                    {toSuperscript(data?.chapter_title?.ms, 'text')}
+                    <SpecialText text={toSuperscript(data?.chapter_title?.ms, 'text')} />
                   </Text>
                   <Text className="text-gray-600 mt-1">
                     {data?.chapter_transliteration?.ms}
@@ -127,7 +128,7 @@ function HadithContent() {
                       fontWeight: 700,
                     }}
                   >
-                    <QuranText text={data?.chapter_title?.ar} />
+                    <QuranText text={data?.chapter_title?.ar} font={'arabic_bold'}/>
                   </Text>
                 </View>
               </View>
@@ -135,7 +136,7 @@ function HadithContent() {
                 <View className="flex flex-row space-x-6 justify-between mt-4 pt-4 border-t-0.5 border-t-gray-500">
                   <View className="flex-1 mr-1">
                     <Text className="text-gray-800 leading-6" style={{ fontFamily: 'arabic_symbols' }}>
-                      {toSuperscript(data?.chapter_metadata?.ms, 'text')}
+                      <QuranText text={toSuperscript(data?.chapter_metadata?.ms, 'text')} font={'arabic_symbols'} special={true}/>
                     </Text>
                   </View>
                   <View className="flex-1 items-end ml-1">
@@ -170,8 +171,10 @@ function HadithContent() {
                       </Text>
                       <Text
                         className="text-gray-800 pb-4 text-justify text-lg overflow-hidden leading-loose"
-                        style={{ fontFamily: 'arabic_symbols' }}
-                      >{content.ms}</Text>
+                        style={{ fontFamily: 'arabic_symbols', writingDirection: 'ltr' }}
+                      >
+                        <QuranText text={content.ms} font={'arabic_symbols'} special={true}/>
+                      </Text>
                       {/*{!!hadith.footnotes.length && (*/}
                       {/*    <View className="flex space-y-2 pt-2 border-t border-t-gray-500">*/}
                       {/*        {hadith.footnotes.map(footnote => {*/}

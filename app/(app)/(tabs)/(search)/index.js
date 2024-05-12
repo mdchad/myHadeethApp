@@ -288,9 +288,13 @@ function Search() {
       </View>
       {data && data.totalCount && !!data.totalCount.length && (
         <View className="pl-4 flex flex-row justify-between items-center">
-          <Pressable onPress={handlePresentModalPress} className="bg-white rounded-lg p-2">
-            <SlidersHorizontal size={24} color={'black'}/>
-          </Pressable>
+          <TouchableOpacity onPress={handlePresentModalPress} className="bg-white flex flex-row items-center rounded-lg p-2 border border-royal-blue">
+            <SlidersHorizontal size={16} color={'black'}/>
+            <Text className="ml-2">Tapis</Text>
+            { !!books.length && <View className="ml-1 rounded-full border-0 px-1.5 py-0.5 bg-red-500 ">
+              <Text className="text-xs font-mono text-white">{books.length}</Text>
+            </View>}
+          </TouchableOpacity>
           <Pagination
             count={data?.totalCount[0]?.count}
             term={searchKeyword}

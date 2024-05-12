@@ -66,9 +66,9 @@ const HadithItem = React.memo(({ hadith }) => (
             </Text>
             <Text
               className="text-gray-800 pb-4 text-lg overflow-hidden leading-loose text-justify"
-              style={{ fontFamily: 'arabic_symbols' }}
+              style={{ fontFamily: 'arabic_symbols', writingDirection: 'ltr' }}
             >
-              {content.ms}
+              <QuranText text={content.ms} font={'arabic_symbols'} special={true}/>
             </Text>
             {/*{!!hadith.footnotes.length && (*/}
             {/*    <View className="flex space-y-2 pt-2 border-t border-t-gray-500">*/}
@@ -172,7 +172,7 @@ function HadithContent() {
                       fontWeight: 700
                     }}
                   >
-                    <QuranText text={item?.chapter_title?.ar} />
+                    <QuranText text={item?.chapter_title?.ar} font={'arabic_bold'}/>
                   </Text>
                 </View>
               </View>
@@ -181,9 +181,9 @@ function HadithContent() {
                   <View className="flex-1 mr-1">
                     <Text
                       className="text-gray-800 leading-6"
-                      style={{ fontFamily: 'arabic_symbols' }}
+                      style={{ fontFamily: 'arabic_symbols', writingDirection: 'ltr' }}
                     >
-                      {toSuperscript(item?.chapter_metadata?.ms, 'text')}
+                      <QuranText text={toSuperscript(item?.chapter_metadata?.ms, 'text')} font={'arabic_symbols'} special={true}/>
                     </Text>
                   </View>
                   <View className="flex-1 items-end ml-1">
