@@ -8,7 +8,6 @@ function determineDirection(text) {
 function QuranText({ text, special = false, font = "arabic_regular" }) {
   const regex = /([\uFD3F].*?[\uFD3E])/; // These are the Unicode points for the Arabic brackets
   const parts = text.split(regex);
-  console.log(text)
 
 
   return parts.map((part, index) => {

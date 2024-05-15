@@ -134,9 +134,9 @@ function Search() {
 
     // Add any remaining text after the last match
     if (language === 'ar') {
-      textWithLanguage = <QuranText text={textWithLanguage} font={'arabic_regular'} />
+      textWithLanguage = <QuranText key={Math.random()} text={textWithLanguage} font={'arabic_regular'} />
     } else {
-      textWithLanguage = <QuranText text={textWithLanguage} font={'arabic_symbols'} special={true} />
+      textWithLanguage = <QuranText key={Math.random()} text={textWithLanguage} font={'arabic_symbols'} special={true} />
     }
     parts.push(textWithLanguage)
 
