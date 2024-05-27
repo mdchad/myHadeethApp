@@ -66,8 +66,7 @@ export function Provider(props) {
               }
 
               let location = await Location.getCurrentPositionAsync({
-                accuracy: Location.Accuracy.High,
-                timeInterval: 1000,
+                accuracy: Location.Accuracy.Balanced,
                 distanceInterval: 0
               })
 
@@ -94,8 +93,7 @@ export function Provider(props) {
       }
 
       let location = await Location.getCurrentPositionAsync({
-        accuracy: Location.Accuracy.High,
-        timeInterval: 1000,
+        accuracy: Location.Accuracy.Balanced,
         distanceInterval: 0
       })
 

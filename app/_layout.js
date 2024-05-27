@@ -1,10 +1,6 @@
 import { Slot } from 'expo-router'
 import { Provider } from '../context/provider'
 import { useFonts } from 'expo-font'
-import {
-  ScheherazadeNew_400Regular,
-  ScheherazadeNew_700Bold
-} from '@expo-google-fonts/scheherazade-new'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persister'
 import { focusManager, QueryClient } from '@tanstack/react-query'
