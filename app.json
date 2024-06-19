@@ -9,7 +9,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#1C2A4F"
     },
-    "version": "1.0.6",
+    "version": "1.0.7",
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -36,7 +36,9 @@
           "locationAlwaysAndWhenInUsePermission": "Allow My Way to use your location."
         }
       ],
-      "expo-router"
+      "expo-router",
+      "expo-font",
+      "expo-secure-store"
     ],
     "ios": {
       "bundleIdentifier": "com.mdchad.myWay",

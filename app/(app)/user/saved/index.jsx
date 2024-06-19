@@ -1,23 +1,43 @@
 import { View, Text, ScrollView, Image, TouchableHighlight } from 'react-native'
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Page from '@components/page'
-import Compass from '@components/compassV2'
-import { Link } from 'expo-router'
-import {
-  Bookmark,
-  FileText,
-  LogOut,
-  Settings,
-  Users
-} from 'lucide-react-native'
+import {db} from "../../../../db/client";
+import {bookmarks} from "../../../../db/schema";
 
 const Saved = () => {
+  const [bookmarksData, setBookmarksData] = useState([])
+  useEffect(() => {
+    getData()
+  }, [])
+
+  async function getData() {
+    try {
+      const data = await db.select().from(bookmarks)
+
+      data.forEach(item => {
+        item.bookTitle = JSON.parse(item.bookTitle);
+        item.chapterMetaData = JSON.parse(item.chapterMetaData);
+        item.chapterTitle = JSON.parse(item.chapterTitle);
+        item.chapterTransliteration = JSON.parse(item.chapterTransliteration);
+        item.content = JSON.parse(item.content);
+        item.volumeTitle = JSON.parse(item.volumeTitle);
+      });
+
+      setBookmarksData(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   return (
     <Page class="bg-white">
       <ScrollView className="py-4">
         <View className="flex sm:mx-auto sm:w-full sm:max-w-md w-full h-full">
           <View className="py-6">
-            <Text>All the saved</Text>
+            <Text>Hoiiii</Text>
+            { !!bookmarksData.length > 0 ? (
+              <Text>{bookmarksData[0].content[0].ms}</Text>
+            ) : <Text>Hoiiii</Text>}
           </View>
         </View>
       </ScrollView>

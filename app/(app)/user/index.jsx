@@ -5,12 +5,12 @@ import {
   ScrollView,
   TouchableHighlight,
   Share,
-  Alert
+  Alert, Pressable
 } from 'react-native'
 
 import Page from '@components/page'
 import {
-  Bookmark,
+  Bookmark, ChevronLeftCircle,
   FileText, LibraryIcon,
   LogIn,
   LogOut,
@@ -22,7 +22,7 @@ import {
 } from 'lucide-react-native'
 import * as WebBrowser from 'expo-web-browser'
 import Header from "../../components/header";
-import {useRouter} from "expo-router";
+import {Link, useRouter} from "expo-router";
 import SHARED_TEXT from "../../i18n";
 import {t} from "i18next";
 
@@ -50,10 +50,16 @@ export default function Profile() {
   return (
     <Page class="bg-white w-full">
       <ScrollView>
-        <Header rounded={false} onPressButton={() => router.back()} />
+        <Header rounded={false} />
         <View
           className={`w-full flex items-center h-10 rounded-b-2xl bg-royal-blue`}
         >
+          <Pressable
+            className="border-transparent absolute left-5"
+            onPress={() => router.back()}
+          >
+            <ChevronLeftCircle color={'white'} size={28}></ChevronLeftCircle>
+          </Pressable>
           <View className="">
             {/*{ user ? (*/}
             {/*  <Image source={{ uri: user.profileImageUrl }} style={{ width: 80, height: 80, borderRadius: 100 }} />*/}
@@ -122,11 +128,11 @@ export default function Profile() {
                 <Text className="text-lg">{t(SHARED_TEXT.USER_ABOUT_LABEL)}</Text>
               </View>
             </TouchableHighlight>
-            {/*<Link href="/settings" asChild>*/}
+            {/*<Link href="/user/saved" asChild>*/}
             {/*  <TouchableHighlight underlayColor="#f9fafb">*/}
             {/*    <View className="px-6 space-x-4 flex flex-row items-center py-2 my-1">*/}
             {/*      <Settings color="black" size={20}/>*/}
-            {/*      <Text className="text-lg">Settings</Text>*/}
+            {/*      <Text className="text-lg">Saved</Text>*/}
             {/*    </View>*/}
             {/*  </TouchableHighlight>*/}
             {/*</Link>*/}

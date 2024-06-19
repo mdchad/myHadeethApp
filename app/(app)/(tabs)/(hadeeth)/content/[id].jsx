@@ -14,6 +14,8 @@ import { useGetHadiths } from '../../../../shared/fetcher/useHadiths'
 import { FlashList } from '@shopify/flash-list'
 import SpecialText from '../../../../components/SpecialText'
 import QuranText from "../../../../components/QuranText";
+import {db} from "../../../../../db/client";
+import {bookmarks} from "../../../../../db/schema";
 
 function toSuperscript(str, type) {
   const superscripts = {
@@ -120,7 +122,21 @@ function HadithContent() {
       })
   }
 
-  const onSave = (id) => {
+  const onSave = async (item) => {
+    const data = await db.insert(bookmarks)
+      .values({
+        id: item._id,
+        bookTitle: JSON.stringify(item.book_title),
+        content: JSON.stringify(item.content),
+        volumeTitle: JSON.stringify(item.volume_title),
+        chapterTitle: JSON.stringify(item.chapter_title),
+        chapterMetaData: JSON.stringify(item.chapter_metadata),
+        chapterTransliteration: JSON.stringify(item.chapter_transliteration),
+        number: item.number
+      })
+      .returning()
+
+    console.log(data)
     // Implement save logic if needed
     // if (savedBookmark) {
     //   console.log('yeahh111', savedBookmark)
@@ -215,7 +231,7 @@ function HadithContent() {
                 <TouchableHighlight
                   className="p-1"
                   underlayColor="#333"
-                  onPress={() => onSave(item._id)}
+                  onPress={() => onSave(item)}
                 >
                   <Bookmark
                     color="white"

@@ -28,7 +28,7 @@ export default function Profile() {
     try {
       const result = await Share.share({
         message:
-          'Salam, download the best app for hadith for free now at https://myhadeeth.com'
+          'Salam, download the best app for hadith for free now at https://my-way.com'
       })
       if (result.action === Share.sharedAction) {
         if (result.activityType) {

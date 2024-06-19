@@ -21,6 +21,9 @@ import { initReactI18next } from "react-i18next";
 import en from "./i18n/locales/en.json";
 import ms from "./i18n/locales/ms.json";
 import {GestureHandlerRootView} from "react-native-gesture-handler";
+import {useLoadAssets} from "../hooks/use-load-assets";
+import {useDrizzleStudio} from "expo-drizzle-studio-plugin";
+import {db, expoDb} from "../db/client";
 
 const isAndroid = Platform.OS === "android";
 const isHermes = !!global.HermesInternal;
@@ -113,18 +116,20 @@ const asyncPersist = createAsyncStoragePersister({
   throttleTime: 1000
 })
 
-SplashScreen.preventAutoHideAsync()
+// SplashScreen.preventAutoHideAsync()
 
 export default function Root() {
   useAppState(onAppStateChange)
   useOnlineManager()
 
-  const [fontsLoaded, fontError] = useFonts({
-    arabic_symbols: require('@assets/fonts/kfgqpc-arabic-symbols.ttf'),
-    arabic_regular: require('@assets/fonts/KFGQPC-Regular.ttf'),
-    arabic_bold: require('@assets/fonts/KFGQPC-Bold.ttf'),
-    uthmanic_hafs: require('@assets/fonts/uthmanic-hafs.ttf'),
-  })
+  // const [fontsLoaded, fontError] = useFonts({
+  //   arabic_symbols: require('@assets/fonts/kfgqpc-arabic-symbols.ttf'),
+  //   arabic_regular: require('@assets/fonts/KFGQPC-Regular.ttf'),
+  //   arabic_bold: require('@assets/fonts/KFGQPC-Bold.ttf'),
+  //   uthmanic_hafs: require('@assets/fonts/uthmanic-hafs.ttf'),
+  // })
+
+  const { isLoaded } = useLoadAssets()
 
   const prefetchTodos = async () => {
     const timeZone = 'Asia/Kuala_Lumpur';
@@ -159,19 +164,22 @@ export default function Root() {
     ])
   }
 
-  useEffect(() => {
-    prefetchTodos().then((t) => {
-      if (fontsLoaded || fontError) {
-        Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
+  useDrizzleStudio(expoDb);
 
-        // Hide the splash screen after the fonts have loaded (or an error was returned) and the UI is ready.
-        SplashScreen.hideAsync()
-      }
-    })
-  }, [fontsLoaded, fontError])
+  useEffect(() => {
+    // prefetchTodos().then((t) => {
+    //   if (fontsLoaded || fontError) {
+    //     Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
+    //
+    //     // Hide the splash screen after the fonts have loaded (or an error was returned) and the UI is ready.
+    //     SplashScreen.hideAsync()
+    //   }
+    // })
+    prefetchTodos()
+  }, [])
 
   // Prevent rendering until the font has loaded or an error was returned
-  if (!fontsLoaded && !fontError) {
+  if (!isLoaded) {
     return null
   }
 
