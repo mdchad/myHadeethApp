@@ -177,7 +177,7 @@ function HadithContent() {
                             className="text-gray-800 pb-4 text-lg overflow-hidden leading-loose text-justify"
                             style={{ fontFamily: 'arabic_symbols', writingDirection: 'ltr' }}
                           >
-                            <QuranText text={content.ms} font={'arbic_symbols'} special={true}/>
+                            <QuranText text={content.ms} font={'arabic_symbols'} special={true}/>
                           </Text>
                         </View>
                         {/*{!!hadith.footnotes.length && (*/}
