@@ -63,9 +63,20 @@ const HadithVolumeItem = ({ item, index }) => (
               </Text>
             </View>
           </View>
-          <View className="flex flex-row justify-end items-center">
-            <Text className="text-royal-blue text-xs mr-1">{t(SHARED_TEXT.VIEW_MORE_LABEL)}</Text>
-            <ArrowRight color="black" size={14} />
+          <View className="flex flex-row justify-between items-center mt-4">
+            <View className="flex-row items-center gap-2">
+              <Text className="text-royal-blue text-[12px]">
+                {item?.hadith?.first}
+              </Text>
+              <Text className="text-royal-blue text-[12px]">-</Text>
+              <Text className="text-royal-blue text-[12px]">
+                {item?.hadith?.last}
+              </Text>
+            </View>
+            <View className="flex flex-row items-center">
+              <Text className="text-royal-blue text-xs mr-1">{t(SHARED_TEXT.VIEW_MORE_LABEL)}</Text>
+              <ArrowRight color="black" size={14} />
+            </View>
           </View>
         </View>
       </View>

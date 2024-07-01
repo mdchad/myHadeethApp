@@ -31,7 +31,7 @@ export default function Profile() {
   const onShare = async () => {
     try {
       const result = await Share.share({
-        message: `${t(SHARED_TEXT.USER_SHARE_TEXT)} https://my-way-web.vercel.app`
+        message: `${t(SHARED_TEXT.USER_SHARE_TEXT)} https://myway.my`
       })
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
@@ -89,7 +89,7 @@ export default function Profile() {
               underlayColor="#f9fafb"
               onPress={() =>
                 WebBrowser.openBrowserAsync(
-                  'https://my-way-web.vercel.app/#faqs'
+                  'https://myway.my/#faqs'
                 )
               }
             >
@@ -100,7 +100,7 @@ export default function Profile() {
             </TouchableHighlight>
             <TouchableHighlight
               onPress={() =>
-                WebBrowser.openBrowserAsync('https://my-way-web.vercel.app/terms')
+                WebBrowser.openBrowserAsync('https://myway.my/terms')
               }
               className="rounded-b-xl"
               underlayColor="#f9fafb"
@@ -112,7 +112,7 @@ export default function Profile() {
             </TouchableHighlight>
             <TouchableHighlight
               onPress={() =>
-                WebBrowser.openBrowserAsync('https://my-way-web.vercel.app')
+                WebBrowser.openBrowserAsync('https://www.myway.my/intro-malay.pdf')
               }
               className="rounded-b-xl"
               underlayColor="#f9fafb"

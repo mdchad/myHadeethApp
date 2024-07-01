@@ -13,3 +13,17 @@ export function useGetVolumes(id) {
     networkMode: 'offlineFirst'
   })
 }
+
+export function useGetVolume(id) {
+  return useQuery({
+    queryKey: ['volumes', id],
+    queryFn: async () => {
+      const res = await fetch(`http://localhost:3000/api/volumes/${id}`, {
+        method: 'GET'
+      })
+      const result = await res.json()
+      return result.data
+    },
+    networkMode: 'offlineFirst'
+  })
+}

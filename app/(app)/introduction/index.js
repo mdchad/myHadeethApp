@@ -11,8 +11,8 @@ import {useTranslation} from "react-i18next";
 export default function Introduction() {
   const { t, i18n } = useTranslation();
   const pdfURL= {
-    ms: "https://my-way-web.vercel.app/intro-malay.pdf",
-    en: "https://my-way-web.vercel.app/intro.pdf"
+    ms: "https://myway.my/intro-malay.pdf",
+    en: "https://myway.my/intro.pdf"
   }[i18n.language]
   const router = useRouter()
 

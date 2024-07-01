@@ -14,6 +14,7 @@ import { useGetHadiths } from '../../../../shared/fetcher/useHadiths'
 import { FlashList } from '@shopify/flash-list'
 import SpecialText from '../../../../components/SpecialText'
 import QuranText from "../../../../components/QuranText";
+import { useGetVolume } from "../../../../shared/fetcher/useVolumes";
 
 function toSuperscript(str, type) {
   const superscripts = {
@@ -101,6 +102,7 @@ function HadithContent() {
   }
 
   const { isLoading, isError, data, error } = useGetHadiths(bookId, volumeId)
+  const { data: volume } = useGetVolume(volumeId)
 
   const onShare = (hadith) => {
     let formattedMessage = ''
@@ -110,7 +112,7 @@ function HadithContent() {
     })
 
     // Add the book title and website line only once at the end
-    formattedMessage += `${hadith.book_title.ms}\n\nhttps://my-way-web.vercel.app`
+    formattedMessage += `${hadith.book_title.ms}\n\nhttps://myway.my`
     Share.share({ message: formattedMessage })
       .then((result) => {
         // ... existing logic
@@ -151,6 +153,23 @@ function HadithContent() {
       ids.firstHadithId = item._id
       return (
         <>
+          <View className="bg-royal-blue/20 rounded-xl p-4 mb-2">
+            <Text className="text-lg font-semibold text-royal-blue mb-2" style={{
+              writingDirection: 'rtl',
+            }}>
+              <QuranText
+                font={'arabic_bold'}
+                className="text-royal-blue font-semibold"
+                text={volume ? volume[0].metadata.ar : ''}
+              />
+            </Text>
+            <Text className="text-sm font-semibold text-royal-blue">
+              <SpecialText
+                className="text-royal-blue font-semibold"
+                text={volume ? volume[0].metadata.ms : ''}
+              />
+            </Text>
+          </View>
           {item?.chapter_title?.ms && (
             <View className="bg-gray-100 rounded-xl mb-4 p-4">
               <View className="flex flex-row justify-between space-x-6">

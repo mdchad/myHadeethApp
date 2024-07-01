@@ -86,7 +86,7 @@ export default function Profile() {
               underlayColor="#f9fafb"
               onPress={() =>
                 WebBrowser.openBrowserAsync(
-                  'https://my-way-web.vercel.app/#faqs'
+                  'https://myway.my/#faqs'
                 )
               }
             >
@@ -97,7 +97,7 @@ export default function Profile() {
             </TouchableHighlight>
             <TouchableHighlight
               onPress={() =>
-                WebBrowser.openBrowserAsync('https://my-way-web.vercel.app')
+                WebBrowser.openBrowserAsync('https://myway.my')
               }
               className="rounded-b-xl"
               underlayColor="#f9fafb"
