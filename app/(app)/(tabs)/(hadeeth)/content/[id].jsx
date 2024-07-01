@@ -153,23 +153,27 @@ function HadithContent() {
       ids.firstHadithId = item._id
       return (
         <>
-          <View className="bg-royal-blue/20 rounded-xl p-4 mb-2">
-            <Text className="text-lg font-semibold text-royal-blue mb-2" style={{
-              writingDirection: 'rtl',
-            }}>
-              <QuranText
-                font={'arabic_bold'}
-                className="text-royal-blue font-semibold"
-                text={volume ? volume[0].metadata.ar : ''}
-              />
-            </Text>
-            <Text className="text-sm font-semibold text-royal-blue">
-              <SpecialText
-                className="text-royal-blue font-semibold"
-                text={volume ? volume[0].metadata.ms : ''}
-              />
-            </Text>
-          </View>
+          { volume && volume[0]?.metadata.ms ?
+            (
+              <View className="bg-royal-blue/20 rounded-xl p-4 mb-2">
+                <Text className="text-lg font-semibold text-royal-blue mb-2" style={{
+                  writingDirection: 'rtl',
+                }}>
+                  <QuranText
+                    font={'arabic_bold'}
+                    className="text-royal-blue font-semibold"
+                    text={volume ? volume[0].metadata.ar : ''}
+                  />
+                </Text>
+                <Text className="text-sm font-semibold text-royal-blue">
+                  <SpecialText
+                    className="text-royal-blue font-semibold"
+                    text={volume ? volume[0].metadata.ms : ''}
+                  />
+                </Text>
+              </View>
+            ) : null
+          }
           {item?.chapter_title?.ms && (
             <View className="bg-gray-100 rounded-xl mb-4 p-4">
               <View className="flex flex-row justify-between space-x-6">
