@@ -1,33 +1,18 @@
-import {useQueries, useQuery} from '@tanstack/react-query'
+import { useQueries, useQuery } from '@tanstack/react-query'
 
 export function useGetHadiths(bookId, volumeId) {
-  return useQueries({
-    queries: [
-      {
-        queryKey: ['hadiths', volumeId],
-        queryFn: async () => {
-          const res = await fetch(
-            `https://my-way-web.vercel.app/api/books/${bookId}/${volumeId}`,
-            {
-              method: 'GET'
-            }
-          )
-          const result = await res.json()
-          return result.data
+  return useQuery({
+    queryKey: ['hadiths', volumeId],
+    queryFn: async () => {
+      const res = await fetch(
+        `https://my-way-web.vercel.app/api/books/${bookId}/${volumeId}`,
+        {
+          method: 'GET'
         }
-      },
-      {
-        queryKey: ['hadithVolume', volumeId],
-        queryFn: async () => {
-          const res = await fetch(`https://my-way-web.vercel.app/api/volumes/${volumeId}`, {
-            method: 'GET'
-          })
-          const result = await res.json()
-          return result.data
-        },
-        networkMode: 'offlineFirst'
-      }
-    ]
+      )
+      const result = await res.json()
+      return result.data
+    }
   })
 }
 

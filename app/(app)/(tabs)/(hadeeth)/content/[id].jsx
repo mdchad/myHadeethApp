@@ -105,7 +105,7 @@ function HadithContent() {
     firstHadithId: ''
   }
 
-  const [{ isLoading, isError, data, error }, { data: volume, isLoading: isVolumeLoading }] = useGetHadiths(bookId, volumeId)
+  const { isLoading, isError, data, error } = useGetHadiths(bookId, volumeId)
 
   const onShare = (hadith) => {
     let formattedMessage = ''
@@ -142,7 +142,7 @@ function HadithContent() {
   //   return savedBookmark.some((savedHadith) => savedHadith === id)
   // }
 
-  if (isLoading && isVolumeLoading) {
+  if (isLoading) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <ActivityIndicator size="large" color="#0000ff" />
@@ -156,7 +156,7 @@ function HadithContent() {
       ids.firstHadithId = item._id
       return (
         <>
-          {volume && volume?.metadata?.ar ? (
+          {data[0].volume_details && data[0].volume_details?.metadata?.ar ? (
             <View className="bg-royal-blue/20 rounded-xl p-4 mb-2">
               <Text
                 className="text-lg font-semibold text-royal-blue mb-2"
@@ -167,13 +167,13 @@ function HadithContent() {
                 <QuranText
                   font={'arabic_bold'}
                   className="text-royal-blue font-semibold"
-                  text={volume ? volume.metadata.ar : ''}
+                  text={data[0].volume_details ? data[0].volume_details.metadata.ar : ''}
                 />
               </Text>
               <Text className="text-sm font-semibold text-royal-blue">
                 <SpecialText
                   className="text-royal-blue font-semibold"
-                  text={volume ? volume.metadata.ms : ''}
+                  text={data[0].volume_details ? data[0].volume_details.metadata.ms : ''}
                 />
               </Text>
             </View>
