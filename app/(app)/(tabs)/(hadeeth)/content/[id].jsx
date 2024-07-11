@@ -13,8 +13,8 @@ import Header from '../../../../components/header'
 import { useGetHadiths } from '../../../../shared/fetcher/useHadiths'
 import { FlashList } from '@shopify/flash-list'
 import SpecialText from '../../../../components/SpecialText'
-import QuranText from "../../../../components/QuranText";
-import { useGetVolume } from "../../../../shared/fetcher/useVolumes";
+import QuranText from '../../../../components/QuranText'
+import { useGetVolume } from '../../../../shared/fetcher/useVolumes'
 
 function toSuperscript(str, type) {
   const superscripts = {
@@ -69,7 +69,11 @@ const HadithItem = React.memo(({ hadith }) => (
               className="text-gray-800 pb-4 text-lg overflow-hidden leading-loose text-justify"
               style={{ fontFamily: 'arabic_symbols', writingDirection: 'ltr' }}
             >
-              <QuranText text={content.ms} font={'arabic_symbols'} special={true}/>
+              <QuranText
+                text={content.ms}
+                font={'arabic_symbols'}
+                special={true}
+              />
             </Text>
             {/*{!!hadith.footnotes.length && (*/}
             {/*    <View className="flex space-y-2 pt-2 border-t border-t-gray-500">*/}
@@ -153,27 +157,28 @@ function HadithContent() {
       ids.firstHadithId = item._id
       return (
         <>
-          { !!volume.length && volume[0]?.metadata.ms ?
-            (
-              <View className="bg-royal-blue/20 rounded-xl p-4 mb-2">
-                <Text className="text-lg font-semibold text-royal-blue mb-2" style={{
-                  writingDirection: 'rtl',
-                }}>
-                  <QuranText
-                    font={'arabic_bold'}
-                    className="text-royal-blue font-semibold"
-                    text={volume ? volume[0].metadata.ar : ''}
-                  />
-                </Text>
-                <Text className="text-sm font-semibold text-royal-blue">
-                  <SpecialText
-                    className="text-royal-blue font-semibold"
-                    text={volume ? volume[0].metadata.ms : ''}
-                  />
-                </Text>
-              </View>
-            ) : null
-          }
+          {!!volume.length && volume[0]?.metadata.ms ? (
+            <View className="bg-royal-blue/20 rounded-xl p-4 mb-2">
+              <Text
+                className="text-lg font-semibold text-royal-blue mb-2"
+                style={{
+                  writingDirection: 'rtl'
+                }}
+              >
+                <QuranText
+                  font={'arabic_bold'}
+                  className="text-royal-blue font-semibold"
+                  text={volume ? volume[0].metadata.ar : ''}
+                />
+              </Text>
+              <Text className="text-sm font-semibold text-royal-blue">
+                <SpecialText
+                  className="text-royal-blue font-semibold"
+                  text={volume ? volume[0].metadata.ms : ''}
+                />
+              </Text>
+            </View>
+          ) : null}
           {item?.chapter_title?.ms && (
             <View className="bg-gray-100 rounded-xl mb-4 p-4">
               <View className="flex flex-row justify-between space-x-6">
@@ -195,7 +200,10 @@ function HadithContent() {
                       fontWeight: 700
                     }}
                   >
-                    <QuranText text={item?.chapter_title?.ar} font={'arabic_bold'}/>
+                    <QuranText
+                      text={item?.chapter_title?.ar}
+                      font={'arabic_bold'}
+                    />
                   </Text>
                 </View>
               </View>
@@ -204,9 +212,16 @@ function HadithContent() {
                   <View className="flex-1 mr-1">
                     <Text
                       className="text-gray-800 leading-6"
-                      style={{ fontFamily: 'arabic_symbols', writingDirection: 'ltr' }}
+                      style={{
+                        fontFamily: 'arabic_symbols',
+                        writingDirection: 'ltr'
+                      }}
                     >
-                      <QuranText text={toSuperscript(item?.chapter_metadata?.ms, 'text')} font={'arabic_symbols'} special={true}/>
+                      <QuranText
+                        text={toSuperscript(item?.chapter_metadata?.ms, 'text')}
+                        font={'arabic_symbols'}
+                        special={true}
+                      />
                     </Text>
                   </View>
                   <View className="flex-1 items-end ml-1">
@@ -321,14 +336,14 @@ function HadithContent() {
             />
           </View>
         )}
-          <TouchableOpacity
-            className="items-center absolute bottom-2 right-4 sticky bg-royal-blue rounded-xl p-2"
-            onPress={() => {
-              listRef?.current?.scrollToOffset({ offset: 0, animated: true })
-            }}
-          >
-            <ArrowBigUp size={24} color={'white'} />
-          </TouchableOpacity>
+        <TouchableOpacity
+          className="items-center absolute bottom-2 right-4 sticky bg-royal-blue rounded-xl p-2"
+          onPress={() => {
+            listRef?.current?.scrollToOffset({ offset: 0, animated: true })
+          }}
+        >
+          <ArrowBigUp size={24} color={'white'} />
+        </TouchableOpacity>
       </View>
     </>
   )
