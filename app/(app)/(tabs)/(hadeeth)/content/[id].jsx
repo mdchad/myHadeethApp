@@ -105,8 +105,7 @@ function HadithContent() {
     firstHadithId: ''
   }
 
-  const { isLoading, isError, data, error } = useGetHadiths(bookId, volumeId)
-  const { data: volume } = useGetVolume(volumeId)
+  const [{ isLoading, isError, data, error }, { data: volume, isLoading: isVolumeLoading }] = useGetHadiths(bookId, volumeId)
 
   const onShare = (hadith) => {
     let formattedMessage = ''
@@ -143,7 +142,7 @@ function HadithContent() {
   //   return savedBookmark.some((savedHadith) => savedHadith === id)
   // }
 
-  if (isLoading) {
+  if (isLoading && isVolumeLoading) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <ActivityIndicator size="large" color="#0000ff" />
@@ -157,7 +156,7 @@ function HadithContent() {
       ids.firstHadithId = item._id
       return (
         <>
-          {!!volume.length && volume[0]?.metadata.ms ? (
+          {volume && volume?.metadata?.ar ? (
             <View className="bg-royal-blue/20 rounded-xl p-4 mb-2">
               <Text
                 className="text-lg font-semibold text-royal-blue mb-2"
@@ -168,13 +167,13 @@ function HadithContent() {
                 <QuranText
                   font={'arabic_bold'}
                   className="text-royal-blue font-semibold"
-                  text={volume ? volume[0].metadata.ar : ''}
+                  text={volume ? volume.metadata.ar : ''}
                 />
               </Text>
               <Text className="text-sm font-semibold text-royal-blue">
                 <SpecialText
                   className="text-royal-blue font-semibold"
-                  text={volume ? volume[0].metadata.ms : ''}
+                  text={volume ? volume.metadata.ms : ''}
                 />
               </Text>
             </View>
@@ -304,7 +303,7 @@ function HadithContent() {
   return (
     <>
       <Header
-        title={data[0]?.book_title?.ms}
+        title={data ? data[0]?.book_title?.ms : ''}
         onPressButton={() => router.back()}
       />
       <View className="flex-1 p-4 pb-0 bg-white">
@@ -323,7 +322,7 @@ function HadithContent() {
             </Text>
           </View>
         </View>
-        {data.length && (
+        {data && data.length && (
           <View className="flex-1">
             <FlashList
               ref={listRef}
