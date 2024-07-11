@@ -153,7 +153,7 @@ function HadithContent() {
       ids.firstHadithId = item._id
       return (
         <>
-          { volume.length && volume[0]?.metadata.ms ?
+          { !!volume.length && volume[0]?.metadata.ms ?
             (
               <View className="bg-royal-blue/20 rounded-xl p-4 mb-2">
                 <Text className="text-lg font-semibold text-royal-blue mb-2" style={{
