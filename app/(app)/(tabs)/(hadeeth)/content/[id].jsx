@@ -156,28 +156,6 @@ function HadithContent() {
       ids.firstHadithId = item._id
       return (
         <>
-          {data[0].volume_details && data[0].volume_details?.metadata?.ar ? (
-            <View className="bg-royal-blue/20 rounded-xl p-4 mb-2">
-              <Text
-                className="text-lg font-semibold text-royal-blue mb-2"
-                style={{
-                  writingDirection: 'rtl'
-                }}
-              >
-                <QuranText
-                  font={'arabic_bold'}
-                  className="text-royal-blue font-semibold"
-                  text={data[0].volume_details ? data[0].volume_details.metadata.ar : ''}
-                />
-              </Text>
-              <Text className="text-sm font-semibold text-royal-blue">
-                <SpecialText
-                  className="text-royal-blue font-semibold"
-                  text={data[0].volume_details ? data[0].volume_details.metadata.ms : ''}
-                />
-              </Text>
-            </View>
-          ) : null}
           {item?.chapter_title?.ms && (
             <View className="bg-gray-100 rounded-xl mb-4 p-4">
               <View className="flex flex-row justify-between space-x-6">
@@ -328,6 +306,39 @@ function HadithContent() {
               ref={listRef}
               data={data}
               renderItem={Items}
+              ListHeaderComponent={
+                data[0].volume_details &&
+                data[0].volume_details?.metadata?.ar ? (
+                  <View className="bg-royal-blue/20 rounded-xl p-4 mb-2">
+                    <Text
+                      className="text-lg font-semibold text-royal-blue mb-2"
+                      style={{
+                        writingDirection: 'rtl'
+                      }}
+                    >
+                      <QuranText
+                        font={'arabic_bold'}
+                        className="text-royal-blue font-semibold"
+                        text={
+                          data[0].volume_details
+                            ? data[0].volume_details.metadata.ar
+                            : ''
+                        }
+                      />
+                    </Text>
+                    <Text className="text-sm font-semibold text-royal-blue">
+                      <SpecialText
+                        className="text-royal-blue font-semibold"
+                        text={
+                          data[0].volume_details
+                            ? data[0].volume_details.metadata.ms
+                            : ''
+                        }
+                      />
+                    </Text>
+                  </View>
+                ) : null
+              }
               keyExtractor={(item) => item._id}
               showsVerticalScrollIndicator={false}
               contentContainerStyle={{ paddingHorizontal: 6 }}
