@@ -30,6 +30,7 @@ import BottomSheet, {
   BottomSheetView
 } from '@gorhom/bottom-sheet'
 import QuranText from "../../../components/QuranText";
+import Sheet from "../../../components/bottomSheet";
 
 function Search() {
   const [searchKeyword, setSearchKeyword] = useState('')
@@ -38,6 +39,7 @@ function Search() {
   const [books, setBooks] = useState([])
   const [selectedBooks, setSelectedBooks] = useState('')
   const [submittedKeyword, setSubmittedKeyword] = useState('')
+  const bottomSheetRef = useRef(null)
 
   const queryClient = useQueryClient()
 
@@ -242,34 +244,9 @@ function Search() {
     setSubmittedKeyword('')
   }
 
-  const bottomSheetRef = useRef(null)
-
-  // variables
-  const snapPoints = useMemo(() => ['25%', '50%'], [])
-
-  // callbacks
   const handlePresentModalPress = useCallback(() => {
     bottomSheetRef.current?.snapToIndex(1)
   }, [])
-  const renderBackdrop = useCallback(
-    (props) => (
-      <BottomSheetBackdrop {...props} pressBehavior={'close'} opacity={0.5} />
-    ),
-    []
-  )
-
-  function selectBooks() {
-    setSelectedBooks(books.join(','))
-    bottomSheetRef.current.close()
-  }
-
-  function onClickBook(book) {
-    if (books.some(val => val === book)) {
-      setBooks(prevState => prevState.filter(prev => prev !== book))
-    } else {
-      setBooks((prevState) => prevState.concat([book]))
-    }
-  }
 
   return (
     <Page class="bg-gray-100">
@@ -355,63 +332,7 @@ function Search() {
           )
         }}
       />
-      <BottomSheet
-        ref={bottomSheetRef}
-        snapPoints={snapPoints}
-        enablePanDownToClose={true}
-        index={-1}
-        backdropComponent={renderBackdrop}
-      >
-        <BottomSheetView style={{ padding: 10, height: '100%', display: 'flex', justifyContent: 'space-between' }}>
-          <View className="flex flex-row gap-2 flex-wrap">
-            <TouchableHighlight
-              underlayColor="#f9fafb"
-              className={`${books.some(val => val === 'sahih_bukhari') && 'bg-gray-200'} rounded-lg px-4 py-2  border border-gray-200`}
-              onPress={() => onClickBook('sahih_bukhari')}
-            >
-              <Text>Sahih Bukhari</Text>
-            </TouchableHighlight>
-            <TouchableHighlight
-              underlayColor="#f9fafb"
-              className={`${books.some(val => val === 'sahih_muslim') && 'bg-gray-200'} rounded-lg px-4 py-2  border border-gray-200`}
-              onPress={() => onClickBook('sahih_muslim')}
-            >
-              <Text>Sahih Muslim</Text>
-            </TouchableHighlight>
-            <TouchableHighlight
-              underlayColor="#f9fafb"
-              className={`${books.some(val => val === 'sunan_abi_daud') && 'bg-gray-200'} rounded-lg px-4 py-2 border border-gray-200`}
-              onPress={() => onClickBook('sunan_abi_daud')}
-            >
-              <Text>Sunan Abu Dawud</Text>
-            </TouchableHighlight>
-            <TouchableHighlight
-              underlayColor="#f9fafb"
-              className={`${books.some(val => val === 'jami_al_tirmidhi') && 'bg-gray-200'} rounded-lg px-4 py-2  border border-gray-200`}
-              onPress={() => onClickBook('jami_al_tirmidhi')}
-            >
-              <Text>Jami’ Al-Tirmidhi</Text>
-            </TouchableHighlight>
-            <TouchableHighlight
-              underlayColor="#f9fafb"
-              className={`${books.some(val => val === 'sunan_ibnu_majah') && 'bg-gray-200'} rounded-lg px-4 py-2  border border-gray-200`}
-              onPress={() => onClickBook('sunan_ibnu_majah')}
-            >
-              <Text>Sunan Ibn Majah</Text>
-            </TouchableHighlight>
-            <TouchableHighlight
-              underlayColor="#f9fafb"
-              className={`${books.some(val => val === 'sunan_an_nasai') && 'bg-gray-200'} rounded-lg px-4 py-2  border border-gray-200`}
-              onPress={() => onClickBook('sunan_an_nasai')}
-            >
-              <Text>Sunan Al-Nasai</Text>
-            </TouchableHighlight>
-          </View>
-          <TouchableHighlight underlayColor="#333" className="bg-royal-blue mb-4 rounded-3xl p-2" onPress={selectBooks}>
-            <Text className="text-white text-lg text-center">{t(SHARED_TEXT.SEARCH_APPLY)} ({(books.length)})</Text>
-          </TouchableHighlight>
-        </BottomSheetView>
-      </BottomSheet>
+      <Sheet setSelectedBooks={setSelectedBooks} setBooks={setBooks} books={books} bottomSheetRef={bottomSheetRef}/>
     </Page>
   )
 }

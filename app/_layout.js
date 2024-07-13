@@ -21,6 +21,7 @@ import { initReactI18next } from "react-i18next";
 import en from "./i18n/locales/en.json";
 import ms from "./i18n/locales/ms.json";
 import {GestureHandlerRootView} from "react-native-gesture-handler";
+import {PortalProvider} from "@gorhom/portal";
 
 const isAndroid = Platform.OS === "android";
 const isHermes = !!global.HermesInternal;
@@ -190,9 +191,11 @@ export default function Root() {
       }
     >
       <GestureHandlerRootView style={{ flex: 1}}>
-        <Provider>
-          <Slot />
-        </Provider>
+        <PortalProvider>
+          <Provider>
+            <Slot />
+          </Provider>
+        </PortalProvider>
       </GestureHandlerRootView>
     </PersistQueryClientProvider>
   )
