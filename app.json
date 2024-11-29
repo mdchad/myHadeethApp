@@ -1,6 +1,7 @@
 {
   "expo": {
     "scheme": "myway",
+    "owner": "pixelmind",
     "orientation": "portrait",
     "icon": "./assets/icon-2.png",
     "userInterfaceStyle": "light",
