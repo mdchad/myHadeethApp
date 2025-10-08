@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
 import {format} from "date-fns";
-import {zonedTimeToUtc} from "date-fns-tz";
+import {toZonedTime} from "date-fns-tz";
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL;
 
 export function useGetTodayHadith() {
   const timeZone = 'Asia/Kuala_Lumpur';
-  const nowInKualaLumpur = zonedTimeToUtc(new Date(), timeZone);
+  const nowInKualaLumpur = toZonedTime(new Date(), timeZone);
   const formattedDate = format(nowInKualaLumpur, 'yyyy-MM-dd', { timeZone });
 
   return useQuery({

@@ -1,4 +1,5 @@
-import {View, SafeAreaView, Platform, StatusBar, StyleSheet} from 'react-native'
+import {View, Platform, StatusBar, StyleSheet} from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context';
 import React from 'react'
 
 // this component is used to wrap the content of each page

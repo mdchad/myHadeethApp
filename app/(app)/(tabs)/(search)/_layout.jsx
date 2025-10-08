@@ -4,7 +4,6 @@ import Page from '../../../components/page'
 
 const _layout = () => {
   return (
-    <Page>
       <Stack initialRouteName="index" screenOptions={{ headerShown: false }}>
         <Stack.Screen
           name="index"
@@ -21,7 +20,6 @@ const _layout = () => {
           }}
         />
       </Stack>
-    </Page>
   )
 }
 
