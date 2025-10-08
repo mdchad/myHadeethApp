@@ -18,8 +18,6 @@ const HadithListItem = ({ item, onShare, onSave, ids }) => {
   const isNewChapter =
     ids.chapterId !== item.chapter_id || ids.firstHadithId === item._id
 
-  // if (!item.content[0].ar) return null
-
   return (
     <>
       {isNewChapter && (
@@ -49,7 +47,6 @@ function HadithContent() {
   }
 
   const { isLoading, data } = useGetHadiths(bookId, volumeId)
-  console.log(data)
 
   const onSave = (id) => {
     // TODO: Implement bookmark functionality
