@@ -12,7 +12,7 @@ function SpecialText({ text }) {
       return <Text key={index} style={{ fontFamily: 'arabic_symbols' }} >{segment}</Text>;
     } else {
       // Otherwise, use the default font
-      return <Text key={index} className="font-sans font-bold">{segment}</Text>;
+      return <Text key={index} className="font-bold">{segment}</Text>;
     }
   });
 

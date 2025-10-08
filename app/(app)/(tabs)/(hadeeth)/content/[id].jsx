@@ -15,19 +15,24 @@ import LoadingSpinner from '../../../../components/LoadingSpinner'
 import ScrollToTopButton from '../../../../components/ScrollToTopButton'
 
 const HadithListItem = ({ item, onShare, onSave, ids }) => {
-  const isNewChapter = ids.chapterId !== item.chapter_id || ids.firstHadithId === item._id
-  
-  if (!item.content[0].ar) return null
+  const isNewChapter =
+    ids.chapterId !== item.chapter_id || ids.firstHadithId === item._id
+
+  // if (!item.content[0].ar) return null
 
   return (
     <>
-      {isNewChapter && <HadithChapterTitle item={item} toSuperscript={toSuperscript} />}
+      {isNewChapter && (
+        <HadithChapterTitle item={item} toSuperscript={toSuperscript} />
+      )}
       <View className="space-y-8 bg-white mb-4 border border-royal-blue">
         <HadithItem hadith={item} />
-        <ActionButtons 
-          onShare={() => onShare(item)} 
-          onSave={() => onSave(item._id)} 
-        />
+        {!item.content[0].ar ? null : (
+          <ActionButtons
+            onShare={() => onShare(item)}
+            onSave={() => onSave(item._id)}
+          />
+        )}
       </View>
     </>
   )
@@ -44,10 +49,11 @@ function HadithContent() {
   }
 
   const { isLoading, data } = useGetHadiths(bookId, volumeId)
+  console.log(data)
 
   const onSave = (id) => {
     // TODO: Implement bookmark functionality
-    setSavedBookmark(prev => [...prev, id])
+    setSavedBookmark((prev) => [...prev, id])
   }
 
   if (isLoading) {
@@ -78,7 +84,7 @@ function HadithContent() {
               ListHeaderComponent={
                 <VolumeMetadataHeader volumeDetails={data[0]?.volume_details} />
               }
-              keyExtractor={item => item._id}
+              keyExtractor={(item) => item._id}
               showsVerticalScrollIndicator={false}
               contentContainerStyle={{ paddingHorizontal: 6 }}
               estimatedItemSize={500}
@@ -86,8 +92,10 @@ function HadithContent() {
           </View>
         )}
 
-        <ScrollToTopButton 
-          onPress={() => listRef?.current?.scrollToOffset({ offset: 0, animated: true })}
+        <ScrollToTopButton
+          onPress={() =>
+            listRef?.current?.scrollToOffset({ offset: 0, animated: true })
+          }
         />
       </View>
     </>
