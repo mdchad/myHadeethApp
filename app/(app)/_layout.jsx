@@ -1,8 +1,13 @@
 import { Stack } from 'expo-router'
 
+export const unstable_settings = {
+  // Ensure any route can link back to `/`
+  initialRouteName: '(tabs)/',
+};
+
 export default function Layout() {
   return (
-    <Stack screenOptions={{ headerShown: false }} initialRouteName="(tabs)/">
+    <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen
         name="(tabs)"
         options={{

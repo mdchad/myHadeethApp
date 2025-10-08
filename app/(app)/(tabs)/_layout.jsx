@@ -1,7 +1,6 @@
 import { View, Image } from 'react-native'
 import React from 'react'
 import { Tabs } from 'expo-router'
-import { StatusBar } from 'expo-status-bar'
 import { SearchIcon } from 'lucide-react-native'
 import SHARED_TEXT from "../../i18n";
 import {t} from "i18next";
@@ -14,26 +13,25 @@ const hadithLogo = require('@assets/hadith.png')
 
 const _layout = () => {
   return (
-    <View className="flex-1">
-      <Tabs
-        initialRouteName="(default)"
-        screenOptions={{
-          headerShown: false,
-          tabBarActiveTintColor: 'white',
-          tabBarInactiveTintColor: 'rgb(209,213,219)',
-          tabBarStyle: {
-            paddingVertical: 10,
-            width: 'auto',
-            backgroundColor: '#1C2A4F'
-          },
-          tabBarLabelStyle: {
-            // fontSize: 12,
-            margin: 0,
-            paddingTop: 0,
-            paddingBottom: 5
-          }
-        }}
-      >
+    <Tabs
+      initialRouteName="(default)"
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: 'white',
+        tabBarInactiveTintColor: 'rgb(209,213,219)',
+        tabBarStyle: {
+          paddingVertical: 10,
+          width: 'auto',
+          backgroundColor: '#1C2A4F'
+        },
+        tabBarLabelStyle: {
+          // fontSize: 12,
+          margin: 0,
+          paddingTop: 0,
+          paddingBottom: 5
+        }
+      }}
+    >
         <Tabs.Screen
           name="(default)"
           options={{
@@ -160,8 +158,6 @@ const _layout = () => {
           }}
         />
       </Tabs>
-      <StatusBar style="auto" />
-    </View>
   )
 }
 

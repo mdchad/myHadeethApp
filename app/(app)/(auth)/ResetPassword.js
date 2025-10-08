@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import {
   View,
   Text,
-  SafeAreaView,
   Image,
   Pressable,
   TextInput
 } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Link } from 'expo-router'
 import { ArrowLeftCircle } from 'lucide-react-native'
 

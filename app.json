@@ -49,6 +49,7 @@
       "infoPlist": {
         "NSLocationAlwaysUsageDescription": "Location access is required to determine the Qibla direction from your current position",
         "NSLocationWhenInUseUsageDescription": "Location access is required to determine the Qibla direction from your current position",
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
@@ -64,7 +65,9 @@
         "android.permission.READ_EXTERNAL_STORAGE",
         "android.permission.WRITE_EXTERNAL_STORAGE",
         "android.permission.DOWNLOAD_WITHOUT_NOTIFICATION",
-        "android.permission.ACCESS_NETWORK_STATE"
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS"
       ]
     },
     "runtimeVersion": {

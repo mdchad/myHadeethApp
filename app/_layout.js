@@ -10,9 +10,11 @@ import { useAppState } from './shared/useAppState'
 import { useOnlineManager } from './shared/useOnlineManager'
 import { useEffect } from 'react'
 import * as SplashScreen from 'expo-splash-screen'
-import {zonedTimeToUtc} from "date-fns-tz";
+import {toZonedTime} from "date-fns-tz";
 import {format} from "date-fns";
 import { setAudioModeAsync } from "expo-audio";
+import "./global.css"
+
 
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
@@ -129,7 +131,7 @@ export default function Root() {
 
   const prefetchTodos = async () => {
     const timeZone = 'Asia/Kuala_Lumpur';
-    const nowInKualaLumpur = zonedTimeToUtc(new Date(), timeZone);
+    const nowInKualaLumpur = toZonedTime(new Date(), timeZone);
     const formattedDate = format(nowInKualaLumpur, 'yyyy-MM-dd', { timeZone });
     // The results of this query will be cached like a normal query
 
@@ -190,7 +192,7 @@ export default function Root() {
           .then(() => queryClient.invalidateQueries())
       }
     >
-      <GestureHandlerRootView style={{ flex: 1}}>
+      <GestureHandlerRootView>
         <PortalProvider>
           <Provider>
             <Slot />

@@ -8,6 +8,9 @@ export function useGetSearch() {
       const res = await fetch(
         `${API_URL}/api/search?page=${page}&limit=${limit}&query=${query}`,
         {
+          headers: {
+            'User-Agent': 'MyWayApp/1.0.0'
+          },
           method: 'GET'
         }
       )

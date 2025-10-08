@@ -7,8 +7,10 @@ export function useGetHadiths(bookId, volumeId) {
     queryKey: ['hadiths', volumeId],
     queryFn: async () => {
       const res = await fetch(
-        `${API_URL}/api/books/${bookId}/${volumeId}`,
-        {
+        `${API_URL}/api/books/${bookId}/${volumeId}`, {
+          headers: {
+            'User-Agent': 'MyWayApp/1.0.0'
+          },
           method: 'GET'
         }
       )

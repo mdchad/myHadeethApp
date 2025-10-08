@@ -7,6 +7,9 @@ export function useGetVolumes(id) {
     queryKey: ['volumes', id],
     queryFn: async () => {
       const res = await fetch(`${API_URL}/api/books/${id}`, {
+        headers: {
+          'User-Agent': 'MyWayApp/1.0.0'
+        },
         method: 'GET'
       })
       const result = await res.json()
