@@ -25,15 +25,15 @@ const HadithListItem = ({ item, onShare, onSave, ids }) => {
       {isNewChapter && (
         <HadithChapterTitle item={item} toSuperscript={toSuperscript} />
       )}
-      <View className="space-y-8 bg-white mb-4 border border-royal-blue">
-        <HadithItem hadith={item} />
-        {!item.content[0].ar ? null : (
+      {!item.content[0].ar ? null : (
+        <View className="space-y-8 bg-white mb-4 border border-royal-blue">
+          <HadithItem hadith={item} />
           <ActionButtons
             onShare={() => onShare(item)}
             onSave={() => onSave(item._id)}
           />
-        )}
-      </View>
+        </View>
+      )}
     </>
   )
 }
