@@ -35,7 +35,7 @@ function Home() {
     <Page class="bg-white">
       <View className="flex-1 flex space-y-3 bg-white">
         <ScrollView>
-          <View className="mx-2 p-3 flex space-y-6">
+          <View className="mx-2 p-3 flex gap-4">
             <View className="space-y-5">
               <View className="flex flex-row justify-between items-center">
                 <Text className="text-3xl text-royal-blue font-bold leading-none tracking-tight">
@@ -90,14 +90,14 @@ function Home() {
                           {data?.volume_title.ms}
                         </Text>
                       </View>
-                      <Text
-                        numberOfLines={7}
-                        className="text-xl mb-1 pb-4 leading-8"
-                        lang="ar"
-                        style={{ fontFamily: 'arabic_regular', writingDirection: 'rtl' }}
-                      >
-                        {data?.content[0].ar}
-                      </Text>
+                      {/*<Text*/}
+                      {/*  numberOfLines={7}*/}
+                      {/*  className="text-xl mb-1 pb-4 leading-8"*/}
+                      {/*  lang="ar"*/}
+                      {/*  style={{ fontFamily: 'arabic_regular', writingDirection: 'rtl' }}*/}
+                      {/*>*/}
+                      {/*  {data?.content[0].ar}*/}
+                      {/*</Text>*/}
                       <Text
                         numberOfLines={7}
                         ellipsizeMode="tail"
@@ -192,9 +192,9 @@ function Home() {
               </Link>
             </View>
 
-            <View className="flex flex-row space-x-2">
-              <Link href="/hadith40" asChild>
-                <Pressable className="border border-royal-blue flex flex-1 justify-between items-center rounded-md">
+            <View className="flex flex-row gap-2">
+              <Link href="/hadith40" asChild className="flex-1">
+                <Pressable className="border border-royal-blue flex justify-between items-center rounded-md">
                   <View className="flex-grow p-2 w-full">
                     <Text className="text-lg text-royal-blue">
                       {t(SHARED_TEXT.HOME_FORTY_HADITHS_TITLE)}
@@ -206,14 +206,14 @@ function Home() {
                   <View className="h-[16px] bg-royal-blue w-full"></View>
                 </Pressable>
               </Link>
-              <Link href={'(tabs)/(hadeeth)'} asChild>
-                <Pressable className="border border-royal-blue flex flex-1 justify-between items-center rounded-md">
+              <Link href={'(tabs)/(hadeeth)'} asChild className="flex-1">
+                <Pressable className="border border-royal-blue rounded-md">
                   <LinearGradient
                     // Background Linear Gradient
                     colors={['#22276E', '#008080']}
-                    className="w-full flex-grow justify-between"
+                    className="flex justify-between items-stretch"
                   >
-                    <View className="p-2 flex-1 justify-between">
+                    <View className="flex-grow p-2 w-full">
                       <Text className="text-white text-lg">
                         {t(SHARED_TEXT.HOME_SIX_BOOKS_TITLE)}
                       </Text>
