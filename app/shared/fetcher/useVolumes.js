@@ -1,10 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
 
+const API_URL = process.env.EXPO_PUBLIC_API_URL;
+
 export function useGetVolumes(id) {
   return useQuery({
     queryKey: ['volumes', id],
     queryFn: async () => {
-      const res = await fetch(`https://my-way-web.vercel.app/api/books/${id}`, {
+      const res = await fetch(`${API_URL}/api/books/${id}`, {
         method: 'GET'
       })
       const result = await res.json()

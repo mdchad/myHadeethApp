@@ -1,11 +1,13 @@
 import { useQueries, useQuery } from '@tanstack/react-query'
 
+const API_URL = process.env.EXPO_PUBLIC_API_URL;
+
 export function useGetHadiths(bookId, volumeId) {
   return useQuery({
     queryKey: ['hadiths', volumeId],
     queryFn: async () => {
       const res = await fetch(
-        `https://my-way-web.vercel.app/api/books/${bookId}/${volumeId}`,
+        `${API_URL}/api/books/${bookId}/${volumeId}`,
         {
           method: 'GET'
         }

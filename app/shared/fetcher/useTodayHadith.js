@@ -2,6 +2,8 @@ import { useQuery } from '@tanstack/react-query'
 import {format} from "date-fns";
 import {zonedTimeToUtc} from "date-fns-tz";
 
+const API_URL = process.env.EXPO_PUBLIC_API_URL;
+
 export function useGetTodayHadith() {
   const timeZone = 'Asia/Kuala_Lumpur';
   const nowInKualaLumpur = zonedTimeToUtc(new Date(), timeZone);
@@ -10,7 +12,10 @@ export function useGetTodayHadith() {
   return useQuery({
     queryKey: ['todayHadith', formattedDate],
     queryFn: async () => {
-      const res = await fetch(`https://my-way-web.vercel.app/api/today`, {
+      const res = await fetch(`${API_URL}/api/today`, {
+        headers: {
+          'User-Agent': 'MyWayApp/1.0.0'
+        },
         cache: 'no-store',
         method: 'GET'
       })
