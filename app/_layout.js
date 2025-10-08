@@ -12,7 +12,7 @@ import { useEffect } from 'react'
 import * as SplashScreen from 'expo-splash-screen'
 import {zonedTimeToUtc} from "date-fns-tz";
 import {format} from "date-fns";
-import { Audio } from "expo-av";
+import { setAudioModeAsync } from "expo-audio";
 
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
@@ -163,7 +163,7 @@ export default function Root() {
   useEffect(() => {
     prefetchTodos().then((t) => {
       if (fontsLoaded || fontError) {
-        Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
+        setAudioModeAsync({ playsInSilentMode: true });
 
         // Hide the splash screen after the fonts have loaded (or an error was returned) and the UI is ready.
         SplashScreen.hideAsync()
