@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import { View, Text } from 'react-native'
 import QuranText from './QuranText'
 import { isEmpty } from 'es-toolkit/compat'
+import { toSuperscript } from '../utils/toSuperscript'
 
 const FootnoteText = ({
   children,
@@ -50,7 +51,7 @@ const FootnoteText = ({
     position: footnote.position,
     marker: (
       <Text
-        className="text-xs align-top inline-block"
+        className="text-2xl text-blue-900/80 font-bold"
         key={`footnote-${footnote.number}`}
         ref={(el) => {
           if (footnoteRefs.current && el) {
@@ -59,7 +60,7 @@ const FootnoteText = ({
           }
         }}
       >
-        [{footnote.number}]
+        {toSuperscript(String(footnote.number), 'reference')}
       </Text>
     ),
     footnote
