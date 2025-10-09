@@ -79,7 +79,7 @@ function Home() {
                     <View className="p-3">
                       <View className="flex flex-row flex-wrap mb-4">
                         <Text className="font-bold text-royal-blue mr-2">
-                          {data?.book_title.ms}
+                          {data?.book_title?.ms}
                         </Text>
                         <ChevronRightSquare
                           color="black"
@@ -87,7 +87,7 @@ function Home() {
                           className={'mr-2'}
                         />
                         <Text className="font-bold text-royal-blue">
-                          {data?.volume_title.ms}
+                          {data?.volume_title?.ms}
                         </Text>
                       </View>
                       {/*<Text*/}
