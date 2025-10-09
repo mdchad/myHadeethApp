@@ -36,9 +36,9 @@ function Home() {
       <View className="flex-1 flex space-y-3 bg-white">
         <ScrollView>
           <View className="mx-2 p-3 flex gap-4">
-            <View className="space-y-5">
+            <View className="gap-5">
               <View className="flex flex-row justify-between items-center">
-                <Text className="text-3xl text-royal-blue font-bold leading-none tracking-tight">
+                <Text className="text-3xl text-royal-blue font-bold leading-none">
                   {t(SHARED_TEXT.HOME_HEADER)}
                 </Text>
                 <View className="flex flex-row items-center">
