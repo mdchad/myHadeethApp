@@ -28,6 +28,8 @@ import {PortalProvider} from "@gorhom/portal";
 const isAndroid = Platform.OS === "android";
 const isHermes = !!global.HermesInternal;
 
+const API_URL = process.env.EXPO_PUBLIC_API_URL;
+
 if (isAndroid || isHermes) {
   require("@formatjs/intl-locale/polyfill");
 
@@ -139,7 +141,10 @@ export default function Root() {
       queryClient.prefetchQuery({
         queryKey: ['books'],
         queryFn: async () => {
-          const res = await fetch('https://my-way-web.vercel.app/api/books', {
+          const res = await fetch(`${API_URL}/api/books`, {
+            headers: {
+              'User-Agent': 'MyWayApp/1.0.0'
+            },
             method: 'GET'
           })
           const result = await res.json()
@@ -149,7 +154,10 @@ export default function Root() {
       queryClient.prefetchQuery({
         queryKey: ['todayHadith', formattedDate],
         queryFn: async () => {
-          const res = await fetch('https://my-way-web.vercel.app/api/today', {
+          const res = await fetch(`${API_URL}/api/today`, {
+            headers: {
+              'User-Agent': 'MyWayApp/1.0.0'
+            },
             cache: 'no-store',
             method: 'GET'
           })
