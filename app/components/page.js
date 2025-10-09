@@ -7,7 +7,7 @@ import React from 'react'
 
 const Page = ({ children, ...props }) => {
   return (
-    <SafeAreaView className={`flex-1 ${props.class}`}>
+    <SafeAreaView className={`flex-1 ${props.class}`} edges={['top']}>
       <View className={`flex-1`} style={style}>{children}</View>
     </SafeAreaView>
   )

@@ -255,9 +255,9 @@ function Search() {
         className={`px-6 flex flex-row justify-between items-end rounded-b-2xl pb-6 shadow-lg bg-royal-blue overflow-hidden`}
       >
         <View className="w-full">
-          <View className="bg-white rounded-xl shadow w-full">
+          <View className="bg-white rounded-lg shadow w-full">
             <TextInput
-              className="px-4 py-2"
+              className="text-lg px-4 h-12 pb-2 leading-relaxed"
               placeholder={t(SHARED_TEXT.SEARCH_SEARCHBAR_PLACEHOLDER)}
               value={searchKeyword}
               autoFocus={true}

@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Pressable } from 'react-native'
+import { View, Text, TextInput, Pressable, StatusBar } from 'react-native'
 import React from 'react'
 import { ChevronLeftCircle, SearchIcon, User } from 'lucide-react-native'
 

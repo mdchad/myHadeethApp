@@ -3,6 +3,7 @@ import {format} from "date-fns";
 import {toZonedTime} from "date-fns-tz";
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL;
+console.log(API_URL);
 
 export function useGetTodayHadith() {
   const timeZone = 'Asia/Kuala_Lumpur';

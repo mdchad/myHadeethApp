@@ -19,12 +19,8 @@ export default function Layout() {
         <Stack.Screen
           name="volume"
           options={{
-            headerTitle: title ? title : '',
             // Hide the header for all other routes.
             headerShown: false,
-            headerTitleStyle: {
-              fontSize: 24
-            }
           }}
         />
 
