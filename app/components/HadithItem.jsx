@@ -16,7 +16,7 @@ const HadithItem = React.memo(({ hadith }) => (
               <QuranText text={content.ar} />
             </Text>
             <Text
-              className="text-gray-800 pb-4 text-lg overflow-hidden leading-loose text-justify"
+              className="text-gray-800 pb-4 text-lg overflow-hidden leading-relaxed text-justify"
               style={{ fontFamily: 'arabic_symbols', writingDirection: 'ltr' }}
             >
               <QuranText
