@@ -42,7 +42,7 @@ const HadithChapterTitle = ({ item, toSuperscript }) => {
             <QuranText text={item?.chapter_metadata?.ar} />
           </Text>
           <Text
-            className="text-gray-800 leading-6 text-justify tracking-tight"
+            className="text-gray-700 leading-6 text-justify tracking-tight"
             style={{
               fontFamily: 'arabic_symbols',
               writingDirection: 'ltr'

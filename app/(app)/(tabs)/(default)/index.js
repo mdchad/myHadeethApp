@@ -181,7 +181,7 @@ function Home() {
                         />
                       </TouchableHighlight>
                     </View>
-                    <View className="flex flex-row items-center space-x-2">
+                    <View className="flex flex-row items-center space-x-2 p-2">
                       <Text className="text-white">
                         {t(SHARED_TEXT.VIEW_MORE_LABEL)}
                       </Text>
@@ -240,7 +240,7 @@ function Home() {
                 <View className="flex flex-row justify-between items-center bg-royal-blue">
                   <View className="flex flex-row items-center">
                   </View>
-                  <View className="flex flex-row items-center space-x-2">
+                  <View className="flex flex-row items-center space-x-2 p-2">
                     <Text className="text-white">
                       {t(SHARED_TEXT.VIEW_MORE_LABEL)}
                     </Text>

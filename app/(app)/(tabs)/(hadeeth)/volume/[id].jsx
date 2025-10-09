@@ -13,6 +13,7 @@ import { ArrowRight } from 'lucide-react-native'
 import { useGetVolumes } from '../../../../shared/fetcher/useVolumes'
 import SHARED_TEXT from "../../../../i18n";
 import {t} from "i18next";
+import Page from '../../../../components/page'
 
 const HadithVolumeItem = ({ item, index }) => (
   <Link
@@ -99,7 +100,7 @@ function HadithVolume() {
   }
 
   return (
-    <>
+    <Page>
       <Header title={title} onPressButton={() => router.back()} />
       <View
         style={{
@@ -119,7 +120,7 @@ function HadithVolume() {
           style={{ paddingRight: 10, marginRight: -10 }}
         />
       </View>
-    </>
+    </Page>
   )
 }
 

@@ -6,7 +6,6 @@ export default function Layout() {
   const { title } = useLocalSearchParams()
 
   return (
-    <Page>
       <Stack screenOptions={{ headerShown: false }} initialRouteName="index">
         <Stack.Screen
           name="index"
@@ -33,6 +32,5 @@ export default function Layout() {
           }}
         />
       </Stack>
-    </Page>
   )
 }

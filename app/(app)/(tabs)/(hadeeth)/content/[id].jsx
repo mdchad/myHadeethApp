@@ -13,6 +13,7 @@ import HadithItem from '../../../../components/HadithItem'
 import ActionButtons from '../../../../components/ActionButtons'
 import LoadingSpinner from '../../../../components/LoadingSpinner'
 import ScrollToTopButton from '../../../../components/ScrollToTopButton'
+import Page from '../../../../components/page'
 
 const HadithListItem = ({ item, onShare, onSave, ids }) => {
   const isNewChapter =
@@ -61,7 +62,7 @@ function HadithContent() {
   const bookTitle = data?.[0]?.book_title?.ms
 
   return (
-    <>
+    <Page>
       <Header title={bookTitle} onPressButton={() => router.back()} />
       <View className="flex-1 p-4 pb-0 bg-white">
         <VolumeTitle volumeTitle={volumeTitle} />
@@ -95,7 +96,7 @@ function HadithContent() {
           }
         />
       </View>
-    </>
+    </Page>
   )
 }
 

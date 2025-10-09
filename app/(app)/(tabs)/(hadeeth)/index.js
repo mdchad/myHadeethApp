@@ -11,6 +11,7 @@ import { ArrowRight, Bookmark, Heart, Share2 } from 'lucide-react-native'
 import { useGetBooks } from '../../../shared/fetcher/useBooks'
 import SHARED_TEXT from "../../../i18n";
 import {t} from "i18next";
+import Page from '../../../components/page'
 
 function Item({ title, id }) {
   const words = title.split(' ')
@@ -47,8 +48,8 @@ function Books() {
   const { isLoading, isError, data, error } = useGetBooks()
 
   return (
-    <>
-      <Header title={t(SHARED_TEXT.BOOKS_HEADER)}></Header>
+    <Page>
+      <Header title={t(SHARED_TEXT.BOOKS_HEADER)} ></Header>
       <View className="flex-1 bg-gray-100">
         <ImageBackground
           source={require('@assets/book-background.png')}
@@ -73,7 +74,7 @@ function Books() {
           </View>
         </ImageBackground>
       </View>
-    </>
+    </Page>
   )
 }
 
