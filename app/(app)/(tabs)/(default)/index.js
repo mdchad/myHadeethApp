@@ -25,6 +25,7 @@ import SHARED_TEXT from '../../../i18n'
 import RNPickerSelect from 'react-native-picker-select'
 import { useTranslation } from 'react-i18next'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { capitalize } from 'es-toolkit'
 
 function Home() {
   const { isLoading, isError, data, error } = useGetTodayHadith()
@@ -74,20 +75,14 @@ function Home() {
                 href={{ pathname: `/(default)/hadith/${data?._id}` }}
                 asChild
               >
-                <Pressable className="bg-white border border-1 border-royal-blue space-y-3 rounded-md overflow-hidden">
+                <Pressable className="bg-white border border-1 border-royal-blue gap-4 rounded-md overflow-hidden">
                   {data ? (
-                    <View className="p-3">
+                    <View className="p-6">
                       <View className="flex flex-row flex-wrap mb-4">
-                        <Text className="font-bold text-royal-blue mr-2">
-                          {data?.book_title?.ms}
-                        </Text>
-                        <ChevronRightSquare
-                          color="black"
-                          size={16}
-                          className={'mr-2'}
-                        />
-                        <Text className="font-bold text-royal-blue">
-                          {data?.volume_title?.ms}
+                        <Text className="font-mono font-semibold text-sm text-[#f80]">
+                          [ {data?.book_title?.ms}
+                          {' '}/{' '}
+                          {capitalize(data?.volume_title?.ms)} ]
                         </Text>
                       </View>
                       {/*<Text*/}

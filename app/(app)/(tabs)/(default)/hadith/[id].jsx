@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { View, ActivityIndicator, ScrollView } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
 import { useGetTodayHadith } from '../../../../shared/fetcher/useTodayHadith'
@@ -6,7 +6,6 @@ import Header from '../../../../components/header'
 import Page from "../../../../components/page"
 import HadithChapterTitle from '../../../../components/HadithChapterTitle'
 import { shareHadith } from '../../../../utils/shareHadith'
-import { toSuperscript } from '../../../../utils/toSuperscript'
 import VolumeTitle from '../../../../components/VolumeTitle'
 import HadithItem from '../../../../components/HadithItem'
 import ActionButtons from '../../../../components/ActionButtons'
@@ -14,6 +13,7 @@ import ActionButtons from '../../../../components/ActionButtons'
 function HadithContent() {
   const { id } = useLocalSearchParams()
   const router = useRouter()
+  const footnoteRefs = useRef({})
 
   const { isLoading, data } = useGetTodayHadith()
 
@@ -45,12 +45,12 @@ function HadithContent() {
                   chapter_title: data.chapter_title,
                   chapter_transliteration: data.chapter_transliteration,
                   chapter_metadata: data.chapter_metadata
-                }} 
-                toSuperscript={toSuperscript} 
+                }}
+                footnoteRefs={footnoteRefs}
               />
             )}
             <View className="space-y-8 bg-white mb-4 border border-royal-blue">
-              <HadithItem hadith={data} />
+              <HadithItem hadith={data} footnoteRefs={footnoteRefs}/>
               <ActionButtons 
                 onShare={() => shareHadith(data)} 
                 onSave={onSave} 

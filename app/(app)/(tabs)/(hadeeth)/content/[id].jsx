@@ -16,17 +16,18 @@ import ScrollToTopButton from '../../../../components/ScrollToTopButton'
 import Page from '../../../../components/page'
 
 const HadithListItem = ({ item, onShare, onSave, ids }) => {
+  const footnoteRefs = useRef({})
   const isNewChapter =
     ids.chapterId !== item.chapter_id || ids.firstHadithId === item._id
 
   return (
     <>
       {isNewChapter && (
-        <HadithChapterTitle item={item} toSuperscript={toSuperscript} />
+        <HadithChapterTitle item={item} footnoteRefs={footnoteRefs} />
       )}
       {!item.content[0].ar ? null : (
         <View className="space-y-8 bg-white mb-4 border border-royal-blue">
-          <HadithItem hadith={item} />
+          <HadithItem hadith={item} footnoteRefs={footnoteRefs}/>
           <ActionButtons
             onShare={() => onShare(item)}
             onSave={() => onSave(item._id)}

@@ -1,12 +1,10 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { View, Text } from 'react-native'
 import QuranText from './QuranText'
-import { isEmpty } from 'es-toolkit/compat'
-import FootnoteText from './footnotes-text'
+import FootnotesMarker from './footnotes-marker'
+import FootnotesReference from './footnotes-reference'
 
-const HadithItem = React.memo(({ hadith }) => {
-  const footnoteRefs = useRef({})
-
+const HadithItem = React.memo(({ hadith, footnoteRefs }) => {
   return (
     <View key={hadith.id}>
       {hadith.content.map((content, i) => {
@@ -30,7 +28,7 @@ const HadithItem = React.memo(({ hadith }) => {
                   writingDirection: 'ltr'
                 }}
               >
-                <FootnoteText
+                <FootnotesMarker
                   footnotes={hadith.footnotes}
                   type={'content.ms'}
                   index={i + 1}
@@ -42,26 +40,9 @@ const HadithItem = React.memo(({ hadith }) => {
                     font={'arabic_symbols'}
                     special={true}
                   />
-                </FootnoteText>
+                </FootnotesMarker>
               </Text>
-              <View className="lg:hidden ">
-                {!(
-                  isEmpty(hadith.footnotes) || hadith.footnotes.every(isEmpty)
-                ) &&
-                  hadith.footnotes.map((footnote, footnoteIndex) => (
-                    <View
-                      key={footnoteIndex}
-                      className="mt-2 flex flex-row items-start gap-1"
-                    >
-                      <Text className="text-blue-900/80 text-xs font-bold">
-                        {footnote.number}
-                      </Text>
-                      <Text className="text-[#97999c] font-semibold text-sm">
-                        {footnote.ms}
-                      </Text>
-                    </View>
-                  ))}
-              </View>
+              <FootnotesReference hadith={hadith} type={'content.ms'} />
             </View>
           </View>
         )
