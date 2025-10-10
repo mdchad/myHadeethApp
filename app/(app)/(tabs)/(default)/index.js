@@ -75,7 +75,7 @@ function Home() {
                 href={{ pathname: `/(default)/hadith/${data?._id}` }}
                 asChild
               >
-                <Pressable className="bg-white border border-1 border-royal-blue gap-4 rounded-md overflow-hidden">
+                <Pressable className="bg-white border border-1 border-royal-blue gap-2 rounded-md overflow-hidden">
                   {data ? (
                     <View className="p-6">
                       <View className="flex flex-row flex-wrap mb-4">
