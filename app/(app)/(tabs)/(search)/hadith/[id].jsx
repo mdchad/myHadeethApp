@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { View, ActivityIndicator, ScrollView } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
 import { useGetHadith } from '../../../../shared/fetcher/useHadiths'
@@ -13,6 +13,7 @@ import ActionButtons from '../../../../components/ActionButtons'
 function HadithContent() {
   const { id } = useLocalSearchParams()
   const router = useRouter()
+  const footnoteRefs = useRef({})
 
   const { isLoading, data } = useGetHadith(id)
 
@@ -43,12 +44,12 @@ function HadithContent() {
                 chapter_title: data.chapter_title,
                 chapter_transliteration: data.chapter_transliteration,
                 chapter_metadata: data.chapter_metadata
-              }} 
-              toSuperscript={toSuperscript} 
+              }}
+              footnoteRefs={footnoteRefs}
             />
           )}
           <View className="space-y-8 bg-white mb-4 border border-royal-blue">
-            <HadithItem hadith={data} />
+            <HadithItem hadith={data} footnoteRefs={footnoteRefs} />
             <ActionButtons 
               onShare={() => shareHadith(data)} 
               onSave={onSave} 

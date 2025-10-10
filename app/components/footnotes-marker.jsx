@@ -3,7 +3,7 @@ import React from 'react'
 import { Text } from 'react-native'
 import { toSuperscript } from '../utils/toSuperscript'
 
-const FootnoteText = ({
+const FootnotesMarker = ({
   children,
   footnotes = [],
   type,
@@ -159,4 +159,4 @@ const FootnoteText = ({
   return result
 }
 
-export default FootnoteText
+export default FootnotesMarker

@@ -15,18 +15,18 @@ import LoadingSpinner from '../../../../components/LoadingSpinner'
 import ScrollToTopButton from '../../../../components/ScrollToTopButton'
 import Page from '../../../../components/page'
 
-const HadithListItem = ({ item, onShare, onSave, ids }) => {
+const HadithListItem = ({ item, onShare, onSave, ids, footnoteRefs }) => {
   const isNewChapter =
     ids.chapterId !== item.chapter_id || ids.firstHadithId === item._id
 
   return (
     <>
       {isNewChapter && (
-        <HadithChapterTitle item={item} toSuperscript={toSuperscript} />
+        <HadithChapterTitle item={item} footnoteRefs={footnoteRefs} />
       )}
       {!item.content[0].ar ? null : (
         <View className="space-y-8 bg-white mb-4 border border-royal-blue">
-          <HadithItem hadith={item} />
+          <HadithItem hadith={item} footnoteRefs={footnoteRefs}/>
           <ActionButtons
             onShare={() => onShare(item)}
             onSave={() => onSave(item._id)}
@@ -46,6 +46,7 @@ function HadithContent() {
     chapterId: '',
     firstHadithId: ''
   }
+  const footnoteRefs = useRef({})
 
   const { isLoading, data } = useGetHadiths(bookId, volumeId)
 
@@ -65,7 +66,7 @@ function HadithContent() {
     <Page>
       <Header title={bookTitle} onPressButton={() => router.back()} />
       <View className="flex-1 p-4 pb-0 bg-white">
-        <VolumeTitle volumeTitle={volumeTitle} />
+        <VolumeTitle volumeTitle={volumeTitle} hadiths={data} footnoteRefs={footnoteRefs}/>
         {data?.length > 0 && (
           <View className="flex-1">
             <FlashList
@@ -77,6 +78,7 @@ function HadithContent() {
                   onShare={shareHadith}
                   onSave={onSave}
                   ids={ids}
+                  footnoteRefs={footnoteRefs}
                 />
               )}
               ListHeaderComponent={

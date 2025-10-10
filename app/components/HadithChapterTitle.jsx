@@ -2,8 +2,10 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import QuranText from './QuranText';
 import SpecialText from './SpecialText';
+import FootnotesMarker from './footnotes-marker'
+import FootnotesReference from './footnotes-reference'
 
-const HadithChapterTitle = ({ item, toSuperscript }) => {
+const HadithChapterTitle = ({ item, footnoteRefs }) => {
   return (
     <View className="bg-gray-100 rounded-xl mb-4 p-4 gap-10">
       <View className="gap-4">
@@ -21,10 +23,20 @@ const HadithChapterTitle = ({ item, toSuperscript }) => {
           />
         </Text>
         <View>
-          <SpecialText
-            className="text-royal-blue font-semibold"
-            text={toSuperscript(item?.chapter_title?.ms, 'text')}
-          />
+          <Text>
+            <FootnotesMarker
+              footnotes={item.footnotes}
+              type={'chapter_title.ms'}
+              index={1}
+              footnoteRefs={footnoteRefs}
+              hadithId={item._id}
+            >
+              <SpecialText
+                className="text-royal-blue font-semibold"
+                text={item?.chapter_title?.ms}
+              />
+            </FootnotesMarker>
+          </Text>
           <Text className="text-gray-600 mt-1">
             {item?.chapter_transliteration?.ms}
           </Text>
@@ -48,12 +60,22 @@ const HadithChapterTitle = ({ item, toSuperscript }) => {
               writingDirection: 'ltr'
             }}
           >
-            <QuranText
-              text={toSuperscript(item?.chapter_metadata?.ms, 'text')}
-              font={'arabic_symbols'}
-              special={true}
-            />
+            <FootnotesMarker
+              footnotes={item.footnotes}
+              type={'chapter_metadata.ms'}
+              index={1}
+              footnoteRefs={footnoteRefs}
+              hadithId={item._id}
+            >
+              <QuranText
+                text={item?.chapter_metadata?.ms}
+                font={'arabic_symbols'}
+                special={true}
+              />
+            </FootnotesMarker>
           </Text>
+          <FootnotesReference hadith={item} type={'chapter_title.ms'} />
+          <FootnotesReference hadith={item} type={'chapter_metadata.ms'} />
         </View>
       )}
     </View>
