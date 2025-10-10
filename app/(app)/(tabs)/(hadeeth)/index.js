@@ -7,7 +7,6 @@ import {
 import React from 'react'
 import { Link, useRouter } from 'expo-router'
 import Header from '@components/header'
-import { ArrowRight, Bookmark, Heart, Share2 } from 'lucide-react-native'
 import { useGetBooks } from '../../../shared/fetcher/useBooks'
 import SHARED_TEXT from "../../../i18n";
 import {t} from "i18next";
@@ -34,9 +33,11 @@ function Item({ title, id }) {
               {remainingWords}
             </Text>
           </View>
-          <View className="bg-royal-blue w-full p-1 flex flex-row justify-between items-center">
-            <Text className="text-white text-xs mr-1">{t(SHARED_TEXT.VIEW_MORE_LABEL)}</Text>
-            <ArrowRight color="white" size={12} />
+          <View className="bg-royal-blue w-full p-1 items-end">
+            <Text className="text-white text-xs mr-1">
+              {t(SHARED_TEXT.VIEW_MORE_LABEL)}
+              {''} →
+            </Text>
           </View>
         </View>
       </Pressable>

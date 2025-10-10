@@ -37,7 +37,7 @@ function HadithContent() {
           onPressButton={() => router.back()}
         />
         <View className="flex-1 p-4 pb-0 bg-white">
-          <VolumeTitle volumeTitle={data?.volume_title} />
+          <VolumeTitle volumeTitle={data?.volume_title} footnoteRefs={footnoteRefs} hadiths={[data]}/>
           <View className="flex-1">
             {data?.chapter_title?.ms && (
               <HadithChapterTitle 

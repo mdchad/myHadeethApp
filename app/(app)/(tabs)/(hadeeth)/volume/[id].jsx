@@ -9,7 +9,6 @@ import {
 } from 'react-native'
 import { Link, useLocalSearchParams, useRouter } from 'expo-router'
 import Header from '../../../../components/header'
-import { ArrowRight } from 'lucide-react-native'
 import { useGetVolumes } from '../../../../shared/fetcher/useVolumes'
 import SHARED_TEXT from "../../../../i18n";
 import {t} from "i18next";
@@ -75,8 +74,10 @@ const HadithVolumeItem = ({ item, index }) => (
               </Text>
             </View>
             <View className="flex flex-row items-center">
-              <Text className="text-royal-blue text-xs mr-1">{t(SHARED_TEXT.VIEW_MORE_LABEL)}</Text>
-              <ArrowRight color="black" size={14} />
+              <Text className="text-royal-blue text-xs mr-1">
+                {t(SHARED_TEXT.VIEW_MORE_LABEL)}
+                {''} →
+              </Text>
             </View>
           </View>
         </View>

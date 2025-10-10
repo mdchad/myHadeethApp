@@ -9,7 +9,6 @@ import {
 import React, { useState } from 'react'
 import Page from '@components/page'
 import {
-  ArrowRight,
   Bookmark,
   ChevronRightSquare,
   Heart,
@@ -176,11 +175,11 @@ function Home() {
                         />
                       </TouchableHighlight>
                     </View>
-                    <View className="flex flex-row items-center space-x-2 p-2">
+                    <View className="flex flex-row items-center p-2">
                       <Text className="text-white">
                         {t(SHARED_TEXT.VIEW_MORE_LABEL)}
+                        {''} →
                       </Text>
-                      <ArrowRight size={18} color={'white'} />
                     </View>
                   </View>
                 </Pressable>
@@ -190,8 +189,8 @@ function Home() {
             <View className="flex flex-row gap-2">
               <Link href="/hadith40" asChild className="flex-1">
                 <Pressable className="border border-royal-blue flex justify-between items-center rounded-md">
-                  <View className="flex-grow p-2 w-full">
-                    <Text className="text-lg text-royal-blue">
+                  <View className="flex-grow p-8 w-full">
+                    <Text className="text-lg text-royal-blue font-semibold">
                       {t(SHARED_TEXT.HOME_FORTY_HADITHS_TITLE)}
                     </Text>
                     <Text className="text-xs text-royal-blue break-words">
@@ -208,7 +207,7 @@ function Home() {
                     colors={['#22276E', '#008080']}
                     className="flex justify-between items-stretch"
                   >
-                    <View className="flex-grow p-2 w-full">
+                    <View className="flex-grow p-8 w-full font-semibold">
                       <Text className="text-white text-lg">
                         {t(SHARED_TEXT.HOME_SIX_BOOKS_TITLE)}
                       </Text>
@@ -235,11 +234,11 @@ function Home() {
                 <View className="flex flex-row justify-between items-center bg-royal-blue">
                   <View className="flex flex-row items-center">
                   </View>
-                  <View className="flex flex-row items-center space-x-2 p-2">
+                  <View className="flex flex-row items-center p-2">
                     <Text className="text-white">
                       {t(SHARED_TEXT.VIEW_MORE_LABEL)}
+                      {''} →
                     </Text>
-                    <ArrowRight size={18} color={'white'} />
                   </View>
                 </View>
               </Pressable>
