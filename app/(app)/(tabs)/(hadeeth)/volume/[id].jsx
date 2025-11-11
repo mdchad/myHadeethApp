@@ -56,8 +56,7 @@ const HadithVolumeItem = ({ item, index }) => (
             </View>
             <View className="flex-1 items-end ml-1">
               <Text
-                className="text-royal-blue text-[24px] text-right flex-shrink capitalize"
-                style={{ fontFamily: 'arabic_regular' }}
+                className="text-royal-blue text-[24px] text-right flex-shrink capitalize font-arabic-regular"
               >
                 {item.title.ar}
               </Text>

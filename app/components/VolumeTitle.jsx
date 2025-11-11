@@ -24,8 +24,7 @@ const VolumeTitle = ({ volumeTitle, hadiths, footnoteRefs }) => {
         </View>
         <View className="flex-1 items-end">
           <Text
-            className="text-[26px] text-right font-semibold text-royal-blue"
-            style={{ fontFamily: 'arabic_regular' }}
+            className="text-[26px] text-right font-semibold text-royal-blue font-arabic-regular"
           >
             {volumeTitle.ar}
           </Text>

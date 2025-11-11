@@ -143,17 +143,16 @@ function Search() {
 
     // Add any remaining text after the last match
     if (language === 'ar') {
-      textWithLanguage = <QuranText key={Math.random()} text={textWithLanguage} font={'arabic_regular'} />
+      textWithLanguage = <QuranText key={Math.random()} text={textWithLanguage} font={'arabic-regular'} />
     } else {
-      textWithLanguage = <QuranText key={Math.random()} text={textWithLanguage} font={'arabic_symbols'} special={true} />
+      textWithLanguage = <QuranText key={Math.random()} text={textWithLanguage} font={'arabic-symbols'} special={true} />
     }
     parts.push(textWithLanguage)
 
     if (language === 'ar') {
       return (
         <Text
-          style={{ fontFamily: 'arabic_regular' }}
-          className="text-xl text-right"
+          className="text-xl text-right font-arabic-regular"
         >
           {parts}
         </Text>
@@ -161,7 +160,7 @@ function Search() {
     }
 
     return (
-      <Text style={{ fontFamily: 'arabic_symbols', writingDirection: 'ltr' }} className="text-md">
+      <Text className="text-md font-arabic-symbols" style={{ writingDirection: 'ltr' }}>
         {parts}
       </Text>
     )

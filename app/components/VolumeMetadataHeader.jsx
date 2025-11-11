@@ -9,11 +9,11 @@ const VolumeMetadataHeader = ({ volumeDetails }) => {
   return (
     <View className="bg-royal-blue/20 rounded-xl p-4 mb-2">
       <Text
-        className="text-lg font-semibold text-royal-blue mb-2"
+        className="text-lg font-semibold text-royal-blue mb-2 font-arabic-bold"
         style={{ writingDirection: 'rtl' }}
       >
         <QuranText
-          font={'arabic_bold'}
+          font={'arabic-bold'}
           className="text-royal-blue font-semibold"
           text={volumeDetails.metadata.ar}
         />
