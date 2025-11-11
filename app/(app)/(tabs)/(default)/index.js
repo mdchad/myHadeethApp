@@ -92,16 +92,16 @@ function Home() {
                       </View>
                       {/*<Text*/}
                       {/*  numberOfLines={7}*/}
-                      {/*  className="text-xl mb-1 pb-4 leading-8"*/}
+                      {/*  className="text-xl mb-1 pb-4 leading-8 font-arabic-regular"*/}
                       {/*  lang="ar"*/}
-                      {/*  style={{ fontFamily: 'arabic_regular', writingDirection: 'rtl' }}*/}
+                      {/*  style={{ writingDirection: 'rtl' }}*/}
                       {/*>*/}
                       {/*  {data?.content[0].ar}*/}
                       {/*</Text>*/}
                       <Text
                         numberOfLines={7}
                         ellipsizeMode="tail"
-                        style={{ fontFamily: 'arabic_symbols' }}
+                        className="font-arabic-symbols"
                       >
                         {data?.content[0].ms}
                       </Text>

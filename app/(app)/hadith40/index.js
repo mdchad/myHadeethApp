@@ -32,8 +32,8 @@ export default function Hadith40() {
               <View key={index} className="mb-4">
                 <Text className="mb-4">{item.narrators[index].ms}</Text>
                 <View className="bg-gray-200 rounded-md px-2 py-4">
-                  <Text className="font-bold text-gray-700 text-2xl text-justify leading-10 mb-2" style={{ fontFamily: 'arabic_bold', writingDirection: 'rtl' }}>{cnt.ar}</Text>
-                  <Text className="font-bold text-lg" style={{ fontFamily: 'arabic_regular' }}>{item.narratedBy[index].ar}</Text>
+                  <Text className="font-bold text-gray-700 text-2xl text-justify leading-10 mb-2 font-arabic-bold" style={{ writingDirection: 'rtl' }}>{cnt.ar}</Text>
+                  <Text className="font-bold text-lg font-arabic-regular">{item.narratedBy[index].ar}</Text>
                   <Audio url={item.number === 5 && index === 1 ?  `${item.number}_content_ar`: uriAr } />
                 </View>
                 <View className="mt-4">

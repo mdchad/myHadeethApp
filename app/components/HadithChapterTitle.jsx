@@ -10,16 +10,14 @@ const HadithChapterTitle = ({ item, footnoteRefs }) => {
     <View className="bg-gray-100 rounded-xl mb-4 p-4 gap-10">
       <View className="gap-4">
         <Text
-          className="text-lg text-royal-blue"
+          className="text-lg text-royal-blue font-arabic-bold font-bold"
           style={{
-            fontFamily: 'arabic_bold',
-            writingDirection: 'rtl',
-            fontWeight: 700
+            writingDirection: 'rtl'
           }}
         >
           <QuranText
             text={item?.chapter_title?.ar}
-            font={'arabic_bold'}
+            font={'arabic-bold'}
           />
         </Text>
         <View>
@@ -45,18 +43,16 @@ const HadithChapterTitle = ({ item, footnoteRefs }) => {
       {item?.chapter_metadata?.ms && (
         <View className="gap-4">
           <Text
-            className="text-lg text-gray-800 leading-8"
+            className="text-lg text-gray-800 leading-8 font-arabic-regular"
             style={{
-              writingDirection: 'rtl',
-              fontFamily: 'arabic_regular'
+              writingDirection: 'rtl'
             }}
           >
             <QuranText text={item?.chapter_metadata?.ar} />
           </Text>
           <Text
-            className="text-gray-700 leading-6 text-justify tracking-tight"
+            className="text-gray-700 leading-6 text-justify tracking-tight font-arabic-symbols"
             style={{
-              fontFamily: 'arabic_symbols',
               writingDirection: 'ltr'
             }}
           >
@@ -69,7 +65,7 @@ const HadithChapterTitle = ({ item, footnoteRefs }) => {
             >
               <QuranText
                 text={item?.chapter_metadata?.ms}
-                font={'arabic_symbols'}
+                font={'arabic-symbols'}
                 special={true}
               />
             </FootnotesMarker>

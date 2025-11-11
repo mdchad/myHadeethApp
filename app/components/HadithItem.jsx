@@ -13,18 +13,16 @@ const HadithItem = React.memo(({ hadith, footnoteRefs }) => {
           <View key={i}>
             <View className="px-4 py-6 gap-6">
               <Text
-                className="text-gray-800 text-2xl leading-10 mb-2"
+                className="text-gray-800 text-2xl leading-10 mb-2 font-arabic-regular"
                 style={{
-                  fontFamily: 'arabic_regular',
                   writingDirection: 'rtl'
                 }}
               >
                 <QuranText text={content.ar} />
               </Text>
               <Text
-                className="text-gray-800 pb-4 text-lg overflow-hidden leading-relaxed text-justify tracking-tight"
+                className="text-gray-800 pb-4 text-lg overflow-hidden leading-relaxed text-justify tracking-tight font-arabic-symbols"
                 style={{
-                  fontFamily: 'arabic_symbols',
                   writingDirection: 'ltr'
                 }}
               >
@@ -37,7 +35,7 @@ const HadithItem = React.memo(({ hadith, footnoteRefs }) => {
                 >
                   <QuranText
                     text={content.ms}
-                    font={'arabic_symbols'}
+                    font={'arabic-symbols'}
                     special={true}
                   />
                 </FootnotesMarker>

@@ -9,7 +9,7 @@ function SpecialText({ text }) {
   const segments = text.split(/([ ,.!?;:"()]+)/).map((segment, index) => {
     if (containsSpecialSymbol(segment.trim())) {
       // Apply symbol font if segment contains special symbols
-      return <Text key={index} style={{ fontFamily: 'arabic_symbols' }} >{segment}</Text>;
+      return <Text key={index} className="font-arabic-symbols">{segment}</Text>;
     } else {
       // Otherwise, use the default font
       return <Text key={index} className="font-bold">{segment}</Text>;
