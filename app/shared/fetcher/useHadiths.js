@@ -25,8 +25,10 @@ export function useGetHadith(hadithId) {
     queryKey: ['hadith', hadithId],
     queryFn: async () => {
       const res = await fetch(
-        `https://my-way-web.vercel.app/api/hadiths/${hadithId}`,
-        {
+        `${API_URL}/api/hadiths/${hadithId}`, {
+          headers: {
+            'User-Agent': 'MyWayApp/1.0.0'
+          },
           method: 'GET'
         }
       )

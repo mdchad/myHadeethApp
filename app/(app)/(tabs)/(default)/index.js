@@ -77,7 +77,7 @@ function Home() {
                 </View>
               </View>
               <Link
-                href={{ pathname: `/(default)/hadith/${data?._id}` }}
+                href={{ pathname: `/hadith-detail/${data?._id}` }}
                 asChild
               >
                 <Pressable className="bg-white border border-1 border-royal-blue gap-2 rounded-md overflow-hidden">

@@ -39,7 +39,7 @@ export default function Hadith40() {
                 <View className="mt-4">
                   <Text className="text-lg mb-2 text-justify mb-2">{cnt.ms}</Text>
                   <Text className="text-xs text-right">{item.narratedBy[index].ms}</Text>
-                  <Audio url={item.number === 5 && index === 1 ?  `${item.number}_content_ms`: uriMs } />
+                  <Audio url={item.audio.ms} />
                 </View>
               </View>
             )
