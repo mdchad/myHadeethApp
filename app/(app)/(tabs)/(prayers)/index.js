@@ -39,6 +39,7 @@ import Header from '../../../components/header'
 import SHARED_TEXT from "../../../i18n";
 import { ms, enGB } from 'date-fns/locale';
 import {t} from "i18next";
+import { usePostHog } from 'posthog-react-native'
 
 const prayerNames = ['Subuh', 'Syuruk', 'Zohor', 'Asar', 'Maghrib', 'Isyak']
 const prayerIcon = [
@@ -68,6 +69,15 @@ export default function Prayer() {
   const datesInRange = eachDayOfInterval({ start: currentDate, end: endDate })
   const [calendarDate, setCalendarDate] = useState(new Date())
   const [monthlyPrayerTimes, setMonthlyPrayerTimes] = useState(null)
+  const posthog = usePostHog()
+
+  useEffect(() => {
+    // Capture prayer times viewed event
+    posthog.capture('prayer_times_viewed', {
+      location_permission: permissionStatus,
+      location: userPlace?.[0]?.city || 'unknown'
+    })
+  }, [])
   const formattedDates = datesInRange.map((date, i) => {
     return {
       date,

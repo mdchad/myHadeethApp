@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { View, ActivityIndicator, ScrollView } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
 import { useGetTodayHadith } from '../../../../shared/fetcher/useTodayHadith'
@@ -9,13 +9,25 @@ import { shareHadith } from '../../../../utils/shareHadith'
 import VolumeTitle from '../../../../components/VolumeTitle'
 import HadithItem from '../../../../components/HadithItem'
 import ActionButtons from '../../../../components/ActionButtons'
+import { usePostHog } from 'posthog-react-native'
 
 function HadithContent() {
   const { id } = useLocalSearchParams()
   const router = useRouter()
   const footnoteRefs = useRef({})
+  const posthog = usePostHog()
 
   const { isLoading, data } = useGetTodayHadith()
+
+  useEffect(() => {
+    if (data) {
+      posthog.capture('daily_hadith_viewed', {
+        hadith_id: data._id,
+        book: data.book_title?.ms,
+        volume: data.volume_title?.ms
+      })
+    }
+  }, [data])
 
   const onSave = () => {
     // TODO: Implement save logic if needed
