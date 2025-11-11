@@ -1,30 +1,30 @@
 import React, { useRef, useEffect } from 'react'
-import { View, ActivityIndicator, ScrollView } from 'react-native'
+import { View, ActivityIndicator, ScrollView, Text } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
-import { useGetTodayHadith } from '../../../../shared/fetcher/useTodayHadith'
-import Header from '../../../../components/header'
-import Page from "../../../../components/page"
-import HadithChapterTitle from '../../../../components/HadithChapterTitle'
-import { shareHadith } from '../../../../utils/shareHadith'
-import VolumeTitle from '../../../../components/VolumeTitle'
-import HadithItem from '../../../../components/HadithItem'
-import ActionButtons from '../../../../components/ActionButtons'
+import { useGetHadith } from '../../shared/fetcher/useHadiths'
+import Header from '../../components/header'
+import Page from "../../components/page"
+import HadithChapterTitle from '../../components/HadithChapterTitle'
+import { shareHadith } from '../../utils/shareHadith'
+import VolumeTitle from '../../components/VolumeTitle'
+import HadithItem from '../../components/HadithItem'
+import ActionButtons from '../../components/ActionButtons'
 import { usePostHog } from 'posthog-react-native'
 
-function HadithContent() {
+function UniversalHadithDetail() {
   const { id } = useLocalSearchParams()
   const router = useRouter()
   const footnoteRefs = useRef({})
   const posthog = usePostHog()
 
-  const { isLoading, data } = useGetTodayHadith()
+  const { isLoading, data, isError } = useGetHadith(id)
 
   useEffect(() => {
     if (data) {
-      posthog.capture('daily_hadith_viewed', {
+      posthog.capture('hadith_viewed', {
         hadith_id: data._id,
         book: data.book_title?.ms,
-        volume: data.volume_title?.ms
+        volume: data.volume_title?.ms,
       })
     }
   }, [data])
@@ -41,6 +41,10 @@ function HadithContent() {
     )
   }
 
+  console.log(data)
+  console.log(isLoading)
+  console.log(id)
+  console.log(isError)
   return (
     <Page>
       <ScrollView>
@@ -52,7 +56,7 @@ function HadithContent() {
           <VolumeTitle volumeTitle={data?.volume_title} footnoteRefs={footnoteRefs} hadiths={[data]}/>
           <View className="flex-1">
             {data?.chapter_title?.ms && (
-              <HadithChapterTitle 
+              <HadithChapterTitle
                 item={{
                   chapter_title: data.chapter_title,
                   chapter_transliteration: data.chapter_transliteration,
@@ -63,9 +67,9 @@ function HadithContent() {
             )}
             <View className="space-y-8 bg-white mb-4 border border-royal-blue">
               <HadithItem hadith={data} footnoteRefs={footnoteRefs}/>
-              <ActionButtons 
-                onShare={() => shareHadith(data)} 
-                onSave={onSave} 
+              <ActionButtons
+                onShare={() => shareHadith(data)}
+                onSave={onSave}
               />
             </View>
           </View>
@@ -75,4 +79,4 @@ function HadithContent() {
   )
 }
 
-export default HadithContent
+export default UniversalHadithDetail

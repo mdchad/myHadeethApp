@@ -24,7 +24,7 @@ import SHARED_TEXT from '../../../i18n'
 import { t } from 'i18next'
 import Pagination from '../../../components/pagination'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { isArray } from '@freakycoder/react-native-helpers/lib/utils'
+import { isArray } from 'es-toolkit/compat';
 import BottomSheet, {
   BottomSheetBackdrop,
   BottomSheetView
@@ -45,14 +45,19 @@ function Search() {
 
   const queryClient = useQueryClient()
 
+  const API_URL = process.env.EXPO_PUBLIC_API_URL;
+
   const { data, fetchStatus } = useQuery({
     queryKey: ['search', page, submittedKeyword, selectedBooks],
     queryFn: async () => {
       const res = await fetch(
-        `https://my-way-web.vercel.app/api/search?page=${page}&limit=${10}&query=${encodeURIComponent(
+        `${API_URL}/api/search?page=${page}&limit=${10}&query=${encodeURIComponent(
           submittedKeyword
         )}&books=${selectedBooks}`,
         {
+          headers: {
+            'User-Agent': 'MyWayApp/1.0.0'
+          },
           method: 'GET'
         }
       )
@@ -180,7 +185,7 @@ function Search() {
     return (
       <Link
         key={item._id}
-        href={{ pathname: `/(search)/hadith/${item._id}` }}
+        href={{ pathname: `/hadith-detail/${item._id}` }}
         asChild
       >
         <Pressable key={item._id} className="pb-4 bg-white px-5">
