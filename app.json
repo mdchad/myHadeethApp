@@ -41,7 +41,8 @@
       "expo-font",
       "expo-secure-store",
       "expo-web-browser",
-      "expo-audio"
+      "expo-audio",
+      "expo-localization"
     ],
     "ios": {
       "bundleIdentifier": "com.mdchad.myWay",

@@ -13,6 +13,7 @@ import * as SplashScreen from 'expo-splash-screen'
 import {toZonedTime} from "date-fns-tz";
 import {format} from "date-fns";
 import { setAudioModeAsync } from "expo-audio";
+import { PostHogProvider } from 'posthog-react-native'
 import "./global.css"
 
 
@@ -201,11 +202,13 @@ export default function Root() {
       }
     >
       <GestureHandlerRootView>
-        <PortalProvider>
+        <PostHogProvider apiKey={process.env.POSTHOG_API_KEY} options={{host: 'https://us.i.posthog.com'}} >
+          <PortalProvider>
           <Provider>
             <Slot />
           </Provider>
         </PortalProvider>
+        </PostHogProvider>
       </GestureHandlerRootView>
     </PersistQueryClientProvider>
   )
