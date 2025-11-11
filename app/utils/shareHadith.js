@@ -1,16 +1,16 @@
 import { Share } from 'react-native';
+import i18n from 'i18next';
 
 export const shareHadith = async (hadith) => {
-  let formattedMessage = '';
-
-  hadith.content.forEach((item) => {
-    formattedMessage += `\n${item.ar}\n\n ${item.ms}\n\n\n`;
-  });
-
-  formattedMessage += `${hadith.book_title.ms}\n\nhttps://myway.my`;
+  const deepLink = `myway://hadith/${hadith._id}`;
+  const message = i18n.t('SHARE_HADITH_MESSAGE');
+  const formattedMessage = `${message}\n\n${deepLink}`;
 
   try {
-    await Share.share({ message: formattedMessage });
+    await Share.share({
+      message: formattedMessage,
+      url: deepLink // iOS will use this if available
+    });
   } catch (error) {
     console.log('Error sharing:', error);
   }
