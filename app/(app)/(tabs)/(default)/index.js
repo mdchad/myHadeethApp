@@ -6,7 +6,7 @@ import {
   Pressable,
   StyleSheet
 } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Page from '@components/page'
 import {
   Bookmark,
@@ -25,11 +25,17 @@ import RNPickerSelect from 'react-native-picker-select'
 import { useTranslation } from 'react-i18next'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { capitalize } from 'es-toolkit'
+import { usePostHog } from 'posthog-react-native'
 
 function Home() {
   const { isLoading, isError, data, error } = useGetTodayHadith()
   const { t, i18n } = useTranslation()
   const [lang, setLang] = useState(i18n.language)
+  const posthog = usePostHog()
+
+  useEffect(() => {
+    posthog.capture("Home page loaded")
+  }, [])
 
   return (
     <Page class="bg-white">
