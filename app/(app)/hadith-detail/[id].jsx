@@ -42,8 +42,8 @@ function UniversalHadithDetail() {
   }
 
   return (
-    <Page>
-      <ScrollView>
+    <Page class="bg-white" edges={['bottom']}>
+      <ScrollView className="bg-white" contentContainerStyle={{ flexGrow: 1 }}>
         <Header
           title={data?.book_title?.ms}
           onPressButton={() => router.back()}
