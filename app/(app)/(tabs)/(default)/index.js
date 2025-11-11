@@ -34,7 +34,7 @@ function Home() {
   const posthog = usePostHog()
 
   useEffect(() => {
-    posthog.capture("Home page loaded")
+    posthog.capture("home_viewed")
   }, [])
 
   return (

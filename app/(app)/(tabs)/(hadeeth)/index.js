@@ -11,8 +11,17 @@ import { useGetBooks } from '../../../shared/fetcher/useBooks'
 import SHARED_TEXT from "../../../i18n";
 import {t} from "i18next";
 import Page from '../../../components/page'
+import { usePostHog } from 'posthog-react-native'
 
 function Item({ title, id }) {
+  const posthog = usePostHog()
+
+  const handlePress = () => {
+    posthog.capture('hadith_book_opened', {
+      book_id: id,
+      book_title: title
+    })
+  }
   const words = title.split(' ')
 
   const firstWord = words[0]
@@ -23,7 +32,7 @@ function Item({ title, id }) {
       href={`(hadeeth)/volume/${id}?title=${title}`}
       asChild
     >
-      <Pressable className="w-[48%] mr-4 bg-white">
+      <Pressable className="w-[48%] mr-4 bg-white" onPress={handlePress}>
         <View className="w-full">
           <View className="flex items-center py-8 px-2">
             <Text className="text-lg text-royal-blue font-semibold">

@@ -31,8 +31,10 @@ import BottomSheet, {
 } from '@gorhom/bottom-sheet'
 import QuranText from "../../../components/QuranText";
 import Sheet from "../../../components/bottomSheet";
+import { usePostHog } from 'posthog-react-native'
 
 function Search() {
+  const posthog = usePostHog()
   const [searchKeyword, setSearchKeyword] = useState('')
   const [page, setPage] = React.useState(1)
   const [searchHistory, setSearchHistory] = useState([])
@@ -207,6 +209,13 @@ function Search() {
     let history = []
     if (searchKeyword) {
       setSubmittedKeyword(searchKeyword)
+
+      // Capture search event
+      posthog.capture('hadith_searched', {
+        query: searchKeyword,
+        books_filtered: selectedBooks || 'all'
+      })
+
       const filteredArray = searchHistory.filter(
         (item) => item !== searchKeyword
       )

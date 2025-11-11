@@ -18,6 +18,7 @@ import Spacer from '@components/Spacer'
 import Header from './header'
 import SHARED_TEXT from '../i18n'
 import {t} from "i18next";
+import { usePostHog } from 'posthog-react-native'
 
 const Mecca = {
   latitude: 21.4225,
@@ -32,6 +33,14 @@ export default function CompassV2() {
   const { userLocation, userPlace, permissionStatus } = useProvider()
   const segment = useSegments()
   const [degree, setDegree] = useState('')
+  const posthog = usePostHog()
+
+  useEffect(() => {
+    // Capture qibla compass opened event
+    posthog.capture('qibla_compass_opened', {
+      location_permission: permissionStatus
+    })
+  }, [])
 
   useEffect(() => {
     _getLocationAsync()
