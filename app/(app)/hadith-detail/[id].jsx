@@ -41,10 +41,6 @@ function UniversalHadithDetail() {
     )
   }
 
-  console.log(data)
-  console.log(isLoading)
-  console.log(id)
-  console.log(isError)
   return (
     <Page>
       <ScrollView>

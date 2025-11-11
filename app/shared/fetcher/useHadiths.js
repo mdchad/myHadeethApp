@@ -25,8 +25,7 @@ export function useGetHadith(hadithId) {
     queryKey: ['hadith', hadithId],
     queryFn: async () => {
       const res = await fetch(
-        `${API_URL}/api/hadiths/${hadithId}`,
-        {
+        `${API_URL}/api/hadiths/${hadithId}`, {
           headers: {
             'User-Agent': 'MyWayApp/1.0.0'
           },
