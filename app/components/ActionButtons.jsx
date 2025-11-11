@@ -4,7 +4,7 @@ import { Bookmark, Share2 } from 'lucide-react-native';
 
 const ActionButtons = ({ onShare, onSave }) => {
   return (
-    <View className="flex flex-row justify-end items-center bg-royal-blue">
+    <View className="flex flex-row justify-end items-center bg-royal-blue p-1">
       <TouchableHighlight
         className="p-1"
         underlayColor="#333"
