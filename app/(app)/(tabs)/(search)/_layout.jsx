@@ -12,13 +12,6 @@ const _layout = () => {
             headerShown: false
           }}
         />
-        <Stack.Screen
-          name="hadith"
-          options={{
-            // Hide the header for all other routes.
-            headerShown: false
-          }}
-        />
       </Stack>
   )
 }
