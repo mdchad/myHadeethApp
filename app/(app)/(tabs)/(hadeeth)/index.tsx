@@ -13,7 +13,12 @@ import {t} from "i18next";
 import Page from '@/app/components/page'
 import { usePostHog } from 'posthog-react-native'
 
-function Item({ title, id }) {
+interface ItemProps {
+  title: string;
+  id: string;
+}
+
+function Item({ title, id }: ItemProps) {
   const posthog = usePostHog()
 
   const handlePress = () => {

@@ -14,7 +14,28 @@ import LoadingSpinner from '@/app/components/loading-spinner'
 import ScrollToTopButton from '@/app/components/scroll-to-top-button'
 import Page from '@/app/components/page'
 
-const HadithListItem = ({ item, onShare, onSave, ids, footnoteRefs }) => {
+interface BilingualContent {
+  ms?: string;
+  ar?: string;
+}
+
+interface HadithItemType {
+  _id: string;
+  chapter_id: string;
+  content: BilingualContent[];
+  chapter_title?: BilingualContent;
+  footnotes?: any[];
+}
+
+interface HadithListItemProps {
+  item: HadithItemType;
+  onShare: (item: HadithItemType) => void;
+  onSave: (id: string) => void;
+  ids: { chapterId: string; firstHadithId: string };
+  footnoteRefs: React.RefObject<Record<string, any>>;
+}
+
+const HadithListItem: React.FC<HadithListItemProps> = ({ item, onShare, onSave, ids, footnoteRefs }) => {
   const isNewChapter =
     ids.chapterId !== item.chapter_id || ids.firstHadithId === item._id
 
@@ -37,19 +58,19 @@ const HadithListItem = ({ item, onShare, onSave, ids, footnoteRefs }) => {
 }
 
 function HadithContent() {
-  const { volumeId, bookId } = useLocalSearchParams()
-  const listRef = useRef(null)
-  const [savedBookmark, setSavedBookmark] = useState([])
+  const { volumeId, bookId } = useLocalSearchParams<{ volumeId: string; bookId: string }>()
+  const listRef = useRef<FlashList<HadithItemType>>(null)
+  const [savedBookmark, setSavedBookmark] = useState<string[]>([])
   const router = useRouter()
   const ids = {
     chapterId: '',
     firstHadithId: ''
   }
-  const footnoteRefs = useRef({})
+  const footnoteRefs = useRef<Record<string, any>>({})
 
   const { isLoading, data } = useGetHadiths(bookId, volumeId)
 
-  const onSave = (id) => {
+  const onSave = (id: string) => {
     // TODO: Implement bookmark functionality
     setSavedBookmark((prev) => [...prev, id])
   }

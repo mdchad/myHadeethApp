@@ -12,9 +12,9 @@ import ActionButtons from '@/app/components/action-buttons'
 import { usePostHog } from 'posthog-react-native'
 
 function UniversalDetail() {
-  const { id } = useLocalSearchParams()
+  const { id } = useLocalSearchParams<{ id: string }>()
   const router = useRouter()
-  const footnoteRefs = useRef({})
+  const footnoteRefs = useRef<Record<string, any>>({})
   const posthog = usePostHog()
 
   const { isLoading, data, isError } = useGetHadith(id)

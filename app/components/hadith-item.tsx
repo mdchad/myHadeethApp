@@ -19,8 +19,8 @@ interface Footnote {
 }
 
 interface Hadith {
-  id: string | number;
-  _id: string;
+  id?: string | number;
+  _id?: string;
   content: BilingualContent[];
   footnotes?: Footnote[];
 }

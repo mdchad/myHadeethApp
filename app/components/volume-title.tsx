@@ -18,7 +18,7 @@ interface Footnote {
 }
 
 interface Hadith {
-  _id: string;
+  _id?: string;
   footnotes?: Footnote[];
 }
 

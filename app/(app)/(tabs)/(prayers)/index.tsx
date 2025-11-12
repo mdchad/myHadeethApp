@@ -22,6 +22,40 @@ import { ms, enGB } from 'date-fns/locale';
 import {t} from "i18next";
 import { usePostHog } from 'posthog-react-native'
 
+interface PrayerTime {
+  name: string;
+  timezoneDate: string;
+  prayerTime: string;
+  icon: any;
+  hasElapsed: boolean;
+}
+
+interface FormattedDate {
+  date: Date;
+  id: number;
+  day: number;
+  month: string;
+  dayName: string;
+}
+
+interface Prayer {
+  day: number;
+  fajr: number;
+  syuruk: number;
+  dhuhr: number;
+  asr: number;
+  maghrib: number;
+  isha: number;
+}
+
+interface MonthlyPrayerTimes {
+  prayers: Prayer[];
+}
+
+interface RenderItemProps {
+  item: FormattedDate;
+}
+
 const prayerNames = ['Subuh', 'Syuruk', 'Zohor', 'Asar', 'Maghrib', 'Isyak']
 const prayerIcon = [
   require('@assets/prayer-fajr.png'),
@@ -39,17 +73,17 @@ const formatHijri = new Intl.DateTimeFormat(
 )
 
 export default function Prayer() {
-  const [prayerTimes, setPrayerTimes] = useState([])
-  const [nextPrayer, setNextPrayer] = useState(null)
-  const [error, setError] = useState(false)
+  const [prayerTimes, setPrayerTimes] = useState<PrayerTime[]>([])
+  const [nextPrayer, setNextPrayer] = useState<PrayerTime | null>(null)
+  const [error, setError] = useState<boolean>(false)
   const { userLocation, userPlace, permissionStatus } = useProvider()
   const currentDate = new Date()
   const month = format(currentDate, 'L', { timeZone: 'Asia/Kuala_Lumpur' })
   const year = format(currentDate, 'y', { timeZone: 'Asia/Kuala_Lumpur' })
   const endDate = addDays(currentDate, 6)
   const datesInRange = eachDayOfInterval({ start: currentDate, end: endDate })
-  const [calendarDate, setCalendarDate] = useState(new Date())
-  const [monthlyPrayerTimes, setMonthlyPrayerTimes] = useState(null)
+  const [calendarDate, setCalendarDate] = useState<Date>(new Date())
+  const [monthlyPrayerTimes, setMonthlyPrayerTimes] = useState<MonthlyPrayerTimes | null>(null)
   const posthog = usePostHog()
 
   useEffect(() => {
@@ -101,12 +135,12 @@ export default function Prayer() {
     }
   }
 
-  async function calculatePrayer(day, monthlyPrayerTimes) {
-    const prayers = []
+  async function calculatePrayer(day: string, monthlyPrayerTimes: MonthlyPrayerTimes) {
+    const prayers: any[] = []
     ;['fajr', 'syuruk', 'dhuhr', 'asr', 'maghrib', 'isha'].forEach(
       (time, i) => {
         const currentTime = new Date()
-        const getPrayerDate = monthlyPrayerTimes.prayers.find(
+        const getPrayerDate: any = monthlyPrayerTimes.prayers.find(
           (prayer) => prayer.day === parseInt(day)
         )
         const getWaktu = getPrayerDate[time]
@@ -145,7 +179,7 @@ export default function Prayer() {
     }
   }
 
-  function onClickIndividualDay(item) {
+  function onClickIndividualDay(item: FormattedDate) {
     setCalendarDate(item?.date)
     calculatePrayer(
       format(item?.date, 'd', { timeZone: 'Asia/Kuala_Lumpur' }),
@@ -157,7 +191,7 @@ export default function Prayer() {
     await Linking.openSettings()
   }
 
-  function RenderItem({ item }) {
+  function RenderItem({ item }: RenderItemProps) {
     return (
       <Pressable onPress={() => onClickIndividualDay(item)}>
         <View className={`mx-2 flex items-center py-4`}>

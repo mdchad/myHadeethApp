@@ -14,7 +14,28 @@ import SHARED_TEXT from "../../../../i18n";
 import {t} from "i18next";
 import Page from '@/app/components/page'
 
-const HadithVolumeItem = ({ item, index }) => (
+interface BilingualText {
+  ms: string;
+  ar: string;
+}
+
+interface VolumeItem {
+  id: string | number;
+  book_id: string;
+  title: BilingualText;
+  transliteration?: BilingualText;
+  hadith?: {
+    first: number;
+    last: number;
+  };
+}
+
+interface HadithVolumeItemProps {
+  item: VolumeItem;
+  index: number;
+}
+
+const HadithVolumeItem: React.FC<HadithVolumeItemProps> = ({ item, index }) => (
   <Link
     asChild
     href={{
@@ -86,7 +107,7 @@ const HadithVolumeItem = ({ item, index }) => (
 )
 
 function HadithVolume() {
-  const { id, title } = useLocalSearchParams()
+  const { id, title } = useLocalSearchParams<{ id: string; title: string }>()
   const router = useRouter()
 
   const { isLoading, isError, data, error } = useGetVolumes(id)
