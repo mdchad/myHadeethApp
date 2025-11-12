@@ -3,7 +3,14 @@ import {Text, View, TouchableHighlight} from 'react-native'
 import {t} from "i18next";
 import SHARED_TEXT from "../i18n";
 
-const Pagination = ({ count, currentPage = 1, setPage, books = '' }) => {
+interface PaginationProps {
+  count: number;
+  currentPage?: number;
+  setPage: (page: number) => void;
+  books?: string;
+}
+
+const Pagination: React.FC<PaginationProps> = ({ count, currentPage = 1, setPage, books = '' }) => {
   const totalCount = count; // Replace with the actual total count of collections
   const itemsPerPage = 10;
   const totalPages = Math.ceil(totalCount / itemsPerPage);

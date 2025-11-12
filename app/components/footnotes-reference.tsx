@@ -2,7 +2,23 @@ import { isEmpty } from 'es-toolkit/compat'
 import { Text, View } from 'react-native'
 import React from 'react'
 
-function FootnotesReference({ hadith, type }) {
+interface Footnote {
+  number: number;
+  type: string;
+  ms?: string;
+  ar?: string;
+}
+
+interface Hadith {
+  footnotes?: Footnote[];
+}
+
+interface FootnotesReferenceProps {
+  hadith: Hadith;
+  type: string;
+}
+
+function FootnotesReference({ hadith, type }: FootnotesReferenceProps) {
   return (
     <>
       {!(

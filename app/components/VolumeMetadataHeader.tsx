@@ -3,7 +3,20 @@ import { View, Text } from 'react-native';
 import QuranText from './QuranText';
 import SpecialText from './SpecialText';
 
-const VolumeMetadataHeader = ({ volumeDetails }) => {
+interface BilingualText {
+  ms: string;
+  ar: string;
+}
+
+interface VolumeDetails {
+  metadata?: BilingualText;
+}
+
+interface VolumeMetadataHeaderProps {
+  volumeDetails: VolumeDetails;
+}
+
+const VolumeMetadataHeader: React.FC<VolumeMetadataHeaderProps> = ({ volumeDetails }) => {
   if (!volumeDetails?.metadata?.ar) return null;
 
   return (

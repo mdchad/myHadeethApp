@@ -27,7 +27,9 @@ const Mecca = {
 
 const width = Dimensions.get('window').width
 
-export default function CompassV2() {
+interface CompassV2Props {}
+
+export default function CompassV2({}: CompassV2Props) {
   const [location, setLocation] = useState(null)
   const [heading, setHeading] = useState(0)
   const { userLocation, userPlace, permissionStatus } = useProvider()

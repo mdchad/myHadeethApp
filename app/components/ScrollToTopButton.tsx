@@ -2,7 +2,11 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { ArrowBigUp } from 'lucide-react-native';
 
-const ScrollToTopButton = ({ onPress }) => {
+interface ScrollToTopButtonProps {
+  onPress: () => void;
+}
+
+const ScrollToTopButton: React.FC<ScrollToTopButtonProps> = ({ onPress }) => {
   return (
     <TouchableOpacity
       className="items-center absolute bottom-2 right-4 sticky bg-royal-blue rounded-xl p-2"

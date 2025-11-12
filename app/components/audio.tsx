@@ -4,7 +4,11 @@ import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio'
 import { Slider } from '@react-native-assets/slider'
 import {Loader, PauseIcon, PlayIcon, StopCircle} from "lucide-react-native";
 
-const SoundPlayer = ({url}) => {
+interface SoundPlayerProps {
+  url: string;
+}
+
+const SoundPlayer: React.FC<SoundPlayerProps> = ({url}) => {
   const audioUri = `https://my-way-web.vercel.app/audio/${url}.mp3`
   const player = useAudioPlayer(audioUri)
   const status = useAudioPlayerStatus(player)

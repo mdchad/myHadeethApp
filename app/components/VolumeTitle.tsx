@@ -3,7 +3,32 @@ import { View, Text } from 'react-native';
 import FootnotesMarker from './footnotes-marker'
 import FootnotesReference from './footnotes-reference'
 
-const VolumeTitle = ({ volumeTitle, hadiths, footnoteRefs }) => {
+interface VolumeText {
+  ms: string;
+  ar: string;
+}
+
+interface Footnote {
+  position: number;
+  number: number;
+  type: string;
+  hadithIndex: number;
+  ms?: string;
+  ar?: string;
+}
+
+interface Hadith {
+  _id: string;
+  footnotes?: Footnote[];
+}
+
+interface VolumeTitleProps {
+  volumeTitle: VolumeText | null;
+  hadiths: Hadith[];
+  footnoteRefs: React.MutableRefObject<Record<string, any>>;
+}
+
+const VolumeTitle: React.FC<VolumeTitleProps> = ({ volumeTitle, hadiths, footnoteRefs }) => {
   if (!volumeTitle) return null;
 
   return (

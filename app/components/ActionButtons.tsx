@@ -2,7 +2,12 @@ import React from 'react';
 import { View, TouchableHighlight } from 'react-native';
 import { Bookmark, Share2 } from 'lucide-react-native';
 
-const ActionButtons = ({ onShare, onSave }) => {
+interface ActionButtonsProps {
+  onShare: () => void;
+  onSave: () => void;
+}
+
+const ActionButtons: React.FC<ActionButtonsProps> = ({ onShare, onSave }) => {
   return (
     <View className="flex flex-row justify-end items-center bg-royal-blue p-1">
       <TouchableHighlight

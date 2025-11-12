@@ -5,7 +5,34 @@ import SpecialText from './SpecialText';
 import FootnotesMarker from './footnotes-marker'
 import FootnotesReference from './footnotes-reference'
 
-const HadithChapterTitle = ({ item, footnoteRefs }) => {
+interface BilingualText {
+  ms?: string;
+  ar?: string;
+}
+
+interface Footnote {
+  position: number;
+  number: number;
+  type: string;
+  hadithIndex: number;
+  ms?: string;
+  ar?: string;
+}
+
+interface HadithItem {
+  _id: string;
+  chapter_title?: BilingualText;
+  chapter_transliteration?: BilingualText;
+  chapter_metadata?: BilingualText;
+  footnotes?: Footnote[];
+}
+
+interface HadithChapterTitleProps {
+  item: HadithItem;
+  footnoteRefs: React.MutableRefObject<Record<string, any>>;
+}
+
+const HadithChapterTitle: React.FC<HadithChapterTitleProps> = ({ item, footnoteRefs }) => {
   return (
     <View className="bg-gray-100 rounded-xl mb-4 p-4 gap-10">
       <View className="gap-4">

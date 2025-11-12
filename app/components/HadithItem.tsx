@@ -4,7 +4,33 @@ import QuranText from './QuranText'
 import FootnotesMarker from './footnotes-marker'
 import FootnotesReference from './footnotes-reference'
 
-const HadithItem = React.memo(({ hadith, footnoteRefs }) => {
+interface BilingualContent {
+  ms?: string;
+  ar?: string;
+}
+
+interface Footnote {
+  position: number;
+  number: number;
+  type: string;
+  hadithIndex: number;
+  ms?: string;
+  ar?: string;
+}
+
+interface Hadith {
+  id: string | number;
+  _id: string;
+  content: BilingualContent[];
+  footnotes?: Footnote[];
+}
+
+interface HadithItemProps {
+  hadith: Hadith;
+  footnoteRefs: React.MutableRefObject<Record<string, any>>;
+}
+
+const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
   return (
     <View key={hadith.id}>
       {hadith.content.map((content, i) => {

@@ -5,8 +5,14 @@ import SHARED_TEXT from "../i18n";
 import React, {useCallback, useMemo, useRef} from "react";
 import {Portal} from "@gorhom/portal";
 
+interface SheetProps {
+  setSelectedBooks: (books: string) => void;
+  books: string[];
+  setBooks: React.Dispatch<React.SetStateAction<string[]>>;
+  bottomSheetRef: React.RefObject<BottomSheet>;
+}
 
-function Sheet({ setSelectedBooks, books, setBooks, bottomSheetRef}) {
+function Sheet({ setSelectedBooks, books, setBooks, bottomSheetRef}: SheetProps) {
   // variables
   const snapPoints = useMemo(() => ['25%', '50%'], [])
 

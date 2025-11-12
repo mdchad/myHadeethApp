@@ -1,11 +1,17 @@
 import { Text } from "react-native";
 
-function determineDirection(text) {
+interface QuranTextProps {
+  text: string;
+  special?: boolean;
+  font?: string;
+}
+
+function determineDirection(text: string): 'rtl' | 'ltr' {
   const arabicPattern = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/;
   return arabicPattern.test(text) ? 'rtl' : 'ltr';
 }
 
-function QuranText({ text, special = false, font = "arabic-regular" }) {
+function QuranText({ text, special = false, font = "arabic-regular" }: QuranTextProps) {
   const regex = /([\uFD3F].*?[\uFD3E])/; // These are the Unicode points for the Arabic brackets
   const parts = text.split(regex);
 
@@ -21,7 +27,7 @@ function QuranText({ text, special = false, font = "arabic-regular" }) {
     'uthmanic-hafs': 'font-uthmanic-hafs',
   };
 
-  const getFontClass = (fontName) => fontClassMap[fontName] || 'font-arabic-regular';
+  const getFontClass = (fontName: string) => fontClassMap[fontName] || 'font-arabic-regular';
 
   return parts.map((part, index) => {
     const direction = determineDirection(part);

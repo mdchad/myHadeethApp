@@ -2,7 +2,14 @@ import { View, Text, TextInput, Pressable, StatusBar } from 'react-native'
 import React from 'react'
 import { ChevronLeftCircle, SearchIcon, User } from 'lucide-react-native'
 
-function Header({ title, onPressButton, search, rounded = true }: any) {
+interface HeaderProps {
+  title: string;
+  onPressButton?: () => void;
+  search?: (text: string) => void;
+  rounded?: boolean;
+}
+
+function Header({ title, onPressButton, search, rounded = true }: HeaderProps) {
   return (
     <View className="bg-gray-100">
       <View

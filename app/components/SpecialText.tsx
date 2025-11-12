@@ -1,7 +1,11 @@
 import {symbolArabic} from "../shared/symbolUtils";
 import { Text } from "react-native";
 
-function SpecialText({ text }) {
+interface SpecialTextProps {
+  text: string;
+}
+
+function SpecialText({ text }: SpecialTextProps) {
   function containsSpecialSymbol(str) {
     return symbolArabic.some(symbol => str.includes(symbol));
   }

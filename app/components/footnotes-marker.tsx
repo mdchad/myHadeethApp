@@ -3,7 +3,25 @@ import React from 'react'
 import { Text } from 'react-native'
 import { toSuperscript } from '../utils/toSuperscript'
 
-const FootnotesMarker = ({
+interface Footnote {
+  position: number;
+  number: number;
+  type: string;
+  hadithIndex: number;
+  ms?: string;
+  ar?: string;
+}
+
+interface FootnotesMarkerProps {
+  children: React.ReactNode;
+  footnotes?: Footnote[];
+  type: string;
+  index: number;
+  footnoteRefs: React.MutableRefObject<Record<string, any>>;
+  hadithId: string;
+}
+
+const FootnotesMarker: React.FC<FootnotesMarkerProps> = ({
   children,
   footnotes = [],
   type,
