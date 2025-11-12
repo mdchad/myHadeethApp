@@ -39,7 +39,7 @@ function Home() {
 
   return (
     <Page class="bg-white">
-      <View className="flex-1 flex space-y-3 bg-white">
+      <View className="flex space-y-3 bg-white">
         <ScrollView>
           <View className="mx-2 p-3 flex gap-4">
             <View className="gap-5">

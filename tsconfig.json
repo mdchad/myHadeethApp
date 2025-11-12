@@ -4,12 +4,24 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["./app/components/*"],
-      "@pages/*": ["./app/pages/*"],
-      "@assets/*": ["./assets/*"],
-      "@lib/*": ["./lib/*"],
-      "@context/*": ["./context/*"],
-      "@data/*": ["./data/*"]
+      "@components/*": [
+        "./app/components/*"
+      ],
+      "@pages/*": [
+        "./app/pages/*"
+      ],
+      "@assets/*": [
+        "./assets/*"
+      ],
+      "@lib/*": [
+        "./lib/*"
+      ],
+      "@context/*": [
+        "./context/*"
+      ],
+      "@data/*": [
+        "./data/*"
+      ]
     }
   },
   "include": [
@@ -17,8 +29,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-  ],
-  "exclude": [
-    "node_modules"
   ]
 }

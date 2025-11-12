@@ -6,7 +6,7 @@ import Compass from '@components/compassV2'
 const Qiblat = () => {
   return (
     <Page class="bg-gray-100">
-      <View className="flex-1 bg-gray-100">
+      <View className="bg-gray-100">
         <Compass />
       </View>
     </Page>

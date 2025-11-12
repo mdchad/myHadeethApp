@@ -26,7 +26,7 @@ const HadithListItem = ({ item, onShare, onSave, ids, footnoteRefs }) => {
       )}
       {!item.content[0].ar ? null : (
         <View className="space-y-8 bg-white mb-4 border border-royal-blue">
-          <HadithItem hadith={item} footnoteRefs={footnoteRefs}/>
+          <HadithItem hadith={item} footnoteRefs={footnoteRefs} />
           <ActionButtons
             onShare={() => onShare(item)}
             onSave={() => onSave(item._id)}
@@ -65,10 +65,14 @@ function HadithContent() {
   return (
     <Page>
       <Header title={bookTitle} onPressButton={() => router.back()} />
-      <View className="flex-1 p-4 pb-0 bg-white">
-        <VolumeTitle volumeTitle={volumeTitle} hadiths={data} footnoteRefs={footnoteRefs}/>
+      <View className="p-4 pb-0 bg-white">
+        <VolumeTitle
+          volumeTitle={volumeTitle}
+          hadiths={data}
+          footnoteRefs={footnoteRefs}
+        />
         {data?.length > 0 && (
-          <View className="flex-1">
+          <View className=" h-full">
             <FlashList
               ref={listRef}
               data={data}
@@ -87,7 +91,7 @@ function HadithContent() {
               keyExtractor={(item) => item._id}
               showsVerticalScrollIndicator={false}
               contentContainerStyle={{ paddingHorizontal: 6 }}
-              estimatedItemSize={500}
+              // estimatedItemSize={500}
             />
           </View>
         )}

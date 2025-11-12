@@ -11,7 +11,7 @@ import HadithItem from '../../components/HadithItem'
 import ActionButtons from '../../components/ActionButtons'
 import { usePostHog } from 'posthog-react-native'
 
-function UniversalHadithDetail() {
+function UniversalDetail() {
   const { id } = useLocalSearchParams()
   const router = useRouter()
   const footnoteRefs = useRef({})
@@ -75,4 +75,4 @@ function UniversalHadithDetail() {
   )
 }
 
-export default UniversalHadithDetail
+export default UniversalDetail

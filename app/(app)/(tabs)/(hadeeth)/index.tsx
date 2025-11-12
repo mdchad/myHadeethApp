@@ -60,11 +60,10 @@ function Books() {
   return (
     <Page>
       <Header title={t(SHARED_TEXT.BOOKS_HEADER)} ></Header>
-      <View className="flex-1 bg-gray-100">
+      <View className="bg-gray-100">
         <ImageBackground
           source={require('@assets/book-background.png')}
           resizeMode="cover"
-          style={{ flex: 1, justifyContent: 'end', alignItems: 'end' }}
         >
           <View className="mb-4 mt-4">
             <FlatList

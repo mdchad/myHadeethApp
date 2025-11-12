@@ -13,7 +13,7 @@ import { toZonedTime } from 'date-fns-tz'
 import { format } from 'date-fns'
 import { setAudioModeAsync } from 'expo-audio'
 import { PostHogProvider } from 'posthog-react-native'
-import './global.css'
+import '../global.css'
 
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
@@ -186,7 +186,7 @@ export default function Root() {
     >
       <GestureHandlerRootView>
         <PostHogProvider
-          apiKey={process.env.POSTHOG_API_KEY}
+          apiKey={process.env.EXPO_PUBLIC_POSTHOG_API_KEY}
           options={{ host: 'https://us.i.posthog.com' }}
         >
           <PortalProvider>

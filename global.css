@@ -1,0 +1,10 @@
+@import 'tailwindcss';
+@import 'uniwind';
+
+@theme {
+    --color-royal-blue: '#1C2A4F';
+    --font-arabic-symbols: 'kfgqpc-arabic-symbols';
+    --font-arabic-regular: 'KFGQPC Uthman Taha Naskh';
+    --font-arabic-bold: 'KFGQPC Uthman Taha Naskh';
+    --font-uthmanic-hafs: 'kfgqpc_hafs_uthmanic_script';
+}

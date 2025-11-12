@@ -104,7 +104,6 @@ function HadithVolume() {
       <Header title={title} onPressButton={() => router.back()} />
       <View
         style={{
-          flex: 1,
           backgroundColor: 'gray-100',
           paddingHorizontal: 16,
           paddingTop: 16
