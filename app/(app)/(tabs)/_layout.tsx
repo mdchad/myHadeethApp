@@ -5,11 +5,11 @@ import { SearchIcon } from 'lucide-react-native'
 import SHARED_TEXT from "../../i18n";
 import {t} from "i18next";
 
-const homeLogo = require('@assets/home.png')
-const prayerLogo = require('@assets/prayer.png')
-const qiblaLogo = require('@assets/qibla.png')
-const settingsLogo = require('@assets/settings.png')
-const hadithLogo = require('@assets/hadith.png')
+const homeLogo = require('@/assets/home.png')
+const prayerLogo = require('@/assets/prayer.png')
+const qiblaLogo = require('@/assets/qibla.png')
+const settingsLogo = require('@/assets/settings.png')
+const hadithLogo = require('@/assets/hadith.png')
 
 const _layout = () => {
   return (

@@ -5,7 +5,7 @@ import { toZonedTime } from "date-fns-tz";
 const API_URL = process.env.EXPO_PUBLIC_API_URL;
 
 // TODO: Replace 'any' with proper TodayHadith type when hadith types are added
-export function useGetTodayHadith() {
+export default function useGetTodayHadith() {
   const timeZone = 'Asia/Kuala_Lumpur';
   const nowInKualaLumpur = toZonedTime(new Date(), timeZone);
   const formattedDate = format(nowInKualaLumpur, 'yyyy-MM-dd', { timeZone });

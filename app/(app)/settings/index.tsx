@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { View, Text, ScrollView, Switch } from 'react-native'
 
 import * as Updates from 'expo-updates'
-import Page from '@components/page'
+import Page from '@/app/components/page'
 import {
   BellRing,
   Hourglass,

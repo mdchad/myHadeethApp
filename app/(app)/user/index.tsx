@@ -8,7 +8,7 @@ import {
   Alert
 } from 'react-native'
 
-import Page from '@components/page'
+import Page from '@/app/components/page'
 import {
   Bookmark,
   FileText, LibraryIcon,

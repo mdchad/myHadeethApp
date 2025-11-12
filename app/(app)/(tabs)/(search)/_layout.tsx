@@ -1,6 +1,6 @@
 import React from 'react'
 import { Stack, Tabs } from 'expo-router'
-import Page from '../../../components/page'
+import Page from '@/app/components/page'
 
 const _layout = () => {
   return (

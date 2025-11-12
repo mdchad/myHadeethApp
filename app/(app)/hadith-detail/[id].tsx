@@ -2,19 +2,19 @@ import React, { useRef, useEffect } from 'react'
 import { View, ActivityIndicator, ScrollView, Text } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
 import { useGetHadith } from '../../shared/fetcher/useHadiths'
-import Header from '../../components/header'
+import Header from '@/app/components/header'
 import Page from "../../components/page"
-import HadithChapterTitle from '../../components/HadithChapterTitle'
-import { shareHadith } from '../../utils/shareHadith'
-import VolumeTitle from '../../components/VolumeTitle'
-import HadithItem from '../../components/HadithItem'
-import ActionButtons from '../../components/ActionButtons'
+import HadithChapterTitle from '@/app/components/hadith-chapter-title'
+import shareHadith from '../../utils/shareHadith'
+import VolumeTitle from '@/app/components/volume-title'
+import HadithItem from '@/app/components/hadith-item'
+import ActionButtons from '@/app/components/action-buttons'
 import { usePostHog } from 'posthog-react-native'
 
 function UniversalDetail() {
-  const { id } = useLocalSearchParams()
+  const { id } = useLocalSearchParams<{ id: string }>()
   const router = useRouter()
-  const footnoteRefs = useRef({})
+  const footnoteRefs = useRef<Record<string, any>>({})
   const posthog = usePostHog()
 
   const { isLoading, data, isError } = useGetHadith(id)

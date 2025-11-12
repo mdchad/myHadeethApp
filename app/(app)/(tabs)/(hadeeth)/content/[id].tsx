@@ -1,21 +1,41 @@
 import React, { useRef, useState } from 'react'
 import { View } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
-import Header from '../../../../components/header'
-import { useGetHadiths } from '../../../../shared/fetcher/useHadiths'
+import Header from '@/app/components/header'
+import useGetHadiths from '@/app/shared/fetcher/useHadiths'
 import { FlashList } from '@shopify/flash-list'
-import VolumeMetadataHeader from '../../../../components/VolumeMetadataHeader'
-import HadithChapterTitle from '../../../../components/HadithChapterTitle'
-import { shareHadith } from '../../../../utils/shareHadith'
-import { toSuperscript } from '../../../../utils/toSuperscript'
-import VolumeTitle from '../../../../components/VolumeTitle'
-import HadithItem from '../../../../components/HadithItem'
-import ActionButtons from '../../../../components/ActionButtons'
-import LoadingSpinner from '../../../../components/LoadingSpinner'
-import ScrollToTopButton from '../../../../components/ScrollToTopButton'
-import Page from '../../../../components/page'
+import VolumeMetadataHeader from '@/app/components/volume-metadata-header'
+import HadithChapterTitle from '@/app/components/hadith-chapter-title'
+import shareHadith from '@/app/utils/shareHadith'
+import VolumeTitle from '@/app/components/volume-title'
+import HadithItem from '@/app/components/hadith-item'
+import ActionButtons from '@/app/components/action-buttons'
+import LoadingSpinner from '@/app/components/loading-spinner'
+import ScrollToTopButton from '@/app/components/scroll-to-top-button'
+import Page from '@/app/components/page'
 
-const HadithListItem = ({ item, onShare, onSave, ids, footnoteRefs }) => {
+interface BilingualContent {
+  ms?: string;
+  ar?: string;
+}
+
+interface HadithItemType {
+  _id: string;
+  chapter_id: string;
+  content: BilingualContent[];
+  chapter_title?: BilingualContent;
+  footnotes?: any[];
+}
+
+interface HadithListItemProps {
+  item: HadithItemType;
+  onShare: (item: HadithItemType) => void;
+  onSave: (id: string) => void;
+  ids: { chapterId: string; firstHadithId: string };
+  footnoteRefs: React.RefObject<Record<string, any>>;
+}
+
+const HadithListItem: React.FC<HadithListItemProps> = ({ item, onShare, onSave, ids, footnoteRefs }) => {
   const isNewChapter =
     ids.chapterId !== item.chapter_id || ids.firstHadithId === item._id
 
@@ -38,19 +58,19 @@ const HadithListItem = ({ item, onShare, onSave, ids, footnoteRefs }) => {
 }
 
 function HadithContent() {
-  const { volumeId, bookId } = useLocalSearchParams()
-  const listRef = useRef(null)
-  const [savedBookmark, setSavedBookmark] = useState([])
+  const { volumeId, bookId } = useLocalSearchParams<{ volumeId: string; bookId: string }>()
+  const listRef = useRef<FlashList<HadithItemType>>(null)
+  const [savedBookmark, setSavedBookmark] = useState<string[]>([])
   const router = useRouter()
   const ids = {
     chapterId: '',
     firstHadithId: ''
   }
-  const footnoteRefs = useRef({})
+  const footnoteRefs = useRef<Record<string, any>>({})
 
   const { isLoading, data } = useGetHadiths(bookId, volumeId)
 
-  const onSave = (id) => {
+  const onSave = (id: string) => {
     // TODO: Implement bookmark functionality
     setSavedBookmark((prev) => [...prev, id])
   }

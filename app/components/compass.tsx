@@ -11,10 +11,10 @@ import {
 } from 'react-native'
 import * as Location from 'expo-location'
 import * as Haptics from 'expo-haptics'
-import { useProvider } from '../../context/provider'
+import { useProvider } from '@/context/provider'
 import { useSegments } from 'expo-router'
 import { Skeleton } from 'moti/skeleton'
-import Spacer from '@components/Spacer'
+import Spacer from '@/app/components/spacer'
 import Header from './header'
 import SHARED_TEXT from '../i18n'
 import {t} from "i18next";
@@ -29,7 +29,7 @@ const width = Dimensions.get('window').width
 
 interface CompassV2Props {}
 
-export default function CompassV2({}: CompassV2Props) {
+export default function Compass({}: CompassV2Props) {
   const [location, setLocation] = useState(null)
   const [heading, setHeading] = useState(0)
   const { userLocation, userPlace, permissionStatus } = useProvider()
@@ -138,7 +138,7 @@ export default function CompassV2({}: CompassV2Props) {
         ) : (
           <>
             <ImageBackground
-              source={require('@assets/qibla-bg.png')}
+              source={require('@/assets/qibla-bg.png')}
               resizeMode="contain"
               style={{ width, height: width }}
             >
@@ -146,7 +146,7 @@ export default function CompassV2({}: CompassV2Props) {
                 {degree ? (
                   <View className="mt-28 relative mb-6 flex justify-center items-center">
                     <Image
-                      source={require('@assets/compass-v2.png')}
+                      source={require('@/assets/compass-v2.png')}
                       style={{
                         height: width,
                         justifyContent: 'center',
@@ -158,7 +158,7 @@ export default function CompassV2({}: CompassV2Props) {
                     />
 
                     <Image
-                      source={require('@assets/compass-needle.png')}
+                      source={require('@/assets/compass-needle.png')}
                       style={{
                         height: width / 1.1,
                         position: 'absolute',

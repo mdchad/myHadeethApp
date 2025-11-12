@@ -1,7 +1,7 @@
 import { Text, View } from 'react-native'
 import React from 'react'
-import Page from '@components/page'
-import Compass from '@components/compassV2'
+import Page from '@/app/components/page'
+import Compass from '@/app/components/compass'
 
 const Qiblat = () => {
   return (

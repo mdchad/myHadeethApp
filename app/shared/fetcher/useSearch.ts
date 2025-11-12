@@ -10,7 +10,7 @@ interface SearchParams {
 }
 
 // TODO: Replace 'any' with proper SearchResult type when hadith types are added
-export function useGetSearch() {
+export default function useGetSearch() {
   return useMutation<any[], Error, SearchParams>({
     mutationFn: async ({ query, page = 1, limit = 10 }) => {
       const res = await fetch(

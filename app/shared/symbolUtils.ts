@@ -1,4 +1,4 @@
-export const symbolArabic = [
+const symbolArabic = [
   'ﷻ',
   'ﷺ',
   '',
@@ -90,3 +90,5 @@ export const symbolArabic = [
   '«',
   '»',
 ]
+
+export default symbolArabic

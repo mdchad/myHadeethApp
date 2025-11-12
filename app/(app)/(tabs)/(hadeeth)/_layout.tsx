@@ -1,5 +1,5 @@
 import { Stack, useLocalSearchParams, useSegments } from 'expo-router'
-import Page from '@components/page'
+import Page from '@/app/components/page'
 import { Platform } from 'react-native'
 
 export default function Layout() {

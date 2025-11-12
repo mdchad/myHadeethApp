@@ -6,14 +6,19 @@ import {
 } from 'react-native'
 import React from 'react'
 import { Link, useRouter } from 'expo-router'
-import Header from '@components/header'
-import { useGetBooks } from '../../../shared/fetcher/useBooks'
-import SHARED_TEXT from "../../../i18n";
+import Header from '@/app/components/header'
+import useGetBooks from '@/app/shared/fetcher/useBooks'
+import SHARED_TEXT from "@/app/i18n";
 import {t} from "i18next";
-import Page from '../../../components/page'
+import Page from '@/app/components/page'
 import { usePostHog } from 'posthog-react-native'
 
-function Item({ title, id }) {
+interface ItemProps {
+  title: string;
+  id: string;
+}
+
+function Item({ title, id }: ItemProps) {
   const posthog = usePostHog()
 
   const handlePress = () => {
@@ -62,7 +67,7 @@ function Books() {
       <Header title={t(SHARED_TEXT.BOOKS_HEADER)} ></Header>
       <View className="bg-gray-100">
         <ImageBackground
-          source={require('@assets/book-background.png')}
+          source={require('@/assets/book-background.png')}
           resizeMode="cover"
         >
           <View className="mb-4 mt-4">

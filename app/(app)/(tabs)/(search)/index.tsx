@@ -9,8 +9,8 @@ import {
   TouchableHighlight
 } from 'react-native'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import Page from '@components/page'
-import Header from '../../../components/header'
+import Page from '@/app/components/page'
+import Header from '@/app/components/header'
 import { Link } from 'expo-router'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import {
@@ -20,28 +20,45 @@ import {
   SlidersHorizontal,
   XIcon
 } from 'lucide-react-native'
-import SHARED_TEXT from '../../../i18n'
+import SHARED_TEXT from '@/app/i18n'
 import { t } from 'i18next'
-import Pagination from '../../../components/pagination'
+import Pagination from '@/app/components/pagination'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { isArray } from 'es-toolkit/compat';
 import BottomSheet, {
   BottomSheetBackdrop,
   BottomSheetView
 } from '@gorhom/bottom-sheet'
-import QuranText from "../../../components/QuranText";
-import Sheet from "../../../components/bottomSheet";
+import QuranText from "@/app/components/quran-text";
+import Sheet from "@/app/components/bottomSheet";
 import { usePostHog } from 'posthog-react-native'
+
+interface BilingualText {
+  ms: string;
+  ar: string;
+}
+
+interface SearchResultItem {
+  _id: string;
+  book_title: BilingualText;
+  volume_title: BilingualText;
+  number: number;
+  content: BilingualText[];
+}
+
+interface RenderedItemsProps {
+  item: SearchResultItem;
+}
 
 function Search() {
   const posthog = usePostHog()
   const [searchKeyword, setSearchKeyword] = useState('')
   const [page, setPage] = React.useState(1)
-  const [searchHistory, setSearchHistory] = useState([])
-  const [books, setBooks] = useState([])
-  const [selectedBooks, setSelectedBooks] = useState('')
-  const [submittedKeyword, setSubmittedKeyword] = useState('')
-  const bottomSheetRef = useRef(null)
+  const [searchHistory, setSearchHistory] = useState<string[]>([])
+  const [books, setBooks] = useState<string[]>([])
+  const [selectedBooks, setSelectedBooks] = useState<string>('')
+  const [submittedKeyword, setSubmittedKeyword] = useState<string>('')
+  const bottomSheetRef = useRef<BottomSheet>(null)
 
   const queryClient = useQueryClient()
 
@@ -87,11 +104,11 @@ function Search() {
     }
   }, [searchKeyword, queryClient])
 
-  function escapeRegExp(string) {
+  function escapeRegExp(string: string): string {
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') // Escape special characters for regex
   }
 
-  function highlightKeywords(text, keyword) {
+  function highlightKeywords(text: BilingualText, keyword: string) {
     const arabicRegex =
       /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF\u0660-\u0669]/
     const latinRegex = /[A-Za-z\d]/
@@ -180,7 +197,7 @@ function Search() {
     )
   }
 
-  function renderedItems({ item }) {
+  function renderedItems({ item }: RenderedItemsProps) {
     return (
       <Link
         key={item._id}

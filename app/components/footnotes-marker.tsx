@@ -1,7 +1,7 @@
 import { isEmpty } from 'es-toolkit/compat'
 import React from 'react'
 import { Text } from 'react-native'
-import { toSuperscript } from '../utils/toSuperscript'
+import toSuperscript from '../utils/toSuperscript'
 
 interface Footnote {
   position: number;
@@ -17,8 +17,8 @@ interface FootnotesMarkerProps {
   footnotes?: Footnote[];
   type: string;
   index: number;
-  footnoteRefs: React.MutableRefObject<Record<string, any>>;
-  hadithId: string;
+  footnoteRefs: React.RefObject<Record<string, any>>;
+  hadithId?: string;
 }
 
 const FootnotesMarker: React.FC<FootnotesMarkerProps> = ({

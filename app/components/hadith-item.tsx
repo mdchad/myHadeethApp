@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text } from 'react-native'
-import QuranText from './QuranText'
+import QuranText from './quran-text'
 import FootnotesMarker from './footnotes-marker'
 import FootnotesReference from './footnotes-reference'
 
@@ -19,8 +19,8 @@ interface Footnote {
 }
 
 interface Hadith {
-  id: string | number;
-  _id: string;
+  id?: string | number;
+  _id?: string;
   content: BilingualContent[];
   footnotes?: Footnote[];
 }

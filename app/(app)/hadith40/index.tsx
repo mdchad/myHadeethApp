@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text } from 'react-native'
-import Page from '@components/page'
-import Header from '../../components/header'
+import Page from '@/app/components/page'
+import Header from '@/app/components/header'
 import { useRouter } from 'expo-router'
 import SHARED_TEXT from '../../i18n'
 import {t} from "i18next";
@@ -9,10 +9,35 @@ import hadiths from '../../../data/hadith40.json'
 import {FlashList} from "@shopify/flash-list";
 import Audio from "../../components/audio";
 
+interface BilingualText {
+  ms: string;
+  ar: string;
+}
+
+interface HadithContent {
+  ms: string;
+  ar: string;
+}
+
+interface Hadith40Item {
+  number: number;
+  hadith_title: BilingualText;
+  content: HadithContent[];
+  narrators: BilingualText[];
+  narratedBy: BilingualText[];
+  audio: BilingualText;
+  lesson: BilingualText[];
+  references?: any[];
+}
+
+interface ItemsProps {
+  item: Hadith40Item;
+}
+
 export default function Hadith40() {
   const router = useRouter()
 
-  function Items({ item }) {
+  function Items({ item }: ItemsProps) {
     return (
       <View key={item.number} className="flex space-y-2 break-words p-4 border border-royal-blue mb-4">
         <View className="flex flex-row gap-2 items-center mb-6">

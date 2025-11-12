@@ -15,14 +15,14 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({ onShare, onSave }) => {
         underlayColor="#333"
         onPress={onShare}
       >
-        <Share2 color="white" absoluteStrokeWidth={2} size={18} />
+        <Share2 color="white" strokeWidth={2} size={18} />
       </TouchableHighlight>
       <TouchableHighlight
         className="p-1"
         underlayColor="#333"
         onPress={onSave}
       >
-        <Bookmark color="white" absoluteStrokeWidth={2} size={18} />
+        <Bookmark color="white" strokeWidth={2} size={18} />
       </TouchableHighlight>
     </View>
   );
