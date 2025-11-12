@@ -4,7 +4,7 @@ import type { ApiResponse } from '../../types'
 const API_URL = process.env.EXPO_PUBLIC_API_URL;
 
 // TODO: Replace 'any' with proper Book type when hadith types are added
-export function useGetBooks() {
+export default function useGetBooks() {
   return useQuery<any[]>({
     queryKey: ['books'],
     queryFn: async () => {

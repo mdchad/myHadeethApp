@@ -15,7 +15,7 @@ import {
   SettingsIcon,
   Share2
 } from 'lucide-react-native'
-import { useGetTodayHadith } from '@/app/shared/fetcher/useTodayHadith'
+import useGetTodayHadith from '@/app/shared/fetcher/useTodayHadith'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Link } from 'expo-router'
 import { Skeleton } from 'moti/skeleton'

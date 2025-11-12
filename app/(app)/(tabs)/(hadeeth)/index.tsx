@@ -7,7 +7,7 @@ import {
 import React from 'react'
 import { Link, useRouter } from 'expo-router'
 import Header from '@/app/components/header'
-import { useGetBooks } from '@/app/shared/fetcher/useBooks'
+import useGetBooks from '@/app/shared/fetcher/useBooks'
 import SHARED_TEXT from "@/app/i18n";
 import {t} from "i18next";
 import Page from '@/app/components/page'
@@ -67,7 +67,7 @@ function Books() {
       <Header title={t(SHARED_TEXT.BOOKS_HEADER)} ></Header>
       <View className="bg-gray-100">
         <ImageBackground
-          source={require('@assets/book-background.png')}
+          source={require('@/assets/book-background.png')}
           resizeMode="cover"
         >
           <View className="mb-4 mt-4">

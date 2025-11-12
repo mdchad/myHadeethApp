@@ -58,12 +58,12 @@ interface RenderItemProps {
 
 const prayerNames = ['Subuh', 'Syuruk', 'Zohor', 'Asar', 'Maghrib', 'Isyak']
 const prayerIcon = [
-  require('@assets/prayer-fajr.png'),
-  require('@assets/prayer-syuruk.png'),
-  require('@assets/prayer-dhuhr.png'),
-  require('@assets/prayer-asr.png'),
-  require('@assets/prayer-maghrib.png'),
-  require('@assets/prayer-isha.png')
+  require('@/assets/prayer-fajr.png'),
+  require('@/assets/prayer-syuruk.png'),
+  require('@/assets/prayer-dhuhr.png'),
+  require('@/assets/prayer-asr.png'),
+  require('@/assets/prayer-maghrib.png'),
+  require('@/assets/prayer-isha.png')
 ]
 
 const options = { year: 'numeric', month: 'long', day: 'numeric' }
@@ -254,7 +254,7 @@ export default function Prayer() {
             </View>
           ) : (
             <ImageBackground
-              source={require('@assets/book-background.png')}
+              source={require('@/assets/book-background.png')}
               resizeMode="cover"
               style={{ flex: 1, justifyContent: 'end', alignItems: 'end' }}
             >

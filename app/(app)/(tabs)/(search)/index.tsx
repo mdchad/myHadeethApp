@@ -29,7 +29,7 @@ import BottomSheet, {
   BottomSheetBackdrop,
   BottomSheetView
 } from '@gorhom/bottom-sheet'
-import QuranText from "@/app/components/QuranText";
+import QuranText from "@/app/components/quran-text";
 import Sheet from "@/app/components/bottomSheet";
 import { usePostHog } from 'posthog-react-native'
 

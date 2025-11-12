@@ -8,9 +8,9 @@ import {
   ImageBackground
 } from 'react-native'
 import { Link, useLocalSearchParams, useRouter } from 'expo-router'
-import Header from '../../../../components/header'
-import { useGetVolumes } from '@/app/shared/fetcher/useVolumes'
-import SHARED_TEXT from "../../../../i18n";
+import Header from '@/app/components/header'
+import useGetVolumes from '@/app/shared/fetcher/useVolumes'
+import SHARED_TEXT from "@/app/i18n";
 import {t} from "i18next";
 import Page from '@/app/components/page'
 
@@ -51,7 +51,7 @@ const HadithVolumeItem: React.FC<HadithVolumeItemProps> = ({ item, index }) => (
         <View className="bg-black p-2 flex justify-center">
           <View className="bg-white">
             <ImageBackground
-              source={require('@assets/volume-number.png')}
+              source={require('@/assets/volume-number.png')}
               resizeMode="cover"
               style={{
                 height: 35,
@@ -114,7 +114,7 @@ function HadithVolume() {
 
   if (isLoading) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View className="flex-1 justify-center items-center ">
         <ActivityIndicator size="large" color="#0000ff" />
       </View>
     )
@@ -123,13 +123,7 @@ function HadithVolume() {
   return (
     <Page>
       <Header title={title} onPressButton={() => router.back()} />
-      <View
-        style={{
-          backgroundColor: 'gray-100',
-          paddingHorizontal: 16,
-          paddingTop: 16
-        }}
-      >
+      <View className="bg-gray-100 pt-4 px-4">
         <FlatList
           className="space-y-6"
           data={data}

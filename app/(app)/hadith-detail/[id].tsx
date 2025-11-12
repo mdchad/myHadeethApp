@@ -5,7 +5,7 @@ import { useGetHadith } from '../../shared/fetcher/useHadiths'
 import Header from '@/app/components/header'
 import Page from "../../components/page"
 import HadithChapterTitle from '@/app/components/hadith-chapter-title'
-import { shareHadith } from '../../utils/shareHadith'
+import shareHadith from '../../utils/shareHadith'
 import VolumeTitle from '@/app/components/volume-title'
 import HadithItem from '@/app/components/hadith-item'
 import ActionButtons from '@/app/components/action-buttons'

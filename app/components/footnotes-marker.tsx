@@ -1,7 +1,7 @@
 import { isEmpty } from 'es-toolkit/compat'
 import React from 'react'
 import { Text } from 'react-native'
-import { toSuperscript } from '../utils/toSuperscript'
+import toSuperscript from '../utils/toSuperscript'
 
 interface Footnote {
   position: number;

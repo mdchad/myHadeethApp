@@ -3,7 +3,7 @@ import { AppState, AppStateStatus, Platform } from 'react-native'
 import * as Location from 'expo-location'
 import type { UserLocation, UserPlace } from '../app/types'
 
-interface ProviderContextType {
+export interface ProviderContextType {
   userLocation: Location.LocationObject | null;
   userPlace: Location.LocationGeocodedAddress[] | null;
   permissionStatus: Location.PermissionStatus | null;

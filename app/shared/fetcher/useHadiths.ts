@@ -4,7 +4,7 @@ import type { ApiResponse } from '../../types'
 const API_URL = process.env.EXPO_PUBLIC_API_URL;
 
 // TODO: Replace 'any' with proper Hadith type when hadith types are added
-export function useGetHadiths(bookId: string, volumeId: string): any {
+export default function useGetHadiths(bookId: string, volumeId: string): any {
   return useQuery<any[]>({
     queryKey: ['hadiths', volumeId],
     queryFn: async () => {

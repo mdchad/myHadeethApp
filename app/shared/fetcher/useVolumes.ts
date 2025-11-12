@@ -4,7 +4,7 @@ import type { ApiResponse } from '../../types'
 const API_URL = process.env.EXPO_PUBLIC_API_URL;
 
 // TODO: Replace 'any' with proper Volume type when hadith types are added
-export function useGetVolumes(id: string) {
+export default function useGetVolumes(id: string) {
   return useQuery<any[]>({
     queryKey: ['volumes', id],
     queryFn: async () => {

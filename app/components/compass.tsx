@@ -138,7 +138,7 @@ export default function Compass({}: CompassV2Props) {
         ) : (
           <>
             <ImageBackground
-              source={require('@assets/qibla-bg.png')}
+              source={require('@/assets/qibla-bg.png')}
               resizeMode="contain"
               style={{ width, height: width }}
             >
@@ -146,7 +146,7 @@ export default function Compass({}: CompassV2Props) {
                 {degree ? (
                   <View className="mt-28 relative mb-6 flex justify-center items-center">
                     <Image
-                      source={require('@assets/compass-v2.png')}
+                      source={require('@/assets/compass-v2.png')}
                       style={{
                         height: width,
                         justifyContent: 'center',
@@ -158,7 +158,7 @@ export default function Compass({}: CompassV2Props) {
                     />
 
                     <Image
-                      source={require('@assets/compass-needle.png')}
+                      source={require('@/assets/compass-needle.png')}
                       style={{
                         height: width / 1.1,
                         position: 'absolute',

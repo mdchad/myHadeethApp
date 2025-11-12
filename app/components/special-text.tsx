@@ -1,4 +1,4 @@
-import {symbolArabic} from "../shared/symbolUtils";
+import symbolArabic from "../shared/symbolUtils";
 import { Text } from "react-native";
 
 interface SpecialTextProps {

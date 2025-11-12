@@ -4,7 +4,7 @@ type SuperscriptMap = {
   [key: string]: string;
 };
 
-export const toSuperscript = (str: string, type: SuperscriptType): string | undefined => {
+const toSuperscript = (str: string, type: SuperscriptType): string | undefined => {
   const superscripts: SuperscriptMap = {
     '0': '⁰',
     '1': '¹',
@@ -34,4 +34,6 @@ export const toSuperscript = (str: string, type: SuperscriptType): string | unde
       .map((char) => superscripts[char] || char)
       .join('')
   }
-} 
+}
+
+export default toSuperscript;
