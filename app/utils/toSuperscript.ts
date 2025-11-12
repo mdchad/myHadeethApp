@@ -1,15 +1,21 @@
-export const toSuperscript = (str, type) => {
-  const superscripts = {
-    0: '⁰',
-    1: '¹',
-    2: '²',
-    3: '³',
-    4: '⁴',
-    5: '⁵',
-    6: '⁶',
-    7: '⁷',
-    8: '⁸',
-    9: '⁹'
+type SuperscriptType = 'text' | 'reference';
+
+type SuperscriptMap = {
+  [key: string]: string;
+};
+
+export const toSuperscript = (str: string, type: SuperscriptType): string | undefined => {
+  const superscripts: SuperscriptMap = {
+    '0': '⁰',
+    '1': '¹',
+    '2': '²',
+    '3': '³',
+    '4': '⁴',
+    '5': '⁵',
+    '6': '⁶',
+    '7': '⁷',
+    '8': '⁸',
+    '9': '⁹'
   }
 
   if (type === 'text') {
