@@ -1,15 +1,6 @@
 import { View, Text, ScrollView, Image, TouchableHighlight } from 'react-native'
 import React from 'react'
 import Page from '@/app/components/page'
-import Compass from '@/app/components/compassV2'
-import { Link } from 'expo-router'
-import {
-  Bookmark,
-  FileText,
-  LogOut,
-  Settings,
-  Users
-} from 'lucide-react-native'
 
 const Saved = () => {
   return (

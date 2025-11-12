@@ -17,8 +17,8 @@ interface FootnotesMarkerProps {
   footnotes?: Footnote[];
   type: string;
   index: number;
-  footnoteRefs: React.MutableRefObject<Record<string, any>>;
-  hadithId: string;
+  footnoteRefs: React.RefObject<Record<string, any>>;
+  hadithId?: string;
 }
 
 const FootnotesMarker: React.FC<FootnotesMarkerProps> = ({

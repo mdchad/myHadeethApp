@@ -4,11 +4,11 @@ import { useRouter, useLocalSearchParams } from 'expo-router'
 import { useGetHadith } from '../../shared/fetcher/useHadiths'
 import Header from '@/app/components/header'
 import Page from "../../components/page"
-import HadithChapterTitle from '@/app/components/HadithChapterTitle'
+import HadithChapterTitle from '@/app/components/hadith-chapter-title'
 import { shareHadith } from '../../utils/shareHadith'
-import VolumeTitle from '@/app/components/VolumeTitle'
-import HadithItem from '@/app/components/HadithItem'
-import ActionButtons from '@/app/components/ActionButtons'
+import VolumeTitle from '@/app/components/volume-title'
+import HadithItem from '@/app/components/hadith-item'
+import ActionButtons from '@/app/components/action-buttons'
 import { usePostHog } from 'posthog-react-native'
 
 function UniversalDetail() {

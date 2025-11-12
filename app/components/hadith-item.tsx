@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text } from 'react-native'
-import QuranText from './QuranText'
+import QuranText from './quran-text'
 import FootnotesMarker from './footnotes-marker'
 import FootnotesReference from './footnotes-reference'
 

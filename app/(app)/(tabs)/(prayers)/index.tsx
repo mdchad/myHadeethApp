@@ -10,12 +10,12 @@ import {
   Linking,
   Button
 } from 'react-native'
-import { useProvider } from '../../../../context/provider'
+import { useProvider } from '@/context/provider'
 import Page from '@/app/components/page'
 import { MapPin } from 'lucide-react-native'
 import { ScrollView } from 'react-native'
 import { Skeleton } from 'moti/skeleton'
-import Spacer from '@/app/components/Spacer'
+import Spacer from '@/app/components/spacer'
 import Header from '@/app/components/header'
 import SHARED_TEXT from "@/app/i18n";
 import { ms, enGB } from 'date-fns/locale';
