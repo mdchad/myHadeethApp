@@ -9,8 +9,7 @@ interface SoundPlayerProps {
 }
 
 const SoundPlayer: React.FC<SoundPlayerProps> = ({url}) => {
-  const audioUri = `https://my-way-web.vercel.app/audio/${url}.mp3`
-  const player = useAudioPlayer(audioUri)
+  const player = useAudioPlayer(url)
   const status = useAudioPlayerStatus(player)
 
   const handlePlayPause = () => {
