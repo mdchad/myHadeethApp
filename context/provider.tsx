@@ -1,12 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { AppState, Platform } from 'react-native'
+import { AppState, AppStateStatus, Platform } from 'react-native'
 import * as Location from 'expo-location'
+import type { UserLocation, UserPlace } from '../app/types'
 
-const AuthContext = React.createContext(null)
+interface ProviderContextType {
+  userLocation: Location.LocationObject | null;
+  userPlace: Location.LocationGeocodedAddress[] | null;
+  permissionStatus: Location.PermissionStatus | null;
+  setUserLocation: (location: Location.LocationObject | null) => void;
+  setUserPlace: (place: Location.LocationGeocodedAddress[] | null) => void;
+}
+
+const AuthContext = React.createContext<ProviderContextType | null>(null)
 
 // This hook can be used to access the user info.
 export function useProvider() {
-  return React.useContext(AuthContext)
+  const context = React.useContext(AuthContext)
+  if (!context) {
+    throw new Error('useProvider must be used within a Provider')
+  }
+  return context
 }
 
 // This hook will protect the route access based on user authentication.
@@ -31,12 +44,16 @@ export function useProvider() {
 //   }, [user, segments]);
 // }
 
-export function Provider(props) {
-  const [userLocation, setUserLocation] = React.useState(null)
-  const [userPlace, setUserPlace] = React.useState(null)
-  const [permissionStatus, setPermissionStatus] = React.useState(null)
-  const appState = useRef(AppState.currentState)
-  const [appStateVisible, setAppStateVisible] = useState(appState.current)
+interface ProviderProps {
+  children: React.ReactNode;
+}
+
+export function Provider({ children }: ProviderProps) {
+  const [userLocation, setUserLocation] = React.useState<Location.LocationObject | null>(null)
+  const [userPlace, setUserPlace] = React.useState<Location.LocationGeocodedAddress[] | null>(null)
+  const [permissionStatus, setPermissionStatus] = React.useState<Location.PermissionStatus | null>(null)
+  const appState = useRef<AppStateStatus>(AppState.currentState)
+  const [appStateVisible, setAppStateVisible] = useState<AppStateStatus>(appState.current)
   const focusEvent = Platform.OS === 'android' ? 'focus' : 'change'
 
   useEffect(() => {
@@ -114,14 +131,14 @@ export function Provider(props) {
   return (
     <AuthContext.Provider
       value={{
-        setUserLocation: (location) => setUserLocation(location),
+        setUserLocation: (location: Location.LocationObject | null) => setUserLocation(location),
         userLocation,
         userPlace,
         permissionStatus,
-        setUserPlace: (place) => setUserPlace(place)
+        setUserPlace: (place: Location.LocationGeocodedAddress[] | null) => setUserPlace(place)
       }}
     >
-      {props.children}
+      {children}
     </AuthContext.Provider>
   )
 }
