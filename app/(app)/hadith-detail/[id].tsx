@@ -2,13 +2,13 @@ import React, { useRef, useEffect } from 'react'
 import { View, ActivityIndicator, ScrollView, Text } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
 import { useGetHadith } from '../../shared/fetcher/useHadiths'
-import Header from '../../components/header'
+import Header from '@/app/components/header'
 import Page from "../../components/page"
-import HadithChapterTitle from '../../components/HadithChapterTitle'
+import HadithChapterTitle from '@/app/components/HadithChapterTitle'
 import { shareHadith } from '../../utils/shareHadith'
-import VolumeTitle from '../../components/VolumeTitle'
-import HadithItem from '../../components/HadithItem'
-import ActionButtons from '../../components/ActionButtons'
+import VolumeTitle from '@/app/components/VolumeTitle'
+import HadithItem from '@/app/components/HadithItem'
+import ActionButtons from '@/app/components/ActionButtons'
 import { usePostHog } from 'posthog-react-native'
 
 function UniversalDetail() {

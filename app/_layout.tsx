@@ -1,5 +1,5 @@
 import { Slot } from 'expo-router'
-import { Provider } from '../context/provider'
+import { Provider } from '@/context/provider'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persister'
 import { focusManager, QueryClient } from '@tanstack/react-query'

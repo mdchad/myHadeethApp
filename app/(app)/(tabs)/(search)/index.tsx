@@ -9,8 +9,8 @@ import {
   TouchableHighlight
 } from 'react-native'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import Page from '@components/page'
-import Header from '../../../components/header'
+import Page from '@/app/components/page'
+import Header from '@/app/components/header'
 import { Link } from 'expo-router'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import {
@@ -20,17 +20,17 @@ import {
   SlidersHorizontal,
   XIcon
 } from 'lucide-react-native'
-import SHARED_TEXT from '../../../i18n'
+import SHARED_TEXT from '@/app/i18n'
 import { t } from 'i18next'
-import Pagination from '../../../components/pagination'
+import Pagination from '@/app/components/pagination'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { isArray } from 'es-toolkit/compat';
 import BottomSheet, {
   BottomSheetBackdrop,
   BottomSheetView
 } from '@gorhom/bottom-sheet'
-import QuranText from "../../../components/QuranText";
-import Sheet from "../../../components/bottomSheet";
+import QuranText from "@/app/components/QuranText";
+import Sheet from "@/app/components/bottomSheet";
 import { usePostHog } from 'posthog-react-native'
 
 function Search() {

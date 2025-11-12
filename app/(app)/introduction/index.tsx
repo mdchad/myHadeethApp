@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import Page from '@components/page'
+import Page from '@/app/components/page'
 import { WebView } from 'react-native-webview';
 import Header from "../../components/header";
 import {useRouter} from "expo-router";

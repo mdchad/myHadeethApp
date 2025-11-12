@@ -8,19 +8,14 @@ import {
   Alert
 } from 'react-native'
 
-import Page from '@components/page'
+import Page from '@/app/components/page'
 import {
-  Bookmark,
-  FileText,
-  LogIn,
-  LogOut,
   MessageSquare,
-  Settings,
   Smartphone,
   User,
   Users
 } from 'lucide-react-native'
-import Header from '../../../components/header'
+import Header from '@/app/components/header'
 import * as WebBrowser from 'expo-web-browser'
 
 export default function Profile() {

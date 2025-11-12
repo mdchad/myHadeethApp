@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text } from 'react-native'
-import Page from '@components/page'
-import Header from '../../components/header'
+import Page from '@/app/components/page'
+import Header from '@/app/components/header'
 import { useRouter } from 'expo-router'
 import SHARED_TEXT from '../../i18n'
 import {t} from "i18next";

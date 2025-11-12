@@ -9,10 +9,10 @@ import {
 } from 'react-native'
 import { Link, useLocalSearchParams, useRouter } from 'expo-router'
 import Header from '../../../../components/header'
-import { useGetVolumes } from '../../../../shared/fetcher/useVolumes'
+import { useGetVolumes } from '@/app/shared/fetcher/useVolumes'
 import SHARED_TEXT from "../../../../i18n";
 import {t} from "i18next";
-import Page from '../../../../components/page'
+import Page from '@/app/components/page'
 
 const HadithVolumeItem = ({ item, index }) => (
   <Link

@@ -1,28 +1,9 @@
-// import { View, Text } from 'react-native'
-// import React from 'react'
-// import Page from '../../../components/page'
-// import Audio from '../../../components/audio'
-//
-// const Prayers = () => {
-//   return (
-//     <Page>
-//       <Text>Prayers</Text>
-//
-//         <Audio />
-//     </Page>
-//   )
-// }
-//
-// export default Prayers
-
 import { addDays, eachDayOfInterval, isBefore, isSameDay } from 'date-fns'
 import { format } from 'date-fns-tz'
 import React, { useEffect, useState } from 'react'
 import {
-  FlatList,
   Image,
   Pressable,
-  SafeAreaView,
   Text,
   View,
   ImageBackground,
@@ -30,13 +11,13 @@ import {
   Button
 } from 'react-native'
 import { useProvider } from '../../../../context/provider'
-import Page from '@components/page'
+import Page from '@/app/components/page'
 import { MapPin } from 'lucide-react-native'
 import { ScrollView } from 'react-native'
 import { Skeleton } from 'moti/skeleton'
-import Spacer from '@components/Spacer'
-import Header from '../../../components/header'
-import SHARED_TEXT from "../../../i18n";
+import Spacer from '@/app/components/Spacer'
+import Header from '@/app/components/header'
+import SHARED_TEXT from "@/app/i18n";
 import { ms, enGB } from 'date-fns/locale';
 import {t} from "i18next";
 import { usePostHog } from 'posthog-react-native'

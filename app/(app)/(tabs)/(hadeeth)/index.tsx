@@ -6,11 +6,11 @@ import {
 } from 'react-native'
 import React from 'react'
 import { Link, useRouter } from 'expo-router'
-import Header from '@components/header'
-import { useGetBooks } from '../../../shared/fetcher/useBooks'
-import SHARED_TEXT from "../../../i18n";
+import Header from '@/app/components/header'
+import { useGetBooks } from '@/app/shared/fetcher/useBooks'
+import SHARED_TEXT from "@/app/i18n";
 import {t} from "i18next";
-import Page from '../../../components/page'
+import Page from '@/app/components/page'
 import { usePostHog } from 'posthog-react-native'
 
 function Item({ title, id }) {

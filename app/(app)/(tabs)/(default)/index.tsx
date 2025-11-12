@@ -7,7 +7,7 @@ import {
   StyleSheet
 } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import Page from '@components/page'
+import Page from '@/app/components/page'
 import {
   Bookmark,
   ChevronRightSquare,
@@ -15,11 +15,11 @@ import {
   SettingsIcon,
   Share2
 } from 'lucide-react-native'
-import { useGetTodayHadith } from '../../../shared/fetcher/useTodayHadith'
+import { useGetTodayHadith } from '@/app/shared/fetcher/useTodayHadith'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Link } from 'expo-router'
 import { Skeleton } from 'moti/skeleton'
-import Spacer from '../../../components/Spacer'
+import Spacer from '@/app/components/Spacer'
 import SHARED_TEXT from '../../../i18n'
 import RNPickerSelect from 'react-native-picker-select'
 import { useTranslation } from 'react-i18next'

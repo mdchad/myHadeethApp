@@ -14,7 +14,7 @@ import * as Haptics from 'expo-haptics'
 import { useProvider } from '../../context/provider'
 import { useSegments } from 'expo-router'
 import { Skeleton } from 'moti/skeleton'
-import Spacer from '@components/Spacer'
+import Spacer from '@/app/components/Spacer'
 import Header from './header'
 import SHARED_TEXT from '../i18n'
 import {t} from "i18next";
