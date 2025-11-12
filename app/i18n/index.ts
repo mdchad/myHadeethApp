@@ -1,6 +1,10 @@
 import defaultLocale from './locales/ms.json'
 
-let SHARED_TEXT = { ...defaultLocale }
+interface SharedTextType {
+  [key: string]: string;
+}
+
+let SHARED_TEXT: SharedTextType = { ...defaultLocale }
 
 for (let key in SHARED_TEXT) {
   if (SHARED_TEXT.hasOwnProperty(key)) {
