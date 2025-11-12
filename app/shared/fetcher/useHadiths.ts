@@ -23,7 +23,7 @@ export function useGetHadiths(bookId: string, volumeId: string) {
 }
 
 // TODO: Replace 'any' with proper Hadith type when hadith types are added
-export function useGetHadith(hadithId: string) {
+export function useGetHadith(hadithId: string | string[]) {
   return useQuery<any>({
     queryKey: ['hadith', hadithId],
     queryFn: async () => {

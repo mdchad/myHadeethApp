@@ -20,7 +20,7 @@ interface Footnote {
 }
 
 interface HadithItem {
-  _id: string;
+  _id?: string;
   chapter_title?: BilingualText;
   chapter_transliteration?: BilingualText;
   chapter_metadata?: BilingualText;
@@ -29,7 +29,7 @@ interface HadithItem {
 
 interface HadithChapterTitleProps {
   item: HadithItem;
-  footnoteRefs: React.MutableRefObject<Record<string, any>>;
+  footnoteRefs: React.RefObject<Record<string, any>>;
 }
 
 const HadithChapterTitle: React.FC<HadithChapterTitleProps> = ({ item, footnoteRefs }) => {

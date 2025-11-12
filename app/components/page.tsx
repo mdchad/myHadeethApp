@@ -14,14 +14,10 @@ interface PageProps {
 const Page: React.FC<PageProps> = ({ children, edges = [], ...props }) => {
   return (
     <SafeAreaView className={`${props.class}`} edges={['top', ...edges]}>
-      <View style={style}>{children}</View>
+      <View>{children}</View>
     </SafeAreaView>
   )
 }
-
-const style = StyleSheet.create({
-  paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
-});
 
 export default Page
 
