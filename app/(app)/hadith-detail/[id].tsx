@@ -1,8 +1,9 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useEffect, useState, useCallback } from 'react'
 import {
   View,
   ActivityIndicator,
   ScrollView,
+  StyleSheet,
   Text,
   Pressable,
   NativeScrollEvent,
@@ -13,7 +14,7 @@ import { useRouter, useLocalSearchParams } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useGetHadith } from '../../shared/fetcher/useHadiths'
 import Header from '@/app/components/header'
-import Page from "../../components/page"
+import Page from '../../components/page'
 import HadithChapterTitle from '@/app/components/hadith-chapter-title'
 import shareHadith from '../../utils/shareHadith'
 import VolumeTitle from '@/app/components/volume-title'
@@ -25,9 +26,13 @@ import FootnotesMarker from '@/app/components/footnotes-marker'
 import FootnotesReference from '@/app/components/footnotes-reference'
 import QuranText from '@/app/components/quran-text'
 import SpecialText from '@/app/components/special-text'
-import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming
+} from 'react-native-reanimated'
 import { Bookmark, Share2 } from 'lucide-react-native'
-import Slider from '@react-native-community/slider'
+import Slider, { MarkerProps } from '@react-native-community/slider'
 
 function UniversalDetail() {
   const { id } = useLocalSearchParams<{ id: string }>()
@@ -43,9 +48,21 @@ function UniversalDetail() {
   const latinFontSizes = [
     { size: 'text-xs', leading: 'leading-relaxed', tracking: 'tracking-wide' },
     { size: 'text-sm', leading: 'leading-relaxed', tracking: 'tracking-wide' },
-    { size: 'text-base', leading: 'leading-relaxed', tracking: 'tracking-normal' },
-    { size: 'text-lg', leading: 'leading-relaxed', tracking: 'tracking-normal' },
-    { size: 'text-xl', leading: 'leading-relaxed', tracking: 'tracking-tighter' },
+    {
+      size: 'text-base',
+      leading: 'leading-relaxed',
+      tracking: 'tracking-normal'
+    },
+    {
+      size: 'text-lg',
+      leading: 'leading-relaxed',
+      tracking: 'tracking-normal'
+    },
+    {
+      size: 'text-xl',
+      leading: 'leading-relaxed',
+      tracking: 'tracking-tighter'
+    }
   ]
   // Arabic script sizes (2 sizes larger than Latin)
   const arabicFontSizes = [
@@ -53,7 +70,11 @@ function UniversalDetail() {
     { size: 'text-lg', leading: 'leading-9', tracking: 'tracking-normal' },
     { size: 'text-xl', leading: 'leading-10', tracking: 'tracking-normal' },
     { size: 'text-2xl', leading: 'leading-10', tracking: 'tracking-normal' },
-    { size: 'text-3xl', leading: 'leading-relaxed', tracking: 'tracking-normal' },
+    {
+      size: 'text-3xl',
+      leading: 'leading-relaxed',
+      tracking: 'tracking-normal'
+    }
   ]
   const [fontSizeIndex, setFontSizeIndex] = useState(3) // Default to text-lg (latin) / text-2xl (arabic)
 
@@ -71,7 +92,7 @@ function UniversalDetail() {
       posthog.capture('hadith_viewed', {
         hadith_id: data._id,
         book: data.book_title?.ms,
-        volume: data.volume_title?.ms,
+        volume: data.volume_title?.ms
       })
     }
   }, [data])
@@ -92,7 +113,9 @@ function UniversalDetail() {
     // Hide top bar above the safe area
     topBarTranslateY.value = withTiming(-(100 + insets.top), { duration: 300 })
     // Hide bottom bar below the safe area
-    bottomBarTranslateY.value = withTiming(100 + insets.bottom, { duration: 300 })
+    bottomBarTranslateY.value = withTiming(100 + insets.bottom, {
+      duration: 300
+    })
     setBarsVisible(false)
   }
 
@@ -121,18 +144,28 @@ function UniversalDetail() {
 
   // Animated styles
   const topBarAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: topBarTranslateY.value }],
+    transform: [{ translateY: topBarTranslateY.value }]
   }))
 
   const bottomBarAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: bottomBarTranslateY.value }],
+    transform: [{ translateY: bottomBarTranslateY.value }]
   }))
 
   if (isLoading) {
-    return (
-      <LoadingSpinner />
-    )
+    return <LoadingSpinner />
   }
+
+  const renderStepMarker = useCallback(({stepMarked}: MarkerProps) => {
+    return stepMarked ? (
+      <View style={styles.outerTrue}>
+        <View style={styles.innerTrue} />
+      </View>
+    ) : (
+      <View style={styles.outer}>
+        <View style={styles.inner} />
+      </View>
+    );
+  }, []);
 
   return (
     <Page class="bg-white" edges={['bottom']}>
@@ -143,6 +176,7 @@ function UniversalDetail() {
       >
         <View style={{ paddingTop: insets.top }}>
           <Header
+            rounded={false}
             title={data?.book_title?.ms}
             onPressButton={() => router.back()}
           />
@@ -157,153 +191,160 @@ function UniversalDetail() {
       >
         <Pressable onPress={handleContentPress}>
           <View className="flex-1 pb-0 bg-white pt-16">
-          {/*<VolumeTitle volumeTitle={data?.volume_title} footnoteRefs={footnoteRefs} hadiths={[data]}/>*/}
-          <View className="pb-2 mb-3 mt-10">
-            <View className="flex items-center">
-              <View className="flex-1">
-                <FootnotesMarker
-                  footnotes={data.footnotes}
-                  type={"volume_title.ms"}
-                  index={1}
-                  footnoteRefs={footnoteRefs}
-                  hadithId={data._id}
-                >
-                  <Text className="text-lg text-center capitalize font-semibold text-royal-blue">
-                    {data.volume_title.ms}
-                  </Text>
-                </FootnotesMarker>
-              </View>
-              <View className="flex-1 items-end">
-                <Text
-                  className="text-[26px] text-center font-semibold text-royal-blue font-arabic-regular"
-                >
-                  {data.volume_title.ar}
-                </Text>
-              </View>
-            </View>
-            <FootnotesReference hadith={data} type={"volume_title.ms"} />
-          </View>
-          <View className="flex-1">
-            {data?.chapter_title?.ms && (
-              <View className="mt-20 mb-10 p-4 gap-10">
-                <View className="gap-4">
-                  <Text
-                    className="text-lg text-royal-blue font-arabic-bold font-bold"
-                    style={{
-                      writingDirection: 'rtl'
-                    }}
+            {/*<VolumeTitle volumeTitle={data?.volume_title} footnoteRefs={footnoteRefs} hadiths={[data]}/>*/}
+            <View className="pb-2 mb-3 mt-10">
+              <View className="flex items-center">
+                <View className="flex-1">
+                  <FootnotesMarker
+                    footnotes={data.footnotes}
+                    type={'volume_title.ms'}
+                    index={1}
+                    footnoteRefs={footnoteRefs}
+                    hadithId={data._id}
                   >
-                    <QuranText
-                      text={data?.chapter_title?.ar}
-                      font={'arabic-bold'}
-                    />
-                  </Text>
-                  <View>
-                    <Text>
-                      <FootnotesMarker
-                        footnotes={data.footnotes}
-                        type={'chapter_title.ms'}
-                        index={1}
-                        footnoteRefs={footnoteRefs}
-                        hadithId={data._id}
-                      >
-                        <SpecialText
-                          className="text-royal-blue font-semibold"
-                          text={data?.chapter_title?.ms}
-                        />
-                      </FootnotesMarker>
+                    <Text className="text-lg text-center capitalize font-semibold text-royal-blue">
+                      {data.volume_title.ms}
                     </Text>
-                    <Text className="text-gray-600 mt-1">
-                      {data?.chapter_transliteration?.ms}
-                    </Text>
-                  </View>
+                  </FootnotesMarker>
                 </View>
-                {data?.chapter_metadata?.ms && (
+                <View className="flex-1 items-end">
+                  <Text className="text-[26px] text-center font-semibold text-royal-blue font-arabic-regular">
+                    {data.volume_title.ar}
+                  </Text>
+                </View>
+              </View>
+              <FootnotesReference hadith={data} type={'volume_title.ms'} />
+            </View>
+            <View className="flex-1">
+              {data?.chapter_title?.ms && (
+                <View className="mt-20 mb-10 p-4 gap-10">
                   <View className="gap-4">
                     <Text
-                      className="text-lg text-gray-800 leading-8 font-arabic-regular"
+                      className="text-lg text-royal-blue font-arabic-bold font-bold"
                       style={{
                         writingDirection: 'rtl'
                       }}
                     >
-                      <QuranText text={data?.chapter_metadata?.ar} />
+                      <QuranText
+                        text={data?.chapter_title?.ar}
+                        font={'arabic-bold'}
+                      />
                     </Text>
-                    <Text
-                      className="text-gray-700 leading-6 text-justify tracking-tight font-arabic-symbols"
-                      style={{
-                        writingDirection: 'ltr'
-                      }}
-                    >
-                      <FootnotesMarker
-                        footnotes={data.footnotes}
-                        type={'chapter_metadata.ms'}
-                        index={1}
-                        footnoteRefs={footnoteRefs}
-                        hadithId={data._id}
-                      >
-                        <QuranText
-                          text={data?.chapter_metadata?.ms}
-                          font={'arabic-symbols'}
-                          special={true}
-                        />
-                      </FootnotesMarker>
-                    </Text>
-                    <FootnotesReference hadith={data} type={'chapter_title.ms'} />
-                    <FootnotesReference hadith={data} type={'chapter_metadata.ms'} />
-                  </View>
-                )}
-              </View>
-            )}
-            <View className="space-y-8 bg-white mb-20">
-              <View key={data.id}>
-                {data.content.map((content, i) => {
-                  if (!content.ar) return null
-                  return (
-                    <View key={i}>
-                      <View className="px-4 py-6 gap-6">
-                        <Text
-                          className={`text-gray-800 ${arabicFontSizes[fontSizeIndex].size} ${arabicFontSizes[fontSizeIndex].leading} ${arabicFontSizes[fontSizeIndex].tracking} mb-2 font-arabic-regular`}
-                          style={{
-                            writingDirection: 'rtl'
-                          }}
+                    <View>
+                      <Text>
+                        <FootnotesMarker
+                          footnotes={data.footnotes}
+                          type={'chapter_title.ms'}
+                          index={1}
+                          footnoteRefs={footnoteRefs}
+                          hadithId={data._id}
                         >
-                          <QuranText text={content.ar} />
-                        </Text>
-                        <Text
-                          className={`text-gray-800 pb-4 ${latinFontSizes[fontSizeIndex].size} ${latinFontSizes[fontSizeIndex].leading} ${latinFontSizes[fontSizeIndex].tracking} overflow-hidden text-justify font-arabic-symbols`}
-                          style={{
-                            writingDirection: 'ltr'
-                          }}
-                        >
-                          <FootnotesMarker
-                            footnotes={data.footnotes}
-                            type={'content.ms'}
-                            index={i + 1}
-                            footnoteRefs={footnoteRefs}
-                            hadithId={data._id}
-                          >
-                            <QuranText
-                              text={content.ms}
-                              font={'arabic-symbols'}
-                              special={true}
-                            />
-                          </FootnotesMarker>
-                        </Text>
-
-                        {/*<LexicalRenderer*/}
-                        {/*  serializedState={hadith?.lexicalState?.content[i]?.ms}*/}
-                        {/*  className=" text-gray-800 text-lg text-justify tracking-tight font-arabic-symbols leading-relaxed"*/}
-                        {/*  footnoteRefs={footnoteRefs}*/}
-                        {/*  hadithId={hadith._id}*/}
-                        {/*/>*/}
-                        <FootnotesReference hadith={data} type={'content.ms'} />
-                      </View>
+                          <SpecialText
+                            className="text-royal-blue font-semibold"
+                            text={data?.chapter_title?.ms}
+                          />
+                        </FootnotesMarker>
+                      </Text>
+                      <Text className="text-gray-600 mt-1">
+                        {data?.chapter_transliteration?.ms}
+                      </Text>
                     </View>
-                  )
-                })}
+                  </View>
+                  {data?.chapter_metadata?.ms && (
+                    <View className="gap-4">
+                      <Text
+                        className="text-lg text-gray-800 leading-8 font-arabic-regular"
+                        style={{
+                          writingDirection: 'rtl'
+                        }}
+                      >
+                        <QuranText text={data?.chapter_metadata?.ar} />
+                      </Text>
+                      <Text
+                        className="text-gray-700 leading-6 text-justify tracking-tight font-arabic-symbols"
+                        style={{
+                          writingDirection: 'ltr'
+                        }}
+                      >
+                        <FootnotesMarker
+                          footnotes={data.footnotes}
+                          type={'chapter_metadata.ms'}
+                          index={1}
+                          footnoteRefs={footnoteRefs}
+                          hadithId={data._id}
+                        >
+                          <QuranText
+                            text={data?.chapter_metadata?.ms}
+                            font={'arabic-symbols'}
+                            special={true}
+                          />
+                        </FootnotesMarker>
+                      </Text>
+                      <FootnotesReference
+                        hadith={data}
+                        type={'chapter_title.ms'}
+                      />
+                      <FootnotesReference
+                        hadith={data}
+                        type={'chapter_metadata.ms'}
+                      />
+                    </View>
+                  )}
+                </View>
+              )}
+              <View className="space-y-8 bg-white mb-20">
+                <View key={data.id}>
+                  {data.content.map((content, i) => {
+                    if (!content.ar) return null
+                    return (
+                      <View key={i}>
+                        <View className="px-4 py-6 gap-6">
+                          <Text
+                            className={`text-gray-800 ${arabicFontSizes[fontSizeIndex].size} ${arabicFontSizes[fontSizeIndex].leading} ${arabicFontSizes[fontSizeIndex].tracking} mb-2 font-arabic-regular`}
+                            style={{
+                              writingDirection: 'rtl'
+                            }}
+                          >
+                            <QuranText text={content.ar} />
+                          </Text>
+                          <Text
+                            className={`text-gray-800 pb-4 ${latinFontSizes[fontSizeIndex].size} ${latinFontSizes[fontSizeIndex].leading} ${latinFontSizes[fontSizeIndex].tracking} overflow-hidden text-justify font-arabic-symbols`}
+                            style={{
+                              writingDirection: 'ltr'
+                            }}
+                          >
+                            <FootnotesMarker
+                              footnotes={data.footnotes}
+                              type={'content.ms'}
+                              index={i + 1}
+                              footnoteRefs={footnoteRefs}
+                              hadithId={data._id}
+                            >
+                              <QuranText
+                                text={content.ms}
+                                font={'arabic-symbols'}
+                                special={true}
+                              />
+                            </FootnotesMarker>
+                          </Text>
+
+                          {/*<LexicalRenderer*/}
+                          {/*  serializedState={hadith?.lexicalState?.content[i]?.ms}*/}
+                          {/*  className=" text-gray-800 text-lg text-justify tracking-tight font-arabic-symbols leading-relaxed"*/}
+                          {/*  footnoteRefs={footnoteRefs}*/}
+                          {/*  hadithId={hadith._id}*/}
+                          {/*/>*/}
+                          <FootnotesReference
+                            hadith={data}
+                            type={'content.ms'}
+                          />
+                        </View>
+                      </View>
+                    )
+                  })}
+                </View>
               </View>
             </View>
-          </View>
           </View>
         </Pressable>
       </ScrollView>
@@ -313,7 +354,10 @@ function UniversalDetail() {
         style={[bottomBarAnimatedStyle]}
         className="absolute bottom-0 left-0 right-0 z-50"
       >
-        <View style={{ paddingBottom: insets.bottom }} className="bg-royal-blue">
+        <View
+          style={{ paddingBottom: insets.bottom }}
+          className="bg-royal-blue"
+        >
           <View className="flex flex-row px-6 pt-4">
             <TouchableHighlight
               className="p-1"
@@ -332,24 +376,33 @@ function UniversalDetail() {
           </View>
           <View className="px-6">
             {/* Step indicators */}
-            <View className="flex flex-row justify-between mb-2">
-              {[0, 1, 2, 3, 4].map((step) => (
-                <View
-                  key={step}
-                  className={`w-2 h-2 rounded-full ${fontSizeIndex === step ? 'bg-white' : 'bg-white/40'}`}
+            {/*<View className="flex flex-row justify-between mb-2">*/}
+            {/*  {[0, 1, 2, 3, 4].map((step) => (*/}
+            {/*    <View*/}
+            {/*      key={step}*/}
+            {/*      className={`w-2 h-2 rounded-full ${fontSizeIndex === step ? 'bg-white' : 'bg-white/40'}`}*/}
+            {/*    />*/}
+            {/*  ))}*/}
+            {/*</View>*/}
+            <View className="flex flex-row justify-between items-center">
+              <Text className="font-serif font-semibold text-base text-white">A</Text>
+              <View className="w-64">
+                <Slider
+                  tapToSeek={true}
+                  style={{ borderRadius: 10 }}
+                  className="rounded-xs"
+                  minimumValue={0}
+                  step={1}
+                  StepMarker={renderStepMarker}
+                  maximumValue={4}
+                  value={fontSizeIndex}
+                  onValueChange={(value) => setFontSizeIndex(value)}
+                  minimumTrackTintColor="#FFFFFF"
+                  maximumTrackTintColor="#000000"
                 />
-              ))}
+              </View>
+              <Text className="font-serif font-semibold text-2xl text-white">A</Text>
             </View>
-            <Slider
-              className="w-full h-10"
-              minimumValue={0}
-              step={1}
-              maximumValue={4}
-              value={fontSizeIndex}
-              onValueChange={(value) => setFontSizeIndex(value)}
-              minimumTrackTintColor="#FFFFFF"
-              maximumTrackTintColor="#000000"
-            />
           </View>
         </View>
         {/*<ActionButtons*/}
@@ -360,5 +413,36 @@ function UniversalDetail() {
     </Page>
   )
 }
+
+const styles = StyleSheet.create({
+  outer: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  outerTrue: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    backgroundColor: '#0F0FFF',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  inner: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: 'white',
+  },
+  innerTrue: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: '#0F0FFF',
+  },
+})
 
 export default UniversalDetail
