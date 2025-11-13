@@ -1,6 +1,7 @@
-import React, { useRef, useEffect } from 'react'
-import { View, ActivityIndicator, ScrollView, Text } from 'react-native'
+import React, { useRef, useEffect, useState } from 'react'
+import { View, ActivityIndicator, ScrollView, Text, Pressable, NativeScrollEvent, NativeSyntheticEvent } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useGetHadith } from '../../shared/fetcher/useHadiths'
 import Header from '@/app/components/header'
 import Page from "../../components/page"
@@ -15,14 +16,25 @@ import FootnotesMarker from '@/app/components/footnotes-marker'
 import FootnotesReference from '@/app/components/footnotes-reference'
 import QuranText from '@/app/components/quran-text'
 import SpecialText from '@/app/components/special-text'
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 
 function UniversalDetail() {
   const { id } = useLocalSearchParams<{ id: string }>()
   const router = useRouter()
   const footnoteRefs = useRef<Record<string, any>>({})
   const posthog = usePostHog()
+  const insets = useSafeAreaInsets()
 
   const { isLoading, data, isError } = useGetHadith(id)
+
+  // Animation state for top and bottom bars
+  const topBarTranslateY = useSharedValue(0)
+  const bottomBarTranslateY = useSharedValue(0)
+  const [barsVisible, setBarsVisible] = useState(true)
+
+  // Scroll tracking
+  const lastScrollY = useRef(0)
+  const scrollThreshold = 5 // Minimum scroll distance to trigger hide/show
 
   useEffect(() => {
     if (data) {
@@ -38,6 +50,54 @@ function UniversalDetail() {
     // TODO: Implement save logic if needed
   }
 
+  // Show bars function
+  const showBars = () => {
+    topBarTranslateY.value = withTiming(0, { duration: 300 })
+    bottomBarTranslateY.value = withTiming(0, { duration: 300 })
+    setBarsVisible(true)
+  }
+
+  // Hide bars function
+  const hideBars = () => {
+    // Hide top bar above the safe area
+    topBarTranslateY.value = withTiming(-(100 + insets.top), { duration: 300 })
+    // Hide bottom bar below the safe area
+    bottomBarTranslateY.value = withTiming(100 + insets.bottom, { duration: 300 })
+    setBarsVisible(false)
+  }
+
+  // Handle scroll event
+  const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const currentScrollY = event.nativeEvent.contentOffset.y
+    const scrollDiff = currentScrollY - lastScrollY.current
+
+    if (Math.abs(scrollDiff) > scrollThreshold) {
+      if (scrollDiff > 0 && barsVisible) {
+        // Scrolling down - hide bars
+        hideBars()
+      }
+      lastScrollY.current = currentScrollY
+    }
+  }
+
+  // Handle touch/press on content
+  const handleContentPress = () => {
+    if (barsVisible) {
+      hideBars()
+    } else {
+      showBars()
+    }
+  }
+
+  // Animated styles
+  const topBarAnimatedStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: topBarTranslateY.value }],
+  }))
+
+  const bottomBarAnimatedStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: bottomBarTranslateY.value }],
+  }))
+
   if (isLoading) {
     return (
       <LoadingSpinner />
@@ -46,12 +106,27 @@ function UniversalDetail() {
 
   return (
     <Page class="bg-white" edges={['bottom']}>
-      <ScrollView className="bg-white" contentContainerStyle={{ flexGrow: 1 }}>
-        {/*<Header*/}
-        {/*  title={data?.book_title?.ms}*/}
-        {/*  onPressButton={() => router.back()}*/}
-        {/*/>*/}
-        <View className="flex-1 pb-0 bg-white">
+      {/* Sticky Top Bar */}
+      <Animated.View
+        style={[topBarAnimatedStyle]}
+        className="absolute top-0 left-0 right-0 z-50 bg-white shadow-md"
+      >
+        <View style={{ paddingTop: insets.top }}>
+          <Header
+            title={data?.book_title?.ms}
+            onPressButton={() => router.back()}
+          />
+        </View>
+      </Animated.View>
+
+      <ScrollView
+        className="bg-white"
+        contentContainerStyle={{ flexGrow: 1 }}
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
+      >
+        <Pressable onPress={handleContentPress}>
+          <View className="flex-1 pb-0 bg-white pt-16">
           {/*<VolumeTitle volumeTitle={data?.volume_title} footnoteRefs={footnoteRefs} hadiths={[data]}/>*/}
           <View className="pb-2 mb-3 mt-10">
             <View className="flex items-center">
@@ -149,16 +224,25 @@ function UniversalDetail() {
                 )}
               </View>
             )}
-            <View className="space-y-8 bg-white mb-4">
+            <View className="space-y-8 bg-white mb-20">
               <HadithItem hadith={data} footnoteRefs={footnoteRefs}/>
-              <ActionButtons
-                onShare={() => shareHadith(data)}
-                onSave={onSave}
-              />
             </View>
           </View>
-        </View>
+          </View>
+        </Pressable>
       </ScrollView>
+
+      {/* Sticky Bottom Bar */}
+      <Animated.View
+        style={[bottomBarAnimatedStyle]}
+        className="absolute bottom-0 left-0 right-0 z-50"
+      >
+        <ActionButtons
+          onShare={() => shareHadith(data)}
+          onSave={onSave}
+        />
+        <View style={{ paddingBottom: insets.bottom }} className="bg-royal-blue" />
+      </Animated.View>
     </Page>
   )
 }

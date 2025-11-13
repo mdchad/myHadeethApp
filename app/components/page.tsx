@@ -14,7 +14,7 @@ interface PageProps {
 const Page: React.FC<PageProps> = ({ children, edges = [], ...props }) => {
   return (
     <SafeAreaView className={`${props.class} `} edges={['top', ...edges]}>
-      <View>{children}</View>
+      {children}
     </SafeAreaView>
   )
 }
