@@ -3,6 +3,7 @@ import { View, Text } from 'react-native'
 import QuranText from './quran-text'
 import FootnotesMarker from './footnotes-marker'
 import FootnotesReference from './footnotes-reference'
+import LexicalRenderer from '@/app/components/lexical-renderer'
 
 interface BilingualContent {
   ms?: string;
@@ -27,7 +28,7 @@ interface Hadith {
 
 interface HadithItemProps {
   hadith: Hadith;
-  footnoteRefs: React.MutableRefObject<Record<string, any>>;
+  footnoteRefs: React.RefObject<Record<string, any>>;
 }
 
 const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
@@ -66,6 +67,13 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
                   />
                 </FootnotesMarker>
               </Text>
+
+              {/*<LexicalRenderer*/}
+              {/*  serializedState={hadith?.lexicalState?.content[i]?.ms}*/}
+              {/*  className=" text-gray-800 text-lg text-justify tracking-tight font-arabic-symbols leading-relaxed"*/}
+              {/*  footnoteRefs={footnoteRefs}*/}
+              {/*  hadithId={hadith._id}*/}
+              {/*/>*/}
               <FootnotesReference hadith={hadith} type={'content.ms'} />
             </View>
           </View>

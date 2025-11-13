@@ -13,6 +13,7 @@ import useGetVolumes from '@/app/shared/fetcher/useVolumes'
 import SHARED_TEXT from "@/app/i18n";
 import {t} from "i18next";
 import Page from '@/app/components/page'
+import LoadingSpinner from '@/app/components/loading-spinner'
 
 interface BilingualText {
   ms: string;
@@ -114,9 +115,7 @@ function HadithVolume() {
 
   if (isLoading) {
     return (
-      <View className="flex-1 justify-center items-center ">
-        <ActivityIndicator size="large" color="#0000ff" />
-      </View>
+      <LoadingSpinner />
     )
   }
 

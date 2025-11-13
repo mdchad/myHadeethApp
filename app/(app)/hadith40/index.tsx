@@ -5,9 +5,9 @@ import Header from '@/app/components/header'
 import { useRouter } from 'expo-router'
 import SHARED_TEXT from '../../i18n'
 import {t} from "i18next";
-import hadiths from '../../../data/hadith40.json'
+import hadiths from '@/data/hadith40.json'
 import {FlashList} from "@shopify/flash-list";
-import Audio from "../../components/audio";
+import Audio from "@/app/components/audio";
 
 interface BilingualText {
   ms: string;
@@ -17,6 +17,12 @@ interface BilingualText {
 interface HadithContent {
   ms: string;
   ar: string;
+  audio: BilingualText;
+}
+
+interface Lesson {
+  items: BilingualText[];
+  audio: BilingualText;
 }
 
 interface Hadith40Item {
@@ -25,8 +31,7 @@ interface Hadith40Item {
   content: HadithContent[];
   narrators: BilingualText[];
   narratedBy: BilingualText[];
-  audio: BilingualText;
-  lesson: BilingualText[];
+  lesson: Lesson;
   references?: any[];
 }
 
@@ -64,7 +69,7 @@ export default function Hadith40() {
                 <View className="mt-4">
                   <Text className="text-lg mb-2 text-justify mb-2">{cnt.ms}</Text>
                   <Text className="text-xs text-right">{item.narratedBy[index].ms}</Text>
-                  <Audio url={item.audio.ms} />
+                  <Audio url={cnt.audio.ms} />
                 </View>
               </View>
             )
@@ -73,7 +78,7 @@ export default function Hadith40() {
         <View className="bg-royal-blue p-4">
           <Text className="text-white text-xl mb-2 font-semibold">Pengajaran</Text>
           {
-            item.lesson.map((l, i) => {
+            item.lesson.items.map((l, i) => {
               return (
                 <View key={i}>
                   <Text className="text-white text-lg">{`\u2022 ${l.ms}`}</Text>
@@ -81,7 +86,7 @@ export default function Hadith40() {
               )
             })
           }
-          <Audio url={`${item.number}_lesson`} />
+          <Audio url={`${item.lesson.audio.ms}`} />
         </View>
       </View>
     )
@@ -93,7 +98,7 @@ export default function Hadith40() {
         title={t(SHARED_TEXT.HADITHS_FORTY_TITLE)}
         onPressButton={() => router.back()}
       />
-      <View className="flex-1">
+      <View className="h-full">
         <FlashList
           data={hadiths}
           renderItem={Items}

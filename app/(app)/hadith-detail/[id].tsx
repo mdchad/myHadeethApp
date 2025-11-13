@@ -10,6 +10,7 @@ import VolumeTitle from '@/app/components/volume-title'
 import HadithItem from '@/app/components/hadith-item'
 import ActionButtons from '@/app/components/action-buttons'
 import { usePostHog } from 'posthog-react-native'
+import LoadingSpinner from '@/app/components/loading-spinner'
 
 function UniversalDetail() {
   const { id } = useLocalSearchParams<{ id: string }>()
@@ -35,9 +36,7 @@ function UniversalDetail() {
 
   if (isLoading) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" color="#0000ff" />
-      </View>
+      <LoadingSpinner />
     )
   }
 
