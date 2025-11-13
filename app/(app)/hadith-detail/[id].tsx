@@ -1,5 +1,14 @@
 import React, { useRef, useEffect, useState } from 'react'
-import { View, ActivityIndicator, ScrollView, Text, Pressable, NativeScrollEvent, NativeSyntheticEvent } from 'react-native'
+import {
+  View,
+  ActivityIndicator,
+  ScrollView,
+  Text,
+  Pressable,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  TouchableHighlight
+} from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useGetHadith } from '../../shared/fetcher/useHadiths'
@@ -17,6 +26,8 @@ import FootnotesReference from '@/app/components/footnotes-reference'
 import QuranText from '@/app/components/quran-text'
 import SpecialText from '@/app/components/special-text'
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
+import { Bookmark, Share2 } from 'lucide-react-native'
+import Slider from '@react-native-community/slider'
 
 function UniversalDetail() {
   const { id } = useLocalSearchParams<{ id: string }>()
@@ -26,6 +37,25 @@ function UniversalDetail() {
   const insets = useSafeAreaInsets()
 
   const { isLoading, data, isError } = useGetHadith(id)
+
+  // Font size configuration
+  // Latin script sizes (for Malay text)
+  const latinFontSizes = [
+    { size: 'text-xs', leading: 'leading-relaxed', tracking: 'tracking-wide' },
+    { size: 'text-sm', leading: 'leading-relaxed', tracking: 'tracking-wide' },
+    { size: 'text-base', leading: 'leading-relaxed', tracking: 'tracking-normal' },
+    { size: 'text-lg', leading: 'leading-relaxed', tracking: 'tracking-normal' },
+    { size: 'text-xl', leading: 'leading-relaxed', tracking: 'tracking-tighter' },
+  ]
+  // Arabic script sizes (2 sizes larger than Latin)
+  const arabicFontSizes = [
+    { size: 'text-base', leading: 'leading-8', tracking: 'tracking-normal' },
+    { size: 'text-lg', leading: 'leading-9', tracking: 'tracking-normal' },
+    { size: 'text-xl', leading: 'leading-10', tracking: 'tracking-normal' },
+    { size: 'text-2xl', leading: 'leading-10', tracking: 'tracking-normal' },
+    { size: 'text-3xl', leading: 'leading-relaxed', tracking: 'tracking-normal' },
+  ]
+  const [fontSizeIndex, setFontSizeIndex] = useState(3) // Default to text-lg (latin) / text-2xl (arabic)
 
   // Animation state for top and bottom bars
   const topBarTranslateY = useSharedValue(0)
@@ -225,7 +255,53 @@ function UniversalDetail() {
               </View>
             )}
             <View className="space-y-8 bg-white mb-20">
-              <HadithItem hadith={data} footnoteRefs={footnoteRefs}/>
+              <View key={data.id}>
+                {data.content.map((content, i) => {
+                  if (!content.ar) return null
+                  return (
+                    <View key={i}>
+                      <View className="px-4 py-6 gap-6">
+                        <Text
+                          className={`text-gray-800 ${arabicFontSizes[fontSizeIndex].size} ${arabicFontSizes[fontSizeIndex].leading} ${arabicFontSizes[fontSizeIndex].tracking} mb-2 font-arabic-regular`}
+                          style={{
+                            writingDirection: 'rtl'
+                          }}
+                        >
+                          <QuranText text={content.ar} />
+                        </Text>
+                        <Text
+                          className={`text-gray-800 pb-4 ${latinFontSizes[fontSizeIndex].size} ${latinFontSizes[fontSizeIndex].leading} ${latinFontSizes[fontSizeIndex].tracking} overflow-hidden text-justify font-arabic-symbols`}
+                          style={{
+                            writingDirection: 'ltr'
+                          }}
+                        >
+                          <FootnotesMarker
+                            footnotes={data.footnotes}
+                            type={'content.ms'}
+                            index={i + 1}
+                            footnoteRefs={footnoteRefs}
+                            hadithId={data._id}
+                          >
+                            <QuranText
+                              text={content.ms}
+                              font={'arabic-symbols'}
+                              special={true}
+                            />
+                          </FootnotesMarker>
+                        </Text>
+
+                        {/*<LexicalRenderer*/}
+                        {/*  serializedState={hadith?.lexicalState?.content[i]?.ms}*/}
+                        {/*  className=" text-gray-800 text-lg text-justify tracking-tight font-arabic-symbols leading-relaxed"*/}
+                        {/*  footnoteRefs={footnoteRefs}*/}
+                        {/*  hadithId={hadith._id}*/}
+                        {/*/>*/}
+                        <FootnotesReference hadith={data} type={'content.ms'} />
+                      </View>
+                    </View>
+                  )
+                })}
+              </View>
             </View>
           </View>
           </View>
@@ -237,11 +313,49 @@ function UniversalDetail() {
         style={[bottomBarAnimatedStyle]}
         className="absolute bottom-0 left-0 right-0 z-50"
       >
-        <ActionButtons
-          onShare={() => shareHadith(data)}
-          onSave={onSave}
-        />
-        <View style={{ paddingBottom: insets.bottom }} className="bg-royal-blue" />
+        <View style={{ paddingBottom: insets.bottom }} className="bg-royal-blue">
+          <View className="flex flex-row px-6 pt-4">
+            <TouchableHighlight
+              className="p-1"
+              underlayColor="#333"
+              onPress={() => shareHadith(data)}
+            >
+              <Share2 color="white" strokeWidth={2} size={18} />
+            </TouchableHighlight>
+            <TouchableHighlight
+              className="p-1"
+              underlayColor="#333"
+              onPress={onSave}
+            >
+              <Bookmark color="white" strokeWidth={2} size={18} />
+            </TouchableHighlight>
+          </View>
+          <View className="px-6">
+            {/* Step indicators */}
+            <View className="flex flex-row justify-between mb-2">
+              {[0, 1, 2, 3, 4].map((step) => (
+                <View
+                  key={step}
+                  className={`w-2 h-2 rounded-full ${fontSizeIndex === step ? 'bg-white' : 'bg-white/40'}`}
+                />
+              ))}
+            </View>
+            <Slider
+              className="w-full h-10"
+              minimumValue={0}
+              step={1}
+              maximumValue={4}
+              value={fontSizeIndex}
+              onValueChange={(value) => setFontSizeIndex(value)}
+              minimumTrackTintColor="#FFFFFF"
+              maximumTrackTintColor="#000000"
+            />
+          </View>
+        </View>
+        {/*<ActionButtons*/}
+        {/*  onShare={() => shareHadith(data)}*/}
+        {/*  onSave={onSave}*/}
+        {/*/>*/}
       </Animated.View>
     </Page>
   )
