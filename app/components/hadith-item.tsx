@@ -48,7 +48,7 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
                 <QuranText text={content.ar} />
               </Text>
               <Text
-                className="text-gray-800 pb-4 text-lg overflow-hidden leading-relaxed text-justify tracking-tight font-arabic-symbols"
+                className="text-gray-800 pb-4 text-lg overflow-hidden leading-relaxed text-justify tracking-normal font-arabic-symbols"
                 style={{
                   writingDirection: 'ltr'
                 }}

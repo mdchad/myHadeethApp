@@ -40,7 +40,7 @@ const HadithVolumeItem: React.FC<HadithVolumeItemProps> = ({ item, index }) => (
   <Link
     asChild
     href={{
-      pathname: `/(hadeeth)/content/${item.book_id}`,
+      pathname: `/hadiths/${item.book_id}`,
       params: { volumeId: item.id, bookId: item.book_id }
     }}
   >

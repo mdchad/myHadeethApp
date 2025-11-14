@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persister'
 import { focusManager, QueryClient } from '@tanstack/react-query'
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client'
-import { Platform } from 'react-native'
+import { Platform, StatusBar } from 'react-native'
 import useAppState from './shared/useAppState'
 import useOnlineManager from './shared/useOnlineManager'
 import { useEffect } from 'react'
@@ -185,6 +185,7 @@ export default function Root() {
       }
     >
       <GestureHandlerRootView>
+        <StatusBar barStyle="dark-content" backgroundColor="white" />
         <PostHogProvider
           apiKey={process.env.EXPO_PUBLIC_POSTHOG_API_KEY}
           options={{ host: 'https://us.i.posthog.com' }}
