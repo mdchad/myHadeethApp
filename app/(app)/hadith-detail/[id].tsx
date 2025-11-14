@@ -13,6 +13,7 @@ import {
 } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { StatusBar } from 'expo-status-bar'
 import { useGetHadith } from '../../shared/fetcher/useHadiths'
 import Header from '@/app/components/header'
 import Page from '../../components/page'
@@ -179,6 +180,7 @@ function UniversalDetail() {
 
   return (
     <Page class="bg-white">
+      <StatusBar hidden={!barsVisible} />
       {/* Sticky Top Bar */}
       <Animated.View
         style={[topBarAnimatedStyle]}
