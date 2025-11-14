@@ -4,7 +4,7 @@ import Page from '@/app/components/page'
 
 const Notes = () => {
   return (
-    <Page class="bg-gray-100">
+    <Page className="bg-gray-100">
       <View className="flex-1 bg-gray-100">
         <Text>Hello</Text>
       </View>

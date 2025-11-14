@@ -65,7 +65,7 @@ export default function Settings() {
   }
 
   return (
-    <Page class="bg-gray-100">
+    <Page className="bg-gray-100">
       <ScrollView className="py-4">
         <View className="px-4 bg-gray-100 flex sm:mx-auto sm:w-full sm:max-w-md w-full h-full">
           <View className="bg-white rounded-xl flex">

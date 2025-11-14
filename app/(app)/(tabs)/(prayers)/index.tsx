@@ -211,7 +211,7 @@ export default function Prayer() {
   }
 
   return (
-    <Page class="bg-gray-100">
+    <Page className="bg-gray-100">
       <ScrollView>
         <Header rounded={false} title={t(SHARED_TEXT.PRAYERS_HEADER)} />
         <View

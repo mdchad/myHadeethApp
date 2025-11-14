@@ -16,6 +16,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { StatusBar } from 'expo-status-bar'
 import { useGetHadith } from '../../shared/fetcher/useHadiths'
 import { useReadingSettingsStore } from '@/app/stores/useReadingSettingsStore'
+import { useUniwind } from 'uniwind'
 import Header from '@/app/components/header'
 import Page from '../../components/page'
 import HadithChapterTitle from '@/app/components/hadith-chapter-title'
@@ -57,6 +58,7 @@ function UniversalDetail() {
   const posthog = usePostHog()
   const insets = useSafeAreaInsets()
   const fontSizeIndex = useReadingSettingsStore((state) => state.fontSizeIndex)
+  const { theme } = useUniwind()
   const bottomSheetRef = useRef<BottomSheet>(null)
 
   const { isLoading, data, isError } = useGetHadith(id)
@@ -184,8 +186,8 @@ function UniversalDetail() {
   const StyledChevronLeft = withUniwind(ChevronLeft)
 
   return (
-    <Page class="bg-reading-background">
-      <StatusBar hidden={!barsVisible} />
+    <Page className="bg-reading-background">
+      <StatusBar hidden={!barsVisible} style={theme === 'dark' ? 'light' : 'dark'} />
       {/* Sticky Top Bar */}
       <Animated.View
         style={[topBarAnimatedStyle]}
