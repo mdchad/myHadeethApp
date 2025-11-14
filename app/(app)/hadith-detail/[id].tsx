@@ -11,10 +11,11 @@ import {
   TouchableHighlight,
   Platform
 } from 'react-native'
-import { useRouter, useLocalSearchParams } from 'expo-router'
+import { useRouter, useLocalSearchParams, useFocusEffect } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { StatusBar } from 'expo-status-bar'
 import { useGetHadith } from '../../shared/fetcher/useHadiths'
+import { storage } from '@/app/shared/storage'
 import Header from '@/app/components/header'
 import Page from '../../components/page'
 import HadithChapterTitle from '@/app/components/hadith-chapter-title'
@@ -168,18 +169,6 @@ function UniversalDetail() {
     return <LoadingSpinner />
   }
 
-  // const renderStepMarker = useCallback(({stepMarked}: MarkerProps) => {
-  //   return stepMarked ? (
-  //     <View style={styles.outerTrue}>
-  //       <View style={styles.innerTrue} />
-  //     </View>
-  //   ) : (
-  //     <View style={styles.outer}>
-  //       <View style={styles.inner} />
-  //     </View>
-  //   );
-  // }, []);
-
   return (
     <Page class="bg-white">
       <StatusBar hidden={!barsVisible} />
@@ -200,7 +189,12 @@ function UniversalDetail() {
           </View>
           <View className="flex flex-row gap-2">
             <SearchIcon color={'black'} size={28} strokeWidth={2}/>
-            <ALargeSmallIcon color={'black'} size={28} strokeWidth={2}/>
+            <Pressable
+              className="flex flex-row"
+              onPress={() => router.push('/(app)/hadith-detail/settings')}
+            >
+              <ALargeSmallIcon color={'black'} size={28} strokeWidth={2}/>
+            </Pressable>
             <BookmarkIcon color={'black'} size={28} strokeWidth={2}/>
           </View>
         </View>
