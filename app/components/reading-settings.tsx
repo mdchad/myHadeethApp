@@ -75,20 +75,17 @@ function ReadingSettingsSheet({ bottomSheetRef }: SheetProps) {
               <Text className="font-serif font-semibold text-2xl">A</Text>
             </View>
 
-            {/* Preview text */}
-            <View className="mt-8 p-4 bg-gray-50 rounded-lg">
-              <Text className="text-gray-600 mb-2">Preview</Text>
-              <Text
-                className={`text-gray-800 ${
-                  fontSizeIndex === 0 ? 'text-xs' :
-                    fontSizeIndex === 1 ? 'text-sm' :
-                      fontSizeIndex === 2 ? 'text-base' :
-                        fontSizeIndex === 3 ? 'text-lg' :
-                          'text-xl'
-                }`}
-              >
-                This is how your text will look
-              </Text>
+            {/* Appearance */}
+            <View className="flex flex-row w-full mt-10">
+              <Pressable className="w-1/3 border border-gray-200 p-2">
+                <Text className="text-lg font-semibold mb-4 mt-8 text-center">Light</Text>
+              </Pressable>
+              <Pressable className="w-1/3 border border-gray-200 p-2">
+                <Text className="text-lg font-semibold mb-4 mt-8 text-center">Sepia</Text>
+              </Pressable>
+              <Pressable className="w-1/3 border border-gray-200 p-2">
+                <Text className="text-lg font-semibold mb-4 mt-8 text-center">Dark</Text>
+              </Pressable>
             </View>
           </View>
         </BottomSheetView>
