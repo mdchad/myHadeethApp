@@ -11,11 +11,11 @@ import {
   TouchableHighlight,
   Platform
 } from 'react-native'
-import { useRouter, useLocalSearchParams, useFocusEffect } from 'expo-router'
+import { useRouter, useLocalSearchParams } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { StatusBar } from 'expo-status-bar'
 import { useGetHadith } from '../../shared/fetcher/useHadiths'
-import { storage } from '@/app/shared/storage'
+import { useReadingSettingsStore } from '@/app/stores/useReadingSettingsStore'
 import Header from '@/app/components/header'
 import Page from '../../components/page'
 import HadithChapterTitle from '@/app/components/hadith-chapter-title'
@@ -45,6 +45,8 @@ import {
 } from 'lucide-react-native'
 import Slider, { MarkerProps } from '@react-native-community/slider'
 import { Slider as NSlider } from '@react-native-assets/slider'
+import ReadingSettingsSheet from '@/app/components/reading-settings'
+import BottomSheet from '@gorhom/bottom-sheet'
 
 function UniversalDetail() {
   const { id } = useLocalSearchParams<{ id: string }>()
@@ -53,6 +55,8 @@ function UniversalDetail() {
   const bottomBarRef = useRef<View>(null)
   const posthog = usePostHog()
   const insets = useSafeAreaInsets()
+  const fontSizeIndex = useReadingSettingsStore((state) => state.fontSizeIndex)
+  const bottomSheetRef = useRef<BottomSheet>(null)
 
   const { isLoading, data, isError } = useGetHadith(id)
 
@@ -89,7 +93,6 @@ function UniversalDetail() {
       tracking: 'tracking-normal'
     }
   ]
-  const [fontSizeIndex, setFontSizeIndex] = useState(3) // Default to text-lg (latin) / text-2xl (arabic)
 
   // Animation state for top and bottom bars
   const topBarTranslateY = useSharedValue(0)
@@ -156,6 +159,11 @@ function UniversalDetail() {
     }
   }
 
+  const handlePresentModalPress = () => {
+    bottomSheetRef.current?.snapToIndex(1)
+    hideBars()
+  }
+
   // Animated styles
   const topBarAnimatedStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: topBarTranslateY.value }]
@@ -191,7 +199,7 @@ function UniversalDetail() {
             <SearchIcon color={'black'} size={28} strokeWidth={2}/>
             <Pressable
               className="flex flex-row"
-              onPress={() => router.push('/(app)/hadith-detail/settings')}
+              onPress={handlePresentModalPress}
             >
               <ALargeSmallIcon color={'black'} size={28} strokeWidth={2}/>
             </Pressable>
@@ -476,39 +484,9 @@ function UniversalDetail() {
         {/*  onSave={onSave}*/}
         {/*/>*/}
       </Animated.View>
+      <ReadingSettingsSheet bottomSheetRef={bottomSheetRef}/>
     </Page>
   )
 }
-
-const styles = StyleSheet.create({
-  outer: {
-    width: 10,
-    height: 10,
-    borderRadius: 10,
-    backgroundColor: 'red',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  outerTrue: {
-    width: 10,
-    height: 10,
-    borderRadius: 10,
-    backgroundColor: '#0F0FFF',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  inner: {
-    width: 5,
-    height: 5,
-    borderRadius: 5,
-    backgroundColor: 'gray',
-  },
-  innerTrue: {
-    width: 5,
-    height: 5,
-    borderRadius: 5,
-    backgroundColor: 'gray',
-  },
-})
 
 export default UniversalDetail
