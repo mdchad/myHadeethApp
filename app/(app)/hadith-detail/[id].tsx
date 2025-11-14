@@ -8,7 +8,8 @@ import {
   Pressable,
   NativeScrollEvent,
   NativeSyntheticEvent,
-  TouchableHighlight
+  TouchableHighlight,
+  Platform
 } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -31,8 +32,17 @@ import Animated, {
   useSharedValue,
   withTiming
 } from 'react-native-reanimated'
-import { Bookmark, Share2 } from 'lucide-react-native'
+import {
+  ALargeSmallIcon,
+  Bookmark,
+  BookmarkIcon,
+  ChevronLeft,
+  ChevronLeftCircle,
+  SearchIcon,
+  Share2
+} from 'lucide-react-native'
 import Slider, { MarkerProps } from '@react-native-community/slider'
+import { Slider as NSlider } from '@react-native-assets/slider'
 
 function UniversalDetail() {
   const { id } = useLocalSearchParams<{ id: string }>()
@@ -155,31 +165,40 @@ function UniversalDetail() {
     return <LoadingSpinner />
   }
 
-  const renderStepMarker = useCallback(({stepMarked}: MarkerProps) => {
-    return stepMarked ? (
-      <View style={styles.outerTrue}>
-        <View style={styles.innerTrue} />
-      </View>
-    ) : (
-      <View style={styles.outer}>
-        <View style={styles.inner} />
-      </View>
-    );
-  }, []);
+  // const renderStepMarker = useCallback(({stepMarked}: MarkerProps) => {
+  //   return stepMarked ? (
+  //     <View style={styles.outerTrue}>
+  //       <View style={styles.innerTrue} />
+  //     </View>
+  //   ) : (
+  //     <View style={styles.outer}>
+  //       <View style={styles.inner} />
+  //     </View>
+  //   );
+  // }, []);
 
   return (
-    <Page class="bg-white" edges={['bottom']}>
+    <Page class="bg-white">
       {/* Sticky Top Bar */}
       <Animated.View
         style={[topBarAnimatedStyle]}
-        className="absolute top-0 left-0 right-0 z-50 bg-white shadow-md"
+        className="absolute top-0 left-0 right-0 z-50 bg-white mx-4"
       >
-        <View style={{ paddingTop: insets.top }}>
-          <Header
-            rounded={false}
-            title={data?.book_title?.ms}
-            onPressButton={() => router.back()}
-          />
+        <View style={{ paddingTop: insets.top, paddingBottom: 10 }} className="border-b-2 border-black flex flex-row justify-between">
+          <View className="flex flex-row">
+            <Pressable
+              className="flex flex-row"
+              onPress={() => router.back()}
+            >
+              <ChevronLeft color={'black'} size={28}></ChevronLeft>
+              <Text className=" text-xl">Back</Text>
+            </Pressable>
+          </View>
+          <View className="flex flex-row gap-2">
+            <SearchIcon color={'black'} size={28} strokeWidth={2}/>
+            <ALargeSmallIcon color={'black'} size={28} strokeWidth={2}/>
+            <BookmarkIcon color={'black'} size={28} strokeWidth={2}/>
+          </View>
         </View>
       </Animated.View>
 
@@ -355,26 +374,47 @@ function UniversalDetail() {
         className="absolute bottom-0 left-0 right-0 z-50"
       >
         <View
-          style={{ paddingBottom: insets.bottom }}
-          className="bg-royal-blue"
+          style={{ paddingBottom: insets.bottom, paddingTop: 10 }}
+          className="bg-white border-t-2 border-black"
         >
-          <View className="flex flex-row px-6 pt-4">
-            <TouchableHighlight
-              className="p-1"
-              underlayColor="#333"
-              onPress={() => shareHadith(data)}
-            >
-              <Share2 color="white" strokeWidth={2} size={18} />
-            </TouchableHighlight>
-            <TouchableHighlight
-              className="p-1"
-              underlayColor="#333"
-              onPress={onSave}
-            >
-              <Bookmark color="white" strokeWidth={2} size={18} />
-            </TouchableHighlight>
-          </View>
+          {/*<View className="flex flex-row px-6">*/}
+          {/*  <TouchableHighlight*/}
+          {/*    className="p-1"*/}
+          {/*    underlayColor="#333"*/}
+          {/*    onPress={() => shareHadith(data)}*/}
+          {/*  >*/}
+          {/*    <Share2 color="black" strokeWidth={2} size={18} />*/}
+          {/*  </TouchableHighlight>*/}
+          {/*  <TouchableHighlight*/}
+          {/*    className="p-1"*/}
+          {/*    underlayColor="#333"*/}
+          {/*    onPress={onSave}*/}
+          {/*  >*/}
+          {/*    <Bookmark color="black" strokeWidth={2} size={18} />*/}
+          {/*  </TouchableHighlight>*/}
+          {/*</View>*/}
           <View className="px-6">
+            <Text className="bg-royal-blue text-white text-xl text-center">{data.book_title.ms}</Text>
+            {/*<NSlider*/}
+            {/*  enabled={true}*/}
+            {/*  slideOnTap={true}*/}
+            {/*  minimumValue={0}*/}
+            {/*  trackStyle={{ height: 4, backgroundColor: "black" }}*/}
+            {/*  step={1}*/}
+            {/*  // StepMarker={renderStepMarker}*/}
+            {/*  maximumValue={4}*/}
+            {/*  value={fontSizeIndex}*/}
+            {/*  onValueChange={(value) => setFontSizeIndex(value)}*/}
+            {/*  minimumTrackTintColor="#FFFFFF"*/}
+            {/*  maximumTrackTintColor="#000000"*/}
+            {/*  thumbTintColor="#000"*/}
+            {/*  thumbStyle={{ width: 20, height: 20, borderRadius: 20, backgroundColor: "#1C2A4F" }}*/}
+            {/*/>*/}
+            {/*<View className="flex flex-row justify-between items-center mt-2">*/}
+            {/*  <Text className="font-serif font-semibold text-base ">A</Text>*/}
+            {/*  <Text className="font-serif font-semibold text-2xl ">A</Text>*/}
+            {/*</View>*/}
+
             {/* Step indicators */}
             {/*<View className="flex flex-row justify-between mb-2">*/}
             {/*  {[0, 1, 2, 3, 4].map((step) => (*/}
@@ -384,25 +424,23 @@ function UniversalDetail() {
             {/*    />*/}
             {/*  ))}*/}
             {/*</View>*/}
-            <View className="flex flex-row justify-between items-center">
-              <Text className="font-serif font-semibold text-base text-white">A</Text>
-              <View className="w-64">
-                <Slider
-                  tapToSeek={true}
-                  style={{ borderRadius: 10 }}
-                  className="rounded-xs"
-                  minimumValue={0}
-                  step={1}
-                  StepMarker={renderStepMarker}
-                  maximumValue={4}
-                  value={fontSizeIndex}
-                  onValueChange={(value) => setFontSizeIndex(value)}
-                  minimumTrackTintColor="#FFFFFF"
-                  maximumTrackTintColor="#000000"
-                />
-              </View>
-              <Text className="font-serif font-semibold text-2xl text-white">A</Text>
-            </View>
+            {/*<View className="flex flex-row justify-between items-center">*/}
+            {/*  <View className="w-64">*/}
+            {/*    <Slider*/}
+            {/*      tapToSeek={true}*/}
+            {/*      style={{ borderRadius: 10 }}*/}
+            {/*      className="rounded-xs"*/}
+            {/*      minimumValue={0}*/}
+            {/*      step={1}*/}
+            {/*      StepMarker={renderStepMarker}*/}
+            {/*      maximumValue={4}*/}
+            {/*      value={fontSizeIndex}*/}
+            {/*      onValueChange={(value) => setFontSizeIndex(value)}*/}
+            {/*      minimumTrackTintColor="#FFFFFF"*/}
+            {/*      maximumTrackTintColor="#000000"*/}
+            {/*    />*/}
+            {/*  </View>*/}
+            {/*</View>*/}
           </View>
         </View>
         {/*<ActionButtons*/}
@@ -416,32 +454,32 @@ function UniversalDetail() {
 
 const styles = StyleSheet.create({
   outer: {
-    width: 20,
-    height: 20,
+    width: 10,
+    height: 10,
     borderRadius: 10,
-    backgroundColor: 'white',
+    backgroundColor: 'red',
     justifyContent: 'center',
     alignItems: 'center',
   },
   outerTrue: {
-    width: 20,
-    height: 20,
+    width: 10,
+    height: 10,
     borderRadius: 10,
     backgroundColor: '#0F0FFF',
     justifyContent: 'center',
     alignItems: 'center',
   },
   inner: {
-    width: 10,
-    height: 10,
+    width: 5,
+    height: 5,
     borderRadius: 5,
-    backgroundColor: 'white',
+    backgroundColor: 'gray',
   },
   innerTrue: {
-    width: 10,
-    height: 10,
+    width: 5,
+    height: 5,
     borderRadius: 5,
-    backgroundColor: '#0F0FFF',
+    backgroundColor: 'gray',
   },
 })
 

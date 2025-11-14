@@ -1,4 +1,3 @@
-import {View, Platform, StatusBar, StyleSheet} from 'react-native'
 import { SafeAreaView, Edge } from 'react-native-safe-area-context';
 import React from 'react'
 
@@ -13,7 +12,11 @@ interface PageProps {
 
 const Page: React.FC<PageProps> = ({ children, edges = [], ...props }) => {
   return (
-    <SafeAreaView className={`${props.class} `} edges={['top', ...edges]}>
+    <SafeAreaView
+      className={`${props.class}`}
+      edges={[ 'top', ...edges]}
+      style={{ flex: 1, backgroundColor: 'white' }}
+    >
       {children}
     </SafeAreaView>
   )
