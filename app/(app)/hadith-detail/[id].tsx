@@ -47,6 +47,7 @@ import Slider, { MarkerProps } from '@react-native-community/slider'
 import { Slider as NSlider } from '@react-native-assets/slider'
 import ReadingSettingsSheet from '@/app/components/reading-settings'
 import BottomSheet from '@gorhom/bottom-sheet'
+import { withUniwind } from 'uniwind'
 
 function UniversalDetail() {
   const { id } = useLocalSearchParams<{ id: string }>()
@@ -177,45 +178,50 @@ function UniversalDetail() {
     return <LoadingSpinner />
   }
 
+  const StyledALargeSmallIcon = withUniwind(ALargeSmallIcon)
+  const StyledBookmarkIcon = withUniwind(BookmarkIcon)
+  const StyledSearchIcon = withUniwind(SearchIcon)
+  const StyledChevronLeft = withUniwind(ChevronLeft)
+
   return (
-    <Page class="bg-white">
+    <Page class="bg-reading-background">
       <StatusBar hidden={!barsVisible} />
       {/* Sticky Top Bar */}
       <Animated.View
         style={[topBarAnimatedStyle]}
-        className="absolute top-0 left-0 right-0 z-50 bg-white mx-4"
+        className="absolute top-0 left-0 right-0 z-50 bg-reading-background px-4"
       >
-        <View style={{ paddingTop: insets.top, paddingBottom: 10 }} className="border-b-2 border-black flex flex-row justify-between">
+        <View style={{ paddingTop: insets.top, paddingBottom: 10 }} className="border-b-2 border-reading-border flex flex-row justify-between">
           <View className="flex flex-row">
             <Pressable
               className="flex flex-row"
               onPress={() => router.back()}
             >
-              <ChevronLeft color={'black'} size={28}></ChevronLeft>
-              <Text className=" text-xl">Back</Text>
+              <StyledChevronLeft className="text-reading-text" size={28}></StyledChevronLeft>
+              <Text className="text-xl text-reading-text">Back</Text>
             </Pressable>
           </View>
           <View className="flex flex-row gap-2">
-            <SearchIcon color={'black'} size={28} strokeWidth={2}/>
+            <StyledSearchIcon className="text-reading-text" size={28} strokeWidth={2}/>
             <Pressable
               className="flex flex-row"
               onPress={handlePresentModalPress}
             >
-              <ALargeSmallIcon color={'black'} size={28} strokeWidth={2}/>
+              <StyledALargeSmallIcon className="text-reading-text" size={28} strokeWidth={2}/>
             </Pressable>
-            <BookmarkIcon color={'black'} size={28} strokeWidth={2}/>
+            <StyledBookmarkIcon className="text-reading-text" size={28} strokeWidth={2}/>
           </View>
         </View>
       </Animated.View>
 
       <ScrollView
-        className="bg-white"
+        className="bg-reading-background"
         contentContainerStyle={{ flexGrow: 1 }}
         onScroll={handleScroll}
         scrollEventThrottle={16}
       >
         <Pressable onPress={handleContentPress}>
-          <View className="flex-1 pb-0 bg-white pt-16">
+          <View className="flex-1 pb-0 bg-reading-background pt-16">
             {/*<VolumeTitle volumeTitle={data?.volume_title} footnoteRefs={footnoteRefs} hadiths={[data]}/>*/}
             {/*<View className="pb-2 mb-3 mt-10">*/}
             {/*  <View className="flex items-center">*/}
@@ -317,7 +323,7 @@ function UniversalDetail() {
                   )}
                 </View>
               )}
-              <View className="space-y-8 bg-white mb-20">
+              <View className="space-y-8 bg-reading-background mb-20">
                 <View key={data.id}>
                   {data.content.map((content, i) => {
                     if (!content.ar) return null
@@ -325,7 +331,7 @@ function UniversalDetail() {
                       <View key={i}>
                         <View className="px-4 py-6 gap-6">
                           <Text
-                            className={`text-gray-800 ${arabicFontSizes[fontSizeIndex].size} ${arabicFontSizes[fontSizeIndex].leading} ${arabicFontSizes[fontSizeIndex].tracking} mb-2 font-arabic-regular`}
+                            className={`text-reading-text ${arabicFontSizes[fontSizeIndex].size} ${arabicFontSizes[fontSizeIndex].leading} ${arabicFontSizes[fontSizeIndex].tracking} mb-2 font-arabic-regular`}
                             style={{
                               writingDirection: 'rtl'
                             }}
@@ -333,7 +339,7 @@ function UniversalDetail() {
                             <QuranText text={content.ar} />
                           </Text>
                           <Text
-                            className={`text-gray-800 pb-4 ${latinFontSizes[fontSizeIndex].size} ${latinFontSizes[fontSizeIndex].leading} ${latinFontSizes[fontSizeIndex].tracking} overflow-hidden text-justify font-arabic-symbols`}
+                            className={`text-reading-text pb-4 ${latinFontSizes[fontSizeIndex].size} ${latinFontSizes[fontSizeIndex].leading} ${latinFontSizes[fontSizeIndex].tracking} overflow-hidden text-justify font-arabic-symbols`}
                             style={{
                               writingDirection: 'ltr'
                             }}
@@ -386,7 +392,7 @@ function UniversalDetail() {
             setBottomBarHeight(height)
           }}
           style={{ paddingBottom: insets.bottom, paddingTop: 10 }}
-          className="bg-white border-t-2 border-black"
+          className="bg-reading-background border-t-2 border-reading-border"
         >
           {/*<View className="flex flex-row px-6">*/}
           {/*  <TouchableHighlight*/}

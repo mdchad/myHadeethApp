@@ -7,6 +7,7 @@ import {Portal} from "@gorhom/portal";
 import { X } from 'lucide-react-native'
 import { Slider as NSlider } from '@react-native-assets/slider'
 import { useReadingSettingsStore } from '@/app/stores/useReadingSettingsStore'
+import { Uniwind, useUniwind } from 'uniwind'
 
 interface SheetProps {
   bottomSheetRef: React.RefObject<any>;
@@ -15,8 +16,16 @@ interface SheetProps {
 function ReadingSettingsSheet({ bottomSheetRef }: SheetProps) {
   const fontSizeIndex = useReadingSettingsStore((state) => state.fontSizeIndex)
   const setFontSizeIndex = useReadingSettingsStore((state) => state.setFontSizeIndex)
+  const { theme } = useUniwind()
+
   // variables
   const snapPoints = useMemo(() => ['25%', '50%'], [])
+
+  const themes = [
+    { name: 'light', label: 'Light', preview: 'bg-white' },
+    { name: 'sepia', label: 'Sepia', preview: 'bg-[#F4F1EA]' },
+    { name: 'dark', label: 'Dark', preview: 'bg-gray-800' },
+  ]
 
   // callbacks
   const renderBackdrop = useCallback(
@@ -40,17 +49,6 @@ function ReadingSettingsSheet({ bottomSheetRef }: SheetProps) {
         backdropComponent={renderBackdrop}
       >
         <BottomSheetView style={{ padding: 10, paddingBottom: 20, height: '100%', display: 'flex', justifyContent: 'space-between' }}>
-          <View
-            className="px-4 pt-8 pb-4 border-b border-gray-200"
-          >
-            <View className="flex-row items-center justify-between">
-              <Text className="text-2xl font-bold">Reading Settings</Text>
-              {/*<Pressable onPress={() => router.back()}>*/}
-                <X size={28} color="black" />
-              {/*</Pressable>*/}
-            </View>
-          </View>
-
           {/* Content */}
           <View className="p-6">
             <Text className="text-lg font-semibold mb-4">Font Size</Text>
@@ -76,16 +74,28 @@ function ReadingSettingsSheet({ bottomSheetRef }: SheetProps) {
             </View>
 
             {/* Appearance */}
-            <View className="flex flex-row w-full mt-10">
-              <Pressable className="w-1/3 border border-gray-200 p-2">
-                <Text className="text-lg font-semibold mb-4 mt-8 text-center">Light</Text>
-              </Pressable>
-              <Pressable className="w-1/3 border border-gray-200 p-2">
-                <Text className="text-lg font-semibold mb-4 mt-8 text-center">Sepia</Text>
-              </Pressable>
-              <Pressable className="w-1/3 border border-gray-200 p-2">
-                <Text className="text-lg font-semibold mb-4 mt-8 text-center">Dark</Text>
-              </Pressable>
+            <View className="mt-10">
+              <Text className="text-lg font-semibold mb-4">Appearance</Text>
+              <View className="flex flex-row w-full gap-2">
+                {themes.map((t) => (
+                  <Pressable
+                    key={t.name}
+                    onPress={() => Uniwind.setTheme(t.name)}
+                    className={`flex-1 border-2 rounded-lg overflow-hidden ${
+                      theme === t.name ? 'border-royal-blue' : 'border-gray-200'
+                    }`}
+                  >
+                    <View className={`${t.preview} h-20`} />
+                    <View className="p-3">
+                      <Text className={`text-sm text-center font-semibold ${
+                        theme === t.name ? 'text-royal-blue' : 'text-gray-700'
+                      }`}>
+                        {t.label}
+                      </Text>
+                    </View>
+                  </Pressable>
+                ))}
+              </View>
             </View>
           </View>
         </BottomSheetView>

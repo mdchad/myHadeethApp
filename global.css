@@ -8,3 +8,28 @@
     --font-arabic-bold: 'KFGQPC Uthman Taha Naskh';
     --font-uthmanic-hafs: 'kfgqpc_hafs_uthmanic_script';
 }
+
+@layer theme {
+  :root {
+    @variant light {
+      --color-reading-background: #FFFFFF;
+      --color-reading-text: #1F2937;
+      --color-reading-text-secondary: #6B7280;
+      --color-reading-border: #E5E7EB;
+    }
+
+    @variant sepia {
+      --color-reading-background: #F4F1EA;
+      --color-reading-text: #5C4B37;
+      --color-reading-text-secondary: #8B7355;
+      --color-reading-border: #D4C4A8;
+    }
+
+    @variant dark {
+      --color-reading-background: #161618;
+      --color-reading-text: #FFF;
+      --color-reading-text-secondary: #D1D5DB;
+      --color-reading-border: #374151;
+    }
+  }
+}
