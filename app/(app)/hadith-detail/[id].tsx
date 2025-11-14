@@ -240,8 +240,8 @@ function UniversalDetail() {
             {/*</View>*/}
             <View className="flex-1">
               {data?.chapter_title?.ms && (
-                <View className="mt-20 mb-10 p-4 gap-10">
-                  <View className="gap-4">
+                <View className="mb-10 p-4 gap-10">
+                  <View className="gap-4 border-l-4 border-royal-blue pl-2">
                     <Text
                       className="text-lg text-royal-blue font-arabic-bold font-bold"
                       style={{
@@ -274,7 +274,7 @@ function UniversalDetail() {
                     </View>
                   </View>
                   {data?.chapter_metadata?.ms && (
-                    <View className="gap-4">
+                    <View className="gap-4 border-l-4 border-gray-400 pl-2">
                       <Text
                         className="text-lg text-gray-800 leading-8 font-arabic-regular"
                         style={{
