@@ -213,29 +213,29 @@ function UniversalDetail() {
         <Pressable onPress={handleContentPress}>
           <View className="flex-1 pb-0 bg-white pt-16">
             {/*<VolumeTitle volumeTitle={data?.volume_title} footnoteRefs={footnoteRefs} hadiths={[data]}/>*/}
-            <View className="pb-2 mb-3 mt-10">
-              <View className="flex items-center">
-                <View className="flex-1">
-                  <FootnotesMarker
-                    footnotes={data.footnotes}
-                    type={'volume_title.ms'}
-                    index={1}
-                    footnoteRefs={footnoteRefs}
-                    hadithId={data._id}
-                  >
-                    <Text className="text-lg text-center capitalize font-semibold text-royal-blue">
-                      {data.volume_title.ms}
-                    </Text>
-                  </FootnotesMarker>
-                </View>
-                <View className="flex-1 items-end">
-                  <Text className="text-[26px] text-center font-semibold text-royal-blue font-arabic-regular">
-                    {data.volume_title.ar}
-                  </Text>
-                </View>
-              </View>
-              <FootnotesReference hadith={data} type={'volume_title.ms'} />
-            </View>
+            {/*<View className="pb-2 mb-3 mt-10">*/}
+            {/*  <View className="flex items-center">*/}
+            {/*    <View className="flex-1">*/}
+            {/*      <FootnotesMarker*/}
+            {/*        footnotes={data.footnotes}*/}
+            {/*        type={'volume_title.ms'}*/}
+            {/*        index={1}*/}
+            {/*        footnoteRefs={footnoteRefs}*/}
+            {/*        hadithId={data._id}*/}
+            {/*      >*/}
+            {/*        <Text className="text-lg text-center capitalize font-semibold text-royal-blue">*/}
+            {/*          {data.volume_title.ms}*/}
+            {/*        </Text>*/}
+            {/*      </FootnotesMarker>*/}
+            {/*    </View>*/}
+            {/*    <View className="flex-1 items-end">*/}
+            {/*      <Text className="text-[26px] text-center font-semibold text-royal-blue font-arabic-regular">*/}
+            {/*        {data.volume_title.ar}*/}
+            {/*      </Text>*/}
+            {/*    </View>*/}
+            {/*  </View>*/}
+            {/*  <FootnotesReference hadith={data} type={'volume_title.ms'} />*/}
+            {/*</View>*/}
             <View className="flex-1">
               {data?.chapter_title?.ms && (
                 <View className="mt-20 mb-10 p-4 gap-10">
@@ -396,7 +396,32 @@ function UniversalDetail() {
           {/*  </TouchableHighlight>*/}
           {/*</View>*/}
           <View className="px-6">
-            <Text className="bg-royal-blue text-white text-xl text-center">{data.book_title.ms}</Text>
+            <View className="bg-royal-blue">
+              <Text className=" text-white text-xl text-center">{data.book_title.ms}</Text>
+            </View>
+            <View>
+              <View className="flex items-center">
+                <View className="flex-1">
+                  <FootnotesMarker
+                    footnotes={data.footnotes}
+                    type={'volume_title.ms'}
+                    index={1}
+                    footnoteRefs={footnoteRefs}
+                    hadithId={data._id}
+                  >
+                    <Text className="text-lg text-center capitalize font-semibold text-royal-blue">
+                      {data.volume_title.ms}
+                    </Text>
+                  </FootnotesMarker>
+                </View>
+                <View className="flex-1 items-end">
+                  <Text className="text-[26px] text-center font-semibold text-royal-blue font-arabic-regular">
+                    {data.volume_title.ar}
+                  </Text>
+                </View>
+              </View>
+              <FootnotesReference hadith={data} type={'volume_title.ms'} />
+            </View>
             {/*<NSlider*/}
             {/*  enabled={true}*/}
             {/*  slideOnTap={true}*/}
