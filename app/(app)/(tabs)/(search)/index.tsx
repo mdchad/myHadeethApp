@@ -279,7 +279,7 @@ function Search() {
   }, [])
 
   return (
-    <Page class="bg-gray-100">
+    <Page className="bg-gray-100">
       <Header title={t(SHARED_TEXT.SEARCH_HEADER)} rounded={false} />
       <View
         className={`px-6 flex flex-row justify-between items-end rounded-b-2xl pb-6 shadow-lg bg-royal-blue overflow-hidden`}

@@ -48,7 +48,7 @@ export default function Profile() {
   }
 
   return (
-    <Page class="bg-white w-full">
+    <Page className="bg-white w-full">
       <ScrollView>
         <Header rounded={false} onPressButton={() => router.back()} />
         <View
