@@ -49,6 +49,7 @@ function UniversalDetail() {
   const { id } = useLocalSearchParams<{ id: string }>()
   const router = useRouter()
   const footnoteRefs = useRef<Record<string, any>>({})
+  const bottomBarRef = useRef<View>(null)
   const posthog = usePostHog()
   const insets = useSafeAreaInsets()
 
@@ -93,6 +94,7 @@ function UniversalDetail() {
   const topBarTranslateY = useSharedValue(0)
   const bottomBarTranslateY = useSharedValue(0)
   const [barsVisible, setBarsVisible] = useState(true)
+  const [bottomBarHeight, setBottomBarHeight] = useState(100)
 
   // Scroll tracking
   const lastScrollY = useRef(0)
@@ -123,8 +125,8 @@ function UniversalDetail() {
   const hideBars = () => {
     // Hide top bar above the safe area
     topBarTranslateY.value = withTiming(-(100 + insets.top), { duration: 300 })
-    // Hide bottom bar below the safe area
-    bottomBarTranslateY.value = withTiming(100 + insets.bottom, {
+    // Hide bottom bar below the safe area using measured height
+    bottomBarTranslateY.value = withTiming(bottomBarHeight, {
       duration: 300
     })
     setBarsVisible(false)
@@ -376,6 +378,11 @@ function UniversalDetail() {
         className="absolute bottom-0 left-0 right-0 z-50"
       >
         <View
+          ref={bottomBarRef}
+          onLayout={(event) => {
+            const { height } = event.nativeEvent.layout
+            setBottomBarHeight(height)
+          }}
           style={{ paddingBottom: insets.bottom, paddingTop: 10 }}
           className="bg-white border-t-2 border-black"
         >
@@ -395,8 +402,8 @@ function UniversalDetail() {
           {/*    <Bookmark color="black" strokeWidth={2} size={18} />*/}
           {/*  </TouchableHighlight>*/}
           {/*</View>*/}
-          <View className="px-6">
-            <View className="bg-royal-blue">
+          <View className="px-6 gap-4">
+            <View className="bg-royal-blue py-2">
               <Text className=" text-white text-xl text-center">{data.book_title.ms}</Text>
             </View>
             <View>
