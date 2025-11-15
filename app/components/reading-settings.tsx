@@ -47,6 +47,8 @@ function ReadingSettingsSheet({ bottomSheetRef }: SheetProps) {
         enablePanDownToClose={true}
         index={-1}
         backdropComponent={renderBackdrop}
+        enableContentPanningGesture={false}
+        enableHandlePanningGesture={true}
       >
         <BottomSheetView style={{ padding: 10, paddingBottom: 20, height: '100%', display: 'flex', justifyContent: 'space-between' }}>
           {/* Content */}
