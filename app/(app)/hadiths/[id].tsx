@@ -72,6 +72,15 @@ function HadithContent() {
   const lastScrollY = useRef(0)
   const scrollThreshold = 5 // Minimum scroll distance to trigger hide/show
 
+  // Animated styles (MUST be called before early return)
+  const topBarAnimatedStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: topBarTranslateY.value }]
+  }))
+
+  const bottomBarAnimatedStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: bottomBarTranslateY.value }]
+  }))
+
   const onSave = (id: string) => {
     // TODO: Implement bookmark functionality
     setSavedBookmark((prev) => [...prev, id])
@@ -130,15 +139,6 @@ function HadithContent() {
     hideBars()
   }
 
-  // Animated styles
-  const topBarAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: topBarTranslateY.value }]
-  }))
-
-  const bottomBarAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: bottomBarTranslateY.value }]
-  }))
-
   const HadithListItem: React.FC<HadithListItemProps> = ({ item, onShare, onSave, ids, footnoteRefs }) => {
     const isNewChapter =
       ids.chapterId !== item.chapter_id || ids.firstHadithId === item._id
@@ -196,7 +196,7 @@ function HadithContent() {
               }
               keyExtractor={(item) => item._id}
               showsVerticalScrollIndicator={false}
-              contentContainerStyle={{ paddingHorizontal: 6 }}
+              contentContainerStyle={{ paddingHorizontal: 6, paddingTop: 40 }}
               // estimatedItemSize={500}
             />
           </View>
