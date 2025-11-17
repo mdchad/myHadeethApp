@@ -45,7 +45,7 @@ const HadithListItem: React.FC<HadithListItemProps> = ({ item, onShare, onSave, 
         <HadithChapterTitle item={item} footnoteRefs={footnoteRefs} />
       )}
       {!item.content[0].ar ? null : (
-        <View className="space-y-8 bg-white mb-4 border border-royal-blue">
+        <View className="space-y-8 bg-white mb-4 border border-royal-blue-950">
           <HadithItem hadith={item} footnoteRefs={footnoteRefs} />
           <ActionButtons
             onShare={() => onShare(item)}

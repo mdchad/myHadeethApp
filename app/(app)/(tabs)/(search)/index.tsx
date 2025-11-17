@@ -206,15 +206,15 @@ function Search() {
       >
         <Pressable key={item._id} className="pb-4 bg-white px-5">
           <View className="my-4 flex flex-row flex-wrap">
-            <Text className="font-bold text-royal-blue mr-2">
+            <Text className="font-bold text-royal-blue-950 mr-2">
               {item?.book_title.ms}
             </Text>
             <ChevronRightSquare color="black" size={18} className="mr-2" />
-            <Text className="font-bold text-royal-blue mr-2">
+            <Text className="font-bold text-royal-blue-950 mr-2">
               {item.volume_title.ms}
             </Text>
             <ChevronRightSquare color="black" size={18} className="mr-2" />
-            <Text className="font-bold text-royal-blue">{item.number}</Text>
+            <Text className="font-bold text-royal-blue-950">{item.number}</Text>
           </View>
           <Text>{highlightKeywords(item?.content[0], searchKeyword)}</Text>
           <View className="mt-2 flex items-end">
@@ -282,7 +282,7 @@ function Search() {
     <Page className="bg-gray-100">
       <Header title={t(SHARED_TEXT.SEARCH_HEADER)} rounded={false} />
       <View
-        className={`px-6 flex flex-row justify-between items-end rounded-b-2xl pb-6 shadow-lg bg-royal-blue overflow-hidden`}
+        className={`px-6 flex flex-row justify-between items-end rounded-b-2xl pb-6 shadow-lg bg-royal-blue-950 overflow-hidden`}
       >
         <View className="w-full">
           <View className="bg-white rounded-lg shadow w-full">
@@ -301,7 +301,7 @@ function Search() {
       </View>
       {data && data.totalCount && !!data.totalCount.length && (
         <View className="pl-4 flex flex-row justify-between items-center">
-          <TouchableOpacity onPress={handlePresentModalPress} className="bg-white flex flex-row items-center rounded-lg p-2 border border-royal-blue">
+          <TouchableOpacity onPress={handlePresentModalPress} className="bg-white flex flex-row items-center rounded-lg p-2 border border-royal-blue-950">
             <SlidersHorizontal size={16} color={'black'}/>
             <Text className="ml-2 text-md">{t(SHARED_TEXT.SEARCH_FILTER)}</Text>
             { !!books.length && <View className="ml-0.5 rounded-full border-0 w-4 bg-red-500 ">

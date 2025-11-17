@@ -4,6 +4,8 @@ import QuranText from './quran-text'
 import FootnotesMarker from './footnotes-marker'
 import FootnotesReference from './footnotes-reference'
 import LexicalRenderer from '@/app/components/lexical-renderer'
+import { latinFontSizes, arabicFontSizes } from '@/app/shared/fontSizeConfig'
+import { useReadingSettingsStore } from '@/app/stores/useReadingSettingsStore'
 
 interface BilingualContent {
   ms?: string;
@@ -32,6 +34,8 @@ interface HadithItemProps {
 }
 
 const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
+  const fontSizeIndex = useReadingSettingsStore((state) => state.fontSizeIndex)
+
   return (
     <View key={hadith.id}>
       {hadith.content.map((content, i) => {
@@ -40,7 +44,7 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
           <View key={i}>
             <View className="px-4 py-6 gap-6">
               <Text
-                className="text-gray-800 text-2xl leading-10 mb-2 font-arabic-regular"
+                className={`text-reading-text ${arabicFontSizes[fontSizeIndex].size} ${arabicFontSizes[fontSizeIndex].leading} ${arabicFontSizes[fontSizeIndex].tracking} mb-2 font-arabic-regular`}
                 style={{
                   writingDirection: 'rtl'
                 }}
@@ -48,7 +52,7 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
                 <QuranText text={content.ar} />
               </Text>
               <Text
-                className="text-gray-800 pb-4 text-lg overflow-hidden leading-relaxed text-justify tracking-normal font-arabic-symbols"
+                className={`text-reading-text pb-4 ${latinFontSizes[fontSizeIndex].size} ${latinFontSizes[fontSizeIndex].leading} ${latinFontSizes[fontSizeIndex].tracking} overflow-hidden text-justify font-arabic-symbols`}
                 style={{
                   writingDirection: 'ltr'
                 }}

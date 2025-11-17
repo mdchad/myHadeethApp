@@ -51,7 +51,7 @@ const Pagination: React.FC<PaginationProps> = ({ count, currentPage = 1, setPage
               <TouchableHighlight
                 onPress={() => setPage(number)}
                 underlayColor={'#f3f4f6'}
-                className={`${currentPage === number ? 'bg-royal-blue' : 'bg-white'} text-sm px-2 py-1 mx-1 rounded`}
+                className={`${currentPage === number ? 'bg-royal-blue-950' : 'bg-white'} text-sm px-2 py-1 mx-1 rounded`}
               >
                 <Text className={`${currentPage === number ? 'text-white' : 'text-black'}`}>{number}</Text>
               </TouchableHighlight>

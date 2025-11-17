@@ -20,20 +20,20 @@ const VolumeMetadataHeader: React.FC<VolumeMetadataHeaderProps> = ({ volumeDetai
   if (!volumeDetails?.metadata?.ar) return null;
 
   return (
-    <View className="bg-royal-blue/20 rounded-xl p-4 mb-2">
+    <View className="bg-royal-blue-950/20 rounded-xl p-4 mb-2">
       <Text
-        className="text-lg font-semibold text-royal-blue mb-2 font-arabic-bold"
+        className="text-lg font-semibold text-royal-blue-950 mb-2 font-arabic-bold"
         style={{ writingDirection: 'rtl' }}
       >
         <QuranText
           font={'arabic-bold'}
-          className="text-royal-blue font-semibold"
+          className="text-royal-blue-950 font-semibold"
           text={volumeDetails.metadata.ar}
         />
       </Text>
-      <Text className="text-sm font-semibold text-royal-blue">
+      <Text className="text-sm font-semibold text-royal-blue-950">
         <SpecialText
-          className="text-royal-blue font-semibold"
+          className="text-royal-blue-950 font-semibold"
           text={volumeDetails.metadata.ms}
         />
       </Text>

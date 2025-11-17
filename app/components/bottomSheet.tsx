@@ -91,7 +91,7 @@ function Sheet({ setSelectedBooks, books, setBooks, bottomSheetRef}: SheetProps)
               <Text>Sunan Al-Nasai</Text>
             </TouchableHighlight>
           </View>
-          <TouchableHighlight underlayColor="#333" className="bg-royal-blue mb-4 rounded-3xl p-2" onPress={selectBooks}>
+          <TouchableHighlight underlayColor="#333" className="bg-royal-blue-950 mb-4 rounded-3xl p-2" onPress={selectBooks}>
             <Text className="text-white text-lg text-center">{t(SHARED_TEXT.SEARCH_APPLY)} ({(books.length)})</Text>
           </TouchableHighlight>
         </BottomSheetView>

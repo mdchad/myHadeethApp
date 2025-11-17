@@ -44,7 +44,7 @@ function Home() {
           <View className="mx-2 p-3 flex gap-4">
             <View className="gap-5">
               <View className="flex flex-row justify-between items-center">
-                <Text className="text-3xl text-royal-blue font-bold leading-none">
+                <Text className="text-3xl text-royal-blue-950 font-bold leading-none">
                   {t(SHARED_TEXT.HOME_HEADER)}
                 </Text>
                 <View className="flex flex-row items-center">
@@ -80,7 +80,7 @@ function Home() {
                 href={{ pathname: `/hadith-detail/${data?._id}` }}
                 asChild
               >
-                <Pressable className="bg-white border border-1 border-royal-blue gap-2 rounded-md overflow-hidden">
+                <Pressable className="bg-white border border-1 border-royal-blue-950 gap-2 rounded-md overflow-hidden">
                   {data ? (
                     <View className="p-6">
                       <View className="flex flex-row flex-wrap mb-4">
@@ -157,7 +157,7 @@ function Home() {
                       />
                     </>
                   )}
-                  <View className="flex flex-row justify-between items-center bg-royal-blue">
+                  <View className="flex flex-row justify-between items-center bg-royal-blue-950">
                     <View className="flex flex-row items-center">
                       <TouchableHighlight className="p-1" underlayColor="#333">
                         <Share2
@@ -194,20 +194,20 @@ function Home() {
 
             <View className="flex flex-row gap-2">
               <Link href="/hadith40" asChild className="flex-1">
-                <Pressable className="border border-royal-blue flex justify-between items-center rounded-md">
+                <Pressable className="border border-royal-blue-950 flex justify-between items-center rounded-md">
                   <View className="flex-grow p-8 w-full">
-                    <Text className="text-lg text-royal-blue font-semibold">
+                    <Text className="text-lg text-royal-blue-950 font-semibold">
                       {t(SHARED_TEXT.HOME_FORTY_HADITHS_TITLE)}
                     </Text>
-                    <Text className="text-xs text-royal-blue break-words">
+                    <Text className="text-xs text-royal-blue-950 break-words">
                       {t(SHARED_TEXT.HOME_FORTY_HADITHS_DESC)}
                     </Text>
                   </View>
-                  <View className="h-[16px] bg-royal-blue w-full"></View>
+                  <View className="h-[16px] bg-royal-blue-950 w-full"></View>
                 </Pressable>
               </Link>
               <Link href={'(tabs)/(hadeeth)'} asChild className="flex-1">
-                <Pressable className="border border-royal-blue rounded-md">
+                <Pressable className="border border-royal-blue-950 rounded-md">
                   <LinearGradient
                     // Background Linear Gradient
                     colors={['#22276E', '#008080']}
@@ -221,23 +221,23 @@ function Home() {
                         {t(SHARED_TEXT.HOME_SIX_BOOKS_DESC)}
                       </Text>
                     </View>
-                    <View className="h-[16px] bg-royal-blue w-full"></View>
+                    <View className="h-[16px] bg-royal-blue-950 w-full"></View>
                   </LinearGradient>
                 </Pressable>
               </Link>
             </View>
 
             <Link href="/introduction" asChild>
-              <Pressable className="bg-white border border-1 border-royal-blue space-y-3 rounded-md">
+              <Pressable className="bg-white border border-1 border-royal-blue-950 space-y-3 rounded-md">
                 <View className="p-3">
-                  <Text className="font-semibold text-lg text-royal-blue underline mb-2">
+                  <Text className="font-semibold text-lg text-royal-blue-950 underline mb-2">
                     {t(SHARED_TEXT.HOME_INTRO_TITLE)}
                   </Text>
-                  <Text className="text-royal-blue">
+                  <Text className="text-royal-blue-950">
                     {t(SHARED_TEXT.HOME_INTRO_DESC)}
                   </Text>
                 </View>
-                <View className="flex flex-row justify-between items-center bg-royal-blue">
+                <View className="flex flex-row justify-between items-center bg-royal-blue-950">
                   <View className="flex flex-row items-center">
                   </View>
                   <View className="flex flex-row items-center p-2">

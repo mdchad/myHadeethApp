@@ -3,6 +3,17 @@
 
 @theme {
     --color-royal-blue: '#1C2A4F';
+    --color-royal-blue-50: oklch(0.966 0.011 280.57);
+    --color-royal-blue-100: oklch(0.924 0.023 275.38);
+    --color-royal-blue-200: oklch(0.855 0.045 274.34);
+    --color-royal-blue-300: oklch(0.777 0.073 273.27);
+    --color-royal-blue-400: oklch(0.701 0.1 271.35);
+    --color-royal-blue-500: oklch(0.634 0.123 268.47);
+    --color-royal-blue-600: oklch(0.557 0.133 266.16);
+    --color-royal-blue-700: oklch(0.478 0.114 266.4);
+    --color-royal-blue-800: oklch(0.41 0.098 266.66);
+    --color-royal-blue-900: oklch(0.331 0.079 266.74);
+    --color-royal-blue-950: oklch(0.294 0.07 266.53);
     --font-arabic-symbols: 'kfgqpc-arabic-symbols';
     --font-arabic-regular: 'KFGQPC Uthman Taha Naskh';
     --font-arabic-bold: 'KFGQPC Uthman Taha Naskh';

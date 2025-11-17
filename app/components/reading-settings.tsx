@@ -8,6 +8,7 @@ import { X } from 'lucide-react-native'
 import { Slider as NSlider } from '@react-native-assets/slider'
 import { useReadingSettingsStore } from '@/app/stores/useReadingSettingsStore'
 import { Uniwind, useUniwind } from 'uniwind'
+import * as Haptics from 'expo-haptics';
 
 interface SheetProps {
   bottomSheetRef: React.RefObject<any>;
@@ -47,6 +48,8 @@ function ReadingSettingsSheet({ bottomSheetRef }: SheetProps) {
         enablePanDownToClose={true}
         index={-1}
         backdropComponent={renderBackdrop}
+        enableContentPanningGesture={false}
+        enableHandlePanningGesture={true}
       >
         <BottomSheetView style={{ padding: 10, paddingBottom: 20, height: '100%', display: 'flex', justifyContent: 'space-between' }}>
           {/* Content */}
@@ -61,7 +64,10 @@ function ReadingSettingsSheet({ bottomSheetRef }: SheetProps) {
               step={1}
               maximumValue={4}
               value={fontSizeIndex}
-              onValueChange={setFontSizeIndex}
+              onValueChange={(v) => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium)
+                setFontSizeIndex(v)
+              }}
               minimumTrackTintColor="#1C2A4F"
               maximumTrackTintColor="#E5E7EB"
               thumbTintColor="#1C2A4F"
@@ -82,13 +88,13 @@ function ReadingSettingsSheet({ bottomSheetRef }: SheetProps) {
                     key={t.name}
                     onPress={() => Uniwind.setTheme(t.name)}
                     className={`flex-1 border-2 rounded-lg overflow-hidden ${
-                      theme === t.name ? 'border-royal-blue' : 'border-gray-200'
+                      theme === t.name ? 'border-royal-blue-950' : 'border-gray-200'
                     }`}
                   >
                     <View className={`${t.preview} h-20`} />
                     <View className="p-3">
                       <Text className={`text-sm text-center font-semibold ${
-                        theme === t.name ? 'text-royal-blue' : 'text-gray-700'
+                        theme === t.name ? 'text-royal-blue-950' : 'text-gray-700'
                       }`}>
                         {t.label}
                       </Text>

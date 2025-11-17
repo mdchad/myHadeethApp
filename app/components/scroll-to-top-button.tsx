@@ -9,7 +9,7 @@ interface ScrollToTopButtonProps {
 const ScrollToTopButton: React.FC<ScrollToTopButtonProps> = ({ onPress }) => {
   return (
     <TouchableOpacity
-      className="items-center absolute bottom-2 right-4 sticky bg-royal-blue rounded-xl p-2"
+      className="items-center absolute bottom-2 right-4 sticky bg-royal-blue-950 rounded-xl p-2"
       onPress={onPress}
     >
       <ArrowBigUp size={24} color={'white'} />

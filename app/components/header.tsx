@@ -15,7 +15,7 @@ function Header({ title, onPressButton, search, rounded = true }: HeaderProps) {
       <View
         className={`flex ${
           rounded && 'rounded-b-2xl'
-        } py-6 shadow-lg bg-royal-blue overflow-hidden`}
+        } py-6 shadow-lg bg-royal-blue-950 overflow-hidden`}
       >
         <View className="flex flex-row w-full justify-center relative">
           {onPressButton && (
