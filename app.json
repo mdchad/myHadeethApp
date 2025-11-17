@@ -45,7 +45,10 @@
             "./assets/fonts/kfgqpc-arabic-symbols.ttf",
             "./assets/fonts/KFGQPC-Regular.ttf",
             "./assets/fonts/KFGQPC-Bold.ttf",
-            "./assets/fonts/uthmanic-hafs.ttf"
+            "./assets/fonts/uthmanic-hafs.ttf",
+            "node_modules/@expo-google-fonts/geist-mono/400Regular/GeistMono_400Regular.ttf",
+            "node_modules/@expo-google-fonts/geist-mono/500Medium/GeistMono_500Medium.ttf",
+            "node_modules/@expo-google-fonts/geist-mono/600SemiBold/GeistMono_600SemiBold.ttf"
           ]
         }
       ],

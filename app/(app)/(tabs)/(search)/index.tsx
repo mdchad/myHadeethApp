@@ -207,7 +207,7 @@ function Search() {
       >
         <Pressable key={item._id} className="pb-4 bg-white px-5">
           <View className="my-4 flex flex-row flex-wrap">
-            <Text className="font-bold text-royal-blue-950 font-mono mr-2 capitalize">
+            <Text className="font-geist-mono-medium mr-2 text-orange-accent capitalize">
               [ {item?.book_title.ms} / {item.volume_title.ms} ]
             </Text>
           </View>
