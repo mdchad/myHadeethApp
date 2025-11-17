@@ -30,6 +30,7 @@ import BottomSheet from '@gorhom/bottom-sheet'
 import ReadingTopBar from '@/app/components/reading-top-bar'
 import ReadingBottomBar from '@/app/components/reading-bottom-bar'
 import ChapterTitle from '@/app/components/chapter-title'
+import { latinFontSizes, arabicFontSizes } from '@/app/shared/fontSizeConfig'
 
 function UniversalDetail() {
   const { id } = useLocalSearchParams<{ id: string }>()
@@ -42,40 +43,6 @@ function UniversalDetail() {
   const bottomSheetRef = useRef<BottomSheet>(null)
 
   const { isLoading, data, isError } = useGetHadith(id)
-
-  // Font size configuration
-  // Latin script sizes (for Malay text)
-  const latinFontSizes = [
-    { size: 'text-xs', leading: 'leading-relaxed', tracking: 'tracking-wide' },
-    { size: 'text-sm', leading: 'leading-relaxed', tracking: 'tracking-wide' },
-    {
-      size: 'text-base',
-      leading: 'leading-relaxed',
-      tracking: 'tracking-normal'
-    },
-    {
-      size: 'text-lg',
-      leading: 'leading-relaxed',
-      tracking: 'tracking-normal'
-    },
-    {
-      size: 'text-xl',
-      leading: 'leading-relaxed',
-      tracking: 'tracking-tighter'
-    }
-  ]
-  // Arabic script sizes (2 sizes larger than Latin)
-  const arabicFontSizes = [
-    { size: 'text-base', leading: 'leading-8', tracking: 'tracking-normal' },
-    { size: 'text-lg', leading: 'leading-9', tracking: 'tracking-normal' },
-    { size: 'text-xl', leading: 'leading-10', tracking: 'tracking-normal' },
-    { size: 'text-2xl', leading: 'leading-10', tracking: 'tracking-normal' },
-    {
-      size: 'text-3xl',
-      leading: 'leading-relaxed',
-      tracking: 'tracking-normal'
-    }
-  ]
 
   // Animation state for top and bottom bars
   const topBarTranslateY = useSharedValue(0)

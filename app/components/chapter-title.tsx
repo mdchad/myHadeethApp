@@ -48,7 +48,7 @@ function ChapterTitle({ data, footnoteRefs }: { data: any; footnoteRefs: any}) {
             <QuranText text={data?.chapter_metadata?.ar} />
           </Text>
           <Text
-            className="text-gray-700 leading-6 text-justify tracking-tight font-arabic-symbols"
+            className="italic text-gray-700 leading-6 text-justify tracking-tight font-arabic-symbols"
             style={{
               writingDirection: 'ltr'
             }}

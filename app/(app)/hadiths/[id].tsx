@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { NativeScrollEvent, NativeSyntheticEvent, View } from 'react-native'
+import { NativeScrollEvent, NativeSyntheticEvent, View, Pressable } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
 import Header from '@/app/components/header'
 import useGetHadiths from '@/app/shared/fetcher/useHadiths'
@@ -22,6 +22,7 @@ import ReadingTopBar from '@/app/components/reading-top-bar'
 import ReadingBottomBar from '@/app/components/reading-bottom-bar'
 import ReadingSettingsSheet from '@/app/components/reading-settings'
 import ChapterTitle from '@/app/components/chapter-title'
+import { StatusBar } from 'expo-status-bar'
 
 interface BilingualContent {
   ms?: string;
@@ -42,28 +43,6 @@ interface HadithListItemProps {
   onSave: (id: string) => void;
   ids: { chapterId: string; firstHadithId: string };
   footnoteRefs: React.RefObject<Record<string, any>>;
-}
-
-const HadithListItem: React.FC<HadithListItemProps> = ({ item, onShare, onSave, ids, footnoteRefs }) => {
-  const isNewChapter =
-    ids.chapterId !== item.chapter_id || ids.firstHadithId === item._id
-
-  return (
-    <>
-      {isNewChapter && (
-        <ChapterTitle data={item} footnoteRefs={footnoteRefs}/>
-      )}
-      {!item.content[0].ar ? null : (
-        <View className="space-y-8 bg-white mb-4">
-          <HadithItem hadith={item} footnoteRefs={footnoteRefs} />
-          {/*<ActionButtons*/}
-          {/*  onShare={() => onShare(item)}*/}
-          {/*  onSave={() => onSave(item._id)}*/}
-          {/*/>*/}
-        </View>
-      )}
-    </>
-  )
 }
 
 function HadithContent() {
@@ -160,15 +139,39 @@ function HadithContent() {
     transform: [{ translateY: bottomBarTranslateY.value }]
   }))
 
+  const HadithListItem: React.FC<HadithListItemProps> = ({ item, onShare, onSave, ids, footnoteRefs }) => {
+    const isNewChapter =
+      ids.chapterId !== item.chapter_id || ids.firstHadithId === item._id
+
+    return (
+      <Pressable onPress={handleContentPress}>
+        {isNewChapter && (
+          <ChapterTitle data={item} footnoteRefs={footnoteRefs}/>
+        )}
+        {!item.content[0].ar ? null : (
+          <View className="space-y-8 bg-reading-background mb-4">
+            <HadithItem hadith={item} footnoteRefs={footnoteRefs} />
+            {/*<ActionButtons*/}
+            {/*  onShare={() => onShare(item)}*/}
+            {/*  onSave={() => onSave(item._id)}*/}
+            {/*/>*/}
+          </View>
+        )}
+      </Pressable>
+    )
+  }
+
+
   return (
-    <Page edges={['bottom']}>
+    <Page className="bg-reading-background">
+      <StatusBar hidden={!barsVisible} style={theme === 'dark' ? 'light' : 'dark'} />
       {/*<Header title={bookTitle} onPressButton={() => router.back()} />*/}
       <ReadingTopBar
         animatedStyle={topBarAnimatedStyle}
         onBackPress={() => router.back()}
         onSettingsPress={handlePresentModalPress}
       />
-      <View className="pb-0 bg-white">
+      <View className="pb-0 bg-reading-background">
         {/*<VolumeTitle*/}
         {/*  volumeTitle={volumeTitle}*/}
         {/*  hadiths={data}*/}
