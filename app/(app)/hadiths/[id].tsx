@@ -196,7 +196,7 @@ function HadithContent() {
               }
               keyExtractor={(item) => item._id}
               showsVerticalScrollIndicator={false}
-              contentContainerStyle={{ paddingHorizontal: 6, paddingTop: 40 }}
+              contentContainerStyle={{ paddingHorizontal: 6, paddingTop: 56 }}
               // estimatedItemSize={500}
             />
           </View>

@@ -31,6 +31,7 @@ import ReadingTopBar from '@/app/components/reading-top-bar'
 import ReadingBottomBar from '@/app/components/reading-bottom-bar'
 import ChapterTitle from '@/app/components/chapter-title'
 import { latinFontSizes, arabicFontSizes } from '@/app/shared/fontSizeConfig'
+import HadithItem from '@/app/components/hadith-item'
 
 function UniversalDetail() {
   const { id } = useLocalSearchParams<{ id: string }>()
@@ -38,7 +39,6 @@ function UniversalDetail() {
   const footnoteRefs = useRef<Record<string, any>>({})
   const posthog = usePostHog()
   const insets = useSafeAreaInsets()
-  const fontSizeIndex = useReadingSettingsStore((state) => state.fontSizeIndex)
   const { theme } = useUniwind()
   const bottomSheetRef = useRef<BottomSheet>(null)
 
@@ -150,56 +150,7 @@ function UniversalDetail() {
                 <ChapterTitle data={data} footnoteRefs={footnoteRefs}/>
               )}
               <View className="space-y-8 bg-reading-background mb-20">
-                <View key={data.id}>
-                  {data.content.map((content, i) => {
-                    if (!content.ar) return null
-                    return (
-                      <View key={i}>
-                        <View className="px-4 py-6 gap-6">
-                          <Text
-                            className={`text-reading-text ${arabicFontSizes[fontSizeIndex].size} ${arabicFontSizes[fontSizeIndex].leading} ${arabicFontSizes[fontSizeIndex].tracking} mb-2 font-arabic-regular`}
-                            style={{
-                              writingDirection: 'rtl'
-                            }}
-                          >
-                            <QuranText text={content.ar} />
-                          </Text>
-                          <Text
-                            className={`text-reading-text pb-4 ${latinFontSizes[fontSizeIndex].size} ${latinFontSizes[fontSizeIndex].leading} ${latinFontSizes[fontSizeIndex].tracking} overflow-hidden text-justify font-arabic-symbols`}
-                            style={{
-                              writingDirection: 'ltr'
-                            }}
-                          >
-                            <FootnotesMarker
-                              footnotes={data.footnotes}
-                              type={'content.ms'}
-                              index={i + 1}
-                              footnoteRefs={footnoteRefs}
-                              hadithId={data._id}
-                            >
-                              <QuranText
-                                text={content.ms}
-                                font={'arabic-symbols'}
-                                special={true}
-                              />
-                            </FootnotesMarker>
-                          </Text>
-
-                          {/*<LexicalRenderer*/}
-                          {/*  serializedState={hadith?.lexicalState?.content[i]?.ms}*/}
-                          {/*  className=" text-gray-800 text-lg text-justify tracking-tight font-arabic-symbols leading-relaxed"*/}
-                          {/*  footnoteRefs={footnoteRefs}*/}
-                          {/*  hadithId={hadith._id}*/}
-                          {/*/>*/}
-                          <FootnotesReference
-                            hadith={data}
-                            type={'content.ms'}
-                          />
-                        </View>
-                      </View>
-                    )
-                  })}
-                </View>
+                <HadithItem hadith={data} footnoteRefs={footnoteRefs} />
               </View>
             </View>
           </View>
