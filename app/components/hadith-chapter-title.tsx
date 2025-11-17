@@ -37,7 +37,7 @@ const HadithChapterTitle: React.FC<HadithChapterTitleProps> = ({ item, footnoteR
     <View className="bg-gray-100 rounded-xl mb-4 p-4 gap-10">
       <View className="gap-4">
         <Text
-          className="text-lg text-royal-blue font-arabic-bold font-bold"
+          className="text-lg text-royal-blue-950 font-arabic-bold font-bold"
           style={{
             writingDirection: 'rtl'
           }}
@@ -57,7 +57,7 @@ const HadithChapterTitle: React.FC<HadithChapterTitleProps> = ({ item, footnoteR
               hadithId={item._id}
             >
               <SpecialText
-                className="text-royal-blue font-semibold"
+                className="text-royal-blue-950 font-semibold"
                 text={item?.chapter_title?.ms}
               />
             </FootnotesMarker>

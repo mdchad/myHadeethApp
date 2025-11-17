@@ -40,14 +40,14 @@ function Item({ title, id }: ItemProps) {
       <Pressable className="w-[48%] mr-4 bg-white" onPress={handlePress}>
         <View className="w-full">
           <View className="flex items-center py-8 px-2">
-            <Text className="text-lg text-royal-blue font-semibold">
+            <Text className="text-lg text-royal-blue-950 font-semibold">
               {firstWord}
             </Text>
-            <Text className="text-lg text-royal-blue font-semibold">
+            <Text className="text-lg text-royal-blue-950 font-semibold">
               {remainingWords}
             </Text>
           </View>
-          <View className="bg-royal-blue w-full p-1 items-end">
+          <View className="bg-royal-blue-950 w-full p-1 items-end">
             <Text className="text-white text-xs mr-1">
               {t(SHARED_TEXT.VIEW_MORE_LABEL)}
               {''} →

@@ -88,13 +88,13 @@ function ReadingSettingsSheet({ bottomSheetRef }: SheetProps) {
                     key={t.name}
                     onPress={() => Uniwind.setTheme(t.name)}
                     className={`flex-1 border-2 rounded-lg overflow-hidden ${
-                      theme === t.name ? 'border-royal-blue' : 'border-gray-200'
+                      theme === t.name ? 'border-royal-blue-950' : 'border-gray-200'
                     }`}
                   >
                     <View className={`${t.preview} h-20`} />
                     <View className="p-3">
                       <Text className={`text-sm text-center font-semibold ${
-                        theme === t.name ? 'text-royal-blue' : 'text-gray-700'
+                        theme === t.name ? 'text-royal-blue-950' : 'text-gray-700'
                       }`}>
                         {t.label}
                       </Text>

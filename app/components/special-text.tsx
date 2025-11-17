@@ -21,7 +21,7 @@ function SpecialText({ text, className }: SpecialTextProps) {
     }
   });
 
-  return <Text className="text-royal-blue font-semibold">{segments}</Text>;
+  return <Text className="text-royal-blue-950 font-semibold">{segments}</Text>;
 }
 
 export default SpecialText

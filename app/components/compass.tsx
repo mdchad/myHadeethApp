@@ -187,7 +187,7 @@ export default function Compass({}: CompassV2Props) {
                 {/*		{degree}°*/}
                 {/*	</Text>*/}
                 {/*</View>  : <Skeleton colorMode={'light'} width={'50%'} /> }*/}
-                <View className="bg-royal-blue p-1 rounded-xl w-1/3">
+                <View className="bg-royal-blue-950 p-1 rounded-xl w-1/3">
                   <Text className="text-white font-bold text-2xl text-center">
                     {degree}°
                   </Text>
@@ -197,10 +197,10 @@ export default function Compass({}: CompassV2Props) {
             <View className="mt-24">
               {degree && userPlace ? (
                 <View className="px-8 py-4">
-                  <Text className="text-xl font-semibold text-royal-blue">
+                  <Text className="text-xl font-semibold text-royal-blue-950">
                     {t(SHARED_TEXT.QIBLA_LOCATION_LABEL)}
                   </Text>
-                  <Text className="text-sm text-royal-blue">
+                  <Text className="text-sm text-royal-blue-950">
                     {userPlace[0].city}
                     {userPlace[0].city && ','} {userPlace[0].country}
                   </Text>

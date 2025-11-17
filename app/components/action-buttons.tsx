@@ -9,7 +9,7 @@ interface ActionButtonsProps {
 
 const ActionButtons: React.FC<ActionButtonsProps> = ({ onShare, onSave }) => {
   return (
-    <View className="flex flex-row justify-end items-center bg-royal-blue p-1">
+    <View className="flex flex-row justify-end items-center bg-royal-blue-950 p-1">
       <TouchableHighlight
         className="p-1"
         underlayColor="#333"

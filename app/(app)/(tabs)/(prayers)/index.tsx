@@ -198,7 +198,7 @@ export default function Prayer() {
           <Text
             className={`${
               isSameDay(item?.date, calendarDate)
-                ? 'text-royal-blue'
+                ? 'text-royal-blue-950'
                 : 'text-[#008080]'
             }`}
           >
@@ -215,7 +215,7 @@ export default function Prayer() {
       <ScrollView>
         <Header rounded={false} title={t(SHARED_TEXT.PRAYERS_HEADER)} />
         <View
-          className={`px-6 flex flex-row justify-between items-end rounded-b-2xl py-6 shadow-lg bg-royal-blue overflow-hidden`}
+          className={`px-6 flex flex-row justify-between items-end rounded-b-2xl py-6 shadow-lg bg-royal-blue-950 overflow-hidden`}
         >
           <View>
             <Text className="text-white mb-1">{t(SHARED_TEXT.PRAYERS_NEXT_PRAYER_HEADER)}</Text>
@@ -275,7 +275,7 @@ export default function Prayer() {
                   </View>
                 </View>
 
-                <View className="mx-12 bg-white border border-b-royal-blue rounded-xl p-4 space-y-6">
+                <View className="mx-12 bg-white border border-b-royal-blue-950 rounded-xl p-4 space-y-6">
                   {prayerTimes.length ? (
                     prayerTimes.map((prayer, i) => (
                       <View
@@ -289,12 +289,12 @@ export default function Prayer() {
                             source={prayer.icon}
                             style={{ width: 35, height: 36 }}
                           />
-                          <Text className="ml-2 text-sm text-royal-blue">
+                          <Text className="ml-2 text-sm text-royal-blue-950">
                             {prayer.name}
                           </Text>
                         </View>
                         <View className="w-2/3 flex flex-row justify-end items-center">
-                          <Text className="text-royal-blue">
+                          <Text className="text-royal-blue-950">
                             {prayer.prayerTime}
                           </Text>
                         </View>

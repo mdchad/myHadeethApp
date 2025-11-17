@@ -52,7 +52,7 @@ export default function Profile() {
       <ScrollView>
         <Header rounded={false} onPressButton={() => router.back()} />
         <View
-          className={`w-full flex items-center h-10 rounded-b-2xl bg-royal-blue`}
+          className={`w-full flex items-center h-10 rounded-b-2xl bg-royal-blue-950`}
         >
           <View className="">
             {/*{ user ? (*/}
@@ -66,12 +66,12 @@ export default function Profile() {
           <View className="flex items-center mt-2">
             {/*{ user ? (*/}
             {/*  <>*/}
-            {/*    <Text className="mb-1 text-royal-blue">{user.fullName}</Text>*/}
-            {/*    <Text className="text-royal-blue">{user.primaryEmailAddress.emailAddress}</Text>*/}
+            {/*    <Text className="mb-1 text-royal-blue-950">{user.fullName}</Text>*/}
+            {/*    <Text className="text-royal-blue-950">{user.primaryEmailAddress.emailAddress}</Text>*/}
             {/*  </>*/}
             {/*) : (*/}
             <>
-              <Text className="mb-1 text-royal-blue">{t(SHARED_TEXT.USER_GUEST_LABEL)}</Text>
+              <Text className="mb-1 text-royal-blue-950">{t(SHARED_TEXT.USER_GUEST_LABEL)}</Text>
             </>
             {/*)}*/}
           </View>

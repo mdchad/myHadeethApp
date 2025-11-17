@@ -217,9 +217,9 @@ function UniversalDetail() {
             <View className="flex-1">
               {data?.chapter_title?.ms && (
                 <View className="mb-10 p-4 gap-10">
-                  <View className="gap-4 border-l-4 border-royal-blue pl-2">
+                  <View className="gap-4 border-l-4 border-royal-blue-950 pl-2">
                     <Text
-                      className="text-lg text-royal-blue font-arabic-bold font-bold"
+                      className="text-lg text-royal-blue-950 font-arabic-bold font-bold"
                       style={{
                         writingDirection: 'rtl'
                       }}
@@ -239,7 +239,7 @@ function UniversalDetail() {
                           hadithId={data._id}
                         >
                           <SpecialText
-                            className="text-royal-blue font-semibold"
+                            className="text-royal-blue-950 font-semibold"
                             text={data?.chapter_title?.ms}
                           />
                         </FootnotesMarker>
@@ -359,11 +359,10 @@ function UniversalDetail() {
             const { height } = event.nativeEvent.layout
             setBottomBarHeight(height)
           }}
-          style={{ paddingBottom: insets.bottom, paddingTop: 10 }}
-          className="bg-reading-background border-t-2 border-reading-border"
-        >
+          style={{ paddingBottom: insets.bottom, paddingTop: 30 }}
+          className="bg-reading-background border-t-2 border-reading-border">
           <View className="px-6 gap-4">
-            <View className="bg-royal-blue py-2">
+            <View className="bg-royal-blue-950 py-2">
               <Text className=" text-white text-xl text-center">{data.book_title.ms}</Text>
             </View>
             <View>
@@ -376,13 +375,13 @@ function UniversalDetail() {
                     footnoteRefs={footnoteRefs}
                     hadithId={data._id}
                   >
-                    <Text className="text-lg text-center capitalize font-semibold text-royal-blue">
+                    <Text className="text-sm text-center capitalize font-semibold text-royal-blue-950">
                       {data.volume_title.ms}
                     </Text>
                   </FootnotesMarker>
                 </View>
                 <View className="flex-1 items-end">
-                  <Text className="text-[26px] text-center font-semibold text-royal-blue font-arabic-regular">
+                  <Text className="text-lg text-center font-semibold text-royal-blue-950 font-arabic-regular">
                     {data.volume_title.ar}
                   </Text>
                 </View>

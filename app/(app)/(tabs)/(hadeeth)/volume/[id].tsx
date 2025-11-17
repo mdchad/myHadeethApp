@@ -69,7 +69,7 @@ const HadithVolumeItem: React.FC<HadithVolumeItemProps> = ({ item, index }) => (
         <View className="p-4 flex flex-col w-0 flex-grow justify-between space-y-4">
           <View className="flex flex-row justify-between">
             <View className="flex-1 mr-1">
-              <Text className="text-royal-blue text-[14px] flex-shrink capitalize mb-1">
+              <Text className="text-royal-blue-950 text-[14px] flex-shrink capitalize mb-1">
                 {item.title.ms}
               </Text>
               <Text className="text-xs text-gray-500 flex-shrink capitalize">
@@ -78,7 +78,7 @@ const HadithVolumeItem: React.FC<HadithVolumeItemProps> = ({ item, index }) => (
             </View>
             <View className="flex-1 items-end ml-1">
               <Text
-                className="text-royal-blue text-[24px] text-right flex-shrink capitalize font-arabic-regular"
+                className="text-royal-blue-950 text-[24px] text-right flex-shrink capitalize font-arabic-regular"
               >
                 {item.title.ar}
               </Text>
@@ -86,16 +86,16 @@ const HadithVolumeItem: React.FC<HadithVolumeItemProps> = ({ item, index }) => (
           </View>
           <View className="flex flex-row justify-between items-center mt-4">
             <View className="flex-row items-center gap-2">
-              <Text className="text-royal-blue text-[12px]">
+              <Text className="text-royal-blue-950 text-[12px]">
                 {item?.hadith?.first}
               </Text>
-              <Text className="text-royal-blue text-[12px]">-</Text>
-              <Text className="text-royal-blue text-[12px]">
+              <Text className="text-royal-blue-950 text-[12px]">-</Text>
+              <Text className="text-royal-blue-950 text-[12px]">
                 {item?.hadith?.last}
               </Text>
             </View>
             <View className="flex flex-row items-center">
-              <Text className="text-royal-blue text-xs mr-1">
+              <Text className="text-royal-blue-950 text-xs mr-1">
                 {t(SHARED_TEXT.VIEW_MORE_LABEL)}
                 {''} →
               </Text>

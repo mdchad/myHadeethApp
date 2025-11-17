@@ -44,9 +44,9 @@ export default function Hadith40() {
 
   function Items({ item }: ItemsProps) {
     return (
-      <View key={item.number} className="flex space-y-2 break-words p-4 border border-royal-blue mb-4">
+      <View key={item.number} className="flex space-y-2 break-words p-4 border border-royal-blue-950 mb-4">
         <View className="flex flex-row gap-2 items-center mb-6">
-          <View className="flex items-center bg-royal-blue rounded-lg p-2 text-center">
+          <View className="flex items-center bg-royal-blue-950 rounded-lg p-2 text-center">
             <Text className="text-white text-xl">Hadis</Text>
             <Text className="text-white text-xl">{item.number}</Text>
           </View>
@@ -75,7 +75,7 @@ export default function Hadith40() {
             )
           })
         }
-        <View className="bg-royal-blue p-4">
+        <View className="bg-royal-blue-950 p-4">
           <Text className="text-white text-xl mb-2 font-semibold">Pengajaran</Text>
           {
             item.lesson.items.map((l, i) => {
