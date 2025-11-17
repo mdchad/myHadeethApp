@@ -172,16 +172,12 @@ function HadithContent() {
         onSettingsPress={handlePresentModalPress}
       />
       <View className="pb-0 bg-reading-background">
-        {/*<VolumeTitle*/}
-        {/*  volumeTitle={volumeTitle}*/}
-        {/*  hadiths={data}*/}
-        {/*  footnoteRefs={footnoteRefs}*/}
-        {/*/>*/}
         {data?.length > 0 && (
           <View className="h-full">
             <FlashList
               ref={listRef}
               data={data}
+              onScroll={handleScroll}
               renderItem={({ item }) => (
                 <HadithListItem
                   item={item}
@@ -197,10 +193,16 @@ function HadithContent() {
               keyExtractor={(item) => item._id}
               showsVerticalScrollIndicator={false}
               contentContainerStyle={{ paddingHorizontal: 6, paddingTop: 56 }}
-              // estimatedItemSize={500}
+              estimatedItemSize={700}
             />
           </View>
         )}
+
+        {/*<ScrollToTopButton*/}
+        {/*  onPress={() =>*/}
+        {/*    listRef?.current?.scrollToOffset({ offset: 0, animated: true })*/}
+        {/*  }*/}
+        {/*/>*/}
 
         {/* Sticky Bottom Bar */}
         <ReadingBottomBar
@@ -211,11 +213,6 @@ function HadithContent() {
         />
         <ReadingSettingsSheet bottomSheetRef={bottomSheetRef}/>
 
-        {/*<ScrollToTopButton*/}
-        {/*  onPress={() =>*/}
-        {/*    listRef?.current?.scrollToOffset({ offset: 0, animated: true })*/}
-        {/*  }*/}
-        {/*/>*/}
       </View>
     </Page>
   )
