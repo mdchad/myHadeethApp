@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useMemo, useEffect } from 'react'
 import { NativeScrollEvent, NativeSyntheticEvent, View, Pressable } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
 import Header from '@/app/components/header'
@@ -21,6 +21,7 @@ import BottomSheet from '@gorhom/bottom-sheet'
 import ReadingTopBar from '@/app/components/reading-top-bar'
 import ReadingBottomBar from '@/app/components/reading-bottom-bar'
 import ReadingSettingsSheet from '@/app/components/reading-settings'
+import HadithSearchSheet from '@/app/components/hadith-search-sheet'
 import ChapterTitle from '@/app/components/chapter-title'
 import { StatusBar } from 'expo-status-bar'
 
@@ -59,6 +60,11 @@ function HadithContent() {
   const fontSizeIndex = useReadingSettingsStore((state) => state.fontSizeIndex)
   const { theme } = useUniwind()
   const bottomSheetRef = useRef<BottomSheet>(null)
+  const searchSheetRef = useRef<BottomSheet>(null)
+
+  // Search state
+  const [searchQuery, setSearchQuery] = useState('')
+  const [currentMatchIndex, setCurrentMatchIndex] = useState(0)
 
   const { isLoading, data } = useGetHadiths(bookId, volumeId)
 
@@ -71,6 +77,46 @@ function HadithContent() {
   // Scroll tracking
   const lastScrollY = useRef(0)
   const scrollThreshold = 5 // Minimum scroll distance to trigger hide/show
+
+  // Search logic - find all hadiths that contain the search query
+  const searchMatches = useMemo(() => {
+    if (!searchQuery.trim() || !data) return []
+
+    const matches: number[] = []
+    const normalizedQuery = searchQuery.toLowerCase()
+
+    data.forEach((hadith, index) => {
+      // Search in Arabic and Malay content
+      const hasMatch = hadith.content?.some((content) => {
+        const arText = content.ar?.toLowerCase() || ''
+        const msText = content.ms?.toLowerCase() || ''
+        return arText.includes(normalizedQuery) || msText.includes(normalizedQuery)
+      })
+
+      if (hasMatch) {
+        matches.push(index)
+      }
+    })
+
+    return matches
+  }, [searchQuery, data])
+
+  // Reset current match index when search query changes
+  useEffect(() => {
+    setCurrentMatchIndex(0)
+  }, [searchQuery])
+
+  // Scroll to current match
+  useEffect(() => {
+    if (searchMatches.length > 0 && searchQuery.trim()) {
+      const itemIndex = searchMatches[currentMatchIndex]
+      listRef.current?.scrollToIndex({
+        index: itemIndex,
+        animated: true,
+        viewPosition: 0.5 // Center the item in the view
+      })
+    }
+  }, [currentMatchIndex, searchMatches])
 
   // Animated styles (MUST be called before early return)
   const topBarAnimatedStyle = useAnimatedStyle(() => ({
@@ -139,6 +185,30 @@ function HadithContent() {
     hideBars()
   }
 
+  const handleSearchPress = () => {
+    searchSheetRef.current?.snapToIndex(0)
+    hideBars()
+  }
+
+  const handleNextMatch = () => {
+    if (searchMatches.length > 0) {
+      setCurrentMatchIndex((prev) => (prev + 1) % searchMatches.length)
+    }
+  }
+
+  const handlePreviousMatch = () => {
+    if (searchMatches.length > 0) {
+      setCurrentMatchIndex((prev) =>
+        prev === 0 ? searchMatches.length - 1 : prev - 1
+      )
+    }
+  }
+
+  const handleCloseSearch = () => {
+    setSearchQuery('')
+    setCurrentMatchIndex(0)
+  }
+
   const HadithListItem: React.FC<HadithListItemProps> = ({ item, onShare, onSave, ids, footnoteRefs }) => {
     const isNewChapter =
       ids.chapterId !== item.chapter_id || ids.firstHadithId === item._id
@@ -169,6 +239,7 @@ function HadithContent() {
       <ReadingTopBar
         animatedStyle={topBarAnimatedStyle}
         onBackPress={() => router.back()}
+        onSearchPress={handleSearchPress}
         onSettingsPress={handlePresentModalPress}
       />
       <View className="pb-0 bg-reading-background">
@@ -212,6 +283,16 @@ function HadithContent() {
           onLayout={setBottomBarHeight}
         />
         <ReadingSettingsSheet bottomSheetRef={bottomSheetRef}/>
+        <HadithSearchSheet
+          bottomSheetRef={searchSheetRef}
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
+          currentIndex={currentMatchIndex}
+          totalMatches={searchMatches.length}
+          onNext={handleNextMatch}
+          onPrevious={handlePreviousMatch}
+          onClose={handleCloseSearch}
+        />
 
       </View>
     </Page>
