@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { View } from 'react-native'
+import { NativeScrollEvent, NativeSyntheticEvent, View } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
 import Header from '@/app/components/header'
 import useGetHadiths from '@/app/shared/fetcher/useHadiths'
@@ -13,6 +13,15 @@ import ActionButtons from '@/app/components/action-buttons'
 import LoadingSpinner from '@/app/components/loading-spinner'
 import ScrollToTopButton from '@/app/components/scroll-to-top-button'
 import Page from '@/app/components/page'
+import { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { useReadingSettingsStore } from '@/app/stores/useReadingSettingsStore'
+import { useUniwind } from 'uniwind'
+import BottomSheet from '@gorhom/bottom-sheet'
+import ReadingTopBar from '@/app/components/reading-top-bar'
+import ReadingBottomBar from '@/app/components/reading-bottom-bar'
+import ReadingSettingsSheet from '@/app/components/reading-settings'
+import ChapterTitle from '@/app/components/chapter-title'
 
 interface BilingualContent {
   ms?: string;
@@ -42,15 +51,15 @@ const HadithListItem: React.FC<HadithListItemProps> = ({ item, onShare, onSave, 
   return (
     <>
       {isNewChapter && (
-        <HadithChapterTitle item={item} footnoteRefs={footnoteRefs} />
+        <ChapterTitle data={item} footnoteRefs={footnoteRefs}/>
       )}
       {!item.content[0].ar ? null : (
         <View className="space-y-8 bg-white mb-4">
           <HadithItem hadith={item} footnoteRefs={footnoteRefs} />
-          <ActionButtons
-            onShare={() => onShare(item)}
-            onSave={() => onSave(item._id)}
-          />
+          {/*<ActionButtons*/}
+          {/*  onShare={() => onShare(item)}*/}
+          {/*  onSave={() => onSave(item._id)}*/}
+          {/*/>*/}
         </View>
       )}
     </>
@@ -67,8 +76,22 @@ function HadithContent() {
     firstHadithId: ''
   }
   const footnoteRefs = useRef<Record<string, any>>({})
+  const insets = useSafeAreaInsets()
+  const fontSizeIndex = useReadingSettingsStore((state) => state.fontSizeIndex)
+  const { theme } = useUniwind()
+  const bottomSheetRef = useRef<BottomSheet>(null)
 
   const { isLoading, data } = useGetHadiths(bookId, volumeId)
+
+  // Animation state for top and bottom bars
+  const topBarTranslateY = useSharedValue(0)
+  const bottomBarTranslateY = useSharedValue(0)
+  const [barsVisible, setBarsVisible] = useState(true)
+  const [bottomBarHeight, setBottomBarHeight] = useState(100)
+
+  // Scroll tracking
+  const lastScrollY = useRef(0)
+  const scrollThreshold = 5 // Minimum scroll distance to trigger hide/show
 
   const onSave = (id: string) => {
     // TODO: Implement bookmark functionality
@@ -82,15 +105,75 @@ function HadithContent() {
   const volumeTitle = data?.[0]?.volume_title
   const bookTitle = data?.[0]?.book_title?.ms
 
+  // Show bars function
+  const showBars = () => {
+    topBarTranslateY.value = withTiming(0, { duration: 300 })
+    bottomBarTranslateY.value = withTiming(0, { duration: 300 })
+    setBarsVisible(true)
+  }
+
+  // Hide bars function
+  const hideBars = () => {
+    // Hide top bar above the safe area
+    topBarTranslateY.value = withTiming(-(100 + insets.top), { duration: 300 })
+    // Hide bottom bar below the safe area using measured height
+    bottomBarTranslateY.value = withTiming(bottomBarHeight, {
+      duration: 300
+    })
+    setBarsVisible(false)
+  }
+
+  // Handle scroll event
+  const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const currentScrollY = event.nativeEvent.contentOffset.y
+    const scrollDiff = currentScrollY - lastScrollY.current
+
+    if (Math.abs(scrollDiff) > scrollThreshold) {
+      if (scrollDiff > 0 && barsVisible) {
+        // Scrolling down - hide bars
+        hideBars()
+      }
+      lastScrollY.current = currentScrollY
+    }
+  }
+
+  // Handle touch/press on content
+  const handleContentPress = () => {
+    if (barsVisible) {
+      hideBars()
+    } else {
+      showBars()
+    }
+  }
+
+  const handlePresentModalPress = () => {
+    bottomSheetRef.current?.snapToIndex(1)
+    hideBars()
+  }
+
+  // Animated styles
+  const topBarAnimatedStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: topBarTranslateY.value }]
+  }))
+
+  const bottomBarAnimatedStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: bottomBarTranslateY.value }]
+  }))
+
   return (
     <Page edges={['bottom']}>
-      <Header title={bookTitle} onPressButton={() => router.back()} />
+      {/*<Header title={bookTitle} onPressButton={() => router.back()} />*/}
+      <ReadingTopBar
+        animatedStyle={topBarAnimatedStyle}
+        onBackPress={() => router.back()}
+        onSettingsPress={handlePresentModalPress}
+      />
       <View className="pb-0 bg-white">
-        <VolumeTitle
-          volumeTitle={volumeTitle}
-          hadiths={data}
-          footnoteRefs={footnoteRefs}
-        />
+        {/*<VolumeTitle*/}
+        {/*  volumeTitle={volumeTitle}*/}
+        {/*  hadiths={data}*/}
+        {/*  footnoteRefs={footnoteRefs}*/}
+        {/*/>*/}
         {data?.length > 0 && (
           <View className="h-full">
             <FlashList
@@ -116,11 +199,20 @@ function HadithContent() {
           </View>
         )}
 
-        <ScrollToTopButton
-          onPress={() =>
-            listRef?.current?.scrollToOffset({ offset: 0, animated: true })
-          }
+        {/* Sticky Bottom Bar */}
+        <ReadingBottomBar
+          animatedStyle={bottomBarAnimatedStyle}
+          hadithData={data[0]}
+          footnoteRefs={footnoteRefs}
+          onLayout={setBottomBarHeight}
         />
+        <ReadingSettingsSheet bottomSheetRef={bottomSheetRef}/>
+
+        {/*<ScrollToTopButton*/}
+        {/*  onPress={() =>*/}
+        {/*    listRef?.current?.scrollToOffset({ offset: 0, animated: true })*/}
+        {/*  }*/}
+        {/*/>*/}
       </View>
     </Page>
   )

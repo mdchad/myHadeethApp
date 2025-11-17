@@ -25,26 +25,16 @@ import Animated, {
   useSharedValue,
   withTiming
 } from 'react-native-reanimated'
-import {
-  ALargeSmallIcon,
-  Bookmark,
-  BookmarkIcon,
-  ChevronLeft,
-  ChevronLeftCircle,
-  SearchIcon,
-  Share2
-} from 'lucide-react-native'
-import Slider, { MarkerProps } from '@react-native-community/slider'
-import { Slider as NSlider } from '@react-native-assets/slider'
 import ReadingSettingsSheet from '@/app/components/reading-settings'
 import BottomSheet from '@gorhom/bottom-sheet'
-import { withUniwind } from 'uniwind'
+import ReadingTopBar from '@/app/components/reading-top-bar'
+import ReadingBottomBar from '@/app/components/reading-bottom-bar'
+import ChapterTitle from '@/app/components/chapter-title'
 
 function UniversalDetail() {
   const { id } = useLocalSearchParams<{ id: string }>()
   const router = useRouter()
   const footnoteRefs = useRef<Record<string, any>>({})
-  const bottomBarRef = useRef<View>(null)
   const posthog = usePostHog()
   const insets = useSafeAreaInsets()
   const fontSizeIndex = useReadingSettingsStore((state) => state.fontSizeIndex)
@@ -170,41 +160,15 @@ function UniversalDetail() {
     return <LoadingSpinner />
   }
 
-  const StyledALargeSmallIcon = withUniwind(ALargeSmallIcon)
-  const StyledBookmarkIcon = withUniwind(BookmarkIcon)
-  const StyledSearchIcon = withUniwind(SearchIcon)
-  const StyledChevronLeft = withUniwind(ChevronLeft)
-
   return (
     <Page className="bg-reading-background">
       <StatusBar hidden={!barsVisible} style={theme === 'dark' ? 'light' : 'dark'} />
       {/* Sticky Top Bar */}
-      <Animated.View
-        style={[topBarAnimatedStyle]}
-        className="absolute top-0 left-0 right-0 z-50 bg-reading-background px-4"
-      >
-        <View style={{ paddingTop: insets.top, paddingBottom: 10 }} className="border-b-2 border-reading-border flex flex-row justify-between">
-          <View className="flex flex-row">
-            <Pressable
-              className="flex flex-row"
-              onPress={() => router.back()}
-            >
-              <StyledChevronLeft className="text-reading-text" size={28}></StyledChevronLeft>
-              <Text className="text-xl text-reading-text">Back</Text>
-            </Pressable>
-          </View>
-          <View className="flex flex-row gap-2">
-            <StyledSearchIcon className="text-reading-text" size={28} strokeWidth={2}/>
-            <Pressable
-              className="flex flex-row"
-              onPress={handlePresentModalPress}
-            >
-              <StyledALargeSmallIcon className="text-reading-text" size={28} strokeWidth={2}/>
-            </Pressable>
-            <StyledBookmarkIcon className="text-reading-text" size={28} strokeWidth={2}/>
-          </View>
-        </View>
-      </Animated.View>
+      <ReadingTopBar
+        animatedStyle={topBarAnimatedStyle}
+        onBackPress={() => router.back()}
+        onSettingsPress={handlePresentModalPress}
+      />
 
       <ScrollView
         className="bg-reading-background"
@@ -216,80 +180,7 @@ function UniversalDetail() {
           <View className="flex-1 pb-0 bg-reading-background pt-16">
             <View className="flex-1">
               {data?.chapter_title?.ms && (
-                <View className="mb-10 p-4 gap-10">
-                  <View className="gap-4 border-l-4 border-royal-blue-950 pl-2">
-                    <Text
-                      className="text-lg text-royal-blue-950 font-arabic-bold font-bold"
-                      style={{
-                        writingDirection: 'rtl'
-                      }}
-                    >
-                      <QuranText
-                        text={data?.chapter_title?.ar}
-                        font={'arabic-bold'}
-                      />
-                    </Text>
-                    <View>
-                      <Text>
-                        <FootnotesMarker
-                          footnotes={data.footnotes}
-                          type={'chapter_title.ms'}
-                          index={1}
-                          footnoteRefs={footnoteRefs}
-                          hadithId={data._id}
-                        >
-                          <SpecialText
-                            className="text-royal-blue-950 font-semibold"
-                            text={data?.chapter_title?.ms}
-                          />
-                        </FootnotesMarker>
-                      </Text>
-                      <Text className="text-gray-600 mt-1">
-                        {data?.chapter_transliteration?.ms}
-                      </Text>
-                    </View>
-                  </View>
-                  {data?.chapter_metadata?.ms && (
-                    <View className="gap-4 border-l-4 border-gray-400 pl-2">
-                      <Text
-                        className="text-lg text-gray-800 leading-8 font-arabic-regular"
-                        style={{
-                          writingDirection: 'rtl'
-                        }}
-                      >
-                        <QuranText text={data?.chapter_metadata?.ar} />
-                      </Text>
-                      <Text
-                        className="text-gray-700 leading-6 text-justify tracking-tight font-arabic-symbols"
-                        style={{
-                          writingDirection: 'ltr'
-                        }}
-                      >
-                        <FootnotesMarker
-                          footnotes={data.footnotes}
-                          type={'chapter_metadata.ms'}
-                          index={1}
-                          footnoteRefs={footnoteRefs}
-                          hadithId={data._id}
-                        >
-                          <QuranText
-                            text={data?.chapter_metadata?.ms}
-                            font={'arabic-symbols'}
-                            special={true}
-                          />
-                        </FootnotesMarker>
-                      </Text>
-                      <FootnotesReference
-                        hadith={data}
-                        type={'chapter_title.ms'}
-                      />
-                      <FootnotesReference
-                        hadith={data}
-                        type={'chapter_metadata.ms'}
-                      />
-                    </View>
-                  )}
-                </View>
+                <ChapterTitle data={data} footnoteRefs={footnoteRefs}/>
               )}
               <View className="space-y-8 bg-reading-background mb-20">
                 <View key={data.id}>
@@ -349,48 +240,12 @@ function UniversalDetail() {
       </ScrollView>
 
       {/* Sticky Bottom Bar */}
-      <Animated.View
-        style={[bottomBarAnimatedStyle]}
-        className="absolute bottom-0 left-0 right-0 z-50"
-      >
-        <View
-          ref={bottomBarRef}
-          onLayout={(event) => {
-            const { height } = event.nativeEvent.layout
-            setBottomBarHeight(height)
-          }}
-          style={{ paddingBottom: insets.bottom, paddingTop: 30 }}
-          className="bg-reading-background border-t-2 border-reading-border">
-          <View className="px-6 gap-4">
-            <View className="bg-royal-blue-950 py-2">
-              <Text className=" text-white text-xl text-center">{data.book_title.ms}</Text>
-            </View>
-            <View>
-              <View className="flex items-center">
-                <View className="flex-1">
-                  <FootnotesMarker
-                    footnotes={data.footnotes}
-                    type={'volume_title.ms'}
-                    index={1}
-                    footnoteRefs={footnoteRefs}
-                    hadithId={data._id}
-                  >
-                    <Text className="text-sm text-center capitalize font-semibold text-royal-blue-950">
-                      {data.volume_title.ms}
-                    </Text>
-                  </FootnotesMarker>
-                </View>
-                <View className="flex-1 items-end">
-                  <Text className="text-lg text-center font-semibold text-royal-blue-950 font-arabic-regular">
-                    {data.volume_title.ar}
-                  </Text>
-                </View>
-              </View>
-              <FootnotesReference hadith={data} type={'volume_title.ms'} />
-            </View>
-          </View>
-        </View>
-      </Animated.View>
+      <ReadingBottomBar
+        animatedStyle={bottomBarAnimatedStyle}
+        hadithData={data}
+        footnoteRefs={footnoteRefs}
+        onLayout={setBottomBarHeight}
+      />
       <ReadingSettingsSheet bottomSheetRef={bottomSheetRef}/>
     </Page>
   )
