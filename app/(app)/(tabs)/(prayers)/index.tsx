@@ -10,8 +10,8 @@ import {
   Linking,
   Button
 } from 'react-native'
-import { useProvider } from '@/context/provider'
 import Page from '@/app/components/page'
+import { useLocationStore } from '@/app/stores/useLocationStore'
 import { MapPin } from 'lucide-react-native'
 import { ScrollView } from 'react-native'
 import { Skeleton } from 'moti/skeleton'
@@ -76,7 +76,9 @@ export default function Prayer() {
   const [prayerTimes, setPrayerTimes] = useState<PrayerTime[]>([])
   const [nextPrayer, setNextPrayer] = useState<PrayerTime | null>(null)
   const [error, setError] = useState<boolean>(false)
-  const { userLocation, userPlace, permissionStatus } = useProvider()
+  const userLocation = useLocationStore((state) => state.userLocation)
+  const userPlace = useLocationStore((state) => state.userPlace)
+  const permissionStatus = useLocationStore((state) => state.permissionStatus)
   const currentDate = new Date()
   const month = format(currentDate, 'L', { timeZone: 'Asia/Kuala_Lumpur' })
   const year = format(currentDate, 'y', { timeZone: 'Asia/Kuala_Lumpur' })
