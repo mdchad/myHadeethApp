@@ -18,7 +18,8 @@ import {
   ChevronRightSquare,
   Clock4,
   SlidersHorizontal,
-  XIcon
+  XIcon,
+  Search as SearchIcon
 } from 'lucide-react-native'
 import SHARED_TEXT from '@/app/i18n'
 import { t } from 'i18next'
@@ -206,15 +207,9 @@ function Search() {
       >
         <Pressable key={item._id} className="pb-4 bg-white px-5">
           <View className="my-4 flex flex-row flex-wrap">
-            <Text className="font-bold text-royal-blue-950 mr-2">
-              {item?.book_title.ms}
+            <Text className="font-geist-mono-medium mr-2 text-orange-accent capitalize">
+              [ {item?.book_title.ms} / {item.volume_title.ms} ]
             </Text>
-            <ChevronRightSquare color="black" size={18} className="mr-2" />
-            <Text className="font-bold text-royal-blue-950 mr-2">
-              {item.volume_title.ms}
-            </Text>
-            <ChevronRightSquare color="black" size={18} className="mr-2" />
-            <Text className="font-bold text-royal-blue-950">{item.number}</Text>
           </View>
           <Text>{highlightKeywords(item?.content[0], searchKeyword)}</Text>
           <View className="mt-2 flex items-end">
@@ -280,34 +275,37 @@ function Search() {
 
   return (
     <Page className="bg-gray-100">
-      <Header title={t(SHARED_TEXT.SEARCH_HEADER)} rounded={false} />
+      {/*<Header title={t(SHARED_TEXT.SEARCH_HEADER)} rounded={false} />*/}
       <View
-        className={`px-6 flex flex-row justify-between items-end rounded-b-2xl pb-6 shadow-lg bg-royal-blue-950 overflow-hidden`}
+        className={`px-4 flex flex-row justify-between items-center rounded-b-2xl pb-6 pt-6 shadow-lg bg-royal-blue-950 overflow-hidden`}
       >
-        <View className="w-full">
-          <View className="bg-white rounded-lg shadow w-full">
-            <TextInput
-              className="text-lg px-4 h-12 pb-2 leading-relaxed"
-              placeholder={t(SHARED_TEXT.SEARCH_SEARCHBAR_PLACEHOLDER)}
-              value={searchKeyword}
-              autoFocus={true}
-              returnKeyType={'done'}
-              onSubmitEditing={onSubmit}
-              clearButtonMode={'while-editing'}
-              onChangeText={handleChangeText}
-            />
-          </View>
+        <View className="flex-1 bg-white rounded-full shadow-md flex-row items-end px-4 py-3">
+          <SearchIcon size={20} className="h-[4lh]" color="#666" />
+          <TextInput
+            className="flex-1 leading-5 text-base ml-2"
+            placeholder={t(SHARED_TEXT.SEARCH_SEARCHBAR_PLACEHOLDER)}
+            value={searchKeyword}
+            autoFocus={true}
+            returnKeyType={'search'}
+            onSubmitEditing={onSubmit}
+            clearButtonMode={'while-editing'}
+            onChangeText={handleChangeText}
+          />
         </View>
+        <TouchableOpacity
+          onPress={handlePresentModalPress}
+          className="ml-3 bg-white rounded-full p-3 shadow-md relative"
+        >
+          <SlidersHorizontal size={20} color="#1e3a8a" />
+          {!!books.length && (
+            <View className="absolute -top-1 -right-1 rounded-full w-5 h-5 bg-red-500 flex items-center justify-center">
+              <Text className="text-xs font-bold text-white">{books.length}</Text>
+            </View>
+          )}
+        </TouchableOpacity>
       </View>
       {data && data.totalCount && !!data.totalCount.length && (
-        <View className="pl-4 flex flex-row justify-between items-center">
-          <TouchableOpacity onPress={handlePresentModalPress} className="bg-white flex flex-row items-center rounded-lg p-2 border border-royal-blue-950">
-            <SlidersHorizontal size={16} color={'black'}/>
-            <Text className="ml-2 text-md">{t(SHARED_TEXT.SEARCH_FILTER)}</Text>
-            { !!books.length && <View className="ml-0.5 rounded-full border-0 w-4 bg-red-500 ">
-              <Text className="text-xs font-mono text-white text-center">{books.length}</Text>
-            </View>}
-          </TouchableOpacity>
+        <View className="pl-4 pr-4 flex flex-row justify-end items-center">
           <Pagination
             count={data?.totalCount[0]?.count}
             term={searchKeyword}
@@ -341,7 +339,7 @@ function Search() {
                   return (
                     <View key={i} className="flex flex-row items-center">
                       <TouchableOpacity
-                        className="flex-1 space-x-2 flex flex-row items-center py-2"
+                        className="flex-1 gap-2 flex flex-row items-center py-2"
                         onPress={() => onSubmitFromHistory(item)}
                       >
                         <Clock4 size={16} color={'grey'} />

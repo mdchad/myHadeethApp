@@ -84,7 +84,7 @@ function Home() {
                   {data ? (
                     <View className="p-6">
                       <View className="flex flex-row flex-wrap mb-4">
-                        <Text className="font-mono font-semibold text-sm text-[#f80]">
+                        <Text className="font-geist-mono-medium text-xs text-[#f80]">
                           [ {data?.book_title?.ms}
                           {' '}/{' '}
                           {capitalize(data?.volume_title?.ms)} ]

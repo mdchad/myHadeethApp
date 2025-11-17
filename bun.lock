@@ -6,6 +6,7 @@
       "dependencies": {
         "@config-plugins/react-native-blob-util": "^12.0.0",
         "@config-plugins/react-native-pdf": "^12.0.0",
+        "@expo-google-fonts/geist-mono": "^0.4.1",
         "@expo-google-fonts/scheherazade-new": "^0.4.2",
         "@formatjs/intl-displaynames": "^6.8.12",
         "@formatjs/intl-locale": "^4.2.12",
@@ -287,6 +288,8 @@
     "@emotion/is-prop-valid": ["@emotion/is-prop-valid@0.8.8", "", { "dependencies": { "@emotion/memoize": "0.7.4" } }, "sha512-u5WtneEAr5IDG2Wv65yhunPSMLIpuKsbuOktRojfrEiEvRyC85LgPMZI63cr7NUqT8ZIGdSVg8ZKGxIug4lXcA=="],
 
     "@emotion/memoize": ["@emotion/memoize@0.7.4", "", {}, "sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw=="],
+
+    "@expo-google-fonts/geist-mono": ["@expo-google-fonts/geist-mono@0.4.1", "", {}, "sha512-4amQyslc5Qsr06CymJA7PzUaJd0ohlbpY7sWqRfZkwPp9xeVzy9JBLg05VwO3bx+M4CY+FV4AAIG/8fGRCXguw=="],
 
     "@expo-google-fonts/scheherazade-new": ["@expo-google-fonts/scheherazade-new@0.4.2", "", {}, "sha512-kgsRSB3w8WJ9z3YtWdL/9sVibNv72hx1QpCj7jMfdqLAflxu2WpTNgpR74P01avUgXmcTDKbxeAc4A9Lm//dMA=="],
 

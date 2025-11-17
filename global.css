@@ -14,10 +14,14 @@
     --color-royal-blue-800: oklch(0.41 0.098 266.66);
     --color-royal-blue-900: oklch(0.331 0.079 266.74);
     --color-royal-blue-950: oklch(0.294 0.07 266.53);
+    --color-orange-accent: '#f80';
     --font-arabic-symbols: 'kfgqpc-arabic-symbols';
     --font-arabic-regular: 'KFGQPC Uthman Taha Naskh';
     --font-arabic-bold: 'KFGQPC Uthman Taha Naskh';
     --font-uthmanic-hafs: 'kfgqpc_hafs_uthmanic_script';
+    --font-geist-mono: 'GeistMono-Regular';
+    --font-geist-mono-semiBold: 'GeistMono-SemiBold';
+    --font-geist-mono-medium: 'GeistMono-Medium';
 }
 
 @layer theme {

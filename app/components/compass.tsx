@@ -11,7 +11,7 @@ import {
 } from 'react-native'
 import * as Location from 'expo-location'
 import * as Haptics from 'expo-haptics'
-import { useProvider } from '@/context/provider'
+import { useLocationStore } from '@/app/stores/useLocationStore'
 import { useSegments } from 'expo-router'
 import { Skeleton } from 'moti/skeleton'
 import Spacer from '@/app/components/spacer'
@@ -32,7 +32,9 @@ interface CompassV2Props {}
 export default function Compass({}: CompassV2Props) {
   const [location, setLocation] = useState(null)
   const [heading, setHeading] = useState(0)
-  const { userLocation, userPlace, permissionStatus } = useProvider()
+  const userLocation = useLocationStore((state) => state.userLocation)
+  const userPlace = useLocationStore((state) => state.userPlace)
+  const permissionStatus = useLocationStore((state) => state.permissionStatus)
   const segment = useSegments()
   const [degree, setDegree] = useState('')
   const posthog = usePostHog()

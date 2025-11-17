@@ -1,5 +1,4 @@
 import { Slot } from 'expo-router'
-import { Provider } from '@/context/provider'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persister'
 import { focusManager, QueryClient } from '@tanstack/react-query'
@@ -23,6 +22,7 @@ import en from './i18n/locales/en.json'
 import ms from './i18n/locales/ms.json'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { PortalProvider } from '@gorhom/portal'
+import { useLocationStore } from './stores/useLocationStore'
 
 const isAndroid = Platform.OS === 'android'
 const isHermes = !!global.HermesInternal
@@ -123,6 +123,11 @@ export default function Root() {
   useAppState(onAppStateChange)
   useOnlineManager()
 
+  // Initialize location tracking with Zustand
+  const initializeLocationTracking = useLocationStore(
+    (state) => state.initializeLocationTracking
+  )
+
   const prefetchTodos = async () => {
     const timeZone = 'Asia/Kuala_Lumpur'
     const nowInKualaLumpur = toZonedTime(new Date(), timeZone)
@@ -163,11 +168,19 @@ export default function Root() {
   }
 
   useEffect(() => {
+    // Initialize location tracking and get cleanup function
+    const cleanupLocationTracking = initializeLocationTracking()
+
     prefetchTodos().then(() => {
       setAudioModeAsync({ playsInSilentMode: true })
       // Hide the splash screen after prefetching is done
       SplashScreen.hideAsync()
     })
+
+    // Cleanup location tracking on unmount
+    return () => {
+      cleanupLocationTracking()
+    }
   }, [])
 
   return (
@@ -191,9 +204,7 @@ export default function Root() {
           options={{ host: 'https://us.i.posthog.com' }}
         >
           <PortalProvider>
-            <Provider>
-              <Slot />
-            </Provider>
+            <Slot />
           </PortalProvider>
         </PostHogProvider>
       </GestureHandlerRootView>
