@@ -47,13 +47,13 @@ const ReadingBottomBar: React.FC<HadithDetailBottomBarProps> = ({
         style={{ paddingBottom: insets.bottom, paddingTop: 30 }}
         className="bg-reading-background border-t-2 border-reading-border"
       >
-        <View className="px-6 gap-4">
-          <View className="bg-royal-blue-950 py-2">
+        <View className="px-6 gap-8">
+          <View className="bg-royal-blue-950 dark:bg-royal-blue-700 py-2">
             <Text className=" text-white text-xl text-center">
               {hadithData.book_title.ms}
             </Text>
           </View>
-          <View>
+          <View className="gap-2 pb-4">
             <View className="flex items-center">
               <View className="flex-1">
                 <FootnotesMarker
@@ -63,13 +63,13 @@ const ReadingBottomBar: React.FC<HadithDetailBottomBarProps> = ({
                   footnoteRefs={footnoteRefs}
                   hadithId={hadithData._id}
                 >
-                  <Text className="text-sm text-center capitalize font-semibold text-royal-blue-950">
+                  <Text className="text-sm leading-10 text-center capitalize font-semibold text-royal-blue-950 dark:text-white">
                     {hadithData.volume_title.ms}
                   </Text>
                 </FootnotesMarker>
               </View>
               <View className="flex-1 items-end">
-                <Text className="text-lg text-center font-semibold text-royal-blue-950 font-arabic-regular">
+                <Text className="text-lg text-center font-semibold text-royal-blue-950 dark:text-white font-arabic-regular">
                   {hadithData.volume_title.ar}
                 </Text>
               </View>

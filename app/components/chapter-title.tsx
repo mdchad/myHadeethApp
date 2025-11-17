@@ -8,9 +8,9 @@ import React from 'react'
 function ChapterTitle({ data, footnoteRefs }: { data: any; footnoteRefs: any}) {
   return (
     <View className="mb-10 p-4 gap-4">
-      <View className="gap-4 border-l-4 border-royal-blue-950 pl-2">
+      <View className="gap-4 border-l-4 border-royal-blue-950 dark:border-royal-blue-700 pl-2">
         <Text
-          className="text-lg text-royal-blue-950 font-arabic-bold font-bold"
+          className="text-lg text-royal-blue-950 dark:text-white font-arabic-bold font-bold"
           style={{
             writingDirection: 'rtl'
           }}
@@ -27,12 +27,12 @@ function ChapterTitle({ data, footnoteRefs }: { data: any; footnoteRefs: any}) {
               hadithId={data._id}
             >
               <SpecialText
-                className="text-royal-blue-950 font-semibold"
+                className="text-royal-blue-950 dark:text-white font-semibold"
                 text={data?.chapter_title?.ms}
               />
             </FootnotesMarker>
           </Text>
-          <Text className="text-gray-600 mt-1">
+          <Text className="text-gray-600 dark:text-white mt-1">
             {data?.chapter_transliteration?.ms}
           </Text>
         </View>
@@ -40,7 +40,7 @@ function ChapterTitle({ data, footnoteRefs }: { data: any; footnoteRefs: any}) {
       {data?.chapter_metadata?.ms && (
         <View className="gap-4 border-l-4 border-gray-400 pl-2">
           <Text
-            className="text-lg text-gray-800 leading-8 font-arabic-regular"
+            className="text-lg text-gray-800 dark:text-white leading-8 font-arabic-regular"
             style={{
               writingDirection: 'rtl'
             }}
@@ -48,7 +48,7 @@ function ChapterTitle({ data, footnoteRefs }: { data: any; footnoteRefs: any}) {
             <QuranText text={data?.chapter_metadata?.ar} />
           </Text>
           <Text
-            className="italic text-gray-700 leading-6 text-justify tracking-tight font-arabic-symbols"
+            className="italic text-gray-700 dark:text-white leading-6 text-justify tracking-tight font-arabic-symbols"
             style={{
               writingDirection: 'ltr'
             }}
