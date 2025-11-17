@@ -1,15 +1,11 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react'
 import {
   View,
-  ActivityIndicator,
   ScrollView,
-  StyleSheet,
   Text,
   Pressable,
   NativeScrollEvent,
   NativeSyntheticEvent,
-  TouchableHighlight,
-  Platform
 } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -17,13 +13,7 @@ import { StatusBar } from 'expo-status-bar'
 import { useGetHadith } from '../../shared/fetcher/useHadiths'
 import { useReadingSettingsStore } from '@/app/stores/useReadingSettingsStore'
 import { useUniwind } from 'uniwind'
-import Header from '@/app/components/header'
 import Page from '../../components/page'
-import HadithChapterTitle from '@/app/components/hadith-chapter-title'
-import shareHadith from '../../utils/shareHadith'
-import VolumeTitle from '@/app/components/volume-title'
-import HadithItem from '@/app/components/hadith-item'
-import ActionButtons from '@/app/components/action-buttons'
 import { usePostHog } from 'posthog-react-native'
 import LoadingSpinner from '@/app/components/loading-spinner'
 import FootnotesMarker from '@/app/components/footnotes-marker'
@@ -224,30 +214,6 @@ function UniversalDetail() {
       >
         <Pressable onPress={handleContentPress}>
           <View className="flex-1 pb-0 bg-reading-background pt-16">
-            {/*<VolumeTitle volumeTitle={data?.volume_title} footnoteRefs={footnoteRefs} hadiths={[data]}/>*/}
-            {/*<View className="pb-2 mb-3 mt-10">*/}
-            {/*  <View className="flex items-center">*/}
-            {/*    <View className="flex-1">*/}
-            {/*      <FootnotesMarker*/}
-            {/*        footnotes={data.footnotes}*/}
-            {/*        type={'volume_title.ms'}*/}
-            {/*        index={1}*/}
-            {/*        footnoteRefs={footnoteRefs}*/}
-            {/*        hadithId={data._id}*/}
-            {/*      >*/}
-            {/*        <Text className="text-lg text-center capitalize font-semibold text-royal-blue">*/}
-            {/*          {data.volume_title.ms}*/}
-            {/*        </Text>*/}
-            {/*      </FootnotesMarker>*/}
-            {/*    </View>*/}
-            {/*    <View className="flex-1 items-end">*/}
-            {/*      <Text className="text-[26px] text-center font-semibold text-royal-blue font-arabic-regular">*/}
-            {/*        {data.volume_title.ar}*/}
-            {/*      </Text>*/}
-            {/*    </View>*/}
-            {/*  </View>*/}
-            {/*  <FootnotesReference hadith={data} type={'volume_title.ms'} />*/}
-            {/*</View>*/}
             <View className="flex-1">
               {data?.chapter_title?.ms && (
                 <View className="mb-10 p-4 gap-10">
@@ -396,22 +362,6 @@ function UniversalDetail() {
           style={{ paddingBottom: insets.bottom, paddingTop: 10 }}
           className="bg-reading-background border-t-2 border-reading-border"
         >
-          {/*<View className="flex flex-row px-6">*/}
-          {/*  <TouchableHighlight*/}
-          {/*    className="p-1"*/}
-          {/*    underlayColor="#333"*/}
-          {/*    onPress={() => shareHadith(data)}*/}
-          {/*  >*/}
-          {/*    <Share2 color="black" strokeWidth={2} size={18} />*/}
-          {/*  </TouchableHighlight>*/}
-          {/*  <TouchableHighlight*/}
-          {/*    className="p-1"*/}
-          {/*    underlayColor="#333"*/}
-          {/*    onPress={onSave}*/}
-          {/*  >*/}
-          {/*    <Bookmark color="black" strokeWidth={2} size={18} />*/}
-          {/*  </TouchableHighlight>*/}
-          {/*</View>*/}
           <View className="px-6 gap-4">
             <View className="bg-royal-blue py-2">
               <Text className=" text-white text-xl text-center">{data.book_title.ms}</Text>
@@ -439,58 +389,8 @@ function UniversalDetail() {
               </View>
               <FootnotesReference hadith={data} type={'volume_title.ms'} />
             </View>
-            {/*<NSlider*/}
-            {/*  enabled={true}*/}
-            {/*  slideOnTap={true}*/}
-            {/*  minimumValue={0}*/}
-            {/*  trackStyle={{ height: 4, backgroundColor: "black" }}*/}
-            {/*  step={1}*/}
-            {/*  // StepMarker={renderStepMarker}*/}
-            {/*  maximumValue={4}*/}
-            {/*  value={fontSizeIndex}*/}
-            {/*  onValueChange={(value) => setFontSizeIndex(value)}*/}
-            {/*  minimumTrackTintColor="#FFFFFF"*/}
-            {/*  maximumTrackTintColor="#000000"*/}
-            {/*  thumbTintColor="#000"*/}
-            {/*  thumbStyle={{ width: 20, height: 20, borderRadius: 20, backgroundColor: "#1C2A4F" }}*/}
-            {/*/>*/}
-            {/*<View className="flex flex-row justify-between items-center mt-2">*/}
-            {/*  <Text className="font-serif font-semibold text-base ">A</Text>*/}
-            {/*  <Text className="font-serif font-semibold text-2xl ">A</Text>*/}
-            {/*</View>*/}
-
-            {/* Step indicators */}
-            {/*<View className="flex flex-row justify-between mb-2">*/}
-            {/*  {[0, 1, 2, 3, 4].map((step) => (*/}
-            {/*    <View*/}
-            {/*      key={step}*/}
-            {/*      className={`w-2 h-2 rounded-full ${fontSizeIndex === step ? 'bg-white' : 'bg-white/40'}`}*/}
-            {/*    />*/}
-            {/*  ))}*/}
-            {/*</View>*/}
-            {/*<View className="flex flex-row justify-between items-center">*/}
-            {/*  <View className="w-64">*/}
-            {/*    <Slider*/}
-            {/*      tapToSeek={true}*/}
-            {/*      style={{ borderRadius: 10 }}*/}
-            {/*      className="rounded-xs"*/}
-            {/*      minimumValue={0}*/}
-            {/*      step={1}*/}
-            {/*      StepMarker={renderStepMarker}*/}
-            {/*      maximumValue={4}*/}
-            {/*      value={fontSizeIndex}*/}
-            {/*      onValueChange={(value) => setFontSizeIndex(value)}*/}
-            {/*      minimumTrackTintColor="#FFFFFF"*/}
-            {/*      maximumTrackTintColor="#000000"*/}
-            {/*    />*/}
-            {/*  </View>*/}
-            {/*</View>*/}
           </View>
         </View>
-        {/*<ActionButtons*/}
-        {/*  onShare={() => shareHadith(data)}*/}
-        {/*  onSave={onSave}*/}
-        {/*/>*/}
       </Animated.View>
       <ReadingSettingsSheet bottomSheetRef={bottomSheetRef}/>
     </Page>

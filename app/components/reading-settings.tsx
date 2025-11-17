@@ -8,6 +8,7 @@ import { X } from 'lucide-react-native'
 import { Slider as NSlider } from '@react-native-assets/slider'
 import { useReadingSettingsStore } from '@/app/stores/useReadingSettingsStore'
 import { Uniwind, useUniwind } from 'uniwind'
+import * as Haptics from 'expo-haptics';
 
 interface SheetProps {
   bottomSheetRef: React.RefObject<any>;
@@ -63,7 +64,10 @@ function ReadingSettingsSheet({ bottomSheetRef }: SheetProps) {
               step={1}
               maximumValue={4}
               value={fontSizeIndex}
-              onValueChange={setFontSizeIndex}
+              onValueChange={(v) => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium)
+                setFontSizeIndex(v)
+              }}
               minimumTrackTintColor="#1C2A4F"
               maximumTrackTintColor="#E5E7EB"
               thumbTintColor="#1C2A4F"
