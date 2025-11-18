@@ -31,7 +31,7 @@ function HadithSearchSheet({
   onClose
 }: SearchSheetProps) {
   // variables
-  const snapPoints = useMemo(() => ['25%'], [])
+  const snapPoints = useMemo(() => ['25%', '50%'], [])
 
   // callbacks
   const renderBackdrop = useCallback(
@@ -52,7 +52,7 @@ function HadithSearchSheet({
         ref={bottomSheetRef}
         snapPoints={snapPoints}
         enablePanDownToClose={true}
-        index={-1}
+        index={1}
         backdropComponent={renderBackdrop}
         enableContentPanningGesture={false}
         enableHandlePanningGesture={true}

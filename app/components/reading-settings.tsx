@@ -36,10 +36,6 @@ function ReadingSettingsSheet({ bottomSheetRef }: SheetProps) {
     []
   )
 
-  function selectBooks() {
-    bottomSheetRef.current.close()
-  }
-
   return (
     <Portal hostName={'root'}>
       <BottomSheet
