@@ -79,6 +79,11 @@ function HadithSearchSheet({
               className="flex-1 text-gray-900 text-base"
               placeholder="Enter keyword..."
               placeholderTextColor="#888"
+              autoCorrect={false}
+              autoCapitalize="none"
+              autoComplete="off"
+              spellCheck={false}
+              importantForAutofill="no"
               value={searchQuery}
               onChangeText={onSearchChange}
               autoFocus
