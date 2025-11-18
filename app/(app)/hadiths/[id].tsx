@@ -73,6 +73,7 @@ function HadithContent() {
   const bottomBarTranslateY = useSharedValue(0)
   const [barsVisible, setBarsVisible] = useState(true)
   const [bottomBarHeight, setBottomBarHeight] = useState(100)
+  const [searchSheet, setSearchSheet] = useState<boolean>(false)
 
   // Scroll tracking
   const lastScrollY = useRef(0)
@@ -175,18 +176,32 @@ function HadithContent() {
   const handleContentPress = () => {
     if (barsVisible) {
       hideBars()
+      // searchSheetRef.current?.snapToIndex(0)
     } else {
-      showBars()
+      console.log('show bars')
+      console.log('show search sheet', searchSheet)
+      if (searchSheet) {
+        searchSheetRef.current?.close()
+        // searchSheetRef.current?.snapToIndex(1)
+        setSearchSheet(false)
+      } else {
+        showBars()
+      }
     }
   }
 
   const handlePresentModalPress = () => {
     bottomSheetRef.current?.snapToIndex(1)
+    if (searchSheet) {
+      searchSheetRef.current?.close()
+      setSearchSheet(false)
+    }
     hideBars()
   }
 
   const handleSearchPress = () => {
     searchSheetRef.current?.snapToIndex(0)
+    setSearchSheet(true)
     hideBars()
   }
 
