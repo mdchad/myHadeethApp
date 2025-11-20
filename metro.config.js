@@ -1,9 +1,9 @@
-const { getDefaultConfig } = require("expo/metro-config");
 const { withUniwindConfig } = require('uniwind/metro')
+const { getSentryExpoConfig } = require('@sentry/react-native/metro')
 
-const config = getDefaultConfig(__dirname)
+const config = getSentryExpoConfig(__dirname)
 
-config.resolver.unstable_enablePackageExports = true; //for better-auth
+config.resolver.unstable_enablePackageExports = true //for better-auth
 
 module.exports = withUniwindConfig(config, {
   // relative path to your global.css file (from previous step)
@@ -13,4 +13,4 @@ module.exports = withUniwindConfig(config, {
   dtsFile: './uniwind-types.d.ts',
   // Register custom themes for reading appearance
   extraThemes: ['sepia']
-});
+})

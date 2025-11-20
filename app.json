@@ -11,9 +11,7 @@
       "backgroundColor": "#1C2A4F"
     },
     "version": "1.0.9",
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "web": {
       "bundler": "metro",
       "favicon": "./assets/favicon.png"
@@ -55,7 +53,15 @@
       "expo-secure-store",
       "expo-web-browser",
       "expo-audio",
-      "expo-localization"
+      "expo-localization",
+      [
+        "@sentry/react-native/expo",
+        {
+          "url": "https://sentry.io/",
+          "project": "myway-app",
+          "organization": "pixelmind-studio"
+        }
+      ]
     ],
     "ios": {
       "bundleIdentifier": "com.mdchad.myWay",

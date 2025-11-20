@@ -4,7 +4,7 @@ import {
   ScrollView,
   TouchableHighlight,
   Pressable,
-  StyleSheet
+  StyleSheet, Button
 } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Page from '@/app/components/page'
@@ -26,6 +26,7 @@ import { useTranslation } from 'react-i18next'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { capitalize } from 'es-toolkit'
 import { usePostHog } from 'posthog-react-native'
+import * as Sentry from '@sentry/react-native'
 
 function Home() {
   const { isLoading, isError, data, error } = useGetTodayHadith()
@@ -75,6 +76,10 @@ function Home() {
                     </Pressable>
                   </Link>
                 </View>
+                <Button title='Try!' onPress={ () => {
+                  Sentry.captureException(new Error('First error'))
+                  console.log('First error captured')
+                }}/>
               </View>
               <Link
                 href={{ pathname: '/(app)/hadith-detail/[id]', params: { id: data?._id } }}
