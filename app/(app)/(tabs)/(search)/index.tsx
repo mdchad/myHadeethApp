@@ -274,7 +274,7 @@ function Search() {
   }, [])
 
   return (
-    <Page className="bg-gray-100">
+    <Page edges={['top']} className="bg-gray-100">
       {/*<Header title={t(SHARED_TEXT.SEARCH_HEADER)} rounded={false} />*/}
       <View
         className={`px-4 flex flex-row justify-between items-center rounded-b-2xl pb-6 pt-6 shadow-lg bg-royal-blue-950 overflow-hidden`}

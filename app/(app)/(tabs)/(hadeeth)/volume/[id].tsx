@@ -120,7 +120,7 @@ function HadithVolume() {
   }
 
   return (
-    <Page>
+    <Page edges={['top']}>
       <Header title={title} onPressButton={() => router.back()} />
       <View className="bg-gray-100 pt-4 px-4">
         <FlatList

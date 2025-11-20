@@ -17,7 +17,7 @@ export default function Introduction() {
   const router = useRouter()
 
   return (
-    <Page>
+    <Page edges={['top']}>
       <Header title={t(SHARED_TEXT.INTRO_TITLE)} onPressButton={() => router.back()}/>
       <Pdf
         trustAllCerts={false}

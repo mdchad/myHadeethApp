@@ -255,12 +255,12 @@ function HadithContent() {
                   footnoteRefs={footnoteRefs}
                 />
               )}
-              ListHeaderComponent={
-                <VolumeMetadataHeader volumeDetails={data[0]?.volume_details} />
-              }
+              // ListHeaderComponent={
+              //   <VolumeMetadataHeader volumeDetails={data[0]?.volume_details} />
+              // }
               keyExtractor={(item) => item._id}
               showsVerticalScrollIndicator={false}
-              contentContainerStyle={{ paddingHorizontal: 6, paddingTop: 56 }}
+              contentContainerStyle={{ paddingHorizontal: 6, paddingTop: 102 }}
             />
           </View>
         )}

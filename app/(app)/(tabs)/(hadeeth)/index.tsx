@@ -63,7 +63,7 @@ function Books() {
   const { isLoading, isError, data, error } = useGetBooks()
 
   return (
-    <Page>
+    <Page edges={['top']}>
       <Header title={t(SHARED_TEXT.BOOKS_HEADER)} ></Header>
       <View className="bg-gray-100">
         <ImageBackground

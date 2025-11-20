@@ -128,7 +128,7 @@ function UniversalDetail() {
   }
 
   return (
-    <Page className="bg-reading-background">
+    <Page edges={['top']} className="bg-reading-background">
       <StatusBar hidden={!barsVisible} style={theme === 'dark' ? 'light' : 'dark'} />
       {/* Sticky Top Bar */}
       <ReadingTopBar

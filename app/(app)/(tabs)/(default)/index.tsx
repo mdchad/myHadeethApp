@@ -38,7 +38,7 @@ function Home() {
   }, [])
 
   return (
-    <Page className="bg-white">
+    <Page edges={['top']} className="bg-white">
       <View className="flex space-y-3 bg-white">
         <ScrollView>
           <View className="mx-2 p-3 flex gap-4">

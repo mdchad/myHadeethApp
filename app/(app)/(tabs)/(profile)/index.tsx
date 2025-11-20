@@ -40,7 +40,7 @@ export default function Profile() {
   }
 
   return (
-    <Page className="bg-white w-full">
+    <Page edges={['top']} className="bg-white w-full">
       <ScrollView>
         <Header title="Settings" rounded={false} />
         <View
