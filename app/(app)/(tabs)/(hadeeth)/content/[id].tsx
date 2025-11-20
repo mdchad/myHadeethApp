@@ -83,7 +83,7 @@ function HadithContent() {
   const bookTitle = data?.[0]?.book_title?.ms
 
   return (
-    <Page>
+    <Page edges={['top']}>
       <Header title={bookTitle} onPressButton={() => router.back()} />
       <View className="p-4 pb-0 bg-white">
         <VolumeTitle

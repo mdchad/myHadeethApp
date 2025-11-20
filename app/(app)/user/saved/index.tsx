@@ -4,7 +4,7 @@ import Page from '@/app/components/page'
 
 const Saved = () => {
   return (
-    <Page className="bg-white">
+    <Page edges={['top']} className="bg-white">
       <ScrollView className="py-4">
         <View className="flex sm:mx-auto sm:w-full sm:max-w-md w-full h-full">
           <View className="py-6">

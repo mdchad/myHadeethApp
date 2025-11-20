@@ -38,7 +38,7 @@ function Home() {
   }, [])
 
   return (
-    <Page className="bg-white">
+    <Page edges={['top']} className="bg-white">
       <View className="flex space-y-3 bg-white">
         <ScrollView>
           <View className="mx-2 p-3 flex gap-4">
@@ -69,7 +69,7 @@ function Home() {
                       { label: '🇬🇧 English', value: 'en', inputLabel: '🇬🇧' }
                     ]}
                   />
-                  <Link href="/user" asChild>
+                  <Link href={{ pathname: '/(app)/user'}} asChild>
                     <Pressable className="ml-2">
                       <SettingsIcon size={20} color={'#1C2A4F'} />
                     </Pressable>
@@ -77,7 +77,7 @@ function Home() {
                 </View>
               </View>
               <Link
-                href={{ pathname: `/hadith-detail/${data?._id}` }}
+                href={{ pathname: '/(app)/hadith-detail/[id]', params: { id: data?._id } }}
                 asChild
               >
                 <Pressable className="bg-white border border-1 border-royal-blue-950 gap-2 rounded-md overflow-hidden">
@@ -162,7 +162,6 @@ function Home() {
                       <TouchableHighlight className="p-1" underlayColor="#333">
                         <Share2
                           color="white"
-                          absoluteStrokeWidth={2}
                           size={18}
                         />
                       </TouchableHighlight>
@@ -176,7 +175,6 @@ function Home() {
                       <TouchableHighlight className="p-1" underlayColor="#333">
                         <Bookmark
                           color="white"
-                          absoluteStrokeWidth={2}
                           size={18}
                         />
                       </TouchableHighlight>
@@ -193,7 +191,7 @@ function Home() {
             </View>
 
             <View className="flex flex-row gap-2">
-              <Link href="/hadith40" asChild className="flex-1">
+              <Link href={{ pathname: '/(app)/hadith40'}} asChild className="flex-1">
                 <Pressable className="border border-royal-blue-950 flex justify-between items-center rounded-md">
                   <View className="flex-grow p-8 w-full">
                     <Text className="text-lg text-royal-blue-950 font-semibold">
@@ -206,7 +204,7 @@ function Home() {
                   <View className="h-[16px] bg-royal-blue-950 w-full"></View>
                 </Pressable>
               </Link>
-              <Link href={'(tabs)/(hadeeth)'} asChild className="flex-1">
+              <Link href={{ pathname: '/(app)/(tabs)/(hadeeth)' }} asChild className="flex-1">
                 <Pressable className="border border-royal-blue-950 rounded-md">
                   <LinearGradient
                     // Background Linear Gradient
@@ -227,7 +225,7 @@ function Home() {
               </Link>
             </View>
 
-            <Link href="/introduction" asChild>
+            <Link href={{ pathname: '/(app)/introduction' }} asChild>
               <Pressable className="bg-white border border-1 border-royal-blue-950 space-y-3 rounded-md">
                 <View className="p-3">
                   <Text className="font-semibold text-lg text-royal-blue-950 underline mb-2">

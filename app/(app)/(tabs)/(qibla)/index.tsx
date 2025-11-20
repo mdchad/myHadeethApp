@@ -5,7 +5,7 @@ import Compass from '@/app/components/compass'
 
 const Qiblat = () => {
   return (
-    <Page className="bg-gray-100">
+    <Page edges={['top']} className="bg-gray-100">
       <View className="bg-gray-100">
         <Compass />
       </View>

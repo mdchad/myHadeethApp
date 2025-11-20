@@ -93,7 +93,7 @@ export default function Hadith40() {
   }
 
   return (
-    <Page>
+    <Page edges={['top']}>
       <Header
         title={t(SHARED_TEXT.HADITHS_FORTY_TITLE)}
         onPressButton={() => router.back()}

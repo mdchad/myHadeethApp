@@ -17,7 +17,7 @@ const Page: React.FC<PageProps> = ({ children, className, edges = [], ...props }
   return (
     <StyledSafeAreaView
       className={`${className} flex-1`}
-      edges={[ 'top', ...edges]}
+      edges={[...edges]}
     >
       {children}
     </StyledSafeAreaView>
