@@ -48,6 +48,7 @@ interface HadithListItemProps {
 
 function HadithContent() {
   const { volumeId, bookId } = useLocalSearchParams<{ volumeId: string; bookId: string }>()
+  console.log("HOII", volumeId, bookId)
   const listRef = useRef<FlashListRef<HadithItemType>>(null)
   const [savedBookmark, setSavedBookmark] = useState<string[]>([])
   const router = useRouter()

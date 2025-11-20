@@ -23,6 +23,7 @@ interface BilingualText {
 interface VolumeItem {
   id: string | number;
   book_id: string;
+  volume_id: string;
   title: BilingualText;
   transliteration?: BilingualText;
   hadith?: {
@@ -40,8 +41,8 @@ const HadithVolumeItem: React.FC<HadithVolumeItemProps> = ({ item, index }) => (
   <Link
     asChild
     href={{
-      pathname: `/hadiths/${item.book_id}`,
-      params: { volumeId: item.id, bookId: item.book_id }
+      pathname: `/(app)/hadiths/[volumeId]`,
+      params: { volumeId: item.id, bookId: item.book_id },
     }}
   >
     <TouchableHighlight
