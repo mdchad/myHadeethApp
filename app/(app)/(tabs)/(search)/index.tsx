@@ -324,7 +324,11 @@ function Search() {
         scrollEnabled={true}
         ItemSeparatorComponent={ItemSeparatorView}
         ListEmptyComponent={() => {
-          return fetchStatus === 'idle' &&
+          return isLoading || fetchStatus === 'fetching' ? (
+            <View className="flex-1 h-svh flex items-center justify-center">
+              <LoadingSpinner />
+            </View>
+          ) : fetchStatus === 'idle' &&
             searchKeyword &&
             !!submittedKeyword ? (
             <View className="flex-1 h-svh flex items-center justify-center">
