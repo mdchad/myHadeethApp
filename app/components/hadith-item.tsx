@@ -38,7 +38,7 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
 
   return (
     <View key={hadith.id}>
-      {hadith.content.map((content, i) => {
+      {hadith.content.map((content: any, i) => {
         if (!content.ar) return null
         return (
           <View key={i}>

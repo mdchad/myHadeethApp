@@ -35,7 +35,7 @@ function HadithSearchSheet({
 
   // callbacks
   const renderBackdrop = useCallback(
-    (props) => (
+    (props: any) => (
       <BottomSheetBackdrop {...props} pressBehavior={'close'} opacity={0.1} />
     ),
     []

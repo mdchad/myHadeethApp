@@ -30,7 +30,7 @@ function ReadingSettingsSheet({ bottomSheetRef }: SheetProps) {
 
   // callbacks
   const renderBackdrop = useCallback(
-    (props) => (
+    (props: any) => (
       <BottomSheetBackdrop {...props} pressBehavior={'close'} opacity={0.1} />
     ),
     []
@@ -82,7 +82,7 @@ function ReadingSettingsSheet({ bottomSheetRef }: SheetProps) {
                 {themes.map((t) => (
                   <Pressable
                     key={t.name}
-                    onPress={() => Uniwind.setTheme(t.name)}
+                    onPress={() => Uniwind.setTheme(t.name as any)}
                     className={`flex-1 border-2 rounded-lg overflow-hidden ${
                       theme === t.name ? 'border-royal-blue-950' : 'border-gray-200'
                     }`}
