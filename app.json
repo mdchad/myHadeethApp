@@ -10,7 +10,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#1C2A4F"
     },
-    "version": "1.0.8",
+    "version": "1.0.9",
     "assetBundlePatterns": [
       "**/*"
     ],
