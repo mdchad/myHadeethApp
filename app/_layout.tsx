@@ -13,6 +13,7 @@ import { format } from 'date-fns'
 import { setAudioModeAsync } from 'expo-audio'
 import { PostHogProvider } from 'posthog-react-native'
 import '../global.css'
+import * as Sentry from '@sentry/react-native'
 
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
@@ -119,7 +120,14 @@ const asyncPersist = createAsyncStoragePersister({
 
 SplashScreen.preventAutoHideAsync()
 
-export default function Root() {
+Sentry.init({
+  dsn: process.env.EXPO_PUBLIC_SENTRY_DSN,
+  // Adds more context data to events (IP address, cookies, user, etc.)
+  // For more information, visit: https://docs.sentry.io/platforms/react-native/data-management/data-collected/
+  sendDefaultPii: true,
+});
+
+export default Sentry.wrap(function Root() {
   useAppState(onAppStateChange)
   useOnlineManager()
 
@@ -210,4 +218,4 @@ export default function Root() {
       </GestureHandlerRootView>
     </PersistQueryClientProvider>
   )
-}
+})

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, ScrollView, Switch } from 'react-native'
+import { View, Text, ScrollView, Switch, TouchableHighlight } from 'react-native'
 
-import * as Updates from 'expo-updates'
 import Page from '@/app/components/page'
 import {
   BellRing,
@@ -10,7 +9,6 @@ import {
   Smartphone
 } from 'lucide-react-native'
 import { Link, useRouter } from 'expo-router'
-import { TouchableHighlight } from 'react-native-gesture-handler'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import * as WebBrowser from 'expo-web-browser'
 
@@ -44,25 +42,6 @@ export default function Settings() {
   }
 
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState)
-
-  const triggerUpdate = async () => {
-    try {
-      await AsyncStorage.clear()
-      AsyncStorage.getAllKeys()
-        .then((keys) => AsyncStorage.multiRemove(keys))
-        .then(() => console.log('success'))
-      const update = await Updates.checkForUpdateAsync()
-      if (update.isAvailable) {
-        await Updates.fetchUpdateAsync()
-        // await Updates.reloadAsync();
-        alert('An update is available. Restart your app to apply the update.')
-        // Updates.reloadAsync();
-      }
-    } catch (e) {
-      // handle or log error
-      console.log(e.message)
-    }
-  }
 
   return (
     <Page edges={['top']} className="bg-gray-100">
@@ -111,22 +90,12 @@ export default function Settings() {
             </View>
             <TouchableHighlight
               onPress={() => WebBrowser.openBrowserAsync('https://expo.dev')}
-              className="rounded-b-xl bg-white border-b border-gray-300"
-              underlayColor="#f9fafb"
-            >
-              <View className="mx-5 py-3 space-x-3 flex flex-row items-center">
-                <Smartphone color={'black'} size={20} />
-                <Text className="text-lg">About</Text>
-              </View>
-            </TouchableHighlight>
-            <TouchableHighlight
-              onPress={triggerUpdate}
               className="rounded-b-xl bg-white"
               underlayColor="#f9fafb"
             >
               <View className="mx-5 py-3 space-x-3 flex flex-row items-center">
                 <Smartphone color={'black'} size={20} />
-                <Text className="text-lg">Update App</Text>
+                <Text className="text-lg">About</Text>
               </View>
             </TouchableHighlight>
           </View>

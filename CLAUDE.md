@@ -181,4 +181,3 @@ All API calls go through `https://my-way-web.vercel.app/api`:
 5. **Qibla Direction** - Compass showing Qibla direction using device sensors
 6. **Audio Recitations** - Audio playback for Hadiths and Quran
 7. **Offline Support** - Aggressive caching with offline-first strategy
-8. **OTA Updates** - Expo Updates for production channel

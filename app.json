@@ -10,7 +10,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#1C2A4F"
     },
-    "version": "1.0.8",
+    "version": "1.0.9",
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -55,7 +55,16 @@
       "expo-secure-store",
       "expo-web-browser",
       "expo-audio",
-      "expo-localization"
+      "expo-localization",
+      [
+        "@sentry/react-native/expo",
+        {
+          "url": "https://sentry.io/",
+          "project": "myway-app",
+          "organization": "pixelmind-studio"
+        }
+      ],
+      "expo-asset"
     ],
     "ios": {
       "bundleIdentifier": "com.mdchad.myWay",
@@ -83,15 +92,6 @@
         "android.permission.RECORD_AUDIO",
         "android.permission.MODIFY_AUDIO_SETTINGS"
       ]
-    },
-    "runtimeVersion": {
-      "policy": "sdkVersion"
-    },
-    "updates": {
-      "url": "https://u.expo.dev/06765aee-13df-4192-8675-90bab00f9e6c",
-      "enabled": true,
-      "fallbackToCacheTimeout": 0,
-      "checkAutomatically": "ON_LOAD"
     },
     "experiments": {
       "typedRoutes": true,

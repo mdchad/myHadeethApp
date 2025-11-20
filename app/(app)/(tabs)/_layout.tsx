@@ -1,7 +1,7 @@
 import { View, Image } from 'react-native'
 import React from 'react'
 import { Tabs } from 'expo-router'
-import { SearchIcon } from 'lucide-react-native'
+import { ClockIcon, HomeIcon, LayoutGridIcon, SearchIcon } from 'lucide-react-native'
 import SHARED_TEXT from "../../i18n";
 import {t} from "i18next";
 
@@ -20,15 +20,16 @@ const _layout = () => {
         tabBarActiveTintColor: 'white',
         tabBarInactiveTintColor: 'rgb(209,213,219)',
         tabBarStyle: {
-          paddingVertical: 10,
           width: 'auto',
           backgroundColor: '#1C2A4F'
         },
+        tabBarIconStyle: {
+          marginTop: 2
+        },
         tabBarLabelStyle: {
-          // fontSize: 12,
           margin: 0,
-          paddingTop: 0,
-          paddingBottom: 5
+          paddingTop: 2,
+          fontWeight: "bold"
         }
       }}
     >
@@ -36,16 +37,17 @@ const _layout = () => {
           name="(default)"
           options={{
             tabBarLabel: t(SHARED_TEXT.TAB_HOME_LABEL),
-            tabBarIcon: ({ focused }) => {
+            tabBarIcon: ({ focused }  ) => {
               return (
-                <View
-                  style={{
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                  }}
-                >
-                  <Image source={homeLogo} style={{ width: 20, height: 20 }} />
-                </View>
+                <HomeIcon size={22} color={focused ? 'white' : '#d1d1d1'}/>
+                // <View
+                //   style={{
+                //     justifyContent: 'center',
+                //     alignItems: 'center'
+                //   }}
+                // >
+                //   <Image source={homeLogo} style={{ width: 20, height: 20 }} />
+                // </View>
               )
             }
           }}
@@ -56,17 +58,18 @@ const _layout = () => {
             tabBarLabel: t(SHARED_TEXT.TAB_HADITH_LABEL),
             tabBarIcon: ({ focused }) => {
               return (
-                <View
-                  style={{
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                  }}
-                >
-                  <Image
-                    source={hadithLogo}
-                    style={{ width: 20, height: 20 }}
-                  />
-                </View>
+                <LayoutGridIcon size={22} color={focused ? 'white' : '#d1d1d1'} />
+                // <View
+                //   style={{
+                //     justifyContent: 'center',
+                //     alignItems: 'center'
+                //   }}
+                // >
+                //   <Image
+                //     source={hadithLogo}
+                //     style={{ width: 20, height: 20 }}
+                //   />
+                // </View>
               )
             }
           }}
@@ -77,15 +80,16 @@ const _layout = () => {
             tabBarLabel: t(SHARED_TEXT.TAB_SEARCH_LABEL),
             tabBarIcon: ({ focused }) => {
               return (
-                <View
-                  style={{
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                  }}
-                >
-                  <SearchIcon size={22} color={'white'} />
-                  {/* <FontAwesome5 name="home" size={30} color={focused ? 'tomato' : 'gray'} /> */}
-                </View>
+                <SearchIcon size={22} color={focused ? 'white' : '#d1d1d1'} />
+                // <View
+                //   style={{
+                //     justifyContent: 'center',
+                //     alignItems: 'center'
+                //   }}
+                // >
+                //   <SearchIcon size={22} color={'white'} />
+                //   {/* <FontAwesome5 name="home" size={30} color={focused ? 'tomato' : 'gray'} /> */}
+                // </View>
               )
             }
           }}
@@ -96,18 +100,19 @@ const _layout = () => {
             tabBarLabel: t(SHARED_TEXT.TAB_PRAYER_LABEL),
             tabBarIcon: ({ focused }) => {
               return (
-                <View
-                  style={{
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                  }}
-                >
-                  <Image
-                    source={prayerLogo}
-                    style={{ width: 20, height: 20 }}
-                  />
-                  {/* <FontAwesome5 name="home" size={30} color={focused ? 'tomato' : 'gray'} /> */}
-                </View>
+                <ClockIcon size={22} color={focused ? 'white' : '#d1d1d1'} />
+                // <View
+                //   style={{
+                //     justifyContent: 'center',
+                //     alignItems: 'center'
+                //   }}
+                // >
+                //   <Image
+                //     source={prayerLogo}
+                //     style={{ width: 20, height: 20 }}
+                //   />
+                //   {/* <FontAwesome5 name="home" size={30} color={focused ? 'tomato' : 'gray'} /> */}
+                // </View>
               )
             }
           }}
