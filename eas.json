@@ -13,8 +13,7 @@
       "distribution": "internal",
       "ios": {
         "simulator": true
-      },
-      "channel": "development"
+      }
     },
     "development-device": {
       "developmentClient": true,
@@ -25,15 +24,13 @@
       "ios": {
         "simulator": true,
         "resourceClass": "m-medium"
-      },
-      "channel": "preview"
+      }
     },
     "production": {
       "ios": {
         "resourceClass": "m-medium"
       },
       "autoIncrement": true,
-      "channel": "production"
     }
   },
   "submit": {
