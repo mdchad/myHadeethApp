@@ -129,7 +129,7 @@ export default function Profile() {
             >
               <View className="px-6 gap-4 flex flex-row items-center py-2 my-1">
                 <Smartphone color={'black'} size={20} />
-                <Text className="text-lg">sign in</Text>
+                <Text className="text-lg">{t(SHARED_TEXT.USER_SIGN_IN_LABEL)}</Text>
               </View>
             </TouchableHighlight>
             {/*<Link href="/settings" asChild>*/}

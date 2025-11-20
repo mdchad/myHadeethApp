@@ -39,5 +39,6 @@
   "SEARCH_SELECTED": "Dipilih",
   "SEARCH_APPLY": "Pilih",
   "SEARCH_FILTER": "Tapis",
-  "SHARE_HADITH_MESSAGE": "Lihat hadis ini di aplikasi My Way! Muat turun sekarang:"
+  "SHARE_HADITH_MESSAGE": "Lihat hadis ini di aplikasi My Way! Muat turun sekarang:",
+  "USER_SIGN_IN_LABEL": "Masuk"
 }
