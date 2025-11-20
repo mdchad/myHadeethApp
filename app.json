@@ -11,7 +11,9 @@
       "backgroundColor": "#1C2A4F"
     },
     "version": "1.0.9",
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "web": {
       "bundler": "metro",
       "favicon": "./assets/favicon.png"
@@ -61,7 +63,8 @@
           "project": "myway-app",
           "organization": "pixelmind-studio"
         }
-      ]
+      ],
+      "expo-asset"
     ],
     "ios": {
       "bundleIdentifier": "com.mdchad.myWay",
