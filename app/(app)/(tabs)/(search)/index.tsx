@@ -33,6 +33,7 @@ import BottomSheet, {
 import QuranText from "@/app/components/quran-text";
 import Sheet from "@/app/components/bottomSheet";
 import { usePostHog } from 'posthog-react-native'
+import LoadingSpinner from '@/app/components/loading-spinner'
 
 interface BilingualText {
   ms: string;
@@ -65,7 +66,7 @@ function Search() {
 
   const API_URL = process.env.EXPO_PUBLIC_API_URL;
 
-  const { data, fetchStatus } = useQuery({
+  const { data, fetchStatus, isLoading } = useQuery({
     queryKey: ['search', page, submittedKeyword, selectedBooks],
     queryFn: async () => {
       const res = await fetch(
@@ -202,7 +203,7 @@ function Search() {
     return (
       <Link
         key={item._id}
-        href={{ pathname: `/hadith-detail/${item._id}` }}
+        href={{ pathname: '/(app)/hadith-detail/[id]', params: { id: item._id } }}
         asChild
       >
         <Pressable key={item._id} className="pb-4 bg-white px-5">
@@ -264,7 +265,7 @@ function Search() {
     )
   }
 
-  const handleChangeText = (newText) => {
+  const handleChangeText = (newText: string) => {
     setSearchKeyword(newText)
     setSubmittedKeyword('')
   }
@@ -311,7 +312,6 @@ function Search() {
         <View className="pl-4 pr-4 flex flex-row justify-end items-center">
           <Pagination
             count={data?.totalCount[0]?.count}
-            term={searchKeyword}
             currentPage={page}
             setPage={setPage}
           />
@@ -327,7 +327,7 @@ function Search() {
           return fetchStatus === 'idle' &&
             searchKeyword &&
             !!submittedKeyword ? (
-            <View className="flex-1 flex items-center justify-center">
+            <View className="flex-1 h-svh flex items-center justify-center">
               <Text className="text-lg">
                 {t(SHARED_TEXT.SEARCH_NO_RESULT_LABEL)}
               </Text>
