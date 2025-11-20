@@ -286,6 +286,9 @@ function Search() {
             placeholder={t(SHARED_TEXT.SEARCH_SEARCHBAR_PLACEHOLDER)}
             value={searchKeyword}
             autoFocus={true}
+            autoCorrect={false}
+            autoComplete={'off'}
+            spellCheck={false}
             returnKeyType={'search'}
             onSubmitEditing={onSubmit}
             clearButtonMode={'while-editing'}
