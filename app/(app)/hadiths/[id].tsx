@@ -3,7 +3,7 @@ import { NativeScrollEvent, NativeSyntheticEvent, View, Pressable } from 'react-
 import { useRouter, useLocalSearchParams } from 'expo-router'
 import Header from '@/app/components/header'
 import useGetHadiths from '@/app/shared/fetcher/useHadiths'
-import { FlashList } from '@shopify/flash-list'
+import { FlashList, FlashListRef } from '@shopify/flash-list'
 import VolumeMetadataHeader from '@/app/components/volume-metadata-header'
 import HadithChapterTitle from '@/app/components/hadith-chapter-title'
 import shareHadith from '@/app/utils/shareHadith'
@@ -48,7 +48,7 @@ interface HadithListItemProps {
 
 function HadithContent() {
   const { volumeId, bookId } = useLocalSearchParams<{ volumeId: string; bookId: string }>()
-  const listRef = useRef<FlashList<HadithItemType>>(null)
+  const listRef = useRef<FlashListRef<HadithItemType>>(null)
   const [savedBookmark, setSavedBookmark] = useState<string[]>([])
   const router = useRouter()
   const ids = {
@@ -84,9 +84,9 @@ function HadithContent() {
     const matches: number[] = []
     const normalizedQuery = searchQuery.toLowerCase()
 
-    data.forEach((hadith, index) => {
+    data.forEach((hadith: any, index: any) => {
       // Search in Arabic and Malay content
-      const hasMatch = hadith.content?.some((content) => {
+      const hasMatch = hadith.content?.some((content: any) => {
         const arText = content.ar?.toLowerCase() || ''
         const msText = content.ms?.toLowerCase() || ''
         return arText.includes(normalizedQuery) || msText.includes(normalizedQuery)
@@ -135,8 +135,6 @@ function HadithContent() {
     return <LoadingSpinner />
   }
 
-  const volumeTitle = data?.[0]?.volume_title
-  const bookTitle = data?.[0]?.book_title?.ms
 
   // Show bars function
   const showBars = () => {
@@ -263,7 +261,6 @@ function HadithContent() {
               keyExtractor={(item) => item._id}
               showsVerticalScrollIndicator={false}
               contentContainerStyle={{ paddingHorizontal: 6, paddingTop: 56 }}
-              estimatedItemSize={700}
             />
           </View>
         )}
