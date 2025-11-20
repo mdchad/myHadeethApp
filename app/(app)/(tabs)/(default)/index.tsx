@@ -76,10 +76,6 @@ function Home() {
                     </Pressable>
                   </Link>
                 </View>
-                <Button title='Try!' onPress={ () => {
-                  Sentry.captureException(new Error('First error'))
-                  console.log('First error captured')
-                }}/>
               </View>
               <Link
                 href={{ pathname: '/(app)/hadith-detail/[id]', params: { id: data?._id } }}
