@@ -93,7 +93,7 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: 2,
-      cacheTime: 24 * 60 * 60 * 1000, // 24 hours
+      gcTime: 24 * 60 * 60 * 1000, // 24 hours
       refetchInterval: false,
       staleTime: 12 * 60 * 60 * 1000 // 12 hours
     }
@@ -161,7 +161,7 @@ export default Sentry.wrap(function Root() {
           return result
         },
         staleTime: 5 * 60 * 1000,
-        cacheTime: 24 * 60 * 60 * 1000
+        gcTime: 24 * 60 * 60 * 1000
       })
     ])
   }
