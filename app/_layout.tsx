@@ -51,7 +51,7 @@ i18n
     init: function () {
       /* use services and options */
     },
-    detect: function (callback) {
+    detect: function (callback: any) {
       console.log('[LANG] detecting language')
       AsyncStorage.getItem('user-language').then((val) => {
         const detected = val || 'ms' //default language
@@ -59,7 +59,7 @@ i18n
         callback(detected)
       })
     },
-    cacheUserLanguage: function (lng) {
+    cacheUserLanguage: function (lng: string) {
       return lng
     }
   })
@@ -83,7 +83,7 @@ i18n
     }
   })
 
-function onAppStateChange(status) {
+function onAppStateChange(status: string) {
   if (Platform.OS !== 'web') {
     focusManager.setFocused(status === 'active')
   }
@@ -93,7 +93,7 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: 2,
-      cacheTime: 24 * 60 * 60 * 1000, // 24 hours
+      gcTime: 24 * 60 * 60 * 1000, // 24 hours
       refetchInterval: false,
       staleTime: 12 * 60 * 60 * 1000 // 12 hours
     }
@@ -102,19 +102,6 @@ const queryClient = new QueryClient({
 
 const asyncPersist = createAsyncStoragePersister({
   storage: AsyncStorage,
-  dehydrateOptions: {
-    dehydrateMutations: true,
-    dehydrateQueries: false,
-    shouldDehydrateQuery: (query) => {
-      const queryIsReadyForPersistance = query.state.status === 'success'
-      if (queryIsReadyForPersistance) {
-        const { queryKey } = query
-        const excludeFromPersisting = queryKey.includes('search')
-        return !excludeFromPersisting
-      }
-      return queryIsReadyForPersistance
-    }
-  },
   throttleTime: 1000
 })
 
@@ -140,7 +127,7 @@ export default Sentry.wrap(function Root() {
     const { apiGet, apiFetch } = await import('./utils/api')
     const timeZone = 'Asia/Kuala_Lumpur'
     const nowInKualaLumpur = toZonedTime(new Date(), timeZone)
-    const formattedDate = format(nowInKualaLumpur, 'yyyy-MM-dd', { timeZone })
+    const formattedDate = format(nowInKualaLumpur, 'yyyy-MM-dd')
     // The results of this query will be cached like a normal query
 
     return Promise.all([
@@ -161,7 +148,7 @@ export default Sentry.wrap(function Root() {
           return result
         },
         staleTime: 5 * 60 * 1000,
-        cacheTime: 24 * 60 * 60 * 1000
+        gcTime: 24 * 60 * 60 * 1000
       })
     ])
   }
@@ -187,8 +174,19 @@ export default Sentry.wrap(function Root() {
     <PersistQueryClientProvider
       client={queryClient}
       persistOptions={{
-        maxAge: Infinity,
-        persister: asyncPersist
+        maxAge: 24 * 60 * 60 * 1000, // 24 hours
+        persister: asyncPersist,
+        dehydrateOptions: {
+          shouldDehydrateQuery: (query) => {
+            const queryIsReadyForPersistance = query.state.status === 'success'
+            if (queryIsReadyForPersistance) {
+              const { queryKey } = query
+              const excludeFromPersisting = queryKey.includes('search')
+              return !excludeFromPersisting
+            }
+            return queryIsReadyForPersistance
+          }
+        }
       }}
       onSuccess={() =>
         queryClient

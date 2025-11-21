@@ -41,7 +41,7 @@ const HadithVolumeItem: React.FC<HadithVolumeItemProps> = ({ item, index }) => (
   <Link
     asChild
     href={{
-      pathname: `/(app)/hadiths/[volumeId]`,
+      pathname: `/(app)/(tabs)/(hadeeth)/hadiths/[volumeId]`,
       params: { volumeId: item.id, bookId: item.book_id },
     }}
   >
@@ -124,7 +124,7 @@ function HadithVolume() {
     <Page edges={['top']} className="bg-royal-blue-950">
       <StatusBar barStyle={'light-content'} />
       <Header title={title} onPressButton={() => router.back()} />
-      <View className="bg-gray-100 pt-4 px-4">
+      <View className="bg-gray-100 pt-4 px-4 pb-20">
         <FlatList
           className="space-y-6"
           data={data}

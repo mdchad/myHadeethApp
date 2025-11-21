@@ -22,15 +22,6 @@ export default function Layout() {
             headerShown: false,
           }}
         />
-
-        <Stack.Screen
-          name="content"
-          options={{
-            // Hide the header for all other routes.
-            headerTitle: '',
-            headerShown: false
-          }}
-        />
       </Stack>
   )
 }
