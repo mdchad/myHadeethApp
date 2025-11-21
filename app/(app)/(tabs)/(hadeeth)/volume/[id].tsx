@@ -14,6 +14,7 @@ import SHARED_TEXT from "@/app/i18n";
 import {t} from "i18next";
 import Page from '@/app/components/page'
 import LoadingSpinner from '@/app/components/loading-spinner'
+import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 
 interface BilingualText {
   ms: string;
@@ -41,7 +42,7 @@ const HadithVolumeItem: React.FC<HadithVolumeItemProps> = ({ item, index }) => (
   <Link
     asChild
     href={{
-      pathname: `/(app)/(tabs)/(hadeeth)/hadiths/[volumeId]`,
+      pathname: `/(app)/hadiths/[volumeId]`,
       params: { volumeId: item.id, bookId: item.book_id },
     }}
   >
@@ -111,6 +112,7 @@ const HadithVolumeItem: React.FC<HadithVolumeItemProps> = ({ item, index }) => (
 function HadithVolume() {
   const { id, title } = useLocalSearchParams<{ id: string; title: string }>()
   const router = useRouter()
+  const bottomTabBarHeight = useBottomTabBarHeight()
 
   const { isLoading, isError, data, error } = useGetVolumes(id)
 
@@ -124,7 +126,7 @@ function HadithVolume() {
     <Page edges={['top']} className="bg-royal-blue-950">
       <StatusBar barStyle={'light-content'} />
       <Header title={title} onPressButton={() => router.back()} />
-      <View className="bg-gray-100 pt-4 px-4 pb-20">
+      <View className="bg-gray-100 pt-4 px-4">
         <FlatList
           className="space-y-6"
           data={data}
@@ -133,6 +135,7 @@ function HadithVolume() {
           )}
           keyExtractor={(item) => item.id.toString()}
           style={{ paddingRight: 10, marginRight: -10 }}
+          contentContainerStyle={{ paddingBottom: bottomTabBarHeight }}
         />
       </View>
     </Page>
