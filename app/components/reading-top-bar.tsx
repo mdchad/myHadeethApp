@@ -1,12 +1,12 @@
 import React from 'react'
 import { View, Text, Pressable } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import Animated, { AnimatedStyleProp, ViewStyle } from 'react-native-reanimated'
+import Animated from 'react-native-reanimated'
 import { ChevronLeft, SearchIcon, ALargeSmallIcon, BookmarkIcon } from 'lucide-react-native'
 import { withUniwind } from 'uniwind'
 
 interface HadithDetailTopBarProps {
-  animatedStyle: AnimatedStyleProp<ViewStyle>
+  animatedStyle: any
   onBackPress: () => void
   onSearchPress?: () => void
   onSettingsPress: () => void
@@ -33,8 +33,8 @@ const ReadingTopBar: React.FC<HadithDetailTopBarProps> = ({
       className="absolute top-0 left-0 right-0 z-50 bg-reading-background px-4"
     >
       <View
-        style={{ paddingTop: insets.top, paddingBottom: 10 }}
-        className="border-b-2 border-reading-border flex flex-row justify-between"
+        style={{ paddingTop: insets.top + 20 }}
+        className="border-b-2 border-reading-border flex flex-row justify-between pb-4"
       >
         <View className="flex flex-row">
           <Pressable className="flex flex-row" onPress={onBackPress}>

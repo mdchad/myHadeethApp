@@ -127,6 +127,10 @@ function UniversalDetail() {
     return <LoadingSpinner />
   }
 
+  if (!data && !isLoading) {
+    return <Text>Hadith not found</Text>
+  }
+
   return (
     <Page edges={['top']} className="bg-reading-background">
       <StatusBar hidden={!barsVisible} style={theme === 'dark' ? 'light' : 'dark'} />
@@ -139,12 +143,11 @@ function UniversalDetail() {
 
       <ScrollView
         className="bg-reading-background"
-        contentContainerStyle={{ flexGrow: 1 }}
         onScroll={handleScroll}
         scrollEventThrottle={16}
       >
         <Pressable onPress={handleContentPress}>
-          <View className="flex-1 pb-0 bg-reading-background pt-16">
+          <View className="flex-1 pb-0 bg-reading-background pt-20">
             <View className="flex-1">
               {data?.chapter_title?.ms && (
                 <ChapterTitle data={data} footnoteRefs={footnoteRefs}/>
