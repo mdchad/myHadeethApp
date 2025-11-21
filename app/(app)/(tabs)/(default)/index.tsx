@@ -212,8 +212,8 @@ function Home() {
                     colors={['#22276E', '#008080']}
                     className="flex justify-between items-stretch"
                   >
-                    <View className="flex-grow p-8 w-full font-semibold">
-                      <Text className="text-white text-lg">
+                    <View className="flex-grow p-8 w-full">
+                      <Text className="text-white text-lg font-semibold">
                         {t(SHARED_TEXT.HOME_SIX_BOOKS_TITLE)}
                       </Text>
                       <Text className="text-white text-xs break-words">
