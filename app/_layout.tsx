@@ -137,6 +137,7 @@ export default Sentry.wrap(function Root() {
   )
 
   const prefetchTodos = async () => {
+    const { apiGet, apiFetch } = await import('./utils/api')
     const timeZone = 'Asia/Kuala_Lumpur'
     const nowInKualaLumpur = toZonedTime(new Date(), timeZone)
     const formattedDate = format(nowInKualaLumpur, 'yyyy-MM-dd', { timeZone })
@@ -146,27 +147,17 @@ export default Sentry.wrap(function Root() {
       queryClient.prefetchQuery({
         queryKey: ['books'],
         queryFn: async () => {
-          const res = await fetch(`${API_URL}/api/books`, {
-            headers: {
-              'User-Agent': 'MyWayApp/1.0.0'
-            },
-            method: 'GET'
-          })
-          const result = await res.json()
+          const result = await apiGet('/api/books')
           return result.data
         }
       }),
       queryClient.prefetchQuery({
         queryKey: ['todayHadith', formattedDate],
         queryFn: async () => {
-          const res = await fetch(`${API_URL}/api/today`, {
-            headers: {
-              'User-Agent': 'MyWayApp/1.0.0'
-            },
-            cache: 'no-store',
-            method: 'GET'
+          const result = await apiFetch('/api/today', {
+            method: 'GET',
+            cache: 'no-store'
           })
-          const result = await res.json()
           return result
         },
         staleTime: 5 * 60 * 1000,

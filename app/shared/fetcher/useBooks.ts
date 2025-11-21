@@ -1,20 +1,13 @@
 import { useQuery } from '@tanstack/react-query'
 import type { ApiResponse } from '../../types'
-
-const API_URL = process.env.EXPO_PUBLIC_API_URL;
+import { apiGet } from '@/app/utils/api'
 
 // TODO: Replace 'any' with proper Book type when hadith types are added
 export default function useGetBooks() {
   return useQuery<any[]>({
     queryKey: ['books'],
     queryFn: async () => {
-      const res = await fetch(`${API_URL}/api/books`, {
-        headers: {
-          'User-Agent': 'MyWayApp/1.0.0'
-        },
-        method: 'GET'
-      })
-      const result: ApiResponse<any[]> = await res.json()
+      const result: ApiResponse<any[]> = await apiGet('/api/books')
       return result.data
     },
     networkMode: "offlineFirst"
