@@ -43,6 +43,14 @@ export default function Layout() {
           headerShown: false
         }}
       />
+      <Stack.Screen
+        name="hadiths"
+        options={{
+          // Hide the header for all other routes.
+          headerShown: false,
+        }}
+      />
+
     </Stack>
   )
 }
