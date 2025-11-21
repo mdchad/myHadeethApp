@@ -147,7 +147,7 @@ function UniversalDetail() {
         scrollEventThrottle={16}
       >
         <Pressable onPress={handleContentPress}>
-          <View className="flex-1 pb-0 bg-reading-background pt-20">
+          <View className="flex-1 pb-0 bg-reading-background pt-40">
             <View className="flex-1">
               {data?.chapter_title?.ms && (
                 <ChapterTitle data={data} footnoteRefs={footnoteRefs}/>

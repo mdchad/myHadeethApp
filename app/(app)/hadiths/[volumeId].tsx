@@ -261,7 +261,7 @@ function HadithContent() {
               }
               keyExtractor={(item) => item._id}
               showsVerticalScrollIndicator={false}
-              contentContainerStyle={{ paddingHorizontal: 6, paddingTop: 130 }}
+              contentContainerClassName="pt-40"
             />
           </View>
         )}
