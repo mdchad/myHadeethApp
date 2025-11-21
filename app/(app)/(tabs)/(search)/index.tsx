@@ -25,13 +25,12 @@ import {
 import SHARED_TEXT from '@/app/i18n'
 import { t } from 'i18next'
 import Pagination from '@/app/components/pagination'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import { isArray } from 'es-toolkit/compat'
 import BottomSheet from '@gorhom/bottom-sheet'
 import QuranText from '@/app/components/quran-text'
 import Sheet from '@/app/components/bottomSheet'
 import { usePostHog } from 'posthog-react-native'
 import LoadingSpinner from '@/app/components/loading-spinner'
+import { useSearchHistoryStore } from '@/app/stores/useSearchHistoryStore'
 
 interface BilingualText {
   ms: string
@@ -54,11 +53,13 @@ function Search() {
   const posthog = usePostHog()
   const [searchKeyword, setSearchKeyword] = useState('')
   const [page, setPage] = React.useState(1)
-  const [searchHistory, setSearchHistory] = useState<string[]>([])
   const [books, setBooks] = useState<string[]>([])
   const [selectedBooks, setSelectedBooks] = useState<string>('')
   const [submittedKeyword, setSubmittedKeyword] = useState<string>('')
   const bottomSheetRef = useRef<BottomSheet>(null)
+
+  // Use Zustand store for search history
+  const { history: searchHistory, addToHistory, removeFromHistory } = useSearchHistoryStore()
 
   const queryClient = useQueryClient()
 
@@ -86,15 +87,6 @@ function Search() {
     // If you want to clear the data when the search is disabled, you can use:
     // initialData: queryKeyword ? undefined : [],
   })
-
-  useEffect(() => {
-    AsyncStorage.getItem('searchHistory').then((data) => {
-      if (data !== null && isArray(data)) {
-        const history = JSON.parse(data)
-        setSearchHistory(history)
-      }
-    })
-  }, [])
 
   useEffect(() => {
     if (searchKeyword.trim() === '') {
@@ -234,9 +226,8 @@ function Search() {
     )
   }
 
-  async function onSubmit() {
+  function onSubmit() {
     Keyboard.dismiss()
-    let history = []
     if (searchKeyword) {
       setSubmittedKeyword(searchKeyword)
 
@@ -246,36 +237,18 @@ function Search() {
         books_filtered: selectedBooks || 'all'
       })
 
-      const filteredArray = searchHistory.filter(
-        (item) => item !== searchKeyword
-      )
-      if (searchHistory.length < 15) {
-        history = [searchKeyword, ...filteredArray]
-        setSearchHistory(history)
-      } else {
-        const newArrayWithoutLastItem = filteredArray.slice(
-          0,
-          filteredArray.length - 1
-        )
-        history = [searchKeyword, ...newArrayWithoutLastItem]
-        setSearchHistory(history)
-      }
-      await AsyncStorage.setItem('searchHistory', JSON.stringify(history))
+      // Add to history using Zustand store
+      addToHistory(searchKeyword)
     }
   }
 
-  async function onSubmitFromHistory(item) {
+  function onSubmitFromHistory(item: string) {
     setSearchKeyword(item)
     setSubmittedKeyword(item)
   }
 
-  async function onRemoveFromHistory(item) {
-    const removedFromHistory = searchHistory.filter((search) => search !== item)
-    setSearchHistory(removedFromHistory)
-    await AsyncStorage.setItem(
-      'searchHistory',
-      JSON.stringify(removedFromHistory)
-    )
+  function onRemoveFromHistory(item: string) {
+    removeFromHistory(item)
   }
 
   const handleChangeText = (newText: string) => {
