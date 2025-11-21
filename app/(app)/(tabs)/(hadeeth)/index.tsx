@@ -34,7 +34,10 @@ function Item({ title, id }: ItemProps) {
 
   return (
     <Link
-      href={`(hadeeth)/volume/${id}?title=${title}`}
+      href={{
+        pathname: '/(app)/(tabs)/(hadeeth)/volume/[id]',
+        params: { id: id, title: title },
+      }}
       asChild
     >
       <Pressable className="w-[48%] mr-4 bg-white" onPress={handlePress}>

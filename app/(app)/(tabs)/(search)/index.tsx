@@ -31,6 +31,7 @@ import Sheet from '@/app/components/bottomSheet'
 import { usePostHog } from 'posthog-react-native'
 import LoadingSpinner from '@/app/components/loading-spinner'
 import { useSearchHistoryStore } from '@/app/stores/useSearchHistoryStore'
+import { apiGet } from '@/app/utils/api'
 
 interface BilingualText {
   ms: string
@@ -63,23 +64,14 @@ function Search() {
 
   const queryClient = useQueryClient()
 
-  const API_URL = process.env.EXPO_PUBLIC_API_URL
-
   const { data, fetchStatus, isLoading } = useQuery({
     queryKey: ['search', page, submittedKeyword, selectedBooks],
     queryFn: async () => {
-      const res = await fetch(
-        `${API_URL}/api/search?page=${page}&limit=${10}&query=${encodeURIComponent(
+      const result = await apiGet(
+        `/api/search?page=${page}&limit=10&query=${encodeURIComponent(
           submittedKeyword
-        )}&books=${selectedBooks}`,
-        {
-          headers: {
-            'User-Agent': 'MyWayApp/1.0.0'
-          },
-          method: 'GET'
-        }
+        )}&books=${selectedBooks}`
       )
-      const result = await res.json()
       return result.data
     },
     keepPreviousData: true,
