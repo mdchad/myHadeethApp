@@ -30,7 +30,8 @@ const _layout = () => {
           margin: 0,
           paddingTop: 2,
           fontWeight: "bold"
-        }
+        },
+        sceneStyle: { backgroundColor: '#1C2A4F' }
       }}
     >
         <Tabs.Screen

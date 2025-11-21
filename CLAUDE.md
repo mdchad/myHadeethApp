@@ -12,7 +12,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Navigation**: Expo Router (file-based routing)
 - **State Management**: TanStack Query v5 with AsyncStorage persistence
 - **Storage**: MMKV for fast synchronous storage, AsyncStorage for query cache
-- **Styling**: NativeWind (TailwindCSS for React Native)
+- **Styling**: Uniwind (TailwindCSS for React Native)
 - **Internationalization**: i18next with custom AsyncStorage language detector
 - **UI Libraries**: Moti for animations, Gorhom Bottom Sheet, Reanimated
 - **Audio**: Expo AV (configured for silent mode on iOS)

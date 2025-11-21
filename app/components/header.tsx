@@ -7,11 +7,12 @@ interface HeaderProps {
   onPressButton?: () => void;
   search?: (text: string) => void;
   rounded?: boolean;
+  backgroundClassName?: string;
 }
 
-function Header({ title, onPressButton, search, rounded = true }: HeaderProps) {
+function Header({ title, onPressButton, search, rounded = true, backgroundClassName = 'bg-gray-100' }: HeaderProps) {
   return (
-    <View className="bg-gray-100">
+    <View className={`${backgroundClassName}`}>
       <View
         className={`flex ${
           rounded && 'rounded-b-2xl'

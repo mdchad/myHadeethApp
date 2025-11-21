@@ -9,7 +9,11 @@ const _layout = () => {
           name="index"
           options={{
             // Hide the header for all other routes.
-            headerShown: false
+            headerShown: false,
+            presentation: 'card',
+            contentStyle: { backgroundColor: 'red' },
+            headerStyle: { backgroundColor: 'red' },
+            headerLargeStyle: { backgroundColor: 'red' },
           }}
         />
       </Stack>

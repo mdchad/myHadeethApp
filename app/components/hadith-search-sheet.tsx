@@ -1,6 +1,6 @@
-import BottomSheet, { BottomSheetBackdrop, BottomSheetView } from '@gorhom/bottom-sheet'
-import { Pressable, Text, TextInput, View } from 'react-native'
-import React, { useCallback, useMemo } from 'react'
+import BottomSheet, { BottomSheetBackdrop, BottomSheetTextInput, BottomSheetView } from '@gorhom/bottom-sheet'
+import { Keyboard, Pressable, Text, TextInput, View } from 'react-native'
+import React, { useCallback, useMemo, useState } from 'react'
 import { Portal } from '@gorhom/portal'
 import { X, ChevronUp, ChevronDown } from 'lucide-react-native'
 import { withUniwind } from 'uniwind'
@@ -31,12 +31,13 @@ function HadithSearchSheet({
   onClose
 }: SearchSheetProps) {
   // variables
-  const snapPoints = useMemo(() => ['1%', '50%'], [])
+  const snapPoints = useMemo(() => ['1%', '30%'], [])
+  const [isOpen, setIsOpen] = useState(false)
 
   // callbacks
   const renderBackdrop = useCallback(
     (props: any) => (
-      <BottomSheetBackdrop {...props} pressBehavior={'close'} opacity={0.1} />
+      <BottomSheetBackdrop {...props} pressBehavior={'close'} opacity={0.1} onPress={() => Keyboard.dismiss()}/>
     ),
     []
   )
@@ -45,6 +46,10 @@ function HadithSearchSheet({
     bottomSheetRef.current?.close()
     onClose()
   }
+
+  const handleSheetChange = useCallback((index: number) => {
+    setIsOpen(index > 0)
+  }, [])
 
   return (
     <Portal hostName={'root'}>
@@ -57,6 +62,7 @@ function HadithSearchSheet({
         enableContentPanningGesture={false}
         enableHandlePanningGesture={true}
         onClose={onClose}
+        onChange={handleSheetChange}
       >
         <BottomSheetView
           style={{
@@ -75,7 +81,7 @@ function HadithSearchSheet({
 
           {/* Search Input */}
           <View className="flex flex-row items-center bg-gray-100 rounded-lg px-3 py-3 mb-4">
-            <TextInput
+            <BottomSheetTextInput
               className="flex-1 text-gray-900 text-base"
               placeholder="Enter keyword..."
               placeholderTextColor="#888"
@@ -86,7 +92,7 @@ function HadithSearchSheet({
               importantForAutofill="no"
               value={searchQuery}
               onChangeText={onSearchChange}
-              autoFocus
+              autoFocus={isOpen}
               returnKeyType="search"
             />
           </View>

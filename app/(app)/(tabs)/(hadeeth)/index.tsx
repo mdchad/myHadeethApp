@@ -2,7 +2,7 @@ import {
   View,
   Text,
   FlatList,
-  ImageBackground, Pressable
+  ImageBackground, Pressable, StatusBar
 } from 'react-native'
 import React from 'react'
 import { Link, useRouter } from 'expo-router'
@@ -63,7 +63,8 @@ function Books() {
   const { isLoading, isError, data, error } = useGetBooks()
 
   return (
-    <Page edges={['top']}>
+    <Page edges={['top']} className="bg-royal-blue-950">
+      <StatusBar barStyle="light-content" />
       <Header title={t(SHARED_TEXT.BOOKS_HEADER)} ></Header>
       <View className="bg-gray-100">
         <ImageBackground

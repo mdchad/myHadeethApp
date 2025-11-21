@@ -1,13 +1,10 @@
 import React, { useRef, useState, useMemo, useEffect } from 'react'
-import { NativeScrollEvent, NativeSyntheticEvent, View, Pressable } from 'react-native'
+import { NativeScrollEvent, NativeSyntheticEvent, View, Pressable, Text, Keyboard } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
-import Header from '@/app/components/header'
 import useGetHadiths from '@/app/shared/fetcher/useHadiths'
 import { FlashList, FlashListRef } from '@shopify/flash-list'
 import VolumeMetadataHeader from '@/app/components/volume-metadata-header'
-import HadithChapterTitle from '@/app/components/hadith-chapter-title'
 import shareHadith from '@/app/utils/shareHadith'
-import VolumeTitle from '@/app/components/volume-title'
 import HadithItem from '@/app/components/hadith-item'
 import ActionButtons from '@/app/components/action-buttons'
 import LoadingSpinner from '@/app/components/loading-spinner'
@@ -15,7 +12,6 @@ import ScrollToTopButton from '@/app/components/scroll-to-top-button'
 import Page from '@/app/components/page'
 import { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { useReadingSettingsStore } from '@/app/stores/useReadingSettingsStore'
 import { useUniwind } from 'uniwind'
 import BottomSheet from '@gorhom/bottom-sheet'
 import ReadingTopBar from '@/app/components/reading-top-bar'
@@ -123,7 +119,7 @@ function HadithContent() {
   }))
 
   const bottomBarAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: bottomBarTranslateY.value }]
+    transform: [{ translateY: bottomBarTranslateY.value + 16 }]
   }))
 
   const onSave = (id: string) => {
@@ -133,6 +129,11 @@ function HadithContent() {
 
   if (isLoading) {
     return <LoadingSpinner />
+  }
+
+
+  if (!data && !isLoading) {
+    return <Text>Hadith not found</Text>
   }
 
 
@@ -204,6 +205,7 @@ function HadithContent() {
   const handleCloseSearch = () => {
     setSearchQuery('')
     setCurrentMatchIndex(0)
+    Keyboard.dismiss()
   }
 
   const HadithListItem: React.FC<HadithListItemProps> = ({ item, onShare, onSave, ids, footnoteRefs }) => {
@@ -260,7 +262,7 @@ function HadithContent() {
               }
               keyExtractor={(item) => item._id}
               showsVerticalScrollIndicator={false}
-              contentContainerStyle={{ paddingHorizontal: 6, paddingTop: 102 }}
+              contentContainerClassName="pt-40"
             />
           </View>
         )}

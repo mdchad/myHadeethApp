@@ -5,7 +5,7 @@ import {
   ScrollView,
   TouchableHighlight,
   Share,
-  Alert
+  Alert, StatusBar
 } from 'react-native'
 
 import Page from '@/app/components/page'
@@ -48,9 +48,10 @@ export default function Profile() {
   }
 
   return (
-    <Page edges={['top']} className="bg-white w-full">
-      <ScrollView>
-        <Header rounded={false} onPressButton={() => router.back()} />
+    <Page edges={['top']} className="bg-royal-blue-950 w-full">
+      <StatusBar barStyle="light-content" />
+      <ScrollView className="bg-gray-100">
+        <Header title="" rounded={false} onPressButton={() => router.back()} />
         <View
           className={`w-full flex items-center h-10 rounded-b-2xl bg-royal-blue-950`}
         >

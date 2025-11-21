@@ -1,11 +1,12 @@
-import { Text, View } from 'react-native'
+import { StatusBar, Text, View } from 'react-native'
 import React from 'react'
 import Page from '@/app/components/page'
 import Compass from '@/app/components/compass'
 
 const Qiblat = () => {
   return (
-    <Page edges={['top']} className="bg-gray-100">
+    <Page edges={['top']} className="bg-royal-blue-950">
+      <StatusBar barStyle="light-content" />
       <View className="bg-gray-100">
         <Compass />
       </View>

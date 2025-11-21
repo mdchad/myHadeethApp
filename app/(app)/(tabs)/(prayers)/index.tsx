@@ -8,7 +8,7 @@ import {
   View,
   ImageBackground,
   Linking,
-  Button
+  Button, StatusBar
 } from 'react-native'
 import Page from '@/app/components/page'
 import { useLocationStore } from '@/app/stores/useLocationStore'
@@ -213,8 +213,9 @@ export default function Prayer() {
   }
 
   return (
-    <Page edges={['top']} className="bg-gray-100">
-      <ScrollView>
+    <Page edges={['top']} className="bg-royal-blue-950">
+      <StatusBar barStyle="light-content" />
+      <ScrollView className="bg-gray-100">
         <Header rounded={false} title={t(SHARED_TEXT.PRAYERS_HEADER)} />
         <View
           className={`px-6 flex flex-row justify-between items-end rounded-b-2xl py-6 shadow-lg bg-royal-blue-950 overflow-hidden`}

@@ -6,7 +6,8 @@ import {
   View,
   TouchableOpacity,
   Keyboard,
-  TouchableHighlight
+  TouchableHighlight,
+  StatusBar
 } from 'react-native'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Page from '@/app/components/page'
@@ -25,31 +26,28 @@ import SHARED_TEXT from '@/app/i18n'
 import { t } from 'i18next'
 import Pagination from '@/app/components/pagination'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { isArray } from 'es-toolkit/compat';
-import BottomSheet, {
-  BottomSheetBackdrop,
-  BottomSheetView
-} from '@gorhom/bottom-sheet'
-import QuranText from "@/app/components/quran-text";
-import Sheet from "@/app/components/bottomSheet";
+import { isArray } from 'es-toolkit/compat'
+import BottomSheet from '@gorhom/bottom-sheet'
+import QuranText from '@/app/components/quran-text'
+import Sheet from '@/app/components/bottomSheet'
 import { usePostHog } from 'posthog-react-native'
 import LoadingSpinner from '@/app/components/loading-spinner'
 
 interface BilingualText {
-  ms: string;
-  ar: string;
+  ms: string
+  ar: string
 }
 
 interface SearchResultItem {
-  _id: string;
-  book_title: BilingualText;
-  volume_title: BilingualText;
-  number: number;
-  content: BilingualText[];
+  _id: string
+  book_title: BilingualText
+  volume_title: BilingualText
+  number: number
+  content: BilingualText[]
 }
 
 interface RenderedItemsProps {
-  item: SearchResultItem;
+  item: SearchResultItem
 }
 
 function Search() {
@@ -64,7 +62,7 @@ function Search() {
 
   const queryClient = useQueryClient()
 
-  const API_URL = process.env.EXPO_PUBLIC_API_URL;
+  const API_URL = process.env.EXPO_PUBLIC_API_URL
 
   const { data, fetchStatus, isLoading } = useQuery({
     queryKey: ['search', page, submittedKeyword, selectedBooks],
@@ -162,24 +160,36 @@ function Search() {
 
     // Add any remaining text after the last match
     if (language === 'ar') {
-      textWithLanguage = <QuranText key={Math.random()} text={textWithLanguage} font={'arabic-regular'} />
+      textWithLanguage = (
+        <QuranText
+          key={Math.random()}
+          text={textWithLanguage}
+          font={'arabic-regular'}
+        />
+      )
     } else {
-      textWithLanguage = <QuranText key={Math.random()} text={textWithLanguage} font={'arabic-symbols'} special={true} />
+      textWithLanguage = (
+        <QuranText
+          key={Math.random()}
+          text={textWithLanguage}
+          font={'arabic-symbols'}
+          special={true}
+        />
+      )
     }
     parts.push(textWithLanguage)
 
     if (language === 'ar') {
       return (
-        <Text
-          className="text-xl text-right font-arabic-regular"
-        >
-          {parts}
-        </Text>
+        <Text className="text-xl text-right font-arabic-regular">{parts}</Text>
       )
     }
 
     return (
-      <Text className="text-md font-arabic-symbols" style={{ writingDirection: 'ltr' }}>
+      <Text
+        className="text-md font-arabic-symbols"
+        style={{ writingDirection: 'ltr' }}
+      >
         {parts}
       </Text>
     )
@@ -203,7 +213,10 @@ function Search() {
     return (
       <Link
         key={item._id}
-        href={{ pathname: '/(app)/hadith-detail/[id]', params: { id: item._id } }}
+        href={{
+          pathname: '/(app)/hadith-detail/[id]',
+          params: { id: item._id }
+        }}
         asChild
       >
         <Pressable key={item._id} className="pb-4 bg-white px-5">
@@ -275,99 +288,109 @@ function Search() {
   }, [])
 
   return (
-    <Page edges={['top']} className="bg-gray-100">
+    <Page edges={['top']} className="bg-royal-blue-950">
+      <StatusBar barStyle="light-content" />
       {/*<Header title={t(SHARED_TEXT.SEARCH_HEADER)} rounded={false} />*/}
-      <View
-        className={`px-4 flex flex-row justify-between items-center rounded-b-2xl pb-6 pt-6 shadow-lg bg-royal-blue-950 overflow-hidden`}
-      >
-        <View className="flex-1 bg-white rounded-full shadow-md flex-row items-end px-4 py-3">
-          <SearchIcon size={20} className="h-[4lh]" color="#666" />
-          <TextInput
-            className="flex-1 leading-5 text-base ml-2"
-            placeholder={t(SHARED_TEXT.SEARCH_SEARCHBAR_PLACEHOLDER)}
-            value={searchKeyword}
-            autoFocus={true}
-            autoCorrect={false}
-            autoComplete={'off'}
-            spellCheck={false}
-            returnKeyType={'search'}
-            onSubmitEditing={onSubmit}
-            clearButtonMode={'while-editing'}
-            onChangeText={handleChangeText}
-          />
-        </View>
-        <TouchableOpacity
-          onPress={handlePresentModalPress}
-          className="ml-3 bg-white rounded-full p-3 shadow-md relative"
+      <View className="flex-1 bg-gray-100">
+        <View
+          className={`px-4 flex flex-row justify-between items-center rounded-b-2xl pb-6 pt-6 shadow-lg bg-royal-blue-950 overflow-hidden`}
         >
-          <SlidersHorizontal size={20} color="#1e3a8a" />
-          {!!books.length && (
-            <View className="absolute -top-1 -right-1 rounded-full w-5 h-5 bg-red-500 flex items-center justify-center">
-              <Text className="text-xs font-bold text-white">{books.length}</Text>
-            </View>
-          )}
-        </TouchableOpacity>
-      </View>
-      {data && data.totalCount && !!data.totalCount.length && (
-        <View className="pl-4 pr-4 flex flex-row justify-end items-center">
-          <Pagination
-            count={data?.totalCount[0]?.count}
-            currentPage={page}
-            setPage={setPage}
-          />
+          <View className="flex-1 bg-white rounded-full shadow-md flex-row items-end px-4 py-3">
+            <SearchIcon size={20} className="h-[4lh]" color="#666" />
+            <TextInput
+              className="flex-1 leading-5 text-base ml-2"
+              placeholder={t(SHARED_TEXT.SEARCH_SEARCHBAR_PLACEHOLDER)}
+              value={searchKeyword}
+              autoFocus={true}
+              autoCorrect={false}
+              autoComplete={'off'}
+              spellCheck={false}
+              returnKeyType={'search'}
+              onSubmitEditing={onSubmit}
+              clearButtonMode={'while-editing'}
+              onChangeText={handleChangeText}
+            />
+          </View>
+          <TouchableOpacity
+            onPress={handlePresentModalPress}
+            className="ml-3 bg-white rounded-full p-3 shadow-md relative"
+          >
+            <SlidersHorizontal size={20} color="#1e3a8a" />
+            {!!books.length && (
+              <View className="absolute -top-1 -right-1 rounded-full w-5 h-5 bg-red-500 flex items-center justify-center">
+                <Text className="text-xs font-bold text-white">
+                  {books.length}
+                </Text>
+              </View>
+            )}
+          </TouchableOpacity>
         </View>
-      )}
-      <FlatList
-        data={data?.documents}
-        renderItem={renderedItems}
-        keyExtractor={(item) => item?._id}
-        scrollEnabled={true}
-        ItemSeparatorComponent={ItemSeparatorView}
-        ListEmptyComponent={() => {
-          return isLoading || fetchStatus === 'fetching' ? (
-            <View className="flex-1 h-svh flex items-center justify-center">
-              <LoadingSpinner />
-            </View>
-          ) : fetchStatus === 'idle' &&
-            searchKeyword &&
-            !!submittedKeyword ? (
-            <View className="flex-1 h-svh flex items-center justify-center">
-              <Text className="text-lg">
-                {t(SHARED_TEXT.SEARCH_NO_RESULT_LABEL)}
-              </Text>
-              <Text className="text-sm">
-                {t(SHARED_TEXT.SEARCH_NO_RESULT_DESC)}
-              </Text>
-            </View>
-          ) : fetchStatus === 'idle' && searchKeyword === '' ? (
-            <View className="px-5 my-2 w-full flex flex-1">
-              {!!searchHistory.length &&
-                searchHistory.map((item, i) => {
-                  return (
-                    <View key={i} className="flex flex-row items-center">
-                      <TouchableOpacity
-                        className="flex-1 gap-2 flex flex-row items-center py-2"
-                        onPress={() => onSubmitFromHistory(item)}
-                      >
-                        <Clock4 size={16} color={'grey'} />
-                        <Text className="text-lg">{item}</Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity
-                        className="py-2"
-                        onPress={() => onRemoveFromHistory(item)}
-                      >
-                        <XIcon size={18} color={'grey'} />
-                      </TouchableOpacity>
-                    </View>
-                  )
-                })}
-            </View>
-          ) : (
-            <View></View>
-          )
-        }}
+        {data && data.totalCount && !!data.totalCount.length && (
+          <View className="pl-4 pr-4 flex flex-row justify-end items-center">
+            <Pagination
+              count={data?.totalCount[0]?.count}
+              currentPage={page}
+              setPage={setPage}
+            />
+          </View>
+        )}
+        <FlatList
+          data={data?.documents}
+          renderItem={renderedItems}
+          keyExtractor={(item) => item?._id}
+          scrollEnabled={true}
+          ItemSeparatorComponent={ItemSeparatorView}
+          ListEmptyComponent={() => {
+            return isLoading || fetchStatus === 'fetching' ? (
+              <View className="flex-1 h-svh flex items-center justify-center">
+                <LoadingSpinner />
+              </View>
+            ) : fetchStatus === 'idle' &&
+              searchKeyword &&
+              !!submittedKeyword ? (
+              <View className="flex-1 h-svh flex items-center justify-center">
+                <Text className="text-lg">
+                  {t(SHARED_TEXT.SEARCH_NO_RESULT_LABEL)}
+                </Text>
+                <Text className="text-sm">
+                  {t(SHARED_TEXT.SEARCH_NO_RESULT_DESC)}
+                </Text>
+              </View>
+            ) : fetchStatus === 'idle' && searchKeyword === '' ? (
+              <View className="px-5 my-2 w-full flex flex-1">
+                {!!searchHistory.length &&
+                  searchHistory.map((item, i) => {
+                    return (
+                      <View key={i} className="flex flex-row items-center">
+                        <TouchableOpacity
+                          className="flex-1 gap-2 flex flex-row items-center py-2"
+                          onPress={() => onSubmitFromHistory(item)}
+                        >
+                          <Clock4 size={16} color={'grey'} />
+                          <Text className="text-lg">{item}</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          className="py-2"
+                          onPress={() => onRemoveFromHistory(item)}
+                        >
+                          <XIcon size={18} color={'grey'} />
+                        </TouchableOpacity>
+                      </View>
+                    )
+                  })}
+              </View>
+            ) : (
+              <View></View>
+            )
+          }}
+        />
+      </View>
+      <Sheet
+        setSelectedBooks={setSelectedBooks}
+        setBooks={setBooks}
+        books={books}
+        bottomSheetRef={bottomSheetRef}
       />
-      <Sheet setSelectedBooks={setSelectedBooks} setBooks={setBooks} books={books} bottomSheetRef={bottomSheetRef}/>
     </Page>
   )
 }

@@ -44,7 +44,7 @@ export default function Settings() {
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState)
 
   return (
-    <Page edges={['top']} className="bg-gray-100">
+    <Page edges={['top']} className="bg-royal-blue-950">
       <ScrollView className="py-4">
         <View className="px-4 bg-gray-100 flex sm:mx-auto sm:w-full sm:max-w-md w-full h-full">
           <View className="bg-white rounded-xl flex">

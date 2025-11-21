@@ -5,7 +5,7 @@ import {
   FlatList,
   TouchableHighlight,
   ActivityIndicator,
-  ImageBackground
+  ImageBackground, StatusBar
 } from 'react-native'
 import { Link, useLocalSearchParams, useRouter } from 'expo-router'
 import Header from '@/app/components/header'
@@ -121,7 +121,8 @@ function HadithVolume() {
   }
 
   return (
-    <Page edges={['top']}>
+    <Page edges={['top']} className="bg-royal-blue-950">
+      <StatusBar barStyle={'light-content'} />
       <Header title={title} onPressButton={() => router.back()} />
       <View className="bg-gray-100 pt-4 px-4">
         <FlatList

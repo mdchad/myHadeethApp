@@ -5,7 +5,7 @@ import {
   Text,
   Pressable,
   NativeScrollEvent,
-  NativeSyntheticEvent,
+  NativeSyntheticEvent, Keyboard
 } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -112,6 +112,7 @@ function UniversalDetail() {
   const handlePresentModalPress = () => {
     bottomSheetRef.current?.snapToIndex(1)
     hideBars()
+    Keyboard.dismiss()
   }
 
   // Animated styles
@@ -120,15 +121,19 @@ function UniversalDetail() {
   }))
 
   const bottomBarAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: bottomBarTranslateY.value }]
+    transform: [{ translateY: bottomBarTranslateY.value + 16 }]
   }))
 
   if (isLoading) {
     return <LoadingSpinner />
   }
 
+  if (!data && !isLoading) {
+    return <Text>Hadith not found</Text>
+  }
+
   return (
-    <Page edges={['top']} className="bg-reading-background">
+    <Page className="bg-reading-background">
       <StatusBar hidden={!barsVisible} style={theme === 'dark' ? 'light' : 'dark'} />
       {/* Sticky Top Bar */}
       <ReadingTopBar
@@ -139,12 +144,11 @@ function UniversalDetail() {
 
       <ScrollView
         className="bg-reading-background"
-        contentContainerStyle={{ flexGrow: 1 }}
         onScroll={handleScroll}
         scrollEventThrottle={16}
       >
         <Pressable onPress={handleContentPress}>
-          <View className="flex-1 pb-0 bg-reading-background pt-16">
+          <View className="flex-1 pb-0 bg-reading-background pt-40">
             <View className="flex-1">
               {data?.chapter_title?.ms && (
                 <ChapterTitle data={data} footnoteRefs={footnoteRefs}/>

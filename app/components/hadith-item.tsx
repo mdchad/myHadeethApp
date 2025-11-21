@@ -37,7 +37,7 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
   const fontSizeIndex = useReadingSettingsStore((state) => state.fontSizeIndex)
 
   return (
-    <View key={hadith.id}>
+    <View key={hadith._id}>
       {hadith.content.map((content: any, i) => {
         if (!content.ar) return null
         return (
