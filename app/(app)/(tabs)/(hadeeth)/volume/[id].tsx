@@ -14,7 +14,6 @@ import SHARED_TEXT from "@/app/i18n";
 import {t} from "i18next";
 import Page from '@/app/components/page'
 import LoadingSpinner from '@/app/components/loading-spinner'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 
 interface BilingualText {
