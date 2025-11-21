@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, StatusBar } from 'react-native'
 import Page from '@/app/components/page'
 import Header from '@/app/components/header'
 import { useRouter } from 'expo-router'
@@ -93,12 +93,13 @@ export default function Hadith40() {
   }
 
   return (
-    <Page edges={['top']}>
+    <Page edges={['top']} className="bg-royal-blue-950">
+      <StatusBar barStyle="light-content" />
       <Header
         title={t(SHARED_TEXT.HADITHS_FORTY_TITLE)}
         onPressButton={() => router.back()}
       />
-      <View className="h-full">
+      <View className="bg-gray-100 h-full">
         <FlashList
           data={hadiths}
           renderItem={Items}

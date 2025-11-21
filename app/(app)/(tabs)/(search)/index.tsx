@@ -27,15 +27,11 @@ import { t } from 'i18next'
 import Pagination from '@/app/components/pagination'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { isArray } from 'es-toolkit/compat'
-import BottomSheet, {
-  BottomSheetBackdrop,
-  BottomSheetView
-} from '@gorhom/bottom-sheet'
+import BottomSheet from '@gorhom/bottom-sheet'
 import QuranText from '@/app/components/quran-text'
 import Sheet from '@/app/components/bottomSheet'
 import { usePostHog } from 'posthog-react-native'
 import LoadingSpinner from '@/app/components/loading-spinner'
-import { withUniwind } from 'uniwind'
 
 interface BilingualText {
   ms: string
