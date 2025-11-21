@@ -102,19 +102,6 @@ const queryClient = new QueryClient({
 
 const asyncPersist = createAsyncStoragePersister({
   storage: AsyncStorage,
-  dehydrateOptions: {
-    dehydrateMutations: true,
-    dehydrateQueries: false,
-    shouldDehydrateQuery: (query) => {
-      const queryIsReadyForPersistance = query.state.status === 'success'
-      if (queryIsReadyForPersistance) {
-        const { queryKey } = query
-        const excludeFromPersisting = queryKey.includes('search')
-        return !excludeFromPersisting
-      }
-      return queryIsReadyForPersistance
-    }
-  },
   throttleTime: 1000
 })
 
@@ -187,8 +174,19 @@ export default Sentry.wrap(function Root() {
     <PersistQueryClientProvider
       client={queryClient}
       persistOptions={{
-        maxAge: Infinity,
-        persister: asyncPersist
+        maxAge: 24 * 60 * 60 * 1000, // 24 hours
+        persister: asyncPersist,
+        dehydrateOptions: {
+          shouldDehydrateQuery: (query) => {
+            const queryIsReadyForPersistance = query.state.status === 'success'
+            if (queryIsReadyForPersistance) {
+              const { queryKey } = query
+              const excludeFromPersisting = queryKey.includes('search')
+              return !excludeFromPersisting
+            }
+            return queryIsReadyForPersistance
+          }
+        }
       }}
       onSuccess={() =>
         queryClient
