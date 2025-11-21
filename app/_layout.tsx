@@ -51,7 +51,7 @@ i18n
     init: function () {
       /* use services and options */
     },
-    detect: function (callback) {
+    detect: function (callback: any) {
       console.log('[LANG] detecting language')
       AsyncStorage.getItem('user-language').then((val) => {
         const detected = val || 'ms' //default language
@@ -59,7 +59,7 @@ i18n
         callback(detected)
       })
     },
-    cacheUserLanguage: function (lng) {
+    cacheUserLanguage: function (lng: string) {
       return lng
     }
   })
@@ -83,7 +83,7 @@ i18n
     }
   })
 
-function onAppStateChange(status) {
+function onAppStateChange(status: string) {
   if (Platform.OS !== 'web') {
     focusManager.setFocused(status === 'active')
   }
@@ -127,7 +127,7 @@ export default Sentry.wrap(function Root() {
     const { apiGet, apiFetch } = await import('./utils/api')
     const timeZone = 'Asia/Kuala_Lumpur'
     const nowInKualaLumpur = toZonedTime(new Date(), timeZone)
-    const formattedDate = format(nowInKualaLumpur, 'yyyy-MM-dd', { timeZone })
+    const formattedDate = format(nowInKualaLumpur, 'yyyy-MM-dd')
     // The results of this query will be cached like a normal query
 
     return Promise.all([
