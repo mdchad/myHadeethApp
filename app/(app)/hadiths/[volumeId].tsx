@@ -119,7 +119,7 @@ function HadithContent() {
   }))
 
   const bottomBarAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: bottomBarTranslateY.value }]
+    transform: [{ translateY: bottomBarTranslateY.value + 16 }]
   }))
 
   const onSave = (id: string) => {

@@ -120,7 +120,7 @@ function UniversalDetail() {
   }))
 
   const bottomBarAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: bottomBarTranslateY.value }]
+    transform: [{ translateY: bottomBarTranslateY.value + 16 }]
   }))
 
   if (isLoading) {

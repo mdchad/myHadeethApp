@@ -47,12 +47,16 @@ const ReadingBottomBar: React.FC<HadithDetailBottomBarProps> = ({
         style={{ paddingBottom: insets.bottom, paddingTop: 30 }}
         className="bg-reading-background border-t-2 border-reading-border"
       >
-        <View className="px-6 gap-8">
-          <View className="bg-royal-blue-950 dark:bg-royal-blue-700 py-2">
-            <Text className=" text-white text-xl text-center">
+        {/* Book title - half outside, half inside */}
+        <View className="absolute -top-4 left-0 right-0 px-6 z-10">
+          <View className="bg-royal-blue-950 dark:bg-royal-blue-700 py-2 rounded-xs">
+            <Text className="text-white text-xl text-center">
               {hadithData.book_title.ms}
             </Text>
           </View>
+        </View>
+
+        <View className="px-6 gap-8 mt-4">
           <View className="gap-2 pb-4">
             <View className="flex items-center">
               <View className="flex-1">
