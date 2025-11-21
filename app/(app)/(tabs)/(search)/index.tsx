@@ -266,7 +266,6 @@ function Search() {
               className="flex-1 leading-5 text-base ml-2"
               placeholder={t(SHARED_TEXT.SEARCH_SEARCHBAR_PLACEHOLDER)}
               value={searchKeyword}
-              autoFocus={true}
               autoCorrect={false}
               autoComplete={'off'}
               spellCheck={false}
