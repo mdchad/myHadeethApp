@@ -1,6 +1,6 @@
 import BottomSheet, { BottomSheetBackdrop, BottomSheetView } from '@gorhom/bottom-sheet'
 import { Pressable, Text, TextInput, View } from 'react-native'
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { Portal } from '@gorhom/portal'
 import { X, ChevronUp, ChevronDown } from 'lucide-react-native'
 import { withUniwind } from 'uniwind'
@@ -32,6 +32,7 @@ function HadithSearchSheet({
 }: SearchSheetProps) {
   // variables
   const snapPoints = useMemo(() => ['1%', '50%'], [])
+  const [isOpen, setIsOpen] = useState(false)
 
   // callbacks
   const renderBackdrop = useCallback(
@@ -46,6 +47,10 @@ function HadithSearchSheet({
     onClose()
   }
 
+  const handleSheetChange = useCallback((index: number) => {
+    setIsOpen(index > 0)
+  }, [])
+
   return (
     <Portal hostName={'root'}>
       <BottomSheet
@@ -57,6 +62,7 @@ function HadithSearchSheet({
         enableContentPanningGesture={false}
         enableHandlePanningGesture={true}
         onClose={onClose}
+        onChange={handleSheetChange}
       >
         <BottomSheetView
           style={{
@@ -86,7 +92,7 @@ function HadithSearchSheet({
               importantForAutofill="no"
               value={searchQuery}
               onChangeText={onSearchChange}
-              autoFocus
+              autoFocus={isOpen}
               returnKeyType="search"
             />
           </View>
