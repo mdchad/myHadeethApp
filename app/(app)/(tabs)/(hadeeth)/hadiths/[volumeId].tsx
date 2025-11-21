@@ -1,5 +1,5 @@
 import React, { useRef, useState, useMemo, useEffect } from 'react'
-import { NativeScrollEvent, NativeSyntheticEvent, View, Pressable, Text, Keyboard } from 'react-native'
+import { NativeScrollEvent, NativeSyntheticEvent, View, Pressable, Text, Keyboard, ScrollView } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
 import useGetHadiths from '@/app/shared/fetcher/useHadiths'
 import { FlashList, FlashListRef } from '@shopify/flash-list'
@@ -7,7 +7,6 @@ import VolumeMetadataHeader from '@/app/components/volume-metadata-header'
 import shareHadith from '@/app/utils/shareHadith'
 import HadithItem from '@/app/components/hadith-item'
 import ActionButtons from '@/app/components/action-buttons'
-import LoadingSpinner from '@/app/components/loading-spinner'
 import ScrollToTopButton from '@/app/components/scroll-to-top-button'
 import Page from '@/app/components/page'
 import { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
@@ -20,6 +19,8 @@ import ReadingSettingsSheet from '@/app/components/reading-settings'
 import HadithSearchSheet from '@/app/components/hadith-search-sheet'
 import ChapterTitle from '@/app/components/chapter-title'
 import { StatusBar } from 'expo-status-bar'
+import { Skeleton } from 'moti/skeleton'
+import Spacer from '@/app/components/spacer'
 
 interface BilingualContent {
   ms?: string;
@@ -127,15 +128,9 @@ function HadithContent() {
     setSavedBookmark((prev) => [...prev, id])
   }
 
-  if (isLoading) {
-    return <LoadingSpinner />
-  }
-
-
   if (!data && !isLoading) {
     return <Text>Hadith not found</Text>
   }
-
 
   // Show bars function
   const showBars = () => {
@@ -242,44 +237,84 @@ function HadithContent() {
         onSettingsPress={handlePresentModalPress}
       />
       <View className="pb-0 bg-reading-background">
-        {data?.length > 0 && (
-          <View className="h-full">
-            <FlashList
-              ref={listRef}
-              data={data}
-              onScroll={handleScroll}
-              renderItem={({ item }) => (
-                <HadithListItem
-                  item={item}
-                  onShare={shareHadith}
-                  onSave={onSave}
-                  ids={ids}
-                  footnoteRefs={footnoteRefs}
+        {isLoading ? (
+          <ScrollView className="px-4 pt-40">
+            {/* Volume Metadata Skeleton */}
+            <View className="mb-6">
+              <Skeleton colorMode="light" height={24} width="50%" />
+              <Spacer height={8} />
+              <Skeleton colorMode="light" height={20} width="70%" />
+              <Spacer height={16} />
+            </View>
+
+            {/* Hadith Items Skeleton */}
+            {[1, 2, 3].map((index) => (
+              <View key={index} className="mb-6">
+                {/* Chapter Title Skeleton */}
+                <View className="mb-4">
+                  <Skeleton colorMode="light" height={22} width="60%" />
+                  <Spacer height={8} />
+                  <Skeleton colorMode="light" height={28} width="80%" />
+                </View>
+
+                {/* Hadith Content Skeleton */}
+                <View className="space-y-2 mb-4">
+                  <Skeleton colorMode="light" height={20} width="100%" />
+                  <Spacer height={6} />
+                  <Skeleton colorMode="light" height={20} width="100%" />
+                  <Spacer height={6} />
+                  <Skeleton colorMode="light" height={20} width="95%" />
+                  <Spacer height={6} />
+                  <Skeleton colorMode="light" height={20} width="100%" />
+                  <Spacer height={6} />
+                  <Skeleton colorMode="light" height={20} width="90%" />
+                  <Spacer height={6} />
+                  <Skeleton colorMode="light" height={20} width="100%" />
+                  <Spacer height={6} />
+                  <Skeleton colorMode="light" height={20} width="85%" />
+                </View>
+
+                <Spacer height={24} />
+              </View>
+            ))}
+          </ScrollView>
+        ) : (
+          <>
+            {data?.length > 0 && (
+              <View className="h-full">
+                <FlashList
+                  ref={listRef}
+                  data={data}
+                  onScroll={handleScroll}
+                  renderItem={({ item }) => (
+                    <HadithListItem
+                      item={item}
+                      onShare={shareHadith}
+                      onSave={onSave}
+                      ids={ids}
+                      footnoteRefs={footnoteRefs}
+                    />
+                  )}
+                  ListHeaderComponent={
+                    <VolumeMetadataHeader volumeDetails={data[0]?.volume_details} />
+                  }
+                  keyExtractor={(item) => item._id}
+                  showsVerticalScrollIndicator={false}
+                  contentContainerClassName="pt-40"
                 />
-              )}
-              ListHeaderComponent={
-                <VolumeMetadataHeader volumeDetails={data[0]?.volume_details} />
-              }
-              keyExtractor={(item) => item._id}
-              showsVerticalScrollIndicator={false}
-              contentContainerClassName="pt-40"
+              </View>
+            )}
+
+            {/* Sticky Bottom Bar */}
+            <ReadingBottomBar
+              animatedStyle={bottomBarAnimatedStyle}
+              hadithData={data[0]}
+              footnoteRefs={footnoteRefs}
+              onLayout={setBottomBarHeight}
             />
-          </View>
+          </>
         )}
 
-        {/*<ScrollToTopButton*/}
-        {/*  onPress={() =>*/}
-        {/*    listRef?.current?.scrollToOffset({ offset: 0, animated: true })*/}
-        {/*  }*/}
-        {/*/>*/}
-
-        {/* Sticky Bottom Bar */}
-        <ReadingBottomBar
-          animatedStyle={bottomBarAnimatedStyle}
-          hadithData={data[0]}
-          footnoteRefs={footnoteRefs}
-          onLayout={setBottomBarHeight}
-        />
         <ReadingSettingsSheet bottomSheetRef={bottomSheetRef}/>
         <HadithSearchSheet
           bottomSheetRef={searchSheetRef}
