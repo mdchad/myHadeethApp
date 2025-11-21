@@ -1,5 +1,5 @@
 import React, { useRef, useState, useMemo, useEffect } from 'react'
-import { NativeScrollEvent, NativeSyntheticEvent, View, Pressable, Text } from 'react-native'
+import { NativeScrollEvent, NativeSyntheticEvent, View, Pressable, Text, Keyboard } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
 import useGetHadiths from '@/app/shared/fetcher/useHadiths'
 import { FlashList, FlashListRef } from '@shopify/flash-list'
@@ -205,6 +205,7 @@ function HadithContent() {
   const handleCloseSearch = () => {
     setSearchQuery('')
     setCurrentMatchIndex(0)
+    Keyboard.dismiss()
   }
 
   const HadithListItem: React.FC<HadithListItemProps> = ({ item, onShare, onSave, ids, footnoteRefs }) => {

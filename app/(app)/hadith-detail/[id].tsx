@@ -5,7 +5,7 @@ import {
   Text,
   Pressable,
   NativeScrollEvent,
-  NativeSyntheticEvent,
+  NativeSyntheticEvent, Keyboard
 } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -112,6 +112,7 @@ function UniversalDetail() {
   const handlePresentModalPress = () => {
     bottomSheetRef.current?.snapToIndex(1)
     hideBars()
+    Keyboard.dismiss()
   }
 
   // Animated styles
