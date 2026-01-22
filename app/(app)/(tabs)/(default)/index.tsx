@@ -26,13 +26,25 @@ import { useTranslation } from 'react-i18next'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { capitalize } from 'es-toolkit'
 import { usePostHog } from 'posthog-react-native'
-import * as Sentry from '@sentry/react-native'
+import { useQuery } from '@tanstack/react-query'
+import { apiGet } from '@/app/utils/api'
+import type { ApiResponse } from '@/app/types'
 
 function Home() {
   const { isLoading, isError, data, error } = useGetTodayHadith()
   const { t, i18n } = useTranslation()
   const [lang, setLang] = useState(i18n.language)
   const posthog = usePostHog()
+
+  // Prefetch the hadith detail when today's hadith is loaded
+  useQuery({
+    queryKey: ['hadith', data?._id],
+    queryFn: async () => {
+      const result: ApiResponse<any> = await apiGet(`/api/hadiths/${data?._id}`)
+      return result.data
+    },
+    enabled: !!data?._id
+  })
 
   useEffect(() => {
     posthog.capture("home_viewed")
