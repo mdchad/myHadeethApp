@@ -137,32 +137,7 @@ const _layout = () => {
             }
           }}
         />
-        <Tabs.Screen
-          name="(profile)"
-          options={{
-            href: null,
-            headerShown: false,
-            tabBarLabel: t(SHARED_TEXT.TAB_SETTINGS_LABEL),
-            headerStatusBarHeight: 60,
-            headerTitleAllowFontScaling: true,
-            tabBarIcon: ({ focused }) => {
-              return (
-                <View
-                  style={{
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                  }}
-                >
-                  <Image
-                    source={settingsLogo}
-                    style={{ width: 20, height: 20 }}
-                  />
-                  {/* <FontAwesome5 name="home" size={30} color={focused ? 'tomato' : 'gray'} /> */}
-                </View>
-              )
-            }
-          }}
-        />
+
       </Tabs>
   )
 }
