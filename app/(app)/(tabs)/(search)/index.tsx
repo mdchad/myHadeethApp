@@ -74,7 +74,6 @@ function Search() {
       )
       return result.data
     },
-    keepPreviousData: true,
     enabled: !!submittedKeyword // Only run query if search term is not empty
     // If you want to clear the data when the search is disabled, you can use:
     // initialData: queryKeyword ? undefined : [],
