@@ -10,6 +10,7 @@ export default function useGetVolumes(id: string) {
       const result: ApiResponse<any[]> = await apiGet(`/api/books/${id}`)
       return result.data
     },
-    networkMode: 'offlineFirst'
+    networkMode: 'offlineFirst',
+    placeholderData: (previousData) => previousData
   })
 }

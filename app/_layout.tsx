@@ -92,7 +92,13 @@ function onAppStateChange(status: string) {
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: 2,
+      retry: (failureCount, error) => {
+        // Don't retry on 404s
+        if (error?.message?.includes('404')) return false
+        // Retry up to 3 times for network errors
+        return failureCount < 3
+      },
+      retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
       gcTime: 24 * 60 * 60 * 1000, // 24 hours
       refetchInterval: false,
       staleTime: 12 * 60 * 60 * 1000 // 12 hours
@@ -128,15 +134,16 @@ export default Sentry.wrap(function Root() {
     const timeZone = 'Asia/Kuala_Lumpur'
     const nowInKualaLumpur = toZonedTime(new Date(), timeZone)
     const formattedDate = format(nowInKualaLumpur, 'yyyy-MM-dd')
-    // The results of this query will be cached like a normal query
 
-    return Promise.all([
+    // First, fetch books
+    const booksResult = await apiGet('/api/books')
+    const books = booksResult.data
+
+    // Prefetch books and today's hadith
+    const initialPrefetch = [
       queryClient.prefetchQuery({
         queryKey: ['books'],
-        queryFn: async () => {
-          const result = await apiGet('/api/books')
-          return result.data
-        }
+        queryFn: async () => books
       }),
       queryClient.prefetchQuery({
         queryKey: ['todayHadith', formattedDate],
@@ -150,7 +157,20 @@ export default Sentry.wrap(function Root() {
         staleTime: 5 * 60 * 1000,
         gcTime: 24 * 60 * 60 * 1000
       })
-    ])
+    ]
+
+    // Prefetch all volumes for all books
+    const volumePrefetches = books.map((book: any) =>
+      queryClient.prefetchQuery({
+        queryKey: ['volumes', book.id],
+        queryFn: async () => {
+          const result = await apiGet(`/api/books/${book.id}`)
+          return result.data
+        }
+      })
+    )
+
+    return Promise.all([...initialPrefetch, ...volumePrefetches])
   }
 
   useEffect(() => {

@@ -12,6 +12,8 @@ import SHARED_TEXT from "@/app/i18n";
 import {t} from "i18next";
 import Page from '@/app/components/page'
 import { usePostHog } from 'posthog-react-native'
+import { useQueryClient } from '@tanstack/react-query'
+import { apiGet } from '@/app/utils/api'
 
 interface ItemProps {
   title: string;
@@ -20,6 +22,7 @@ interface ItemProps {
 
 function Item({ title, id }: ItemProps) {
   const posthog = usePostHog()
+  const queryClient = useQueryClient()
 
   const handlePress = () => {
     posthog.capture('hadith_book_opened', {
@@ -27,6 +30,18 @@ function Item({ title, id }: ItemProps) {
       book_title: title
     })
   }
+
+  // Prefetch volumes when user presses the book
+  const handlePrefetch = () => {
+    queryClient.prefetchQuery({
+      queryKey: ['volumes', id],
+      queryFn: async () => {
+        const result = await apiGet(`/api/books/${id}`)
+        return result.data
+      }
+    })
+  }
+
   const words = title.split(' ')
 
   const firstWord = words[0]
@@ -40,7 +55,11 @@ function Item({ title, id }: ItemProps) {
       }}
       asChild
     >
-      <Pressable className="w-[48%] mr-4 bg-white" onPress={handlePress}>
+      <Pressable
+        className="w-[48%] mr-4 bg-white"
+        onPress={handlePress}
+        onPressIn={handlePrefetch}
+      >
         <View className="w-full">
           <View className="flex items-center py-8 px-2">
             <Text className="text-lg text-royal-blue-950 font-semibold">
