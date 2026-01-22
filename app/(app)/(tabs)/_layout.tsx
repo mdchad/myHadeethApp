@@ -14,7 +14,7 @@ const hadithLogo = require('@/assets/hadith.png')
 const _layout = () => {
   return (
     <Tabs
-      initialRouteName="(default)"
+      initialRouteName="index"
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: 'white',
@@ -35,7 +35,7 @@ const _layout = () => {
       }}
     >
         <Tabs.Screen
-          name="(default)"
+          name="index"
           options={{
             tabBarLabel: t(SHARED_TEXT.TAB_HOME_LABEL),
             tabBarIcon: ({ focused }  ) => {
