@@ -10,6 +10,7 @@ export default function useGetBooks() {
       const result: ApiResponse<any[]> = await apiGet('/api/books')
       return result.data
     },
-    networkMode: "offlineFirst"
+    networkMode: "offlineFirst",
+    placeholderData: (previousData) => previousData
   })
 }

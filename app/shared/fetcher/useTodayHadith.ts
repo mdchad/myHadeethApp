@@ -20,6 +20,7 @@ export default function useGetTodayHadith() {
     },
     networkMode: 'offlineFirst',
     staleTime: 5 * 60 * 1000,
-    gcTime: 24 * 60 * 60 * 1000 // Updated from deprecated cacheTime
+    gcTime: 24 * 60 * 60 * 1000, // Updated from deprecated cacheTime
+    placeholderData: (previousData) => previousData
   })
 }
