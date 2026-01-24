@@ -1,11 +1,12 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Button, StyleSheet } from 'react-native'
 import QuranText from './quran-text'
 import FootnotesMarker from './footnotes-marker'
 import FootnotesReference from './footnotes-reference'
 import LexicalRenderer from '@/app/components/lexical-renderer'
 import { latinFontSizes, arabicFontSizes } from '@/app/shared/fontSizeConfig'
 import { useReadingSettingsStore } from '@/app/stores/useReadingSettingsStore'
+import { useAudioPlayer } from 'expo-audio'
 
 interface BilingualContent {
   ms?: string;
@@ -26,6 +27,7 @@ interface Hadith {
   _id?: string;
   content: BilingualContent[];
   footnotes?: Footnote[];
+  audio_files?: any;
 }
 
 interface HadithItemProps {
@@ -35,6 +37,8 @@ interface HadithItemProps {
 
 const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
   const fontSizeIndex = useReadingSettingsStore((state) => state.fontSizeIndex)
+  const player = useAudioPlayer('https://pub-34bac4a6ce3242dabed8105f8908b2ee.r2.dev/myway-voiceover/' + hadith.audio_files.ar['content0']);
+
 
   return (
     <View key={hadith._id}>
@@ -78,6 +82,18 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
               {/*  footnoteRefs={footnoteRefs}*/}
               {/*  hadithId={hadith._id}*/}
               {/*/>*/}
+
+              {/*<View style={styles.container}>*/}
+              {/*  <Button title="Play Sound" onPress={() => player.play()} />*/}
+              {/*  <Button*/}
+              {/*    title="Replay Sound"*/}
+              {/*    onPress={() => {*/}
+              {/*      player.seekTo(0);*/}
+              {/*      player.play();*/}
+              {/*    }}*/}
+              {/*  />*/}
+              {/*</View>*/}
+
               <FootnotesReference hadith={hadith} type={'content.ms'} />
             </View>
           </View>
@@ -86,5 +102,14 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
     </View>
   )
 })
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: '#ecf0f1',
+    padding: 10,
+  },
+});
 
 export default HadithItem
