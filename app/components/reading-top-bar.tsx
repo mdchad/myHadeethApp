@@ -21,9 +21,9 @@ const StyledChevronLeft = withUniwind(ChevronLeft)
 const ReadingTopBar: React.FC<HadithDetailTopBarProps> = ({
   animatedStyle,
   onBackPress,
-  onSearchPress = true,
+  onSearchPress,
   onSettingsPress,
-  onBookmarkPress = true
+  onBookmarkPress
 }) => {
   const insets = useSafeAreaInsets()
 
