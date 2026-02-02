@@ -102,11 +102,7 @@ function Books() {
               keyExtractor={(item) => item.id}
               className="h-full"
               numColumns={2}
-              columnWrapperStyle={{
-                flex: 1,
-                width: '100%',
-                padding: 14
-              }}
+              columnWrapperClassName={'p-4'}
             />
           </View>
         </ImageBackground>

@@ -91,7 +91,7 @@ const HadithVolumeItem: React.FC<HadithVolumeItemProps> = ({ item, index }) => (
               <Text className="text-royal-blue-950 text-[12px]">
                 {item?.hadith?.first}
               </Text>
-              <Text className="text-royal-blue-950 text-[12px]">-</Text>
+              <Text className="text-royal-blue-950 text-[12px]">→</Text>
               <Text className="text-royal-blue-950 text-[12px]">
                 {item?.hadith?.last}
               </Text>
@@ -99,7 +99,7 @@ const HadithVolumeItem: React.FC<HadithVolumeItemProps> = ({ item, index }) => (
             <View className="flex flex-row items-center">
               <Text className="text-royal-blue-950 text-xs mr-1">
                 {t(SHARED_TEXT.VIEW_MORE_LABEL)}
-                {''} →
+                {''} ↗
               </Text>
             </View>
           </View>

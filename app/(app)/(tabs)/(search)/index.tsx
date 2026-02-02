@@ -43,7 +43,8 @@ interface SearchResultItem {
   book_title: BilingualText
   volume_title: BilingualText
   number: number
-  content: BilingualText[]
+  content: BilingualText[],
+  content_index: number
 }
 
 interface RenderedItemsProps {
@@ -70,7 +71,7 @@ function Search() {
       const result = await apiGet(
         `/api/search?page=${page}&limit=10&query=${encodeURIComponent(
           submittedKeyword
-        )}&books=${selectedBooks}`
+        )}&books=${selectedBooks}&mode=semantic`
       )
       return result.data
     },
@@ -208,7 +209,7 @@ function Search() {
               [ {item?.book_title.ms} / {item.volume_title.ms} ]
             </Text>
           </View>
-          <Text>{highlightKeywords(item?.content[0], searchKeyword)}</Text>
+          <Text>{highlightKeywords(item?.content[item.content_index], searchKeyword)}</Text>
           <View className="mt-2 flex items-end">
             <ArrowRightToLine size={22} color={'black'} />
           </View>
@@ -225,7 +226,8 @@ function Search() {
       // Capture search event
       posthog.capture('hadith_searched', {
         query: searchKeyword,
-        books_filtered: selectedBooks || 'all'
+        books_filtered: selectedBooks || 'all',
+        search_mode: 'semantic'
       })
 
       // Add to history using Zustand store
@@ -300,7 +302,7 @@ function Search() {
         <FlatList
           data={data?.documents}
           renderItem={renderedItems}
-          keyExtractor={(item) => item?._id}
+          keyExtractor={(item) => item?._id + '_' + item?.content_index}
           scrollEnabled={true}
           ItemSeparatorComponent={ItemSeparatorView}
           ListEmptyComponent={() => {

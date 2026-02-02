@@ -56,18 +56,16 @@ export default function Hadith40() {
         </View>
         {
           item.content.map((cnt, index, arr) => {
-            const uriAr = arr.length > 1 ? `${item.number}_content_ar_${index + 1}` : `${item.number}_content_ar`
-            const uriMs = arr.length > 1 ? `${item.number}_content_ms_${index + 1}` : `${item.number}_content_ms`
             return (
               <View key={index} className="mb-4">
                 <Text className="mb-4">{item.narrators[index].ms}</Text>
                 <View className="bg-gray-200 rounded-md px-2 py-4">
                   <Text className="font-bold text-gray-700 text-2xl text-justify leading-10 mb-2 font-arabic-bold" style={{ writingDirection: 'rtl' }}>{cnt.ar}</Text>
-                  <Text className="font-bold text-lg font-arabic-regular">{item.narratedBy[index].ar}</Text>
-                  <Audio url={item.number === 5 && index === 1 ?  `${item.number}_content_ar`: uriAr } />
+                  <Text className="mt-6 text-base font-arabic-regular">{item.narratedBy[index].ar}</Text>
+                  <Audio url={cnt.audio.ar} />
                 </View>
                 <View className="mt-4">
-                  <Text className="text-lg mb-2 text-justify mb-2">{cnt.ms}</Text>
+                  <Text className="text-lg mb-2 text-justify">{cnt.ms}</Text>
                   <Text className="text-xs text-right">{item.narratedBy[index].ms}</Text>
                   <Audio url={cnt.audio.ms} />
                 </View>

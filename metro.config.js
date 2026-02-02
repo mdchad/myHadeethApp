@@ -3,8 +3,6 @@ const { getSentryExpoConfig } = require('@sentry/react-native/metro')
 
 const config = getSentryExpoConfig(__dirname)
 
-config.resolver.unstable_enablePackageExports = true //for better-auth
-
 module.exports = withUniwindConfig(config, {
   // relative path to your global.css file (from previous step)
   cssEntryFile: './global.css',

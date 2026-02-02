@@ -31,27 +31,23 @@ const SoundPlayer: React.FC<SoundPlayerProps> = ({url}) => {
 
   return (
     <View className="rounded-md mt-4 flex flex-row bg-gray-800/90 w-full flex-shrink space-x-4 items-center py-1 px-2">
-      <View>
+      <View className="mr-4">
         {
           status.playing ? (
             <TouchableOpacity onPress={handlePlayPause}>
-              <PauseIcon size={24} color="white" fill="#fff"/>
+              <PauseIcon size={20} color="white" fill="#fff"/>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity onPress={handlePlayPause}>
-              <PlayIcon size={24} color="white" fill="#fff"/>
+              <PlayIcon size={20} color="white" fill="#fff"/>
             </TouchableOpacity>
           )
         }
       </View>
-      <View className="w-full">
+      <View className="flex-1">
         <Slider
           value={status.currentTime * 1000}
-          style={{
-            width: 240
-          }}
           trackStyle={{
-            width: 40,
             backgroundColor: 'rgb(156, 163, 175)'
           }}
           onValueChange={handleSeek}
