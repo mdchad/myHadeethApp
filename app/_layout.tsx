@@ -24,6 +24,8 @@ import ms from './i18n/locales/ms.json'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { PortalProvider } from '@gorhom/portal'
 import { useLocationStore } from './stores/useLocationStore'
+import FloatingAudioPlayer from './components/floating-audio-player'
+import {HeroUINativeProvider} from "heroui-native";
 
 const isAndroid = Platform.OS === 'android'
 const isHermes = !!global.HermesInternal
@@ -214,14 +216,17 @@ export default Sentry.wrap(function Root() {
           .then(() => queryClient.invalidateQueries())
       }
     >
-      <GestureHandlerRootView>
+      <GestureHandlerRootView style={{ flex: 1 }}>
         <StatusBar barStyle="dark-content" backgroundColor="white" />
         <PostHogProvider
           apiKey={process.env.EXPO_PUBLIC_POSTHOG_API_KEY}
           options={{ host: 'https://us.i.posthog.com' }}
         >
           <PortalProvider>
-            <Slot />
+            <HeroUINativeProvider>
+              <Slot />
+              <FloatingAudioPlayer />
+            </HeroUINativeProvider>
           </PortalProvider>
         </PostHogProvider>
       </GestureHandlerRootView>

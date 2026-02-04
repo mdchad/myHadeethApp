@@ -21,6 +21,7 @@ import ChapterTitle from '@/app/components/chapter-title'
 import { StatusBar } from 'expo-status-bar'
 import { Skeleton } from 'moti/skeleton'
 import Spacer from '@/app/components/spacer'
+import { useReadingBottomBarStore } from '@/app/stores/useReadingBottomBarStore'
 
 interface BilingualContent {
   ms?: string;
@@ -32,7 +33,9 @@ interface HadithItemType {
   chapter_id: string;
   content: BilingualContent[];
   chapter_title?: BilingualContent;
+  is_chapter_start: boolean;
   footnotes?: any[];
+  number: number;
 }
 
 interface HadithListItemProps {
@@ -63,6 +66,9 @@ function HadithContent() {
   const [currentMatchIndex, setCurrentMatchIndex] = useState(0)
 
   const { isLoading, data } = useGetHadiths(bookId, volumeId)
+
+  // Store for reading bottom bar
+  const { setVisible: setBottomBarVisible, setHeight: setBottomBarHeightStore } = useReadingBottomBarStore()
 
   // Animation state for top and bottom bars
   const topBarTranslateY = useSharedValue(0)
@@ -137,6 +143,7 @@ function HadithContent() {
     topBarTranslateY.value = withTiming(0, { duration: 300 })
     bottomBarTranslateY.value = withTiming(0, { duration: 300 })
     setBarsVisible(true)
+    setBottomBarVisible(true)
   }
 
   // Hide bars function
@@ -148,6 +155,13 @@ function HadithContent() {
       duration: 300
     })
     setBarsVisible(false)
+    setBottomBarVisible(false)
+  }
+
+  // Handle bottom bar layout
+  const handleBottomBarLayout = (height: number) => {
+    setBottomBarHeight(height)
+    setBottomBarHeightStore(height)
   }
 
   // Handle scroll event
@@ -204,12 +218,11 @@ function HadithContent() {
   }
 
   const HadithListItem: React.FC<HadithListItemProps> = ({ item, onShare, onSave, ids, footnoteRefs }) => {
-    const isNewChapter =
-      ids.chapterId !== item.chapter_id || ids.firstHadithId === item._id
+    const showChapter = item.is_chapter_start;
 
     return (
       <Pressable onPress={handleContentPress}>
-        {isNewChapter && (
+        {showChapter && (
           <ChapterTitle data={item} footnoteRefs={footnoteRefs}/>
         )}
         {!item.content[0].ar ? null : (
@@ -309,8 +322,9 @@ function HadithContent() {
             <ReadingBottomBar
               animatedStyle={bottomBarAnimatedStyle}
               hadithData={data[0]}
+              allHadiths={data}
               footnoteRefs={footnoteRefs}
-              onLayout={setBottomBarHeight}
+              onLayout={handleBottomBarLayout}
             />
           </>
         )}

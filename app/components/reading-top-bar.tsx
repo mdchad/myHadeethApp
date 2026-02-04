@@ -43,15 +43,15 @@ const ReadingTopBar: React.FC<HadithDetailTopBarProps> = ({
           </Pressable>
         </View>
         <View className="flex flex-row gap-2">
-          {onSearchPress && (
-            <Pressable onPress={onSearchPress}>
-              <StyledSearchIcon
-                className="text-reading-text"
-                size={28}
-                strokeWidth={2}
-              />
-            </Pressable>
-          )}
+          {/*{onSearchPress && (*/}
+          {/*  <Pressable onPress={onSearchPress}>*/}
+          {/*    <StyledSearchIcon*/}
+          {/*      className="text-reading-text"*/}
+          {/*      size={28}*/}
+          {/*      strokeWidth={2}*/}
+          {/*    />*/}
+          {/*  </Pressable>*/}
+          {/*)}*/}
           <Pressable className="flex flex-row" onPress={onSettingsPress}>
             <StyledALargeSmallIcon
               className="text-reading-text"

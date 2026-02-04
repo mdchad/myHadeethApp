@@ -1,12 +1,16 @@
 import React from 'react'
-import { View, Text, Button, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, Platform } from 'react-native'
+import { useRouter } from 'expo-router'
 import QuranText from './quran-text'
 import FootnotesMarker from './footnotes-marker'
 import FootnotesReference from './footnotes-reference'
 import LexicalRenderer from '@/app/components/lexical-renderer'
 import { latinFontSizes, arabicFontSizes } from '@/app/shared/fontSizeConfig'
 import { useReadingSettingsStore } from '@/app/stores/useReadingSettingsStore'
-import { useAudioPlayer } from 'expo-audio'
+import { useAudioPlayerStore } from '@/app/stores/useAudioPlayerStore'
+import {PlayIcon, SparkleIcon, SparklesIcon} from 'lucide-react-native'
+import * as Haptics from 'expo-haptics'
+import { Button } from 'heroui-native';
 
 interface BilingualContent {
   ms?: string;
@@ -25,6 +29,7 @@ interface Footnote {
 interface Hadith {
   id?: string | number;
   _id?: string;
+  number: number;
   content: BilingualContent[];
   footnotes?: Footnote[];
   audio_files?: any;
@@ -36,9 +41,43 @@ interface HadithItemProps {
 }
 
 const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
+  const router = useRouter()
   const fontSizeIndex = useReadingSettingsStore((state) => state.fontSizeIndex)
-  const player = useAudioPlayer('https://pub-34bac4a6ce3242dabed8105f8908b2ee.r2.dev/myway-voiceover/' + hadith.audio_files.ar['content0']);
+  const playTrack = useAudioPlayerStore((state) => state.playTrack)
+  const R2_BASE_URL = 'https://pub-34bac4a6ce3242dabed8105f8908b2ee.r2.dev/myway-voiceover'
 
+  const handlePlayAudio = async (contentIndex: number) => {
+    if (Platform.OS === 'ios') {
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+    }
+
+    const audioContent = `content${contentIndex}`
+    playTrack({
+      urls: [
+        `${R2_BASE_URL}/${hadith.audio_files.ar?.[audioContent]}`,
+        `${R2_BASE_URL}/${hadith.audio_files.ms?.[audioContent]}`
+      ],
+      title: `Hadis [${hadith?.number}] - (${contentIndex + 1})`,
+      subtitle: hadith._id
+    })
+  }
+
+  const handleAskAI = async (contentIndex: number) => {
+    if (Platform.OS === 'ios') {
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+    }
+
+    const content = hadith.content[contentIndex]
+    router.push({
+      pathname: '/hadith-chat',
+      params: {
+        hadithId: hadith._id,
+        hadithNumber: hadith.number,
+        contentAr: content.ar || '',
+        contentMs: content.ms || '',
+      }
+    })
+  }
 
   return (
     <View key={hadith._id}>
@@ -76,23 +115,25 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
                 </FootnotesMarker>
               </Text>
 
-              {/*<LexicalRenderer*/}
-              {/*  serializedState={hadith?.lexicalState?.content[i]?.ms}*/}
-              {/*  className=" text-gray-800 text-lg text-justify tracking-tight font-arabic-symbols leading-relaxed"*/}
-              {/*  footnoteRefs={footnoteRefs}*/}
-              {/*  hadithId={hadith._id}*/}
-              {/*/>*/}
-
-              {/*<View style={styles.container}>*/}
-              {/*  <Button title="Play Sound" onPress={() => player.play()} />*/}
-              {/*  <Button*/}
-              {/*    title="Replay Sound"*/}
-              {/*    onPress={() => {*/}
-              {/*      player.seekTo(0);*/}
-              {/*      player.play();*/}
-              {/*    }}*/}
-              {/*  />*/}
-              {/*</View>*/}
+              {/* Play Button */}
+              <View className="flex flex-row gap-2">
+                <Button
+                  size="sm"
+                  onPress={() => handlePlayAudio(i)}
+                  className="bg-royal-blue rounded-sm rounded-none"
+                >
+                  <PlayIcon size={10} color="white" fill="white" />
+                  <Button.Label className="text-white text-xs">Main Audio</Button.Label>
+                </Button>
+                <Button
+                  size="sm"
+                  onPress={() => handleAskAI(i)}
+                  className="bg-white rounded-sm border border-gray-400"
+                >
+                  <SparklesIcon size={10} color="black" fill="black" />
+                  <Button.Label className="text-black text-xs">Tanya AI</Button.Label>
+                </Button>
+              </View>
 
               <FootnotesReference hadith={hadith} type={'content.ms'} />
             </View>
@@ -102,14 +143,5 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
     </View>
   )
 })
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#ecf0f1',
-    padding: 10,
-  },
-});
 
 export default HadithItem
