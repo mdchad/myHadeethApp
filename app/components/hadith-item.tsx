@@ -9,6 +9,7 @@ import { useReadingSettingsStore } from '@/app/stores/useReadingSettingsStore'
 import { useAudioPlayerStore } from '@/app/stores/useAudioPlayerStore'
 import { PlayIcon } from 'lucide-react-native'
 import * as Haptics from 'expo-haptics'
+import { Button } from 'heroui-native';
 
 interface BilingualContent {
   ms?: string;
@@ -97,13 +98,13 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
               </Text>
 
               {/* Play Button */}
-              <TouchableOpacity
+              <Button
+                isIconOnly
                 onPress={() => handlePlayAudio(i)}
-                className="bg-gray-800 rounded-full px-4 py-2 flex-row items-center self-start"
-                activeOpacity={0.7}
+                className="bg-royal-blue"
               >
                 <PlayIcon size={16} color="white" fill="white" />
-              </TouchableOpacity>
+              </Button>
 
               <FootnotesReference hadith={hadith} type={'content.ms'} />
             </View>

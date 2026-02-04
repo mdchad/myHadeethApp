@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, TouchableOpacity, Platform } from 'react-native'
 import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio'
-import { PlayIcon, PauseIcon, Languages } from 'lucide-react-native'
+import { PlayIcon, PauseIcon, Languages, X } from 'lucide-react-native'
 import { Slider } from '@react-native-assets/slider'
 import { useAudioPlayerStore } from '@/app/stores/useAudioPlayerStore'
 import { useReadingBottomBarStore } from '@/app/stores/useReadingBottomBarStore'
 import * as Haptics from 'expo-haptics'
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
+import { usePathname } from 'expo-router'
 
 const FloatingAudioPlayerContent = () => {
-  const { currentTrack } = useAudioPlayerStore()
+  const { currentTrack, clearTrack } = useAudioPlayerStore()
   const { isVisible: bottomBarVisible, height: bottomBarHeight } = useReadingBottomBarStore()
   const [currentIndex, setCurrentIndex] = useState(0)
+  const pathname = usePathname()
 
   const player = useAudioPlayer(currentTrack!.urls[currentIndex])
   const status = useAudioPlayerStatus(player)
@@ -28,11 +30,25 @@ const FloatingAudioPlayerContent = () => {
     bottomPaddingValue.value = withTiming(targetPadding, { duration: 300 })
   }, [bottomBarVisible, bottomBarHeight])
 
-  // Reset index when track changes
+  // Reset index and prepare for auto-play when track changes
   useEffect(() => {
     setCurrentIndex(0)
     setIsManualSwitch(false)
   }, [currentTrack])
+
+  // Auto-play when new track loads
+  useEffect(() => {
+    if (status.isLoaded && status.currentTime === 0 && !status.playing) {
+      player.play()
+    }
+  }, [status.isLoaded, currentTrack])
+
+  // Close player when navigating away
+  useEffect(() => {
+    return () => {
+      handleClose()
+    }
+  }, [pathname])
 
   // Auto-play next track when current one finishes
   useEffect(() => {
@@ -82,6 +98,14 @@ const FloatingAudioPlayerContent = () => {
     // Toggle to the other language
     const newIndex = currentIndex === 0 ? 1 : 0
     setCurrentIndex(newIndex)
+  }
+
+  const handleClose = async () => {
+    if (Platform.OS === 'ios') {
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+    }
+    player.pause()
+    clearTrack()
   }
 
   const handleSeek = (value: number) => {
@@ -150,7 +174,7 @@ const FloatingAudioPlayerContent = () => {
             minimumValue={0}
             thumbSize={12}
             disable={!status.duration}
-            thumbTintColor="#22c55e"
+            thumbTintColor="#FFF"
             minimumTrackTintColor="#22c55e"
             maximumTrackTintColor="#4b5563"
             trackHeight={3}
@@ -158,16 +182,27 @@ const FloatingAudioPlayerContent = () => {
         </View>
 
         {/* Language Toggle Button */}
-        <TouchableOpacity
-          onPress={handleLanguageToggle}
-          className="ml-2 bg-white/10 rounded-full px-3 py-2 flex-row items-center"
-          activeOpacity={0.7}
-        >
-          <Languages size={16} color="#fff" />
-          <Text className="text-white text-xs font-semibold ml-1">
-            {currentIndex === 0 ? 'AR' : 'MS'}
-          </Text>
-        </TouchableOpacity>
+        <View className="flex items-center gap-2">
+          <TouchableOpacity
+            onPress={handleClose}
+            className="ml-2"
+            activeOpacity={0.7}
+          >
+            <X size={20} color="#fff" />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={handleLanguageToggle}
+            className="ml-2 rounded-full px-3 py-2 flex-row items-center"
+            activeOpacity={0.7}
+          >
+            <Languages size={16} color="#fff" />
+            <Text className="text-white text-xs font-semibold ml-1">
+              {currentIndex === 0 ? 'AR' : 'MS'}
+            </Text>
+          </TouchableOpacity>
+
+        </View>
       </View>
     </Animated.View>
   )

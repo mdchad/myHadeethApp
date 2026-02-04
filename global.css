@@ -1,6 +1,12 @@
 @import 'tailwindcss';
 @import 'uniwind';
 
+@import 'heroui-native/styles';
+
+
+@source './node_modules/heroui-native/lib';
+
+
 @theme {
     --color-royal-blue: '#1C2A4F';
     --color-royal-blue-50: oklch(0.966 0.011 280.57);
