@@ -7,7 +7,7 @@ import LexicalRenderer from '@/app/components/lexical-renderer'
 import { latinFontSizes, arabicFontSizes } from '@/app/shared/fontSizeConfig'
 import { useReadingSettingsStore } from '@/app/stores/useReadingSettingsStore'
 import { useAudioPlayerStore } from '@/app/stores/useAudioPlayerStore'
-import { PlayIcon } from 'lucide-react-native'
+import {PlayIcon, SparkleIcon, SparklesIcon} from 'lucide-react-native'
 import * as Haptics from 'expo-haptics'
 import { Button } from 'heroui-native';
 
@@ -97,13 +97,24 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
               </Text>
 
               {/* Play Button */}
-              <Button
-                isIconOnly
-                onPress={() => handlePlayAudio(i)}
-                className="bg-royal-blue"
-              >
-                <PlayIcon size={16} color="white" fill="white" />
-              </Button>
+              <View className="flex flex-row gap-2">
+                <Button
+                  size="sm"
+                  onPress={() => handlePlayAudio(i)}
+                  className="bg-royal-blue rounded-sm rounded-none"
+                >
+                  <PlayIcon size={10} color="white" fill="white" />
+                  <Button.Label className="text-white text-xs">Main Audio</Button.Label>
+                </Button>
+                <Button
+                  size="sm"
+                  onPress={() => handlePlayAudio(i)}
+                  className="bg-white rounded-sm border border-gray-400"
+                >
+                  <SparklesIcon size={10} color="black" fill="black" />
+                  <Button.Label className="text-black text-xs">Tanya AI</Button.Label>
+                </Button>
+              </View>
 
               <FootnotesReference hadith={hadith} type={'content.ms'} />
             </View>
