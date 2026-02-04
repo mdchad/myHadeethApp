@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, Platform } from 'react-native'
+import { useRouter } from 'expo-router'
 import QuranText from './quran-text'
 import FootnotesMarker from './footnotes-marker'
 import FootnotesReference from './footnotes-reference'
@@ -40,6 +41,7 @@ interface HadithItemProps {
 }
 
 const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
+  const router = useRouter()
   const fontSizeIndex = useReadingSettingsStore((state) => state.fontSizeIndex)
   const playTrack = useAudioPlayerStore((state) => state.playTrack)
   const R2_BASE_URL = 'https://pub-34bac4a6ce3242dabed8105f8908b2ee.r2.dev/myway-voiceover'
@@ -57,6 +59,23 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
       ],
       title: `Hadis [${hadith?.number}] - (${contentIndex + 1})`,
       subtitle: hadith._id
+    })
+  }
+
+  const handleAskAI = async (contentIndex: number) => {
+    if (Platform.OS === 'ios') {
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+    }
+
+    const content = hadith.content[contentIndex]
+    router.push({
+      pathname: '/hadith-chat',
+      params: {
+        hadithId: hadith._id,
+        hadithNumber: hadith.number,
+        contentAr: content.ar || '',
+        contentMs: content.ms || '',
+      }
     })
   }
 
@@ -108,7 +127,7 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
                 </Button>
                 <Button
                   size="sm"
-                  onPress={() => handlePlayAudio(i)}
+                  onPress={() => handleAskAI(i)}
                   className="bg-white rounded-sm border border-gray-400"
                 >
                   <SparklesIcon size={10} color="black" fill="black" />
