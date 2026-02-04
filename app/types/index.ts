@@ -61,8 +61,6 @@ export interface AppSettings {
   notifications: boolean;
 }
 
-<<<<<<< Updated upstream
-=======
 // Search interfaces
 export interface SearchParams {
   query: string;
@@ -83,7 +81,6 @@ export interface SearchApiResponse {
   data: SearchResult;
 }
 
->>>>>>> Stashed changes
 // Storage keys type
 export type StorageKey =
   | 'user-language'
