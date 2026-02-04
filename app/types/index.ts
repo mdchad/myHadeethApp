@@ -61,6 +61,29 @@ export interface AppSettings {
   notifications: boolean;
 }
 
+<<<<<<< Updated upstream
+=======
+// Search interfaces
+export interface SearchParams {
+  query: string;
+  page?: number;
+  limit?: number;
+  mode?: 'text' | 'semantic';
+  books?: string; // Comma-separated book names
+}
+
+export interface SearchResult {
+  documents: any[]; // Replace 'any' with proper Hadith type when available
+  totalCount: [{ count: number }];
+  currentPage: number;
+}
+
+export interface SearchApiResponse {
+  success: boolean;
+  data: SearchResult;
+}
+
+>>>>>>> Stashed changes
 // Storage keys type
 export type StorageKey =
   | 'user-language'
