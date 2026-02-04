@@ -24,6 +24,7 @@ import ms from './i18n/locales/ms.json'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { PortalProvider } from '@gorhom/portal'
 import { useLocationStore } from './stores/useLocationStore'
+import FloatingAudioPlayer from './components/floating-audio-player'
 
 const isAndroid = Platform.OS === 'android'
 const isHermes = !!global.HermesInternal
@@ -222,6 +223,7 @@ export default Sentry.wrap(function Root() {
         >
           <PortalProvider>
             <Slot />
+            <FloatingAudioPlayer />
           </PortalProvider>
         </PostHogProvider>
       </GestureHandlerRootView>

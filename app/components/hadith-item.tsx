@@ -1,12 +1,14 @@
 import React from 'react'
-import { View, Text, Button, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, Platform } from 'react-native'
 import QuranText from './quran-text'
 import FootnotesMarker from './footnotes-marker'
 import FootnotesReference from './footnotes-reference'
 import LexicalRenderer from '@/app/components/lexical-renderer'
 import { latinFontSizes, arabicFontSizes } from '@/app/shared/fontSizeConfig'
 import { useReadingSettingsStore } from '@/app/stores/useReadingSettingsStore'
-import { useAudioPlayer } from 'expo-audio'
+import { useAudioPlayerStore } from '@/app/stores/useAudioPlayerStore'
+import { PlayIcon } from 'lucide-react-native'
+import * as Haptics from 'expo-haptics'
 
 interface BilingualContent {
   ms?: string;
@@ -37,13 +39,30 @@ interface HadithItemProps {
 
 const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
   const fontSizeIndex = useReadingSettingsStore((state) => state.fontSizeIndex)
-  const player = useAudioPlayer('https://pub-34bac4a6ce3242dabed8105f8908b2ee.r2.dev/myway-voiceover/' + hadith.audio_files.ar['content0']);
+  const playTrack = useAudioPlayerStore((state) => state.playTrack)
+  const R2_BASE_URL = 'https://pub-34bac4a6ce3242dabed8105f8908b2ee.r2.dev/myway-voiceover'
 
+  const handlePlayAudio = async (contentIndex: number) => {
+    if (Platform.OS === 'ios') {
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+    }
+
+    const audioContent = `content${contentIndex}`
+    playTrack({
+      urls: [
+        `${R2_BASE_URL}/${hadith.audio_files.ar?.[audioContent]}`,
+        `${R2_BASE_URL}/${hadith.audio_files.ms?.[audioContent]}`
+      ],
+      title: `Hadith Content ${contentIndex + 1}`,
+      subtitle: hadith._id
+    })
+  }
 
   return (
     <View key={hadith._id}>
       {hadith.content.map((content: any, i) => {
         if (!content.ar) return null
+        let audioContent = 'content' + i
         return (
           <View key={i}>
             <View className="px-4 py-6 gap-6">
@@ -76,23 +95,15 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
                 </FootnotesMarker>
               </Text>
 
-              {/*<LexicalRenderer*/}
-              {/*  serializedState={hadith?.lexicalState?.content[i]?.ms}*/}
-              {/*  className=" text-gray-800 text-lg text-justify tracking-tight font-arabic-symbols leading-relaxed"*/}
-              {/*  footnoteRefs={footnoteRefs}*/}
-              {/*  hadithId={hadith._id}*/}
-              {/*/>*/}
-
-              {/*<View style={styles.container}>*/}
-              {/*  <Button title="Play Sound" onPress={() => player.play()} />*/}
-              {/*  <Button*/}
-              {/*    title="Replay Sound"*/}
-              {/*    onPress={() => {*/}
-              {/*      player.seekTo(0);*/}
-              {/*      player.play();*/}
-              {/*    }}*/}
-              {/*  />*/}
-              {/*</View>*/}
+              {/* Play Button */}
+              <TouchableOpacity
+                onPress={() => handlePlayAudio(i)}
+                className="bg-gray-800 rounded-full px-4 py-2 flex-row items-center self-start"
+                activeOpacity={0.7}
+              >
+                <PlayIcon size={16} color="white" fill="white" />
+                <Text className="text-white ml-2 font-medium">Play Audio</Text>
+              </TouchableOpacity>
 
               <FootnotesReference hadith={hadith} type={'content.ms'} />
             </View>
@@ -102,14 +113,5 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
     </View>
   )
 })
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#ecf0f1',
-    padding: 10,
-  },
-});
 
 export default HadithItem
