@@ -33,7 +33,9 @@ interface HadithItemType {
   chapter_id: string;
   content: BilingualContent[];
   chapter_title?: BilingualContent;
+  is_chapter_start: boolean;
   footnotes?: any[];
+  number: number;
 }
 
 interface HadithListItemProps {
@@ -216,12 +218,11 @@ function HadithContent() {
   }
 
   const HadithListItem: React.FC<HadithListItemProps> = ({ item, onShare, onSave, ids, footnoteRefs }) => {
-    const isNewChapter =
-      ids.chapterId !== item.chapter_id || ids.firstHadithId === item._id
+    const showChapter = item.is_chapter_start;
 
     return (
       <Pressable onPress={handleContentPress}>
-        {isNewChapter && (
+        {showChapter && (
           <ChapterTitle data={item} footnoteRefs={footnoteRefs}/>
         )}
         {!item.content[0].ar ? null : (
@@ -321,6 +322,7 @@ function HadithContent() {
             <ReadingBottomBar
               animatedStyle={bottomBarAnimatedStyle}
               hadithData={data[0]}
+              allHadiths={data}
               footnoteRefs={footnoteRefs}
               onLayout={handleBottomBarLayout}
             />

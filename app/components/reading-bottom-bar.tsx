@@ -1,9 +1,13 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React, { useState } from 'react'
+import {View, Text, ActivityIndicator, Platform, ViewStyle} from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import Animated, { AnimatedStyleProp, ViewStyle } from 'react-native-reanimated'
+import Animated from 'react-native-reanimated'
 import FootnotesMarker from '@/app/components/footnotes-marker'
 import FootnotesReference from '@/app/components/footnotes-reference'
+import {Button} from "heroui-native";
+import {PlayIcon} from "lucide-react-native";
+import { useAudioPlayerStore } from '@/app/stores/useAudioPlayerStore'
+import * as Haptics from 'expo-haptics'
 
 interface BilingualContent {
   ms?: string
@@ -15,11 +19,15 @@ interface HadithData {
   book_title: BilingualContent
   volume_title: BilingualContent
   footnotes?: any[]
+  content?: any[]
+  audio_files?: any
+  number?: number
 }
 
 interface HadithDetailBottomBarProps {
-  animatedStyle: AnimatedStyleProp<ViewStyle>
+  animatedStyle: any
   hadithData: HadithData
+  allHadiths?: HadithData[]
   footnoteRefs: React.RefObject<Record<string, any>>
   onLayout?: (height: number) => void
 }
@@ -27,10 +35,58 @@ interface HadithDetailBottomBarProps {
 const ReadingBottomBar: React.FC<HadithDetailBottomBarProps> = ({
   animatedStyle,
   hadithData,
+  allHadiths,
   footnoteRefs,
   onLayout
 }) => {
   const insets = useSafeAreaInsets()
+  const { playPlaylist } = useAudioPlayerStore()
+  const [isLoadingPlaylist, setIsLoadingPlaylist] = useState(false)
+
+  const handlePlayAll = async () => {
+    if (Platform.OS === 'ios') {
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium)
+    }
+
+    if (!allHadiths || allHadiths.length === 0) {
+      return
+    }
+
+    setIsLoadingPlaylist(true)
+
+    const R2_BASE_URL = 'https://pub-34bac4a6ce3242dabed8105f8908b2ee.r2.dev/myway-voiceover'
+    const playlist = []
+
+    // Build playlist: for each hadith, for each content block
+    for (const hadith of allHadiths) {
+      if (!hadith.audio_files) continue
+
+      // Get all content blocks
+      const contentCount = hadith.content?.length || 0
+      for (let i = 0; i < contentCount; i++) {
+        const audioContent = `content${i}`
+        const arUrl = hadith.audio_files.ar?.[audioContent]
+        const msUrl = hadith.audio_files.ms?.[audioContent]
+
+        if (arUrl && msUrl) {
+          playlist.push({
+            urls: [
+              `${R2_BASE_URL}/${arUrl}`,
+              `${R2_BASE_URL}/${msUrl}`
+            ],
+            title: `Hadis [${hadith.number}] - (${i + 1})`,
+            subtitle: hadith._id
+          })
+        }
+      }
+    }
+
+    if (playlist.length > 0) {
+      playPlaylist(playlist)
+    }
+
+    setIsLoadingPlaylist(false)
+  }
 
   return (
     <Animated.View
@@ -72,11 +128,23 @@ const ReadingBottomBar: React.FC<HadithDetailBottomBarProps> = ({
                   </Text>
                 </FootnotesMarker>
               </View>
-              <View className="flex-1 items-end">
+              <View className="flex-1 items-end mb-4">
                 <Text className="text-lg text-center font-semibold text-royal-blue-950 dark:text-white font-arabic-regular">
                   {hadithData.volume_title.ar}
                 </Text>
               </View>
+              <Button
+                isIconOnly
+                className="bg-royal-blue"
+                onPress={handlePlayAll}
+                isDisabled={isLoadingPlaylist || !allHadiths || allHadiths.length === 0}
+              >
+                {isLoadingPlaylist ? (
+                  <ActivityIndicator size="small" color="white" />
+                ) : (
+                  <PlayIcon size={14} color="white" fill="white" />
+                )}
+              </Button>
             </View>
             <FootnotesReference hadith={hadithData} type={'volume_title.ms'} />
           </View>

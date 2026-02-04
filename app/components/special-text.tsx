@@ -7,7 +7,7 @@ interface SpecialTextProps {
 }
 
 function SpecialText({ text, className }: SpecialTextProps) {
-  function containsSpecialSymbol(str) {
+  function containsSpecialSymbol(str: string) {
     return symbolArabic.some(symbol => str.includes(symbol));
   }
 

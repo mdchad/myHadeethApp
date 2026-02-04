@@ -64,7 +64,6 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
     <View key={hadith._id}>
       {hadith.content.map((content: any, i) => {
         if (!content.ar) return null
-        let audioContent = 'content' + i
         return (
           <View key={i}>
             <View className="px-4 py-6 gap-6">

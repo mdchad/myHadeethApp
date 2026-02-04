@@ -6,7 +6,6 @@
 
 @source './node_modules/heroui-native/lib';
 
-
 @theme {
     --color-royal-blue: '#1C2A4F';
     --color-royal-blue-50: oklch(0.966 0.011 280.57);
@@ -37,6 +36,7 @@
       --color-reading-text: #1F2937;
       --color-reading-text-secondary: #6B7280;
       --color-reading-border: #E5E7EB;
+      --color-metadata-background: hsl(214, 100%, 96%); /* blue-100 equivalent */
     }
 
     @variant sepia {
@@ -44,6 +44,7 @@
       --color-reading-text: #5C4B37;
       --color-reading-text-secondary: #8B7355;
       --color-reading-border: #D4C4A8;
+      --color-metadata-background: hsl(45, 35%, 88%);
     }
 
     @variant dark {
@@ -51,6 +52,7 @@
       --color-reading-text: #FFF;
       --color-reading-text-secondary: #D1D5DB;
       --color-reading-border: #374151;
+      --color-metadata-background: hsl(220, 13%, 18%);
     }
   }
 }

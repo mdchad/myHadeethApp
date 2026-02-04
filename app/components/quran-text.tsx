@@ -16,7 +16,7 @@ function QuranText({ text, special = false, font = "arabic-regular" }: QuranText
   const parts = text.split(regex);
 
   // Map old font names to new Tailwind class names
-  const fontClassMap = {
+  const fontClassMap: Record<string, string> = {
     'arabic_regular': 'font-arabic-regular',
     'arabic_symbols': 'font-arabic-symbols',
     'arabic_bold': 'font-arabic-bold',

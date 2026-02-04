@@ -10,7 +10,7 @@ import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-na
 import { usePathname } from 'expo-router'
 
 const FloatingAudioPlayerContent = () => {
-  const { currentTrack, clearTrack } = useAudioPlayerStore()
+  const { currentTrack, clearTrack, playlist, currentTrackIndex, nextTrack } = useAudioPlayerStore()
   const { isVisible: bottomBarVisible, height: bottomBarHeight } = useReadingBottomBarStore()
   const [currentIndex, setCurrentIndex] = useState(0)
   const pathname = usePathname()
@@ -54,10 +54,15 @@ const FloatingAudioPlayerContent = () => {
   useEffect(() => {
     if (status.isLoaded && !status.playing && status.currentTime >= status.duration - 0.1) {
       if (currentIndex < currentTrack.urls.length - 1) {
+        // Move to next language in current track
         setCurrentIndex(prev => prev + 1)
+      } else if (playlist.length > 0 && currentTrackIndex < playlist.length - 1) {
+        // Move to next track in playlist
+        setCurrentIndex(0)
+        nextTrack()
       }
     }
-  }, [status.isLoaded, status.playing, status.currentTime, status.duration, currentIndex])
+  }, [status.isLoaded, status.playing, status.currentTime, status.duration, currentIndex, playlist, currentTrackIndex])
 
   // Play when moving to next track (auto or manual)
   useEffect(() => {
@@ -122,6 +127,7 @@ const FloatingAudioPlayerContent = () => {
 
   const progress = status.duration > 0 ? (status.currentTime / status.duration) * 100 : 0
   const languageLabel = currentIndex === 0 ? 'Bahasa Arab' : 'Bahasa Melayu'
+  const playlistInfo = playlist.length > 0 ? ` • ${currentTrackIndex + 1}/${playlist.length}` : ''
 
   // Animated style for smooth transition
   const animatedStyle = useAnimatedStyle(() => ({
@@ -153,7 +159,7 @@ const FloatingAudioPlayerContent = () => {
         {/* Track Info & Slider */}
         <View className="flex-1 mr-3">
           <Text className="text-white font-semibold text-sm mb-1" numberOfLines={1}>
-            {currentTrack.title} • <Text className="text-gray-400 text-xs">{languageLabel}</Text>
+            {currentTrack?.title}{playlistInfo} • <Text className="text-gray-400 text-xs">{languageLabel}</Text>
           </Text>
 
           {/* Time display */}
@@ -173,7 +179,6 @@ const FloatingAudioPlayerContent = () => {
             maximumValue={status.duration * 1000 || 0}
             minimumValue={0}
             thumbSize={12}
-            disable={!status.duration}
             thumbTintColor="#FFF"
             minimumTrackTintColor="#22c55e"
             maximumTrackTintColor="#4b5563"
