@@ -1,22 +1,37 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, TouchableOpacity, Platform } from 'react-native'
 import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio'
-import { PlayIcon, PauseIcon, Share2 } from 'lucide-react-native'
-import { AudioWaveform } from './ui/audio-wavform'
+import { PlayIcon, PauseIcon, Languages } from 'lucide-react-native'
+import { Slider } from '@react-native-assets/slider'
 import { useAudioPlayerStore } from '@/app/stores/useAudioPlayerStore'
+import { useReadingBottomBarStore } from '@/app/stores/useReadingBottomBarStore'
 import * as Haptics from 'expo-haptics'
-import { shareHadith } from '@/app/utils/shareHadith'
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 
 const FloatingAudioPlayerContent = () => {
   const { currentTrack } = useAudioPlayerStore()
+  const { isVisible: bottomBarVisible, height: bottomBarHeight } = useReadingBottomBarStore()
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const player = useAudioPlayer(currentTrack!.urls[currentIndex])
   const status = useAudioPlayerStatus(player)
 
+  // Track if it's a manual language switch
+  const [isManualSwitch, setIsManualSwitch] = useState(false)
+
+  // Animated bottom padding
+  const bottomPaddingValue = useSharedValue(24)
+
+  // Animate bottom padding when bar visibility changes
+  useEffect(() => {
+    const targetPadding = bottomBarVisible ? bottomBarHeight + 24 : 24
+    bottomPaddingValue.value = withTiming(targetPadding, { duration: 300 })
+  }, [bottomBarVisible, bottomBarHeight])
+
   // Reset index when track changes
   useEffect(() => {
     setCurrentIndex(0)
+    setIsManualSwitch(false)
   }, [currentTrack])
 
   // Auto-play next track when current one finishes
@@ -28,12 +43,13 @@ const FloatingAudioPlayerContent = () => {
     }
   }, [status.isLoaded, status.playing, status.currentTime, status.duration, currentIndex])
 
-  // Play when moving to next track
+  // Play when moving to next track (auto or manual)
   useEffect(() => {
-    if (currentIndex > 0 && status.isLoaded) {
+    if ((currentIndex > 0 || isManualSwitch) && status.isLoaded) {
       player.play()
+      setIsManualSwitch(false)
     }
-  }, [currentIndex])
+  }, [currentIndex, status.isLoaded])
 
   const handlePlayPause = async () => {
     if (Platform.OS === 'ios') {
@@ -51,19 +67,49 @@ const FloatingAudioPlayerContent = () => {
     }
   }
 
-  const handleShare = async () => {
+  const handleLanguageToggle = async () => {
     if (Platform.OS === 'ios') {
-      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium)
     }
-    // You can implement share functionality here
-    // shareHadith(...)
+
+    // Stop current playback
+    player.pause()
+    player.seekTo(0)
+
+    // Mark this as a manual switch so it auto-plays
+    setIsManualSwitch(true)
+
+    // Toggle to the other language
+    const newIndex = currentIndex === 0 ? 1 : 0
+    setCurrentIndex(newIndex)
+  }
+
+  const handleSeek = (value: number) => {
+    // Convert milliseconds to seconds for expo-audio
+    player.seekTo(value / 1000)
+  }
+
+  // Format time in MM:SS
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60)
+    const secs = Math.floor(seconds % 60)
+    return `${mins}:${secs.toString().padStart(2, '0')}`
   }
 
   const progress = status.duration > 0 ? (status.currentTime / status.duration) * 100 : 0
-  const languageLabel = currentIndex === 0 ? 'Arabic' : 'Malay'
+  const languageLabel = currentIndex === 0 ? 'Bahasa Arab' : 'Bahasa Melayu'
+
+  // Animated style for smooth transition
+  const animatedStyle = useAnimatedStyle(() => ({
+    paddingBottom: bottomPaddingValue.value
+  }))
 
   return (
-    <View className="absolute bottom-0 left-0 right-0 px-4 pb-6" pointerEvents="box-none">
+    <Animated.View
+      className="absolute bottom-0 left-0 right-0 px-4"
+      style={animatedStyle}
+      pointerEvents="box-none"
+    >
       <View className="bg-gray-900/95 rounded-2xl px-4 py-3 flex-row items-center shadow-2xl">
         {/* Play/Pause Button */}
         <TouchableOpacity
@@ -80,39 +126,50 @@ const FloatingAudioPlayerContent = () => {
           </View>
         </TouchableOpacity>
 
-        {/* Track Info & Waveform */}
+        {/* Track Info & Slider */}
         <View className="flex-1 mr-3">
           <Text className="text-white font-semibold text-sm mb-1" numberOfLines={1}>
-            {currentTrack.title}
+            {currentTrack.title} • <Text className="text-gray-400 text-xs">{languageLabel}</Text>
           </Text>
-          <Text className="text-gray-400 text-xs mb-2" numberOfLines={1}>
-            {languageLabel} {currentTrack.subtitle && `• ${currentTrack.subtitle}`}
-          </Text>
-          <AudioWaveform
-            isPlaying={status.playing}
-            progress={progress}
-            height={40}
-            barCount={40}
-            barWidth={2}
-            barGap={2}
-            activeColor="#22c55e"
-            inactiveColor="#4b5563"
-            animated={true}
-            showProgress={true}
-            interactive={false}
+
+          {/* Time display */}
+          <View className="flex-row justify-between mb-1">
+            <Text className="text-gray-400 text-xs">
+              {formatTime(status.currentTime)}
+            </Text>
+            <Text className="text-gray-400 text-xs">
+              {formatTime(status.duration)}
+            </Text>
+          </View>
+
+          {/* Slider */}
+          <Slider
+            value={status.currentTime * 1000}
+            onValueChange={handleSeek}
+            maximumValue={status.duration * 1000 || 0}
+            minimumValue={0}
+            thumbSize={12}
+            disable={!status.duration}
+            thumbTintColor="#22c55e"
+            minimumTrackTintColor="#22c55e"
+            maximumTrackTintColor="#4b5563"
+            trackHeight={3}
           />
         </View>
 
-        {/* Share Button */}
+        {/* Language Toggle Button */}
         <TouchableOpacity
-          onPress={handleShare}
-          className="ml-2"
+          onPress={handleLanguageToggle}
+          className="ml-2 bg-white/10 rounded-full px-3 py-2 flex-row items-center"
           activeOpacity={0.7}
         >
-          <Share2 size={20} color="#fff" />
+          <Languages size={16} color="#fff" />
+          <Text className="text-white text-xs font-semibold ml-1">
+            {currentIndex === 0 ? 'AR' : 'MS'}
+          </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </Animated.View>
   )
 }
 

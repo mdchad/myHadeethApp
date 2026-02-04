@@ -27,6 +27,7 @@ interface Footnote {
 interface Hadith {
   id?: string | number;
   _id?: string;
+  number: number;
   content: BilingualContent[];
   footnotes?: Footnote[];
   audio_files?: any;
@@ -53,7 +54,7 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
         `${R2_BASE_URL}/${hadith.audio_files.ar?.[audioContent]}`,
         `${R2_BASE_URL}/${hadith.audio_files.ms?.[audioContent]}`
       ],
-      title: `Hadith Content ${contentIndex + 1}`,
+      title: `Hadis [${hadith?.number}] - (${contentIndex + 1})`,
       subtitle: hadith._id
     })
   }
@@ -102,7 +103,6 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
                 activeOpacity={0.7}
               >
                 <PlayIcon size={16} color="white" fill="white" />
-                <Text className="text-white ml-2 font-medium">Play Audio</Text>
               </TouchableOpacity>
 
               <FootnotesReference hadith={hadith} type={'content.ms'} />

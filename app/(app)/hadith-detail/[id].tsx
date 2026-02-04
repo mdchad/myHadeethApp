@@ -32,6 +32,7 @@ import ReadingBottomBar from '@/app/components/reading-bottom-bar'
 import ChapterTitle from '@/app/components/chapter-title'
 import { latinFontSizes, arabicFontSizes } from '@/app/shared/fontSizeConfig'
 import HadithItem from '@/app/components/hadith-item'
+import { useReadingBottomBarStore } from '@/app/stores/useReadingBottomBarStore'
 
 function UniversalDetail() {
   const { id } = useLocalSearchParams<{ id: string }>()
@@ -43,6 +44,9 @@ function UniversalDetail() {
   const bottomSheetRef = useRef<BottomSheet>(null)
 
   const { isLoading, data, isError } = useGetHadith(id)
+
+  // Store for reading bottom bar
+  const { setVisible: setBottomBarVisible, setHeight: setBottomBarHeightStore } = useReadingBottomBarStore()
 
   // Animation state for top and bottom bars
   const topBarTranslateY = useSharedValue(0)
@@ -73,6 +77,7 @@ function UniversalDetail() {
     topBarTranslateY.value = withTiming(0, { duration: 300 })
     bottomBarTranslateY.value = withTiming(0, { duration: 300 })
     setBarsVisible(true)
+    setBottomBarVisible(true)
   }
 
   // Hide bars function
@@ -84,6 +89,13 @@ function UniversalDetail() {
       duration: 300
     })
     setBarsVisible(false)
+    setBottomBarVisible(false)
+  }
+
+  // Handle bottom bar layout
+  const handleBottomBarLayout = (height: number) => {
+    setBottomBarHeight(height)
+    setBottomBarHeightStore(height)
   }
 
   // Handle scroll event
@@ -166,7 +178,7 @@ function UniversalDetail() {
         animatedStyle={bottomBarAnimatedStyle}
         hadithData={data}
         footnoteRefs={footnoteRefs}
-        onLayout={setBottomBarHeight}
+        onLayout={handleBottomBarLayout}
       />
       <ReadingSettingsSheet bottomSheetRef={bottomSheetRef}/>
     </Page>
