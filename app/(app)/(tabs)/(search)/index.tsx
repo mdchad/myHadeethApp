@@ -68,18 +68,6 @@ function Search() {
   const { data, fetchStatus, isLoading } = useQuery({
     queryKey: ['search', page, submittedKeyword, selectedBooks],
     queryFn: async () => {
-<<<<<<< Updated upstream
-      const result = await apiGet(
-        `/api/search?page=${page}&limit=10&query=${encodeURIComponent(
-          submittedKeyword
-        )}&books=${selectedBooks}&mode=semantic`
-      )
-      return result.data
-    },
-    enabled: !!submittedKeyword // Only run query if search term is not empty
-    // If you want to clear the data when the search is disabled, you can use:
-    // initialData: queryKeyword ? undefined : [],
-=======
       const params = new URLSearchParams({
         query: encodeURIComponent(submittedKeyword),
         page: page.toString(),
@@ -102,7 +90,6 @@ function Search() {
       return result.data
     },
     enabled: !!submittedKeyword // Only run query if search term is not empty
->>>>>>> Stashed changes
   })
 
   useEffect(() => {
