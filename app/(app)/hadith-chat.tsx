@@ -17,6 +17,8 @@ import Animated, { FadeIn, FadeOut } from 'react-native-reanimated'
 import { useChat } from '@ai-sdk/react'
 import { DefaultChatTransport } from 'ai'
 import { fetch as expoFetch } from 'expo/fetch'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import Page from '@/app/components/page'
 
 const API_ENDPOINT = `${process.env.EXPO_PUBLIC_API_URL}/api/chat`
 const USER_AGENT = 'MyWayApp/1.0.0'
@@ -136,119 +138,120 @@ export default function HadithChatScreen() {
   }
 
   return (
-    <View className="flex-1 bg-white dark:bg-gray-950">
+    <Page edges={['bottom']} className="bg-white">
       <Stack.Screen
         options={{
-          title: `Hadith ${hadith.number}`,
+          title: `Hadis ${hadith.number}`,
           headerShown: true,
           headerBackTitle: 'Back',
         }}
       />
-
-      {/* Hadith Context Header */}
-      <View className="px-4 py-3 bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
-        <Text className="text-xs text-gray-500 dark:text-gray-400 mb-1">
-          Bertanya tentang:
-        </Text>
-        <Text
-          className="text-sm text-gray-700 dark:text-gray-300 font-arabic-symbols"
-          numberOfLines={2}
-        >
-          {hadith.content[0]?.ms}
-        </Text>
-      </View>
-
-      {/* Messages List */}
-      {messages.length === 0 ? (
-        <View className="flex-1 items-center justify-center px-8">
-          <Text className="text-gray-400 dark:text-gray-600 text-center text-base">
-            Tanya saya apa-apa tentang hadis ini
+      <View className="flex-1 bg-white dark:bg-gray-950">
+        {/* Hadith Context Header */}
+        <View className="px-4 py-3 bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+          <Text className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+            Bertanya tentang:
           </Text>
-          <Text className="text-gray-300 dark:text-gray-700 text-center text-sm mt-2">
-            Saya boleh membantu menerangkan maksud, konteks, atau mencari hadis yang berkaitan
+          <Text
+            className="text-sm text-gray-700 dark:text-gray-300 font-arabic-symbols"
+            numberOfLines={2}
+          >
+            {hadith.content[0]?.ms}
           </Text>
         </View>
-      ) : (
-        <FlatList
-          ref={flatListRef}
-          data={messages}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-          contentContainerClassName="pt-4 pb-4"
-          keyboardDismissMode="interactive"
-          keyboardShouldPersistTaps="handled"
-          onContentSizeChange={() =>
-            flatListRef.current?.scrollToEnd({ animated: true })
-          }
-        />
-      )}
 
-      {/* Error Message */}
-      {error && (
-        <View className="px-4 py-2 bg-red-50 border-t border-red-200">
-          <Text className="text-red-600 text-sm">
-            Ralat: {error.message}
-          </Text>
-        </View>
-      )}
-
-      {/* Composer */}
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}
-      >
-        <View className="px-4 py-3 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950">
-          {isLoading && (
-            <Animated.View
-              entering={FadeIn.duration(200)}
-              exiting={FadeOut.duration(200)}
-              className="mb-2"
-            >
-              <TouchableOpacity
-                onPress={stop}
-                className="self-start px-3 py-2 bg-gray-100 dark:bg-gray-800 rounded-full flex-row items-center gap-2"
-              >
-                <XIcon size={14} color="#6B7280" />
-                <Text className="text-gray-600 dark:text-gray-400 text-sm">
-                  Hentikan
-                </Text>
-              </TouchableOpacity>
-            </Animated.View>
-          )}
-
-          <View className="flex-row items-end gap-2">
-            <View className="flex-1 bg-gray-100 dark:bg-gray-800 rounded-2xl px-4 py-3">
-              <TextInput
-                ref={inputRef}
-                value={input}
-                onChangeText={setInput}
-                placeholder="Tanya tentang hadis ini..."
-                placeholderTextColor="#9CA3AF"
-                multiline
-                className="text-gray-900 dark:text-gray-100 text-base max-h-32"
-                style={{ minHeight: 20 }}
-                onSubmitEditing={handleSendMessage}
-                blurOnSubmit={false}
-              />
-            </View>
-
-            <TouchableOpacity
-              onPress={handleSendMessage}
-              disabled={!input.trim() || isLoading}
-              className={`p-3 rounded-full ${
-                input.trim() && !isLoading
-                  ? 'bg-royal-blue'
-                  : 'bg-gray-300 dark:bg-gray-700'
-              }`}
-            >
-              <SendIcon
-                size={20}
-                color={input.trim() && !isLoading ? 'white' : '#9CA3AF'}
-              />
-            </TouchableOpacity>
+        {/* Messages List */}
+        {messages.length === 0 ? (
+          <View className="flex-1 items-center justify-center px-8">
+            <Text className="text-gray-400 dark:text-gray-600 text-center text-base">
+              Tanya saya apa-apa tentang hadis ini
+            </Text>
+            <Text className="text-gray-300 dark:text-gray-700 text-center text-sm mt-2">
+              Saya boleh membantu menerangkan maksud, konteks, atau mencari hadis yang berkaitan
+            </Text>
           </View>
-        </View>
-      </KeyboardAvoidingView>
-    </View>
+        ) : (
+          <FlatList
+            ref={flatListRef}
+            data={messages}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            contentContainerClassName="pt-4 pb-4"
+            keyboardDismissMode="interactive"
+            keyboardShouldPersistTaps="handled"
+            onContentSizeChange={() =>
+              flatListRef.current?.scrollToEnd({ animated: true })
+            }
+          />
+        )}
+
+        {/* Error Message */}
+        {error && (
+          <View className="px-4 py-2 bg-red-50 border-t border-red-200">
+            <Text className="text-red-600 text-sm">
+              Ralat: {error.message}
+            </Text>
+          </View>
+        )}
+
+        {/* Composer */}
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}
+        >
+          <View className="px-4 py-3 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950">
+            {isLoading && (
+              <Animated.View
+                entering={FadeIn.duration(200)}
+                exiting={FadeOut.duration(200)}
+                className="mb-2"
+              >
+                <TouchableOpacity
+                  onPress={stop}
+                  className="self-start px-3 py-2 bg-gray-100 dark:bg-gray-800 rounded-full flex-row items-center gap-2"
+                >
+                  <XIcon size={14} color="#6B7280" />
+                  <Text className="text-gray-600 dark:text-gray-400 text-sm">
+                    Hentikan
+                  </Text>
+                </TouchableOpacity>
+              </Animated.View>
+            )}
+
+            <View className="flex-row items-end gap-2">
+              <View className="flex-1 bg-gray-100 dark:bg-gray-800 rounded-2xl px-4 py-3">
+                <TextInput
+                  ref={inputRef}
+                  value={input}
+                  onChangeText={setInput}
+                  placeholder="Tanya tentang hadis ini..."
+                  placeholderTextColor="#9CA3AF"
+                  multiline
+                  className="text-gray-900 dark:text-gray-100 text-base max-h-32"
+                  style={{ minHeight: 20 }}
+                  onSubmitEditing={handleSendMessage}
+                  blurOnSubmit={false}
+                />
+              </View>
+
+              <TouchableOpacity
+                onPress={handleSendMessage}
+                disabled={!input.trim() || isLoading}
+                className={`p-3 rounded-full ${
+                  input.trim() && !isLoading
+                    ? 'bg-royal-blue'
+                    : 'bg-gray-300 dark:bg-gray-700'
+                }`}
+              >
+                <SendIcon
+                  size={20}
+                  color={input.trim() && !isLoading ? 'white' : '#9CA3AF'}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+        </KeyboardAvoidingView>
+      </View>
+    </Page>
   )
 }
