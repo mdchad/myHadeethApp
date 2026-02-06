@@ -40,5 +40,14 @@
   "SEARCH_APPLY": "Pilih",
   "SEARCH_FILTER": "Tapis",
   "SHARE_HADITH_MESSAGE": "Lihat hadis ini di aplikasi My Way! Muat turun sekarang:",
-  "USER_SIGN_IN_LABEL": "Masuk"
+  "USER_SIGN_IN_LABEL": "Masuk",
+  "updateRequired": {
+    "title": "Kemas Kini Diperlukan",
+    "description": "Versi ini tidak lagi disokong. Sila kemas kini untuk terus menggunakan aplikasi.",
+    "currentVersion": "Versi Anda",
+    "minimumVersion": "Minimum Diperlukan",
+    "whatsNew": "Apa Yang Baharu",
+    "updateButton": "Kemas Kini Sekarang",
+    "helper": "Anda akan dibawa ke kedai aplikasi"
+  }
 }

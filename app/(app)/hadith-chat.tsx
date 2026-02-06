@@ -132,7 +132,7 @@ export default function HadithChatScreen() {
     <Page className="bg-white">
       <Stack.Screen
         options={{
-          title: `Hadis ${hadith.number}`,
+          title: '',
           headerShown: true,
           headerBackTitle: 'Back',
         }}

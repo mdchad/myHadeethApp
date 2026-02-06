@@ -26,6 +26,8 @@ import { PortalProvider } from '@gorhom/portal'
 import { useLocationStore } from './stores/useLocationStore'
 import FloatingAudioPlayer from './components/floating-audio-player'
 import {HeroUINativeProvider} from "heroui-native";
+import { useVersionCheck } from './shared/useVersionCheck'
+import { UpdateRequiredBlocker } from './components/update-required-blocker'
 
 const isAndroid = Platform.OS === 'android'
 const isHermes = !!global.HermesInternal
@@ -125,6 +127,9 @@ Sentry.init({
 export default Sentry.wrap(function Root() {
   useAppState(onAppStateChange)
   useOnlineManager()
+
+  // Check app version
+  const { updateRequired, currentVersion, minimumVersion, releaseNotes } = useVersionCheck()
 
   // Initialize location tracking with Zustand
   const initializeLocationTracking = useLocationStore(
@@ -226,6 +231,12 @@ export default Sentry.wrap(function Root() {
             <HeroUINativeProvider>
               <Slot />
               <FloatingAudioPlayer />
+              <UpdateRequiredBlocker
+                visible={updateRequired}
+                currentVersion={currentVersion}
+                minimumVersion={minimumVersion || currentVersion}
+                releaseNotes={releaseNotes}
+              />
             </HeroUINativeProvider>
           </PortalProvider>
         </PostHogProvider>

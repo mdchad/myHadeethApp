@@ -39,5 +39,14 @@
   "SEARCH_SELECTED": "Selected",
   "SEARCH_APPLY": "Apply",
   "SEARCH_FILTER": "Filter",
-  "SHARE_HADITH_MESSAGE": "Check out this hadith on My Way app! Download it now:"
+  "SHARE_HADITH_MESSAGE": "Check out this hadith on My Way app! Download it now:",
+  "updateRequired": {
+    "title": "Update Required",
+    "description": "This version is no longer supported. Please update to continue using the app.",
+    "currentVersion": "Your Version",
+    "minimumVersion": "Minimum Required",
+    "whatsNew": "What's New",
+    "updateButton": "Update Now",
+    "helper": "You will be redirected to the app store"
+  }
 }
