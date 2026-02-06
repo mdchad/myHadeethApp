@@ -2,31 +2,29 @@ import React, { useRef, useEffect, useState } from 'react'
 import {
   View,
   Text,
-  FlatList,
-  KeyboardAvoidingView,
-  Platform,
-  TextInput,
-  TouchableOpacity,
-  Keyboard,
+  ScrollView,
+  StyleSheet,
 } from 'react-native'
 import { useLocalSearchParams, Stack } from 'expo-router'
-import { SendIcon, XIcon } from 'lucide-react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { MessageItem } from '@/app/components/chat/message-item'
 import { ToolCallItem } from '@/app/components/chat/tool-call-item'
-import Animated, { FadeIn, FadeOut } from 'react-native-reanimated'
 import { useChat } from '@ai-sdk/react'
 import { DefaultChatTransport } from 'ai'
 import { fetch as expoFetch } from 'expo/fetch'
-import { SafeAreaView } from 'react-native-safe-area-context'
 import Page from '@/app/components/page'
+import {
+  KeyboardComposer,
+  KeyboardAwareWrapper,
+} from '@launchhq/react-native-keyboard-composer'
 
 const API_ENDPOINT = `${process.env.EXPO_PUBLIC_API_URL}/api/chat`
 const USER_AGENT = 'MyWayApp/1.0.0'
 
 export default function HadithChatScreen() {
   const params = useLocalSearchParams()
-  const flatListRef = useRef<FlatList>(null)
-  const inputRef = useRef<TextInput>(null)
+  const scrollViewRef = useRef<ScrollView>(null)
+  const insets = useSafeAreaInsets()
 
   // Extract hadith context from params and reconstruct hadith object
   const hadith = {
@@ -43,8 +41,8 @@ export default function HadithChatScreen() {
     ],
   }
 
-  // Local state for input (AI SDK 5.0 no longer manages input state)
-  const [input, setInput] = useState('')
+  // State for composer height (required for KeyboardAwareWrapper)
+  const [composerHeight, setComposerHeight] = useState(48)
 
   // Use AI SDK's useChat hook
   const {
@@ -64,9 +62,6 @@ export default function HadithChatScreen() {
         hadith,
       },
     }),
-    onFinish: () => {
-      Keyboard.dismiss()
-    },
   })
 
   // Derive loading state from status
@@ -76,26 +71,22 @@ export default function HadithChatScreen() {
   useEffect(() => {
     if (messages.length > 0) {
       setTimeout(() => {
-        flatListRef.current?.scrollToEnd({ animated: true })
+        scrollViewRef.current?.scrollToEnd({ animated: true })
       }, 100)
     }
   }, [messages.length])
 
-  const handleSendMessage = async () => {
-    if (!input.trim() || isLoading) return
-
-    const messageText = input.trim()
-    setInput('') // Clear input immediately for better UX
+  const handleSendMessage = async (text: string) => {
+    if (!text.trim() || isLoading) return
 
     try {
-      await sendMessage({ text: messageText })
+      await sendMessage({ text: text.trim() })
     } catch (err) {
-      // Error is handled by useChat's error state
       console.error('Failed to send message:', err)
     }
   }
 
-  const renderItem = ({ item, index }: { item: any; index: number }) => {
+  const renderMessage = (item: any, index: number) => {
     const isLastMessage = index === messages.length - 1
     const isStreaming = isLastMessage && isLoading && item.role === 'assistant'
 
@@ -130,7 +121,7 @@ export default function HadithChatScreen() {
 
     // If no parts or all parts processed, return elements
     if (elements.length > 0) {
-      return <>{elements}</>
+      return <View key={item.id}>{elements}</View>
     }
 
     // Fallback for empty messages
@@ -138,7 +129,7 @@ export default function HadithChatScreen() {
   }
 
   return (
-    <Page edges={['bottom']} className="bg-white">
+    <Page className="bg-white">
       <Stack.Screen
         options={{
           title: `Hadis ${hadith.number}`,
@@ -160,30 +151,37 @@ export default function HadithChatScreen() {
           </Text>
         </View>
 
-        {/* Messages List */}
-        {messages.length === 0 ? (
-          <View className="flex-1 items-center justify-center px-8">
-            <Text className="text-gray-400 dark:text-gray-600 text-center text-base">
-              Tanya saya apa-apa tentang hadis ini
-            </Text>
-            <Text className="text-gray-300 dark:text-gray-700 text-center text-sm mt-2">
-              Saya boleh membantu menerangkan maksud, konteks, atau mencari hadis yang berkaitan
-            </Text>
-          </View>
-        ) : (
-          <FlatList
-            ref={flatListRef}
-            data={messages}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-            contentContainerClassName="pt-4 pb-4"
+        {/* Messages List with Keyboard Aware Wrapper */}
+        <KeyboardAwareWrapper style={styles.wrapper} extraBottomInset={composerHeight}>
+          <ScrollView
+            ref={scrollViewRef}
+            contentContainerStyle={[
+              styles.scrollContent,
+              { paddingBottom: composerHeight + 16 } // Composer height + small breathing room
+            ]}
             keyboardDismissMode="interactive"
             keyboardShouldPersistTaps="handled"
             onContentSizeChange={() =>
-              flatListRef.current?.scrollToEnd({ animated: true })
+              scrollViewRef.current?.scrollToEnd({ animated: true })
             }
-          />
-        )}
+          >
+            {messages.map((message, index) => renderMessage(message, index))}
+          </ScrollView>
+          <View style={[styles.composerContainer, { paddingBottom: insets.bottom - 20 }]}>
+            <View style={[styles.composerWrapper, { height: composerHeight }]}>
+              <KeyboardComposer
+                placeholder="Tanya tentang hadis ini..."
+                onSend={handleSendMessage}
+                onStop={stop}
+                onHeightChange={setComposerHeight}
+                isStreaming={isLoading}
+                minHeight={48}
+                maxHeight={120}
+                style={styles.composer}
+              />
+            </View>
+          </View>
+        </KeyboardAwareWrapper>
 
         {/* Error Message */}
         {error && (
@@ -194,64 +192,47 @@ export default function HadithChatScreen() {
           </View>
         )}
 
-        {/* Composer */}
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-          keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}
-        >
-          <View className="px-4 py-3 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950">
-            {isLoading && (
-              <Animated.View
-                entering={FadeIn.duration(200)}
-                exiting={FadeOut.duration(200)}
-                className="mb-2"
-              >
-                <TouchableOpacity
-                  onPress={stop}
-                  className="self-start px-3 py-2 bg-gray-100 dark:bg-gray-800 rounded-full flex-row items-center gap-2"
-                >
-                  <XIcon size={14} color="#6B7280" />
-                  <Text className="text-gray-600 dark:text-gray-400 text-sm">
-                    Hentikan
-                  </Text>
-                </TouchableOpacity>
-              </Animated.View>
-            )}
-
-            <View className="flex-row items-end gap-2">
-              <View className="flex-1 bg-gray-100 dark:bg-gray-800 rounded-2xl px-4 py-3">
-                <TextInput
-                  ref={inputRef}
-                  value={input}
-                  onChangeText={setInput}
-                  placeholder="Tanya tentang hadis ini..."
-                  placeholderTextColor="#9CA3AF"
-                  multiline
-                  className="text-gray-900 dark:text-gray-100 text-base max-h-32"
-                  style={{ minHeight: 20 }}
-                  onSubmitEditing={handleSendMessage}
-                  blurOnSubmit={false}
-                />
-              </View>
-
-              <TouchableOpacity
-                onPress={handleSendMessage}
-                disabled={!input.trim() || isLoading}
-                className={`p-3 rounded-full ${
-                  input.trim() && !isLoading
-                    ? 'bg-royal-blue'
-                    : 'bg-gray-300 dark:bg-gray-700'
-                }`}
-              >
-                <SendIcon
-                  size={20}
-                  color={input.trim() && !isLoading ? 'white' : '#9CA3AF'}
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
-        </KeyboardAvoidingView>
+        {/* Keyboard Composer */}
+        {/*<View style={styles.composerContainer}>*/}
+        {/*  <View style={[styles.composerWrapper, { height: composerHeight }]}>*/}
+        {/*    <KeyboardComposer*/}
+        {/*      placeholder="Tanya tentang hadis ini..."*/}
+        {/*      onSend={handleSendMessage}*/}
+        {/*      onStop={stop}*/}
+        {/*      onHeightChange={setComposerHeight}*/}
+        {/*      isStreaming={isLoading}*/}
+        {/*      minHeight={48}*/}
+        {/*      maxHeight={120}*/}
+        {/*      style={styles.composer}*/}
+        {/*    />*/}
+        {/*  </View>*/}
+        {/*</View>*/}
       </View>
     </Page>
   )
 }
+
+const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+  },
+  scrollContent: {
+    paddingTop: 16,
+    // paddingBottom is set dynamically in the component
+  },
+  composerContainer: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    paddingHorizontal: 16,
+  },
+  composerWrapper: {
+    borderRadius: 16,
+    backgroundColor: '#F2F2F7',
+    overflow: 'hidden',
+  },
+  composer: {
+    flex: 1,
+  },
+})
