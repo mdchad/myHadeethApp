@@ -1,9 +1,5 @@
-import Constants from 'expo-constants'
-import { Platform } from 'react-native'
-
 const API_URL = process.env.EXPO_PUBLIC_API_URL
-const APP_VERSION = Constants.expoConfig?.version || '1.0.0'
-const USER_AGENT = `MyWayApp/${APP_VERSION}`
+const USER_AGENT = 'MyWayApp/1.0.0'
 
 /**
  * Generic API fetcher with automatic User-Agent header
@@ -32,7 +28,6 @@ export async function apiFetch<T = any>(
     headers: mergedHeaders,
   })
 
-  console.log(url)
   if (!response.ok) {
     throw new Error(`API Error: ${response.status} ${response.statusText}`)
   }
