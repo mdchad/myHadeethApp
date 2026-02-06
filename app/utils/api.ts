@@ -1,5 +1,9 @@
+import Constants from 'expo-constants'
+import { Platform } from 'react-native'
+
 const API_URL = process.env.EXPO_PUBLIC_API_URL
-const USER_AGENT = 'MyWayApp/1.0.0'
+const APP_VERSION = Constants.expoConfig?.version || '1.0.0'
+const USER_AGENT = `MyWayApp/${APP_VERSION}`
 
 /**
  * Generic API fetcher with automatic User-Agent header
