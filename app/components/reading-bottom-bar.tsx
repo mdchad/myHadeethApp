@@ -1,11 +1,17 @@
 import React, { useState } from 'react'
-import {View, Text, ActivityIndicator, Platform, ViewStyle} from 'react-native'
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  Platform,
+  ViewStyle
+} from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Animated from 'react-native-reanimated'
 import FootnotesMarker from '@/app/components/footnotes-marker'
 import FootnotesReference from '@/app/components/footnotes-reference'
-import {Button} from "heroui-native";
-import {PlayIcon} from "lucide-react-native";
+import { Button } from 'heroui-native'
+import { PlayIcon } from 'lucide-react-native'
 import { useAudioPlayerStore } from '@/app/stores/useAudioPlayerStore'
 import * as Haptics from 'expo-haptics'
 
@@ -54,7 +60,8 @@ const ReadingBottomBar: React.FC<HadithDetailBottomBarProps> = ({
 
     setIsLoadingPlaylist(true)
 
-    const R2_BASE_URL = 'https://pub-34bac4a6ce3242dabed8105f8908b2ee.r2.dev/myway-voiceover'
+    const R2_BASE_URL =
+      'https://pub-34bac4a6ce3242dabed8105f8908b2ee.r2.dev/myway-voiceover'
     const playlist = []
 
     // Build playlist: for each hadith, for each content block
@@ -70,10 +77,7 @@ const ReadingBottomBar: React.FC<HadithDetailBottomBarProps> = ({
 
         if (arUrl && msUrl) {
           playlist.push({
-            urls: [
-              `${R2_BASE_URL}/${arUrl}`,
-              `${R2_BASE_URL}/${msUrl}`
-            ],
+            urls: [`${R2_BASE_URL}/${arUrl}`, `${R2_BASE_URL}/${msUrl}`],
             title: `Hadis [${hadith.number}] - (${i + 1})`,
             subtitle: hadith._id
           })
@@ -114,8 +118,22 @@ const ReadingBottomBar: React.FC<HadithDetailBottomBarProps> = ({
 
         <View className="px-6 gap-8 mt-4">
           <View className="gap-2 pb-4">
-            <View className="flex items-center">
-              <View className="flex-1">
+            <View className="flex flex-row gap-2 items-center">
+              <Button
+                isIconOnly
+                className="bg-transparent"
+                onPress={handlePlayAll}
+                isDisabled={
+                  isLoadingPlaylist || !allHadiths || allHadiths.length === 0
+                }
+              >
+                {isLoadingPlaylist ? (
+                  <ActivityIndicator size="small" color="white" />
+                ) : (
+                  <PlayIcon size={28} color="white" fill="black" />
+                )}
+              </Button>
+              <View className="flex items-start">
                 <FootnotesMarker
                   footnotes={hadithData.footnotes}
                   type={'volume_title.ms'}
@@ -123,28 +141,14 @@ const ReadingBottomBar: React.FC<HadithDetailBottomBarProps> = ({
                   footnoteRefs={footnoteRefs}
                   hadithId={hadithData._id}
                 >
-                  <Text className="text-sm leading-10 text-center capitalize font-semibold text-royal-blue-950 dark:text-white">
+                  <Text className={`text-sm ${hadithData.footnotes?.length ? 'leading-10' : ''} text-center capitalize font-semibold text-royal-blue-950 dark:text-white`}>
                     {hadithData.volume_title.ms}
                   </Text>
                 </FootnotesMarker>
-              </View>
-              <View className="flex-1 items-end mb-4">
                 <Text className="text-lg text-center font-semibold text-royal-blue-950 dark:text-white font-arabic-regular">
                   {hadithData.volume_title.ar}
                 </Text>
               </View>
-              <Button
-                isIconOnly
-                className="bg-royal-blue"
-                onPress={handlePlayAll}
-                isDisabled={isLoadingPlaylist || !allHadiths || allHadiths.length === 0}
-              >
-                {isLoadingPlaylist ? (
-                  <ActivityIndicator size="small" color="white" />
-                ) : (
-                  <PlayIcon size={14} color="white" fill="white" />
-                )}
-              </Button>
             </View>
             <FootnotesReference hadith={hadithData} type={'volume_title.ms'} />
           </View>
