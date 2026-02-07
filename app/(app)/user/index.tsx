@@ -123,16 +123,16 @@ export default function Profile() {
                 <Text className="text-lg">{t(SHARED_TEXT.USER_ABOUT_LABEL)}</Text>
               </View>
             </TouchableHighlight>
-            <TouchableHighlight
-              onPress={() => router.push('/(app)/(auth)/sign-in')}
-              className="rounded-b-xl"
-              underlayColor="#f9fafb"
-            >
-              <View className="px-6 gap-4 flex flex-row items-center py-2 my-1">
-                <Smartphone color={'black'} size={20} />
-                <Text className="text-lg">{t(SHARED_TEXT.USER_SIGN_IN_LABEL)}</Text>
-              </View>
-            </TouchableHighlight>
+            {/*<TouchableHighlight*/}
+            {/*  onPress={() => router.push('/(app)/(auth)/sign-in')}*/}
+            {/*  className="rounded-b-xl"*/}
+            {/*  underlayColor="#f9fafb"*/}
+            {/*>*/}
+            {/*  <View className="px-6 gap-4 flex flex-row items-center py-2 my-1">*/}
+            {/*    <Smartphone color={'black'} size={20} />*/}
+            {/*    <Text className="text-lg">{t(SHARED_TEXT.USER_SIGN_IN_LABEL)}</Text>*/}
+            {/*  </View>*/}
+            {/*</TouchableHighlight>*/}
             {/*<Link href="/settings" asChild>*/}
             {/*  <TouchableHighlight underlayColor="#f9fafb">*/}
             {/*    <View className="px-6 gap-4 flex flex-row items-center py-2 my-1">*/}

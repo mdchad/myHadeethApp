@@ -92,7 +92,7 @@ export default function HadithChatScreen() {
 
     // Extract parts from the message
     const parts = item.parts || []
-    const elements: JSX.Element[] = []
+    const elements: any[] = []
 
     // Process each part
     parts.forEach((part: any, partIndex: number) => {

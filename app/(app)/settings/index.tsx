@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, ScrollView, Switch, TouchableHighlight } from 'react-native'
+import { View, Text, ScrollView, Switch, TouchableHighlight, Platform } from 'react-native'
 
 import Page from '@/app/components/page'
 import {
