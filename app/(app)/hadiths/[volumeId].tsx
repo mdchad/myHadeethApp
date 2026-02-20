@@ -1,5 +1,5 @@
 import React, { useRef, useState, useMemo, useEffect } from 'react'
-import { NativeScrollEvent, NativeSyntheticEvent, View, Pressable, Text, Keyboard, ScrollView } from 'react-native'
+import { View, Pressable, Text, Keyboard, ScrollView } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
 import useGetHadiths from '@/app/shared/fetcher/useHadiths'
 import { FlashList, FlashListRef } from '@shopify/flash-list'
@@ -98,9 +98,6 @@ function HadithContent() {
   const [barsVisible, setBarsVisible] = useState(true)
   const [bottomBarHeight, setBottomBarHeight] = useState(100)
 
-  // Scroll tracking
-  const lastScrollY = useRef(0)
-  const scrollThreshold = 5 // Minimum scroll distance to trigger hide/show
 
   // Search logic - find all hadiths that contain the search query
   const searchMatches = useMemo(() => {
@@ -184,20 +181,6 @@ function HadithContent() {
   const handleBottomBarLayout = (height: number) => {
     setBottomBarHeight(height)
     setBottomBarHeightStore(height)
-  }
-
-  // Handle scroll event
-  const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const currentScrollY = event.nativeEvent.contentOffset.y
-    const scrollDiff = currentScrollY - lastScrollY.current
-
-    if (Math.abs(scrollDiff) > scrollThreshold) {
-      if (scrollDiff > 0 && barsVisible) {
-        // Scrolling down - hide bars
-        hideBars()
-      }
-      lastScrollY.current = currentScrollY
-    }
   }
 
   // Handle touch/press on content
@@ -299,7 +282,6 @@ function HadithContent() {
                 <FlashList
                   ref={listRef}
                   data={data}
-                  onScroll={handleScroll}
                   renderItem={({ item }) => (
                     <HadithListItem
                       item={item}
@@ -327,6 +309,7 @@ function HadithContent() {
               allHadiths={data}
               footnoteRefs={footnoteRefs}
               onLayout={handleBottomBarLayout}
+              onHide={hideBars}
             />
           </>
         )}

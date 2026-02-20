@@ -11,7 +11,7 @@ import Animated from 'react-native-reanimated'
 import FootnotesMarker from '@/app/components/footnotes-marker'
 import FootnotesReference from '@/app/components/footnotes-reference'
 import { Button } from 'heroui-native'
-import { PlayIcon } from 'lucide-react-native'
+import { ChevronDownIcon, PlayIcon } from 'lucide-react-native'
 import { useAudioPlayerStore } from '@/app/stores/useAudioPlayerStore'
 import * as Haptics from 'expo-haptics'
 
@@ -36,6 +36,7 @@ interface HadithDetailBottomBarProps {
   allHadiths?: HadithData[]
   footnoteRefs: React.RefObject<Record<string, any>>
   onLayout?: (height: number) => void
+  onHide?: () => void
 }
 
 const ReadingBottomBar: React.FC<HadithDetailBottomBarProps> = ({
@@ -43,7 +44,8 @@ const ReadingBottomBar: React.FC<HadithDetailBottomBarProps> = ({
   hadithData,
   allHadiths,
   footnoteRefs,
-  onLayout
+  onLayout,
+  onHide
 }) => {
   const insets = useSafeAreaInsets()
   const { playPlaylist } = useAudioPlayerStore()
@@ -119,6 +121,15 @@ const ReadingBottomBar: React.FC<HadithDetailBottomBarProps> = ({
         <View className="px-6 gap-8 mt-4">
           <View className="gap-2 pb-4">
             <View className="flex flex-row gap-2 items-center">
+              {onHide && (
+                <Button
+                  isIconOnly
+                  className="bg-gray-100"
+                  onPress={onHide}
+                >
+                  <ChevronDownIcon size={20} color="black" />
+                </Button>
+              )}
               <Button
                 isIconOnly
                 className="bg-gray-100"
