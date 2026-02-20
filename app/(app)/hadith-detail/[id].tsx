@@ -4,8 +4,7 @@ import {
   ScrollView,
   Text,
   Pressable,
-  NativeScrollEvent,
-  NativeSyntheticEvent, Keyboard
+  Keyboard
 } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -54,9 +53,6 @@ function UniversalDetail() {
   const [barsVisible, setBarsVisible] = useState(true)
   const [bottomBarHeight, setBottomBarHeight] = useState(100)
 
-  // Scroll tracking
-  const lastScrollY = useRef(0)
-  const scrollThreshold = 5 // Minimum scroll distance to trigger hide/show
 
   useEffect(() => {
     if (data) {
@@ -96,20 +92,6 @@ function UniversalDetail() {
   const handleBottomBarLayout = (height: number) => {
     setBottomBarHeight(height)
     setBottomBarHeightStore(height)
-  }
-
-  // Handle scroll event
-  const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const currentScrollY = event.nativeEvent.contentOffset.y
-    const scrollDiff = currentScrollY - lastScrollY.current
-
-    if (Math.abs(scrollDiff) > scrollThreshold) {
-      if (scrollDiff > 0 && barsVisible) {
-        // Scrolling down - hide bars
-        hideBars()
-      }
-      lastScrollY.current = currentScrollY
-    }
   }
 
   // Handle touch/press on content
@@ -156,7 +138,6 @@ function UniversalDetail() {
 
       <ScrollView
         className="bg-reading-background"
-        onScroll={handleScroll}
         scrollEventThrottle={16}
       >
         <Pressable onPress={handleContentPress}>
@@ -179,6 +160,7 @@ function UniversalDetail() {
         hadithData={data}
         footnoteRefs={footnoteRefs}
         onLayout={handleBottomBarLayout}
+        onHide={hideBars}
       />
       <ReadingSettingsSheet bottomSheetRef={bottomSheetRef}/>
     </Page>

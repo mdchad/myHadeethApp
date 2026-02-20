@@ -38,8 +38,8 @@ const ReadingTopBar: React.FC<HadithDetailTopBarProps> = ({
       >
         <View className="flex flex-row">
           <Pressable className="flex flex-row" onPress={onBackPress}>
-            <StyledChevronLeft className="text-reading-text" size={28} />
-            <Text className="text-xl text-reading-text">Back</Text>
+            <StyledChevronLeft className="text-reading-text" size={32} />
+            {/*<Text className="text-xl text-reading-text">Back</Text>*/}
           </Pressable>
         </View>
         <View className="flex flex-row gap-2">

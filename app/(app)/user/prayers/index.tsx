@@ -21,6 +21,7 @@ import SHARED_TEXT from "@/app/i18n";
 import { ms, enGB } from 'date-fns/locale';
 import {t} from "i18next";
 import { usePostHog } from 'posthog-react-native'
+import { useRouter } from 'expo-router'
 
 interface PrayerTime {
   name: string;
@@ -54,6 +55,8 @@ interface MonthlyPrayerTimes {
 
 interface RenderItemProps {
   item: FormattedDate;
+  calendarDate: Date;
+  onClickIndividualDay: (item: FormattedDate) => void;
 }
 
 const prayerNames = ['Subuh', 'Syuruk', 'Zohor', 'Asar', 'Maghrib', 'Isyak']
@@ -72,6 +75,25 @@ const formatHijri = new Intl.DateTimeFormat(
   options
 )
 
+function RenderItem({ item, calendarDate, onClickIndividualDay }: RenderItemProps) {
+  return (
+    <Pressable onPress={() => onClickIndividualDay(item)}>
+      <View className={`mx-2 flex items-center py-4`}>
+        <Text
+          className={`${
+            isSameDay(item?.date, calendarDate)
+              ? 'text-royal-blue-950'
+              : 'text-[#008080]'
+          }`}
+        >
+          {item?.dayName.toUpperCase()}
+        </Text>
+        <Text className="text-lg mt-2">{item?.day}</Text>
+      </View>
+    </Pressable>
+  )
+}
+
 export default function Prayer() {
   const [prayerTimes, setPrayerTimes] = useState<PrayerTime[]>([])
   const [nextPrayer, setNextPrayer] = useState<PrayerTime | null>(null)
@@ -86,6 +108,8 @@ export default function Prayer() {
   const datesInRange = eachDayOfInterval({ start: currentDate, end: endDate })
   const [calendarDate, setCalendarDate] = useState<Date>(new Date())
   const [monthlyPrayerTimes, setMonthlyPrayerTimes] = useState<MonthlyPrayerTimes | null>(null)
+
+  const router = useRouter()
   const posthog = usePostHog()
 
   useEffect(() => {
@@ -193,30 +217,11 @@ export default function Prayer() {
     await Linking.openSettings()
   }
 
-  function RenderItem({ item }: RenderItemProps) {
-    return (
-      <Pressable onPress={() => onClickIndividualDay(item)}>
-        <View className={`mx-2 flex items-center py-4`}>
-          <Text
-            className={`${
-              isSameDay(item?.date, calendarDate)
-                ? 'text-royal-blue-950'
-                : 'text-[#008080]'
-            }`}
-          >
-            {item?.dayName.toUpperCase()}
-          </Text>
-          <Text className="text-lg mt-2">{item?.day}</Text>
-        </View>
-      </Pressable>
-    )
-  }
-
   return (
     <Page edges={['top']} className="bg-royal-blue-950">
       <StatusBar barStyle="light-content" />
       <ScrollView className="bg-gray-100">
-        <Header rounded={false} title={t(SHARED_TEXT.PRAYERS_HEADER)} />
+        <Header rounded={false} title={t(SHARED_TEXT.PRAYERS_HEADER)} onPressButton={() => router.back()} />
         <View
           className={`px-6 flex flex-row justify-between items-end rounded-b-2xl py-6 shadow-lg bg-royal-blue-950 overflow-hidden`}
         >

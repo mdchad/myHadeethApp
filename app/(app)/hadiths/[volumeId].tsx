@@ -1,5 +1,5 @@
 import React, { useRef, useState, useMemo, useEffect } from 'react'
-import { NativeScrollEvent, NativeSyntheticEvent, View, Pressable, Text, Keyboard, ScrollView } from 'react-native'
+import { View, Pressable, Text, Keyboard, ScrollView } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
 import useGetHadiths from '@/app/shared/fetcher/useHadiths'
 import { FlashList, FlashListRef } from '@shopify/flash-list'
@@ -42,8 +42,30 @@ interface HadithListItemProps {
   item: HadithItemType;
   onShare: (item: HadithItemType) => void;
   onSave: (id: string) => void;
+  handleContentPress: () => void;
   ids: { chapterId: string; firstHadithId: string };
   footnoteRefs: React.RefObject<Record<string, any>>;
+}
+
+const HadithListItem: React.FC<HadithListItemProps> = ({ item, onShare, onSave, ids, footnoteRefs, handleContentPress }) => {
+  const showChapter = item.is_chapter_start;
+
+  return (
+    <Pressable onPress={handleContentPress}>
+      {showChapter && (
+        <ChapterTitle data={item} footnoteRefs={footnoteRefs}/>
+      )}
+      {!item.content[0].ar ? null : (
+        <View className="space-y-8 bg-reading-background mb-4">
+          <HadithItem hadith={item} footnoteRefs={footnoteRefs} />
+          {/*<ActionButtons*/}
+          {/*  onShare={() => onShare(item)}*/}
+          {/*  onSave={() => onSave(item._id)}*/}
+          {/*/>*/}
+        </View>
+      )}
+    </Pressable>
+  )
 }
 
 function HadithContent() {
@@ -76,9 +98,6 @@ function HadithContent() {
   const [barsVisible, setBarsVisible] = useState(true)
   const [bottomBarHeight, setBottomBarHeight] = useState(100)
 
-  // Scroll tracking
-  const lastScrollY = useRef(0)
-  const scrollThreshold = 5 // Minimum scroll distance to trigger hide/show
 
   // Search logic - find all hadiths that contain the search query
   const searchMatches = useMemo(() => {
@@ -164,20 +183,6 @@ function HadithContent() {
     setBottomBarHeightStore(height)
   }
 
-  // Handle scroll event
-  const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const currentScrollY = event.nativeEvent.contentOffset.y
-    const scrollDiff = currentScrollY - lastScrollY.current
-
-    if (Math.abs(scrollDiff) > scrollThreshold) {
-      if (scrollDiff > 0 && barsVisible) {
-        // Scrolling down - hide bars
-        hideBars()
-      }
-      lastScrollY.current = currentScrollY
-    }
-  }
-
   // Handle touch/press on content
   const handleContentPress = () => {
     if (barsVisible) {
@@ -215,27 +220,6 @@ function HadithContent() {
     setSearchQuery('')
     setCurrentMatchIndex(0)
     Keyboard.dismiss()
-  }
-
-  const HadithListItem: React.FC<HadithListItemProps> = ({ item, onShare, onSave, ids, footnoteRefs }) => {
-    const showChapter = item.is_chapter_start;
-
-    return (
-      <Pressable onPress={handleContentPress}>
-        {showChapter && (
-          <ChapterTitle data={item} footnoteRefs={footnoteRefs}/>
-        )}
-        {!item.content[0].ar ? null : (
-          <View className="space-y-8 bg-reading-background mb-4">
-            <HadithItem hadith={item} footnoteRefs={footnoteRefs} />
-            {/*<ActionButtons*/}
-            {/*  onShare={() => onShare(item)}*/}
-            {/*  onSave={() => onSave(item._id)}*/}
-            {/*/>*/}
-          </View>
-        )}
-      </Pressable>
-    )
   }
 
 
@@ -298,7 +282,6 @@ function HadithContent() {
                 <FlashList
                   ref={listRef}
                   data={data}
-                  onScroll={handleScroll}
                   renderItem={({ item }) => (
                     <HadithListItem
                       item={item}
@@ -306,6 +289,7 @@ function HadithContent() {
                       onSave={onSave}
                       ids={ids}
                       footnoteRefs={footnoteRefs}
+                      handleContentPress={handleContentPress}
                     />
                   )}
                   ListHeaderComponent={
@@ -325,6 +309,7 @@ function HadithContent() {
               allHadiths={data}
               footnoteRefs={footnoteRefs}
               onLayout={handleBottomBarLayout}
+              onHide={hideBars}
             />
           </>
         )}
