@@ -15,14 +15,14 @@ export default function Introduction() {
     en: "https://myway.my/intro.pdf"
   }[i18n.language]
 
+  const openPdf = async () => {
+    await WebBrowser.openBrowserAsync(pdfURL as string);
+    router.back();
+  };
+
   useEffect(() => {
     openPdf();
   }, []);
-
-  const openPdf = async () => {
-    await WebBrowser.openBrowserAsync(pdfURL);
-    router.back();
-  };
 
   return (
     <Page edges={['top']}>

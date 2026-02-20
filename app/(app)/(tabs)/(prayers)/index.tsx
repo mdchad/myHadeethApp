@@ -54,6 +54,8 @@ interface MonthlyPrayerTimes {
 
 interface RenderItemProps {
   item: FormattedDate;
+  calendarDate: Date;
+  onClickIndividualDay: (item: FormattedDate) => void;
 }
 
 const prayerNames = ['Subuh', 'Syuruk', 'Zohor', 'Asar', 'Maghrib', 'Isyak']
@@ -71,6 +73,25 @@ const formatHijri = new Intl.DateTimeFormat(
   'ms-MY-u-ca-islamic-nu-latn',
   options
 )
+
+function RenderItem({ item, calendarDate, onClickIndividualDay }: RenderItemProps) {
+  return (
+    <Pressable onPress={() => onClickIndividualDay(item)}>
+      <View className={`mx-2 flex items-center py-4`}>
+        <Text
+          className={`${
+            isSameDay(item?.date, calendarDate)
+              ? 'text-royal-blue-950'
+              : 'text-[#008080]'
+          }`}
+        >
+          {item?.dayName.toUpperCase()}
+        </Text>
+        <Text className="text-lg mt-2">{item?.day}</Text>
+      </View>
+    </Pressable>
+  )
+}
 
 export default function Prayer() {
   const [prayerTimes, setPrayerTimes] = useState<PrayerTime[]>([])
@@ -191,25 +212,6 @@ export default function Prayer() {
 
   async function openSettings() {
     await Linking.openSettings()
-  }
-
-  function RenderItem({ item }: RenderItemProps) {
-    return (
-      <Pressable onPress={() => onClickIndividualDay(item)}>
-        <View className={`mx-2 flex items-center py-4`}>
-          <Text
-            className={`${
-              isSameDay(item?.date, calendarDate)
-                ? 'text-royal-blue-950'
-                : 'text-[#008080]'
-            }`}
-          >
-            {item?.dayName.toUpperCase()}
-          </Text>
-          <Text className="text-lg mt-2">{item?.day}</Text>
-        </View>
-      </Pressable>
-    )
   }
 
   return (

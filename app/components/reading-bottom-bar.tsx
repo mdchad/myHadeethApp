@@ -121,7 +121,7 @@ const ReadingBottomBar: React.FC<HadithDetailBottomBarProps> = ({
             <View className="flex flex-row gap-2 items-center">
               <Button
                 isIconOnly
-                className="bg-transparent"
+                className="bg-gray-100"
                 onPress={handlePlayAll}
                 isDisabled={
                   isLoadingPlaylist || !allHadiths || allHadiths.length === 0

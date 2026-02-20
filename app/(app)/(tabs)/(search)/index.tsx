@@ -51,6 +51,20 @@ interface RenderedItemsProps {
   item: SearchResultItem
 }
 
+const ItemSeparatorView = () => {
+  return (
+    // Flat List Item Separator
+    <View
+      key={Math.random()}
+      style={{
+        height: 0.5,
+        width: '100%',
+        backgroundColor: '#C8C8C8'
+      }}
+    />
+  )
+}
+
 function Search() {
   const posthog = usePostHog()
   const [searchKeyword, setSearchKeyword] = useState('')
@@ -188,20 +202,6 @@ function Search() {
       >
         {parts}
       </Text>
-    )
-  }
-
-  const ItemSeparatorView = () => {
-    return (
-      // Flat List Item Separator
-      <View
-        key={Math.random()}
-        style={{
-          height: 0.5,
-          width: '100%',
-          backgroundColor: '#C8C8C8'
-        }}
-      />
     )
   }
 

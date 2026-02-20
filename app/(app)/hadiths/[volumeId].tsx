@@ -42,8 +42,30 @@ interface HadithListItemProps {
   item: HadithItemType;
   onShare: (item: HadithItemType) => void;
   onSave: (id: string) => void;
+  handleContentPress: () => void;
   ids: { chapterId: string; firstHadithId: string };
   footnoteRefs: React.RefObject<Record<string, any>>;
+}
+
+const HadithListItem: React.FC<HadithListItemProps> = ({ item, onShare, onSave, ids, footnoteRefs, handleContentPress }) => {
+  const showChapter = item.is_chapter_start;
+
+  return (
+    <Pressable onPress={handleContentPress}>
+      {showChapter && (
+        <ChapterTitle data={item} footnoteRefs={footnoteRefs}/>
+      )}
+      {!item.content[0].ar ? null : (
+        <View className="space-y-8 bg-reading-background mb-4">
+          <HadithItem hadith={item} footnoteRefs={footnoteRefs} />
+          {/*<ActionButtons*/}
+          {/*  onShare={() => onShare(item)}*/}
+          {/*  onSave={() => onSave(item._id)}*/}
+          {/*/>*/}
+        </View>
+      )}
+    </Pressable>
+  )
 }
 
 function HadithContent() {
@@ -217,27 +239,6 @@ function HadithContent() {
     Keyboard.dismiss()
   }
 
-  const HadithListItem: React.FC<HadithListItemProps> = ({ item, onShare, onSave, ids, footnoteRefs }) => {
-    const showChapter = item.is_chapter_start;
-
-    return (
-      <Pressable onPress={handleContentPress}>
-        {showChapter && (
-          <ChapterTitle data={item} footnoteRefs={footnoteRefs}/>
-        )}
-        {!item.content[0].ar ? null : (
-          <View className="space-y-8 bg-reading-background mb-4">
-            <HadithItem hadith={item} footnoteRefs={footnoteRefs} />
-            {/*<ActionButtons*/}
-            {/*  onShare={() => onShare(item)}*/}
-            {/*  onSave={() => onSave(item._id)}*/}
-            {/*/>*/}
-          </View>
-        )}
-      </Pressable>
-    )
-  }
-
 
   return (
     <Page className="bg-reading-background">
@@ -306,6 +307,7 @@ function HadithContent() {
                       onSave={onSave}
                       ids={ids}
                       footnoteRefs={footnoteRefs}
+                      handleContentPress={handleContentPress}
                     />
                   )}
                   ListHeaderComponent={

@@ -134,7 +134,7 @@ export default function HadithChatScreen() {
         options={{
           title: '',
           headerShown: true,
-          headerBackTitle: 'Back',
+          headerBackTitle: 'Balik',
         }}
       />
       <View className="flex-1 bg-white dark:bg-gray-950">
