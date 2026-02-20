@@ -278,7 +278,7 @@ export default function Prayer() {
                   <View className="flex flex-row items-center justify-between mb-4 mt-4 border-y-2 border-y-black">
                     {/*<ChevronLeft color={"#1C2A4F"}/>*/}
                     {formattedDates.map((date, i) => {
-                      return <RenderItem key={i} item={date} />
+                      return <RenderItem key={i} item={date} onClickIndividualDay={onClickIndividualDay} calendarDate={calendarDate}/>
                     })}
                   </View>
                 </View>
