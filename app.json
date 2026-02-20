@@ -67,7 +67,7 @@
     ],
     "ios": {
       "bundleIdentifier": "com.mdchad.myWay",
-      "supportsTablet": false,
+      "supportsTablet": true,
       "infoPlist": {
         "NSLocationAlwaysUsageDescription": "Location access is required to determine the Qibla direction from your current position",
         "NSLocationWhenInUseUsageDescription": "Location access is required to determine the Qibla direction from your current position",
@@ -95,6 +95,6 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
   }
 }
