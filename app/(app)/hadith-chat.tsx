@@ -4,6 +4,7 @@ import {
   Text,
   ScrollView,
   StyleSheet,
+  Pressable,
 } from 'react-native'
 import { useLocalSearchParams, Stack } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'

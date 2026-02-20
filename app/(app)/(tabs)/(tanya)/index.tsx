@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react'
-import { View, Text, ScrollView, StyleSheet, Pressable } from 'react-native'
+import { View, Text, ScrollView, FlatList, StyleSheet, Pressable } from 'react-native'
 import { Stack, useRouter } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { MessageItem } from '@/app/components/chat/message-item'
@@ -17,6 +17,17 @@ import { Button } from 'heroui-native'
 
 const API_ENDPOINT = `${process.env.EXPO_PUBLIC_API_URL}/api/chat`
 const USER_AGENT = 'MyWayApp/1.0.0'
+
+const SUGGESTIONS = [
+  'Apakah hadis tentang niat?',
+  'Hadis tentang kelebihan solat berjemaah',
+  'Ceritakan hadis tentang sedekah',
+  'Apa hadis tentang berbuat baik kepada ibu bapa?',
+  'Hadis tentang kelebihan membaca Al-Quran',
+  'Apakah hadis tentang sabar?',
+]
+
+const SUGGESTIONS_HEIGHT = 52
 
 export default function TanyaAIScreen() {
   const scrollViewRef = useRef<ScrollView>(null)
@@ -121,13 +132,13 @@ export default function TanyaAIScreen() {
         {/* Messages List with Keyboard Aware Wrapper */}
         <KeyboardAwareWrapper
           style={styles.wrapper}
-          extraBottomInset={composerHeight}
+          extraBottomInset={composerHeight + (messages.length === 0 ? SUGGESTIONS_HEIGHT : 0)}
         >
           <ScrollView
             ref={scrollViewRef}
             contentContainerStyle={[
               styles.scrollContent,
-              { paddingBottom: composerHeight + 16 }
+              { paddingBottom: composerHeight + (messages.length === 0 ? SUGGESTIONS_HEIGHT : 0) + 16 }
             ]}
             keyboardDismissMode="interactive"
             keyboardShouldPersistTaps="handled"
@@ -143,6 +154,23 @@ export default function TanyaAIScreen() {
               { paddingBottom: insets.bottom - 20 }
             ]}
           >
+            {messages.length === 0 && (
+              <FlatList
+                horizontal
+                data={SUGGESTIONS}
+                keyExtractor={(item) => item}
+                showsHorizontalScrollIndicator={false}
+                showsVerticalScrollIndicator={false}
+                keyboardShouldPersistTaps="handled"
+                contentContainerStyle={styles.suggestionsContent}
+                style={styles.suggestions}
+                renderItem={({ item }) => (
+                  <Pressable onPress={() => handleSendMessage(item)} style={styles.chip}>
+                    <Text style={styles.chipText}>{item}</Text>
+                  </Pressable>
+                )}
+              />
+            )}
             <View style={[styles.composerWrapper, { height: composerHeight }]}>
               <KeyboardComposer
                 placeholder="Tanya soalan anda di sini..."
@@ -182,6 +210,27 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     paddingHorizontal: 16
+  },
+  suggestions: {
+    height: SUGGESTIONS_HEIGHT - 8,
+    marginBottom: 8,
+  },
+  suggestionsContent: {
+    alignItems: 'center',
+    gap: 8,
+    paddingHorizontal: 2,
+  },
+  chip: {
+    backgroundColor: '#F2F2F7',
+    borderRadius: 20,
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+    borderWidth: 1,
+    borderColor: '#E5E5EA',
+  },
+  chipText: {
+    fontSize: 13,
+    color: '#3C3C43',
   },
   composerWrapper: {
     borderRadius: 16,
