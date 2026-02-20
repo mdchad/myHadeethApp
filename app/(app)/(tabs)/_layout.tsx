@@ -1,7 +1,7 @@
 import { View, Image } from 'react-native'
 import React from 'react'
 import { Tabs } from 'expo-router'
-import { ClockIcon, HomeIcon, LayoutGridIcon, SearchIcon } from 'lucide-react-native'
+import { ClockIcon, HomeIcon, LayoutGridIcon, SearchIcon, SparklesIcon } from 'lucide-react-native'
 import SHARED_TEXT from "../../i18n";
 import {t} from "i18next";
 
@@ -133,6 +133,18 @@ const _layout = () => {
                   <Image source={qiblaLogo} style={{ width: 20, height: 20 }} />
                   {/* <FontAwesome5 name="home" size={30} color={focused ? 'tomato' : 'gray'} /> */}
                 </View>
+              )
+            }
+          }}
+        />
+        <Tabs.Screen
+          name="(tanya)"
+          options={{
+            tabBarLabel: t(SHARED_TEXT.TAB_TANYA_LABEL),
+            tabBarStyle: { display: 'none' },
+            tabBarIcon: ({ focused }) => {
+              return (
+                <SparklesIcon size={22} color={focused ? 'white' : '#d1d1d1'} />
               )
             }
           }}
