@@ -1,8 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react'
-import { View, Text, ScrollView, FlatList, StyleSheet, Pressable } from 'react-native'
+import { View, Text, ScrollView, StyleSheet, Pressable } from 'react-native'
 import { Stack, useRouter } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { MessageItem } from '@/app/components/chat/message-item'
+import { MessageItem, TypingDots } from '@/app/components/chat/message-item'
 import { ToolCallItem } from '@/app/components/chat/tool-call-item'
 import { useChat } from '@ai-sdk/react'
 import { DefaultChatTransport } from 'ai'
@@ -19,15 +19,13 @@ const API_ENDPOINT = `${process.env.EXPO_PUBLIC_API_URL}/api/chat`
 const USER_AGENT = 'MyWayApp/1.0.0'
 
 const SUGGESTIONS = [
-  'Apakah hadis tentang niat?',
-  'Hadis tentang kelebihan solat berjemaah',
+  'Berikan hadis-hadis tentang niat',
+  'Hadis-hadis tentang kelebihan solat berjemaah',
   'Ceritakan hadis tentang sedekah',
   'Apa hadis tentang berbuat baik kepada ibu bapa?',
   'Hadis tentang kelebihan membaca Al-Quran',
   'Apakah hadis tentang sabar?',
 ]
-
-const SUGGESTIONS_HEIGHT = 52
 
 export default function TanyaAIScreen() {
   const scrollViewRef = useRef<ScrollView>(null)
@@ -119,26 +117,15 @@ export default function TanyaAIScreen() {
         }}
       />
       <View className="flex-1 bg-white dark:bg-gray-950">
-        {/* Empty state */}
-        {messages.length === 0 && (
-          <View className="flex-1 items-center justify-center px-8">
-            <Text className="text-gray-400 text-center text-base">
-              Assalamualaikum! Saya sedia membantu anda menjawab soalan-soalan
-              berkaitan Islam.
-            </Text>
-          </View>
-        )}
-
-        {/* Messages List with Keyboard Aware Wrapper */}
         <KeyboardAwareWrapper
           style={styles.wrapper}
-          extraBottomInset={composerHeight + (messages.length === 0 ? SUGGESTIONS_HEIGHT : 0)}
+          extraBottomInset={composerHeight}
         >
           <ScrollView
             ref={scrollViewRef}
             contentContainerStyle={[
               styles.scrollContent,
-              { paddingBottom: composerHeight + (messages.length === 0 ? SUGGESTIONS_HEIGHT : 0) + 16 }
+              { paddingBottom: composerHeight + 16 }
             ]}
             keyboardDismissMode="interactive"
             keyboardShouldPersistTaps="handled"
@@ -146,7 +133,19 @@ export default function TanyaAIScreen() {
               scrollViewRef.current?.scrollToEnd({ animated: true })
             }
           >
+            {messages.length === 0 && (
+              <View className="flex-1 items-center justify-center px-8 py-16">
+                <Text className="text-gray-400 text-center text-base">
+                  Assalamualaikum! Saya sedia membantu anda menjawab soalan-soalan berkaitan Hadis.
+                </Text>
+              </View>
+            )}
             {messages.map((message, index) => renderMessage(message, index))}
+            {status === 'submitted' && (
+              <View className="mx-4 my-2 p-4 rounded-2xl bg-gray-100 self-start">
+                <TypingDots />
+              </View>
+            )}
           </ScrollView>
           <View
             style={[
@@ -155,21 +154,21 @@ export default function TanyaAIScreen() {
             ]}
           >
             {messages.length === 0 && (
-              <FlatList
+              <ScrollView
                 horizontal
-                data={SUGGESTIONS}
-                keyExtractor={(item) => item}
+                directionalLockEnabled
                 showsHorizontalScrollIndicator={false}
                 showsVerticalScrollIndicator={false}
                 keyboardShouldPersistTaps="handled"
-                contentContainerStyle={styles.suggestionsContent}
-                style={styles.suggestions}
-                renderItem={({ item }) => (
-                  <Pressable onPress={() => handleSendMessage(item)} style={styles.chip}>
-                    <Text style={styles.chipText}>{item}</Text>
+                contentContainerStyle={styles.chipsContent}
+                style={styles.chips}
+              >
+                {SUGGESTIONS.map((s) => (
+                  <Pressable key={s} onPress={() => handleSendMessage(s)} style={styles.chip}>
+                    <Text style={styles.chipText}>{s}</Text>
                   </Pressable>
-                )}
-              />
+                ))}
+              </ScrollView>
             )}
             <View style={[styles.composerWrapper, { height: composerHeight }]}>
               <KeyboardComposer
@@ -186,7 +185,6 @@ export default function TanyaAIScreen() {
           </View>
         </KeyboardAwareWrapper>
 
-        {/* Error Message */}
         {error && (
           <View className="px-4 py-2 bg-red-50 border-t border-red-200">
             <Text className="text-red-600 text-sm">Ralat: {error.message}</Text>
@@ -211,14 +209,14 @@ const styles = StyleSheet.create({
     bottom: 0,
     paddingHorizontal: 16
   },
-  suggestions: {
-    height: SUGGESTIONS_HEIGHT - 8,
+  chips: {
+    height: 44,
     marginBottom: 8,
   },
-  suggestionsContent: {
+  chipsContent: {
     alignItems: 'center',
     gap: 8,
-    paddingHorizontal: 2,
+    paddingHorizontal: 4,
   },
   chip: {
     backgroundColor: '#F2F2F7',

@@ -8,7 +8,7 @@ import {
 } from 'react-native'
 import { useLocalSearchParams, Stack } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { MessageItem } from '@/app/components/chat/message-item'
+import { MessageItem, TypingDots } from '@/app/components/chat/message-item'
 import { ToolCallItem } from '@/app/components/chat/tool-call-item'
 import { useChat } from '@ai-sdk/react'
 import { DefaultChatTransport } from 'ai'
@@ -167,6 +167,11 @@ export default function HadithChatScreen() {
             }
           >
             {messages.map((message, index) => renderMessage(message, index))}
+            {status === 'submitted' && (
+              <View className="mx-4 my-2 p-4 rounded-2xl bg-gray-100 self-start">
+                <TypingDots />
+              </View>
+            )}
           </ScrollView>
           <View style={[styles.composerContainer, { paddingBottom: insets.bottom - 20 }]}>
             <View style={[styles.composerWrapper, { height: composerHeight }]}>
