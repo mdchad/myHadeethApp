@@ -12,7 +12,7 @@ import {
   KeyboardComposer,
   KeyboardAwareWrapper
 } from '@launchhq/react-native-keyboard-composer'
-import { ArrowLeft } from 'lucide-react-native'
+import { ArrowLeft, PlusIcon } from 'lucide-react-native'
 import { Button } from 'heroui-native'
 
 const API_ENDPOINT = `${process.env.EXPO_PUBLIC_API_URL}/api/chat`
@@ -32,8 +32,10 @@ export default function TanyaAIScreen() {
   const insets = useSafeAreaInsets()
   const router = useRouter()
   const [composerHeight, setComposerHeight] = useState(48)
+  const [chatId, setChatId] = useState(0)
 
   const { messages, sendMessage, stop, error, status } = useChat({
+    id: `tanya-${chatId}`,
     transport: new DefaultChatTransport({
       fetch: expoFetch as unknown as typeof globalThis.fetch,
       api: API_ENDPOINT,
@@ -42,6 +44,11 @@ export default function TanyaAIScreen() {
       }
     })
   })
+
+  const handleNewConversation = () => {
+    stop()
+    setChatId(prev => prev + 1)
+  }
 
   const isLoading = status === 'streaming' || status === 'submitted'
 
@@ -113,7 +120,18 @@ export default function TanyaAIScreen() {
             >
               <ArrowLeft className="text-gray-500" />
             </Button>
-          )
+          ),
+          headerRight: () => (
+            <Button
+              isIconOnly
+              onPress={handleNewConversation}
+              size="sm"
+              className="bg-white"
+              isDisabled={messages.length === 0}
+            >
+              <PlusIcon size={20} className="text-gray-500" />
+            </Button>
+          ),
         }}
       />
       <View className="flex-1 bg-white dark:bg-gray-950">
