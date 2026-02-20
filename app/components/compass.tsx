@@ -12,7 +12,7 @@ import {
 import * as Location from 'expo-location'
 import * as Haptics from 'expo-haptics'
 import { useLocationStore } from '@/app/stores/useLocationStore'
-import { useSegments } from 'expo-router'
+import { useRouter, useSegments } from 'expo-router'
 import { Skeleton } from 'moti/skeleton'
 import Spacer from '@/app/components/spacer'
 import Header from './header'
@@ -38,6 +38,7 @@ export default function Compass({}: CompassV2Props) {
   const segment = useSegments()
   const [degree, setDegree] = useState('')
   const posthog = usePostHog()
+  const router = useRouter()
 
   useEffect(() => {
     // Capture qibla compass opened event
@@ -128,7 +129,7 @@ export default function Compass({}: CompassV2Props) {
 
   return (
     <View className="h-full">
-      <Header title={t(SHARED_TEXT.QIBLA_HEADER)} />
+      <Header title={t(SHARED_TEXT.QIBLA_HEADER)} onPressButton={() => router.back()}/>
       <ScrollView>
         {permissionStatus === 'denied' ? (
           <View className="mt-4 w-full">

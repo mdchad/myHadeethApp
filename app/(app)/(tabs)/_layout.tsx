@@ -113,50 +113,6 @@ const _layout = () => {
           }
         }}
       />
-      <Tabs.Screen
-        name="(prayers)"
-        options={{
-          href: null,
-          tabBarLabel: t(SHARED_TEXT.TAB_PRAYER_LABEL),
-          tabBarIcon: ({ focused }) => {
-            return (
-              <ClockIcon size={22} color={focused ? 'white' : '#d1d1d1'} />
-              // <View
-              //   style={{
-              //     justifyContent: 'center',
-              //     alignItems: 'center'
-              //   }}
-              // >
-              //   <Image
-              //     source={prayerLogo}
-              //     style={{ width: 20, height: 20 }}
-              //   />
-              //   {/* <FontAwesome5 name="home" size={30} color={focused ? 'tomato' : 'gray'} /> */}
-              // </View>
-            )
-          }
-        }}
-      />
-      <Tabs.Screen
-        name="(qibla)"
-        options={{
-          href: null,
-          tabBarLabel: t(SHARED_TEXT.TAB_QIBLA_LABEL),
-          tabBarIcon: ({ focused }) => {
-            return (
-              <View
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center'
-                }}
-              >
-                <Image source={qiblaLogo} style={{ width: 20, height: 20 }} />
-                {/* <FontAwesome5 name="home" size={30} color={focused ? 'tomato' : 'gray'} /> */}
-              </View>
-            )
-          }
-        }}
-      />
     </Tabs>
   )
 }

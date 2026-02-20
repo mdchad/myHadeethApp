@@ -21,6 +21,7 @@ import SHARED_TEXT from "@/app/i18n";
 import { ms, enGB } from 'date-fns/locale';
 import {t} from "i18next";
 import { usePostHog } from 'posthog-react-native'
+import { useRouter } from 'expo-router'
 
 interface PrayerTime {
   name: string;
@@ -107,6 +108,8 @@ export default function Prayer() {
   const datesInRange = eachDayOfInterval({ start: currentDate, end: endDate })
   const [calendarDate, setCalendarDate] = useState<Date>(new Date())
   const [monthlyPrayerTimes, setMonthlyPrayerTimes] = useState<MonthlyPrayerTimes | null>(null)
+
+  const router = useRouter()
   const posthog = usePostHog()
 
   useEffect(() => {
@@ -218,7 +221,7 @@ export default function Prayer() {
     <Page edges={['top']} className="bg-royal-blue-950">
       <StatusBar barStyle="light-content" />
       <ScrollView className="bg-gray-100">
-        <Header rounded={false} title={t(SHARED_TEXT.PRAYERS_HEADER)} />
+        <Header rounded={false} title={t(SHARED_TEXT.PRAYERS_HEADER)} onPressButton={() => router.back()} />
         <View
           className={`px-6 flex flex-row justify-between items-end rounded-b-2xl py-6 shadow-lg bg-royal-blue-950 overflow-hidden`}
         >

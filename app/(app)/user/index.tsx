@@ -11,6 +11,8 @@ import {
 import Page from '@/app/components/page'
 import {
   Bookmark,
+  ClockIcon,
+  CompassIcon,
   FileText, LibraryIcon,
   LogIn,
   LogOut,
@@ -80,6 +82,19 @@ export default function Profile() {
         <View className="mt-12 flex sm:mx-auto sm:w-full sm:max-w-md w-full h-full">
           <View className="py-6">
             <View className="border-b border-b-gray-300 mx-6 mt-8"></View>
+            <TouchableHighlight underlayColor="#f9fafb" onPress={() => router.push('/(app)/user/prayers')}>
+              <View className="px-6 gap-4 flex flex-row items-center py-2 my-1">
+                <ClockIcon color="black" size={20} />
+                <Text className="text-lg">{t(SHARED_TEXT.PRAYERS_HEADER)}</Text>
+              </View>
+            </TouchableHighlight>
+            <TouchableHighlight underlayColor="#f9fafb" onPress={() => router.push('/(app)/user/qibla')}>
+              <View className="px-6 gap-4 flex flex-row items-center py-2 my-1">
+                <CompassIcon color="black" size={20} />
+                <Text className="text-lg">{t(SHARED_TEXT.TAB_QIBLA_LABEL)}</Text>
+              </View>
+            </TouchableHighlight>
+            <View className="border-b border-b-gray-300 mx-6 my-2"></View>
             <TouchableHighlight underlayColor="#f9fafb" onPress={onShare}>
               <View className="px-6 gap-4 flex flex-row items-center py-2 my-1">
                 <Users color="black" size={20} />
