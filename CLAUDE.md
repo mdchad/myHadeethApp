@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-"My Way" is a React Native mobile app built with Expo Router that provides Islamic content including Hadith collections, prayer times, Qibla direction, and Quran features. The app is localized for English and Malay languages with Malay as the default.
+"My Way" is a React Native mobile app built with Expo Router that provides Islamic content including Hadith collections such as Kutub Sittah and Forty Hadith. It also has a powerful AI semantic search to search across all the books. User can also use the AI chatbot to get an explanation of a hadith or the summary of it. It also has an Audio both in English and Malay for all the 30,000 hadiths. The app is localized for Malay language with Malay as the default.
 
 ## Tech Stack
 
@@ -175,9 +175,8 @@ All API calls go through `https://my-way-web.vercel.app/api`:
 ## Key Features
 
 1. **Hadith Collections** - Browse multiple authenticated Hadith collections by book and volume
-2. **Search** - Full-text search across all Hadiths
+2. **Search** - AI semantic search across all Hadiths
 3. **Daily Hadith** - Curated daily Hadith with caching
-4. **Prayer Times** - Calculate prayer times based on location
-5. **Qibla Direction** - Compass showing Qibla direction using device sensors
-6. **Audio Recitations** - Audio playback for Hadiths and Quran
-7. **Offline Support** - Aggressive caching with offline-first strategy
+4. **AI Chatbot** - Chatbot to talk to AI for summaries and explanation
+5. **Audio Recitations** - Audio playback for Hadiths
+6. **Offline Support** - Aggressive caching with offline-first strategy
