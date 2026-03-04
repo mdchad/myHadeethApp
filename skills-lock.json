@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "metadata-optimization": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "16ad5203b36914d9b19b46f67c394931c9c2eb82fa45c3d3d0f46c1c994c80fd"
+    }
+  }
+}
