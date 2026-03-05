@@ -21,7 +21,7 @@ export function UpdateRequiredBlocker({
   const handleUpdate = () => {
     const storeUrl =
       Platform.OS === 'ios'
-        ? 'https://apps.apple.com/app/id6478639621'
+        ? 'https://apps.apple.com/my/app/my-way-koleksi-hadis-sunnah/id6478639621'
         : 'https://play.google.com/store/apps/details?id=com.mdchad.myWay'
 
     Linking.openURL(storeUrl)
