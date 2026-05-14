@@ -4,7 +4,6 @@ import {
   Text,
   ActivityIndicator,
   Platform,
-  ViewStyle
 } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Animated from 'react-native-reanimated'
@@ -14,38 +13,28 @@ import { Button } from 'heroui-native'
 import { ChevronDownIcon, PlayIcon } from 'lucide-react-native'
 import { useAudioPlayerStore } from '@/app/stores/useAudioPlayerStore'
 import * as Haptics from 'expo-haptics'
+import type { Book, Footnote, Hadith, Volume } from '@/app/types'
 
-interface BilingualContent {
-  ms?: string
-  ar?: string
-}
-
-interface HadithData {
-  _id: string
-  book_title: BilingualContent
-  volume_title: BilingualContent
-  footnotes?: any[]
-  content?: any[]
-  audio_files?: any
-  number?: number
-}
-
-interface HadithDetailBottomBarProps {
+interface ReadingBottomBarProps {
   animatedStyle: any
-  hadithData: HadithData
-  allHadiths?: HadithData[]
+  book: Book | null | undefined
+  volume: Volume | null | undefined
+  volumeFootnotes?: Footnote[]
+  allHadiths?: Hadith[]
   footnoteRefs: React.RefObject<Record<string, any>>
   onLayout?: (height: number) => void
   onHide?: () => void
 }
 
-const ReadingBottomBar: React.FC<HadithDetailBottomBarProps> = ({
+const ReadingBottomBar: React.FC<ReadingBottomBarProps> = ({
   animatedStyle,
-  hadithData,
+  book,
+  volume,
+  volumeFootnotes = [],
   allHadiths,
   footnoteRefs,
   onLayout,
-  onHide
+  onHide,
 }) => {
   const insets = useSafeAreaInsets()
   const { playPlaylist } = useAudioPlayerStore()
@@ -81,7 +70,7 @@ const ReadingBottomBar: React.FC<HadithDetailBottomBarProps> = ({
           playlist.push({
             urls: [`${R2_BASE_URL}/${arUrl}`, `${R2_BASE_URL}/${msUrl}`],
             title: `Hadis [${hadith.number}] - (${i + 1})`,
-            subtitle: hadith._id
+            subtitle: hadith.id,
           })
         }
       }
@@ -113,7 +102,7 @@ const ReadingBottomBar: React.FC<HadithDetailBottomBarProps> = ({
         <View className="absolute -top-4 left-0 right-0 px-6 z-10">
           <View className="bg-royal-blue-950 dark:bg-royal-blue-700 py-2 rounded-xs">
             <Text className="text-white text-xl text-center">
-              {hadithData.book_title.ms}
+              {book?.title_ms}
             </Text>
           </View>
         </View>
@@ -146,22 +135,22 @@ const ReadingBottomBar: React.FC<HadithDetailBottomBarProps> = ({
               </Button>
               <View className="flex items-start">
                 <FootnotesMarker
-                  footnotes={hadithData.footnotes}
+                  footnotes={volumeFootnotes}
                   type={'volume_title.ms'}
                   index={1}
                   footnoteRefs={footnoteRefs}
-                  hadithId={hadithData._id}
+                  hadithId={volume?.id}
                 >
-                  <Text className={`text-sm ${hadithData.footnotes?.length ? 'leading-10' : ''} text-center capitalize font-semibold text-royal-blue-950 dark:text-white`}>
-                    {hadithData.volume_title.ms}
+                  <Text className={`text-sm ${volumeFootnotes.length ? 'leading-10' : ''} text-center capitalize font-semibold text-royal-blue-950 dark:text-white`}>
+                    {volume?.title_ms}
                   </Text>
                 </FootnotesMarker>
                 <Text className="text-lg text-center font-semibold text-royal-blue-950 dark:text-white font-arabic-regular">
-                  {hadithData.volume_title.ar}
+                  {volume?.title_ar}
                 </Text>
               </View>
             </View>
-            <FootnotesReference hadith={hadithData} type={'volume_title.ms'} />
+            <FootnotesReference footnotes={volumeFootnotes} type={'volume_title.ms'} />
           </View>
         </View>
       </View>
