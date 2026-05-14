@@ -111,6 +111,7 @@ export default function TanyaAIScreen() {
       <Stack.Screen
         options={{
           title: 'Tanya AI',
+          headerStyle: { backgroundColor: "#F2F2EA" },
           headerLeft: () => (
             <Button
               isIconOnly
