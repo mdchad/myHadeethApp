@@ -1,40 +1,24 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import {
   View,
   Text,
   FlatList,
   TouchableHighlight,
-  ActivityIndicator,
-  ImageBackground, StatusBar
+  ImageBackground,
+  StatusBar,
 } from 'react-native'
 import { Link, useLocalSearchParams, useRouter } from 'expo-router'
 import Header from '@/app/components/header'
 import useGetVolumes from '@/app/shared/fetcher/useVolumes'
-import SHARED_TEXT from "@/app/i18n";
-import {t} from "i18next";
+import SHARED_TEXT from '@/app/i18n'
+import { t } from 'i18next'
 import Page from '@/app/components/page'
 import LoadingSpinner from '@/app/components/loading-spinner'
-import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
-
-interface BilingualText {
-  ms: string;
-  ar: string;
-}
-
-interface VolumeItem {
-  id: string | number;
-  book_id: string;
-  volume_id: string;
-  title: BilingualText;
-  transliteration?: BilingualText;
-  hadith?: {
-    first: number;
-    last: number;
-  };
-}
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
+import type { Volume } from '@/app/types'
 
 interface HadithVolumeItemProps {
-  item: VolumeItem;
+  item: Volume;
   index: number;
 }
 
@@ -61,7 +45,7 @@ const HadithVolumeItem: React.FC<HadithVolumeItemProps> = ({ item, index }) => (
                 width: 30,
                 flex: 1,
                 justifyContent: 'center',
-                alignItems: 'center'
+                alignItems: 'center',
               }}
             >
               <Text>{index}</Text>
@@ -72,28 +56,28 @@ const HadithVolumeItem: React.FC<HadithVolumeItemProps> = ({ item, index }) => (
           <View className="flex flex-row justify-between">
             <View className="flex-1 mr-1">
               <Text className="text-royal-blue-950 text-[14px] flex-shrink capitalize mb-1">
-                {item.title.ms}
+                {item.title_ms}
               </Text>
-              <Text className="text-xs text-gray-500 flex-shrink capitalize">
-                {item?.transliteration?.ms}
-              </Text>
+              {!!item.transliteration_ms && (
+                <Text className="text-xs text-gray-500 flex-shrink capitalize">
+                  {item.transliteration_ms}
+                </Text>
+              )}
             </View>
             <View className="flex-1 items-end ml-1">
-              <Text
-                className="text-royal-blue-950 text-[24px] text-right flex-shrink capitalize font-arabic-regular"
-              >
-                {item.title.ar}
+              <Text className="text-royal-blue-950 text-[24px] text-right flex-shrink capitalize font-arabic-regular">
+                {item.title_ar}
               </Text>
             </View>
           </View>
           <View className="flex flex-row justify-between items-center mt-4">
             <View className="flex-row items-center gap-2">
               <Text className="text-royal-blue-950 text-[12px]">
-                {item?.hadith?.first}
+                {item.hadith_first}
               </Text>
               <Text className="text-royal-blue-950 text-[12px]">→</Text>
               <Text className="text-royal-blue-950 text-[12px]">
-                {item?.hadith?.last}
+                {item.hadith_last}
               </Text>
             </View>
             <View className="flex flex-row items-center">
@@ -114,12 +98,17 @@ function HadithVolume() {
   const router = useRouter()
   const bottomTabBarHeight = useBottomTabBarHeight()
 
-  const { isLoading, isError, data, error } = useGetVolumes(id)
+  const { isLoading, data } = useGetVolumes(id)
+
+  // Volumes display in `volume.number` order — the canonical structural order
+  // within a book.
+  const orderedVolumes = useMemo<Volume[]>(() => {
+    if (!data) return []
+    return [...data].sort((a, b) => a.number - b.number)
+  }, [data])
 
   if (isLoading) {
-    return (
-      <LoadingSpinner />
-    )
+    return <LoadingSpinner />
   }
 
   return (
@@ -129,11 +118,11 @@ function HadithVolume() {
       <View className="bg-gray-100 pt-4 px-4">
         <FlatList
           className="space-y-6"
-          data={data}
+          data={orderedVolumes}
           renderItem={({ item, index }) => (
             <HadithVolumeItem item={item} index={index + 1} />
           )}
-          keyExtractor={(item) => item.id.toString()}
+          keyExtractor={(item) => item.id}
           style={{ paddingRight: 10, marginRight: -10 }}
           contentContainerStyle={{ paddingBottom: bottomTabBarHeight }}
         />
