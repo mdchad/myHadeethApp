@@ -14,7 +14,7 @@ import { useUniwind } from 'uniwind'
 import Page from '../../components/page'
 import { usePostHog } from 'posthog-react-native'
 import LoadingSpinner from '@/app/components/loading-spinner'
-import Animated, {
+import {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
