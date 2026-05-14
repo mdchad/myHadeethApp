@@ -20,10 +20,9 @@ import Spacer from '@/app/components/spacer'
 import { useReadingBottomBarStore } from '@/app/stores/useReadingBottomBarStore'
 import type { Hadith, ChapterWithHadiths } from '@/app/types'
 
-// Reading order: Volume → Chapter (by chapter.number) → Hadith (by hadith.sort_order).
-// Both fields are non-null and unique within their scope per the DB (verified).
-// `sort_order` is authoritative for hadiths — number is NOT a valid fallback because
-// some books (e.g. Sahih Muslim) don't number-order their hadiths.
+// Reading order (Book → Volume → Chapter → Hadith) is enforced by the API:
+// chapters are returned ORDER BY number ASC, and hadiths inside each chapter are
+// already in sort_order ASC. The client just renders what it receives.
 
 // A hadith only renders if its first content block has Arabic text. Filter at this
 // layer so search-match indices line up with what's actually on screen.
@@ -51,18 +50,15 @@ function HadithContent() {
   const [barsVisible, setBarsVisible] = useState(true)
   const [bottomBarHeight, setBottomBarHeight] = useState(100)
 
-  // Sort chapters, then sort + filter hadiths inside each chapter. The result IS
+  // API delivers chapters + hadiths in canonical order. We only filter out
+  // hadiths that have no Arabic content (nothing to render). The result IS
   // the list data — each row is one chapter that renders its own hadiths.
   const chapters = useMemo<ChapterWithHadiths[]>(() => {
     if (!data?.chapters) return []
-    return [...data.chapters]
-      .sort((a, b) => a.number - b.number)
-      .map((chapter) => ({
-        ...chapter,
-        hadiths: [...chapter.hadiths]
-          .sort((a, b) => a.sort_order - b.sort_order)
-          .filter(hasRenderableContent),
-      }))
+    return data.chapters.map((chapter) => ({
+      ...chapter,
+      hadiths: chapter.hadiths.filter(hasRenderableContent),
+    }))
   }, [data])
 
   // Flattened in canonical order for the "play all" playlist.

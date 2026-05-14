@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import {
   View,
   Text,
@@ -100,13 +100,6 @@ function HadithVolume() {
 
   const { isLoading, data } = useGetVolumes(id)
 
-  // Volumes display in `volume.number` order — the canonical structural order
-  // within a book.
-  const orderedVolumes = useMemo<Volume[]>(() => {
-    if (!data) return []
-    return [...data].sort((a, b) => a.number - b.number)
-  }, [data])
-
   if (isLoading) {
     return <LoadingSpinner />
   }
@@ -118,7 +111,7 @@ function HadithVolume() {
       <View className="bg-gray-100 pt-4 px-4">
         <FlatList
           className="space-y-6"
-          data={orderedVolumes}
+          data={data}
           renderItem={({ item, index }) => (
             <HadithVolumeItem item={item} index={index + 1} />
           )}
