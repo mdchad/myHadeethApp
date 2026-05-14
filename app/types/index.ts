@@ -78,12 +78,6 @@ export interface Book {
   title_en: string;
 }
 
-// Some legacy endpoints (GET /api/books) still return `_id` and `title` aliases.
-export interface BookListItem extends Book {
-  _id?: string;
-  title?: string;
-}
-
 export interface Volume {
   id: string;
   mongo_id?: string | null;
@@ -107,7 +101,7 @@ export interface Volume {
 export interface Chapter {
   id: string;
   name: string;
-  number: number | null;
+  number: number;
   title_ms: string;
   title_ar: string;
   title_en: string;
