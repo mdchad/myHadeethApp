@@ -70,7 +70,6 @@ export interface ContentEntry {
 
 export interface Book {
   id: string;
-  mongo_id?: string | null;
   slug: string;
   name: string;
   title_ms: string;
@@ -80,7 +79,6 @@ export interface Book {
 
 export interface Volume {
   id: string;
-  mongo_id?: string | null;
   book_id: string;
   number: number;
   slug: string;
@@ -110,7 +108,6 @@ export interface Chapter {
   metadata_en: string;
   transliteration_ms: string;
   transliteration_en: string;
-  lexicalState: Record<string, any> | null;
 }
 
 export interface Footnote {
@@ -137,13 +134,8 @@ export interface Hadith {
   variant: string | null;
   label: string;
   sort_order: number;
-  mongo_id: string;
   content: ContentEntry[];
   audio_files: Record<string, Record<string, string>>;
-  lexicalState: Record<string, any> | null;
-  book_id: string;
-  volume_id: string;
-  chapter_id: string | null;
   book: Book;
   volume: Volume;
   chapter: Chapter | null;
