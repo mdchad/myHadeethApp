@@ -142,7 +142,7 @@ export interface Hadith {
   number: number;
   variant: string | null;
   label: string;
-  sort_order: number | null;
+  sort_order: number;
   mongo_id: string;
   content: ContentEntry[];
   audio_files: Record<string, Record<string, string>>;

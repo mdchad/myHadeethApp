@@ -33,22 +33,15 @@ import LoadingSpinner from '@/app/components/loading-spinner'
 import { useSearchHistoryStore } from '@/app/stores/useSearchHistoryStore'
 import { apiGet } from '@/app/utils/api'
 
+import type { SearchResultDocument } from '@/app/types'
+
 interface BilingualText {
   ms: string
   ar: string
 }
 
-interface SearchResultItem {
-  _id: string
-  book_title: BilingualText
-  volume_title: BilingualText
-  number: number
-  content: BilingualText[],
-  content_index: number
-}
-
 interface RenderedItemsProps {
-  item: SearchResultItem
+  item: SearchResultDocument
 }
 
 const ItemSeparatorView = () => {
@@ -83,27 +76,25 @@ function Search() {
     queryKey: ['search', page, submittedKeyword, selectedBooks],
     queryFn: async () => {
       const params = new URLSearchParams({
-        query: encodeURIComponent(submittedKeyword),
+        term: submittedKeyword,
         page: page.toString(),
         limit: '10',
-        mode: 'semantic'
+        mode: 'semantic',
       })
 
-      // Only add books parameter if it's not empty
       if (selectedBooks) {
         params.append('books', selectedBooks)
       }
 
       const result = await apiGet(`/api/search?${params.toString()}`)
 
-      // Handle the new API response structure
       if (!result.success) {
         throw new Error('Search request was not successful')
       }
 
       return result.data
     },
-    enabled: !!submittedKeyword // Only run query if search term is not empty
+    enabled: !!submittedKeyword,
   })
 
   useEffect(() => {
@@ -206,22 +197,27 @@ function Search() {
   }
 
   function renderedItems({ item }: RenderedItemsProps) {
+    // SearchResult `content` is a single-entry array containing the matched
+    // language; `content_index` is preserved from the new API for stable keys.
+    const matched = item.content?.[item.content_index] ?? item.content?.[0]
     return (
       <Link
-        key={item._id}
+        key={item.id}
         href={{
           pathname: '/(app)/hadith-detail/[id]',
-          params: { id: item._id }
+          params: { id: item.id },
         }}
         asChild
       >
-        <Pressable key={item._id} className="pb-4 bg-white px-5">
+        <Pressable key={item.id} className="pb-4 bg-white px-5">
           <View className="my-4 flex flex-row flex-wrap">
             <Text className="font-geist-mono-medium mr-2 text-orange-accent capitalize">
-              [ {item?.book_title.ms} / {item.volume_title.ms} ]
+              [ {item.book?.title_ms} / {item.volume?.title_ms} ]
             </Text>
           </View>
-          <Text>{highlightKeywords(item?.content[item.content_index], searchKeyword)}</Text>
+          {matched && (
+            <Text>{highlightKeywords(matched as BilingualText, searchKeyword)}</Text>
+          )}
           <View className="mt-2 flex items-end">
             <ArrowRightToLine size={22} color={'black'} />
           </View>
@@ -314,7 +310,7 @@ function Search() {
         <FlatList
           data={data?.documents}
           renderItem={renderedItems}
-          keyExtractor={(item) => item?._id + '_' + item?.content_index}
+          keyExtractor={(item) => item.id + '_' + item.content_index}
           scrollEnabled={true}
           ItemSeparatorComponent={ItemSeparatorView}
           ListEmptyComponent={() => {

@@ -36,14 +36,16 @@ function Home() {
   const [lang, setLang] = useState(i18n.language)
   const posthog = usePostHog()
 
-  // Prefetch the hadith detail when today's hadith is loaded
+  // Prefetch the full hadith detail when today's preview is loaded — opening
+  // /api/today gives a slim preview only, so the click-through hits /api/hadiths/[id].
+  const todayId = data && 'id' in data ? data.id : undefined
   useQuery({
-    queryKey: ['hadith', data?._id],
+    queryKey: ['hadith', todayId],
     queryFn: async () => {
-      const result: ApiResponse<any> = await apiGet(`/api/hadiths/${data?._id}`)
+      const result: ApiResponse<any> = await apiGet(`/api/hadiths/${todayId}`)
       return result.data
     },
-    enabled: !!data?._id
+    enabled: !!todayId,
   })
 
   useEffect(() => {
@@ -90,17 +92,17 @@ function Home() {
                 </View>
               </View>
               <Link
-                href={{ pathname: '/(app)/hadith-detail/[id]', params: { id: data?._id } }}
+                href={{ pathname: '/(app)/hadith-detail/[id]', params: { id: todayId } }}
                 asChild
               >
                 <Pressable className="bg-white border border-1 border-royal-blue-950 gap-2 rounded-md overflow-hidden">
-                  {data ? (
+                  {data && 'id' in data ? (
                     <View className="p-6">
                       <View className="flex flex-row flex-wrap mb-4">
                         <Text className="font-geist-mono-medium text-xs text-[#f80]">
-                          [ {data?.book_title?.ms}
+                          [ {data.book?.title_ms}
                           {' '}/{' '}
-                          {capitalize(data?.volume_title?.ms)} ]
+                          {capitalize(data.volume?.title_ms ?? '')} ]
                         </Text>
                       </View>
                       {/*<Text*/}
@@ -116,7 +118,7 @@ function Home() {
                         ellipsizeMode="tail"
                         className="font-arabic-symbols"
                       >
-                        {data?.content[0].ms}
+                        {data.content?.[0]?.ms}
                       </Text>
                     </View>
                   ) : (
