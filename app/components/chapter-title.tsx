@@ -4,8 +4,19 @@ import FootnotesMarker from '@/app/components/footnotes-marker'
 import SpecialText from '@/app/components/special-text'
 import FootnotesReference from '@/app/components/footnotes-reference'
 import React from 'react'
+import type { Chapter, Footnote } from '@/app/types'
 
-function ChapterTitle({ data, footnoteRefs }: { data: any; footnoteRefs: any}) {
+interface ChapterTitleProps {
+  chapter: (Chapter & { id?: string }) | null | undefined;
+  footnotes?: Footnote[];
+  footnoteRefs: React.RefObject<Record<string, any>>;
+}
+
+function ChapterTitle({ chapter, footnotes = [], footnoteRefs }: ChapterTitleProps) {
+  if (!chapter) return null
+
+  const chapterId = chapter.id
+
   return (
     <View className="mb-10 p-4 gap-4">
       <View className="gap-4 border-l-4 border-royal-blue-950 dark:border-royal-blue-700 pl-2">
@@ -15,29 +26,31 @@ function ChapterTitle({ data, footnoteRefs }: { data: any; footnoteRefs: any}) {
             writingDirection: 'rtl'
           }}
         >
-          <QuranText text={data?.chapter_title?.ar} font={'arabic-bold'} />
+          <QuranText text={chapter.title_ar} font={'arabic-bold'} />
         </Text>
         <View>
           <Text>
             <FootnotesMarker
-              footnotes={data.footnotes}
+              footnotes={footnotes}
               type={'chapter_title.ms'}
               index={1}
               footnoteRefs={footnoteRefs}
-              hadithId={data._id}
+              hadithId={chapterId}
             >
               <SpecialText
                 className="text-royal-blue-950 dark:text-white font-semibold"
-                text={data?.chapter_title?.ms}
+                text={chapter.title_ms}
               />
             </FootnotesMarker>
           </Text>
-          <Text className="text-gray-600 dark:text-white mt-1">
-            {data?.chapter_transliteration?.ms}
-          </Text>
+          {!!chapter.transliteration_ms && (
+            <Text className="text-gray-600 dark:text-white mt-1">
+              {chapter.transliteration_ms}
+            </Text>
+          )}
         </View>
       </View>
-      {data?.chapter_metadata?.ms && (
+      {!!chapter.metadata_ms && (
         <View className="gap-4 border-l-4 border-gray-400 pl-2">
           <Text
             className="text-lg text-gray-800 dark:text-white leading-8 font-arabic-regular"
@@ -45,7 +58,7 @@ function ChapterTitle({ data, footnoteRefs }: { data: any; footnoteRefs: any}) {
               writingDirection: 'rtl'
             }}
           >
-            <QuranText text={data?.chapter_metadata?.ar} />
+            <QuranText text={chapter.metadata_ar} />
           </Text>
           <Text
             className="italic text-gray-700 dark:text-white leading-6 text-justify tracking-tight font-arabic-symbols"
@@ -54,21 +67,21 @@ function ChapterTitle({ data, footnoteRefs }: { data: any; footnoteRefs: any}) {
             }}
           >
             <FootnotesMarker
-              footnotes={data.footnotes}
+              footnotes={footnotes}
               type={'chapter_metadata.ms'}
               index={1}
               footnoteRefs={footnoteRefs}
-              hadithId={data._id}
+              hadithId={chapterId}
             >
               <QuranText
-                text={data?.chapter_metadata?.ms}
+                text={chapter.metadata_ms}
                 font={'arabic-symbols'}
                 special={true}
               />
             </FootnotesMarker>
           </Text>
-          <FootnotesReference hadith={data} type={'chapter_title.ms'} />
-          <FootnotesReference hadith={data} type={'chapter_metadata.ms'} />
+          <FootnotesReference footnotes={footnotes} type={'chapter_title.ms'} />
+          <FootnotesReference footnotes={footnotes} type={'chapter_metadata.ms'} />
         </View>
       )}
     </View>
