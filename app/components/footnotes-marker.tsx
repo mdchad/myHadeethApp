@@ -2,15 +2,7 @@ import { isEmpty } from 'es-toolkit/compat'
 import React from 'react'
 import { Text } from 'react-native'
 import toSuperscript from '../utils/toSuperscript'
-
-interface Footnote {
-  position: number;
-  number: number;
-  type: string;
-  hadithIndex: number;
-  ms?: string;
-  ar?: string;
-}
+import type { Footnote } from '@/app/types'
 
 interface FootnotesMarkerProps {
   children: React.ReactNode;
@@ -50,9 +42,11 @@ const FootnotesMarker: React.FC<FootnotesMarkerProps> = ({
   // Sort footnotes by position (ascending order for proper text slicing)
   const sortedFootnotes = [...footnotes].sort((a, b) => a.position - b.position)
 
-  // Filter footnotes for this specific type and index
+  // Filter footnotes for this specific type and index (1-based hadith_index)
   const filteredFootnotes = sortedFootnotes.filter(
-    (footnote) => type === footnote.type && footnote.hadithIndex === index
+    (footnote) =>
+      type === footnote.type &&
+      (footnote.hadith_index ?? null) === index
   )
 
   // If no footnotes for this content, return original
@@ -64,7 +58,7 @@ const FootnotesMarker: React.FC<FootnotesMarkerProps> = ({
   const isCustomComponent = originalChild.props?.text !== undefined
 
   // Create positions array with footnote markers
-  const positions = filteredFootnotes.map((footnote, i) => ({
+  const positions = filteredFootnotes.map((footnote) => ({
     position: footnote.position,
     marker: (
       <Text
