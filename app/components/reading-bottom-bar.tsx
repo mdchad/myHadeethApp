@@ -69,7 +69,7 @@ const ReadingBottomBar: React.FC<ReadingBottomBarProps> = ({
         if (arUrl && msUrl) {
           playlist.push({
             urls: [`${R2_BASE_URL}/${arUrl}`, `${R2_BASE_URL}/${msUrl}`],
-            title: `Hadis [${hadith.number}] - (${i + 1})`,
+            title: `Hadis [${hadith.label}] - (${i + 1})`,
             subtitle: hadith.id,
           })
         }

@@ -36,7 +36,7 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
         `${R2_BASE_URL}/${hadith.audio_files?.ar?.[audioContent]}`,
         `${R2_BASE_URL}/${hadith.audio_files?.ms?.[audioContent]}`
       ],
-      title: `Hadis [${hadith?.number}] - (${contentIndex + 1})`,
+      title: `Hadis [${hadith.label}] - (${contentIndex + 1})`,
       subtitle: hadith.id
     })
   }
