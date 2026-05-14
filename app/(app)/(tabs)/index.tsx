@@ -92,7 +92,7 @@ function Home() {
                 </View>
               </View>
               <Link
-                href={{ pathname: '/(app)/hadith-detail/[id]', params: { id: todayId } }}
+                href={{ pathname: '/(app)/hadith-detail/[id]', params: { id: todayId ?? '' } }}
                 asChild
               >
                 <Pressable className="bg-white border border-1 border-royal-blue-950 gap-2 rounded-md overflow-hidden">

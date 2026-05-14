@@ -97,7 +97,7 @@ function Books() {
             <FlatList
               data={data}
               renderItem={({ item }) => (
-                <Item title={item.title} id={item.id} />
+                <Item title={item.title_ms} id={item.id} />
               )}
               keyExtractor={(item) => item.id}
               className="h-full"

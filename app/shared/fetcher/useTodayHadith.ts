@@ -15,7 +15,7 @@ type TodayResponse = HadithPreview | null | {
 export default function useGetTodayHadith() {
   const timeZone = 'Asia/Kuala_Lumpur'
   const nowInKualaLumpur = toZonedTime(new Date(), timeZone)
-  const formattedDate = format(nowInKualaLumpur, 'yyyy-MM-dd', { timeZone })
+  const formattedDate = format(nowInKualaLumpur, 'yyyy-MM-dd')
 
   return useQuery<TodayResponse>({
     queryKey: ['todayHadith', formattedDate],
