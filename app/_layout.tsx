@@ -202,6 +202,10 @@ export default Sentry.wrap(function Root() {
       client={queryClient}
       persistOptions={{
         maxAge: 24 * 60 * 60 * 1000, // 24 hours
+        // Bump this string whenever the API response shape changes in a way
+        // that makes old cached payloads incompatible. Changing it invalidates
+        // every persisted query on next app start.
+        buster: 'shape-v2-2026-05-15',
         persister: asyncPersist,
         dehydrateOptions: {
           shouldDehydrateQuery: (query) => {
