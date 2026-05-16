@@ -1,25 +1,25 @@
-import { useQueries, useQuery } from '@tanstack/react-query'
-import type { ApiResponse } from '../../types'
+import { useQuery } from '@tanstack/react-query'
+import type { ApiResponse, Hadith, VolumeWithChapters } from '../../types'
 import { apiGet } from '@/app/utils/api'
 
-// TODO: Replace 'any' with proper Hadith type when hadith types are added
-export default function useGetHadiths(bookId: string, volumeId: string): any {
-  return useQuery<any[]>({
+export default function useGetHadiths(bookId: string, volumeId: string) {
+  return useQuery<VolumeWithChapters>({
     queryKey: ['hadiths', volumeId],
     queryFn: async () => {
-      const result: ApiResponse<any[]> = await apiGet(`/api/books/${bookId}/${volumeId}`)
+      const result: ApiResponse<VolumeWithChapters> = await apiGet(
+        `/api/books/${bookId}/${volumeId}`
+      )
       return result.data
-    }
+    },
   })
 }
 
-// TODO: Replace 'any' with proper Hadith type when hadith types are added
 export function useGetHadith(hadithId: string | string[]) {
-  return useQuery<any>({
+  return useQuery<Hadith>({
     queryKey: ['hadith', hadithId],
     queryFn: async () => {
-      const result: ApiResponse<any> = await apiGet(`/api/hadiths/${hadithId}`)
+      const result: ApiResponse<Hadith> = await apiGet(`/api/hadiths/${hadithId}`)
       return result.data
-    }
+    },
   })
 }

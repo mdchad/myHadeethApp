@@ -1,38 +1,24 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-import QuranText from './quran-text';
-import SpecialText from './special-text';
+import React from 'react'
+import { View, Text } from 'react-native'
+import QuranText from './quran-text'
+import SpecialText from './special-text'
 import FootnotesMarker from './footnotes-marker'
 import FootnotesReference from './footnotes-reference'
-
-interface BilingualText {
-  ms?: string;
-  ar?: string;
-}
-
-interface Footnote {
-  position: number;
-  number: number;
-  type: string;
-  hadithIndex: number;
-  ms?: string;
-  ar?: string;
-}
-
-interface HadithItem {
-  _id?: string;
-  chapter_title?: BilingualText;
-  chapter_transliteration?: BilingualText;
-  chapter_metadata?: BilingualText;
-  footnotes?: Footnote[];
-}
+import type { Chapter, Footnote } from '@/app/types'
 
 interface HadithChapterTitleProps {
-  item: HadithItem;
+  chapter: (Chapter & { id?: string }) | null | undefined;
+  footnotes?: Footnote[];
   footnoteRefs: React.RefObject<Record<string, any>>;
 }
 
-const HadithChapterTitle: React.FC<HadithChapterTitleProps> = ({ item, footnoteRefs }) => {
+const HadithChapterTitle: React.FC<HadithChapterTitleProps> = ({
+  chapter,
+  footnotes = [],
+  footnoteRefs,
+}) => {
+  if (!chapter) return null
+
   return (
     <View className="bg-gray-100 rounded-xl mb-4 p-4 gap-10">
       <View className="gap-4">
@@ -42,32 +28,31 @@ const HadithChapterTitle: React.FC<HadithChapterTitleProps> = ({ item, footnoteR
             writingDirection: 'rtl'
           }}
         >
-          <QuranText
-            text={item?.chapter_title?.ar}
-            font={'arabic-bold'}
-          />
+          <QuranText text={chapter.title_ar} font={'arabic-bold'} />
         </Text>
         <View>
           <Text>
             <FootnotesMarker
-              footnotes={item.footnotes}
+              footnotes={footnotes}
               type={'chapter_title.ms'}
               index={1}
               footnoteRefs={footnoteRefs}
-              hadithId={item._id}
+              hadithId={chapter.id}
             >
               <SpecialText
                 className="text-royal-blue-950 font-semibold"
-                text={item?.chapter_title?.ms}
+                text={chapter.title_ms}
               />
             </FootnotesMarker>
           </Text>
-          <Text className="text-gray-600 mt-1">
-            {item?.chapter_transliteration?.ms}
-          </Text>
+          {!!chapter.transliteration_ms && (
+            <Text className="text-gray-600 mt-1">
+              {chapter.transliteration_ms}
+            </Text>
+          )}
         </View>
       </View>
-      {item?.chapter_metadata?.ms && (
+      {!!chapter.metadata_ms && (
         <View className="gap-4">
           <Text
             className="text-lg text-gray-800 leading-8 font-arabic-regular"
@@ -75,7 +60,7 @@ const HadithChapterTitle: React.FC<HadithChapterTitleProps> = ({ item, footnoteR
               writingDirection: 'rtl'
             }}
           >
-            <QuranText text={item?.chapter_metadata?.ar} />
+            <QuranText text={chapter.metadata_ar} />
           </Text>
           <Text
             className="text-gray-700 leading-6 text-justify tracking-tight font-arabic-symbols"
@@ -84,25 +69,25 @@ const HadithChapterTitle: React.FC<HadithChapterTitleProps> = ({ item, footnoteR
             }}
           >
             <FootnotesMarker
-              footnotes={item.footnotes}
+              footnotes={footnotes}
               type={'chapter_metadata.ms'}
               index={1}
               footnoteRefs={footnoteRefs}
-              hadithId={item._id}
+              hadithId={chapter.id}
             >
               <QuranText
-                text={item?.chapter_metadata?.ms}
+                text={chapter.metadata_ms}
                 font={'arabic-symbols'}
                 special={true}
               />
             </FootnotesMarker>
           </Text>
-          <FootnotesReference hadith={item} type={'chapter_title.ms'} />
-          <FootnotesReference hadith={item} type={'chapter_metadata.ms'} />
+          <FootnotesReference footnotes={footnotes} type={'chapter_title.ms'} />
+          <FootnotesReference footnotes={footnotes} type={'chapter_metadata.ms'} />
         </View>
       )}
     </View>
-  );
-};
+  )
+}
 
-export default HadithChapterTitle; 
+export default HadithChapterTitle

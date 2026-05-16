@@ -7,7 +7,7 @@ export default function useGetSearch() {
   return useMutation<SearchResult, Error, SearchParams>({
     mutationFn: async ({ query, page = 1, limit = 10, mode = 'text', books }) => {
       const params = new URLSearchParams({
-        query,
+        term: query,
         page: page.toString(),
         limit: limit.toString(),
         mode,
