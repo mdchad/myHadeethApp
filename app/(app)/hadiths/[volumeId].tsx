@@ -235,43 +235,66 @@ function HadithContent() {
       />
       <View className="pb-0 bg-reading-background">
         {isLoading ? (
-          <ScrollView className="px-4 pt-40">
-            {/* Volume Metadata Skeleton */}
-            <View className="mb-6">
-              <Skeleton colorMode="light" height={24} width="50%" />
-              <Spacer height={8} />
-              <Skeleton colorMode="light" height={20} width="70%" />
-              <Spacer height={16} />
+          <ScrollView className="pt-40" showsVerticalScrollIndicator={false}>
+            {/* Volume Metadata Header Skeleton — matches VolumeMetadataHeader (p-4 mb-2 outer, p-4 gap-2 inner) */}
+            <View className="p-4 mb-2">
+              <View className="p-4 gap-2">
+                <View className="items-end mb-2">
+                  <Skeleton colorMode="light" height={22} width="60%" />
+                </View>
+                <Skeleton colorMode="light" height={16} width="80%" />
+              </View>
             </View>
 
             {/* Hadith Items Skeleton */}
-            {[1, 2, 3].map((index) => (
-              <View key={index} className="mb-6">
-                {/* Chapter Title Skeleton */}
-                <View className="mb-4">
-                  <Skeleton colorMode="light" height={22} width="60%" />
-                  <Spacer height={8} />
-                  <Skeleton colorMode="light" height={28} width="80%" />
+            {[1, 2].map((index) => (
+              <View key={index}>
+                {/* Chapter Title Skeleton — matches ChapterTitle (mb-10 p-4 gap-4 outer, border-l-4 pl-2 gap-4 inner) */}
+                <View className="mb-10 p-4 gap-4">
+                  <View className="gap-4 border-l-4 border-royal-blue-950 dark:border-royal-blue-700 pl-2">
+                    {/* Arabic chapter title (RTL, 2 lines) */}
+                    <View className="gap-2 items-end">
+                      <Skeleton colorMode="light" height={22} width="90%" />
+                      <Skeleton colorMode="light" height={22} width="40%" />
+                    </View>
+                    {/* Malay bold title */}
+                    <View className="gap-2">
+                      <Skeleton colorMode="light" height={18} width="95%" />
+                      <Skeleton colorMode="light" height={18} width="80%" />
+                      <Skeleton colorMode="light" height={18} width="55%" />
+                      {/* Transliteration */}
+                      <Spacer height={4} />
+                      <Skeleton colorMode="light" height={14} width="85%" />
+                      <Skeleton colorMode="light" height={14} width="60%" />
+                    </View>
+                  </View>
                 </View>
 
-                {/* Hadith Content Skeleton */}
-                <View className="space-y-2 mb-4">
-                  <Skeleton colorMode="light" height={20} width="100%" />
-                  <Spacer height={6} />
-                  <Skeleton colorMode="light" height={20} width="100%" />
-                  <Spacer height={6} />
-                  <Skeleton colorMode="light" height={20} width="95%" />
-                  <Spacer height={6} />
-                  <Skeleton colorMode="light" height={20} width="100%" />
-                  <Spacer height={6} />
-                  <Skeleton colorMode="light" height={20} width="90%" />
-                  <Spacer height={6} />
-                  <Skeleton colorMode="light" height={20} width="100%" />
-                  <Spacer height={6} />
-                  <Skeleton colorMode="light" height={20} width="85%" />
+                {/* Hadith Content Skeleton — matches HadithItem (px-4 py-6 gap-6) */}
+                <View className="px-4 py-6 gap-6">
+                  {/* Arabic content (RTL, multiple lines) */}
+                  <View className="gap-3 items-end mb-2">
+                    <Skeleton colorMode="light" height={22} width="100%" />
+                    <Skeleton colorMode="light" height={22} width="95%" />
+                    <Skeleton colorMode="light" height={22} width="100%" />
+                    <Skeleton colorMode="light" height={22} width="90%" />
+                    <Skeleton colorMode="light" height={22} width="100%" />
+                    <Skeleton colorMode="light" height={22} width="70%" />
+                  </View>
+                  {/* Malay translation */}
+                  <View className="gap-2 pb-4">
+                    <Skeleton colorMode="light" height={18} width="100%" />
+                    <Skeleton colorMode="light" height={18} width="100%" />
+                    <Skeleton colorMode="light" height={18} width="95%" />
+                    <Skeleton colorMode="light" height={18} width="100%" />
+                    <Skeleton colorMode="light" height={18} width="80%" />
+                  </View>
+                  {/* Action buttons */}
+                  <View className="flex flex-row gap-2">
+                    <Skeleton colorMode="light" height={28} width={90} />
+                    <Skeleton colorMode="light" height={28} width={80} />
+                  </View>
                 </View>
-
-                <Spacer height={24} />
               </View>
             ))}
           </ScrollView>
