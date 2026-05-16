@@ -29,10 +29,22 @@ import type { Hadith, ChapterWithHadiths } from '@/app/types'
 const hasRenderableContent = (h: Hadith) => !!h.content?.[0]?.ar
 
 function HadithContent() {
-  const { volumeId, bookId } = useLocalSearchParams<{ volumeId: string; bookId: string }>()
+  const { volumeId, bookId, hadith: hadithParam } = useLocalSearchParams<{
+    volumeId: string;
+    bookId: string;
+    hadith?: string;
+  }>()
   const listRef = useRef<FlashListRef<ChapterWithHadiths>>(null)
   const router = useRouter()
   const footnoteRefs = useRef<Record<string, any>>({})
+
+  // Parse the deep-link target hadith number once. The ref-based sentinel below
+  // ensures we scroll to it only on first paint, not on every chapters update.
+  const targetHadithNumber = useMemo(() => {
+    const n = parseInt(hadithParam ?? '', 10)
+    return !isNaN(n) && n > 0 ? n : null
+  }, [hadithParam])
+  const pendingScrollRef = useRef<number | null>(targetHadithNumber)
   const insets = useSafeAreaInsets()
   const { theme } = useUniwind()
   const bottomSheetRef = useRef<BottomSheet>(null)
@@ -86,6 +98,25 @@ function HadithContent() {
     })
     return matches
   }, [searchQuery, chapters])
+
+  // Deep-link: scroll to the chapter containing the requested hadith number once,
+  // when the list first has data. The ref sentinel guarantees a single attempt
+  // — re-renders, search use, or refetches won't re-scroll.
+  useEffect(() => {
+    const target = pendingScrollRef.current
+    if (target == null || chapters.length === 0) return
+    const chapterIndex = chapters.findIndex((c) =>
+      c.hadiths.some((h) => h.number === target)
+    )
+    if (chapterIndex >= 0) {
+      listRef.current?.scrollToIndex({
+        index: chapterIndex,
+        animated: false,
+        viewPosition: 0,
+      })
+    }
+    pendingScrollRef.current = null
+  }, [chapters])
 
   useEffect(() => {
     setCurrentMatchIndex(0)
