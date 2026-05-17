@@ -43,10 +43,11 @@ const FloatingAudioPlayerContent = () => {
     }
   }, [status.isLoaded, currentTrack])
 
-  // Close player when navigating away
+  // Close player when navigating away — clear store only;
+  // useAudioPlayer releases the native player on unmount itself.
   useEffect(() => {
     return () => {
-      handleClose()
+      clearTrack()
     }
   }, [pathname])
 
@@ -109,7 +110,11 @@ const FloatingAudioPlayerContent = () => {
     if (Platform.OS === 'ios') {
       await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
     }
-    player.pause()
+    try {
+      player.pause()
+    } catch {
+      // player may already be released (unmount race) — safe to ignore
+    }
     clearTrack()
   }
 
