@@ -106,7 +106,6 @@ export default function Hadith40() {
           renderItem={Items}
           contentContainerStyle={{ paddingHorizontal: 6, paddingVertical: 6 }}
           // style={{ paddingRight: 5, marginRight: -10 }}
-          estimatedItemSize={42}
         />
       </View>
     </Page>
