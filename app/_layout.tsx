@@ -26,8 +26,10 @@ import { PortalProvider } from '@gorhom/portal'
 import { useLocationStore } from './stores/useLocationStore'
 import FloatingAudioPlayer from './components/floating-audio-player'
 import {HeroUINativeProvider} from "heroui-native";
+import Constants from 'expo-constants'
 import { useVersionCheck } from './shared/useVersionCheck'
 import { UpdateRequiredBlocker } from './components/update-required-blocker'
+import storage from './shared/storage'
 
 const isAndroid = Platform.OS === 'android'
 const isHermes = !!global.HermesInternal
@@ -115,6 +117,30 @@ const asyncPersist = createAsyncStoragePersister({
   throttleTime: 1000
 })
 
+// Cache buster for the persisted React Query cache. Tied to the native app
+// version so updating the binary (e.g. 1.0.11 -> 2.0.0) discards any cached
+// API responses in the old data shape instead of hydrating them into
+// components that expect the new shape.
+const PERSIST_BUSTER =
+  Constants.nativeApplicationVersion ?? Constants.expoConfig?.version ?? '2.0.0'
+
+// One-time cleanup of AsyncStorage keys that older builds may have written
+// with the pre-2.0.0 data shape. None of these are read by 2.x code.
+const cleanupLegacyStorage = async () => {
+  if (storage.getBoolean('v2-storage-cleaned')) return
+  try {
+    await AsyncStorage.multiRemove([
+      'saved-hadiths',
+      'user-notes',
+      'last-read-position',
+      'app-settings'
+    ])
+    storage.set('v2-storage-cleaned', true)
+  } catch {
+    // Non-blocking; retried on next launch.
+  }
+}
+
 SplashScreen.preventAutoHideAsync()
 
 Sentry.init({
@@ -184,6 +210,8 @@ export default Sentry.wrap(function Root() {
     // Initialize location tracking and get cleanup function
     const cleanupLocationTracking = initializeLocationTracking()
 
+    cleanupLegacyStorage()
+
     prefetchTodos().then(() => {
       setAudioModeAsync({ playsInSilentMode: true })
       // Hide the splash screen after prefetching is done
@@ -202,6 +230,7 @@ export default Sentry.wrap(function Root() {
       client={queryClient}
       persistOptions={{
         maxAge: 24 * 60 * 60 * 1000, // 24 hours
+        buster: PERSIST_BUSTER,
         persister: asyncPersist,
         dehydrateOptions: {
           shouldDehydrateQuery: (query) => {

@@ -14,6 +14,7 @@ import { ChevronDownIcon, PlayIcon } from 'lucide-react-native'
 import { useAudioPlayerStore } from '@/app/stores/useAudioPlayerStore'
 import * as Haptics from 'expo-haptics'
 import type { Book, Footnote, Hadith, Volume } from '@/app/types'
+import { R2_VOICEOVER_BASE_URL } from '@/app/utils/constants'
 
 interface ReadingBottomBarProps {
   animatedStyle: any
@@ -51,8 +52,7 @@ const ReadingBottomBar: React.FC<ReadingBottomBarProps> = ({
 
     setIsLoadingPlaylist(true)
 
-    const R2_BASE_URL =
-      'https://pub-34bac4a6ce3242dabed8105f8908b2ee.r2.dev/myway-voiceover'
+    const R2_BASE_URL = R2_VOICEOVER_BASE_URL
     const playlist = []
 
     // Build playlist: for each hadith, for each content block

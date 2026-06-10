@@ -11,6 +11,7 @@ import { PlayIcon, SparklesIcon } from 'lucide-react-native'
 import * as Haptics from 'expo-haptics'
 import { Button } from 'heroui-native'
 import type { Hadith } from '@/app/types'
+import { R2_VOICEOVER_BASE_URL } from '@/app/utils/constants'
 
 interface HadithItemProps {
   hadith: Hadith;
@@ -21,7 +22,7 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
   const router = useRouter()
   const fontSizeIndex = useReadingSettingsStore((state) => state.fontSizeIndex)
   const playTrack = useAudioPlayerStore((state) => state.playTrack)
-  const R2_BASE_URL = 'https://pub-34bac4a6ce3242dabed8105f8908b2ee.r2.dev/myway-voiceover'
+  const R2_BASE_URL = R2_VOICEOVER_BASE_URL
 
   const hadithFootnotes = hadith.footnotes?.hadith ?? []
 

@@ -81,16 +81,6 @@ export function UpdateRequiredBlocker({
           </View>
         </View>
 
-        {/*/!* Release Notes *!/*/}
-        {/*{releaseNotes && (*/}
-        {/*  <View className="bg-blue-50 rounded-lg p-4 w-full mb-6">*/}
-        {/*    <Text className="text-sm font-semibold text-blue-900 mb-2">*/}
-        {/*      {t('updateRequired.whatsNew') || "What's New"}:*/}
-        {/*    </Text>*/}
-        {/*    <Text className="text-sm text-blue-800">{releaseNotes}</Text>*/}
-        {/*  </View>*/}
-        {/*)}*/}
-
         {/* Update Button */}
         <Button
           onPress={handleUpdate}
