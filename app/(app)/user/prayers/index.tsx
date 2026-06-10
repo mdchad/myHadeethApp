@@ -158,6 +158,10 @@ export default function Prayer() {
         `https://mpt-server.vercel.app/api/v2/solat/${json.zone}?year=${year}&month=${month}`
       )
       const result = await prayerMonthly.json()
+      if (!result || !Array.isArray(result.prayers)) {
+        setError(true)
+        return
+      }
       setMonthlyPrayerTimes(result)
       await calculatePrayer(
         format(currentDate, 'd', { timeZone: 'Asia/Kuala_Lumpur' }),
@@ -169,13 +173,17 @@ export default function Prayer() {
   }
 
   async function calculatePrayer(day: string, monthlyPrayerTimes: MonthlyPrayerTimes) {
+    // Data can be missing if the API errored, or the day can be absent when the
+    // next-day lookup crosses into a month we have no data for
+    const getPrayerDate: any = monthlyPrayerTimes?.prayers?.find(
+      (prayer) => prayer.day === parseInt(day)
+    )
+    if (!getPrayerDate) return
+
     const prayers: any[] = []
     ;['fajr', 'syuruk', 'dhuhr', 'asr', 'maghrib', 'isha'].forEach(
       (time, i) => {
         const currentTime = new Date()
-        const getPrayerDate: any = monthlyPrayerTimes.prayers.find(
-          (prayer) => prayer.day === parseInt(day)
-        )
         const getWaktu = getPrayerDate[time]
 
         let elapsed = isBefore(

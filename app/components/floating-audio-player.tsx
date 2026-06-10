@@ -43,10 +43,19 @@ const FloatingAudioPlayerContent = () => {
     }
   }, [status.isLoaded, currentTrack])
 
+  // Pause safely — the native player may already be released (e.g. during unmount,
+  // expo-audio releases it before this component's cleanup runs)
+  const safePause = () => {
+    try {
+      player.pause()
+    } catch {}
+  }
+
   // Close player when navigating away
   useEffect(() => {
     return () => {
-      handleClose()
+      safePause()
+      clearTrack()
     }
   }, [pathname])
 
@@ -78,7 +87,7 @@ const FloatingAudioPlayerContent = () => {
     }
 
     if (status.playing) {
-      player.pause()
+      safePause()
     } else {
       // Restart from beginning if all tracks finished
       if (currentTrack && currentIndex === currentTrack.urls.length - 1 && status.currentTime >= status.duration - 0.1) {
@@ -94,8 +103,10 @@ const FloatingAudioPlayerContent = () => {
     }
 
     // Stop current playback
-    player.pause()
-    player.seekTo(0)
+    try {
+      player.pause()
+      player.seekTo(0)
+    } catch {}
 
     // Mark this as a manual switch so it auto-plays
     setIsManualSwitch(true)
@@ -109,7 +120,7 @@ const FloatingAudioPlayerContent = () => {
     if (Platform.OS === 'ios') {
       await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
     }
-    player.pause()
+    safePause()
     clearTrack()
   }
 
