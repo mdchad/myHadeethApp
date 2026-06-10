@@ -45,7 +45,7 @@ export default function Profile() {
         // dismissed
       }
     } catch (error) {
-      Alert.alert(error.message)
+      Alert.alert(error instanceof Error ? error.message : String(error))
     }
   }
 

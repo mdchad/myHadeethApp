@@ -69,7 +69,11 @@ const prayerIcon = [
   require('@/assets/prayer-isha.png')
 ]
 
-const options = { year: 'numeric', month: 'long', day: 'numeric' }
+const options: Intl.DateTimeFormatOptions = {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+}
 const formatHijri = new Intl.DateTimeFormat(
   'ms-MY-u-ca-islamic-nu-latn',
   options
@@ -136,6 +140,9 @@ export default function Prayer() {
   }, [userLocation])
 
   const fetchPrayer = async () => {
+    if (!userLocation || !userPlace) {
+      return
+    }
     if (userPlace[0].country !== 'Malaysia') {
       setError(true)
       return
@@ -207,6 +214,7 @@ export default function Prayer() {
 
   function onClickIndividualDay(item: FormattedDate) {
     setCalendarDate(item?.date)
+    if (!monthlyPrayerTimes) return
     calculatePrayer(
       format(item?.date, 'd', { timeZone: 'Asia/Kuala_Lumpur' }),
       monthlyPrayerTimes
@@ -264,7 +272,7 @@ export default function Prayer() {
             <ImageBackground
               source={require('@/assets/book-background.png')}
               resizeMode="cover"
-              style={{ flex: 1, justifyContent: 'end', alignItems: 'end' }}
+              style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'flex-end' }}
             >
               <View className="px-2 mb-10">
                 <View className="flex flex-col items-center mb-4">

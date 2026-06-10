@@ -32,7 +32,7 @@ import { UpdateRequiredBlocker } from './components/update-required-blocker'
 import storage from './shared/storage'
 
 const isAndroid = Platform.OS === 'android'
-const isHermes = !!global.HermesInternal
+const isHermes = !!(global as Record<string, unknown>).HermesInternal
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL
 

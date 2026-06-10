@@ -17,12 +17,14 @@ interface BilingualText {
 interface HadithContent {
   ms: string;
   ar: string;
-  audio: BilingualText;
+  // Some entries in the dataset have no recorded audio (empty object).
+  audio: Partial<BilingualText>;
 }
 
 interface Lesson {
   items: BilingualText[];
-  audio: BilingualText;
+  // Lesson audio only exists in Malay in the dataset.
+  audio: Partial<BilingualText>;
 }
 
 interface Hadith40Item {

@@ -19,13 +19,14 @@ export default function Settings() {
   const [mode, setMode] = useState('time')
   const [show, setShow] = useState(false)
 
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate
+  const onChange = (event: unknown, selectedDate?: Date) => {
     setShow(false)
-    setDate(currentDate)
+    if (selectedDate) {
+      setDate(selectedDate)
+    }
   }
 
-  const showMode = (currentMode) => {
+  const showMode = (currentMode: string) => {
     if (Platform.OS === 'android') {
       setShow(false)
       // for iOS, add a button that closes the picker

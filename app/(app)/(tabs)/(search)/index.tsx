@@ -121,7 +121,7 @@ function Search() {
       language = 'ms'
     }
 
-    let textWithLanguage = text[language]
+    let textWithLanguage = text[language as keyof BilingualText]
 
     // Define Arabic diacritics characters
     const diacritics = '\u064B-\u065F\u06D6-\u06DC\u06DF-\u06E8\u06EA-\u06ED'
@@ -136,7 +136,7 @@ function Search() {
 
     const regex = new RegExp(regexPattern, 'gi')
 
-    const parts = []
+    const parts: React.ReactNode[] = []
     let match
 
     if (keyword) {
@@ -160,16 +160,14 @@ function Search() {
     }
 
     // Add any remaining text after the last match
-    if (language === 'ar') {
-      textWithLanguage = (
+    const remainingText =
+      language === 'ar' ? (
         <QuranText
           key={Math.random()}
           text={textWithLanguage}
           font={'arabic-regular'}
         />
-      )
-    } else {
-      textWithLanguage = (
+      ) : (
         <QuranText
           key={Math.random()}
           text={textWithLanguage}
@@ -177,8 +175,7 @@ function Search() {
           special={true}
         />
       )
-    }
-    parts.push(textWithLanguage)
+    parts.push(remainingText)
 
     if (language === 'ar') {
       return (

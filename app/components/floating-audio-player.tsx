@@ -53,7 +53,7 @@ const FloatingAudioPlayerContent = () => {
   // Auto-play next track when current one finishes
   useEffect(() => {
     if (status.isLoaded && !status.playing && status.currentTime >= status.duration - 0.1) {
-      if (currentIndex < currentTrack.urls.length - 1) {
+      if (currentTrack && currentIndex < currentTrack.urls.length - 1) {
         // Move to next language in current track
         setCurrentIndex(prev => prev + 1)
       } else if (playlist.length > 0 && currentTrackIndex < playlist.length - 1) {
@@ -81,7 +81,7 @@ const FloatingAudioPlayerContent = () => {
       player.pause()
     } else {
       // Restart from beginning if all tracks finished
-      if (currentIndex === currentTrack.urls.length - 1 && status.currentTime >= status.duration - 0.1) {
+      if (currentTrack && currentIndex === currentTrack.urls.length - 1 && status.currentTime >= status.duration - 0.1) {
         setCurrentIndex(0)
       }
       player.play()
