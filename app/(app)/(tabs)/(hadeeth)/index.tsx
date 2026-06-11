@@ -11,6 +11,7 @@ import useGetBooks from '@/app/shared/fetcher/useBooks'
 import SHARED_TEXT from "@/app/i18n";
 import {t} from "i18next";
 import Page from '@/app/components/page'
+import ErrorState from '@/app/components/error-state'
 import { usePostHog } from 'posthog-react-native'
 import { useQueryClient } from '@tanstack/react-query'
 import { apiGet } from '@/app/utils/api'
@@ -86,7 +87,11 @@ function Item({ title, id, slug }: ItemProps) {
 }
 
 function Books() {
-  const { isLoading, isError, data, error } = useGetBooks()
+  const { isError, data, error, refetch } = useGetBooks()
+
+  // Only take over the screen when there's nothing to show — with cached
+  // (placeholder/persisted) data, keep rendering the list.
+  const showError = isError && (!data || data.length === 0)
 
   return (
     <Page edges={['top']} className="bg-royal-blue-950">
@@ -98,16 +103,20 @@ function Books() {
           resizeMode="cover"
         >
           <View className="mb-4 mt-4">
-            <FlatList
-              data={data}
-              renderItem={({ item }) => (
-                <Item title={item.title_ms} id={item.id} slug={item.slug} />
-              )}
-              keyExtractor={(item) => item.id}
-              className="h-full"
-              numColumns={2}
-              columnWrapperClassName={'p-4'}
-            />
+            {showError ? (
+              <ErrorState error={error} onRetry={refetch} className="h-full" />
+            ) : (
+              <FlatList
+                data={data}
+                renderItem={({ item }) => (
+                  <Item title={item.title_ms} id={item.id} slug={item.slug} />
+                )}
+                keyExtractor={(item) => item.id}
+                className="h-full"
+                numColumns={2}
+                columnWrapperClassName={'p-4'}
+              />
+            )}
           </View>
         </ImageBackground>
       </View>

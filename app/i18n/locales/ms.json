@@ -50,5 +50,8 @@
     "whatsNew": "Apa Yang Baharu",
     "updateButton": "Kemas Kini Sekarang",
     "helper": "Anda akan dibawa ke stor aplikasi"
-  }
+  },
+  "ERROR_OFFLINE_MESSAGE": "Tiada sambungan internet. Sila semak sambungan anda dan cuba lagi.",
+  "ERROR_GENERIC_MESSAGE": "Berlaku masalah semasa memuatkan. Sila cuba lagi.",
+  "ERROR_RETRY_LABEL": "Cuba Lagi"
 }
