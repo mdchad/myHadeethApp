@@ -18,9 +18,10 @@ import { apiGet } from '@/app/utils/api'
 interface ItemProps {
   title: string;
   id: string;
+  slug: string;
 }
 
-function Item({ title, id }: ItemProps) {
+function Item({ title, id, slug }: ItemProps) {
   const posthog = usePostHog()
   const queryClient = useQueryClient()
 
@@ -56,6 +57,7 @@ function Item({ title, id }: ItemProps) {
       asChild
     >
       <Pressable
+        testID={`book-${slug}`}
         className="w-[48%] mr-4 bg-white"
         onPress={handlePress}
         onPressIn={handlePrefetch}
@@ -97,7 +99,7 @@ function Books() {
             <FlatList
               data={data}
               renderItem={({ item }) => (
-                <Item title={item.title_ms} id={item.id} />
+                <Item title={item.title_ms} id={item.id} slug={item.slug} />
               )}
               keyExtractor={(item) => item.id}
               className="h-full"

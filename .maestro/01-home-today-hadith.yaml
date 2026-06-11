@@ -1,0 +1,20 @@
+appId: com.mdchad.myWay
+name: Home shows today's hadith
+tags:
+  - smoke
+---
+# Launch past splash (prefetch holds the splash screen) and confirm the home
+# screen renders the daily hadith card fetched from /api/today.
+- launchApp:
+#    clearState: true
+- extendedWaitUntil:
+    visible: "Hadis Harian"
+    timeout: 20000
+# The today card header renders "[ <book> / <volume> ]" once the preview
+# shape parses, e.g. "[ Sahih al-Bukhari / Kitab Iman ]".
+- extendedWaitUntil:
+    visible: "\\[ .*\\]"
+    timeout: 15000
+# Tab bar is present
+- assertVisible: "Utama"
+- assertVisible: "Carian"

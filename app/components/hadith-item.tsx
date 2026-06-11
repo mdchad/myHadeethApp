@@ -99,6 +99,7 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
               {/* Play Button */}
               <View className="flex flex-row gap-2">
                 <Button
+                  testID={`play-audio-${i}`}
                   size="sm"
                   onPress={() => handlePlayAudio(i)}
                   className="bg-royal-blue rounded-sm rounded-none"

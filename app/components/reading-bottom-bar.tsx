@@ -115,6 +115,8 @@ const ReadingBottomBar: React.FC<ReadingBottomBarProps> = ({
                   isIconOnly
                   className="bg-gray-100"
                   onPress={onHide}
+                  accessibilityLabel="Sembunyikan bar bacaan"
+                  testID="reading-bar-hide"
                 >
                   <ChevronDownIcon size={20} color="black" />
                 </Button>
@@ -123,6 +125,8 @@ const ReadingBottomBar: React.FC<ReadingBottomBarProps> = ({
                 isIconOnly
                 className="bg-gray-100"
                 onPress={handlePlayAll}
+                accessibilityLabel="Main Semua Audio"
+                testID="play-all-audio"
                 isDisabled={
                   isLoadingPlaylist || !allHadiths || allHadiths.length === 0
                 }

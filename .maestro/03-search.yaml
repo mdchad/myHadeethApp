@@ -1,0 +1,26 @@
+appId: com.mdchad.myWay
+name: Search returns results
+tags:
+  - smoke
+---
+# Exercises /api/search (term param, new shape with `id` keys).
+- launchApp:
+#    clearState: true
+- extendedWaitUntil:
+    visible: "Hadis Harian"
+    timeout: 20000
+- tapOn:
+    id: "tab-carian"
+- extendedWaitUntil:
+    visible:
+      id: "search-input"
+    timeout: 10000
+- tapOn:
+    id: "search-input"
+- inputText: "solat"
+- pressKey: Enter
+# Pagination footer renders "Hasil 1 - 10 dari N" when results come back.
+# Semantic search can take a few seconds on a cold embed cache.
+- extendedWaitUntil:
+    visible: "Hasil.*dari.*"
+    timeout: 30000

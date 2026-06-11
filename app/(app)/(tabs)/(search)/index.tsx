@@ -269,6 +269,7 @@ function Search() {
           <View className="flex-1 bg-white rounded-full shadow-md flex-row items-end px-4 py-3">
             <SearchIcon size={20} className="h-[4lh]" color="#666" />
             <TextInput
+              testID="search-input"
               className="flex-1 leading-5 text-base ml-2"
               placeholder={t(SHARED_TEXT.SEARCH_SEARCHBAR_PLACEHOLDER)}
               value={searchKeyword}
