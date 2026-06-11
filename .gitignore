@@ -27,4 +27,7 @@ gen-lang-client-0929356928-029084a11061.json
 
 ios
 android
+
+# e2e test output
 /reports
+/.agent-device

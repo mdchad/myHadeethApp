@@ -5,6 +5,7 @@ tags:
 ---
 # Launch past splash (prefetch holds the splash screen) and confirm the home
 # screen renders the daily hadith card fetched from /api/today.
+- stopApp
 - launchApp:
 #    clearState: true
 - extendedWaitUntil:

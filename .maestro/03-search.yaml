@@ -4,6 +4,7 @@ tags:
   - smoke
 ---
 # Exercises /api/search (term param, new shape with `id` keys).
+- stopApp
 - launchApp:
 #    clearState: true
 - extendedWaitUntil:

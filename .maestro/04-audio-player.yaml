@@ -5,6 +5,7 @@ tags:
 ---
 # Navigates to a reading screen and starts audio; asserts the floating
 # player appears (R2 voiceover URL + audio_files shape both working).
+- stopApp
 - launchApp:
 #    clearState: true
 - extendedWaitUntil:

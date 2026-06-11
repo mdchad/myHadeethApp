@@ -6,6 +6,7 @@ tags:
 # Books list -> volume list -> reading screen, exercising /api/books,
 # /api/books/{id}, and /api/books/{id}/{volumeId} with the new shape.
 # Taps use testIDs (language/data independent); asserts use visible text.
+- stopApp
 - launchApp:
 #    clearState: true
 - extendedWaitUntil:
