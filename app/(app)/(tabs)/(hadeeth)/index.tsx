@@ -43,7 +43,9 @@ function Item({ title, id, slug }: ItemProps) {
     })
   }
 
-  const words = title.split(' ')
+  // Guard against missing titles (e.g. legacy API shape or partial data) so a
+  // single bad item degrades gracefully instead of crashing the whole list.
+  const words = (title ?? '').split(' ')
 
   const firstWord = words[0]
   const remainingWords = words.slice(1).join(' ')
