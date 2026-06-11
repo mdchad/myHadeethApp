@@ -12,6 +12,7 @@ import {
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Page from '@/app/components/page'
 import Header from '@/app/components/header'
+import ErrorState from '@/app/components/error-state'
 import { Link } from 'expo-router'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import {
@@ -72,7 +73,7 @@ function Search() {
 
   const queryClient = useQueryClient()
 
-  const { data, fetchStatus, isLoading } = useQuery({
+  const { data, fetchStatus, isLoading, isError, error, refetch } = useQuery({
     queryKey: ['search', page, submittedKeyword, selectedBooks],
     queryFn: async () => {
       const params = new URLSearchParams({
@@ -86,7 +87,11 @@ function Search() {
         params.append('books', selectedBooks)
       }
 
-      const result = await apiGet(`/api/search?${params.toString()}`)
+      // Semantic search on a cold embed cache can be slow — allow more than
+      // the default timeout, but keep it bounded.
+      const result = await apiGet(`/api/search?${params.toString()}`, {
+        timeoutMs: 60_000,
+      })
 
       if (!result.success) {
         throw new Error('Search request was not successful')
@@ -316,6 +321,8 @@ function Search() {
               <View className="flex-1 h-svh flex items-center justify-center">
                 <LoadingSpinner />
               </View>
+            ) : isError && !!submittedKeyword ? (
+              <ErrorState error={error} onRetry={refetch} className="mt-24" />
             ) : fetchStatus === 'idle' &&
               searchKeyword &&
               !!submittedKeyword ? (
