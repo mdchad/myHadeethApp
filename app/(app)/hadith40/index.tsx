@@ -17,12 +17,14 @@ interface BilingualText {
 interface HadithContent {
   ms: string;
   ar: string;
-  audio: BilingualText;
+  // Some entries in the dataset have no recorded audio (empty object).
+  audio: Partial<BilingualText>;
 }
 
 interface Lesson {
   items: BilingualText[];
-  audio: BilingualText;
+  // Lesson audio only exists in Malay in the dataset.
+  audio: Partial<BilingualText>;
 }
 
 interface Hadith40Item {
@@ -104,7 +106,6 @@ export default function Hadith40() {
           renderItem={Items}
           contentContainerStyle={{ paddingHorizontal: 6, paddingVertical: 6 }}
           // style={{ paddingRight: 5, marginRight: -10 }}
-          estimatedItemSize={42}
         />
       </View>
     </Page>

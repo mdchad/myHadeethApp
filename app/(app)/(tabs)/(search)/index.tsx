@@ -12,6 +12,7 @@ import {
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Page from '@/app/components/page'
 import Header from '@/app/components/header'
+import ErrorState from '@/app/components/error-state'
 import { Link } from 'expo-router'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import {
@@ -72,7 +73,7 @@ function Search() {
 
   const queryClient = useQueryClient()
 
-  const { data, fetchStatus, isLoading } = useQuery({
+  const { data, fetchStatus, isLoading, isError, error, refetch } = useQuery({
     queryKey: ['search', page, submittedKeyword, selectedBooks],
     queryFn: async () => {
       const params = new URLSearchParams({
@@ -86,7 +87,11 @@ function Search() {
         params.append('books', selectedBooks)
       }
 
-      const result = await apiGet(`/api/search?${params.toString()}`)
+      // Semantic search on a cold embed cache can be slow — allow more than
+      // the default timeout, but keep it bounded.
+      const result = await apiGet(`/api/search?${params.toString()}`, {
+        timeoutMs: 60_000,
+      })
 
       if (!result.success) {
         throw new Error('Search request was not successful')
@@ -121,7 +126,7 @@ function Search() {
       language = 'ms'
     }
 
-    let textWithLanguage = text[language]
+    let textWithLanguage = text[language as keyof BilingualText]
 
     // Define Arabic diacritics characters
     const diacritics = '\u064B-\u065F\u06D6-\u06DC\u06DF-\u06E8\u06EA-\u06ED'
@@ -136,7 +141,7 @@ function Search() {
 
     const regex = new RegExp(regexPattern, 'gi')
 
-    const parts = []
+    const parts: React.ReactNode[] = []
     let match
 
     if (keyword) {
@@ -160,16 +165,14 @@ function Search() {
     }
 
     // Add any remaining text after the last match
-    if (language === 'ar') {
-      textWithLanguage = (
+    const remainingText =
+      language === 'ar' ? (
         <QuranText
           key={Math.random()}
           text={textWithLanguage}
           font={'arabic-regular'}
         />
-      )
-    } else {
-      textWithLanguage = (
+      ) : (
         <QuranText
           key={Math.random()}
           text={textWithLanguage}
@@ -177,8 +180,7 @@ function Search() {
           special={true}
         />
       )
-    }
-    parts.push(textWithLanguage)
+    parts.push(remainingText)
 
     if (language === 'ar') {
       return (
@@ -272,6 +274,7 @@ function Search() {
           <View className="flex-1 bg-white rounded-full shadow-md flex-row items-end px-4 py-3">
             <SearchIcon size={20} className="h-[4lh]" color="#666" />
             <TextInput
+              testID="search-input"
               className="flex-1 leading-5 text-base ml-2"
               placeholder={t(SHARED_TEXT.SEARCH_SEARCHBAR_PLACEHOLDER)}
               value={searchKeyword}
@@ -318,6 +321,8 @@ function Search() {
               <View className="flex-1 h-svh flex items-center justify-center">
                 <LoadingSpinner />
               </View>
+            ) : isError && !!submittedKeyword ? (
+              <ErrorState error={error} onRetry={refetch} className="mt-24" />
             ) : fetchStatus === 'idle' &&
               searchKeyword &&
               !!submittedKeyword ? (

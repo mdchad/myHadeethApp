@@ -192,10 +192,7 @@ export interface SearchApiResponse {
   data: SearchResult;
 }
 
-// Storage keys type
-export type StorageKey =
-  | 'user-language'
-  | 'saved-hadiths'
-  | 'user-notes'
-  | 'app-settings'
-  | 'last-read-position';
+// AsyncStorage keys in active use. Legacy keys from pre-2.0.0 builds
+// (saved-hadiths, user-notes, last-read-position, app-settings) are removed
+// on first launch by cleanupLegacyStorage in app/_layout.tsx.
+export type StorageKey = 'user-language';

@@ -1,0 +1,19 @@
+appId: com.mdchad.myWay
+name: Force-update blocker appears for outdated versions
+tags:
+  - gated
+---
+# Migration kill-switch test. Requires the app to point at a backend with
+# MINIMUM_APP_VERSION set above the app's version, e.g. run the web repo
+# locally with MINIMUM_APP_VERSION=9.9.9 and build/start the app with
+# EXPO_PUBLIC_API_URL=http://localhost:3000.
+#
+# Run explicitly with: maestro-runner test --include-tags gated .maestro
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Kemas Kini Diperlukan"
+    timeout: 20000
+- assertVisible: "Versi Anda"
+- assertVisible: "Minimum Diperlukan"
+- assertVisible: "Kemas Kini Sekarang"

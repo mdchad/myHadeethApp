@@ -1,0 +1,42 @@
+appId: com.mdchad.myWay
+name: Audio playback opens floating player
+tags:
+  - smoke
+---
+# Navigates to a reading screen and starts audio; asserts the floating
+# player appears (R2 voiceover URL + audio_files shape both working).
+- stopApp
+- launchApp:
+#    clearState: true
+- extendedWaitUntil:
+    visible: "Hadis Harian"
+    timeout: 20000
+- tapOn:
+    id: "tab-hadis"
+- extendedWaitUntil:
+    visible:
+      id: "book-bukhari"
+    timeout: 10000
+- tapOn:
+    id: "book-bukhari"
+- extendedWaitUntil:
+    visible:
+      id: "volume-1"
+    timeout: 15000
+- tapOn:
+    id: "volume-1"
+# The reading screen has an always-visible bottom bar with a "play all"
+# button. The per-hadith "Main Audio" buttons sit far below the fold and are
+# not hittable without scrolling, so drive playback from the bottom bar.
+- extendedWaitUntil:
+    visible:
+      id: "play-all-audio"
+    timeout: 20000
+- tapOn:
+    id: "play-all-audio"
+# Floating player shows the track title "Hadis [<label>] - (1)" and the
+# language label, starting with Arabic.
+- extendedWaitUntil:
+    visible: "Bahasa Arab"
+    timeout: 15000
+- assertVisible: "Hadis \\[.*\\].*"

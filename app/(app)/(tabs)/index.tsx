@@ -29,9 +29,10 @@ import { usePostHog } from 'posthog-react-native'
 import { useQuery } from '@tanstack/react-query'
 import { apiGet } from '@/app/utils/api'
 import type { ApiResponse } from '@/app/types'
+import ErrorState from '@/app/components/error-state'
 
 function Home() {
-  const { isLoading, isError, data, error } = useGetTodayHadith()
+  const { isLoading, isError, data, error, refetch } = useGetTodayHadith()
   const { t, i18n } = useTranslation()
   const [lang, setLang] = useState(i18n.language)
   const posthog = usePostHog()
@@ -96,7 +97,9 @@ function Home() {
                 asChild
               >
                 <Pressable className="bg-white border border-1 border-royal-blue-950 gap-2 rounded-md overflow-hidden">
-                  {data && 'id' in data ? (
+                  {isError && !data ? (
+                    <ErrorState error={error} onRetry={refetch} />
+                  ) : data && 'id' in data ? (
                     <View className="p-6">
                       <View className="flex flex-row flex-wrap mb-4">
                         <Text className="font-geist-mono-medium text-xs text-[#f80]">

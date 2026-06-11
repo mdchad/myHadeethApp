@@ -5,11 +5,13 @@ import { Slider } from '@react-native-assets/slider'
 import {Loader, PauseIcon, PlayIcon, StopCircle} from "lucide-react-native";
 
 interface SoundPlayerProps {
-  url: string;
+  // Some hadith40 content entries have no recorded audio; expo-audio accepts
+  // a null source, so undefined is normalized below.
+  url?: string;
 }
 
 const SoundPlayer: React.FC<SoundPlayerProps> = ({url}) => {
-  const player = useAudioPlayer(url)
+  const player = useAudioPlayer(url ?? null)
   const status = useAudioPlayerStatus(player)
 
   const handlePlayPause = () => {
@@ -24,7 +26,7 @@ const SoundPlayer: React.FC<SoundPlayerProps> = ({url}) => {
     }
   }
 
-  const handleSeek = (value) => {
+  const handleSeek = (value: number) => {
     // Convert milliseconds to seconds for expo-audio
     player.seekTo(value / 1000)
   }
@@ -54,7 +56,7 @@ const SoundPlayer: React.FC<SoundPlayerProps> = ({url}) => {
           maximumValue={status.duration * 1000 || 0}
           minimumValue={0}
           thumbSize={14}
-          disable={!status.duration}
+          enabled={!!status.duration}
           thumbTintColor="white"
           trackHeight={3}
         />

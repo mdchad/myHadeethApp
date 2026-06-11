@@ -4,12 +4,11 @@ interface SharedTextType {
   [key: string]: string;
 }
 
-let SHARED_TEXT: SharedTextType = { ...defaultLocale }
+// Map every translation key to itself, so t(SHARED_TEXT.X) resolves by key.
+const SHARED_TEXT: SharedTextType = {}
 
-for (let key in SHARED_TEXT) {
-  if (SHARED_TEXT.hasOwnProperty(key)) {
-    SHARED_TEXT[key] = key;
-  }
+for (const key of Object.keys(defaultLocale)) {
+  SHARED_TEXT[key] = key;
 }
 
 export default SHARED_TEXT

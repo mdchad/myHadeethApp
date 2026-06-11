@@ -29,11 +29,15 @@ const FootnotesMarker: React.FC<FootnotesMarkerProps> = ({
   }
 
   const childrenArray = React.Children.toArray(children)
-  const originalChild = childrenArray[0]
+  const firstChild = childrenArray[0]
 
-  if (!originalChild || !React.isValidElement(originalChild)) {
+  if (!firstChild || !React.isValidElement(firstChild)) {
     return children
   }
+
+  // isValidElement narrows props to `unknown`; we duck-type on text/children
+  // below, so widen to an any-props element once here.
+  const originalChild = firstChild as React.ReactElement<Record<string, any>>
 
   // Extract text content - handle both custom components and HTML elements
   const originalText =
@@ -140,7 +144,7 @@ const FootnotesMarker: React.FC<FootnotesMarkerProps> = ({
   }
 
   // For multiple segments, create separate elements
-  const result = []
+  const result: React.ReactNode[] = []
 
   segments.forEach(({ text, footnote, key }) => {
     if (text) {

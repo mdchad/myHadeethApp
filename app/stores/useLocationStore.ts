@@ -32,10 +32,24 @@ export const useLocationStore = create<LocationState>((set, get) => ({
         return
       }
 
-      const location = await Location.getCurrentPositionAsync({
-        accuracy: Location.Accuracy.Balanced,
-        distanceInterval: 0
-      })
+      let location: Location.LocationObject | null = null
+      try {
+        location = await Location.getCurrentPositionAsync({
+          accuracy: Location.Accuracy.Balanced,
+          distanceInterval: 0
+        })
+      } catch {
+        // getCurrentPositionAsync throws on a transient GPS miss
+        // (kCLErrorLocationUnknown) — e.g. the iOS Simulator with no location
+        // set, or a momentary failure to get a fix. Fall back to the last known
+        // position so prayer times / qibla keep working instead of erroring out.
+        location = await Location.getLastKnownPositionAsync()
+      }
+
+      if (!location) {
+        console.warn('[LocationStore] Location unavailable (no current or cached fix yet)')
+        return
+      }
 
       const place = await Location.reverseGeocodeAsync({
         latitude: location.coords.latitude,
@@ -45,7 +59,7 @@ export const useLocationStore = create<LocationState>((set, get) => ({
       get().setUserPlace(place)
       get().setUserLocation(location)
     } catch (e) {
-      console.error('[LocationStore] Error fetching location:', e)
+      console.warn('[LocationStore] Error fetching location:', e)
     }
   },
 

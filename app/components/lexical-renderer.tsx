@@ -301,7 +301,9 @@ export default function LexicalRenderer({
     return null;
   }
 
-  const containerStyle = dir ? { writingDirection: dir } : undefined;
+  // writingDirection is a Text style; it has no effect on View but is kept
+  // for parity with the previous behavior, so silence the style type here.
+  const containerStyle = dir ? ({ writingDirection: dir } as any) : undefined;
 
   return (
     <View className={className} style={containerStyle}>

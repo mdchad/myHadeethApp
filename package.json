@@ -9,7 +9,9 @@
     "submit:android": "eas build --platform android --profile production --auto-submit",
     "build:android": "eas build -p android --profile production",
     "build:android:development": "eas build -p android --profile development-device",
-    "build:ios:development": "eas build -p ios --profile development"
+    "build:ios:development": "eas build -p ios --profile development",
+    "e2e": "agent-device test .maestro/0[1-4]-*.yaml --maestro --platform ios --device \"iPhone 17 Pro\"",
+    "e2e:report": "agent-device test .maestro/0[1-4]-*.yaml --maestro --platform ios --device \"iPhone 17 Pro\" --report-junit reports/junit.xml"
   },
   "dependencies": {
     "@ai-sdk/react": "^3.0.71",

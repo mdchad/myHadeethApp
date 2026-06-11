@@ -49,5 +49,8 @@
     "whatsNew": "What's New",
     "updateButton": "Update Now",
     "helper": "You will be redirected to the app store"
-  }
+  },
+  "ERROR_OFFLINE_MESSAGE": "No internet connection. Please check your connection and try again.",
+  "ERROR_GENERIC_MESSAGE": "Something went wrong while loading. Please try again.",
+  "ERROR_RETRY_LABEL": "Try Again"
 }
