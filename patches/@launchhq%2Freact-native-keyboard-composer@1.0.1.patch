@@ -1,0 +1,41 @@
+diff --git a/ios/KeyboardAwareWrapper.swift b/ios/KeyboardAwareWrapper.swift
+index ddc8848a79ca37ce8b8cc7ea17e35df3f3a96885..1c18e3ab1cbc63e8e8cc75187c51ab669b34ff2b 100644
+--- a/ios/KeyboardAwareWrapper.swift
++++ b/ios/KeyboardAwareWrapper.swift
+@@ -317,28 +317,23 @@ class KeyboardAwareWrapper: ExpoView, KeyboardAwareScrollHandlerDelegate {
+     }
+     
+     // MARK: - React Native Subview Management
+-    
+-    override func insertReactSubview(_ subview: UIView!, at atIndex: Int) {
+-        super.insertReactSubview(subview, at: atIndex)
+-        // Note: Don't reset hasAttached or composerContainer here
+-        // React calls this frequently during layout, resetting would lose our references
+-        if let sv = findFirstScrollView(in: subview) {
+-            registerScrollViewIfNeeded(sv)
+-        }
+-        if let composer = findFirstComposerView(in: subview) {
+-            registerComposerView(composer)
+-        }
+-        setNeedsLayout()
+-    }
+ 
++    // NOTE: `insertReactSubview` was a Paper-only (old architecture) hook and does
++    // not exist on the Fabric `ExpoView`/`ExpoFabricView` base class, so it fails to
++    // compile under the New Architecture (Expo SDK 55+ / RN 0.83+). Fabric mounts
++    // children via `insertSubview(_:at:)`, which fires `didAddSubview`, so the same
++    // registration work happens there. Local patch — upstream is unmaintained.
+     override func didAddSubview(_ subview: UIView) {
+         super.didAddSubview(subview)
++        // Note: Don't reset hasAttached or composerContainer here
++        // React calls this frequently during layout, resetting would lose our references
+         if let sv = findFirstScrollView(in: subview) {
+             registerScrollViewIfNeeded(sv)
+         }
+         if let composer = findFirstComposerView(in: subview) {
+             registerComposerView(composer)
+         }
++        setNeedsLayout()
+     }
+     
+     // MARK: - Public API for JS

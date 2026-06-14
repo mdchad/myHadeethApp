@@ -1,52 +1,47 @@
-import React from 'react'
+import React, { useMemo, useState } from 'react'
 import {
   View,
   Text,
   FlatList,
   TouchableHighlight,
-  ActivityIndicator,
-  ImageBackground, StatusBar
+  TextInput,
+  ImageBackground,
+  StatusBar,
 } from 'react-native'
 import { Link, useLocalSearchParams, useRouter } from 'expo-router'
+import { useFuzzySearchList } from '@nozbe/microfuzz/react'
+import { Search } from 'lucide-react-native'
 import Header from '@/app/components/header'
 import useGetVolumes from '@/app/shared/fetcher/useVolumes'
-import SHARED_TEXT from "@/app/i18n";
-import {t} from "i18next";
+import SHARED_TEXT from '@/app/i18n'
+import { t } from 'i18next'
 import Page from '@/app/components/page'
 import LoadingSpinner from '@/app/components/loading-spinner'
-import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
-
-interface BilingualText {
-  ms: string;
-  ar: string;
-}
-
-interface VolumeItem {
-  id: string | number;
-  book_id: string;
-  volume_id: string;
-  title: BilingualText;
-  transliteration?: BilingualText;
-  hadith?: {
-    first: number;
-    last: number;
-  };
-}
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
+import type { Volume } from '@/app/types'
 
 interface HadithVolumeItemProps {
-  item: VolumeItem;
+  item: Volume;
   index: number;
+  // When the user filtered by hadith number, pass it through so the hadiths
+  // page can scroll to the chapter containing that hadith on mount.
+  targetHadith?: number;
 }
 
-const HadithVolumeItem: React.FC<HadithVolumeItemProps> = ({ item, index }) => (
+const HadithVolumeItem: React.FC<HadithVolumeItemProps> = ({ item, index, targetHadith }) => (
   <Link
     asChild
     href={{
       pathname: `/(app)/hadiths/[volumeId]`,
-      params: { volumeId: item.id, bookId: item.book_id },
+      params: {
+        volumeId: item.id,
+        bookId: item.book_id,
+        ...(targetHadith ? { hadith: String(targetHadith) } : {}),
+      },
     }}
   >
     <TouchableHighlight
+      testID={`volume-${item.number}`}
       underlayColor="#f9fafb"
       style={{ marginVertical: 6, borderRadius: 10, overflow: 'hidden' }}
     >
@@ -61,7 +56,7 @@ const HadithVolumeItem: React.FC<HadithVolumeItemProps> = ({ item, index }) => (
                 width: 30,
                 flex: 1,
                 justifyContent: 'center',
-                alignItems: 'center'
+                alignItems: 'center',
               }}
             >
               <Text>{index}</Text>
@@ -72,28 +67,28 @@ const HadithVolumeItem: React.FC<HadithVolumeItemProps> = ({ item, index }) => (
           <View className="flex flex-row justify-between">
             <View className="flex-1 mr-1">
               <Text className="text-royal-blue-950 text-[14px] flex-shrink capitalize mb-1">
-                {item.title.ms}
+                {item.title_ms}
               </Text>
-              <Text className="text-xs text-gray-500 flex-shrink capitalize">
-                {item?.transliteration?.ms}
-              </Text>
+              {!!item.transliteration_ms && (
+                <Text className="text-xs text-gray-500 flex-shrink capitalize">
+                  {item.transliteration_ms}
+                </Text>
+              )}
             </View>
             <View className="flex-1 items-end ml-1">
-              <Text
-                className="text-royal-blue-950 text-[24px] text-right flex-shrink capitalize font-arabic-regular"
-              >
-                {item.title.ar}
+              <Text className="text-royal-blue-950 text-[24px] text-right flex-shrink capitalize font-arabic-regular">
+                {item.title_ar}
               </Text>
             </View>
           </View>
           <View className="flex flex-row justify-between items-center mt-4">
             <View className="flex-row items-center gap-2">
               <Text className="text-royal-blue-950 text-[12px]">
-                {item?.hadith?.first}
+                {item.hadith_first}
               </Text>
               <Text className="text-royal-blue-950 text-[12px]">→</Text>
               <Text className="text-royal-blue-950 text-[12px]">
-                {item?.hadith?.last}
+                {item.hadith_last}
               </Text>
             </View>
             <View className="flex flex-row items-center">
@@ -113,30 +108,86 @@ function HadithVolume() {
   const { id, title } = useLocalSearchParams<{ id: string; title: string }>()
   const router = useRouter()
   const bottomTabBarHeight = useBottomTabBarHeight()
+  const [q, setQ] = useState('')
 
-  const { isLoading, isError, data, error } = useGetVolumes(id)
+  const { isLoading, data } = useGetVolumes(id)
+
+  // Dual-mode filter (mirrors web's VolumeContainer):
+  //   numeric → match by hadith_first/last range OR extra_numbers (cross-refs)
+  //   text    → fuzzy match on title_ms
+  const parsedNumber = parseInt(q, 10)
+  const queryNumber = !isNaN(parsedNumber) && parsedNumber > 0 ? parsedNumber : 0
+  const queryText = queryNumber > 0 ? '' : q.trim()
+
+  const numberFilteredList = useMemo<Volume[]>(() => {
+    if (!data) return []
+    if (queryNumber === 0) return data
+    return data.filter(
+      (v) =>
+        (v.hadith_first != null &&
+          v.hadith_last != null &&
+          queryNumber >= v.hadith_first &&
+          queryNumber <= v.hadith_last) ||
+        v.extra_numbers?.includes(queryNumber)
+    )
+  }, [data, queryNumber])
+
+  const filteredList = useFuzzySearchList({
+    list: numberFilteredList,
+    queryText,
+    getText: (item) => [item.title_ms],
+    mapResultItem: ({ item }) => item,
+  })
 
   if (isLoading) {
-    return (
-      <LoadingSpinner />
-    )
+    return <LoadingSpinner />
   }
 
   return (
     <Page edges={['top']} className="bg-royal-blue-950">
       <StatusBar barStyle={'light-content'} />
       <Header title={title} onPressButton={() => router.back()} />
-      <View className="bg-gray-100 pt-4 px-4">
-        <FlatList
-          className="space-y-6"
-          data={data}
-          renderItem={({ item, index }) => (
-            <HadithVolumeItem item={item} index={index + 1} />
-          )}
-          keyExtractor={(item) => item.id.toString()}
-          style={{ paddingRight: 10, marginRight: -10 }}
-          contentContainerStyle={{ paddingBottom: bottomTabBarHeight }}
-        />
+      <View className="bg-gray-100 pt-4 px-4 flex-1">
+        <View className="relative mb-3">
+          <Search
+            size={16}
+            color="#9ca3af"
+            style={{ position: 'absolute', left: 12, top: 14, zIndex: 1 }}
+          />
+          <TextInput
+            value={q}
+            onChangeText={setQ}
+            placeholder="Cari kitab atau nombor hadis"
+            placeholderTextColor="#9ca3af"
+            autoCorrect={false}
+            autoCapitalize="none"
+            returnKeyType="search"
+            clearButtonMode="while-editing"
+            className="bg-white border border-gray-300 rounded-md h-11 pl-9 pr-3 text-base text-royal-blue-950"
+          />
+        </View>
+
+        {filteredList.length === 0 ? (
+          <View className="bg-white border border-gray-300 p-10 items-center">
+            <Text className="text-lg text-royal-blue-950">Kitab tidak dijumpai</Text>
+          </View>
+        ) : (
+          <FlatList
+            className="space-y-6"
+            data={filteredList}
+            renderItem={({ item, index }) => (
+              <HadithVolumeItem
+                item={item}
+                index={index + 1}
+                targetHadith={queryNumber || undefined}
+              />
+            )}
+            keyExtractor={(item) => item.id}
+            style={{ paddingRight: 10, marginRight: -10 }}
+            contentContainerStyle={{ paddingBottom: bottomTabBarHeight }}
+            keyboardShouldPersistTaps="handled"
+          />
+        )}
       </View>
     </Page>
   )

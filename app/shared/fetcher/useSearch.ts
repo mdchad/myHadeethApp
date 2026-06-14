@@ -1,13 +1,12 @@
 import { useMutation } from '@tanstack/react-query'
 import type { SearchParams, SearchResult, SearchApiResponse } from '../../types'
-
-const API_URL = process.env.EXPO_PUBLIC_API_URL;
+import { apiGet } from '@/app/utils/api'
 
 export default function useGetSearch() {
   return useMutation<SearchResult, Error, SearchParams>({
     mutationFn: async ({ query, page = 1, limit = 10, mode = 'text', books }) => {
       const params = new URLSearchParams({
-        query,
+        term: query,
         page: page.toString(),
         limit: limit.toString(),
         mode,
@@ -18,21 +17,12 @@ export default function useGetSearch() {
         params.append('books', books);
       }
 
-      const res = await fetch(
-        `${API_URL}/api/search?${params.toString()}`,
-        {
-          headers: {
-            'User-Agent': 'MyWayApp/1.0.0'
-          },
-          method: 'GET'
-        }
+      // Semantic search on a cold embed cache can take a while — allow more
+      // than the default timeout, but keep it bounded.
+      const result: SearchApiResponse = await apiGet(
+        `/api/search?${params.toString()}`,
+        { timeoutMs: 60_000 }
       )
-
-      if (!res.ok) {
-        throw new Error(`Search failed: ${res.statusText}`);
-      }
-
-      const result: SearchApiResponse = await res.json()
 
       if (!result.success) {
         throw new Error('Search request was not successful');

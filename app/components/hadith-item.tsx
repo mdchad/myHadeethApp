@@ -1,39 +1,17 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, Platform } from 'react-native'
+import { View, Text, Platform } from 'react-native'
 import { useRouter } from 'expo-router'
 import QuranText from './quran-text'
 import FootnotesMarker from './footnotes-marker'
 import FootnotesReference from './footnotes-reference'
-import LexicalRenderer from '@/app/components/lexical-renderer'
 import { latinFontSizes, arabicFontSizes } from '@/app/shared/fontSizeConfig'
 import { useReadingSettingsStore } from '@/app/stores/useReadingSettingsStore'
 import { useAudioPlayerStore } from '@/app/stores/useAudioPlayerStore'
-import {PlayIcon, SparkleIcon, SparklesIcon} from 'lucide-react-native'
+import { PlayIcon, SparklesIcon } from 'lucide-react-native'
 import * as Haptics from 'expo-haptics'
-import { Button } from 'heroui-native';
-
-interface BilingualContent {
-  ms?: string;
-  ar?: string;
-}
-
-interface Footnote {
-  position: number;
-  number: number;
-  type: string;
-  hadithIndex: number;
-  ms?: string;
-  ar?: string;
-}
-
-interface Hadith {
-  id?: string | number;
-  _id?: string;
-  number: number;
-  content: BilingualContent[];
-  footnotes?: Footnote[];
-  audio_files?: any;
-}
+import { Button } from 'heroui-native'
+import type { Hadith } from '@/app/types'
+import { R2_VOICEOVER_BASE_URL } from '@/app/utils/constants'
 
 interface HadithItemProps {
   hadith: Hadith;
@@ -44,7 +22,9 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
   const router = useRouter()
   const fontSizeIndex = useReadingSettingsStore((state) => state.fontSizeIndex)
   const playTrack = useAudioPlayerStore((state) => state.playTrack)
-  const R2_BASE_URL = 'https://pub-34bac4a6ce3242dabed8105f8908b2ee.r2.dev/myway-voiceover'
+  const R2_BASE_URL = R2_VOICEOVER_BASE_URL
+
+  const hadithFootnotes = hadith.footnotes?.hadith ?? []
 
   const handlePlayAudio = async (contentIndex: number) => {
     if (Platform.OS === 'ios') {
@@ -54,11 +34,11 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
     const audioContent = `content${contentIndex}`
     playTrack({
       urls: [
-        `${R2_BASE_URL}/${hadith.audio_files.ar?.[audioContent]}`,
-        `${R2_BASE_URL}/${hadith.audio_files.ms?.[audioContent]}`
+        `${R2_BASE_URL}/${hadith.audio_files?.ar?.[audioContent]}`,
+        `${R2_BASE_URL}/${hadith.audio_files?.ms?.[audioContent]}`
       ],
-      title: `Hadis [${hadith?.number}] - (${contentIndex + 1})`,
-      subtitle: hadith._id
+      title: `Hadis [${hadith.label}] - (${contentIndex + 1})`,
+      subtitle: hadith.id
     })
   }
 
@@ -71,8 +51,9 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
     router.push({
       pathname: '/hadith-chat',
       params: {
-        hadithId: hadith._id,
+        hadithId: hadith.id,
         hadithNumber: hadith.number,
+        bookTitle: hadith.book?.title_ms ?? '',
         contentAr: content.ar || '',
         contentMs: content.ms || '',
       }
@@ -80,8 +61,8 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
   }
 
   return (
-    <View key={hadith._id}>
-      {hadith.content.map((content: any, i) => {
+    <View key={hadith.id}>
+      {hadith.content.map((content, i) => {
         if (!content.ar) return null
         return (
           <View key={i}>
@@ -101,11 +82,11 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
                 }}
               >
                 <FootnotesMarker
-                  footnotes={hadith.footnotes}
+                  footnotes={hadithFootnotes}
                   type={'content.ms'}
                   index={i + 1}
                   footnoteRefs={footnoteRefs}
-                  hadithId={hadith._id}
+                  hadithId={hadith.id}
                 >
                   <QuranText
                     text={content.ms}
@@ -118,6 +99,7 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
               {/* Play Button */}
               <View className="flex flex-row gap-2">
                 <Button
+                  testID={`play-audio-${i}`}
                   size="sm"
                   onPress={() => handlePlayAudio(i)}
                   className="bg-royal-blue rounded-sm rounded-none"
@@ -135,7 +117,7 @@ const HadithItem = React.memo<HadithItemProps>(({ hadith, footnoteRefs }) => {
                 </Button>
               </View>
 
-              <FootnotesReference hadith={hadith} type={'content.ms'} />
+              <FootnotesReference footnotes={hadithFootnotes} type={'content.ms'} />
             </View>
           </View>
         )

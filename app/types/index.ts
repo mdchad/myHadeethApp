@@ -61,17 +61,128 @@ export interface AppSettings {
   notifications: boolean;
 }
 
+// Canonical hadith API types (matches new mobile API)
+export interface ContentEntry {
+  ar: string;
+  ms: string;
+  en?: string;
+}
+
+export interface Book {
+  id: string;
+  slug: string;
+  name: string;
+  title_ms: string;
+  title_ar: string;
+  title_en: string;
+}
+
+export interface Volume {
+  id: string;
+  book_id: string;
+  number: number;
+  slug: string;
+  title_ms: string;
+  title_ar: string;
+  title_en: string;
+  metadata_ms: string;
+  metadata_ar: string;
+  metadata_en: string;
+  transliteration_ms: string;
+  transliteration_en: string;
+  hadith_first: number | null;
+  hadith_last: number | null;
+  extra_numbers?: number[];
+  variant_anchors?: Record<number, string>;
+}
+
+export interface Chapter {
+  id: string;
+  name: string;
+  number: number;
+  title_ms: string;
+  title_ar: string;
+  title_en: string;
+  metadata_ms: string;
+  metadata_ar: string;
+  metadata_en: string;
+  transliteration_ms: string;
+  transliteration_en: string;
+}
+
+export interface Footnote {
+  id: number;
+  scope: 'hadith' | 'chapter' | 'volume';
+  type: string;
+  base_type: string | null;
+  language: 'ar' | 'ms' | 'en' | null;
+  position: number;
+  number: number;
+  hadith_index: number | null;
+  content: string;
+}
+
+export interface HadithFootnotes {
+  hadith: Footnote[];
+  chapter: Footnote[];
+  volume: Footnote[];
+}
+
+export interface Hadith {
+  id: string;
+  number: number;
+  variant: string | null;
+  label: string;
+  sort_order: number;
+  content: ContentEntry[];
+  audio_files: Record<string, Record<string, string>>;
+  book: Book;
+  volume: Volume;
+  chapter: Chapter | null;
+  footnotes?: HadithFootnotes;
+}
+
+export interface ChapterWithHadiths extends Chapter {
+  hadith_first: number | null;
+  hadith_last: number | null;
+  footnotes: Footnote[];
+  hadiths: Hadith[];
+}
+
+export interface VolumeWithChapters {
+  book: Book;
+  volume: Volume;
+  chapters: ChapterWithHadiths[];
+  volume_footnotes: Footnote[];
+}
+
+export interface HadithPreview {
+  id: string;
+  number: number;
+  variant: string | null;
+  label: string;
+  content: Array<{ ar: string; ms: string }>;
+  book: { id: string; slug: string; title_ms: string };
+  volume: { id: string; slug: string; title_ms: string };
+}
+
 // Search interfaces
 export interface SearchParams {
   query: string;
   page?: number;
   limit?: number;
   mode?: 'text' | 'semantic';
-  books?: string; // Comma-separated book names
+  books?: string;
+}
+
+export interface SearchResultDocument extends HadithPreview {
+  content_index: number;
+  similarity?: number;
+  highlights?: any[];
 }
 
 export interface SearchResult {
-  documents: any[]; // Replace 'any' with proper Hadith type when available
+  documents: SearchResultDocument[];
   totalCount: [{ count: number }];
   currentPage: number;
 }
@@ -81,10 +192,7 @@ export interface SearchApiResponse {
   data: SearchResult;
 }
 
-// Storage keys type
-export type StorageKey =
-  | 'user-language'
-  | 'saved-hadiths'
-  | 'user-notes'
-  | 'app-settings'
-  | 'last-read-position';
+// AsyncStorage keys in active use. Legacy keys from pre-2.0.0 builds
+// (saved-hadiths, user-notes, last-read-position, app-settings) are removed
+// on first launch by cleanupLegacyStorage in app/_layout.tsx.
+export type StorageKey = 'user-language';

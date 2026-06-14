@@ -1,0 +1,7 @@
+# Maestro workspace config. Default run covers the smoke flows; the
+# update-blocker flow needs a specially configured backend, so it only runs
+# when explicitly included: --include-tags gated
+flows:
+  - "*.yaml"
+excludeTags:
+  - gated

@@ -43,17 +43,18 @@ const FloatingAudioPlayerContent = () => {
     }
   }, [status.isLoaded, currentTrack])
 
-  // Close player when navigating away
+  // Close player when navigating away — clear store only;
+  // useAudioPlayer releases the native player on unmount itself.
   useEffect(() => {
     return () => {
-      handleClose()
+      clearTrack()
     }
   }, [pathname])
 
   // Auto-play next track when current one finishes
   useEffect(() => {
     if (status.isLoaded && !status.playing && status.currentTime >= status.duration - 0.1) {
-      if (currentIndex < currentTrack.urls.length - 1) {
+      if (currentTrack && currentIndex < currentTrack.urls.length - 1) {
         // Move to next language in current track
         setCurrentIndex(prev => prev + 1)
       } else if (playlist.length > 0 && currentTrackIndex < playlist.length - 1) {
@@ -81,7 +82,7 @@ const FloatingAudioPlayerContent = () => {
       player.pause()
     } else {
       // Restart from beginning if all tracks finished
-      if (currentIndex === currentTrack.urls.length - 1 && status.currentTime >= status.duration - 0.1) {
+      if (currentTrack && currentIndex === currentTrack.urls.length - 1 && status.currentTime >= status.duration - 0.1) {
         setCurrentIndex(0)
       }
       player.play()
@@ -94,8 +95,10 @@ const FloatingAudioPlayerContent = () => {
     }
 
     // Stop current playback
-    player.pause()
-    player.seekTo(0)
+    try {
+      player.pause()
+      player.seekTo(0)
+    } catch {}
 
     // Mark this as a manual switch so it auto-plays
     setIsManualSwitch(true)
@@ -109,7 +112,11 @@ const FloatingAudioPlayerContent = () => {
     if (Platform.OS === 'ios') {
       await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
     }
-    player.pause()
+    try {
+      player.pause()
+    } catch {
+      // player may already be released (unmount race) — safe to ignore
+    }
     clearTrack()
   }
 

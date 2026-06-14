@@ -1,35 +1,29 @@
-import React, { useRef, useEffect, useState, useCallback } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import {
   View,
   ScrollView,
   Text,
   Pressable,
-  Keyboard
+  Keyboard,
 } from 'react-native'
 import { useRouter, useLocalSearchParams } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { StatusBar } from 'expo-status-bar'
 import { useGetHadith } from '../../shared/fetcher/useHadiths'
-import { useReadingSettingsStore } from '@/app/stores/useReadingSettingsStore'
 import { useUniwind } from 'uniwind'
 import Page from '../../components/page'
 import { usePostHog } from 'posthog-react-native'
 import LoadingSpinner from '@/app/components/loading-spinner'
-import FootnotesMarker from '@/app/components/footnotes-marker'
-import FootnotesReference from '@/app/components/footnotes-reference'
-import QuranText from '@/app/components/quran-text'
-import SpecialText from '@/app/components/special-text'
-import Animated, {
+import {
   useAnimatedStyle,
   useSharedValue,
-  withTiming
+  withTiming,
 } from 'react-native-reanimated'
 import ReadingSettingsSheet from '@/app/components/reading-settings'
 import BottomSheet from '@gorhom/bottom-sheet'
 import ReadingTopBar from '@/app/components/reading-top-bar'
 import ReadingBottomBar from '@/app/components/reading-bottom-bar'
 import ChapterTitle from '@/app/components/chapter-title'
-import { latinFontSizes, arabicFontSizes } from '@/app/shared/fontSizeConfig'
 import HadithItem from '@/app/components/hadith-item'
 import { useReadingBottomBarStore } from '@/app/stores/useReadingBottomBarStore'
 
@@ -42,33 +36,25 @@ function UniversalDetail() {
   const { theme } = useUniwind()
   const bottomSheetRef = useRef<BottomSheet>(null)
 
-  const { isLoading, data, isError } = useGetHadith(id)
+  const { isLoading, data } = useGetHadith(id)
 
-  // Store for reading bottom bar
   const { setVisible: setBottomBarVisible, setHeight: setBottomBarHeightStore } = useReadingBottomBarStore()
 
-  // Animation state for top and bottom bars
   const topBarTranslateY = useSharedValue(0)
   const bottomBarTranslateY = useSharedValue(0)
   const [barsVisible, setBarsVisible] = useState(true)
   const [bottomBarHeight, setBottomBarHeight] = useState(100)
 
-
   useEffect(() => {
     if (data) {
       posthog.capture('hadith_viewed', {
-        hadith_id: data._id,
-        book: data.book_title?.ms,
-        volume: data.volume_title?.ms
+        hadith_id: data.id,
+        book: data.book?.title_ms,
+        volume: data.volume?.title_ms,
       })
     }
   }, [data])
 
-  const onSave = () => {
-    // TODO: Implement save logic if needed
-  }
-
-  // Show bars function
   const showBars = () => {
     topBarTranslateY.value = withTiming(0, { duration: 300 })
     bottomBarTranslateY.value = withTiming(0, { duration: 300 })
@@ -76,31 +62,21 @@ function UniversalDetail() {
     setBottomBarVisible(true)
   }
 
-  // Hide bars function
   const hideBars = () => {
-    // Hide top bar above the safe area
     topBarTranslateY.value = withTiming(-(100 + insets.top), { duration: 300 })
-    // Hide bottom bar below the safe area using measured height
-    bottomBarTranslateY.value = withTiming(bottomBarHeight, {
-      duration: 300
-    })
+    bottomBarTranslateY.value = withTiming(bottomBarHeight, { duration: 300 })
     setBarsVisible(false)
     setBottomBarVisible(false)
   }
 
-  // Handle bottom bar layout
   const handleBottomBarLayout = (height: number) => {
     setBottomBarHeight(height)
     setBottomBarHeightStore(height)
   }
 
-  // Handle touch/press on content
   const handleContentPress = () => {
-    if (barsVisible) {
-      hideBars()
-    } else {
-      showBars()
-    }
+    if (barsVisible) hideBars()
+    else showBars()
   }
 
   const handlePresentModalPress = () => {
@@ -109,42 +85,41 @@ function UniversalDetail() {
     Keyboard.dismiss()
   }
 
-  // Animated styles
   const topBarAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: topBarTranslateY.value }]
+    transform: [{ translateY: topBarTranslateY.value }],
   }))
 
   const bottomBarAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: bottomBarTranslateY.value + 16 }]
+    transform: [{ translateY: bottomBarTranslateY.value + 16 }],
   }))
 
   if (isLoading) {
     return <LoadingSpinner />
   }
 
-  if (!data && !isLoading) {
+  if (!data) {
     return <Text>Hadith not found</Text>
   }
 
   return (
     <Page className="bg-reading-background">
       <StatusBar hidden={!barsVisible} style={theme === 'dark' ? 'light' : 'dark'} />
-      {/* Sticky Top Bar */}
       <ReadingTopBar
         animatedStyle={topBarAnimatedStyle}
         onBackPress={() => router.back()}
         onSettingsPress={handlePresentModalPress}
       />
 
-      <ScrollView
-        className="bg-reading-background"
-        scrollEventThrottle={16}
-      >
+      <ScrollView className="bg-reading-background" scrollEventThrottle={16}>
         <Pressable onPress={handleContentPress}>
           <View className="flex-1 pb-0 bg-reading-background pt-40">
             <View className="flex-1">
-              {data?.chapter_title?.ms && (
-                <ChapterTitle data={data} footnoteRefs={footnoteRefs}/>
+              {data.chapter && (
+                <ChapterTitle
+                  chapter={data.chapter}
+                  footnotes={data.footnotes?.chapter}
+                  footnoteRefs={footnoteRefs}
+                />
               )}
               <View className="space-y-8 bg-reading-background mb-20">
                 <HadithItem hadith={data} footnoteRefs={footnoteRefs} />
@@ -154,15 +129,16 @@ function UniversalDetail() {
         </Pressable>
       </ScrollView>
 
-      {/* Sticky Bottom Bar */}
       <ReadingBottomBar
         animatedStyle={bottomBarAnimatedStyle}
-        hadithData={data}
+        book={data.book}
+        volume={data.volume}
+        volumeFootnotes={data.footnotes?.volume}
         footnoteRefs={footnoteRefs}
         onLayout={handleBottomBarLayout}
         onHide={hideBars}
       />
-      <ReadingSettingsSheet bottomSheetRef={bottomSheetRef}/>
+      <ReadingSettingsSheet bottomSheetRef={bottomSheetRef} />
     </Page>
   )
 }

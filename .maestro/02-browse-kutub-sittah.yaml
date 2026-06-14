@@ -1,0 +1,33 @@
+appId: com.mdchad.myWay
+name: Browse book to volume to hadith list
+tags:
+  - smoke
+---
+# Books list -> volume list -> reading screen, exercising /api/books,
+# /api/books/{id}, and /api/books/{id}/{volumeId} with the new shape.
+# Taps use testIDs (language/data independent); asserts use visible text.
+- stopApp
+- launchApp:
+#    clearState: true
+- extendedWaitUntil:
+    visible: "Hadis Harian"
+    timeout: 20000
+- tapOn:
+    id: "tab-hadis"
+- extendedWaitUntil:
+    visible: "Buku-buku Hadis"
+    timeout: 10000
+- assertVisible: "al-Bukhari"
+- tapOn:
+    id: "book-bukhari"
+- extendedWaitUntil:
+    visible:
+      id: "volume-1"
+    timeout: 15000
+- tapOn:
+    id: "volume-1"
+# Reading screen: every hadith item carries a "Main Audio" button.
+- extendedWaitUntil:
+    visible: "Main Audio"
+    timeout: 20000
+- assertVisible: "Tanya AI"

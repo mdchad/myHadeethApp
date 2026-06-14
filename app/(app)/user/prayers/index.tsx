@@ -69,7 +69,11 @@ const prayerIcon = [
   require('@/assets/prayer-isha.png')
 ]
 
-const options = { year: 'numeric', month: 'long', day: 'numeric' }
+const options: Intl.DateTimeFormatOptions = {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+}
 const formatHijri = new Intl.DateTimeFormat(
   'ms-MY-u-ca-islamic-nu-latn',
   options
@@ -136,6 +140,9 @@ export default function Prayer() {
   }, [userLocation])
 
   const fetchPrayer = async () => {
+    if (!userLocation || !userPlace) {
+      return
+    }
     if (userPlace[0].country !== 'Malaysia') {
       setError(true)
       return
@@ -151,6 +158,10 @@ export default function Prayer() {
         `https://mpt-server.vercel.app/api/v2/solat/${json.zone}?year=${year}&month=${month}`
       )
       const result = await prayerMonthly.json()
+      if (!result || !Array.isArray(result.prayers)) {
+        setError(true)
+        return
+      }
       setMonthlyPrayerTimes(result)
       await calculatePrayer(
         format(currentDate, 'd', { timeZone: 'Asia/Kuala_Lumpur' }),
@@ -162,13 +173,17 @@ export default function Prayer() {
   }
 
   async function calculatePrayer(day: string, monthlyPrayerTimes: MonthlyPrayerTimes) {
+    // Data can be missing if the API errored, or the day can be absent when the
+    // next-day lookup crosses into a month we have no data for
+    const getPrayerDate: any = monthlyPrayerTimes?.prayers?.find(
+      (prayer) => prayer.day === parseInt(day)
+    )
+    if (!getPrayerDate) return
+
     const prayers: any[] = []
     ;['fajr', 'syuruk', 'dhuhr', 'asr', 'maghrib', 'isha'].forEach(
       (time, i) => {
         const currentTime = new Date()
-        const getPrayerDate: any = monthlyPrayerTimes.prayers.find(
-          (prayer) => prayer.day === parseInt(day)
-        )
         const getWaktu = getPrayerDate[time]
 
         let elapsed = isBefore(
@@ -207,6 +222,7 @@ export default function Prayer() {
 
   function onClickIndividualDay(item: FormattedDate) {
     setCalendarDate(item?.date)
+    if (!monthlyPrayerTimes) return
     calculatePrayer(
       format(item?.date, 'd', { timeZone: 'Asia/Kuala_Lumpur' }),
       monthlyPrayerTimes
@@ -264,7 +280,7 @@ export default function Prayer() {
             <ImageBackground
               source={require('@/assets/book-background.png')}
               resizeMode="cover"
-              style={{ flex: 1, justifyContent: 'end', alignItems: 'end' }}
+              style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'flex-end' }}
             >
               <View className="px-2 mb-10">
                 <View className="flex flex-col items-center mb-4">

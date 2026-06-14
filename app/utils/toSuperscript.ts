@@ -19,10 +19,10 @@ const toSuperscript = (str: string, type: SuperscriptType): string | undefined =
   }
 
   if (type === 'text') {
-    return str.replace(/\[(\d+)\]/g, (match, p1) => {
+    return str.replace(/\[(\d+)\]/g, (match, p1: string) => {
       return p1
         .split('')
-        .map((char) => superscripts[char] || char)
+        .map((char: string) => superscripts[char] || char)
         .join('')
     })
   }

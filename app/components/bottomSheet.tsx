@@ -1,4 +1,4 @@
-import BottomSheet, {BottomSheetBackdrop, BottomSheetView} from "@gorhom/bottom-sheet";
+import BottomSheet, {BottomSheetBackdrop, BottomSheetView, type BottomSheetBackdropProps} from "@gorhom/bottom-sheet";
 import {Text, TouchableHighlight, View} from "react-native";
 import {t} from "i18next";
 import SHARED_TEXT from "../i18n";
@@ -9,7 +9,7 @@ interface SheetProps {
   setSelectedBooks: (books: string) => void;
   books: string[];
   setBooks: React.Dispatch<React.SetStateAction<string[]>>;
-  bottomSheetRef: React.RefObject<BottomSheet>;
+  bottomSheetRef: React.RefObject<BottomSheet | null>;
 }
 
 function Sheet({ setSelectedBooks, books, setBooks, bottomSheetRef}: SheetProps) {
@@ -18,7 +18,7 @@ function Sheet({ setSelectedBooks, books, setBooks, bottomSheetRef}: SheetProps)
 
   // callbacks
   const renderBackdrop = useCallback(
-    (props) => (
+    (props: BottomSheetBackdropProps) => (
       <BottomSheetBackdrop {...props} pressBehavior={'close'} opacity={0.5} />
     ),
     []
@@ -26,10 +26,10 @@ function Sheet({ setSelectedBooks, books, setBooks, bottomSheetRef}: SheetProps)
 
   function selectBooks() {
     setSelectedBooks(books.join(','))
-    bottomSheetRef.current.close()
+    bottomSheetRef.current?.close()
   }
 
-  function onClickBook(book) {
+  function onClickBook(book: string) {
     if (books.some(val => val === book)) {
       setBooks(prevState => prevState.filter(prev => prev !== book))
     } else {

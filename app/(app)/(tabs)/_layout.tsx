@@ -43,6 +43,7 @@ const _layout = () => {
       <Tabs.Screen
         name="index"
         options={{
+          tabBarButtonTestID: 'tab-home',
           tabBarLabel: t(SHARED_TEXT.TAB_HOME_LABEL),
           tabBarIcon: ({ focused }) => {
             return (
@@ -62,6 +63,7 @@ const _layout = () => {
       <Tabs.Screen
         name="(hadeeth)"
         options={{
+          tabBarButtonTestID: 'tab-hadis',
           tabBarLabel: t(SHARED_TEXT.TAB_HADITH_LABEL),
           tabBarIcon: ({ focused }) => {
             return (
@@ -84,6 +86,7 @@ const _layout = () => {
       <Tabs.Screen
         name="(tanya)"
         options={{
+          tabBarButtonTestID: 'tab-tanya',
           tabBarLabel: t(SHARED_TEXT.TAB_TANYA_LABEL),
           tabBarStyle: { display: 'none' },
           tabBarIcon: ({ focused }) => {
@@ -96,6 +99,7 @@ const _layout = () => {
       <Tabs.Screen
         name="(search)"
         options={{
+          tabBarButtonTestID: 'tab-carian',
           tabBarLabel: t(SHARED_TEXT.TAB_SEARCH_LABEL),
           tabBarIcon: ({ focused }) => {
             return (

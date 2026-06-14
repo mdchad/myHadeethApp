@@ -21,7 +21,6 @@ const _layout = () => {
             <ArrowLeft size={25} color={'black'} />
           </Pressable>
         ),
-        headerTitleAllowFontScaling: true,
         headerTitleStyle: {
           fontSize: 24
         }

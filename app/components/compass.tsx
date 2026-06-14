@@ -30,7 +30,9 @@ const width = Dimensions.get('window').width
 interface CompassV2Props {}
 
 export default function Compass({}: CompassV2Props) {
-  const [location, setLocation] = useState(null)
+  const [location, setLocation] = useState<Location.LocationObject | null>(
+    null
+  )
   const [heading, setHeading] = useState(0)
   const userLocation = useLocationStore((state) => state.userLocation)
   const userPlace = useLocationStore((state) => state.userPlace)
@@ -55,15 +57,15 @@ export default function Compass({}: CompassV2Props) {
 
   useEffect(() => {
     ;(async function asynccall() {
-      if (segment.includes('(qibla)')) {
+      if ((segment as string[]).includes('(qibla)')) {
         let _degree = _getDegreeToMecca(location, heading)
-        setDegree(_degree)
+        setDegree(_degree ?? '')
         if (!_degree) {
           return null
         }
 
         // if degree is near 0 and 360, then vibrate
-        if (_degree < 2 || _degree > 358) {
+        if (Number(_degree) < 2 || Number(_degree) > 358) {
           await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
         }
       }
@@ -83,13 +85,16 @@ export default function Compass({}: CompassV2Props) {
     })
   }
 
-  const _getDirection = (degree) => {
+  const _getDirection = (degree: number) => {
     const directionArr = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N']
     const index = Math.round(degree / 45)
     return directionArr[index]
   }
 
-  const _getDegreeToMecca = (userLocation, heading = 0) => {
+  const _getDegreeToMecca = (
+    userLocation: Location.LocationObject | null,
+    heading = 0
+  ) => {
     if (!userLocation) return null
 
     // Convert latitude and longitude from degrees to radians

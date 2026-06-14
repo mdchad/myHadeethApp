@@ -2,15 +2,7 @@ import { isEmpty } from 'es-toolkit/compat'
 import React from 'react'
 import { Text } from 'react-native'
 import toSuperscript from '../utils/toSuperscript'
-
-interface Footnote {
-  position: number;
-  number: number;
-  type: string;
-  hadithIndex: number;
-  ms?: string;
-  ar?: string;
-}
+import type { Footnote } from '@/app/types'
 
 interface FootnotesMarkerProps {
   children: React.ReactNode;
@@ -37,11 +29,15 @@ const FootnotesMarker: React.FC<FootnotesMarkerProps> = ({
   }
 
   const childrenArray = React.Children.toArray(children)
-  const originalChild = childrenArray[0]
+  const firstChild = childrenArray[0]
 
-  if (!originalChild || !React.isValidElement(originalChild)) {
+  if (!firstChild || !React.isValidElement(firstChild)) {
     return children
   }
+
+  // isValidElement narrows props to `unknown`; we duck-type on text/children
+  // below, so widen to an any-props element once here.
+  const originalChild = firstChild as React.ReactElement<Record<string, any>>
 
   // Extract text content - handle both custom components and HTML elements
   const originalText =
@@ -50,9 +46,11 @@ const FootnotesMarker: React.FC<FootnotesMarkerProps> = ({
   // Sort footnotes by position (ascending order for proper text slicing)
   const sortedFootnotes = [...footnotes].sort((a, b) => a.position - b.position)
 
-  // Filter footnotes for this specific type and index
+  // Filter footnotes for this specific type and index (1-based hadith_index)
   const filteredFootnotes = sortedFootnotes.filter(
-    (footnote) => type === footnote.type && footnote.hadithIndex === index
+    (footnote) =>
+      type === footnote.type &&
+      (footnote.hadith_index ?? null) === index
   )
 
   // If no footnotes for this content, return original
@@ -64,7 +62,7 @@ const FootnotesMarker: React.FC<FootnotesMarkerProps> = ({
   const isCustomComponent = originalChild.props?.text !== undefined
 
   // Create positions array with footnote markers
-  const positions = filteredFootnotes.map((footnote, i) => ({
+  const positions = filteredFootnotes.map((footnote) => ({
     position: footnote.position,
     marker: (
       <Text
@@ -146,7 +144,7 @@ const FootnotesMarker: React.FC<FootnotesMarkerProps> = ({
   }
 
   // For multiple segments, create separate elements
-  const result = []
+  const result: React.ReactNode[] = []
 
   segments.forEach(({ text, footnote, key }) => {
     if (text) {

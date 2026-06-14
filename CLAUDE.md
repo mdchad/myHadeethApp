@@ -180,3 +180,17 @@ All API calls go through `https://my-way-web.vercel.app/api`:
 4. **AI Chatbot** - Chatbot to talk to AI for summaries and explanation
 5. **Audio Recitations** - Audio playback for Hadiths
 6. **Offline Support** - Aggressive caching with offline-first strategy
+
+## Agent-device
+
+Use agent-device only for app/device automation tasks.
+Before planning device work, run `agent-device --version` and read `agent-device help workflow`.
+For exploratory QA, read `agent-device help dogfood`.
+For logs, network, traces, or runtime failures, read `agent-device help debugging`.
+For React Native component trees, props/state/hooks, slow renders, or rerenders, read `agent-device help react-devtools`.
+For React Native apps, overlays, Metro/Fast Refresh blockers, and routing to React DevTools or debugging evidence, read `agent-device help react-native`.
+
+Use the CLI in the integrated terminal.
+If `agent-device` is not on PATH but the user installed it globally in another shell, resolve the absolute binary path instead of using `npx -y agent-device@latest`.
+Prefer `open -> snapshot -i -> act -> re-snapshot -> verify -> close`.
+Keep mutating commands against one session serial.

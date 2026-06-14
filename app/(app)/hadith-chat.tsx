@@ -29,10 +29,10 @@ export default function HadithChatScreen() {
 
   // Extract hadith context from params and reconstruct hadith object
   const hadith = {
-    _id: params.hadithId as string,
+    id: params.hadithId as string,
     number: params.hadithNumber as string,
-    book_title: {
-      ms: params.bookTitle as string || 'Unknown',
+    book: {
+      title_ms: (params.bookTitle as string) || 'Unknown',
     },
     content: [
       {

@@ -26,11 +26,14 @@ import { PortalProvider } from '@gorhom/portal'
 import { useLocationStore } from './stores/useLocationStore'
 import FloatingAudioPlayer from './components/floating-audio-player'
 import {HeroUINativeProvider} from "heroui-native";
+import Constants from 'expo-constants'
 import { useVersionCheck } from './shared/useVersionCheck'
 import { UpdateRequiredBlocker } from './components/update-required-blocker'
+import storage from './shared/storage'
+import { ApiError, isNetworkError } from './utils/api'
 
 const isAndroid = Platform.OS === 'android'
-const isHermes = !!global.HermesInternal
+const isHermes = !!(global as Record<string, unknown>).HermesInternal
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL
 
@@ -97,9 +100,11 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: (failureCount, error) => {
-        // Don't retry on 404s
-        if (error?.message?.includes('404')) return false
-        // Retry up to 3 times for network errors
+        // Client errors (4xx) won't succeed on retry — fail immediately.
+        if (error instanceof ApiError && error.status >= 400 && error.status < 500) {
+          return false
+        }
+        // Retry up to 3 times for network/server errors
         return failureCount < 3
       },
       retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
@@ -115,13 +120,53 @@ const asyncPersist = createAsyncStoragePersister({
   throttleTime: 1000
 })
 
+// Cache buster for the persisted React Query cache. Tied to the native app
+// version so updating the binary (e.g. 1.0.11 -> 2.0.0) discards any cached
+// API responses in the old data shape instead of hydrating them into
+// components that expect the new shape.
+const PERSIST_BUSTER =
+  Constants.nativeApplicationVersion ?? Constants.expoConfig?.version ?? '2.0.0'
+
+// One-time cleanup of AsyncStorage keys that older builds may have written
+// with the pre-2.0.0 data shape. None of these are read by 2.x code.
+const cleanupLegacyStorage = async () => {
+  if (storage.getBoolean('v2-storage-cleaned')) return
+  try {
+    await AsyncStorage.multiRemove([
+      'saved-hadiths',
+      'user-notes',
+      'last-read-position',
+      'app-settings'
+    ])
+    storage.set('v2-storage-cleaned', true)
+  } catch {
+    // Non-blocking; retried on next launch.
+  }
+}
+
 SplashScreen.preventAutoHideAsync()
+
+// Connectivity-level failures are expected operational noise (user is offline,
+// flaky connection, request timed out) — not bugs. Don't report them.
+const EXPECTED_NETWORK_MESSAGES = [
+  'Network request failed',
+  'Network unavailable',
+  'Request timed out',
+  'The Internet connection appears to be offline',
+]
 
 Sentry.init({
   dsn: process.env.EXPO_PUBLIC_SENTRY_DSN,
   // Adds more context data to events (IP address, cookies, user, etc.)
   // For more information, visit: https://docs.sentry.io/platforms/react-native/data-management/data-collected/
   sendDefaultPii: true,
+  beforeSend(event, hint) {
+    const error = hint?.originalException
+    if (isNetworkError(error)) return null
+    const message = error instanceof Error ? error.message : String(error ?? '')
+    if (EXPECTED_NETWORK_MESSAGES.some((m) => message.includes(m))) return null
+    return event
+  },
 });
 
 export default Sentry.wrap(function Root() {
@@ -136,21 +181,23 @@ export default Sentry.wrap(function Root() {
     (state) => state.initializeLocationTracking
   )
 
+  // Best-effort warm-up of the cache. prefetchQuery never rejects, so an
+  // offline launch degrades to whatever the persisted cache restores — it
+  // must never be able to block startup.
   const prefetchTodos = async () => {
     const { apiGet, apiFetch } = await import('./utils/api')
     const timeZone = 'Asia/Kuala_Lumpur'
     const nowInKualaLumpur = toZonedTime(new Date(), timeZone)
     const formattedDate = format(nowInKualaLumpur, 'yyyy-MM-dd')
 
-    // First, fetch books
-    const booksResult = await apiGet('/api/books')
-    const books = booksResult.data
-
     // Prefetch books and today's hadith
-    const initialPrefetch = [
+    await Promise.all([
       queryClient.prefetchQuery({
         queryKey: ['books'],
-        queryFn: async () => books
+        queryFn: async () => {
+          const result = await apiGet('/api/books')
+          return result.data
+        }
       }),
       queryClient.prefetchQuery({
         queryKey: ['todayHadith', formattedDate],
@@ -164,31 +211,40 @@ export default Sentry.wrap(function Root() {
         staleTime: 5 * 60 * 1000,
         gcTime: 24 * 60 * 60 * 1000
       })
-    ]
+    ])
 
-    // Prefetch all volumes for all books
-    const volumePrefetches = books.map((book: any) =>
-      queryClient.prefetchQuery({
-        queryKey: ['volumes', book.id],
-        queryFn: async () => {
-          const result = await apiGet(`/api/books/${book.id}`)
-          return result.data
-        }
-      })
+    // Prefetch all volumes for every book the cache now knows about (empty
+    // when the books fetch failed, e.g. offline)
+    const books = queryClient.getQueryData<any[]>(['books']) ?? []
+    await Promise.all(
+      books.map((book: any) =>
+        queryClient.prefetchQuery({
+          queryKey: ['volumes', book.id],
+          queryFn: async () => {
+            const result = await apiGet(`/api/books/${book.id}`)
+            return result.data
+          }
+        })
+      )
     )
-
-    return Promise.all([...initialPrefetch, ...volumePrefetches])
   }
 
   useEffect(() => {
     // Initialize location tracking and get cleanup function
     const cleanupLocationTracking = initializeLocationTracking()
 
-    prefetchTodos().then(() => {
-      setAudioModeAsync({ playsInSilentMode: true })
-      // Hide the splash screen after prefetching is done
-      SplashScreen.hideAsync()
-    })
+    cleanupLegacyStorage()
+
+    // Not network-dependent — configure audio regardless of prefetch outcome
+    setAudioModeAsync({ playsInSilentMode: true })
+
+    // Hide the splash screen no matter how the warm-up went; an offline
+    // launch falls back to the persisted query cache.
+    prefetchTodos()
+      .catch(() => {})
+      .finally(() => {
+        SplashScreen.hideAsync()
+      })
 
     // Cleanup location tracking on unmount
     return () => {
@@ -202,6 +258,7 @@ export default Sentry.wrap(function Root() {
       client={queryClient}
       persistOptions={{
         maxAge: 24 * 60 * 60 * 1000, // 24 hours
+        buster: PERSIST_BUSTER,
         persister: asyncPersist,
         dehydrateOptions: {
           shouldDehydrateQuery: (query) => {
