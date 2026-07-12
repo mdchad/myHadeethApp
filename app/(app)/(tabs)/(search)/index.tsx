@@ -258,7 +258,7 @@ function Search() {
   }
 
   const handlePresentModalPress = useCallback(() => {
-    bottomSheetRef.current?.snapToIndex(1)
+    bottomSheetRef.current?.expand()
   }, [])
 
   return (

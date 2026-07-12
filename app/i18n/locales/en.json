@@ -40,6 +40,8 @@
   "SEARCH_SELECTED": "Selected",
   "SEARCH_APPLY": "Apply",
   "SEARCH_FILTER": "Filter",
+  "SEARCH_FILTER_BY_BOOK": "Filter by book",
+  "SEARCH_CLEAR_ALL": "Clear all",
   "SHARE_HADITH_MESSAGE": "Check out this hadith on My Way app! Download it now:",
   "updateRequired": {
     "title": "Update Required",
