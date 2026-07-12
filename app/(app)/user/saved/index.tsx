@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Image, TouchableHighlight } from 'react-native'
+import { View, Text, ScrollView, Image } from 'react-native'
 import React from 'react'
 import Page from '@/app/components/page'
 

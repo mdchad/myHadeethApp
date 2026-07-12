@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, TouchableOpacity, Platform } from 'react-native'
+import { View, Text, Pressable, Platform } from 'react-native'
 import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio'
 import { PlayIcon, PauseIcon, Languages, X } from 'lucide-react-native'
 import { Slider } from '@react-native-assets/slider'
@@ -149,10 +149,10 @@ const FloatingAudioPlayerContent = () => {
     >
       <View className="bg-gray-900/95 rounded-2xl px-4 py-3 flex-row items-center shadow-2xl">
         {/* Play/Pause Button */}
-        <TouchableOpacity
+        <Pressable
           onPress={handlePlayPause}
           className="mr-3"
-          activeOpacity={0.7}
+          style={({ pressed }) => ({ opacity: pressed ? 0.7 : 1 })}
         >
           <View className="bg-white rounded-full p-2">
             {status.playing ? (
@@ -161,7 +161,7 @@ const FloatingAudioPlayerContent = () => {
               <PlayIcon size={20} color="#000" fill="#000" />
             )}
           </View>
-        </TouchableOpacity>
+        </Pressable>
 
         {/* Track Info & Slider */}
         <View className="flex-1 mr-3">
@@ -195,24 +195,24 @@ const FloatingAudioPlayerContent = () => {
 
         {/* Language Toggle Button */}
         <View className="flex items-center gap-2">
-          <TouchableOpacity
+          <Pressable
             onPress={handleClose}
             className="ml-2"
-            activeOpacity={0.7}
+            style={({ pressed }) => ({ opacity: pressed ? 0.7 : 1 })}
           >
             <X size={20} color="#fff" />
-          </TouchableOpacity>
+          </Pressable>
 
-          <TouchableOpacity
+          <Pressable
             onPress={handleLanguageToggle}
             className="ml-2 rounded-full px-3 py-2 flex-row items-center"
-            activeOpacity={0.7}
+            style={({ pressed }) => ({ opacity: pressed ? 0.7 : 1 })}
           >
             <Languages size={16} color="#fff" />
             <Text className="text-white text-xs font-semibold ml-1">
               {currentIndex === 0 ? 'AR' : 'MS'}
             </Text>
-          </TouchableOpacity>
+          </Pressable>
 
         </View>
       </View>

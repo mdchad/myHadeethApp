@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, TouchableHighlight} from 'react-native'
+import {Text, View, Pressable} from 'react-native'
 import {t} from "i18next";
 import SHARED_TEXT from "../i18n";
 
@@ -48,13 +48,13 @@ const Pagination: React.FC<PaginationProps> = ({ count, currentPage = 1, setPage
             {number === '...' ? (
               <Text className="px-4 py-2 mx-1">{number}</Text>
             ) : (
-              <TouchableHighlight
+              <Pressable
                 onPress={() => setPage(number)}
-                underlayColor={'#f3f4f6'}
+                style={({ pressed }) => pressed && { backgroundColor: '#f3f4f6' }}
                 className={`${currentPage === number ? 'bg-royal-blue-950' : 'bg-white'} text-sm px-2 py-1 mx-1 rounded`}
               >
                 <Text className={`${currentPage === number ? 'text-white' : 'text-black'}`}>{number}</Text>
-              </TouchableHighlight>
+              </Pressable>
             )}
           </View>
         ))}

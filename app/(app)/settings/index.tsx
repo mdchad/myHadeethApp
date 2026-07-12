@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, ScrollView, Switch, TouchableHighlight, Platform } from 'react-native'
+import { View, Text, ScrollView, Switch, Pressable, Platform } from 'react-native'
 
 import Page from '@/app/components/page'
 import {
@@ -89,16 +89,16 @@ export default function Settings() {
               <MessageSquare size={20} color={'black'} />
               <Text className="text-lg">Help and Feedback</Text>
             </View>
-            <TouchableHighlight
+            <Pressable
               onPress={() => WebBrowser.openBrowserAsync('https://expo.dev')}
               className="rounded-b-xl bg-white"
-              underlayColor="#f9fafb"
+              style={({ pressed }) => pressed && { backgroundColor: '#f9fafb' }}
             >
               <View className="mx-5 py-3 space-x-3 flex flex-row items-center">
                 <Smartphone color={'black'} size={20} />
                 <Text className="text-lg">About</Text>
               </View>
-            </TouchableHighlight>
+            </Pressable>
           </View>
         </View>
       </ScrollView>

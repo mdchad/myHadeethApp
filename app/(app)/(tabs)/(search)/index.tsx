@@ -4,9 +4,7 @@ import {
   Text,
   TextInput,
   View,
-  TouchableOpacity,
   Keyboard,
-  TouchableHighlight,
   StatusBar
 } from 'react-native'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
@@ -287,9 +285,10 @@ function Search() {
               onChangeText={handleChangeText}
             />
           </View>
-          <TouchableOpacity
+          <Pressable
             onPress={handlePresentModalPress}
             className="ml-3 bg-white rounded-full p-3 shadow-md relative"
+            style={({ pressed }) => ({ opacity: pressed ? 0.7 : 1 })}
           >
             <SlidersHorizontal size={20} color="#1e3a8a" />
             {!!books.length && (
@@ -299,7 +298,7 @@ function Search() {
                 </Text>
               </View>
             )}
-          </TouchableOpacity>
+          </Pressable>
         </View>
         {data && data.totalCount && !!data.totalCount.length && (
           <View className="pl-4 pr-4 flex flex-row justify-end items-center">
@@ -340,19 +339,21 @@ function Search() {
                   searchHistory.map((item, i) => {
                     return (
                       <View key={i} className="flex flex-row items-center">
-                        <TouchableOpacity
+                        <Pressable
                           className="flex-1 gap-2 flex flex-row items-center py-2"
+                          style={({ pressed }) => ({ opacity: pressed ? 0.6 : 1 })}
                           onPress={() => onSubmitFromHistory(item)}
                         >
                           <Clock4 size={16} color={'grey'} />
                           <Text className="text-lg">{item}</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
+                        </Pressable>
+                        <Pressable
                           className="py-2"
+                          style={({ pressed }) => ({ opacity: pressed ? 0.6 : 1 })}
                           onPress={() => onRemoveFromHistory(item)}
                         >
                           <XIcon size={18} color={'grey'} />
-                        </TouchableOpacity>
+                        </Pressable>
                       </View>
                     )
                   })}

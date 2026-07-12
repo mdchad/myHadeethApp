@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {View, TouchableOpacity, ActivityIndicator} from 'react-native'
+import {View, Pressable, ActivityIndicator} from 'react-native'
 import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio'
 import { Slider } from '@react-native-assets/slider'
 import {Loader, PauseIcon, PlayIcon, StopCircle} from "lucide-react-native";
@@ -36,13 +36,13 @@ const SoundPlayer: React.FC<SoundPlayerProps> = ({url}) => {
       <View className="mr-4">
         {
           status.playing ? (
-            <TouchableOpacity onPress={handlePlayPause}>
+            <Pressable onPress={handlePlayPause} style={({ pressed }) => ({ opacity: pressed ? 0.6 : 1 })}>
               <PauseIcon size={20} color="white" fill="#fff"/>
-            </TouchableOpacity>
+            </Pressable>
           ) : (
-            <TouchableOpacity onPress={handlePlayPause}>
+            <Pressable onPress={handlePlayPause} style={({ pressed }) => ({ opacity: pressed ? 0.6 : 1 })}>
               <PlayIcon size={20} color="white" fill="#fff"/>
-            </TouchableOpacity>
+            </Pressable>
           )
         }
       </View>

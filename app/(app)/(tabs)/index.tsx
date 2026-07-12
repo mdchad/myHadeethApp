@@ -2,7 +2,6 @@ import {
   View,
   Text,
   ScrollView,
-  TouchableHighlight,
   Pressable,
   StyleSheet, Button
 } from 'react-native'
@@ -177,12 +176,12 @@ function Home() {
                   )}
                   <View className="flex flex-row justify-between items-center bg-royal-blue-950">
                     <View className="flex flex-row items-center">
-                      <TouchableHighlight className="p-1" underlayColor="#333">
+                      <Pressable className="p-1" style={({ pressed }) => pressed && { backgroundColor: '#333' }}>
                         <Share2
                           color="white"
                           size={18}
                         />
-                      </TouchableHighlight>
+                      </Pressable>
                       {/*<TouchableHighlight className="p-1" underlayColor="#333">*/}
                       {/*  <Heart*/}
                       {/*    color="white"*/}
@@ -190,12 +189,12 @@ function Home() {
                       {/*    size={16}*/}
                       {/*  />*/}
                       {/*</TouchableHighlight>*/}
-                      <TouchableHighlight className="p-1" underlayColor="#333">
+                      <Pressable className="p-1" style={({ pressed }) => pressed && { backgroundColor: '#333' }}>
                         <Bookmark
                           color="white"
                           size={18}
                         />
-                      </TouchableHighlight>
+                      </Pressable>
                     </View>
                     <View className="flex flex-row items-center p-2">
                       <Text className="text-white">

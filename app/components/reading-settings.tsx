@@ -1,5 +1,5 @@
 import BottomSheet, {BottomSheetBackdrop, BottomSheetView} from "@gorhom/bottom-sheet";
-import { Pressable, Text, TouchableHighlight, View } from 'react-native'
+import { Pressable, Text, View } from 'react-native'
 import {t} from "i18next";
 import SHARED_TEXT from "../i18n";
 import React, {useCallback, useMemo, useRef} from "react";
