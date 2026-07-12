@@ -42,10 +42,7 @@ const HadithVolumeItem: React.FC<HadithVolumeItemProps> = ({ item, index, target
   >
     <Pressable
       testID={`volume-${item.number}`}
-      style={({ pressed }) => [
-        { marginVertical: 6, borderRadius: 10, overflow: 'hidden' },
-        pressed && { backgroundColor: '#f9fafb' },
-      ]}
+      style={{ marginVertical: 6, borderRadius: 10, overflow: 'hidden' }}
     >
       <View className="bg-white flex flex-row w-full">
         <View className="bg-black p-2 flex justify-center">
