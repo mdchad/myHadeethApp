@@ -211,16 +211,16 @@ function HadithContent() {
         {isLoading ? (
           <ScrollView className="pt-40" showsVerticalScrollIndicator={false}>
             {/* Volume metadata — mirrors VolumeMetadataHeader (p-4 mb-2 outer, p-4 gap-2 inner). */}
-            <View className="p-4 mb-2">
-              <View className="p-4 gap-2">
-                <View className="items-end mb-2">
-                  <Skeleton colorMode="light" height={22} width="60%" />
-                </View>
-                <Skeleton colorMode="light" height={16} width="80%" />
-              </View>
-            </View>
+            {/*<View className="p-4 mb-2">*/}
+            {/*  <View className="p-4 gap-2">*/}
+            {/*    <View className="items-end mb-2">*/}
+            {/*      <Skeleton colorMode="light" height={22} width="60%" />*/}
+            {/*    </View>*/}
+            {/*    <Skeleton colorMode="light" height={16} width="80%" />*/}
+            {/*  </View>*/}
+            {/*</View>*/}
 
-            {[1, 2].map((index) => (
+            {[1].map((index) => (
               <View key={index}>
                 {/* Chapter title — mirrors ChapterTitle (mb-10 p-4 gap-4 outer, border-l-4 pl-2 inner). */}
                 <View className="mb-10 p-4 gap-4">
@@ -232,10 +232,10 @@ function HadithContent() {
                     <View className="gap-2">
                       <Skeleton colorMode="light" height={18} width="95%" />
                       <Skeleton colorMode="light" height={18} width="80%" />
-                      <Skeleton colorMode="light" height={18} width="55%" />
-                      <Spacer height={4} />
-                      <Skeleton colorMode="light" height={14} width="85%" />
-                      <Skeleton colorMode="light" height={14} width="60%" />
+                      {/*<Skeleton colorMode="light" height={18} width="55%" />*/}
+                      {/*<Spacer height={4} />*/}
+                      {/*<Skeleton colorMode="light" height={14} width="85%" />*/}
+                      {/*<Skeleton colorMode="light" height={14} width="60%" />*/}
                     </View>
                   </View>
                 </View>
@@ -246,21 +246,21 @@ function HadithContent() {
                     <Skeleton colorMode="light" height={22} width="100%" />
                     <Skeleton colorMode="light" height={22} width="95%" />
                     <Skeleton colorMode="light" height={22} width="100%" />
-                    <Skeleton colorMode="light" height={22} width="90%" />
-                    <Skeleton colorMode="light" height={22} width="100%" />
-                    <Skeleton colorMode="light" height={22} width="70%" />
+                    {/*<Skeleton colorMode="light" height={22} width="90%" />*/}
+                    {/*<Skeleton colorMode="light" height={22} width="100%" />*/}
+                    {/*<Skeleton colorMode="light" height={22} width="70%" />*/}
                   </View>
                   <View className="gap-2 pb-4">
                     <Skeleton colorMode="light" height={18} width="100%" />
                     <Skeleton colorMode="light" height={18} width="100%" />
-                    <Skeleton colorMode="light" height={18} width="95%" />
-                    <Skeleton colorMode="light" height={18} width="100%" />
-                    <Skeleton colorMode="light" height={18} width="80%" />
+                    {/*<Skeleton colorMode="light" height={18} width="95%" />*/}
+                    {/*<Skeleton colorMode="light" height={18} width="100%" />*/}
+                    {/*<Skeleton colorMode="light" height={18} width="80%" />*/}
                   </View>
-                  <View className="flex flex-row gap-2">
-                    <Skeleton colorMode="light" height={28} width={90} />
-                    <Skeleton colorMode="light" height={28} width={80} />
-                  </View>
+                  {/*<View className="flex flex-row gap-2">*/}
+                  {/*  <Skeleton colorMode="light" height={28} width={90} />*/}
+                  {/*  <Skeleton colorMode="light" height={28} width={80} />*/}
+                  {/*</View>*/}
                 </View>
               </View>
             ))}

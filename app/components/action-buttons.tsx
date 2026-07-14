@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableHighlight } from 'react-native';
+import { View, Pressable } from 'react-native';
 import { Bookmark, Share2 } from 'lucide-react-native';
 
 interface ActionButtonsProps {
@@ -10,20 +10,20 @@ interface ActionButtonsProps {
 const ActionButtons: React.FC<ActionButtonsProps> = ({ onShare, onSave }) => {
   return (
     <View className="flex flex-row justify-end items-center bg-royal-blue-950 p-1">
-      <TouchableHighlight
+      <Pressable
         className="p-1"
-        underlayColor="#333"
+        style={({ pressed }) => pressed && { backgroundColor: '#333' }}
         onPress={onShare}
       >
         <Share2 color="white" strokeWidth={2} size={18} />
-      </TouchableHighlight>
-      <TouchableHighlight
+      </Pressable>
+      <Pressable
         className="p-1"
-        underlayColor="#333"
+        style={({ pressed }) => pressed && { backgroundColor: '#333' }}
         onPress={onSave}
       >
         <Bookmark color="white" strokeWidth={2} size={18} />
-      </TouchableHighlight>
+      </Pressable>
     </View>
   );
 };

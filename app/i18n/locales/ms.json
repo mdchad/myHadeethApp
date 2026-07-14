@@ -40,6 +40,8 @@
   "SEARCH_SELECTED": "Dipilih",
   "SEARCH_APPLY": "Pilih",
   "SEARCH_FILTER": "Tapis",
+  "SEARCH_FILTER_BY_BOOK": "Tapis mengikut kitab",
+  "SEARCH_CLEAR_ALL": "Kosongkan semua",
   "SHARE_HADITH_MESSAGE": "Lihat hadis ini di aplikasi My Way! Muat turun sekarang:",
   "USER_SIGN_IN_LABEL": "Masuk",
   "updateRequired": {

@@ -103,7 +103,7 @@ export default function Hadith40() {
       <View className="bg-gray-100 h-full">
         <FlashList
           data={hadiths}
-          renderItem={Items}
+          renderItem={({ item }) => <Items item={item} />}
           contentContainerStyle={{ paddingHorizontal: 6, paddingVertical: 6 }}
           // style={{ paddingRight: 5, marginRight: -10 }}
         />

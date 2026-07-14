@@ -3,7 +3,7 @@ import {
   View,
   Text,
   FlatList,
-  TouchableHighlight,
+  Pressable,
   TextInput,
   ImageBackground,
   StatusBar,
@@ -40,9 +40,8 @@ const HadithVolumeItem: React.FC<HadithVolumeItemProps> = ({ item, index, target
       },
     }}
   >
-    <TouchableHighlight
+    <Pressable
       testID={`volume-${item.number}`}
-      underlayColor="#f9fafb"
       style={{ marginVertical: 6, borderRadius: 10, overflow: 'hidden' }}
     >
       <View className="bg-white flex flex-row w-full">
@@ -100,7 +99,7 @@ const HadithVolumeItem: React.FC<HadithVolumeItemProps> = ({ item, index, target
           </View>
         </View>
       </View>
-    </TouchableHighlight>
+    </Pressable>
   </Link>
 )
 
