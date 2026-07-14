@@ -45,6 +45,65 @@
       --color-reading-text-secondary: #8B7355;
       --color-reading-border: #D4C4A8;
       --color-metadata-background: hsl(45, 35%, 88%);
+
+      /* HeroUI Native theme variables — uniwind requires every theme to
+         define the same set (heroui-native/styles only covers light/dark).
+         Mirrors the light theme with warm sepia tones. */
+      --background: #F4F1EA;
+      --foreground: #3D3226;
+
+      --surface: #FBF8F1;
+      --surface-foreground: var(--foreground);
+
+      --surface-secondary: #EFEAE0;
+      --surface-secondary-foreground: var(--foreground);
+
+      --surface-tertiary: #E9E2D4;
+      --surface-tertiary-foreground: var(--foreground);
+
+      --overlay: #FBF8F1;
+      --overlay-foreground: var(--foreground);
+      --backdrop: oklch(0% 0 0 / 20%);
+
+      --muted: #8B7355;
+
+      --default: #EAE4D6;
+      --default-foreground: var(--foreground);
+
+      --accent: oklch(0.6204 0.195 253.83);
+      --accent-foreground: var(--snow);
+
+      --field-background: #FBF8F1;
+      --field-foreground: var(--foreground);
+      --field-placeholder: var(--muted);
+      --field-border: transparent;
+
+      --success: oklch(0.7329 0.1935 150.81);
+      --success-foreground: var(--eclipse);
+
+      --warning: oklch(0.7819 0.1585 72.33);
+      --warning-foreground: var(--eclipse);
+
+      --danger: oklch(0.6532 0.2328 25.74);
+      --danger-foreground: var(--snow);
+
+      --segment: #FBF8F1;
+      --segment-foreground: var(--foreground);
+
+      --border: #D4C4A8;
+      --separator: #C3B08E;
+      --focus: var(--accent);
+      --link: var(--foreground);
+
+      --surface-shadow:
+        0 2px 4px 0 rgba(60, 45, 20, 0.04), 0 1px 2px 0 rgba(60, 45, 20, 0.06),
+        0 0 1px 0 rgba(60, 45, 20, 0.06);
+      --overlay-shadow:
+        0 2px 8px 0 rgba(60, 45, 20, 0.02), 0 -6px 12px 0 rgba(60, 45, 20, 0.01),
+        0 14px 28px 0 rgba(60, 45, 20, 0.03);
+      --field-shadow:
+        0 2px 4px 0 rgba(60, 45, 20, 0.04), 0 1px 2px 0 rgba(60, 45, 20, 0.06),
+        0 0 1px 0 rgba(60, 45, 20, 0.06);
     }
 
     @variant dark {
